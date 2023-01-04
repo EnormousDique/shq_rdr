@@ -9,17 +9,20 @@ public abstract class GameObject
     /**
      * Поля
      */
-    private int x, y; //Координаты положения в пространстве
-    private int height; // Высота
-    private int width; // Широта
+    protected int x, y; //Координаты положения в пространстве
+    protected int height; // Высота
+    protected int width; // Широта
     protected int velocity; //Скорость
     protected int mass; //Масса объекта. Чем выше масса, тем объект быстрее падает и тяжелее двигается.
-    private boolean isSolid; //Объект твердый. Через него нельзя пройти.
-    private boolean isStatic; //Объект статичен. Он не двигается вообще. Не может двигаться.
-    private boolean isNPC = true; // Является ли неиграбельным персонажем NPC //TODO: Решить баг с isNPC. Сейчас ставим false в конструкторе
-    protected boolean isStanding; //Объект стоит на платформе или поверхности. Он устойчив и не падает.
+    protected boolean isSolid; //Объект твердый. Через него нельзя пройти.
+    protected boolean isStatic; //Объект статичен. Он не двигается вообще. Не может двигаться.
+    protected boolean isStanding; //Объект стоит на платформе или поверхности. Он устойчив и не падает. //TODO:  Проверить, возожно получится обойтись isFalling
+    protected boolean onGround; // Объект стоит на земле. Нижняя часть экрана, почва.
+    protected boolean isFalling; // Обект падает (на него действует гравитация
     protected BufferedImage texture; //Текстура (изображение) объекта
-    private Rectangle solidBox; //Квадрат "жесткости" //TODO: Вероятно, можно обойтись текстурой.
+    protected Rectangle solidBox; //Квадрат "жесткости" //TODO: Вероятно, можно обойтись текстурой.
+    protected Rectangle onFeetBox; // Платформа под ногами существа, определяющая, стоит ли существо на твердом.
+    public static final int ON_FEET_BOX_HEIGHT = 1;
     protected Rectangle hitBox; //Хитбокс  //TODO: Вероятно, можно обойтись текстурой.
     protected Direction direction; //Направление (см. enum в этом классе)
     /**
@@ -27,7 +30,6 @@ public abstract class GameObject
      */
     protected GameObject(int x, int y, BufferedImage texture)
     {
-        isNPC = false;
         this.texture = texture;
         this.x = x;
         this.y = y;
@@ -36,7 +38,7 @@ public abstract class GameObject
         height = texture.getHeight();
         width = texture.getWidth();
         direction = Direction.NONE;
-        System.out.println(this +" "+ this.isNPC);
+        this.onFeetBox = new Rectangle();
     }
     /**
      * Перечисление возможных направлений.
@@ -59,6 +61,7 @@ public abstract class GameObject
     public void setStanding(){isStanding = true;}
     public void setStanding(boolean bool){isStanding = bool;}
     public void setDirection(Direction direction){this.direction = direction;}
+    public void setIsFalling(boolean bool){this.isFalling = bool;}
     /**
      * Методы - геттеры
      */
@@ -109,5 +112,11 @@ public abstract class GameObject
     }
     public boolean isStatic(){return isStatic;}
     public int getMass(){return mass;}
-    public boolean isNPC(){return isNPC;}
+    public boolean isFalling() {return isFalling;}
+    public Rectangle getOnFeetBox()
+    {
+        return onFeetBox;
+    }
+
+
 }

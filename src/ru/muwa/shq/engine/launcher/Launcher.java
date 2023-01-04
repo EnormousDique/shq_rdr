@@ -1,5 +1,6 @@
 package ru.muwa.shq.engine.launcher;
 
+import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.listeners.ButtonListener;
 
@@ -10,12 +11,10 @@ import java.util.LinkedList;
 /**
  * Пусковой механизм игры. Этот класс отвечает за запуск игры.
  */
-//TODO: Необходимо вывести инициализацию компонентов в игровой движок.
-//  В этом классе реализовать окно лаунчера с выбором режима игры.
 public class Launcher
 {
 
-    private static JFrame launcherFrame = new JFrame();
+    private static JFrame frame = new JFrame();
     private static JButton startButton, settingsButton, editorButton,exitButton;
     final static int START = 0, SET = 1, EDIT = 2, EXIT = 3;
     private static LauncherButtonListener buttonListener;
@@ -26,21 +25,21 @@ public class Launcher
      */
     private static void init()
     {
-        launcherFrame.setVisible(true);
-        launcherFrame.setLayout(null);
-        launcherFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        launcherFrame.setBounds(330,200, Renderer.SCREEN_WIDTH,Renderer.SCREEN_HEIGHT);
+        frame.setVisible(true);
+        frame.setLayout(null);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setBounds(330,200, GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
         buttons = new LinkedList<>();
-        launcherFrame.add(startButton = new JButton("Начать"));
+        frame.add(startButton = new JButton("Начать"));
         startButton.setBounds(100,100,600,50);
         buttons.add(startButton);
-        launcherFrame.add(settingsButton = new JButton("Настройки"));
+        frame.add(settingsButton = new JButton("Настройки"));
         settingsButton.setBounds(100,200,600,50);
         buttons.add(settingsButton);
-        launcherFrame.add(editorButton = new JButton("Редактор"));
+        frame.add(editorButton = new JButton("Редактор"));
         editorButton.setBounds(100,300,600,50);
         buttons.add(editorButton);
-        launcherFrame.add(exitButton = new JButton("Выход"));
+        frame.add(exitButton = new JButton("Выход"));
         exitButton.setBounds(100,400,600,50);
         buttons.add(exitButton);
         buttonListener = new LauncherButtonListener(buttons);
@@ -54,13 +53,12 @@ public class Launcher
     {
         init(); //Старт.
     }
-    public static void hideFrame()
-    {
-        launcherFrame.setVisible(false);
-    }
-
     public static void quit()
     {
         System.exit(0);
+    }
+    public static void hideFrame()
+    {
+        frame.setVisible(false);
     }
 }

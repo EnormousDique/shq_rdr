@@ -12,7 +12,7 @@ public class KeyListener implements java.awt.event.KeyListener
      * D - 68
      * SPACE BAR - 32
      */
-    public boolean[] keys;
+    private boolean[] keys;
     public final int
             W = 0,
             A = 1,
@@ -42,6 +42,8 @@ public class KeyListener implements java.awt.event.KeyListener
     @Override
     public void keyPressed(KeyEvent e)
     {
+       // System.out.println(e.getKeyCode());
+
         switch (e.getKeyCode())
         {
             case 32: // Пробел
@@ -59,6 +61,8 @@ public class KeyListener implements java.awt.event.KeyListener
                 keys[3] = true;
                 break;
         }
+
+        System.out.println("key pressed: " + e.getKeyCode());
     }
 
     @Override
@@ -81,5 +85,9 @@ public class KeyListener implements java.awt.event.KeyListener
                 keys[3] = false;
                 break;
         }
+    }
+    public boolean[] getKeys()
+    {
+        return keys;
     }
 }

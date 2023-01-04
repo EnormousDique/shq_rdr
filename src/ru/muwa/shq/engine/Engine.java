@@ -7,6 +7,7 @@ import ru.muwa.shq.engine.p.Updater;
 import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.dev.DevLevel0;
+import ru.muwa.shq.levels.dev.DevLevel1;
 
 /**
  * Класс, запускающий и хранящий основные компоненты игрового движка.
@@ -16,12 +17,11 @@ public class Engine
     /**
      * Статические поля.
      */
-    private static Level currentLevel = new DevLevel0();
+    private static Level currentLevel = new DevLevel0(); //new DevLevel1();
     public static Updater updater = Updater.getInstance();
     public static Renderer renderer = Renderer.getInstance();
     public static KeyListener keyboard = KeyListener.getInstance();
     public static Player player = Player.get(); // При получении игрока currentLevel уже должен быть инициализирован!
-
     /**
      * Метод смены уровня.
      * @param level - уровень, на который мы переходим.

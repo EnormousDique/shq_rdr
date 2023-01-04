@@ -28,7 +28,5 @@ public class Crate0 extends GameObject
         super(x,y,img);
         velocity = 5;
         isStanding = false;
-        System.out.println("crate0 created successfully");
-        System.out.println(this.getSolidBox());
     }
 }

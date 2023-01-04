@@ -18,9 +18,8 @@ import java.util.LinkedList;
  */
 public class Renderer implements Runnable
 {
-   public static final int SCREEN_HEIGHT = 600, SCREEN_WIDTH = 800, FRAME_TOP_HEIGHT = 37;
    private Graphics g;
-   private JFrame frame;
+    private GameScreen frame;
    private Canvas canvas;
    private Thread thread;
    private MouseListener mouse;
@@ -42,13 +41,13 @@ public class Renderer implements Runnable
        instance = this;
        objects = new LinkedList<>();
        npc = new LinkedList<>();
-       frame = new JFrame();
+       frame = GameScreen.getInstance();
        canvas = new Canvas();
-       mouse = new MouseListener();
+       mouse = MouseListener.getInstance();
        keyboard = KeyListener.getInstance();
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        frame.add(canvas);
-       frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT + FRAME_TOP_HEIGHT);
+       frame.setSize(GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT + GameScreen.FRAME_TOP_HEIGHT);
        frame.setResizable(false);
        frame.setLocationRelativeTo(null);
        frame.setVisible(true);
@@ -80,7 +79,7 @@ public class Renderer implements Runnable
         }
         g = bs.getDrawGraphics();
         g.setColor(Color.black);
-        g.fillRect(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+        g.fillRect(0,0,GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
 
         g.drawImage(player.getTexture(), player.getX(),player.getY(),null);
 
@@ -88,6 +87,11 @@ public class Renderer implements Runnable
         for(NPC c : npc) g.drawImage(c.getTexture(),c.getX(),c.getY(),c.getWidth(),c.getHeight(),null);
         g.setColor(Color.ORANGE);
         for(NPC c : npc) for (Line2D.Float line : c.getRayCaster().calcRays()) g.drawLine((int)line.x1, (int) line.y1, (int) line.x2, (int) line.y2);
+        g.drawRect(player.getSolidBox().x,player.getSolidBox().y,(int)player.getSolidBox().getWidth(),(int)player.getSolidBox().getHeight());
+        g.drawRect(player.getOnFeetBox().x,player.getOnFeetBox().y,(int)player.getOnFeetBox().getWidth(),(int)player.getOnFeetBox().getHeight());
+        for(NPC c: npc) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1,(int)r.y1,(int)r.x2,(int)r.y2);}
+        for(GameObject object : objects) g.drawRect(object.getSolidBox().x,object.getSolidBox().y,(int)object.getSolidBox().getWidth(),(int)object.getSolidBox().getHeight());
+
         g.dispose();
         canvas.getBufferStrategy().show();
     }

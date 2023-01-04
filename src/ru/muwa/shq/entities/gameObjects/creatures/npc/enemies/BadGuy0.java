@@ -30,6 +30,7 @@ public class BadGuy0 extends NPC
     {
         super(x,y,img);
         velocity = 2;
+        speed = 1;
         direction = RIGHT;
         setRayCaster(new RayCaster(x,y,300));
     }

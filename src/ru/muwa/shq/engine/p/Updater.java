@@ -1,11 +1,12 @@
 package ru.muwa.shq.engine.p;
 import ru.muwa.shq.engine.ai.AI;
+import ru.muwa.shq.engine.controls.PlayerControls;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.listeners.KeyListener;
-import ru.muwa.shq.engine.p.checkers.CollisionsChecker;
-import ru.muwa.shq.engine.p.checkers.GravityChecker;
-
+import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
+import ru.muwa.shq.engine.p.gravity.GravityChecker;
+import ru.muwa.shq.engine.p.updaters.OnFeetBoxUpdater;
 import ru.muwa.shq.engine.p.updaters.RayCasterUpdater;
 import ru.muwa.shq.engine.p.updaters.SolidBoxUpdater;
 import ru.muwa.shq.entities.gameObjects.GameObject;
@@ -13,7 +14,6 @@ import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
 import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
 import ru.muwa.shq.levels.Level;
 
-import javax.swing.text.PlainDocument;
 import java.util.LinkedList;
 /**
  * Класс, отвечающий за изменение положения игровых объектов и сущностей в пространстве.
@@ -25,9 +25,11 @@ public class Updater implements Runnable
     private CollisionsChecker collisionsChecker;
     private GravityChecker gravityChecker;
     private SolidBoxUpdater solidBoxUpdater;
+    private OnFeetBoxUpdater onFeetBoxUpdater;
     private AI ai = AI.getInstance();
     private Thread thread;
     private Player player;
+    private PlayerControls controls;
     LinkedList<GameObject> objects;
     LinkedList<NPC> npc;
     Renderer renderer;
@@ -38,10 +40,12 @@ public class Updater implements Runnable
         if(instance != null) return;
         instance = this;
         player = Player.get();
+        controls = PlayerControls.getInstance();
         gravityChecker = GravityChecker.getInstance();
         renderer = Renderer.getInstance();
         collisionsChecker = CollisionsChecker.getInstance();
         solidBoxUpdater = SolidBoxUpdater.getInstance();
+        onFeetBoxUpdater = OnFeetBoxUpdater.getInstance();
         objects = new LinkedList<>();
         npc = new LinkedList<>();
         rayCasterUpdater = RayCasterUpdater.getInstance();
@@ -76,28 +80,30 @@ public class Updater implements Runnable
     }
     private void update()
     {
-        System.out.println(player.getX()+" "+player.getY());
-        gravityChecker.checkGravity(player);
-        solidBoxUpdater.updateSolidBox(player);
-        collisionsChecker.checkCollisions(player, objects);
+       // System.out.println("Player standing: "+player.standing());
         for(GameObject o : objects)
         {
-            gravityChecker.checkGravity(o);
+            gravityChecker.checkGravity(o,objects);
             solidBoxUpdater.updateSolidBox(o);
+            onFeetBoxUpdater.updateOnFeetBox(o);
             collisionsChecker.checkCollisions(o, objects);
         }
         for(NPC c : npc)
         {
-            ai.move(c);
-            gravityChecker.checkGravity(c);
+            gravityChecker.checkGravity(c,objects);
             solidBoxUpdater.updateSolidBox(c);
+            onFeetBoxUpdater.updateOnFeetBox(c);
             collisionsChecker.checkCollisionsNPC(c, objects);
             collisionsChecker.checkBottomCollisions(c);
             c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
             rayCasterUpdater.updateRayCaster(c.getRayCaster(),c);
-
+            ai.move(c);
         }
-
+        controls.controlPlayer();
+        gravityChecker.checkGravity(player,objects);
+        solidBoxUpdater.updateSolidBox(player);
+        onFeetBoxUpdater.updateOnFeetBox(player);
+        collisionsChecker.checkCollisions(player, objects);
     }
     public static Updater getInstance()
     {

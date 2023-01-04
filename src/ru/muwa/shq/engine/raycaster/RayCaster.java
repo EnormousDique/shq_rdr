@@ -1,5 +1,7 @@
 package ru.muwa.shq.engine.raycaster;
 import ru.muwa.shq.entities.gameObjects.GameObject;
+import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
+
 import java.awt.geom.Line2D;
 import java.util.LinkedList;
 
@@ -9,7 +11,7 @@ import java.util.LinkedList;
  */
 public class RayCaster
 {
-    public static final int RAYS_AMOUNT = 13;
+    public static final int RAYS_AMOUNT = 20;
 
     private LinkedList<Line2D.Float> borders; // Список линий, через который лучи не могут пройти.
     int x,y; // Координаты центра, из которого строятся лучи
@@ -30,17 +32,17 @@ public class RayCaster
     {
         LinkedList<Line2D.Float> rays = new LinkedList<>();
         for (int i = 0; i < resolution; i++)
-        {
-            double dir = ((Math.PI * 2)*((double) i/resolution));
-            float minDist = maxDist;
+        { // Цикл. По итерации на 1 луч.
+            double dir = ((Math.PI * 2)*((double) i/resolution)); // Расстояние между лучами высчитывается из  кол-ва лучей
+            float minDist = maxDist; // Длина луча.
             for(Line2D.Float l : borders)
-            {
+            { //Цикл, итерирущий линии из списка границ.
                 float dist = getRayCast(x,y,x+(float)Math.cos(dir) * maxDist, y+(float)Math.sin(dir) * maxDist, + l.x1, l.y1, l.x2, l.y2);
                 if (dist < minDist && dist > 0)
                 {
-                    minDist = dist;
+                    minDist = dist; //Луч становится короче, если пересекается с границей.
                 }
-            }
+            } // Полученные лучи возвращаем из метода.
             rays.add(new Line2D.Float(x,y,x+(float)Math.cos(dir) * minDist, y+(float)Math.sin(dir) * minDist));
         }
         return rays;
@@ -50,7 +52,7 @@ public class RayCaster
         return (float) Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
     }
     public static float getRayCast(float p0_x, float p0_y, float p1_x, float p1_y, float p2_x, float p2_y, float p3_x, float p3_y)
-    {
+    { // Математика. Метод считает пересечение отрезков.
         float s1_x, s1_y, s2_x, s2_y;
         s1_x = p1_x - p0_x;
         s1_y = p1_y - p0_y;
@@ -63,7 +65,7 @@ public class RayCaster
             // Collision detected
             float x = p0_x + (t * s1_x);
             float y = p0_y + (t * s1_y);
-            return dist(p0_x, p0_y, x, y);
+            return dist(p0_x, p0_y, x, y); //Расстояние между точкой начала луча и точкой его пересечения с границей.
         }
         return -1; // No collision
     }
@@ -75,6 +77,7 @@ public class RayCaster
             /*
                 Цикл для формирования граней RayCaster'a на основании текстур игровых объектов.
 
+                // TODO: Заменить * на O и U на X
          XY(0,0)***************************************X+
                 *********А***********************B*****
                 *********UUUUUUUUUUUUUUUUUUUUUUUUU*****
@@ -91,6 +94,15 @@ public class RayCaster
             lines.add(new Line2D.Float(o.getX(),o.getY()+o.getHeight(),o.getX(),o.getY()));//DA
         }
         return lines;
+    }
+
+    public boolean isPlayerInSight() //TODO: Вынести лучи в поле класса, чтобы избежать двойного вызова расчётов.
+    {
+        for (Line2D.Float ray : calcRays())
+        {
+            if(ray.intersects(Player.get().getSolidBox())) return true;
+        }
+                return false;
     }
 
 }

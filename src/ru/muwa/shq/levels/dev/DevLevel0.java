@@ -1,6 +1,8 @@
 package ru.muwa.shq.levels.dev;
 import ru.muwa.shq.entities.gameObjects.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.entities.gameObjects.obstacles.crates.Crate0;
+import ru.muwa.shq.entities.gameObjects.obstacles.crates.Crate1;
+import ru.muwa.shq.entities.gameObjects.obstacles.crates.Crate2;
 import ru.muwa.shq.levels.Level;
 
 import java.io.IOException;
@@ -22,6 +24,8 @@ public class DevLevel0 extends Level
             objects.add(new Crate0(300,300));
             objects.add(new Crate0(350,180));
             objects.add(new Crate0(750,450));
+            objects.add(new Crate1(600,0));
+            //objects.add(new Crate2(228,228));
             npc.add(new BadGuy0(600,200));
             npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         }

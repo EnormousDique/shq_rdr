@@ -5,6 +5,16 @@ import java.awt.event.MouseEvent;
  */
 public class MouseListener implements java.awt.event.MouseMotionListener
 {
+    private static MouseListener instance;
+    /**
+     * Констуктор
+     */
+    private MouseListener(){}
+    public static MouseListener getInstance()
+    {
+        if(instance == null) return new MouseListener();
+        else return instance;
+    }
     /**
      * Поля - координаты курсора мыши.
      */
@@ -21,14 +31,7 @@ public class MouseListener implements java.awt.event.MouseMotionListener
         return y;
     }
 
-    /**
-     * Констуктор
-     */
-    public MouseListener()
-    {
-        x=0;
-        y=0;
-    }
+
 
     /**
      * Метод, срабатывающий при событии перетаскивания мышью.
