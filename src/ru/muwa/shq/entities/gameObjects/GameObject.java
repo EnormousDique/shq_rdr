@@ -13,6 +13,8 @@ public abstract class GameObject
     protected int height; // Высота
     protected int width; // Широта
     protected int velocity; //Скорость
+
+    protected int fallAx;
     protected int mass; //Масса объекта. Чем выше масса, тем объект быстрее падает и тяжелее двигается.
     protected boolean isSolid; //Объект твердый. Через него нельзя пройти.
     protected boolean isStatic; //Объект статичен. Он не двигается вообще. Не может двигаться.
@@ -62,6 +64,10 @@ public abstract class GameObject
     public void setStanding(boolean bool){isStanding = bool;}
     public void setDirection(Direction direction){this.direction = direction;}
     public void setIsFalling(boolean bool){this.isFalling = bool;}
+    public void setFallAx(int fallAx)
+    {
+        this.fallAx = fallAx;
+    }
     /**
      * Методы - геттеры
      */
@@ -85,6 +91,8 @@ public abstract class GameObject
     {
         return x;
     }
+
+    public int getFallAx(){return fallAx;}
     public BufferedImage getTexture()
     {
         return texture;
