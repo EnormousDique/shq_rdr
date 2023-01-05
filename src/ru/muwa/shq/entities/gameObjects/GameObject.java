@@ -14,13 +14,14 @@ public abstract class GameObject
     protected int width; // Широта
     protected int velocity; //Скорость
 
-    protected int fallAx;
+    protected double fallAx;
     protected int mass; //Масса объекта. Чем выше масса, тем объект быстрее падает и тяжелее двигается.
     protected boolean isSolid; //Объект твердый. Через него нельзя пройти.
     protected boolean isStatic; //Объект статичен. Он не двигается вообще. Не может двигаться.
     protected boolean isStanding; //Объект стоит на платформе или поверхности. Он устойчив и не падает. //TODO:  Проверить, возожно получится обойтись isFalling
     protected boolean onGround; // Объект стоит на земле. Нижняя часть экрана, почва.
     protected boolean isFalling; // Обект падает (на него действует гравитация
+    protected boolean isUsable;// Объект можно использовать (юзабелен).
     protected BufferedImage texture; //Текстура (изображение) объекта
     protected Rectangle solidBox; //Квадрат "жесткости" //TODO: Вероятно, можно обойтись текстурой.
     protected Rectangle onFeetBox; // Платформа под ногами существа, определяющая, стоит ли существо на твердом.
@@ -64,10 +65,11 @@ public abstract class GameObject
     public void setStanding(boolean bool){isStanding = bool;}
     public void setDirection(Direction direction){this.direction = direction;}
     public void setIsFalling(boolean bool){this.isFalling = bool;}
-    public void setFallAx(int fallAx)
+    public void setFallAx(double fallAx)
     {
         this.fallAx = fallAx;
     }
+    public void setIsUsable(boolean isUsable){ this.isUsable = isUsable;}
     /**
      * Методы - геттеры
      */
@@ -92,7 +94,7 @@ public abstract class GameObject
         return x;
     }
 
-    public int getFallAx(){return fallAx;}
+    public double getFallAx(){return fallAx;}
     public BufferedImage getTexture()
     {
         return texture;
@@ -125,6 +127,8 @@ public abstract class GameObject
     {
         return onFeetBox;
     }
+
+    public boolean isUsable(){return isUsable;}
 
 
 }

@@ -30,7 +30,7 @@ public class GravityChecker
     public void checkGravity(GameObject o, LinkedList<GameObject> objects)
     {
         checkForFalling(o,objects);
-        fall(o);
+        if (!o.isStatic())fall(o);
     }
     public void checkGravity(Creature c, LinkedList<GameObject> objects)
     {
@@ -60,15 +60,19 @@ public class GravityChecker
     { //TODO: Добавить проверку на isFalling
         if(o != null && o.isFalling())
         {
-            o.setY((o.getY()+o.getVelocity()));
+            o.setY((o.getY()+(int)o.getFallAx()));
+            o.setFallAx(o.getFallAx()+0.7);
+            //if(o.getFallAx() >= 30) o.setFallAx(30);
+            if(o.getFallAx()>= o.getHeight()) o.setFallAx(o.getHeight()/2);
         }
+        if(o != null && !o.isFalling()) o.setFallAx(0);
     }
 
     private void fly(Creature c)
     {
         if(c.getJumpAx() > 0)
         {
-            System.out.println("jump ax for " + c + " is: " + c.getJumpAx() );
+           // System.out.println("jump ax for " + c + " is: " + c.getJumpAx());
             c.setY(c.getY()-c.getJumpAx());
             c.setJumpAx(c.getJumpAx()-1);
         }

@@ -62,7 +62,7 @@ public class KeyListener implements java.awt.event.KeyListener
                 break;
         }
 
-        System.out.println("key pressed: " + e.getKeyCode());
+        //System.out.println("key pressed: " + e.getKeyCode());
     }
 
     @Override

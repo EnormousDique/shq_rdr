@@ -45,17 +45,18 @@ public class CollisionsChecker
                 { //Проверяем на пересечение.
                     //System.out.println("Обекты пересекаются");
                     //Если ноги выше крыши, то толкаем вверх.
-                    if(o.getY() + o.getHeight() < obj.getY()+10)
+                    if(o.getY() + o.getHeight() < obj.getY()+15)
                     {
                         o.setY(obj.getY() - o.getHeight() - 2);
                         o.setStanding(true);
+                        System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  UP");
                     }
                     //Если голова ниже дна, толкаем вниз.
-                    else if(o.getY() > obj.getY()+ obj.getHeight() -10) o.setY(obj.getY() + obj.getHeight() + 2);
+                    else if(o.getY() > obj.getY()+ obj.getHeight() -10){ o.setY(obj.getY() + obj.getHeight() + 2);System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  DOWN");}
                     //Иначе толкаем в бок.
-                    else if(o.getSolidBox().getCenterX() < obj.getSolidBox().getCenterX()) o.setX(obj.getX() - o.getWidth());
+                    else if(o.getSolidBox().getCenterX() < obj.getSolidBox().getCenterX()){ o.setX(obj.getX() - o.getWidth());System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  LEFT");}
                     //И в другой бок.
-                    else if(o.getSolidBox().getCenterX() > obj.getSolidBox().getCenterX()) o.setX(obj.getX() + obj.getWidth());
+                    else if(o.getSolidBox().getCenterX() > obj.getSolidBox().getCenterX()){ o.setX(obj.getX() + obj.getWidth());System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  RIGHT");}
                 }
             }
         }

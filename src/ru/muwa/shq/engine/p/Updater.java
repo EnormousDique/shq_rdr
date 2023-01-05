@@ -83,6 +83,7 @@ public class Updater implements Runnable
        // System.out.println("Player standing: "+player.standing());
         for(GameObject o : objects)
         {
+            collisionsChecker.checkCollisions(o, objects);
             gravityChecker.checkGravity(o,objects);
             solidBoxUpdater.updateSolidBox(o);
             onFeetBoxUpdater.updateOnFeetBox(o);
@@ -90,16 +91,19 @@ public class Updater implements Runnable
         }
         for(NPC c : npc)
         {
+            collisionsChecker.checkCollisionsNPC(c, objects);
+            collisionsChecker.checkBottomCollisions(c);
             gravityChecker.checkGravity(c,objects);
             solidBoxUpdater.updateSolidBox(c);
             onFeetBoxUpdater.updateOnFeetBox(c);
-            collisionsChecker.checkCollisionsNPC(c, objects);
-            collisionsChecker.checkBottomCollisions(c);
             c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
             rayCasterUpdater.updateRayCaster(c.getRayCaster(),c);
+            collisionsChecker.checkCollisionsNPC(c, objects);
+            collisionsChecker.checkBottomCollisions(c);
             ai.move(c);
         }
         controls.controlPlayer();
+        collisionsChecker.checkCollisions(player, objects);
         gravityChecker.checkGravity(player,objects);
         solidBoxUpdater.updateSolidBox(player);
         onFeetBoxUpdater.updateOnFeetBox(player);
