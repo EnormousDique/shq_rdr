@@ -1,6 +1,10 @@
 package ru.muwa.shq.entities.gameObjects;
+import ru.muwa.shq.entities.items.Item;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
 /**
  * Абстрактный класс, прародитель всех игровых объектов.
  */
@@ -21,7 +25,7 @@ public abstract class GameObject
     protected boolean isStanding; //Объект стоит на платформе или поверхности. Он устойчив и не падает. //TODO:  Проверить, возожно получится обойтись isFalling
     protected boolean onGround; // Объект стоит на земле. Нижняя часть экрана, почва.
     protected boolean isFalling; // Обект падает (на него действует гравитация
-    protected boolean isUsable;// Объект можно использовать (юзабелен).
+
     protected BufferedImage texture; //Текстура (изображение) объекта
     protected Rectangle solidBox; //Квадрат "жесткости" //TODO: Вероятно, можно обойтись текстурой.
     protected Rectangle onFeetBox; // Платформа под ногами существа, определяющая, стоит ли существо на твердом.
@@ -69,7 +73,6 @@ public abstract class GameObject
     {
         this.fallAx = fallAx;
     }
-    public void setIsUsable(boolean isUsable){ this.isUsable = isUsable;}
     /**
      * Методы - геттеры
      */
@@ -128,7 +131,6 @@ public abstract class GameObject
         return onFeetBox;
     }
 
-    public boolean isUsable(){return isUsable;}
 
 
 }

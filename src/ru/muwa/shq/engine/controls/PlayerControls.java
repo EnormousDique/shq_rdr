@@ -1,6 +1,7 @@
 package ru.muwa.shq.engine.controls;
 
 import ru.muwa.shq.engine.listeners.KeyListener;
+import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
 
 /**
@@ -21,7 +22,14 @@ public class PlayerControls
         if(keyboard.getKeys()[2]) ;// Нажата S
         if(keyboard.getKeys()[3]) moveRight();// Нажата D
         if(keyboard.getKeys()[4]) jump() ;// Нажата SPACE BAR
+        if(keyboard.getKeys()[4]) interact(); // Нажата Е
     }
+
+    private void interact()
+    {
+
+    }
+
     private void moveRight()
     {
         player.moveRight();
