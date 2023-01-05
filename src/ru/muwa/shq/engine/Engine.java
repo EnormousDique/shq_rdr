@@ -8,6 +8,7 @@ import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.dev.DevLevel0;
 import ru.muwa.shq.levels.dev.DevLevel1;
+import ru.muwa.shq.levels.dev.LevelVovka1010;
 
 /**
  * Класс, запускающий и хранящий основные компоненты игрового движка.
@@ -17,7 +18,7 @@ public class Engine
     /**
      * Статические поля.
      */
-    private static Level currentLevel = new DevLevel0(); //new DevLevel1();
+    private static Level currentLevel =new DevLevel0(); //new LevelVovka1010 ();  //new DevLevel0(); //new DevLevel1();
     public static Updater updater = Updater.getInstance();
     public static Renderer renderer = Renderer.getInstance();
     public static KeyListener keyboard = KeyListener.getInstance();
