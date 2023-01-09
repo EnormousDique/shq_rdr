@@ -1,5 +1,6 @@
 package ru.muwa.shq.levels;
 
+import ru.muwa.shq.entities.gameObjects.Container;
 import ru.muwa.shq.entities.gameObjects.GameObject;
 import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
 
@@ -21,6 +22,8 @@ public abstract class Level
     }
     protected LinkedList<GameObject> objects;
     protected LinkedList<NPC> npc;
+
+    protected LinkedList<Container> containers;
 
     public LinkedList<GameObject> getObjects()
     {
