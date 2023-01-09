@@ -1,6 +1,6 @@
 package ru.muwa.shq.levels;
 
-import ru.muwa.shq.objects.Container;
+import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 

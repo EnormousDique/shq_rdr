@@ -1,4 +1,4 @@
-package ru.muwa.shq.player;
+package ru.muwa.shq.ui;
 
 import ru.muwa.shq.items.Item;
 

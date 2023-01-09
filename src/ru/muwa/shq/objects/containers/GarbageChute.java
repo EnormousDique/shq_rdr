@@ -1,6 +1,6 @@
 package ru.muwa.shq.objects.containers;
 
-import ru.muwa.shq.objects.Container;
+import ru.muwa.shq.ui.containers.GarbageChuteUI;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class GarbageChute extends Container
 {
     private static BufferedImage img;
+
     static
     {
         try
@@ -28,5 +29,6 @@ public class GarbageChute extends Container
         super(x,y,img);
         capacity = 1;
         items = new ArrayList<>(capacity);
+        UI = GarbageChuteUI.img;
     }
 }

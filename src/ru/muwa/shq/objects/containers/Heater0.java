@@ -1,7 +1,5 @@
 package ru.muwa.shq.objects.containers;
 
-import ru.muwa.shq.objects.Container;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;

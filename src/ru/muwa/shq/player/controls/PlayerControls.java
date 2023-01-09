@@ -26,7 +26,7 @@ public class PlayerControls
 
     private void interact()
     {
-        Interactor.interact();
+        Interactor.getInstance().interact();
     }
 
     private void moveRight()

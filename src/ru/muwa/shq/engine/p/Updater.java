@@ -1,6 +1,6 @@
 package ru.muwa.shq.engine.p;
 import ru.muwa.shq.engine.ai.AI;
-import ru.muwa.shq.objects.Container;
+import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.controls.PlayerControls;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.Engine;

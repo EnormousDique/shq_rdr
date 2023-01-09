@@ -2,10 +2,10 @@ package ru.muwa.shq.engine.g;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.KeyListener;
-import ru.muwa.shq.objects.Container;
+import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
-import ru.muwa.shq.player.Inventory;
+import ru.muwa.shq.ui.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.engine.listeners.MouseListener;
@@ -30,7 +30,7 @@ public class Renderer implements Runnable
    private LinkedList<GameObject> objects;
    private LinkedList<NPC> npc;
 
-   private LinkedList<ru.muwa.shq.objects.Container> containers;
+   private LinkedList<Container> containers;
    private static Renderer instance;
    public static Renderer getInstance()
    {

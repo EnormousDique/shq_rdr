@@ -1,5 +1,6 @@
-package ru.muwa.shq.objects;
+package ru.muwa.shq.objects.containers;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.objects.GameObject;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -18,4 +19,6 @@ public abstract class Container extends GameObject
     protected Container(int x, int y, BufferedImage texture) {
         super(x, y, texture);
     }
+
+    public ArrayList<Item> getItems(){return items;}
 }

@@ -27,6 +27,8 @@ public abstract class GameObject
     protected boolean isFalling; // Обект падает (на него действует гравитация
 
     protected BufferedImage texture; //Текстура (изображение) объекта
+    protected BufferedImage UI; //Текстура (изображение) объекта
+
     protected Rectangle solidBox; //Квадрат "жесткости" //TODO: Вероятно, можно обойтись текстурой.
     protected Rectangle onFeetBox; // Платформа под ногами существа, определяющая, стоит ли существо на твердом.
     public static final int ON_FEET_BOX_HEIGHT = 1;
