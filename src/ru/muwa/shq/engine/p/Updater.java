@@ -1,6 +1,7 @@
 package ru.muwa.shq.engine.p;
 import ru.muwa.shq.engine.ai.AI;
-import ru.muwa.shq.engine.controls.PlayerControls;
+import ru.muwa.shq.objects.Container;
+import ru.muwa.shq.player.controls.PlayerControls;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.listeners.KeyListener;
@@ -9,8 +10,8 @@ import ru.muwa.shq.engine.p.gravity.GravityChecker;
 import ru.muwa.shq.engine.p.updaters.OnFeetBoxUpdater;
 import ru.muwa.shq.engine.p.updaters.RayCasterUpdater;
 import ru.muwa.shq.engine.p.updaters.SolidBoxUpdater;
-import ru.muwa.shq.entities.gameObjects.GameObject;
-import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
+import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
 
@@ -106,6 +107,10 @@ public class Updater implements Runnable
             collisionsChecker.checkCollisionsNPC(c, objects);
             collisionsChecker.checkBottomCollisions(c);
             ai.move(c);
+        }
+        for(Container con : Engine.getCurrentLevel().getContainers())
+        {
+            solidBoxUpdater.updateSolidBox(con);
         }
         controls.controlPlayer();
         collisionsChecker.checkCollisions(player, objects);

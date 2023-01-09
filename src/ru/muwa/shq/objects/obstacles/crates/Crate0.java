@@ -1,5 +1,5 @@
-package ru.muwa.shq.entities.gameObjects.obstacles.crates;
-import ru.muwa.shq.entities.gameObjects.GameObject;
+package ru.muwa.shq.objects.obstacles.crates;
+import ru.muwa.shq.objects.GameObject;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,7 +15,7 @@ public class Crate0 extends GameObject
     {
         try
         {
-            img = ImageIO.read(new File("C:\\sosok\\Shq_rdr\\src\\ru\\muwa\\shq\\textures\\obstacles\\crates\\crate0.png"));
+            img = ImageIO.read(new File(IMG_PATH + "obstacles\\crates\\crate0.png"));
             System.out.println("crate0 texture loaded");
         }
         catch (IOException e)

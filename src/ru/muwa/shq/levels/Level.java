@@ -1,8 +1,8 @@
 package ru.muwa.shq.levels;
 
-import ru.muwa.shq.entities.gameObjects.Container;
-import ru.muwa.shq.entities.gameObjects.GameObject;
-import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
+import ru.muwa.shq.objects.Container;
+import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.creatures.npc.NPC;
 
 import java.util.LinkedList;
 

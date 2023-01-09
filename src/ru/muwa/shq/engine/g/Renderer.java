@@ -2,9 +2,10 @@ package ru.muwa.shq.engine.g;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.KeyListener;
-import ru.muwa.shq.entities.gameObjects.Container;
-import ru.muwa.shq.entities.gameObjects.GameObject;
-import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
+import ru.muwa.shq.objects.Container;
+import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.engine.listeners.MouseListener;
@@ -29,7 +30,7 @@ public class Renderer implements Runnable
    private LinkedList<GameObject> objects;
    private LinkedList<NPC> npc;
 
-   private LinkedList<ru.muwa.shq.entities.gameObjects.Container> containers;
+   private LinkedList<ru.muwa.shq.objects.Container> containers;
    private static Renderer instance;
    public static Renderer getInstance()
    {
@@ -107,7 +108,7 @@ public class Renderer implements Runnable
         for(GameObject o : objects) g.drawImage(o.getTexture(), o.getX()-camX,o.getY()-camY,null);
         for(Container con : containers ) g.drawImage(con.getTexture(), con.getX()-camX,con.getY()-camY,null);
         g.setColor (Color.red);
-        for(Container con : containers ) g.drawRect(con.getX (), con.getY (), 10, 10);
+        for(Container con : containers) g.drawRect(con.getX (), con.getY (), 10, 10);
         for(NPC c : npc) g.drawImage(c.getTexture(),c.getX()-camX,c.getY()-camY,c.getWidth(),c.getHeight(),null);
         g.setColor(Color.ORANGE);
         for(NPC c : npc) for (Line2D.Float line : c.getRayCaster().calcRays()) g.drawLine((int)line.x1-camX, (int) line.y1-camY, (int) line.x2-camX, (int) line.y2-camY);
@@ -115,6 +116,7 @@ public class Renderer implements Runnable
         g.drawRect(player.getOnFeetBox().x-camX,player.getOnFeetBox().y-camY,(int)player.getOnFeetBox().getWidth(),(int)player.getOnFeetBox().getHeight());
         for(NPC c: npc) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1-camX,(int)r.y1-camY,(int)r.x2-camX,(int)r.y2-camY);}
         for(GameObject object : objects) g.drawRect(object.getSolidBox().x-camX,object.getSolidBox().y-camY,(int)object.getSolidBox().getWidth(),(int)object.getSolidBox().getHeight());
+        if(keyboard.getKeys()[keyboard.I]) g.drawImage(Inventory.getInstance().getImg(),Player.get().getX() + 100 - camX, Player.get().getY() - 100 - camY, null);
 
         g.dispose();
         canvas.getBufferStrategy().show();

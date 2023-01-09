@@ -1,6 +1,6 @@
 package ru.muwa.shq.levels.dev;
 
-import ru.muwa.shq.entities.gameObjects.obstacles.crates.Crate2;
+import ru.muwa.shq.objects.obstacles.crates.Crate2;
 import ru.muwa.shq.levels.Level;
 
 import java.io.IOException;

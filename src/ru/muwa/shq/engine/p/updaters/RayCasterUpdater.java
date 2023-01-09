@@ -1,7 +1,7 @@
 package ru.muwa.shq.engine.p.updaters;
 
 import ru.muwa.shq.engine.raycaster.RayCaster;
-import ru.muwa.shq.entities.gameObjects.creatures.Creature;
+import ru.muwa.shq.creatures.Creature;
 
 /**
  * Класс, отвечающий за обновление всех RayCaster'ов

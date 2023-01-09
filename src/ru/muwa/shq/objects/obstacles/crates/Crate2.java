@@ -1,5 +1,5 @@
-package ru.muwa.shq.entities.gameObjects.bounds;
-import ru.muwa.shq.entities.gameObjects.GameObject;
+package ru.muwa.shq.objects.obstacles.crates;
+import ru.muwa.shq.objects.GameObject;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -8,14 +8,14 @@ import java.io.IOException;
 /**
  * Класс, представляющий из себя ящик номер 0.
  */
-public class BottomLevelBound extends GameObject
+public class Crate2 extends GameObject
 {
     private static BufferedImage img;
     static
     {
         try
         {
-            img = ImageIO.read(new File("D:\\_projects\\Shq 2D\\src\\ru\\muwa\\shq\\textures\\bounds\\bottom_bound.png"));
+            img = ImageIO.read(new File(IMG_PATH +"obstacles\\crates\\crate2.png"));
             System.out.println("crate0 texture loaded");
         }
         catch (IOException e)
@@ -24,11 +24,10 @@ public class BottomLevelBound extends GameObject
         }
 
     }
+    public Crate2(int x, int y) throws IOException {
 
-    public BottomLevelBound(int x, int y) throws IOException
-    {
         super(x,y,img);
-        isStatic = true;
-        isSolid = true;
+        isStatic = false;
+        isStanding = false;
     }
 }

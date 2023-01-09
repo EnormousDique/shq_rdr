@@ -1,7 +1,6 @@
 package ru.muwa.shq.levels.dev;
 
-import ru.muwa.shq.entities.gameObjects.containers.GarbageChute;
-import ru.muwa.shq.entities.gameObjects.obstacles.crates.Crate1;
+import ru.muwa.shq.objects.containers.GarbageChute;
 import ru.muwa.shq.levels.Level;
 
 import java.io.IOException;

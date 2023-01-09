@@ -1,13 +1,12 @@
-package ru.muwa.shq.entities.gameObjects.creatures;
+package ru.muwa.shq.creatures;
 import ru.muwa.shq.engine.raycaster.RayCaster;
-import ru.muwa.shq.entities.gameObjects.GameObject;
+import ru.muwa.shq.objects.GameObject;
 
-import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
-import static ru.muwa.shq.entities.gameObjects.GameObject.Direction.*;
+import static ru.muwa.shq.objects.GameObject.Direction.*;
 
 /**
  * Класс, являющийся прародителем всех игровых существ.

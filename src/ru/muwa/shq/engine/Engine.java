@@ -4,7 +4,7 @@ import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.launcher.Launcher;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.p.Updater;
-import ru.muwa.shq.levels.dev.Levelvovka1010;
+import ru.muwa.shq.levels.dev.LevelVovka1010;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.dev.DevLevel0;
@@ -17,7 +17,7 @@ public class Engine
     /**
      * Статические поля.
      */
-    private static Level currentLevel = new Levelvovka1010 (); //new DevLevel1();
+    private static Level currentLevel = new DevLevel0();
     public static Updater updater = Updater.getInstance();
     public static Renderer renderer = Renderer.getInstance();
     public static KeyListener keyboard = KeyListener.getInstance();

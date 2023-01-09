@@ -1,6 +1,6 @@
 package ru.muwa.shq.engine.p.updaters;
 
-import ru.muwa.shq.entities.gameObjects.GameObject;
+import ru.muwa.shq.objects.GameObject;
 
 public class OnFeetBoxUpdater
 {

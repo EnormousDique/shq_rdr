@@ -1,5 +1,5 @@
-package ru.muwa.shq.entities.gameObjects;
-import ru.muwa.shq.entities.items.Item;
+package ru.muwa.shq.objects;
+import ru.muwa.shq.items.Item;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

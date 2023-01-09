@@ -1,9 +1,7 @@
-package ru.muwa.shq.entities.gameObjects;
-import ru.muwa.shq.entities.items.Item;
+package ru.muwa.shq.objects;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 /**
  * Абстрактный класс, прародитель всех игровых объектов.
@@ -13,6 +11,8 @@ public abstract class GameObject
     /**
      * Поля
      */
+    public static final String IMG_PATH = "D:\\_projects\\Shq 2D\\src\\ru\\muwa\\shq\\textures\\";
+    //TODO: Вован сделай такое же поле для себя, а мое закомментируй при работе в своей ветке.
     protected int x, y; //Координаты положения в пространстве
     protected int height; // Высота
     protected int width; // Широта

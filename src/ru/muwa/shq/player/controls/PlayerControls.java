@@ -1,4 +1,4 @@
-package ru.muwa.shq.engine.controls;
+package ru.muwa.shq.player.controls;
 
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.player.Player;

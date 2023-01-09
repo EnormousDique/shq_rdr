@@ -1,12 +1,12 @@
 package ru.muwa.shq.engine.p.collisions;
 import ru.muwa.shq.engine.g.GameScreen;
-import ru.muwa.shq.entities.gameObjects.GameObject;
-import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
+import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.creatures.npc.NPC;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import static ru.muwa.shq.entities.gameObjects.GameObject.Direction.DOWN;
+import static ru.muwa.shq.objects.GameObject.Direction.DOWN;
 
 /**
  * Класс, отвечающий за проверку столкновений игровых объектов.

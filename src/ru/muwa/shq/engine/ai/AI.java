@@ -1,10 +1,10 @@
 package ru.muwa.shq.engine.ai;
-import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
+import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
 
 import java.util.Random;
-import static ru.muwa.shq.entities.gameObjects.GameObject.Direction.LEFT;
-import static ru.muwa.shq.entities.gameObjects.GameObject.Direction.RIGHT;
+import static ru.muwa.shq.objects.GameObject.Direction.LEFT;
+import static ru.muwa.shq.objects.GameObject.Direction.RIGHT;
 /**
  * Класс, реализующий логику принятия решений NPC
  */

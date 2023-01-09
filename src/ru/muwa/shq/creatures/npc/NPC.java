@@ -1,5 +1,5 @@
-package ru.muwa.shq.entities.gameObjects.creatures.npc;
-import ru.muwa.shq.entities.gameObjects.creatures.Creature;
+package ru.muwa.shq.creatures.npc;
+import ru.muwa.shq.creatures.Creature;
 import java.awt.image.BufferedImage;
 
 /**

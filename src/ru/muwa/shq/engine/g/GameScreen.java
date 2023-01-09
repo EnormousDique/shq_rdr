@@ -1,7 +1,5 @@
 package ru.muwa.shq.engine.g;
 
-import ru.muwa.shq.entities.gameObjects.GameObject;
-
 import javax.swing.*;
 
 public class GameScreen extends JFrame

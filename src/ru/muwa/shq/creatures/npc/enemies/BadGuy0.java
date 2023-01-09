@@ -1,15 +1,13 @@
-package ru.muwa.shq.entities.gameObjects.creatures.npc.enemies;
+package ru.muwa.shq.creatures.npc.enemies;
 
 import ru.muwa.shq.engine.raycaster.RayCaster;
-import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
+import ru.muwa.shq.creatures.npc.NPC;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.nio.Buffer;
-import java.util.Stack;
 
-import static ru.muwa.shq.entities.gameObjects.GameObject.Direction.RIGHT;
+import static ru.muwa.shq.objects.GameObject.Direction.RIGHT;
 
 public class BadGuy0 extends NPC
 {
@@ -18,7 +16,7 @@ public class BadGuy0 extends NPC
     {
         try
         {
-            img = ImageIO.read(new File("C:\\sosok\\Shq_rdr\\src\\ru\\muwa\\shq\\textures\\creatures\\BadGuy0.png"));
+            img = ImageIO.read(new File(IMG_PATH + "creatures\\BadGuy0.png"));
             System.out.println("BadGuy0 loaded ok");
         }
         catch(Exception e)

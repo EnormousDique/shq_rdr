@@ -1,5 +1,5 @@
 package ru.muwa.shq.engine.p.updaters;
-import ru.muwa.shq.entities.gameObjects.GameObject;
+import ru.muwa.shq.objects.GameObject;
 
 /**
  * Класс, отвечающий, за обновление solid box игровых объектов.

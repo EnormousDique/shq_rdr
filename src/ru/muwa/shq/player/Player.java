@@ -1,6 +1,6 @@
 package ru.muwa.shq.player;
 import ru.muwa.shq.engine.Engine;
-import ru.muwa.shq.entities.gameObjects.creatures.Creature;
+import ru.muwa.shq.creatures.Creature;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,7 +16,7 @@ public class Player extends Creature
         {
         BufferedImage img;
         try {
-            img = ImageIO.read(new File("\\C:\\sosok\\Shq_rdr\\src\\ru\\muwa\\shq\\textures\\player\\p_r.png"));
+            img = ImageIO.read(new File(IMG_PATH+"player\\p_r.png"));
         } catch (Exception e) {
             System.out.println("Failed to load player textures");
             return null;

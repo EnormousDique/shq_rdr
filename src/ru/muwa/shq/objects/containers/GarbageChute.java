@@ -1,15 +1,12 @@
-package ru.muwa.shq.entities.gameObjects.containers;
+package ru.muwa.shq.objects.containers;
 
-import ru.muwa.shq.entities.gameObjects.Container;
-import ru.muwa.shq.entities.gameObjects.GameObject;
-import ru.muwa.shq.entities.items.Item;
+import ru.muwa.shq.objects.Container;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.ConcurrentMap;
 
 public class GarbageChute extends Container
 {
@@ -18,7 +15,7 @@ public class GarbageChute extends Container
     {
         try
         {
-            img = ImageIO.read(new File("C:\\sosok\\Shq_rdr\\src\\ru\\muwa\\shq\\textures\\containers\\GarbageChute.png"));
+            img = ImageIO.read(new File(IMG_PATH +"containers\\GarbageChute.png"));
             System.out.println("crate0 texture loaded");
         }
         catch (IOException e)

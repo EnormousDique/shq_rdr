@@ -1,15 +1,12 @@
-package ru.muwa.shq.entities.gameObjects.containers;
+package ru.muwa.shq.objects.containers;
 
-import ru.muwa.shq.entities.gameObjects.Container;
-import ru.muwa.shq.entities.gameObjects.GameObject;
-import ru.muwa.shq.entities.items.Item;
+import ru.muwa.shq.objects.Container;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.ConcurrentMap;
 
 public class Heater0 extends Container
 {
@@ -18,7 +15,7 @@ public class Heater0 extends Container
     {
         try
         {
-            img = ImageIO.read(new File("D:\\_projects\\Shq 2D\\src\\ru\\muwa\\shq\\textures\\containers\\heater.png"));
+            img = ImageIO.read(new File(IMG_PATH +"containers\\heater.png"));
             System.out.println("crate0 texture loaded");
         }
         catch (IOException e)

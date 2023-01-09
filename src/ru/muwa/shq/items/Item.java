@@ -1,7 +1,10 @@
-package ru.muwa.shq.entities.items;
+package ru.muwa.shq.items;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * Абстрактный класс, прародитель всех предметов.
+ */
 public abstract class Item
 {
     protected int id,price;
@@ -13,7 +16,5 @@ public abstract class Item
         this.price = price;
         this.weight = weight;
         this.texture = texture;
-
     }
-
 }

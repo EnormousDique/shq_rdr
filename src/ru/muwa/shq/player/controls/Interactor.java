@@ -1,12 +1,10 @@
-package ru.muwa.shq.engine.controls;
+package ru.muwa.shq.player.controls;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.MouseListener;
-import ru.muwa.shq.entities.gameObjects.Container;
-import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
-
-import java.awt.geom.Point2D;
+import ru.muwa.shq.objects.Container;
+import ru.muwa.shq.creatures.npc.NPC;
 
 /**
  * Класс, отвечающий за взаимодейстиве игрока с usable и container объектами
