@@ -1,5 +1,6 @@
 package ru.muwa.shq.levels.dev;
 import ru.muwa.shq.entities.gameObjects.bounds.BottomLevelBound;
+import ru.muwa.shq.entities.gameObjects.containers.GarbageChute;
 import ru.muwa.shq.entities.gameObjects.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.entities.gameObjects.obstacles.crates.Crate0;
 import ru.muwa.shq.entities.gameObjects.obstacles.crates.Crate1;
@@ -28,6 +29,7 @@ public class DevLevel0 extends Level
             objects.add(new Crate0(1000,450));
             objects.add(new Crate1(600,0));
             objects.add(new BottomLevelBound(0,590));
+            containers.add(new GarbageChute (120,128));
             //objects.add(new Crate2(228,228));
             npc.add(new BadGuy0(600,200));
             npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));

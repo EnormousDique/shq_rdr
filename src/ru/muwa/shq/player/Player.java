@@ -16,7 +16,7 @@ public class Player extends Creature
         {
         BufferedImage img;
         try {
-            img = ImageIO.read(new File("D:\\_projects\\Shq 2D\\src\\ru\\muwa\\shq\\textures\\player\\p_r.png"));
+            img = ImageIO.read(new File("\\C:\\sosok\\Shq_rdr\\src\\ru\\muwa\\shq\\textures\\player\\p_r.png"));
         } catch (Exception e) {
             System.out.println("Failed to load player textures");
             return null;

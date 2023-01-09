@@ -2,6 +2,7 @@ package ru.muwa.shq.engine.g;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.KeyListener;
+import ru.muwa.shq.entities.gameObjects.Container;
 import ru.muwa.shq.entities.gameObjects.GameObject;
 import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
@@ -27,6 +28,8 @@ public class Renderer implements Runnable
    private Player player = Player.get();
    private LinkedList<GameObject> objects;
    private LinkedList<NPC> npc;
+
+   private LinkedList<ru.muwa.shq.entities.gameObjects.Container> containers;
    private static Renderer instance;
    public static Renderer getInstance()
    {
@@ -40,6 +43,7 @@ public class Renderer implements Runnable
        instance = this;
        objects = new LinkedList<>();
        npc = new LinkedList<>();
+       containers = new LinkedList<> ();
        frame = GameScreen.getInstance();
        canvas = new Canvas();
        mouse = MouseListener.getInstance();
@@ -63,6 +67,7 @@ public class Renderer implements Runnable
         System.out.println("Render thread started");
         grabGameObjects(Engine.getCurrentLevel());
         grabNPC(Engine.getCurrentLevel());
+        grabContainers (Engine.getCurrentLevel());
         while(true)
         {
             render();
@@ -100,6 +105,9 @@ public class Renderer implements Runnable
         g.drawImage(player.getTexture(), player.getX()-camX,player.getY()-camY,null);
 
         for(GameObject o : objects) g.drawImage(o.getTexture(), o.getX()-camX,o.getY()-camY,null);
+        for(Container con : containers ) g.drawImage(con.getTexture(), con.getX()-camX,con.getY()-camY,null);
+        g.setColor (Color.red);
+        for(Container con : containers ) g.drawRect(con.getX (), con.getY (), 10, 10);
         for(NPC c : npc) g.drawImage(c.getTexture(),c.getX()-camX,c.getY()-camY,c.getWidth(),c.getHeight(),null);
         g.setColor(Color.ORANGE);
         for(NPC c : npc) for (Line2D.Float line : c.getRayCaster().calcRays()) g.drawLine((int)line.x1-camX, (int) line.y1-camY, (int) line.x2-camX, (int) line.y2-camY);
@@ -118,5 +126,9 @@ public class Renderer implements Runnable
     private  void grabNPC(Level level)
     {
         this.npc = level.getNPC();
+    }
+    private  void grabContainers(Level level)
+    {
+        this.containers = level.getContainers ();
     }
 }
