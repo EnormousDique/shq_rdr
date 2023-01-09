@@ -11,7 +11,7 @@ import ru.muwa.shq.engine.p.updaters.RayCasterUpdater;
 import ru.muwa.shq.engine.p.updaters.SolidBoxUpdater;
 import ru.muwa.shq.entities.gameObjects.GameObject;
 import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
-import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
+import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
 
 import java.util.LinkedList;

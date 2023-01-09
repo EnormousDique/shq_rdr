@@ -25,6 +25,7 @@ public class DevLevel0 extends Level
             objects.add(new Crate0(300,300));
             objects.add(new Crate0(350,180));
             objects.add(new Crate0(750,450));
+            objects.add(new Crate0(1000,450));
             objects.add(new Crate1(600,0));
             objects.add(new BottomLevelBound(0,590));
             //objects.add(new Crate2(228,228));

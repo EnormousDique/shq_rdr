@@ -1,6 +1,6 @@
 package ru.muwa.shq.engine.g.camera;
 
-import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
+import ru.muwa.shq.player.Player;
 
 import static ru.muwa.shq.engine.g.camera.Camera.SCROLL_SPEED;
 
@@ -14,11 +14,11 @@ public class CameraUpdater
     {
         if(Player.get().getX() - Camera.getInstance().x < 30)
         {
-            Camera.getInstance().x = Camera.getInstance().x - SCROLL_SPEED;
+            Camera.getInstance().moveLeft();
         }
         if(Player.get().getX() - Camera.getInstance().x > 750)
         {
-            Camera.getInstance().x = Camera.getInstance().x + SCROLL_SPEED;
+            Camera.getInstance().moveRight();
         }
     }
 }

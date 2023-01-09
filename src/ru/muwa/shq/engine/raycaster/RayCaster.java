@@ -1,6 +1,6 @@
 package ru.muwa.shq.engine.raycaster;
 import ru.muwa.shq.entities.gameObjects.GameObject;
-import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
+import ru.muwa.shq.player.Player;
 
 import java.awt.geom.Line2D;
 import java.util.LinkedList;

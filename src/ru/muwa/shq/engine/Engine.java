@@ -4,10 +4,9 @@ import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.launcher.Launcher;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.p.Updater;
-import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
+import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.dev.DevLevel0;
-import ru.muwa.shq.levels.dev.DevLevel1;
 
 /**
  * Класс, запускающий и хранящий основные компоненты игрового движка.

@@ -1,4 +1,4 @@
-package ru.muwa.shq.entities.gameObjects.creatures.player;
+package ru.muwa.shq.player;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.entities.gameObjects.creatures.Creature;
 import javax.imageio.ImageIO;

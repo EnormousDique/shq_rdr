@@ -1,11 +1,10 @@
 package ru.muwa.shq.engine.g;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
-import ru.muwa.shq.engine.g.camera.CameraUpdater;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.entities.gameObjects.GameObject;
 import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
-import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
+import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import javax.swing.*;

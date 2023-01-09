@@ -1,8 +1,7 @@
 package ru.muwa.shq.engine.controls;
 
 import ru.muwa.shq.engine.listeners.KeyListener;
-import ru.muwa.shq.engine.listeners.MouseListener;
-import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
+import ru.muwa.shq.player.Player;
 
 /**
  * Класс, отвечающий за управление игроком.

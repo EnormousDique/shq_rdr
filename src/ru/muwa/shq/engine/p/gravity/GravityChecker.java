@@ -2,7 +2,6 @@ package ru.muwa.shq.engine.p.gravity;
 
 import ru.muwa.shq.entities.gameObjects.GameObject;
 import ru.muwa.shq.entities.gameObjects.creatures.Creature;
-import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
 
 import java.util.LinkedList;
 import java.util.stream.Collectors;

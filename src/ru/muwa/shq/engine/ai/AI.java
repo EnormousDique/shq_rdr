@@ -1,8 +1,7 @@
 package ru.muwa.shq.engine.ai;
 import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
-import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
+import ru.muwa.shq.player.Player;
 
-import javax.swing.*;
 import java.util.Random;
 import static ru.muwa.shq.entities.gameObjects.GameObject.Direction.LEFT;
 import static ru.muwa.shq.entities.gameObjects.GameObject.Direction.RIGHT;
