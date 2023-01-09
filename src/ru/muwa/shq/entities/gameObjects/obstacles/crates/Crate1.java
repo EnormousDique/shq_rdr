@@ -15,7 +15,7 @@ public class Crate1 extends GameObject
     {
         try
         {
-            img = ImageIO.read(new File("D:\\_projects\\Shq 2D\\src\\ru\\muwa\\shq\\textures\\obstacles\\crates\\crate1.png"));
+            img = ImageIO.read(new File("c:\\sosok\\Shq_rdr\\src\\ru\\muwa\\shq\\textures\\obstacles\\crates\\crate1.png"));
             System.out.println("crate0 texture loaded");
         }
         catch (IOException e)

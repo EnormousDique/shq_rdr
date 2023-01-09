@@ -46,6 +46,7 @@ public abstract class GameObject
         width = texture.getWidth();
         direction = Direction.NONE;
         this.onFeetBox = new Rectangle();
+
     }
     /**
      * Перечисление возможных направлений.

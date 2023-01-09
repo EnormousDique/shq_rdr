@@ -18,7 +18,7 @@ public class BadGuy0 extends NPC
     {
         try
         {
-            img = ImageIO.read(new File("src\\ru\\muwa\\shq\\textures\\creatures\\BadGuy0.png"));
+            img = ImageIO.read(new File("C:\\sosok\\Shq_rdr\\src\\ru\\muwa\\shq\\textures\\creatures\\BadGuy0.png"));
             System.out.println("BadGuy0 loaded ok");
         }
         catch(Exception e)
