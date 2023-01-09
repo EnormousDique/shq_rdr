@@ -71,6 +71,11 @@ public class Updater implements Runnable
             delta += (currTime - lastTime) / drawInterval;
             lastTime = currTime;
 
+            for(GameObject o : objects) collisionsChecker.checkCollisions(o, objects);
+            //Попытка вынести расчёты столновений за ограничение в 60 итераций в секунду для исправления бага с выталкиванием за текстуры
+            //TODO: вероятно стоит запустить отдельный поток для провери столновений вне основного потоа updater'a
+            //Баг удалось исправить.
+
             if(delta >= 1)
             {
                 update();

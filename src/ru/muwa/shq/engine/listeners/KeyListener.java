@@ -88,6 +88,9 @@ public class KeyListener implements java.awt.event.KeyListener
             case 68: // D
                 keys[3] = false;
                 break;
+            case 69: // E
+                keys[5] = false;
+                break;
         }
     }
     public boolean[] getKeys()

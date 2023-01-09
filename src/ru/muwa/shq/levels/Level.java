@@ -19,6 +19,7 @@ public abstract class Level
     {
         objects = new LinkedList<>();
         npc = new LinkedList<>();
+        containers = new LinkedList<>();
     }
     protected LinkedList<GameObject> objects;
     protected LinkedList<NPC> npc;
@@ -33,6 +34,11 @@ public abstract class Level
     {
         return npc;
     }
+    public LinkedList<Container> getContainers()
+    {
+        return containers;
+    }
+
 
 
 

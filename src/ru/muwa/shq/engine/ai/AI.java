@@ -11,7 +11,7 @@ import static ru.muwa.shq.entities.gameObjects.GameObject.Direction.RIGHT;
  */
 public class AI
 {
-    private final double DIRECTION_CHANGE_RATE = 0.01;
+    private final double DIRECTION_CHANGE_RATE = 0.013;
     public enum Events // События внешнего мира, которые могут произойти с NPC
     {
         COLLISION, P_IN_SIGHT, P_OUT_SIGHT_, HURT

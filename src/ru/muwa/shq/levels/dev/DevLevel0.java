@@ -26,7 +26,7 @@ public class DevLevel0 extends Level
             objects.add(new Crate0(350,180));
             objects.add(new Crate0(750,450));
             objects.add(new Crate1(600,0));
-            objects.add(new BottomLevelBound(0,598));
+            objects.add(new BottomLevelBound(0,590));
             //objects.add(new Crate2(228,228));
             npc.add(new BadGuy0(600,200));
             npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));

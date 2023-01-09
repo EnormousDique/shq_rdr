@@ -29,11 +29,14 @@ public class GravityChecker
     }
     public void checkGravity(GameObject o, LinkedList<GameObject> objects)
     {
-        checkForFalling(o,objects);
-        if (!o.isStatic())fall(o);
+        if(!o.isStatic()) {
+            checkForFalling(o, objects);
+            if (!o.isStatic()) fall(o);
+        }
     }
     public void checkGravity(Creature c, LinkedList<GameObject> objects)
     {
+
         //System.out.println("player falling: " + Player.get().isFalling());
         fly(c);
         checkForFalling(c,objects);
@@ -57,7 +60,7 @@ public class GravityChecker
     }
 
     private void fall(GameObject o)
-    { //TODO: Добавить проверку на isFalling
+    {
         if(o != null && o.isFalling())
         {
             o.setY((o.getY()+(int)o.getFallAx()));

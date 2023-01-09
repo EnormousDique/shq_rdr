@@ -54,16 +54,18 @@ public class CollisionsChecker
                     //Если голова ниже дна, толкаем вниз.
                     else if(o.getY() > obj.getY()+ obj.getHeight() -10){ o.setY(obj.getY() + obj.getHeight() + 2);System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  DOWN");}
                     //Иначе толкаем в бок.
-                    else if(o.getSolidBox().getCenterX() < obj.getSolidBox().getCenterX()){ o.setX(obj.getX() - o.getWidth());System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  LEFT");}
+                    else if(o.getSolidBox().getCenterX() < obj.getSolidBox().getCenterX())
+                    { o.setX(obj.getX() - o.getWidth());System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  LEFT");}
                     //И в другой бок.
-                    else if(o.getSolidBox().getCenterX() > obj.getSolidBox().getCenterX()){ o.setX(obj.getX() + obj.getWidth());System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  RIGHT");}
+                    else if(o.getSolidBox().getCenterX() > obj.getSolidBox().getCenterX())
+                    { o.setX(obj.getX() + obj.getWidth());System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  RIGHT");}
                 }
             }
         }
         }
     public void checkBottomCollisions(GameObject o)
     {
-        if(o != null)
+        if(o != null & !o.isStatic())
         {
             if(o.getY() + o.getHeight() >= GameScreen.SCREEN_HEIGHT)
             {

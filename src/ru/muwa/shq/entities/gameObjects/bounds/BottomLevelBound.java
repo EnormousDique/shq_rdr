@@ -28,8 +28,6 @@ public class BottomLevelBound extends GameObject
     public BottomLevelBound(int x, int y) throws IOException
     {
         super(x,y,img);
-        velocity = 5;
-        isStanding = false;
         isStatic = true;
         isSolid = true;
     }

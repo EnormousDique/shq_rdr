@@ -9,7 +9,10 @@ public class MouseListener implements java.awt.event.MouseMotionListener
     /**
      * Констуктор
      */
-    private MouseListener(){}
+    private MouseListener(){
+        instance = this;
+        System.out.println("mouse listener initiated");
+    }
     public static MouseListener getInstance()
     {
         if(instance == null) return new MouseListener();
