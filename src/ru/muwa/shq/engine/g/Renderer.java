@@ -1,7 +1,8 @@
 package ru.muwa.shq.engine.g;
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.camera.Camera;
+import ru.muwa.shq.engine.g.camera.CameraUpdater;
 import ru.muwa.shq.engine.listeners.KeyListener;
-import ru.muwa.shq.engine.raycaster.RayCaster;
 import ru.muwa.shq.entities.gameObjects.GameObject;
 import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
 import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
@@ -11,7 +12,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferStrategy;
-import java.security.Key;
 import java.util.LinkedList;
 /**
  * Класс, отвечающий за отрисовку изображения на экране.
@@ -69,8 +69,25 @@ public class Renderer implements Runnable
             render();
         }
     }
+
+    /**
+     *
+     * Метод, отвечающий за отрисовку изображения на экране.
+     *
+     * !!!!!!!!!!!!!
+     * !!! ВАЖНО !!!
+     * !!!!!!!!!!!!!
+     *
+     * Координаты отрисовки отличаются от координат в пространстве.
+     * Координаты отрисовки соответствуют координатам отнисительно экрана.
+     * Координаты объета относительно экрана получаются в результате учета координат камеры.
+     *
+     */
     private void render()
     {
+        Camera.getInstance().update();
+        int camX = Camera.getInstance().getX(), camY = Camera.getInstance().getY();
+
         BufferStrategy bs = canvas.getBufferStrategy();
         if(bs==null)
         {
@@ -81,16 +98,16 @@ public class Renderer implements Runnable
         g.setColor(Color.black);
         g.fillRect(0,0,GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
 
-        g.drawImage(player.getTexture(), player.getX(),player.getY(),null);
+        g.drawImage(player.getTexture(), player.getX()-camX,player.getY()-camY,null);
 
-        for(GameObject o : objects) g.drawImage(o.getTexture(), o.getX(),o.getY(),null);
-        for(NPC c : npc) g.drawImage(c.getTexture(),c.getX(),c.getY(),c.getWidth(),c.getHeight(),null);
+        for(GameObject o : objects) g.drawImage(o.getTexture(), o.getX()-camX,o.getY()-camY,null);
+        for(NPC c : npc) g.drawImage(c.getTexture(),c.getX()-camX,c.getY()-camY,c.getWidth(),c.getHeight(),null);
         g.setColor(Color.ORANGE);
-        for(NPC c : npc) for (Line2D.Float line : c.getRayCaster().calcRays()) g.drawLine((int)line.x1, (int) line.y1, (int) line.x2, (int) line.y2);
-        g.drawRect(player.getSolidBox().x,player.getSolidBox().y,(int)player.getSolidBox().getWidth(),(int)player.getSolidBox().getHeight());
-        g.drawRect(player.getOnFeetBox().x,player.getOnFeetBox().y,(int)player.getOnFeetBox().getWidth(),(int)player.getOnFeetBox().getHeight());
-        for(NPC c: npc) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1,(int)r.y1,(int)r.x2,(int)r.y2);}
-        for(GameObject object : objects) g.drawRect(object.getSolidBox().x,object.getSolidBox().y,(int)object.getSolidBox().getWidth(),(int)object.getSolidBox().getHeight());
+        for(NPC c : npc) for (Line2D.Float line : c.getRayCaster().calcRays()) g.drawLine((int)line.x1-camX, (int) line.y1-camY, (int) line.x2-camX, (int) line.y2-camY);
+        g.drawRect(player.getSolidBox().x-camX,player.getSolidBox().y-camY,(int)player.getSolidBox().getWidth(),(int)player.getSolidBox().getHeight());
+        g.drawRect(player.getOnFeetBox().x-camX,player.getOnFeetBox().y-camY,(int)player.getOnFeetBox().getWidth(),(int)player.getOnFeetBox().getHeight());
+        for(NPC c: npc) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1-camX,(int)r.y1-camY,(int)r.x2-camX,(int)r.y2-camY);}
+        for(GameObject object : objects) g.drawRect(object.getSolidBox().x-camX,object.getSolidBox().y-camY,(int)object.getSolidBox().getWidth(),(int)object.getSolidBox().getHeight());
 
         g.dispose();
         canvas.getBufferStrategy().show();
