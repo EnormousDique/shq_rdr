@@ -7,6 +7,8 @@ import ru.muwa.shq.entities.gameObjects.creatures.player.Player;
 import java.util.LinkedList;
 import java.util.stream.Collectors;
 
+import static ru.muwa.shq.entities.gameObjects.GameObject.Direction.DOWN;
+
 /**
  * Класс, отвечающий за силу гравитации, применяемую к игровым объектам.
  */
@@ -63,6 +65,7 @@ public class GravityChecker
     {
         if(o != null && o.isFalling())
         {
+            o.setDirection(DOWN);
             o.setY((o.getY()+(int)o.getFallAx()));
             o.setFallAx(o.getFallAx()+0.7);
             //if(o.getFallAx() >= 30) o.setFallAx(30);

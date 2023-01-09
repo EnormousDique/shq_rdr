@@ -6,6 +6,8 @@ import ru.muwa.shq.entities.gameObjects.creatures.npc.NPC;
 import java.util.LinkedList;
 import java.util.List;
 
+import static ru.muwa.shq.entities.gameObjects.GameObject.Direction.DOWN;
+
 /**
  * Класс, отвечающий за проверку столкновений игровых объектов.
  */
@@ -54,10 +56,10 @@ public class CollisionsChecker
                     //Если голова ниже дна, толкаем вниз.
                     else if(o.getY() > obj.getY()+ obj.getHeight() -10){ o.setY(obj.getY() + obj.getHeight() + 2);System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  DOWN");}
                     //Иначе толкаем в бок.
-                    else if(o.getSolidBox().getCenterX() < obj.getSolidBox().getCenterX())
+                    else if(o.getSolidBox().getCenterX() < obj.getSolidBox().getCenterX() && o.getDirection() != DOWN)
                     { o.setX(obj.getX() - o.getWidth());System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  LEFT");}
                     //И в другой бок.
-                    else if(o.getSolidBox().getCenterX() > obj.getSolidBox().getCenterX())
+                    else if(o.getSolidBox().getCenterX() > obj.getSolidBox().getCenterX()&& o.getDirection() != DOWN)
                     { o.setX(obj.getX() + obj.getWidth());System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  RIGHT");}
                 }
             }
