@@ -37,7 +37,7 @@ public class Player extends Creature
         super(x, y, texture);
         isStanding = false;
         velocity = 2;
-        agility = 10;
+        agility = 20;
         speed = 5;
         maxJumpAx = 50;
     }

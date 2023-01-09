@@ -18,7 +18,7 @@ public class Engine
     /**
      * Статические поля.
      */
-    private static Level currentLevel =new DevLevel0(); //new LevelVovka1010 ();  //new DevLevel0(); //new DevLevel1();
+    private static Level currentLevel = new LevelVovka1010 ();  //new DevLevel0(); //new DevLevel1();
     public static Updater updater = Updater.getInstance();
     public static Renderer renderer = Renderer.getInstance();
     public static KeyListener keyboard = KeyListener.getInstance();

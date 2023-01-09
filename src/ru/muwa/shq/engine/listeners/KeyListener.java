@@ -18,13 +18,14 @@ public class KeyListener implements java.awt.event.KeyListener
             A = 1,
             S = 2,
             D = 3,
-            SPACE = 4;
+            SPACE = 4,
+            E = 5;
     private static KeyListener instance;
 
     private KeyListener()
     {
         instance = this;
-        keys = new boolean[5];
+        keys = new boolean[6];
     }
 
     public static KeyListener getInstance()
@@ -60,9 +61,12 @@ public class KeyListener implements java.awt.event.KeyListener
             case 68: // D
                 keys[3] = true;
                 break;
+            case 69: // E
+                keys[5] = true;
+                break;
         }
 
-        System.out.println("key pressed: " + e.getKeyCode());
+        //System.out.println("key pressed: " + e.getKeyCode());
     }
 
     @Override
