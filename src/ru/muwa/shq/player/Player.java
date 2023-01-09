@@ -25,6 +25,8 @@ public class Player extends Creature
         }
         else return instance;
     }
+
+    private boolean isBusy;
     /**
      * Конструктор
      *
@@ -41,4 +43,7 @@ public class Player extends Creature
         speed = 5;
         maxJumpAx = 50;
     }
+
+    public boolean isBusy() {return isBusy;}
+    public void setIsBusy(boolean isBusy){this.isBusy = isBusy;}
 }

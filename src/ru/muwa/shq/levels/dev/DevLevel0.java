@@ -1,4 +1,5 @@
 package ru.muwa.shq.levels.dev;
+import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.objects.bounds.BottomLevelBound;
 import ru.muwa.shq.objects.containers.GarbageChute;
@@ -7,7 +8,11 @@ import ru.muwa.shq.objects.obstacles.crates.Crate0;
 import ru.muwa.shq.objects.obstacles.crates.Crate1;
 import ru.muwa.shq.levels.Level;
 
+import java.awt.*;
 import java.io.IOException;
+
+import static ru.muwa.shq.objects.containers.GarbageChute.GB_CH_X_OFFSET;
+import static ru.muwa.shq.objects.containers.GarbageChute.GB_CH_Y_OFFSET;
 
 /**
  * Моя песочница.
@@ -31,6 +36,7 @@ public class DevLevel0 extends Level
             objects.add(new BottomLevelBound(0,590));
             containers.add(new GarbageChute(228,228));
             containers.get(0).getItems().add(new Flour());
+            containers.get(0).getItems().get(0).setAppearance(new ItemPhysicalAppearance(containers.get(0).getX()+GB_CH_X_OFFSET, containers.get(0).getY()+GB_CH_Y_OFFSET));
             npc.add(new BadGuy0(600,200));
             npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         }

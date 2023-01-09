@@ -2,9 +2,11 @@ package ru.muwa.shq.engine.g;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.KeyListener;
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.player.controls.Interactor;
 import ru.muwa.shq.ui.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
@@ -117,6 +119,10 @@ public class Renderer implements Runnable
         for(NPC c: npc) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1-camX,(int)r.y1-camY,(int)r.x2-camX,(int)r.y2-camY);}
         for(GameObject object : objects) g.drawRect(object.getSolidBox().x-camX,object.getSolidBox().y-camY,(int)object.getSolidBox().getWidth(),(int)object.getSolidBox().getHeight());
         if(keyboard.getKeys()[keyboard.I]) g.drawImage(Inventory.getInstance().getImg(),Player.get().getX() + 100 - camX, Player.get().getY() - 100 - camY, null);
+        //БЛОК ОТРИСОВКИ UI КОНТЕЙНЕРОВ И ИХ СОДЕРЖИМОГО
+        //if(Interactor.getInstance().getInteractedObject()!=null) g.drawImage(Interactor.getInstance().getInteractedObject().getUI(),Interactor.getInstance().getInteractedObject().getX()-camX,Interactor.getInstance().getInteractedObject().getY()-camY + 210,null);
+        for (Container c : containers) if(c.isInUse()) g.drawImage(c.getUI(),c.getX()-camX,c.getY()-camY + 210,null);
+        for (Container c : containers) if(c.isInUse() && c.getItems().size()>0) for(Item i : c.getItems()) g.drawImage(i.getTexture(),i.getAppearance().getX(),i.getAppearance().getY(),null);
 
         g.dispose();
         canvas.getBufferStrategy().show();

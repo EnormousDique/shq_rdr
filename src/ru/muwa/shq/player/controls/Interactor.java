@@ -6,6 +6,7 @@ import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.player.Player;
 
 import javax.swing.text.html.HTMLDocument;
 
@@ -14,7 +15,6 @@ import javax.swing.text.html.HTMLDocument;
  */
 public class Interactor
 {
-    private GameObject interactedObject;
 
     private static Interactor instance;
     private Interactor(){instance = this;}
@@ -29,7 +29,9 @@ public class Interactor
         System.out.println( "мышь с учетом камеры х: " + (x + Camera.getInstance().getX()) + " у: " + (y+ Camera.getInstance().getY()));
         for(Container c : Engine.getCurrentLevel().getContainers()) if(c.getSolidBox().inside(x,y)) {
             System.out.println("Курсор находится на обекте контейнер");
-            interactedObject = c;
+            c.setIsInUse(true);
+            Player.get().setIsBusy(true);
+
         }
         for(NPC n : Engine.getCurrentLevel().getNPC()) if(n.getSolidBox().contains(x,y))
             System.out.println("Курсор находится на обекте нпц");

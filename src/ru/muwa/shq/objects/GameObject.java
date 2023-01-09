@@ -25,6 +25,7 @@ public abstract class GameObject
     protected boolean isStanding; //Объект стоит на платформе или поверхности. Он устойчив и не падает. //TODO:  Проверить, возожно получится обойтись isFalling
     protected boolean onGround; // Объект стоит на земле. Нижняя часть экрана, почва.
     protected boolean isFalling; // Обект падает (на него действует гравитация
+    protected boolean isInUse;
 
     protected BufferedImage texture; //Текстура (изображение) объекта
     protected BufferedImage UI; //Текстура (изображение) объекта
@@ -75,6 +76,10 @@ public abstract class GameObject
     public void setFallAx(double fallAx)
     {
         this.fallAx = fallAx;
+    }
+    public void setIsInUse(boolean isInUse)
+    {
+        this.isInUse = isInUse;
     }
     /**
      * Методы - геттеры
@@ -133,6 +138,8 @@ public abstract class GameObject
     {
         return onFeetBox;
     }
+    public BufferedImage getUI(){return UI;}
+    public boolean isInUse() {return isInUse;}
 
 
 
