@@ -1,13 +1,21 @@
 package ru.muwa.shq.engine.listeners;
 
+import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.items.ItemPhysicalAppearance;
+
 import javax.swing.event.MouseInputListener;
 import java.awt.event.MouseEvent;
 
 public class MouseButtonListener implements MouseInputListener {
 
     private static MouseButtonListener instance;
-    private MouseButtonListener(){instance=this;}
-    public static MouseButtonListener getInstance(){if(instance!=null)return instance; else return new MouseButtonListener();}
+    private MouseButtonListener(){instance=this; keys = new boolean[2];}
+    public static MouseButtonListener getInstance()
+    {
+        if(instance!=null)return instance;
+        else return new MouseButtonListener();
+    }
+    private  boolean[] keys;
     @Override
     public void mouseClicked(MouseEvent e) {
 
@@ -16,11 +24,31 @@ public class MouseButtonListener implements MouseInputListener {
     @Override
     public void mousePressed(MouseEvent e) {
         System.out.println("mouse clicked. x: " + e.getX() + " y : " + e.getY());
+        switch (e.getButton())
+        {
+            case 1:
+                keys[0] = true;
+                break;
+            case 3:
+                keys[1] = true;
+                break;
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
 
+        switch (e.getButton())
+        {
+            case 1:
+                keys[0] = false;
+                for(ItemPhysicalAppearance a : Engine.getCurrentLevel().getIcons()) a.setIsGrabbed(false);
+                break;
+            case 3:
+                keys[1] = false;
+                break;
+        }
+        System.out.println("mouse released " + e.getButton());
     }
 
     @Override
@@ -42,4 +70,5 @@ public class MouseButtonListener implements MouseInputListener {
     public void mouseMoved(MouseEvent e) {
 
     }
+    public boolean[] getKeys(){return keys;}
 }

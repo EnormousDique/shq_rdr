@@ -123,6 +123,8 @@ public class Renderer implements Runnable
         if(keyboard.getKeys()[keyboard.I]) g.drawImage(Inventory.getInstance().getImg(),Player.get().getX() + 100 - camX, Player.get().getY() - 100 - camY, null);
         for (Container c : containers) if(c.isInUse()) g.drawImage(c.getUI(),c.getX()-camX,c.getY()-camY + 210,null);
         for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawImage(i.getImg(), i.getX()-camX,i.getY()-camY,null );
+        g.setColor(Color.green);
+        for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
         g.dispose();
         canvas.getBufferStrategy().show();
     }

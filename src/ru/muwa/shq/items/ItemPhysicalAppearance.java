@@ -9,16 +9,21 @@ public class ItemPhysicalAppearance
         this.x=x;
         this.y=y;
         img = i.getTexture();
+        box = new Rectangle(x,y,img.getWidth(),img.getHeight());
     }
     int x,y;
-    Rectangle icon;
     BufferedImage img;
+    boolean isGrabbed;
 
+    Rectangle box;
     public int getX(){return x;}
     public int getY(){return y;}
     public void setX(int x){this.x = x;}
     public void setY(int y){this.y = y;}
     public BufferedImage getImg(){return img;}
+    public Rectangle getBox(){return box;}
+    public void setIsGrabbed(boolean isGrabbed){this.isGrabbed = isGrabbed;}
+    public boolean isGrabbed(){return isGrabbed;}
 
 
 }

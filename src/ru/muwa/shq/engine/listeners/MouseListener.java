@@ -43,6 +43,10 @@ public class MouseListener implements java.awt.event.MouseMotionListener
     @Override
     public void mouseDragged(MouseEvent e)
     {
+        x = e.getX();
+        //System.out.println("mouse x: " + x);
+        y = e.getY();
+        //System.out.println("mouse y: " + y);
     }
 
     /**

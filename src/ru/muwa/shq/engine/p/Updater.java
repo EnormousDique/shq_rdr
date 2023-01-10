@@ -1,7 +1,9 @@
 package ru.muwa.shq.engine.p;
 import ru.muwa.shq.engine.ai.AI;
 import ru.muwa.shq.engine.listeners.MouseListener;
+import ru.muwa.shq.engine.p.updaters.ItemPhysicalAppearanceBoxUpdater;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.controls.Grabber;
 import ru.muwa.shq.player.controls.PlayerControls;
@@ -129,6 +131,8 @@ public class Updater implements Runnable
         solidBoxUpdater.updateSolidBox(player);
         onFeetBoxUpdater.updateOnFeetBox(player);
         collisionsChecker.checkCollisions(player, objects);
+        Grabber.getInstance().grab();
+        ItemPhysicalAppearanceBoxUpdater.getInstance() .update();
 
     }
     public static Updater getInstance()
