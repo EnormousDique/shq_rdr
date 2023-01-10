@@ -1,5 +1,7 @@
 package ru.muwa.shq.objects.containers;
 
+import ru.muwa.shq.items.ItemPhysicalAppearance;
+import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.ui.containers.GarbageChuteUI;
 
 import javax.imageio.ImageIO;
@@ -31,6 +33,8 @@ public class GarbageChute extends Container
         super(x,y,img);
         capacity = 1;
         items = new ArrayList<>(capacity);
+        items.add(new Flour());
+        items.get(0).setAppearance(new ItemPhysicalAppearance(this.x + GB_CH_X_OFFSET,this.y + GB_CH_Y_OFFSET,items.get(0)));
         UI = GarbageChuteUI.img;
     }
 }

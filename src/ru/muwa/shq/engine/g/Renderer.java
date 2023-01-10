@@ -2,12 +2,13 @@ package ru.muwa.shq.engine.g;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.KeyListener;
+import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
-import ru.muwa.shq.player.controls.Interactor;
-import ru.muwa.shq.ui.Inventory;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.engine.listeners.MouseListener;
@@ -58,6 +59,7 @@ public class Renderer implements Runnable
        frame.setLocationRelativeTo(null);
        frame.setVisible(true);
        canvas.addMouseMotionListener(mouse);
+       canvas.addMouseListener(MouseButtonListener.getInstance());
        canvas.addKeyListener(keyboard);
        thread = new Thread(this);
        thread.start();
@@ -120,8 +122,7 @@ public class Renderer implements Runnable
         for(GameObject object : objects) g.drawRect(object.getSolidBox().x-camX,object.getSolidBox().y-camY,(int)object.getSolidBox().getWidth(),(int)object.getSolidBox().getHeight());
         if(keyboard.getKeys()[keyboard.I]) g.drawImage(Inventory.getInstance().getImg(),Player.get().getX() + 100 - camX, Player.get().getY() - 100 - camY, null);
         for (Container c : containers) if(c.isInUse()) g.drawImage(c.getUI(),c.getX()-camX,c.getY()-camY + 210,null);
-        for (Container c : containers) if(c.isInUse() && c.getItems().size()>0) for(Item i : c.getItems()) g.drawImage(i.getTexture(),i.getAppearance().getX(),i.getAppearance().getY(),null);
-
+        for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawImage(i.getImg(), i.getX()-camX,i.getY()-camY,null );
         g.dispose();
         canvas.getBufferStrategy().show();
     }

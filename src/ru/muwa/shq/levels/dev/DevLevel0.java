@@ -35,8 +35,6 @@ public class DevLevel0 extends Level
             objects.add(new Crate1(600,0));
             objects.add(new BottomLevelBound(0,590));
             containers.add(new GarbageChute(228,228));
-            containers.get(0).getItems().add(new Flour());
-            containers.get(0).getItems().get(0).setAppearance(new ItemPhysicalAppearance(containers.get(0).getX()+GB_CH_X_OFFSET, containers.get(0).getY()+GB_CH_Y_OFFSET));
             npc.add(new BadGuy0(600,200));
             npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         }

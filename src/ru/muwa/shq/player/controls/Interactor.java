@@ -27,13 +27,13 @@ public class Interactor
         int y = MouseListener.getInstance().getY();
         System.out.println( "мышь х: " + x + " у: " + y);
         System.out.println( "мышь с учетом камеры х: " + (x + Camera.getInstance().getX()) + " у: " + (y+ Camera.getInstance().getY()));
-        for(Container c : Engine.getCurrentLevel().getContainers()) if(c.getSolidBox().inside(x,y)) {
+        for(Container c : Engine.getCurrentLevel().getContainers()) if(c.getSolidBox().inside(x+Camera.getInstance().getX(),y+Camera.getInstance().getY())) {
             System.out.println("Курсор находится на обекте контейнер");
             c.setIsInUse(true);
             Player.get().setIsBusy(true);
 
         }
-        for(NPC n : Engine.getCurrentLevel().getNPC()) if(n.getSolidBox().contains(x,y))
+        for(NPC n : Engine.getCurrentLevel().getNPC()) if(n.getSolidBox().contains(x+Camera.getInstance().getX(),y+Camera.getInstance().getY()))
             System.out.println("Курсор находится на обекте нпц");
     }
 }

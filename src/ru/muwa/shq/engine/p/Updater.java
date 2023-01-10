@@ -1,6 +1,7 @@
 package ru.muwa.shq.engine.p;
 import ru.muwa.shq.engine.ai.AI;
 import ru.muwa.shq.engine.listeners.MouseListener;
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.controls.Grabber;
 import ru.muwa.shq.player.controls.PlayerControls;
@@ -113,7 +114,14 @@ public class Updater implements Runnable
         for(Container con : Engine.getCurrentLevel().getContainers())
         {
             solidBoxUpdater.updateSolidBox(con);
-            if(con.isInUse()) Grabber.getInstance().grab();
+            if(con.isInUse())
+                for(Item i : con.getItems())
+                    if(!Engine.getCurrentLevel().getIcons().contains(i.getAppearance()))
+                        Engine.getCurrentLevel().addIcon(i.getAppearance());
+            if(!con.isInUse())
+                for(Item i : con.getItems())
+                    if(Engine.getCurrentLevel().getIcons().contains(i.getAppearance()))
+                        Engine.getCurrentLevel().removeIcon(i.getAppearance());
         }
         controls.controlPlayer();
         collisionsChecker.checkCollisions(player, objects);
