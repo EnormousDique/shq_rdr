@@ -1,5 +1,7 @@
 package ru.muwa.shq.creatures.npc;
 import ru.muwa.shq.creatures.Creature;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
@@ -19,6 +21,8 @@ public abstract class NPC extends Creature
     protected NPC(int x, int y, BufferedImage texture)
     {
         super(x, y, texture);
+        leftWallZone=new Rectangle ();
+        rightWallZone= new Rectangle ();
     }
     public boolean isPlayerInSight()
     {
@@ -33,5 +37,15 @@ public abstract class NPC extends Creature
         playerInSight = rayCaster.isPlayerInSight();
     }
 
+    protected Rectangle leftWallZone;
+
+    protected Rectangle rightWallZone;
+
+    public Rectangle getLeftWallZone(){
+        return leftWallZone ;
+    }
+    public Rectangle getRightWallZone(){
+        return  rightWallZone ;
+    }
 
 }
