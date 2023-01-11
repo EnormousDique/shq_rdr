@@ -1,7 +1,7 @@
 package ru.muwa.shq.engine.p;
 import ru.muwa.shq.engine.ai.AI;
 import ru.muwa.shq.engine.listeners.MouseListener;
-import ru.muwa.shq.engine.p.updaters.ItemPhysicalAppearanceBoxUpdater;
+import ru.muwa.shq.engine.p.updaters.*;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.objects.containers.Container;
@@ -12,9 +12,6 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.engine.p.gravity.GravityChecker;
-import ru.muwa.shq.engine.p.updaters.OnFeetBoxUpdater;
-import ru.muwa.shq.engine.p.updaters.RayCasterUpdater;
-import ru.muwa.shq.engine.p.updaters.SolidBoxUpdater;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
@@ -133,6 +130,7 @@ public class Updater implements Runnable
         collisionsChecker.checkCollisions(player, objects);
         Grabber.getInstance().grab();
         ItemPhysicalAppearanceBoxUpdater.getInstance() .update();
+        WallZoneUpdater.getInstance ().update ();
 
     }
     public static Updater getInstance()

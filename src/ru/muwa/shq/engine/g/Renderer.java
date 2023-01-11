@@ -124,9 +124,13 @@ public class Renderer implements Runnable
         for (Container c : containers) if(c.isInUse()) g.drawImage(c.getUI(),c.getX()-camX,c.getY()-camY + 210,null);
         for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawImage(i.getImg(), i.getX()-camX,i.getY()-camY,null );
         g.setColor(Color.green);
+        for (NPC c:npc) g.drawRect ((int)c.getRightWallZone().getX (),(int) c.getRightWallZone ().getY (),(int)c.getRightWallZone ().getWidth (),(int)c.getRightWallZone ().getHeight ());
+        for (NPC c:npc) g.drawRect ((int)c.getLeftWallZone().getX (),(int) c.getLeftWallZone ().getY (),(int)c.getLeftWallZone ().getWidth (),(int)c.getLeftWallZone ().getHeight ());
         for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
         g.dispose();
         canvas.getBufferStrategy().show();
+
+
     }
     private void grabGameObjects(Level level)
     {
