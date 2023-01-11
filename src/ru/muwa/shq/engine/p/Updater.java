@@ -131,6 +131,7 @@ public class Updater implements Runnable
         ItemPhysicalAppearanceBoxUpdater.getInstance() .update();
         WallZoneUpdater.getInstance ().update ();
         InventoryWindowUpdater.getInstance().update();
+        IconsUpdater.getInstance().update();
         System.out.println(Inventory.getInstance().getItems());
 
     }

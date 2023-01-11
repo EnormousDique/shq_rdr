@@ -1,6 +1,7 @@
 package ru.muwa.shq.items;
 
-import java.awt.*;
+import ru.muwa.shq.objects.containers.Container;
+
 import java.awt.image.BufferedImage;
 
 /**
@@ -24,4 +25,5 @@ public abstract class Item
     public ItemPhysicalAppearance getAppearance(){return appearance;}
     public void setAppearance(ItemPhysicalAppearance appearance){this.appearance = appearance;}
     public void setMyContainer(Container c){myContainer = c;}
+    public Container getMyContainer(){return myContainer;}
 }

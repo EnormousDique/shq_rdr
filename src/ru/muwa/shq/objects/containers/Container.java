@@ -22,4 +22,7 @@ public abstract class Container extends GameObject implements Usable
     }
 
     public ArrayList<Item> getItems(){return items;}
+
+    public void setItems(ArrayList<Item> items) { this.items = items;
+    }
 }

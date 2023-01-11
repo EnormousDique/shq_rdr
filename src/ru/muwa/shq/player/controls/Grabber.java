@@ -8,6 +8,9 @@ import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.player.Inventory;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 public class Grabber
 {
     private static Grabber instance;
@@ -23,6 +26,7 @@ public class Grabber
                 Inventory.getInstance().addItem(grabbedItem);
                 grabbedItem.getAppearance().setIsGrabbed(false);
                 grabbedItem.getAppearance().setDropped(true);
+                grabbedItem.getMyContainer().setItems((ArrayList<Item>) grabbedItem.getMyContainer().getItems().stream().filter(i -> i != grabbedItem).collect(Collectors.toList()));
                 grabbedItem = null;
                 //Engine.getCurrentLevel().removeIcon(grabbedItem.getAppearance());
             }

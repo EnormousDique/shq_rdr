@@ -36,6 +36,7 @@ public class GarbageChute extends Container implements Usable
         items = new ArrayList<>(capacity);
         items.add(new Flour());
         items.get(0).setAppearance(new ItemPhysicalAppearance(this.x + GB_CH_X_OFFSET,this.y + GB_CH_Y_OFFSET,items.get(0)));
+        items.get(0).setMyContainer(this);
         UI = GarbageChuteUI.img;
     }
 
