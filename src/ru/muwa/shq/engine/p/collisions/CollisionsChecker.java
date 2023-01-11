@@ -51,16 +51,24 @@ public class CollisionsChecker
                     {
                         o.setY(obj.getY() - o.getHeight() - 2);
                         o.setStanding(true);
-                        System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  UP");
+                        //System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  UP");
                     }
                     //Если голова ниже дна, толкаем вниз.
-                    else if(o.getY() > obj.getY()+ obj.getHeight() -10){ o.setY(obj.getY() + obj.getHeight() + 2);System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  DOWN");}
+                    else if(o.getY() > obj.getY()+ obj.getHeight() -10){ o.setY(obj.getY() + obj.getHeight() + 2);
+                        //System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  DOWN");
+                    }
                     //Иначе толкаем в бок.
                     else if(o.getSolidBox().getCenterX() < obj.getSolidBox().getCenterX() && o.getDirection() != DOWN)
-                    { o.setX(obj.getX() - o.getWidth());System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  LEFT");}
+                    {
+                        o.setX(obj.getX() - o.getWidth());
+                        //System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  LEFT");
+                    }
                     //И в другой бок.
                     else if(o.getSolidBox().getCenterX() > obj.getSolidBox().getCenterX()&& o.getDirection() != DOWN)
-                    { o.setX(obj.getX() + obj.getWidth());System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  RIGHT");}
+                    {
+                        o.setX(obj.getX() + obj.getWidth());
+                        //System.out.println("collision detected. " +"\n" + o + "\n" + obj  +  " Pushing  RIGHT");
+                    }
                 }
             }
         }

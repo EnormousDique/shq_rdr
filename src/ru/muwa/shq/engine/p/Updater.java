@@ -3,6 +3,7 @@ import ru.muwa.shq.engine.ai.AI;
 import ru.muwa.shq.engine.updaters.*;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.controls.Grabber;
 import ru.muwa.shq.player.controls.PlayerControls;
 import ru.muwa.shq.engine.g.Renderer;
@@ -129,6 +130,8 @@ public class Updater implements Runnable
         Grabber.getInstance().grab();
         ItemPhysicalAppearanceBoxUpdater.getInstance() .update();
         WallZoneUpdater.getInstance ().update ();
+        InventoryWindowUpdater.getInstance().update();
+        System.out.println(Inventory.getInstance().getItems());
 
     }
     public static Updater getInstance()

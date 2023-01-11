@@ -9,6 +9,7 @@ import java.awt.image.BufferedImage;
 public abstract class Item
 {
     protected ItemPhysicalAppearance appearance;
+    protected Container myContainer;
     protected int id,price;
     protected double weight;
     protected BufferedImage texture; //Текстура (изображение) объекта
@@ -22,4 +23,5 @@ public abstract class Item
     public BufferedImage getTexture() {return texture;}
     public ItemPhysicalAppearance getAppearance(){return appearance;}
     public void setAppearance(ItemPhysicalAppearance appearance){this.appearance = appearance;}
+    public void setMyContainer(Container c){myContainer = c;}
 }

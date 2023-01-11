@@ -4,14 +4,37 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
+import ru.muwa.shq.player.Inventory;
 
 public class Grabber
 {
     private static Grabber instance;
     private Grabber(){instance = this;}
     public static Grabber getInstance(){if(instance!=null) return instance; else return new Grabber();}
+    private Item grabbedItem;
 
+    public void release()
+    {
+        if(grabbedItem!=null)
+        {
+            if(Inventory.getInstance().isOpened() && Inventory.getInstance().getBox().contains(MouseListener.getInstance().getX(), MouseListener.getInstance().getY())) {
+                Inventory.getInstance().addItem(grabbedItem);
+                grabbedItem.getAppearance().setIsGrabbed(false);
+                grabbedItem.getAppearance().setDropped(true);
+                grabbedItem = null;
+                //Engine.getCurrentLevel().removeIcon(grabbedItem.getAppearance());
+            }
+            if(!Inventory.getInstance().isOpened() || !Inventory.getInstance().getBox().contains(MouseListener.getInstance().getX(), MouseListener.getInstance().getY()))
+            {
+                grabbedItem.getAppearance().setIsGrabbed(false);
+                grabbedItem.getAppearance().setDropped(true);
+                grabbedItem = null;
+            }
+
+        }
+    }
     public void grab()
     {
         //System.out.println("mouse keys[0]: " + MouseButtonListener.getInstance().getKeys()[0] );
@@ -23,6 +46,7 @@ public class Grabber
                         MouseListener.getInstance().getY() + Camera.getInstance().getY()))
                 {
                     a.setIsGrabbed(true);
+                    grabbedItem = a.getItem();
                 }
         }
         if(MouseButtonListener.getInstance().getKeys()[1])
@@ -33,7 +57,7 @@ public class Grabber
         {
             if(a.isGrabbed())
             {
-                System.out.println("item grabbed");
+                //System.out.println("item grabbed");
                 a.setX(MouseListener.getInstance().getX());
                 a.setY(MouseListener.getInstance().getY());
             }

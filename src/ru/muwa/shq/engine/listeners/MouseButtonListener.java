@@ -2,6 +2,7 @@ package ru.muwa.shq.engine.listeners;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
+import ru.muwa.shq.player.controls.Grabber;
 
 import javax.swing.event.MouseInputListener;
 import java.awt.event.MouseEvent;
@@ -42,7 +43,7 @@ public class MouseButtonListener implements MouseInputListener {
         {
             case 1:
                 keys[0] = false;
-                for(ItemPhysicalAppearance a : Engine.getCurrentLevel().getIcons()) a.setIsGrabbed(false);
+                Grabber.getInstance().release();
                 break;
             case 3:
                 keys[1] = false;

@@ -16,6 +16,7 @@ public class ItemPhysicalAppearance
     BufferedImage img;
     Item item;
     boolean isGrabbed, isDropped;
+    public Item getItem(){return item;}
 
     Rectangle box;
     public int getX(){return x;}
@@ -26,6 +27,9 @@ public class ItemPhysicalAppearance
     public Rectangle getBox(){return box;}
     public void setIsGrabbed(boolean isGrabbed){this.isGrabbed = isGrabbed;}
     public boolean isGrabbed(){return isGrabbed;}
+    public void setDropped(boolean b){isDropped = b;}
+
+    public boolean isDropped(){return isDropped;}
 
 
 }

@@ -122,11 +122,14 @@ public class Renderer implements Runnable
         for(GameObject object : objects) g.drawRect(object.getSolidBox().x-camX,object.getSolidBox().y-camY,(int)object.getSolidBox().getWidth(),(int)object.getSolidBox().getHeight());
         //if(keyboard.getKeys()[keyboard.I]) g.drawImage(Inventory.getInstance().getImg(),Player.get().getX() + 100 - camX, Player.get().getY() - 100 - camY, null);
         for (Container c : containers) if(c.isInUse()) g.drawImage(c.getUI(),c.getX()-camX,c.getY()-camY + 210,null);
-        for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawImage(i.getImg(), i.getX()-camX,i.getY()-camY,null );
+        for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) if (!i.isDropped()) g.drawImage(i.getImg(), i.getX()-camX,i.getY()-camY,null );
         g.setColor(Color.green);
         for (NPC c:npc) g.drawRect ((int)c.getRightWallZone().getX (),(int) c.getRightWallZone ().getY (),(int)c.getRightWallZone ().getWidth (),(int)c.getRightWallZone ().getHeight ());
         for (NPC c:npc) g.drawRect ((int)c.getLeftWallZone().getX (),(int) c.getLeftWallZone ().getY (),(int)c.getLeftWallZone ().getWidth (),(int)c.getLeftWallZone ().getHeight ());
         for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
+        if(Inventory.getInstance().isOpened()) g.drawImage(Inventory.getInstance().getImg(), Inventory.getInstance().getX(),Inventory.getInstance().getY(),null);
+        g.drawRect(Inventory.getInstance().getX(),Inventory.getInstance().getY(),Inventory.getInstance().getBox().width,Inventory.getInstance().getBox().height);
+
         g.dispose();
         canvas.getBufferStrategy().show();
 
