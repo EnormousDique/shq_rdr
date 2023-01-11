@@ -11,9 +11,9 @@ public abstract class GameObject
     /**
      * Поля
      */
-   // public static final String IMG_PATH = "D:\\_projects\\Shq 2D\\src\\ru\\muwa\\shq\\textures\\";
+    public static final String IMG_PATH = "D:\\_projects\\Shq 2D\\src\\ru\\muwa\\shq\\textures\\";
     //TODO: Вован сделай такое же поле для себя, а мое закомментируй при работе в своей ветке.
-    public static final String IMG_PATH = "C:\\sosok\\shq_rdr\\src\\ru\\muwa\\shq\\textures\\";
+    //public static final String IMG_PATH = "C:\\sosok\\shq_rdr\\src\\ru\\muwa\\shq\\textures\\";
     protected int x, y; //Координаты положения в пространстве
     protected int height; // Высота
     protected int width; // Широта
