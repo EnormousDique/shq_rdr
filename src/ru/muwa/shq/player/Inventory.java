@@ -30,6 +30,9 @@ public class Inventory
     private ArrayList<Item> items;
 
     private BufferedImage img;
+    private boolean isOpened;
+    public boolean isOpened(){return isOpened;}
+    public void setIsOpened(boolean isOpened){this.isOpened = isOpened;}
 
     public BufferedImage getImg() {
         return img;

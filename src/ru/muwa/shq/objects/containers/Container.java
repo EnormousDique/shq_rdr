@@ -1,10 +1,11 @@
 package ru.muwa.shq.objects.containers;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.objects.Usable;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-public abstract class Container extends GameObject
+public abstract class Container extends GameObject implements Usable
 {
     boolean isContainer = true;// Объект может содержать в себе вещи
     protected ArrayList<Item> items = new ArrayList<Item>();

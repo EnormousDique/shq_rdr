@@ -13,6 +13,7 @@ public class KeyListener implements java.awt.event.KeyListener
      * SPACE BAR - 32
      * E - 69
      * I - 73
+     * Q - 81
      */
     private boolean[] keys;
     public final int
@@ -22,13 +23,14 @@ public class KeyListener implements java.awt.event.KeyListener
             D = 3,
             SPACE = 4,
             E = 5,
-            I = 6;
+            I = 6,
+            Q = 7;
     private static KeyListener instance;
 
     private KeyListener()
     {
         instance = this;
-        keys = new boolean[7];
+        keys = new boolean[8];
     }
 
     public static KeyListener getInstance()
@@ -46,8 +48,7 @@ public class KeyListener implements java.awt.event.KeyListener
     @Override
     public void keyPressed(KeyEvent e)
     {
-       // System.out.println(e.getKeyCode());
-
+        //System.out.println(e.getKeyCode());
         switch (e.getKeyCode())
         {
             case 32: // Пробел
@@ -70,8 +71,10 @@ public class KeyListener implements java.awt.event.KeyListener
             case 73: // I
                 keys[6] = true;
                 break;
+            case 81: // Q
+                keys[7] = true;
+                break;
         }
-
         //System.out.println("key pressed: " + e.getKeyCode());
     }
 
@@ -80,9 +83,6 @@ public class KeyListener implements java.awt.event.KeyListener
     {
         switch (e.getKeyCode())
         {
-            case 32: // Пробел
-                keys[4] = false;
-                break;
             case 87: // W
                 keys[0] = false;
                 break;
@@ -94,11 +94,17 @@ public class KeyListener implements java.awt.event.KeyListener
             case 68: // D
                 keys[3] = false;
                 break;
+            case 32: // Пробел
+                keys[4] = false;
+                break;
             case 69: // E
                 keys[5] = false;
                 break;
             case 73: // I
                 keys[6] = false;
+                break;
+            case 81: // Q
+                keys[7] = false;
                 break;
 
         }

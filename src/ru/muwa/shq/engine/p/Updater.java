@@ -1,9 +1,7 @@
 package ru.muwa.shq.engine.p;
 import ru.muwa.shq.engine.ai.AI;
-import ru.muwa.shq.engine.listeners.MouseListener;
-import ru.muwa.shq.engine.p.updaters.*;
+import ru.muwa.shq.engine.updaters.*;
 import ru.muwa.shq.items.Item;
-import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.controls.Grabber;
 import ru.muwa.shq.player.controls.PlayerControls;

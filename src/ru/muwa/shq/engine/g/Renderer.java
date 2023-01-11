@@ -120,7 +120,7 @@ public class Renderer implements Runnable
         g.drawRect(player.getOnFeetBox().x-camX,player.getOnFeetBox().y-camY,(int)player.getOnFeetBox().getWidth(),(int)player.getOnFeetBox().getHeight());
         for(NPC c: npc) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1-camX,(int)r.y1-camY,(int)r.x2-camX,(int)r.y2-camY);}
         for(GameObject object : objects) g.drawRect(object.getSolidBox().x-camX,object.getSolidBox().y-camY,(int)object.getSolidBox().getWidth(),(int)object.getSolidBox().getHeight());
-        if(keyboard.getKeys()[keyboard.I]) g.drawImage(Inventory.getInstance().getImg(),Player.get().getX() + 100 - camX, Player.get().getY() - 100 - camY, null);
+        //if(keyboard.getKeys()[keyboard.I]) g.drawImage(Inventory.getInstance().getImg(),Player.get().getX() + 100 - camX, Player.get().getY() - 100 - camY, null);
         for (Container c : containers) if(c.isInUse()) g.drawImage(c.getUI(),c.getX()-camX,c.getY()-camY + 210,null);
         for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawImage(i.getImg(), i.getX()-camX,i.getY()-camY,null );
         g.setColor(Color.green);

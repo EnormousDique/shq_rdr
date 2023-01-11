@@ -10,10 +10,12 @@ public class ItemPhysicalAppearance
         this.y=y;
         img = i.getTexture();
         box = new Rectangle(x,y,img.getWidth(),img.getHeight());
+        item = i;
     }
     int x,y;
     BufferedImage img;
-    boolean isGrabbed;
+    Item item;
+    boolean isGrabbed, isDropped;
 
     Rectangle box;
     public int getX(){return x;}

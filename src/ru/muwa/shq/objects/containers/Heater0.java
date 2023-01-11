@@ -27,4 +27,14 @@ public class Heater0 extends Container
         capacity = 1;
         items = new ArrayList<>(capacity);
     }
+
+    @Override
+    public void setInUse(boolean b) {
+
+    }
+
+    @Override
+    public boolean getInUse() {
+        return false;
+    }
 }

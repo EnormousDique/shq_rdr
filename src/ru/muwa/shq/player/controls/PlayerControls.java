@@ -1,7 +1,10 @@
 package ru.muwa.shq.player.controls;
 
 import ru.muwa.shq.engine.listeners.KeyListener;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
+
+import java.util.Objects;
 
 /**
  * Класс, отвечающий за управление игроком.
@@ -22,6 +25,8 @@ public class PlayerControls
         if(keyboard.getKeys()[3]) moveRight();// Нажата D
         if(keyboard.getKeys()[4]) jump() ;// Нажата SPACE BAR
         if(keyboard.getKeys()[5]) interact(); // Нажата Е
+        Inventory.getInstance().setIsOpened(keyboard.getKeys()[6]); // Нажата I
+        if(keyboard.getKeys()[7]) q();
     }
 
     private void interact()
@@ -40,5 +45,14 @@ public class PlayerControls
     private void jump()
     {
             player.jump();
+    }
+    private void q()
+    {
+        if(Player.get().isBusy() && Player.get().getCurrentObject() != null)
+        {
+            Player.get().getCurrentObject().setInUse(false);
+            Player.get().setCurrentObject(null);
+            Player.get().setIsBusy(false);
+        }
     }
 }

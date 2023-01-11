@@ -1,11 +1,11 @@
-package ru.muwa.shq.engine.p.updaters;
+package ru.muwa.shq.engine.updaters;
 
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.engine.Engine;
 
 public class WallZoneUpdater {
     static private WallZoneUpdater instance;
-    private WallZoneUpdater(){}
+    private WallZoneUpdater(){instance = this;}
     public static WallZoneUpdater getInstance()
     {if (instance == null) return new WallZoneUpdater(); else return instance;}
     public void update(){

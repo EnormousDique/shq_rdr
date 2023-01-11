@@ -1,6 +1,9 @@
 package ru.muwa.shq.player;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.creatures.Creature;
+import ru.muwa.shq.objects.Usable;
+import ru.muwa.shq.objects.containers.Container;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -27,6 +30,7 @@ public class Player extends Creature
     }
 
     private boolean isBusy;
+    private Usable currentObject;
     /**
      * Конструктор
      *
@@ -46,4 +50,16 @@ public class Player extends Creature
 
     public boolean isBusy() {return isBusy;}
     public void setIsBusy(boolean isBusy){this.isBusy = isBusy;}
+    public Usable getCurrentObject(){return currentObject;}
+    public void setCurrentObject(Usable u){currentObject = u;}
+
+    @Override
+    public void moveLeft() {
+        if(!isBusy)super.moveLeft();
+    }
+
+    @Override
+    public void moveRight() {
+        if(!isBusy)super.moveRight();
+    }
 }

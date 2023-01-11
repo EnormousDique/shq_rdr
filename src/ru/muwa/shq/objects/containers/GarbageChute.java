@@ -2,6 +2,7 @@ package ru.muwa.shq.objects.containers;
 
 import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.items.drugs.Flour;
+import ru.muwa.shq.objects.Usable;
 import ru.muwa.shq.ui.containers.GarbageChuteUI;
 
 import javax.imageio.ImageIO;
@@ -11,7 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GarbageChute extends Container
+public class GarbageChute extends Container implements Usable
 {
     private static BufferedImage img;
     public static final int GB_CH_Y_OFFSET = 210,GB_CH_X_OFFSET = 70 ;
@@ -36,5 +37,15 @@ public class GarbageChute extends Container
         items.add(new Flour());
         items.get(0).setAppearance(new ItemPhysicalAppearance(this.x + GB_CH_X_OFFSET,this.y + GB_CH_Y_OFFSET,items.get(0)));
         UI = GarbageChuteUI.img;
+    }
+
+    @Override
+    public void setInUse(boolean b) {
+        super.setIsInUse(b);
+    }
+
+    @Override
+    public boolean getInUse() {
+        return super.isInUse();
     }
 }

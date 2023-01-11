@@ -31,6 +31,7 @@ public class Interactor
             System.out.println("Курсор находится на обекте контейнер");
             c.setIsInUse(true);
             Player.get().setIsBusy(true);
+            Player.get().setCurrentObject(c);
 
         }
         for(NPC n : Engine.getCurrentLevel().getNPC()) if(n.getSolidBox().contains(x+Camera.getInstance().getX(),y+Camera.getInstance().getY()))

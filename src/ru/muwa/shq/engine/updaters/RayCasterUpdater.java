@@ -1,4 +1,4 @@
-package ru.muwa.shq.engine.p.updaters;
+package ru.muwa.shq.engine.updaters;
 
 import ru.muwa.shq.engine.raycaster.RayCaster;
 import ru.muwa.shq.creatures.Creature;
