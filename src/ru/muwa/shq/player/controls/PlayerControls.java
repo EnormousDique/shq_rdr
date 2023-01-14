@@ -25,7 +25,7 @@ public class PlayerControls
         if(keyboard.getKeys()[3]) moveRight();// Нажата D
         if(keyboard.getKeys()[4]) jump() ;// Нажата SPACE BAR
         if(keyboard.getKeys()[5]) interact(); // Нажата Е
-        Inventory.getInstance().setIsOpened(keyboard.getKeys()[6]); // Нажата I
+        if(keyboard.getKeys()[6]) Inventory.getInstance().setIsOpened(!Inventory.getInstance().isOpened()); keyboard.getKeys()[6] = false; // Нажата I
         if(keyboard.getKeys()[7]) q();
     }
 
@@ -54,5 +54,6 @@ public class PlayerControls
             Player.get().setCurrentObject(null);
             Player.get().setIsBusy(false);
         }
+        Inventory.getInstance().setIsOpened(false);
     }
 }

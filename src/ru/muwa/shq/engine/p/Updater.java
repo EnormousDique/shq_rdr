@@ -132,7 +132,8 @@ public class Updater implements Runnable
         WallZoneUpdater.getInstance ().update ();
         InventoryWindowUpdater.getInstance().update();
         IconsUpdater.getInstance().update();
-        System.out.println(Inventory.getInstance().getItems());
+        //System.out.println("Inventory: " + Inventory.getInstance().getItems());
+        UseZoneUpdater.getInstance().update();
 
     }
     public static Updater getInstance()

@@ -1,10 +1,15 @@
 package ru.muwa.shq.player;
+import org.w3c.dom.css.Rect;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.creatures.Creature;
+import ru.muwa.shq.engine.g.GameScreen;
+import ru.muwa.shq.engine.g.camera.Camera;
+import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.Usable;
 import ru.muwa.shq.objects.containers.Container;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 /**
@@ -13,6 +18,14 @@ import java.io.File;
 public class Player extends Creature
 {
     private static Player instance;
+
+    private Rectangle useZone;
+
+
+    public Rectangle getUseZone() {
+        return useZone;
+    }
+
     public static Player get()
     {
         if (instance == null)
@@ -41,10 +54,11 @@ public class Player extends Creature
     protected Player(int x, int y, BufferedImage texture)
     {
         super(x, y, texture);
+        useZone = new Rectangle();
         isStanding = false;
         velocity = 2;
-        agility = 20;
-        speed = 5;
+        agility = 25;
+        speed = 10;
         maxJumpAx = 50;
     }
 
@@ -56,10 +70,16 @@ public class Player extends Creature
     @Override
     public void moveLeft() {
         if(!isBusy)super.moveLeft();
+        Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
+
     }
 
     @Override
     public void moveRight() {
         if(!isBusy)super.moveRight();
+        Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
+    }
+    public void jump(){
+        if(!isBusy) super.jump();
     }
 }

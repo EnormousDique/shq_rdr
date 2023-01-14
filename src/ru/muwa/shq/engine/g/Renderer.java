@@ -3,6 +3,7 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
+import ru.muwa.shq.engine.updaters.UseZoneUpdater;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.objects.containers.Container;
@@ -28,7 +29,6 @@ public class Renderer implements Runnable
    private Thread thread;
    private MouseListener mouse;
    private KeyListener keyboard;
-   //private LinkedList<Line2D.Float> borders; // TODO: Удалить
    private Player player = Player.get();
    private LinkedList<GameObject> objects;
    private LinkedList<NPC> npc;
@@ -62,6 +62,8 @@ public class Renderer implements Runnable
        canvas.addMouseListener(MouseButtonListener.getInstance());
        canvas.addKeyListener(keyboard);
        thread = new Thread(this);
+       canvas.setFocusable(true);
+       canvas.transferFocus();
        thread.start();
        System.out.println("Graphics eng initialized.");
    }
@@ -124,12 +126,16 @@ public class Renderer implements Runnable
         for (Container c : containers) if(c.isInUse()) g.drawImage(c.getUI(),c.getX()-camX,c.getY()-camY + 210,null);
         for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) if (!i.isDropped()) g.drawImage(i.getImg(), i.getX()-camX,i.getY()-camY,null );
         g.setColor(Color.green);
-        for (NPC c:npc) g.drawRect ((int)c.getRightWallZone().getX (),(int) c.getRightWallZone ().getY (),(int)c.getRightWallZone ().getWidth (),(int)c.getRightWallZone ().getHeight ());
-        for (NPC c:npc) g.drawRect ((int)c.getLeftWallZone().getX (),(int) c.getLeftWallZone ().getY (),(int)c.getLeftWallZone ().getWidth (),(int)c.getLeftWallZone ().getHeight ());
-        for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
-        if(Inventory.getInstance().isOpened()) g.drawImage(Inventory.getInstance().getImg(), Inventory.getInstance().getX(),Inventory.getInstance().getY(),null);
-        g.drawRect(Inventory.getInstance().getX(),Inventory.getInstance().getY(),Inventory.getInstance().getBox().width,Inventory.getInstance().getBox().height);
 
+        //g.drawRect(int x - camX, int y,-camY int width, int height)
+        for (NPC c:npc) g.drawRect ((int)c.getRightWallZone().getX ()-camX,(int) c.getRightWallZone ().getY ()-camY,(int)c.getRightWallZone ().getWidth (),(int)c.getRightWallZone ().getHeight ());//отрисовка правой зоны столкновений нпц
+        for (NPC c:npc) g.drawRect ((int)c.getLeftWallZone().getX ()-camX,(int) c.getLeftWallZone ().getY ()-camY,(int)c.getLeftWallZone ().getWidth (),(int)c.getLeftWallZone ().getHeight ());//отриосвка левой зоны стоклновений нпц
+        for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
+        if(Inventory.getInstance().isOpened()) g.drawImage(Inventory.getInstance().getImg(), Inventory.getInstance().getX()-camX,Inventory.getInstance().getY()-camY,null);
+        g.drawRect(Inventory.getInstance().getX()-camX,Inventory.getInstance().getY()-camY,Inventory.getInstance().getBox().width,Inventory.getInstance().getBox().height);
+        g.drawRect((int)Inventory.getInstance().getItemIcons(0).getX()-camX,(int)Inventory.getInstance().getItemIcons(0).getY()-camY,(int)Inventory.getInstance().getItemIcons(0).getWidth(),(int)Inventory.getInstance().getItemIcons(0).getHeight());
+        if(Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems()) if(i!=null) g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x-camX,Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y-camY,null);
+        g.drawRect(Player.get().getUseZone().x-camX,Player.get().getUseZone().y-camY,Player.get().getUseZone().width,Player.get().getUseZone().height);
         g.dispose();
         canvas.getBufferStrategy().show();
 

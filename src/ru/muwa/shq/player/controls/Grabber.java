@@ -46,8 +46,8 @@ public class Grabber
         if(MouseButtonListener.getInstance().getKeys()[0])
         {
             for(ItemPhysicalAppearance a : Engine.getCurrentLevel().getIcons())
-                if(a.getBox().contains(MouseListener.getInstance().getX() + Camera.getInstance().getX(),
-                        MouseListener.getInstance().getY() + Camera.getInstance().getY()))
+                if(a.getBox().contains(MouseListener.getInstance().getX() - Camera.getInstance().getX(),
+                        MouseListener.getInstance().getY() - Camera.getInstance().getY()))
                 {
                     a.setIsGrabbed(true);
                     grabbedItem = a.getItem();

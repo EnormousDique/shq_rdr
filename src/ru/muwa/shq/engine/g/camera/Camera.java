@@ -5,10 +5,18 @@ public class Camera
 
     private static Camera instance;
 
-    public final static int SCROLL_SPEED = 10;
+    public final static int SCROLL_SPEED = 0;
 
     private Camera(){if (instance == null) instance = this;}
     public static Camera getInstance(){if (instance != null) return instance; else return new Camera();}
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 
     int x , y;
 

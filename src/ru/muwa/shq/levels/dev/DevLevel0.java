@@ -13,13 +13,11 @@ import java.io.IOException;
 
 import static ru.muwa.shq.objects.containers.GarbageChute.GB_CH_X_OFFSET;
 import static ru.muwa.shq.objects.containers.GarbageChute.GB_CH_Y_OFFSET;
-
 /**
  * Моя песочница.
  */
 public class DevLevel0 extends Level
 {
-
     public DevLevel0()
     {
         try
@@ -34,7 +32,7 @@ public class DevLevel0 extends Level
             objects.add(new Crate0(1000,450));
             objects.add(new Crate1(600,0));
             objects.add(new BottomLevelBound(0,590));
-            containers.add(new GarbageChute(228,228));
+            containers.add(new GarbageChute(628,228));
             npc.add(new BadGuy0(600,200));
             npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         }

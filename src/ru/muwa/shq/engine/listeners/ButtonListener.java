@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class ButtonListener implements ActionListener
 {
     private static ButtonListener instance;
-    protected ButtonListener(){}
+    protected ButtonListener(){ instance = this;}
     @Override
     public void actionPerformed(ActionEvent e)
     {
