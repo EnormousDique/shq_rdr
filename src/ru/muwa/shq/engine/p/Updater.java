@@ -91,7 +91,6 @@ public class Updater implements Runnable
         for(GameObject o : objects)
         {
             collisionsChecker.checkCollisions(o, objects);
-            gravityChecker.checkGravity(o,objects);
             solidBoxUpdater.updateSolidBox(o);
             onFeetBoxUpdater.updateOnFeetBox(o);
             collisionsChecker.checkCollisions(o, objects);
@@ -100,7 +99,6 @@ public class Updater implements Runnable
         {
             collisionsChecker.checkCollisionsNPC(c, objects);
             collisionsChecker.checkBottomCollisions(c);
-            gravityChecker.checkGravity(c,objects);
             solidBoxUpdater.updateSolidBox(c);
             onFeetBoxUpdater.updateOnFeetBox(c);
             c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
@@ -123,7 +121,6 @@ public class Updater implements Runnable
         }
         controls.controlPlayer();
         collisionsChecker.checkCollisions(player, objects);
-        gravityChecker.checkGravity(player,objects);
         solidBoxUpdater.updateSolidBox(player);
         onFeetBoxUpdater.updateOnFeetBox(player);
         collisionsChecker.checkCollisions(player, objects);

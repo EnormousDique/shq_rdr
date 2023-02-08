@@ -10,6 +10,8 @@ import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.dev.DevLevel0;
 
+import java.io.IOException;
+
 /**
  * Класс, запускающий и хранящий основные компоненты игрового движка.
  */
@@ -18,7 +20,16 @@ public class Engine
     /**
      * Статические поля.
      */
-    private static Level currentLevel = new DemoLevel0();
+    private static Level currentLevel;
+
+    static {
+        try {
+            currentLevel = new DemoLevel0();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static Updater updater = Updater.getInstance();
     public static Renderer renderer = Renderer.getInstance();
     public static KeyListener keyboard = KeyListener.getInstance();
