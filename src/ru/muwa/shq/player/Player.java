@@ -12,6 +12,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+
+import static ru.muwa.shq.objects.GameObject.Direction.DOWN;
+
 /**
  * Класс игрока.
  */
@@ -54,10 +57,11 @@ public class Player extends Creature
     protected Player(int x, int y, BufferedImage texture)
     {
         super(x, y, texture);
+        direction = DOWN;
         useZone = new Rectangle();
         isStanding = false;
         velocity = 2;
-        agility = 25;
+        agility = 8;
         speed = 10;
         maxJumpAx = 50;
     }

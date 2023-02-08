@@ -58,17 +58,20 @@ public abstract class Creature extends GameObject
 
     public void moveRight()
     {
-        if (direction == LEFT || direction == NONE) direction = RIGHT;
-        if(direction == DOWN || direction == DOWN_LEFT) direction = DOWN_RIGHT;
-        if(direction == UP || direction == UP_LEFT) direction = UP_RIGHT;
         x += speed;
+    }
+    public void moveUp()
+    {
+
+        y -= speed;
+    }
+    public void moveDown()
+    {
+        y += speed;
+
     }
     public void moveLeft()
     {
-
-        if (direction == RIGHT || direction == NONE) direction = LEFT;
-        if(direction == DOWN || direction == DOWN_RIGHT) direction = DOWN_LEFT;
-        if(direction == UP || direction == UP_RIGHT) direction = UP_LEFT;
         x -= speed;
     }
 

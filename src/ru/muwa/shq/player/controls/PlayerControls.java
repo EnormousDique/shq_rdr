@@ -19,10 +19,10 @@ public class PlayerControls
 
     public  void controlPlayer()
     {
-        if(keyboard.getKeys()[0]) ;// Нажата W
-        if(keyboard.getKeys()[1]) moveLeft();// Нажата A
-        if(keyboard.getKeys()[2]) ;// Нажата S
-        if(keyboard.getKeys()[3]) moveRight();// Нажата D
+        if(keyboard.getKeys()[0]) Player.get().moveUp(); ;// Нажата W
+        if(keyboard.getKeys()[1]) Player.get().moveLeft();// Нажата A
+        if(keyboard.getKeys()[2]) Player.get().moveDown();// Нажата S
+        if(keyboard.getKeys()[3]) Player.get().moveRight();// Нажата D
         if(keyboard.getKeys()[4]) jump() ;// Нажата SPACE BAR
         if(keyboard.getKeys()[5]) interact(); // Нажата Е
         if(keyboard.getKeys()[6]) Inventory.getInstance().setIsOpened(!Inventory.getInstance().isOpened()); keyboard.getKeys()[6] = false; // Нажата I

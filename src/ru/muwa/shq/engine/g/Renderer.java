@@ -55,7 +55,7 @@ public class Renderer implements Runnable
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        frame.add(canvas);
        frame.setSize(GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT + GameScreen.FRAME_TOP_HEIGHT);
-       frame.setResizable(false);
+       frame.setResizable(false);//false
        frame.setLocationRelativeTo(null);
        frame.setVisible(true);
        canvas.addMouseMotionListener(mouse);
@@ -119,7 +119,9 @@ public class Renderer implements Runnable
         g.setColor(Color.ORANGE);
         for(NPC c : npc) for (Line2D.Float line : c.getRayCaster().calcRays()) g.drawLine((int)line.x1-camX, (int) line.y1-camY, (int) line.x2-camX, (int) line.y2-camY);
         g.drawRect(player.getSolidBox().x-camX,player.getSolidBox().y-camY,(int)player.getSolidBox().getWidth(),(int)player.getSolidBox().getHeight());
+        g.setColor(Color.MAGENTA);
         g.drawRect(player.getOnFeetBox().x-camX,player.getOnFeetBox().y-camY,(int)player.getOnFeetBox().getWidth(),(int)player.getOnFeetBox().getHeight());
+        g.setColor(Color.ORANGE);
         for(NPC c: npc) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1-camX,(int)r.y1-camY,(int)r.x2-camX,(int)r.y2-camY);}
         for(GameObject object : objects) g.drawRect(object.getSolidBox().x-camX,object.getSolidBox().y-camY,(int)object.getSolidBox().getWidth(),(int)object.getSolidBox().getHeight());
         //if(keyboard.getKeys()[keyboard.I]) g.drawImage(Inventory.getInstance().getImg(),Player.get().getX() + 100 - camX, Player.get().getY() - 100 - camY, null);

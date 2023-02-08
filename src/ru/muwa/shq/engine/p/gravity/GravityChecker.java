@@ -39,9 +39,9 @@ public class GravityChecker
     {
 
         //System.out.println("player falling: " + Player.get().isFalling());
-        fly(c);
-        checkForFalling(c,objects);
-        fall(c);
+        //fly(c);
+        //checkForFalling(c,objects);
+        //fall(c);
     }
 
     private void checkForFalling(GameObject o, LinkedList<GameObject> objects)

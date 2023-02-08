@@ -15,6 +15,6 @@ public class OnFeetBoxUpdater
 
     public void updateOnFeetBox(GameObject o)
     {
-        o.getOnFeetBox().setBounds(o.getX() +10,o.getY()+o.getHeight()+1,o.getWidth()-20,GameObject.ON_FEET_BOX_HEIGHT);
+        o.getOnFeetBox().setBounds(o.getX() +2,o.getY()+o.getHeight()+1,o.getWidth()-2,GameObject.ON_FEET_BOX_HEIGHT);
     }
 }
