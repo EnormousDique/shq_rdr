@@ -134,8 +134,8 @@ public class Renderer implements Runnable
         for (NPC c:npc) g.drawRect ((int)c.getLeftWallZone().getX ()-camX,(int) c.getLeftWallZone ().getY ()-camY,(int)c.getLeftWallZone ().getWidth (),(int)c.getLeftWallZone ().getHeight ());//отриосвка левой зоны стоклновений нпц
         for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
         if(Inventory.getInstance().isOpened()) g.drawImage(Inventory.getInstance().getImg(), Inventory.getInstance().getX()-camX,Inventory.getInstance().getY()-camY,null);
-         g.drawRect(Inventory.getInstance().getX()-camX,Inventory.getInstance().getY()-camY,Inventory.getInstance().getBox().width,Inventory.getInstance().getBox().height);
-        g.drawRect((int)Inventory.getInstance().getItemIcons(0).getX()-camX,(int)Inventory.getInstance().getItemIcons(0).getY()-camY,(int)Inventory.getInstance().getItemIcons(0).getWidth(),(int)Inventory.getInstance().getItemIcons(0).getHeight());
+        //g.drawRect(Inventory.getInstance().getX()-camX,Inventory.getInstance().getY()-camY,Inventory.getInstance().getBox().width,Inventory.getInstance().getBox().height);
+        //g.drawRect((int)Inventory.getInstance().getItemIcons(0).getX()-camX,(int)Inventory.getInstance().getItemIcons(0).getY()-camY,(int)Inventory.getInstance().getItemIcons(0).getWidth(),(int)Inventory.getInstance().getItemIcons(0).getHeight());
         if(Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems()) if(i!=null) g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x-camX,Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y-camY,null);
        // g.drawRect(Player.get().getUseZone().x-camX,Player.get().getUseZone().y-camY,Player.get().getUseZone().width,Player.get().getUseZone().height); // отрисовка зоны доступного использовиния
         for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons())  g.drawImage(i.getImg(), i.getX()-camX,i.getY()-camY,null );

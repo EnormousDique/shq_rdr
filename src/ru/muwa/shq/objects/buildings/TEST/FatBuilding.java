@@ -1,4 +1,4 @@
-package ru.muwa.shq.objects.buildings.ninefloor.TEST;
+package ru.muwa.shq.objects.buildings.TEST;
 
 import ru.muwa.shq.objects.GameObject;
 
@@ -7,12 +7,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class TestBuilding extends GameObject {
+public class FatBuilding extends GameObject {
     static BufferedImage img;
 
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "buildings\\tallHouse.png"));
+            img = ImageIO.read(new File(IMG_PATH + "buildings\\FatBuilding.png"));
             System.out.println("TestBuilding texture loaded");
         } catch (IOException e) {
             System.out.println("failed to load testbuilding roof texture");
@@ -24,9 +24,8 @@ public class TestBuilding extends GameObject {
      *
      * @param x
      * @param y
-     * @param texture
      */
-    public TestBuilding(int x, int y) {
+    public FatBuilding(int x, int y) {
         super(x, y, img);
     }
 }

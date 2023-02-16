@@ -20,7 +20,7 @@ public class Engine
     /**
      * Статические поля.
      */
-    private static Level currentLevel;
+    public static Level currentLevel; //TODO: ДОЛЖНО БЫТЬ PRIVATE!!!!
 
     static {
         try {
@@ -41,7 +41,6 @@ public class Engine
     public static void startLevel(Level level)
     {
         currentLevel = level;
-
     }
     public static Level getCurrentLevel()
     {

@@ -66,14 +66,7 @@ public class CollisionsChecker
 
     public void checkBottomCollisions(GameObject o)
     {
-        if(o != null & !o.isStatic())
-        {
-            if(o.getY() + o.getHeight() >= GameScreen.SCREEN_HEIGHT)
-            {
-                o.setStanding();
-                o.setY(o.getY() - (o.getY() + o.getHeight() - GameScreen.SCREEN_HEIGHT));
-            }
-        }
+
     }
 
     public void checkCollisionsNPC(NPC c, LinkedList<GameObject> objects)
