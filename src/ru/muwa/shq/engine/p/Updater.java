@@ -10,7 +10,6 @@ import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
-import ru.muwa.shq.engine.p.gravity.GravityChecker;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
@@ -25,7 +24,7 @@ public class Updater implements Runnable
 {
     public static Updater instance;
     private CollisionsChecker collisionsChecker;
-    private GravityChecker gravityChecker;
+
     private SolidBoxUpdater solidBoxUpdater;
     private OnFeetBoxUpdater onFeetBoxUpdater;
     private AI ai = AI.getInstance();
@@ -43,7 +42,6 @@ public class Updater implements Runnable
         instance = this;
         player = Player.get();
         controls = PlayerControls.getInstance();
-        gravityChecker = GravityChecker.getInstance();
         renderer = Renderer.getInstance();
         collisionsChecker = CollisionsChecker.getInstance();
         solidBoxUpdater = SolidBoxUpdater.getInstance();
