@@ -19,7 +19,7 @@ public class Inventory
     private ArrayList<Rectangle> itemIcons;
     private ArrayList<Item> items;
 
-    private BufferedImage img;
+    private static BufferedImage img;
 
     public Rectangle getItemIcons(int i) {
         return itemIcons.get(i);
@@ -35,14 +35,7 @@ public class Inventory
         return itemIcons;
     }
 
-    private Inventory()
-    {
-        System.out.println("inventory initiated");
-        instance = this;
-        items = new ArrayList<>();
-        item0 = new Rectangle(x,y,50,50);
-        itemIcons = new ArrayList<>();
-        itemIcons.add(item0);itemIcons.add(item1);itemIcons.add(item2);itemIcons.add(item3);itemIcons.add(item4);itemIcons.add(item5);itemIcons.add(item6);itemIcons.add(item7);
+    static{
         try
         {
             img = ImageIO.read(new File(IMG_PATH + "inventory\\inventory.png"));
@@ -50,6 +43,18 @@ public class Inventory
         {
             System.out.println("inventory texture load failed");
         }
+
+    }
+    private Inventory()
+
+    {
+        System.out.println("inventory initiated");
+        instance = this;
+        items = new ArrayList<>();
+        item0 = new Rectangle(x,y,50,50);
+        itemIcons = new ArrayList<>();
+        itemIcons.add(item0);itemIcons.add(item1);itemIcons.add(item2);itemIcons.add(item3);itemIcons.add(item4);itemIcons.add(item5);itemIcons.add(item6);itemIcons.add(item7);
+
         box = new Rectangle(x,y,img.getWidth(),img.getHeight());
 
 

@@ -35,7 +35,7 @@ public class Player extends Creature
         {
         BufferedImage img;
         try {
-            img = ImageIO.read(new File(IMG_PATH+"player\\p_r.png"));
+            img = ImageIO.read(new File(IMG_PATH+"player\\kulagin.png"));
         } catch (Exception e) {
             System.out.println("Failed to load player textures");
             return null;

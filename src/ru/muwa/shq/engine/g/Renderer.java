@@ -125,8 +125,8 @@ public class Renderer implements Runnable
         for(NPC c: npc) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1-camX,(int)r.y1-camY,(int)r.x2-camX,(int)r.y2-camY);}
         for(GameObject object : objects) g.drawRect(object.getSolidBox().x-camX,object.getSolidBox().y-camY,(int)object.getSolidBox().getWidth(),(int)object.getSolidBox().getHeight());
         //if(keyboard.getKeys()[keyboard.I]) g.drawImage(Inventory.getInstance().getImg(),Player.get().getX() + 100 - camX, Player.get().getY() - 100 - camY, null);
-        for (Container c : containers) if(c.isInUse()) g.drawImage(c.getUI(),c.getX()-camX,c.getY()-camY + 210,null);
-        for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) if (!i.isDropped()) g.drawImage(i.getImg(), i.getX()-camX,i.getY()-camY,null );
+        for (Container c : containers) if(c.isInUse()) g.drawImage(c.getUI(),c.getX()-camX,c.getY()-camY,null);
+
         g.setColor(Color.green);
 
         //g.drawRect(int x - camX, int y,-camY int width, int height)
@@ -134,12 +134,14 @@ public class Renderer implements Runnable
         for (NPC c:npc) g.drawRect ((int)c.getLeftWallZone().getX ()-camX,(int) c.getLeftWallZone ().getY ()-camY,(int)c.getLeftWallZone ().getWidth (),(int)c.getLeftWallZone ().getHeight ());//отриосвка левой зоны стоклновений нпц
         for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
         if(Inventory.getInstance().isOpened()) g.drawImage(Inventory.getInstance().getImg(), Inventory.getInstance().getX()-camX,Inventory.getInstance().getY()-camY,null);
-        g.drawRect(Inventory.getInstance().getX()-camX,Inventory.getInstance().getY()-camY,Inventory.getInstance().getBox().width,Inventory.getInstance().getBox().height);
+         g.drawRect(Inventory.getInstance().getX()-camX,Inventory.getInstance().getY()-camY,Inventory.getInstance().getBox().width,Inventory.getInstance().getBox().height);
         g.drawRect((int)Inventory.getInstance().getItemIcons(0).getX()-camX,(int)Inventory.getInstance().getItemIcons(0).getY()-camY,(int)Inventory.getInstance().getItemIcons(0).getWidth(),(int)Inventory.getInstance().getItemIcons(0).getHeight());
         if(Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems()) if(i!=null) g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x-camX,Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y-camY,null);
-        g.drawRect(Player.get().getUseZone().x-camX,Player.get().getUseZone().y-camY,Player.get().getUseZone().width,Player.get().getUseZone().height);
+       // g.drawRect(Player.get().getUseZone().x-camX,Player.get().getUseZone().y-camY,Player.get().getUseZone().width,Player.get().getUseZone().height); // отрисовка зоны доступного использовиния
+        for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons())  g.drawImage(i.getImg(), i.getX()-camX,i.getY()-camY,null );
         g.dispose();
         canvas.getBufferStrategy().show();
+
 
 
     }

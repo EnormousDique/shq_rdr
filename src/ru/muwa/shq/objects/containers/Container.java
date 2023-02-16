@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public abstract class Container extends GameObject implements Usable
 {
     boolean isContainer = true;// Объект может содержать в себе вещи
-    protected ArrayList<Item> items = new ArrayList<Item>();
-    protected int capacity;
+    protected ArrayList<Item> items = new ArrayList<Item>(); // список обьектов контейнера
+    protected int capacity;  // вместительность
     /**
      * Конструктор
      *
@@ -20,6 +20,8 @@ public abstract class Container extends GameObject implements Usable
     protected Container(int x, int y, BufferedImage texture) {
         super(x, y, texture);
     }
+
+    protected int UIx,UIy;
 
     public ArrayList<Item> getItems(){return items;}
 
