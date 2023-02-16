@@ -14,7 +14,7 @@ public class DemoLevel0 extends Level
 
     public DemoLevel0() throws IOException {
         super();
-        objects.add(new Pavement(0, GameScreen.SCREEN_HEIGHT-Pavement.img.getHeight()));
+        //objects.add(new Pavement(0, GameScreen.SCREEN_HEIGHT-Pavement.img.getHeight()));
         objects.add(new Crate0( 200,200));
         startPosX = 10;
         startPosY = GameScreen.SCREEN_HEIGHT - 150;

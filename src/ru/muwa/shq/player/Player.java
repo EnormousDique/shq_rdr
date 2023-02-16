@@ -86,4 +86,18 @@ public class Player extends Creature
     public void jump(){
         if(!isBusy) super.jump();
     }
+     @Override
+    public void moveUp(){
+         super.moveUp();
+         Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
+
+     }
+    @Override
+     public void moveDown (){
+        super.moveDown();
+        Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
+
+     }
 }
+
+
