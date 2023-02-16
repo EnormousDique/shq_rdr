@@ -21,8 +21,8 @@ public class Pavement extends GameObject {
     {
         try
         {
-            img = ImageIO.read(new File(IMG_PATH +"street\\pavement.png"));
-            System.out.println("pavement texture loaded");
+          //  img = ImageIO.read(new File(IMG_PATH +"street\\pavement.png"));
+           // System.out.println("pavement texture loaded");
         } catch(Exception e)
         {
             System.out.println("failed to load pavement texture");

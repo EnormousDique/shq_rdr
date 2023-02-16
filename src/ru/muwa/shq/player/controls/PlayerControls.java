@@ -1,6 +1,8 @@
 package ru.muwa.shq.player.controls;
 
+import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.listeners.KeyListener;
+import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
@@ -55,5 +57,6 @@ public class PlayerControls
             Player.get().setIsBusy(false);
         }
         Inventory.getInstance().setIsOpened(false);
+        for(Container c: Engine.getCurrentLevel().getContainers())c.setIsInUse(false);
     }
 }

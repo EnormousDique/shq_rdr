@@ -35,7 +35,7 @@ public class Player extends Creature
         {
         BufferedImage img;
         try {
-            img = ImageIO.read(new File(IMG_PATH+"player\\p_r.png"));
+            img = ImageIO.read(new File(IMG_PATH+"player\\kulagin.png"));
         } catch (Exception e) {
             System.out.println("Failed to load player textures");
             return null;
@@ -86,4 +86,18 @@ public class Player extends Creature
     public void jump(){
         if(!isBusy) super.jump();
     }
+     @Override
+    public void moveUp(){
+         super.moveUp();
+         Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
+
+     }
+    @Override
+     public void moveDown (){
+        super.moveDown();
+        Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
+
+     }
 }
+
+
