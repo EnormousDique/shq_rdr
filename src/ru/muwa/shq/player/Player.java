@@ -62,7 +62,7 @@ public class Player extends Creature
         isStanding = false;
         velocity = 2;
         agility = 8;
-        speed = 10;
+        speed = 7;
         maxJumpAx = 50;
     }
 

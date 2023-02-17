@@ -3,6 +3,7 @@ import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
+import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TestBuilding;
 import ru.muwa.shq.objects.containers.TrashCan;
 import ru.muwa.shq.objects.obstacles.crates.Crate0;
@@ -22,6 +23,7 @@ public class DemoLevel0 extends Level
         containers.get(0).setItems(new ArrayList<Item>());
         objects.add(new Crate0(100,100));
         objects.add(new TestBuilding(300,799));
-        objects.add(new FatBuilding(-300,700));
+        objects.add(new FatBuilding(0,1500));
+        objects.add(new TallFatBuilding(1000,2500));
     }
 }
