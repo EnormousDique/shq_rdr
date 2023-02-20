@@ -14,14 +14,16 @@ import java.util.LinkedList;
 public class Launcher
 {
 
-    private static JFrame frame = new JFrame();
-    private static JButton startButton, settingsButton, editorButton,exitButton;
-    final static int START = 0, SET = 1, EDIT = 2, EXIT = 3;
-    private static LauncherButtonListener buttonListener;
-    private static LinkedList<JButton> buttons;
+    private static JFrame frame = new JFrame(); // Окно лаунчера.
+    private static JButton startButton, settingsButton, editorButton,exitButton; // Кнопки.
+    final static int START = 0, SET = 1, EDIT = 2, EXIT = 3; // Константы для кнопок и их действий.
+    private static LauncherButtonListener buttonListener; // Объект прослушки кнопок.
+    private static LinkedList<JButton> buttons; // Список кнопок.
 
     /**
-     * Метод, в котором запускается лаунчер игры
+     * Метод, в котором запускается лаунчер игры.
+     *
+     *     Его вызов происходит сразу же в методе main.
      */
     private static void init()
     {
@@ -56,9 +58,9 @@ public class Launcher
     public static void quit()
     {
         System.exit(0);
-    }
+    } // Метод выхода из игры.
     public static void hideFrame()
     {
         frame.setVisible(false);
-    }
+    } // Метод, прячущий лаунчер после запуска самой игры.
 }

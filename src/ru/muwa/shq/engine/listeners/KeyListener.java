@@ -2,6 +2,9 @@ package ru.muwa.shq.engine.listeners;
 
 import java.awt.event.KeyEvent;
 
+/**
+ *  Класс, отвечающий за прослушку клавиатуры.
+ */
 public class KeyListener implements java.awt.event.KeyListener
 {
     /**
@@ -17,7 +20,8 @@ public class KeyListener implements java.awt.event.KeyListener
      * W - 87
      * S - 83
      */
-    private boolean[] keys;
+    private boolean[] keys; // Массив кнопок. Каждой кнопке соответствует свой индекс массива.
+    // Если кнопка нажата, в массиве под этим индексом хранится
     public final int
             W = 0,
             A = 1,

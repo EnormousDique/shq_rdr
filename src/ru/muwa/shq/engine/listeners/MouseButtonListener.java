@@ -7,10 +7,15 @@ import ru.muwa.shq.player.controls.Grabber;
 import javax.swing.event.MouseInputListener;
 import java.awt.event.MouseEvent;
 
+/**
+ * Класс, отвечающий за прослушку кнопок мыши.
+ */
 public class MouseButtonListener implements MouseInputListener {
 
     private static MouseButtonListener instance;
-    private MouseButtonListener(){instance=this; keys = new boolean[2];}
+    private MouseButtonListener(){instance=this; keys = new boolean[2];} // Массив кнопок.
+    // Каждой кнопке соответствует свой индекс массива.
+    // Если кнопка нажата, в массиве под этим индексом хранится
     public static MouseButtonListener getInstance()
     {
         if(instance!=null)return instance;

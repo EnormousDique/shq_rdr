@@ -84,7 +84,7 @@ public class Player extends Creature
         Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
     }
     public void jump(){
-        if(!isBusy) super.jump();
+
     }
      @Override
     public void moveUp(){
