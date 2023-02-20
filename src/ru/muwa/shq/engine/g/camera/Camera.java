@@ -1,7 +1,12 @@
 package ru.muwa.shq.engine.g.camera;
 
+/**
+ * Класс, хранящий в себе информацию о положении игровой камеры, а так же методы по работе с этими значениями.
+ */
 public class Camera
 {
+
+    int x , y; // Координаты положения камеры в игровом пространстве.
 
     private static Camera instance;
 
@@ -9,28 +14,14 @@ public class Camera
 
     private Camera(){if (instance == null) instance = this;}
     public static Camera getInstance(){if (instance != null) return instance; else return new Camera();}
-
+    // Сеттеры
     public void setX(int x) {
         this.x = x;
     }
-
     public void setY(int y) {
         this.y = y;
     }
-
-    int x , y;
-
-    public void moveRight(){ x = x + SCROLL_SPEED;}
-    public void moveLeft(){  x = x - SCROLL_SPEED;}
-    public void moveUp(){    y = y + SCROLL_SPEED;}
-    public void moveDown(){  y = y - SCROLL_SPEED;}
-
-    public void update()
-    {
-        CameraUpdater.getInstance().scroll();
-    }
-
-
+    // Геттеры
     public int getX(){return x;}
     public int getY(){return y;}
 

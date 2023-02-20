@@ -10,7 +10,6 @@ import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
-import ru.muwa.shq.engine.p.gravity.GravityChecker;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
@@ -24,33 +23,14 @@ import java.util.LinkedList;
 public class Updater implements Runnable
 {
     public static Updater instance;
-    private CollisionsChecker collisionsChecker;
-    private GravityChecker gravityChecker;
-    private SolidBoxUpdater solidBoxUpdater;
-    private OnFeetBoxUpdater onFeetBoxUpdater;
-    private AI ai = AI.getInstance();
-    private Thread thread;
-    private Player player;
-    private PlayerControls controls;
-    LinkedList<GameObject> objects;
-    LinkedList<NPC> npc;
-    Renderer renderer;
-    RayCasterUpdater rayCasterUpdater;
-    KeyListener keyboard = KeyListener.getInstance();
+    private Thread thread; // Поток движка игровых состояний.
+    private Player player; // Ссылка на игрока.
+
     private Updater()
     {
         if(instance != null) return;
         instance = this;
         player = Player.get();
-        controls = PlayerControls.getInstance();
-        gravityChecker = GravityChecker.getInstance();
-        renderer = Renderer.getInstance();
-        collisionsChecker = CollisionsChecker.getInstance();
-        solidBoxUpdater = SolidBoxUpdater.getInstance();
-        onFeetBoxUpdater = OnFeetBoxUpdater.getInstance();
-        objects = new LinkedList<>();
-        npc = new LinkedList<>();
-        rayCasterUpdater = RayCasterUpdater.getInstance();
         thread = new Thread(this);
         thread.start();
     }
@@ -58,9 +38,7 @@ public class Updater implements Runnable
     public void run()
     {
         System.out.println("Physx engin initialized. Updater thread started.");
-        grabGameObjects(Engine.getCurrentLevel());
-        grabNPC(Engine.getCurrentLevel());
-        System.out.println("Objects grabbed from lvl +  " + Engine.getCurrentLevel().getClass());
+
 
         double drawInterval = 1_000_000_000/60;
         double delta=0;
@@ -73,7 +51,7 @@ public class Updater implements Runnable
             delta += (currTime - lastTime) / drawInterval;
             lastTime = currTime;
 
-            for(GameObject o : objects) collisionsChecker.checkCollisions(o, objects);
+            for(GameObject o : Engine.currentLevel.getObjects()) CollisionsChecker.getInstance().checkCollisions(o, Engine.getCurrentLevel().getObjects());
             //Попытка вынести расчёты столновений за ограничение в 60 итераций в секунду для исправления бага с выталкиванием за текстуры
             //TODO: вероятно стоит запустить отдельный поток для провери столновений вне основного потоа updater'a
             //Баг удалось исправить.
@@ -85,65 +63,78 @@ public class Updater implements Runnable
             }
         }
     }
+
+    /**
+     * Основной метод обработчика внутриигровых действий и состояний.
+     * Вызывается каждый кадр, проверяет состояние внутриигровых объектов и обновляет их.
+     */
+
+    //TODO: Ранее проверка коллизий вызывалась дважды - в начале и в конце итерации.
+    // Нужно проверить насколько это была необходимая мера и можно ли обойтись без неё.
     private void update()
     {
        // System.out.println("Player standing: "+player.standing());
-        for(GameObject o : objects)
-        {
-            collisionsChecker.checkCollisions(o, objects);
-            solidBoxUpdater.updateSolidBox(o);
-            onFeetBoxUpdater.updateOnFeetBox(o);
-            collisionsChecker.checkCollisions(o, objects);
-        }
-        for(NPC c : npc)
-        {
-            collisionsChecker.checkCollisionsNPC(c, objects);
-            collisionsChecker.checkBottomCollisions(c);
-            solidBoxUpdater.updateSolidBox(c);
-            onFeetBoxUpdater.updateOnFeetBox(c);
-            c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
-            rayCasterUpdater.updateRayCaster(c.getRayCaster(),c);
-            collisionsChecker.checkCollisionsNPC(c, objects);
-            collisionsChecker.checkBottomCollisions(c);
-            ai.move(c);
-        }
-        for(Container con : Engine.getCurrentLevel().getContainers())
-        {
-            solidBoxUpdater.updateSolidBox(con);
-            if(con.isInUse())
-                for(Item i : con.getItems())
-                    if(!Engine.getCurrentLevel().getIcons().contains(i.getAppearance()))
-                        Engine.getCurrentLevel().addIcon(i.getAppearance());
-            if(!con.isInUse())
-                for(Item i : con.getItems())
-                    if(Engine.getCurrentLevel().getIcons().contains(i.getAppearance()))
-                        Engine.getCurrentLevel().removeIcon(i.getAppearance());
-        }
-        controls.controlPlayer();
-        collisionsChecker.checkCollisions(player, objects);
-        solidBoxUpdater.updateSolidBox(player);
-        onFeetBoxUpdater.updateOnFeetBox(player);
-        collisionsChecker.checkCollisions(player, objects);
-        Grabber.getInstance().grab();
-        ItemPhysicalAppearanceBoxUpdater.getInstance() .update();
-        WallZoneUpdater.getInstance ().update ();
+
+        //Блок обработки игрока.
+
+        // Проверяем были ли команды игроку через игровое управление.
+        PlayerControls.getInstance().controlPlayer();
+
+        // Проверяем столкновение игрока с объектами.
+        CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getObjects());
+
+        //Обновляем бокс игрока.
+        SolidBoxUpdater.getInstance().updateSolidBox(player);
+
+        //Обновляем положение зоны инвенторя в пространстве экрана.
         InventoryWindowUpdater.getInstance().update();
-        IconsUpdater.getInstance().update();
-        //System.out.println("Inventory: " + Inventory.getInstance().getItems());
+
+        // Обновление зоны доступного использования
         UseZoneUpdater.getInstance().update();
 
+        //Блок обработки обычных объектов из списка текущих.
+        for(GameObject o : Engine.currentLevel.getObjects())
+        {
+            // Проверяем столкновения
+            CollisionsChecker.getInstance().checkCollisions(o, Engine.getCurrentLevel().getObjects());
+
+            // Обновляем боксы
+            SolidBoxUpdater.getInstance().updateSolidBox(o);
+
+        }
+
+        //Блок обработки НПЦ из списка текущих.
+        for(NPC c : Engine.currentLevel.getNPC())
+        {
+            //Передаем нпц ии, чтобы тот решил что ему делать.
+            AI.getInstance().move(c);
+
+            // Проверяем столкновения.
+            CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
+
+            // Обновляем бокс.
+            SolidBoxUpdater.getInstance().updateSolidBox(c);
+
+            // Обновляем стены рейкастера и сам рейкастер.
+            // TODO: Проверить насколько необходимо обновление каждую итерацию и скорость при большом кол-ве нпц.
+            c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
+            RayCasterUpdater.getInstance().updateRayCaster(c.getRayCaster(),c);
+
+        }
+
+        //Блок обработки объектов контейнеров из списка текущих.
+        for(Container con : Engine.getCurrentLevel().getContainers())
+        {
+            CollisionsChecker.getInstance().checkCollisions(con,Engine.getCurrentLevel().getObjects());
+
+            // Обновляем бокс
+            SolidBoxUpdater.getInstance().updateSolidBox(con);
+        }
     }
     public static Updater getInstance()
     {
         if (instance == null) return new Updater();
         else return instance;
     }
-    private void grabGameObjects(Level level)
-    {
-        objects = level.getObjects();
-    }
-    private void grabNPC(Level level)
-    {
-        npc = level.getNPC();
-    }
+
 }

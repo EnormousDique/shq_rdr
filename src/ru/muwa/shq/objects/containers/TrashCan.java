@@ -19,16 +19,13 @@ public class TrashCan extends Container implements Usable {
     {
         try
         {
-
             img = ImageIO.read(new File(IMG_PATH +"containers\\trashCan.png"));
-            System.out.println("crate0 texture loaded");
+            System.out.println("trash can texture loaded");
         }
         catch (IOException e)
         {
-            System.out.println("failed to load crate0 texture");
+            System.out.println("failed to load trash can texture");
         }
-
-
     }
 
     /**
