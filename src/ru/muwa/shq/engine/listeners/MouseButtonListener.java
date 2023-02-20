@@ -48,7 +48,7 @@ public class MouseButtonListener implements MouseInputListener {
         {
             case 1:
                 keys[0] = false;
-                Grabber.getInstance().release();
+
                 break;
             case 3:
                 keys[1] = false;

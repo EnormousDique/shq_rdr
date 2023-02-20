@@ -125,6 +125,7 @@ public class Updater implements Runnable
         //Блок обработки объектов контейнеров из списка текущих.
         for(Container con : Engine.getCurrentLevel().getContainers())
         {
+
             CollisionsChecker.getInstance().checkCollisions(con,Engine.getCurrentLevel().getObjects());
 
             // Обновляем бокс

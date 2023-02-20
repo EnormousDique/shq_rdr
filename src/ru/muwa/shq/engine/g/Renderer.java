@@ -108,14 +108,17 @@ public class Renderer implements Runnable
         //Отрисовка текстуры игрока.
         g.drawImage(player.getTexture(), player.getX()-camX,player.getY()-camY,null);
 
-
         //Отрисовка всех обектов из списка  текущих
         for(GameObject o : Engine.getCurrentLevel().getObjects()) g.drawImage(o.getTexture(), o.getX()-camX,o.getY()-camY,null);
 
         //Отрисовка всех контейнеров из списка  текущих
         for(Container con : Engine.getCurrentLevel().getContainers() ) g.drawImage(con.getTexture(), con.getX()-camX,con.getY()-camY,null);
         // Также отрисовываем интерфейс тех контейнеров, которые сейчас используются.
-        for (Container c : Engine.getCurrentLevel().getContainers()) if(c.isInUse()) g.drawImage(c.getUI(),c.getX()-camX,c.getY()-camY,null);
+        for (Container c : Engine.getCurrentLevel().getContainers()) if(c.isInUse()){
+            g.drawImage(c.getUI() ,c.getX()-camX,c.getY()-camY,null);
+            for (Item i : c.getItems() ) g.drawImage(i.getTexture(),c.getX()-camX ,c.getY()-camY,null);
+
+        }
 
         //Отрисовка всех нпц из списка  текущих
         for(NPC c : Engine.getCurrentLevel().getNPC()) g.drawImage(c.getTexture(),c.getX()-camX,c.getY()-camY,c.getWidth(),c.getHeight(),null);
@@ -135,6 +138,8 @@ public class Renderer implements Runnable
         if(Inventory.getInstance().isOpened()) g.drawImage(Inventory.getInstance().getImg(), Inventory.getInstance().getX()-camX,Inventory.getInstance().getY()-camY,null);
         if(Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems()) if(i!=null) g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x-camX,Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y-camY,null);
 
+        // отрисоква бокса игрока
+        g.drawRect(player.getX()-camX, player.getY()-camY, player.getWidth(), player.getHeight());
 
         // Все вышесказанное рисуем на холст и показываем на экране.
         g.dispose();
