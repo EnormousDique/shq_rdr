@@ -10,8 +10,5 @@ public class IconsUpdater
     private static IconsUpdater  instance;
     private IconsUpdater(){instance = this;}
     public static IconsUpdater getInstance(){if(instance!=null) return instance; else return new IconsUpdater();}
-    public void update()
-    {
-        for(Container c : Engine.getCurrentLevel().getContainers()) if(!c.isInUse()) for(Item i : c.getItems()) if(Engine.getCurrentLevel().getIcons().contains(i)) Engine.getCurrentLevel().removeIcon(i.getAppearance());
-    }
+
 }

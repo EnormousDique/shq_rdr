@@ -39,7 +39,7 @@ public class TrashCan extends Container implements Usable {
         capacity = 1;
         items = new ArrayList<>(capacity);
         items.add(new Flour());
-        items.get(0).setAppearance(new ItemPhysicalAppearance(this.x ,this.y , items.get(0)));
+
         items.get(0).setMyContainer(this);
         UI = Inventory.getInstance().getImg();
 

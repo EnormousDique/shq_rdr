@@ -17,6 +17,8 @@ public abstract class Container extends GameObject implements Usable
      * @param y
      * @param texture
      */
+
+
     protected Container(int x, int y, BufferedImage texture) {
         super(x, y, texture);
     }
@@ -26,5 +28,9 @@ public abstract class Container extends GameObject implements Usable
     public ArrayList<Item> getItems(){return items;}
 
     public void setItems(ArrayList<Item> items) { this.items = items;
+
+    }
+    public void addItem (Item i) {
+        items.add(i);
     }
 }

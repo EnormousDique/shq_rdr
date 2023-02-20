@@ -21,6 +21,12 @@ public class Player extends Creature
 
     private Rectangle useZone;
 
+    private static BufferedImage img;
+    private static BufferedImage imgUp;
+
+    private static BufferedImage imgDown;
+    private static BufferedImage imgLeft;
+    private static BufferedImage imgRight;
 
     public Rectangle getUseZone() {
         return useZone;
@@ -30,11 +36,15 @@ public class Player extends Creature
     {
         if (instance == null)
         {
-        BufferedImage img;
+
 
 
         try {
-            img = ImageIO.read(new File(IMG_PATH+"player\\kulagin.png"));
+            img = ImageIO.read(new File(IMG_PATH+"player\\kulaginUP.png"));
+            imgUp = ImageIO.read(new File(IMG_PATH+"player\\kulaginUP.png"));
+            imgDown = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
+            imgLeft = ImageIO.read(new File(IMG_PATH+"player\\kulaginLeft.png"));
+            imgRight = ImageIO.read(new File(IMG_PATH+"player\\kulaginRight.png"));
 
         } catch (Exception e) {
             System.out.println("Failed to load player textures");
@@ -76,6 +86,7 @@ public class Player extends Creature
     public void moveLeft() {
         if(!isBusy)super.moveLeft();
         Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
+        texture=imgLeft;
 
 
     }
@@ -84,6 +95,7 @@ public class Player extends Creature
     public void moveRight() {
         if(!isBusy)super.moveRight();
         Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
+        texture=imgRight;
     }
     public void jump(){
 
@@ -92,13 +104,14 @@ public class Player extends Creature
     public void moveUp(){
          super.moveUp();
          Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
+         texture=imgUp;
 
      }
     @Override
      public void moveDown (){
         super.moveDown();
         Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
-
+        texture=imgDown;
      }
 }
 
