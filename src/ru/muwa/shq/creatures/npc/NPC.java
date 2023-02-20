@@ -27,17 +27,17 @@ public abstract class NPC extends Creature
     public boolean isPlayerInSight()
     {
         return playerInSight;
-    }
+    } // Видит ли НПЦ игрока (значение)
     public void setPlayerInSight(boolean bool)
     {
         this.playerInSight = bool;
-    }
-    public void checkForPlayerInSight()
+    } // Сеттер этого значения
+    public void checkForPlayerInSight() // Метод проверки - видит ли НПЦ игрока
     {
         playerInSight = rayCaster.isPlayerInSight();
     }
 
-    protected Rectangle leftWallZone;
+    protected Rectangle leftWallZone; // TODO: Сделать поиск пути через AI, убрать зоны проверки стен.
 
     protected Rectangle rightWallZone;
 
