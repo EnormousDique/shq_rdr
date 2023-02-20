@@ -111,6 +111,7 @@ public class Renderer implements Runnable
 
         g.drawImage(player.getTexture(), player.getX()-camX,player.getY()-camY,null);
 
+
         for(GameObject o : objects) g.drawImage(o.getTexture(), o.getX()-camX,o.getY()-camY,null);
         for(Container con : containers ) g.drawImage(con.getTexture(), con.getX()-camX,con.getY()-camY,null);
         g.setColor (Color.red);

@@ -1,12 +1,9 @@
 package ru.muwa.shq.player;
-import org.w3c.dom.css.Rect;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.camera.Camera;
-import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.Usable;
-import ru.muwa.shq.objects.containers.Container;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -34,8 +31,11 @@ public class Player extends Creature
         if (instance == null)
         {
         BufferedImage img;
+
+
         try {
             img = ImageIO.read(new File(IMG_PATH+"player\\kulagin.png"));
+
         } catch (Exception e) {
             System.out.println("Failed to load player textures");
             return null;
@@ -54,7 +54,7 @@ public class Player extends Creature
      * @param y       - у коррдината
      * @param texture - текстура (файл с изборажением)
      */
-    protected Player(int x, int y, BufferedImage texture)
+    protected Player(int x, int y, BufferedImage texture )
     {
         super(x, y, texture);
         direction = DOWN;
@@ -64,6 +64,7 @@ public class Player extends Creature
         agility = 8;
         speed = 10;
         maxJumpAx = 50;
+
     }
 
     public boolean isBusy() {return isBusy;}
@@ -75,6 +76,7 @@ public class Player extends Creature
     public void moveLeft() {
         if(!isBusy)super.moveLeft();
         Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
+
 
     }
 
