@@ -20,19 +20,23 @@ public abstract class Creature extends GameObject
 
 
 
-    protected RayCaster rayCaster;
+    protected RayCaster rayCaster; // Объект рей кастера. Создает лучи,
+    // с помощью которых мы определяем поле зрения крича.
     public void setRayCaster(RayCaster rayCaster)
     {
         this.rayCaster = rayCaster;
-    }
+    }// Сеттер
     public void setRayCasterBorders(LinkedList<Line2D.Float> borders)
     {
         this.rayCaster.setBorders(borders);
-    }
+    } //
+    //Метод установки границ лучей. Обычно сюда передаются стены, т.к. через них кричи видеть не могут.
+
     public RayCaster getRayCaster()
     {
         return this.rayCaster;
-    }
+    } // Геттер
+
     /**
      *
      * Конструктор
@@ -46,16 +50,10 @@ public abstract class Creature extends GameObject
         super(x, y, texture);
 
     }
-    public void jump()
-    {
-        if(!isFalling)
-        {
-            direction = UP;
-            jumpAx = agility;
-            setStanding(false);
-        }
-    }
 
+    /**
+     * Методы ходьбы.
+     */
     public void moveRight()
     {
         x += speed;

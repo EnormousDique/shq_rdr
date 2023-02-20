@@ -28,7 +28,6 @@ public class CollisionsChecker
     public void checkCollisions(GameObject o, LinkedList<GameObject> objects)
     {
         checkObjectCollisions(o,objects);
-        checkBottomCollisions(o);
     }
 
     /**

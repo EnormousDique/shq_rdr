@@ -8,12 +8,15 @@ import static ru.muwa.shq.objects.GameObject.Direction.RIGHT;
 /**
  * Класс, реализующий логику принятия решений NPC
  */
+
+//TODO: Внедрить в ИИ алгоритм поиска пути, и отдавать команды нпц на основании его работы.
+
 public class AI
 {
-    private final double DIRECTION_CHANGE_RATE = 0.013;
     public enum Events // События внешнего мира, которые могут произойти с NPC
     {
         COLLISION, P_IN_SIGHT, P_OUT_SIGHT_, HURT
+        //TODO: Проверить нужен ли в принипе этот enum или можно обойтись без него.
     }
     private static AI instance;
     public static AI getInstance()
@@ -22,46 +25,17 @@ public class AI
         else return instance;
     }
     private AI(){instance = this;}
-    public void move(NPC npc) {
+    public void move(NPC npc) { // Метод, который отвечал за передвижение НПЦ по игровому миру.
+        // Если игрока двигает ввод с клавиатуры, то НПЦ двиает этот класс (ИИ).
         if(npc != null)
         {
-
             npc.checkForPlayerInSight(); // Дергаем RayCater, чтобы тот обновил значение видимости игрока npc
 
             if (npc.isPlayerInSight())  // Если нпц сейчас видит игрока
             {
-                boolean isPlayerOnTheLeft = npc.getX() - Player.get().getX() > 0 ? true : false;
-                if(isPlayerOnTheLeft) npc.setDirection(LEFT);
-                else npc.setDirection(RIGHT);
+              //Тут должно быть описано поведение НПЦ, в случае если тот видит игрока
             }
-            switch (npc.getDirection())
-            {
-                case RIGHT:
-                    npc.moveRight();
-                    break;
-                case LEFT:
-                    npc.moveLeft();
-                    break;
-            }
-
-            if ((new Random().nextDouble()) < DIRECTION_CHANGE_RATE) changeDirection(npc);
-        }
-    }
-    public void changeDirection(NPC npc)
-    {
-        if (npc.getDirection() == LEFT) npc.setDirection(RIGHT);
-        else if(npc.getDirection() == RIGHT) npc.setDirection(LEFT);
-        else npc.setDirection(new Random().nextDouble() > 0.5? LEFT :RIGHT);
-    }
-    public void changeDirectionOnEvent(NPC npc, Events e)
-    {
-        if(e.equals(Events.COLLISION))
-        {
-            switch (npc.getDirection())
-            {
-                case RIGHT ->{if(new Random().nextDouble() > 0.5)npc.setDirection(LEFT);}
-                case LEFT ->{if(new Random().nextDouble() < 0.5)npc.setDirection(LEFT);}
-            }
+            // Раньше тут была некоторая логика, но теперь ее нет.
         }
     }
 }
