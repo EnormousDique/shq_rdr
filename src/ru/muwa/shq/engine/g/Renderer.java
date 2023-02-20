@@ -108,6 +108,7 @@ public class Renderer implements Runnable
         //Отрисовка текстуры игрока.
         g.drawImage(player.getTexture(), player.getX()-camX,player.getY()-camY,null);
 
+
         //Отрисовка всех обектов из списка  текущих
         for(GameObject o : Engine.getCurrentLevel().getObjects()) g.drawImage(o.getTexture(), o.getX()-camX,o.getY()-camY,null);
 
@@ -125,6 +126,7 @@ public class Renderer implements Runnable
         for(NPC c : Engine.getCurrentLevel().getNPC()) for (Line2D.Float line : c.getRayCaster().calcRays()) g.drawLine((int)line.x1-camX, (int) line.y1-camY, (int) line.x2-camX, (int) line.y2-camY);
         //Если игрок в поле зрения, цвет луей меняется.
         for(NPC c: Engine.getCurrentLevel().getNPC()) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1-camX,(int)r.y1-camY,(int)r.x2-camX,(int)r.y2-camY);}
+
 
         // TODO: Проверить, нужны ли в прицнипе объекты класса ItemPhysicalAppearance
         //for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);

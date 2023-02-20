@@ -28,6 +28,7 @@ public abstract class GameObject
     protected boolean onGround; // Объект стоит на земле. Нижняя часть экрана, почва.
     protected boolean isFalling; // Обект падает (на него действует гравитация
     protected boolean isInUse;
+    protected BufferedImage ImgLeft; // !!! володя делает тексутру в лево.
 
     protected BufferedImage texture; //Текстура (изображение) объекта
     protected BufferedImage UI; //Текстура (изображение) объекта
@@ -45,6 +46,7 @@ public abstract class GameObject
         this.texture = texture;
         this.x = x;
         this.y = y;
+
         solidBox = new Rectangle(x,y,width,height);
         hitBox = new Rectangle(x,y,width,height);
         height = texture.getHeight();
@@ -108,6 +110,11 @@ public abstract class GameObject
     }
 
     public double getFallAx(){return fallAx;}
+
+    public BufferedImage getImgLeft()
+    {
+        return ImgLeft;
+    }
     public BufferedImage getTexture()
     {
         return texture;

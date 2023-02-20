@@ -38,11 +38,10 @@ public abstract class Creature extends GameObject
     } // Геттер
 
     /**
-     *
      * Конструктор
      *
-     * @param x - х коррдината
-     * @param y - у коррдината
+     * @param x       - х коррдината
+     * @param y       - у коррдината
      * @param texture - текстура (файл с изборажением)
      */
     protected Creature(int x, int y, BufferedImage texture)
