@@ -22,9 +22,12 @@ public class DemoLevel0 extends Level
         startPosY = GameScreen.SCREEN_HEIGHT - 150;
         containers.add(new TrashCan(500,500));
         containers.get(0).addItem(new Flour());
+        containers.get(0).addItem(new Flour());
+        containers.get(0).addItem(new Flour());
         objects.add(new Crate0(100,100));
        // objects.add(new TestBuilding(300,799));
         objects.add(new FatBuilding(0,1500));
         objects.add(new TallFatBuilding(1000,2500));
+
     }
 }

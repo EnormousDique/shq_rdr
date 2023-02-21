@@ -3,21 +3,19 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
-import ru.muwa.shq.engine.updaters.UseZoneUpdater;
+import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.items.Item;
-import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
-import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferStrategy;
-import java.util.LinkedList;
+
 /**
  * Класс, отвечающий за отрисовку изображения на экране.
  */
@@ -69,9 +67,25 @@ public class Renderer implements Runnable
     public void run()
     {
         System.out.println("Render thread started");
-        while(true)
+        /*while(true)
         {
             render();
+        }*/
+        double drawInterval = 1_000_000_000/60;
+        double delta=0;
+        long lastTime = System.nanoTime();
+        long currTime;
+
+        while(thread !=  null)
+        {
+            currTime = System.nanoTime();
+            delta += (currTime - lastTime) / drawInterval;
+            lastTime = currTime;
+            if(delta >= 1)
+            {
+                render();
+                delta--;
+            }
         }
     }
 
@@ -116,7 +130,13 @@ public class Renderer implements Runnable
         // Также отрисовываем интерфейс тех контейнеров, которые сейчас используются.
         for (Container c : Engine.getCurrentLevel().getContainers()) if(c.isInUse()){
             g.drawImage(c.getUI() ,c.getX()-camX,c.getY()-camY,null);
-            for (Item i : c.getItems() ) g.drawImage(i.getTexture(),c.getX()-camX ,c.getY()-camY,null);
+            // отрисовка предмета в контейнере.
+             for (int i = 0; i < c.getItems().size();i++) {
+
+
+                 g.drawImage(c.getItems().get(i).getTexture(), c.getIcons().get(i).x - camX, c.getIcons().get(i).y - camY, null);
+             }
+
 
         }
 
@@ -138,12 +158,26 @@ public class Renderer implements Runnable
         if(Inventory.getInstance().isOpened()) g.drawImage(Inventory.getInstance().getImg(), Inventory.getInstance().getX()-camX,Inventory.getInstance().getY()-camY,null);
         if(Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems()) if(i!=null) g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x-camX,Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y-camY,null);
 
+        // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
+        for (Container c : Engine.getCurrentLevel().getContainers()) if(c.isInUse()){
+
+            // отрисовка предмета в контейнере.
+            for (int i = 0; i < c.getItems().size();i++) {
+
+
+                g.drawRect(c.getIcons().get(i).x-camX, c.getIcons().get(i).y - camY, c.getIcons().get(i).width, c.getIcons().get(i).height);
+            }
+
+
+        }
+
         // отрисоква бокса игрока
         g.drawRect(player.getX()-camX, player.getY()-camY, player.getWidth(), player.getHeight());
 
         // Все вышесказанное рисуем на холст и показываем на экране.
         g.dispose();
         canvas.getBufferStrategy().show();
+
 
     }
 }

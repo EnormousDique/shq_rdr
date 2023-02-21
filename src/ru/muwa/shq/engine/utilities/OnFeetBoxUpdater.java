@@ -1,4 +1,4 @@
-package ru.muwa.shq.engine.updaters;
+package ru.muwa.shq.engine.utilities;
 
 import ru.muwa.shq.objects.GameObject;
 
