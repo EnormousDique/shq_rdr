@@ -73,7 +73,9 @@ public class Updater implements Runnable
     // Нужно проверить насколько это была необходимая мера и можно ли обойтись без неё.
     private void update()
     {
-       // System.out.println("Player standing: "+player.standing());
+
+        System.out.println(Math.toDegrees(Math.acos( ((4*4) + (3*3) - (5*5)) / (2 * 4 * 3) )) );
+
 
         //Блок обработки игрока.
 

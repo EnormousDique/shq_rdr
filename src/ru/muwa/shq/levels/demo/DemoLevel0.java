@@ -19,11 +19,11 @@ public class DemoLevel0 extends Level
         //objects.add(new Crate0( 200,200));
         startPosX = 10;
         startPosY = GameScreen.SCREEN_HEIGHT - 150;
-        containers.add(new TrashCan(200,100));
-        containers.get(0).setItems(new ArrayList<Item>());
+       // containers.add(new TrashCan(200,100));
+        //containers.get(0).setItems(new ArrayList<Item>());
         objects.add(new Crate0(100,100));
         objects.add(new TestBuilding(300,799));
         objects.add(new FatBuilding(0,1500));
-        objects.add(new TallFatBuilding(1000,2500));
+        //objects.add(new TallFatBuilding(1000,2500));
     }
 }
