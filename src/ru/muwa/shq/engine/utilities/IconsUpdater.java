@@ -1,9 +1,4 @@
-package ru.muwa.shq.engine.updaters;
-
-import ru.muwa.shq.engine.Engine;
-import ru.muwa.shq.items.Item;
-import ru.muwa.shq.objects.containers.Container;
-import ru.muwa.shq.player.controls.Interactor;
+package ru.muwa.shq.engine.utilities;
 
 public class IconsUpdater
 {
