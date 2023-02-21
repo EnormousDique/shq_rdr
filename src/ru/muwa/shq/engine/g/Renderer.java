@@ -130,6 +130,7 @@ public class Renderer implements Runnable
         //Если игрок в поле зрения, цвет луей меняется.
         for(NPC c: Engine.getCurrentLevel().getNPC()) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1-camX,(int)r.y1-camY,(int)r.x2-camX,(int)r.y2-camY);}
 
+
         // TODO: Проверить, нужны ли в прицнипе объекты класса ItemPhysicalAppearance
         //for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
 
