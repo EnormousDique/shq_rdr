@@ -41,23 +41,20 @@ public class CollisionsChecker
             for (GameObject obj : list) { //Перебираем объекты.
                 if (o.getSolidBox().intersects(obj.getSolidBox())) // произошло столкновение
                 {
-                    if(o.getY() < obj.getY() //Голова выше крыши
-                            &&
-                            o.getX() > obj.getX()  // внутри по х
-                            &&
-                            o.getX() < obj.getX()+obj.getWidth()) // внутри по х
-                        o.setY(obj.getY()-o.getHeight());//Вверх
-
-
-                    if(o.getY() + o.getHeight() > obj.getY() + obj.getHeight() && o.getX() + o.getWidth() > obj.getX() && o.getX() < obj.getX()+obj.getWidth())
-                        o.setY(obj.getY()+obj.getHeight());//Вниз
-
                     if(o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY()+obj.getHeight())
                     {o.setX(obj.getX()+obj.getWidth());
                         System.out.println("право");}//Вправо
                     if(o.getX()  < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY()+obj.getHeight())
                     {o.setX(obj.getX()-o.getWidth());
                         System.out.println("vlevo");}//Влево
+                    if(o.getY() + o.getHeight() > obj.getY() + obj.getHeight() && o.getX() + o.getWidth() > obj.getX() && o.getX() < obj.getX()+obj.getWidth())
+                        o.setY(obj.getY()+obj.getHeight());//Вниз
+                    if(o.getY() < obj.getY() //Голова выше крыши
+                            &&
+                            o.getX() > obj.getX()  // внутри по х
+                            &&
+                            o.getX() < obj.getX()+obj.getWidth()) // внутри по х
+                        o.setY(obj.getY()-o.getHeight());//Вверх
                 }
             }
         }

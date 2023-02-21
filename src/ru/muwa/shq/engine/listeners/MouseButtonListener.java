@@ -15,7 +15,7 @@ public class MouseButtonListener implements MouseInputListener {
     private static MouseButtonListener instance;
     private MouseButtonListener(){instance=this; keys = new boolean[2];} // Массив кнопок.
     // Каждой кнопке соответствует свой индекс массива.
-    // Если кнопка нажата, в массиве под этим индексом хранится
+    // Если кнопка нажата, в массиве под этим индексом хранится true
     public static MouseButtonListener getInstance()
     {
         if(instance!=null)return instance;
@@ -48,7 +48,7 @@ public class MouseButtonListener implements MouseInputListener {
         {
             case 1:
                 keys[0] = false;
-                Grabber.getInstance().release();
+
                 break;
             case 3:
                 keys[1] = false;

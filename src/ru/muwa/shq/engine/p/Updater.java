@@ -1,21 +1,14 @@
 package ru.muwa.shq.engine.p;
 import ru.muwa.shq.engine.ai.AI;
-import ru.muwa.shq.engine.updaters.*;
-import ru.muwa.shq.items.Item;
+import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.containers.Container;
-import ru.muwa.shq.player.Inventory;
-import ru.muwa.shq.player.controls.Grabber;
 import ru.muwa.shq.player.controls.PlayerControls;
-import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.Engine;
-import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
-import ru.muwa.shq.levels.Level;
 
-import java.util.LinkedList;
 /**
  * Класс, отвечающий за изменение положения игровых объектов и сущностей в пространстве.
  *  А так же за вызов соотвеетствующих обновляющих служб.
@@ -88,8 +81,8 @@ public class Updater implements Runnable
         //Обновляем бокс игрока.
         SolidBoxUpdater.getInstance().updateSolidBox(player);
 
-        //Обновляем положение зоны инвенторя в пространстве экрана.
-        InventoryWindowUpdater.getInstance().update();
+        //Вызываем службу инветнаря
+        InventoryManager.getInstance().update();
 
         // Обновление зоны доступного использования
         UseZoneUpdater.getInstance().update();
@@ -127,6 +120,7 @@ public class Updater implements Runnable
         //Блок обработки объектов контейнеров из списка текущих.
         for(Container con : Engine.getCurrentLevel().getContainers())
         {
+
             CollisionsChecker.getInstance().checkCollisions(con,Engine.getCurrentLevel().getObjects());
 
             // Обновляем бокс

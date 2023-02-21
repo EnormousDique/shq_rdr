@@ -36,11 +36,11 @@ public class TrashCan extends Container implements Usable {
      */
     public TrashCan(int x, int y) {
         super(x, y,img);
-        capacity = 1;
-        items = new ArrayList<>(capacity);
-        items.add(new Flour());
-        items.get(0).setAppearance(new ItemPhysicalAppearance(this.x ,this.y , items.get(0)));
-        items.get(0).setMyContainer(this);
+
+        items = new ArrayList<>();
+
+
+
         UI = Inventory.getInstance().getImg();
 
     }

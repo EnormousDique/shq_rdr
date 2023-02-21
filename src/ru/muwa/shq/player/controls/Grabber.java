@@ -18,27 +18,7 @@ public class Grabber
     public static Grabber getInstance(){if(instance!=null) return instance; else return new Grabber();}
     private Item grabbedItem;
 
-    public void release()
-    {
-        if(grabbedItem!=null)
-        {
-            if(Inventory.getInstance().isOpened() && Inventory.getInstance().getBox().contains(MouseListener.getInstance().getX(), MouseListener.getInstance().getY())) {
-                Inventory.getInstance().addItem(grabbedItem);
-                grabbedItem.getAppearance().setIsGrabbed(false);
-                grabbedItem.getAppearance().setDropped(true);
-                grabbedItem.getMyContainer().setItems((ArrayList<Item>) grabbedItem.getMyContainer().getItems().stream().filter(i -> i != grabbedItem).collect(Collectors.toList()));
-                grabbedItem = null;
-                //Engine.getCurrentLevel().removeIcon(grabbedItem.getAppearance());
-            }
-            if(!Inventory.getInstance().isOpened() || !Inventory.getInstance().getBox().contains(MouseListener.getInstance().getX(), MouseListener.getInstance().getY()))
-            {
-                grabbedItem.getAppearance().setIsGrabbed(false);
-                grabbedItem.getAppearance().setDropped(true);
-                grabbedItem = null;
-            }
 
-        }
-    }
     public void grab()
     {
         //System.out.println("mouse keys[0]: " + MouseButtonListener.getInstance().getKeys()[0] );
