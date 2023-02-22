@@ -102,7 +102,7 @@ public class Renderer implements Runnable
      * Координаты объета относительно экрана получаются в результате учета координат камеры.
      *
      */
-    private void render()
+    public void render()
     {
         // ======= инициализация
         int camX = Camera.getInstance().getX(), camY = Camera.getInstance().getY();
