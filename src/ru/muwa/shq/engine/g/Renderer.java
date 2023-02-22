@@ -129,7 +129,7 @@ public class Renderer implements Runnable
         //Отрисовка всех контейнеров из списка  текущих
         for(Container con : Engine.getCurrentLevel().getContainers() ) g.drawImage(con.getTexture(), con.getX()-camX,con.getY()-camY,null);
         // Также отрисовываем интерфейс тех контейнеров, которые сейчас используются.
-        for (Container c : Engine.getCurrentLevel().getContainers()) if(c.isInUse()){
+        for (Container c : Engine.getCurrentLevel().getContainers()) if(c.isInUse() && c.getItems().size() >= 1){
             g.drawImage(c.getUI() ,c.getX()-camX,c.getY()-camY,null);
             // отрисовка предмета в контейнере.
              for (int i = 0; i < c.getItems().size();i++) {
@@ -160,6 +160,7 @@ public class Renderer implements Runnable
         if(Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems()) if(i!=null) g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x-camX,Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y-camY,null);
 
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
+        for(Rectangle r:Inventory.getInstance().getItemIcons())g.drawRect(r.x-camX,r.y-camY, r.width, r.height);
         for (Container c : Engine.getCurrentLevel().getContainers()) if(c.isInUse()){
 
             // отрисовка предмета в контейнере.

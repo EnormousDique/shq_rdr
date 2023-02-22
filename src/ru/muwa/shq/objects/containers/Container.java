@@ -2,6 +2,7 @@ package ru.muwa.shq.objects.containers;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.Usable;
+import ru.muwa.shq.player.Inventory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,6 +46,7 @@ public abstract class Container extends GameObject implements Usable
         return icons;
     }
     public void grabItem(int a){
+        Inventory.getInstance().addItem(this.getItems().get(a));
         removeItem(a);
     }
     public void removeItem(int a){
