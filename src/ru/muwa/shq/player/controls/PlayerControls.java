@@ -2,6 +2,7 @@ package ru.muwa.shq.player.controls;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.listeners.KeyListener;
+import ru.muwa.shq.levels.dev.DevLevel0;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
@@ -46,7 +47,8 @@ public class PlayerControls
     }
     private void jump()
     {
-            player.jump();
+            //player.jump();
+            Engine.currentLevel = new DevLevel0();
     }
     private void q()
     {
