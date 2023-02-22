@@ -1,5 +1,6 @@
 package ru.muwa.shq.engine.p;
 import ru.muwa.shq.engine.ai.AI;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.controls.PlayerControls;
@@ -52,6 +53,7 @@ public class Updater implements Runnable
             if(delta >= 1)
             {
                 update();
+                Renderer.getInstance().render();
                 delta--;
             }
         }
@@ -67,7 +69,7 @@ public class Updater implements Runnable
     private void update()
     {
 
-        System.out.println(Math.toDegrees(Math.acos( ((4*4) + (3*3) - (5*5)) / (2 * 4 * 3) )) );
+        //System.out.println(Math.toDegrees(Math.acos( ((4*4) + (3*3) - (5*5)) / (2 * 4 * 3) )) );
 
 
         //Блок обработки игрока.

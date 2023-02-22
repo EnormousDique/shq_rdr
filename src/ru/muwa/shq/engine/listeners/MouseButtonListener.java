@@ -21,7 +21,7 @@ public class MouseButtonListener implements MouseInputListener {
         if(instance!=null)return instance;
         else return new MouseButtonListener();
     }
-    private  boolean[] keys;
+    public   boolean[] keys;
     @Override
     public void mouseClicked(MouseEvent e) {
 
