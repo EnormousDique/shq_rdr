@@ -161,17 +161,11 @@ public class Renderer implements Runnable
 
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
         for (Container c : Engine.getCurrentLevel().getContainers()) if(c.isInUse()){
-
             // отрисовка предмета в контейнере.
             for (int i = 0; i < c.getItems().size();i++) {
-
-
                 g.drawRect(c.getIcons().get(i).x-camX, c.getIcons().get(i).y - camY, c.getIcons().get(i).width, c.getIcons().get(i).height);
             }
-
-
         }
-
         // отрисоква бокса игрока
         g.drawRect(player.getX()-camX, player.getY()-camY, player.getWidth(), player.getHeight());
 

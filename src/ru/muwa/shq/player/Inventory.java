@@ -75,7 +75,7 @@ public class Inventory
 
 
     public void addItem(Item item) {
-        items.add(item);
+         if(items.size()<=INVENTORY_CAPACITY)items.add(item);
         System.out.println("added item: " + item);
     }
     public ArrayList<Item> getItems(){return items;}
