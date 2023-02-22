@@ -48,16 +48,17 @@ public class InventoryManager
                 if(c.isInUse() && c.getItems().size()>= 1){
                     System.out.println("есть открытый контейнер");
 
-                    for(Rectangle r:c.getIcons()){
-                        System.out.println("смотрим квадрат с координатама "+ r.x +" "+ r.y);
+                    for(int i = 0; i < c.getIcons().size(); i++){
+                        System.out.println("смотрим квадрат с координатама "+ c.getIcons().get(i).x +" "+ c.getIcons().get(i).y);
                         System.out.println("мышка бьет"+MouseListener.getInstance().getX()+ Camera.getInstance().getX()+" "+MouseListener.getInstance().getY()+Camera.getInstance().getY());
-                        if (r.contains(new Point(MouseListener.getInstance().getX()+ Camera.getInstance().getX(), MouseListener.getInstance().getY()+Camera.getInstance().getY()))){
+                        if (c.getIcons().get(i).contains(new Point(MouseListener.getInstance().getX()+ Camera.getInstance().getX(), MouseListener.getInstance().getY()+Camera.getInstance().getY()))){
                             System.out.println("есть пробитие");
-                            c.grabItem(c.getIcons().indexOf(r));
+                            c.grabItem(i);
                         }
                     }
                 }
             }
+            MouseButtonListener.getInstance().keys[0]=false;
         }
 
     }

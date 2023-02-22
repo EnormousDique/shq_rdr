@@ -56,7 +56,8 @@ public class Renderer implements Runnable
        thread = new Thread(this);
        canvas.setFocusable(true);
        canvas.transferFocus();
-       thread.start();
+       //thread.start();
+       System.out.println("render thread is running in no-no mode");
        System.out.println("Graphics eng initialized.");
    }
 
@@ -83,7 +84,7 @@ public class Renderer implements Runnable
             lastTime = currTime;
             if(delta >= 1)
             {
-                render();
+                //render();
                 delta--;
             }
         }
@@ -102,7 +103,7 @@ public class Renderer implements Runnable
      * Координаты объета относительно экрана получаются в результате учета координат камеры.
      *
      */
-    private void render()
+    public void render()
     {
         // ======= инициализация
         int camX = Camera.getInstance().getX(), camY = Camera.getInstance().getY();
