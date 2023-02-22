@@ -14,7 +14,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Inventory
 {
-    public static final int INVENTORY_CAPACITY = 8;
+    public static final int INVENTORY_CAPACITY = 4;
     private Rectangle item0,item1,item2,item3,item4,item5,item6,item7;
     private ArrayList<Rectangle> itemIcons;
     private ArrayList<Item> items;
@@ -52,8 +52,17 @@ public class Inventory
         instance = this;
         items = new ArrayList<>();
         item0 = new Rectangle(x,y,50,50);
+        item1 = new Rectangle(x,y,50,50);
+        item2 = new Rectangle(x,y,50,50);
+        item3 = new Rectangle(x,y,50,50);
+       // item4 = new Rectangle(x,y,50,50);
+       // item5 = new Rectangle(x,y,50,50);
+       // item6 = new Rectangle(x,y,50,50);
+       // item7 = new Rectangle(x,y,50,50);
+
+
         itemIcons = new ArrayList<>();
-        itemIcons.add(item0);itemIcons.add(item1);itemIcons.add(item2);itemIcons.add(item3);itemIcons.add(item4);itemIcons.add(item5);itemIcons.add(item6);itemIcons.add(item7);
+        itemIcons.add(item0);itemIcons.add(item1);itemIcons.add(item2);itemIcons.add(item3);//itemIcons.add(item4);itemIcons.add(item5);itemIcons.add(item6);itemIcons.add(item7);
 
         box = new Rectangle(x,y,img.getWidth(),img.getHeight());
 

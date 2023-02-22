@@ -20,7 +20,9 @@ public class Engine
     /**
      * Статические поля.
      */
+
     public static Level currentLevel; //TODO: ДОЛЖНО БЫТЬ PRIVATE!!!!
+
 
     static {
         try {

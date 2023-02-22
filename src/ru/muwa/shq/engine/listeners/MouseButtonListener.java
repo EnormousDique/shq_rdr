@@ -54,7 +54,7 @@ public class MouseButtonListener implements MouseInputListener {
                 keys[1] = false;
                 break;
         }
-        System.out.println("mouse released " + e.getButton());
+        // System.out.println("mouse released " + e.getButton());
     }
 
     @Override
