@@ -19,6 +19,7 @@ public class KeyListener implements java.awt.event.KeyListener
      * Q - 81
      * W - 87
      * S - 83
+     * ENTER - 10
      */
     private boolean[] keys; // Массив кнопок. Каждой кнопке соответствует свой индекс массива.
     // Если кнопка нажата, в массиве под этим индексом хранится
@@ -30,13 +31,14 @@ public class KeyListener implements java.awt.event.KeyListener
             SPACE = 4,
             E = 5,
             I = 6,
-            Q = 7;
+            Q = 7,
+            ENTER = 8;
     private static KeyListener instance;
 
     private KeyListener()
     {
         instance = this;
-        keys = new boolean[8];
+        keys = new boolean[9];
     }
 
     public static KeyListener getInstance()
@@ -58,29 +60,31 @@ public class KeyListener implements java.awt.event.KeyListener
         switch (e.getKeyCode())
         {
             case 32: // Пробел
-                keys[4] = true;
+                keys[SPACE] = true;
                 break;
             case 87: // W
-                keys[0] = true;
+                keys[W] = true;
                 break;
             case 65: // A
-                keys[1] = true;
+                keys[A] = true;
                 break;
             case 83: // S
-
-                keys[2] = true;
+                keys[S] = true;
                 break;
             case 68: // D
-                keys[3] = true;
+                keys[D] = true;
                 break;
             case 69: // E
-                keys[5] = true;
+                keys[E] = true;
                 break;
             case 73: // I
-                keys[6] = true;
+                keys[I] = true;
                 break;
             case 81: // Q
-                keys[7] = true;
+                keys[Q] = true;
+                break;
+            case 10: // ENTER
+                keys[ENTER] = true;
                 break;
 
 
@@ -115,6 +119,9 @@ public class KeyListener implements java.awt.event.KeyListener
                 break;
             case 81: // Q
                 keys[7] = false;
+                break;
+            case 10: // ENTER
+                keys[ENTER] = false;
                 break;
 
         }

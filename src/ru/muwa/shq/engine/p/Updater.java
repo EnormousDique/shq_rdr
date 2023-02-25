@@ -45,7 +45,7 @@ public class Updater implements Runnable
             delta += (currTime - lastTime) / drawInterval;
             lastTime = currTime;
 
-            for(GameObject o : Engine.currentLevel.getObjects()) CollisionsChecker.getInstance().checkCollisions(o, Engine.getCurrentLevel().getObjects());
+            for(GameObject o : Engine.getCurrentLevel().getObjects()) CollisionsChecker.getInstance().checkCollisions(o, Engine.getCurrentLevel().getObjects());
             //Попытка вынести расчёты столновений за ограничение в 60 итераций в секунду для исправления бага с выталкиванием за текстуры
             //TODO: вероятно стоит запустить отдельный поток для провери столновений вне основного потоа updater'a
             //Баг удалось исправить.
@@ -89,8 +89,11 @@ public class Updater implements Runnable
         // Обновление зоны доступного использования
         UseZoneUpdater.getInstance().update();
 
+        // Через службу проверки игровых зон смотрим взаимодействие игрока с той или иной зоной
+        GameZoneUtility.getInstance().work();
+
         //Блок обработки обычных объектов из списка текущих.
-        for(GameObject o : Engine.currentLevel.getObjects())
+        for(GameObject o : Engine.getCurrentLevel().getObjects())
         {
             // Проверяем столкновения
             CollisionsChecker.getInstance().checkCollisions(o, Engine.getCurrentLevel().getObjects());
@@ -101,7 +104,7 @@ public class Updater implements Runnable
         }
 
         //Блок обработки НПЦ из списка текущих.
-        for(NPC c : Engine.currentLevel.getNPC())
+        for(NPC c : Engine.getCurrentLevel().getNPC())
         {
             //Передаем нпц ии, чтобы тот решил что ему делать.
             AI.getInstance().move(c);

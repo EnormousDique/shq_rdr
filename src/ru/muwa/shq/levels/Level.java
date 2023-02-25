@@ -4,7 +4,9 @@ import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.zones.GameZone;
 
+import java.awt.*;
 import java.util.LinkedList;
 
 /**
@@ -22,12 +24,14 @@ public abstract class Level
         npc = new LinkedList<>();
         containers = new LinkedList<>();
         icons = new LinkedList<>();
+        zones = new LinkedList<>();
     }
     protected LinkedList<GameObject> objects;
     protected LinkedList<NPC> npc;
 
     protected LinkedList<Container> containers;
     protected LinkedList<ItemPhysicalAppearance> icons;
+    protected LinkedList<GameZone> zones;
 
     public LinkedList<GameObject> getObjects()
     {
@@ -53,7 +57,10 @@ public abstract class Level
     {
         icons.remove(icon);
     }
-
+    public LinkedList<GameZone> getZones()
+    {
+        return zones;
+    }
 
 
 
