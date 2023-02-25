@@ -30,6 +30,6 @@ public class DemoLevel0 extends Level
        // objects.add(new TestBuilding(300,799));
         objects.add(new FatBuilding(0,1500));
         objects.add(new TallFatBuilding(1000,2500));
-        zones.add(new EnterZone(200,200,100,100,new FatBuildingFloor1()));
+        zones.add(new EnterZone(520,1765,100,100,new FatBuildingFloor1()));
     }
 }

@@ -1,6 +1,8 @@
 package ru.muwa.shq.engine;
 
+import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.launcher.Launcher;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.p.Updater;
@@ -66,6 +68,10 @@ public class Engine
     {
         player.setX(level.getStartPosX());
         player.setY(level.getStartPosY());
+
+        Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
+        Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
+
         currentLevel = level;
     }
 }
