@@ -178,7 +178,7 @@ public class Renderer implements Runnable
 
         //Отрисовка зон переходов по локациям
         g.setColor(Color.BLUE);
-        for(GameZone z : Engine.currentLevel.getZones()) g.drawRect(z.x-camX,z.y-camY,z.width,z.height);
+        for(GameZone z : Engine.getCurrentLevel().getZones()) g.drawRect(z.x-camX,z.y-camY,z.width,z.height);
 
         // Все вышесказанное рисуем на холст и показываем на экране.
         g.dispose();

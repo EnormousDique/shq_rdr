@@ -1,17 +1,28 @@
 package ru.muwa.shq.levels.demo.indoors;
 
 import ru.muwa.shq.levels.Level;
+import ru.muwa.shq.levels.LevelStorage;
+import ru.muwa.shq.levels.demo.DemoLevel0;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.containers.PostBox;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.zones.EnterZone;
+
+import java.io.IOException;
 
 
 public class FatBuildingFloor1 extends Level
 {
-    public FatBuildingFloor1()
-    {
+
+    private static FatBuildingFloor1 instance;
+    public static FatBuildingFloor1 getInstance() throws IOException {
+        if(instance == null) return new FatBuildingFloor1(); else return instance;
+    }
+    private FatBuildingFloor1() throws IOException {
+        instance = this;
         startPosX = 0;
         startPosY = 0;
         containers.add(new PostBox(100,100));
+        zones.add(new EnterZone(200,200,100,100, DemoLevel0.getInstance()));
     }
 }

@@ -52,7 +52,7 @@ public class InventoryManager
     public void grab(){
         if(MouseButtonListener.getInstance().getKeys()[0] ) {
             // System.out.println("нажате левая кнопка мыши");
-            for(Container c: Engine.currentLevel.getContainers()){
+            for(Container c: Engine.getCurrentLevel().getContainers()){
                 if(c.isInUse() && c.getItems().size()>= 1){
                     //System.out.println("есть открытый контейнер");
 

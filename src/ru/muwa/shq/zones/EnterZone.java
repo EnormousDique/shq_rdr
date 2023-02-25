@@ -22,6 +22,7 @@ public class EnterZone extends GameZone
     {// Конструктор
         super(x,y,width,height);
         this.level = level;
+        System.out.println("enter zone created, level reference is " + level);
     }
 
 }
