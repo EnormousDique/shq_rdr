@@ -62,4 +62,10 @@ public class Engine
         Launcher.hideFrame();
     }
 
+    public static void switchLevel(Level level)
+    {
+        player.setX(level.getStartPosX());
+        player.setY(level.getStartPosY());
+        currentLevel = level;
+    }
 }

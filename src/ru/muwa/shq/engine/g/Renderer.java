@@ -11,6 +11,8 @@ import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.engine.listeners.MouseListener;
+import ru.muwa.shq.zones.GameZone;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Line2D;
@@ -160,15 +162,23 @@ public class Renderer implements Runnable
         if(Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems()) if(i!=null) g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x-camX,Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y-camY,null);
 
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
+
+        //Отрисовка полей под иконки у инвентаря
         for(Rectangle r:Inventory.getInstance().getItemIcons())g.drawRect(r.x-camX,r.y-camY, r.width, r.height);
+
         for (Container c : Engine.getCurrentLevel().getContainers()) if(c.isInUse()){
-            // отрисовка предмета в контейнере.
+            // отрисовка иконок под предметы в контейнере.
             for (int i = 0; i < c.getItems().size();i++) {
                 g.drawRect(c.getIcons().get(i).x-camX, c.getIcons().get(i).y - camY, c.getIcons().get(i).width, c.getIcons().get(i).height);
             }
         }
+
         // отрисоква бокса игрока
         g.drawRect(player.getX()-camX, player.getY()-camY, player.getWidth(), player.getHeight());
+
+        //Отрисовка зон переходов по локациям
+        g.setColor(Color.BLUE);
+        for(GameZone z : Engine.currentLevel.getZones()) g.drawRect(z.x-camX,z.y-camY,z.width,z.height);
 
         // Все вышесказанное рисуем на холст и показываем на экране.
         g.dispose();

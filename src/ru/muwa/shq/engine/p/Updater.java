@@ -89,6 +89,9 @@ public class Updater implements Runnable
         // Обновление зоны доступного использования
         UseZoneUpdater.getInstance().update();
 
+        // Через службу проверки игровых зон смотрим взаимодействие игрока с той или иной зоной
+        GameZoneUtility.getInstance().work();
+
         //Блок обработки обычных объектов из списка текущих.
         for(GameObject o : Engine.currentLevel.getObjects())
         {
