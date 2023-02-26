@@ -122,8 +122,7 @@ public class Renderer implements Runnable
         g.setColor(Color.black);
         g.fillRect(0,0,GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
 
-        //Отрисовка текстуры игрока.
-        g.drawImage(player.getTexture(), player.getX()-camX,player.getY()-camY,null);
+
 
         //Отрисовка всех обектов из списка  текущих
         for(GameObject o : Engine.getCurrentLevel().getObjects()) g.drawImage(o.getTexture(), o.getX()-camX,o.getY()-camY,null);
@@ -161,7 +160,11 @@ public class Renderer implements Runnable
         if(Inventory.getInstance().isOpened()) g.drawImage(Inventory.getInstance().getImg(), Inventory.getInstance().getX()-camX,Inventory.getInstance().getY()-camY,null);
         if(Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems()) if(i!=null) g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x-camX,Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y-camY,null);
 
+        //Отрисовка текстуры игрока.
+        g.drawImage(player.getTexture(), player.getX()-camX,player.getY()-camY,null);
+
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
+
 
         //Отрисовка полей под иконки у инвентаря
         for(Rectangle r:Inventory.getInstance().getItemIcons())g.drawRect(r.x-camX,r.y-camY, r.width, r.height);

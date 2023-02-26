@@ -12,9 +12,9 @@ public abstract class GameObject
      * Поля
      */
 
-    public static final String IMG_PATH = "D:\\IdeaProjects\\src\\ru\\muwa\\shq\\textures\\";
+    //public static final String IMG_PATH = "D:\\IdeaProjects\\src\\ru\\muwa\\shq\\textures\\";
     //TODO: Вован сделай такое же поле для себя, а мое закомментируй при работе в своей ветке.
-    //public static final String IMG_PATH = "C:\\Users\\darkm\\IdeaProjects\\shq_rdr\\src\\ru\\muwa\\shq\\textures\\";
+    public static final String IMG_PATH = "C:\\Users\\darkm\\IdeaProjects\\shq_rdr\\src\\ru\\muwa\\shq\\textures\\";
     protected int x, y; //Координаты положения в пространстве
     protected int height; // Высота
     protected int width; // Широта
@@ -23,6 +23,7 @@ public abstract class GameObject
     protected double fallAx;
     protected int mass; //Масса объекта. Чем выше масса, тем объект быстрее падает и тяжелее двигается.
     protected boolean isSolid; //Объект твердый. Через него нельзя пройти.
+
     protected boolean isStatic; //Объект статичен. Он не двигается вообще. Не может двигаться.
     protected boolean isStanding; //Объект стоит на платформе или поверхности. Он устойчив и не падает. //TODO:  Проверить, возожно получится обойтись isFalling
     protected boolean onGround; // Объект стоит на земле. Нижняя часть экрана, почва.
@@ -53,6 +54,7 @@ public abstract class GameObject
         width = texture.getWidth();
         direction = Direction.NONE;
         this.onFeetBox = new Rectangle();
+        isSolid = true;
 
     }
     /**
@@ -114,6 +116,9 @@ public abstract class GameObject
     public BufferedImage getImgLeft()
     {
         return ImgLeft;
+    }
+    public boolean getIsSolid(){
+        return isSolid;
     }
     public BufferedImage getTexture()
     {

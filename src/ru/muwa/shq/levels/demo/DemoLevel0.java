@@ -24,8 +24,8 @@ public class DemoLevel0 extends Level
 
     private DemoLevel0() throws IOException {
         super();
-        startPosX = GameScreen.SCREEN_WIDTH /  2;
-        startPosY = GameScreen.SCREEN_HEIGHT / 2;
+        startPosX = 600;
+        startPosY =1800;
         containers.add(new TrashCan(500,500));
         containers.get(0).addItem(new Flour());
         containers.get(0).addItem(new Flour());
