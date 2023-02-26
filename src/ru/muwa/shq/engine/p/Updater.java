@@ -135,7 +135,7 @@ public class Updater implements Runnable
         //Блок ПОСТ обработки
 
         //Очищаем нажатые клавиши. (Фиксим баг с мульти прожатием клавиш)
-        DropKeyUtility.getInstance().work(); //TODO: Убрать.
+       // DropKeyUtility.getInstance().work(); //TODO: Убрать.
     }
     public static Updater getInstance()
     {

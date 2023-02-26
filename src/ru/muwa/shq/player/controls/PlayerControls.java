@@ -10,6 +10,8 @@ import ru.muwa.shq.levels.dev.DevLevel0;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.zones.EnterZone;
+import ru.muwa.shq.zones.GameZone;
 
 import java.awt.*;
 import java.util.Objects;
@@ -30,12 +32,15 @@ public class PlayerControls
         // Клавиатура
         if(keyboard.getKeys()[keyboard.W]) w(); // Нажата W
         if(keyboard.getKeys()[keyboard.A]) a();// Нажата A
-        if(keyboard.getKeys()[keyboard.S]) Player.get().moveDown();// Нажата S
-        if(keyboard.getKeys()[keyboard.D]) Player.get().moveRight();// Нажата D
+        if(keyboard.getKeys()[keyboard.S]) s();// Нажата S
+        if(keyboard.getKeys()[keyboard.D]) d();// Нажата D
         if(keyboard.getKeys()[keyboard.SPACE]) space();// Нажата SPACE BAR
         if(keyboard.getKeys()[keyboard.E]) e(); // Нажата Е
-        if(keyboard.getKeys()[keyboard.I]) i();/*Inventory.getInstance().setIsOpened(!Inventory.getInstance().isOpened()); keyboard.getKeys()[6] = false; */// Нажата I
+        if(keyboard.getKeys()[keyboard.I]) i();/* */// Нажата I
         if(keyboard.getKeys()[keyboard.Q]) q();
+        if(keyboard.getKeys()[keyboard.ENTER]) enter();
+
+
 
         //Мышь
         if(MouseButtonListener.getInstance().keys[0]) lmb();
@@ -53,11 +58,11 @@ public class PlayerControls
     }
     private void s()
     {
-
+        Player.get().moveDown();
     }
     private void d()
     {
-
+        Player.get().moveRight();
     }
     private void e()
     {
@@ -65,7 +70,8 @@ public class PlayerControls
     }
     private void i()
     {
-
+        Inventory.getInstance().setIsOpened(!Inventory.getInstance().isOpened());
+        keyboard.getKeys()[6] = false;
     }
     private void space()
     {
@@ -73,6 +79,15 @@ public class PlayerControls
     }
     private void enter()
     {
+
+        for(GameZone z : Engine.getCurrentLevel().getZones())
+            if(z.contains(new Point(Player.get().getX(),Player.get().getY()))
+                    &&
+                    KeyListener.getInstance().getKeys()[KeyListener.getInstance().ENTER]
+                    &&
+                    z instanceof EnterZone)
+                Engine.switchLevel((EnterZone) z);
+        KeyListener.getInstance().getKeys()[KeyListener.getInstance().ENTER] = false;
 
     }
 

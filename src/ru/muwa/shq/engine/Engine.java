@@ -63,7 +63,6 @@ public class Engine
         Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
         Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
 
-        KeyListener.getInstance().getKeys()[KeyListener.getInstance().ENTER] = false;
         currentLevel = z.getLevel();
     }
 }
