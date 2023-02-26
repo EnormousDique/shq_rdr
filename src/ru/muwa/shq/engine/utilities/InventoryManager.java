@@ -25,6 +25,7 @@ public class InventoryManager
     }
     public void update()
     {
+        //TODO: Нужно перенести логику так, чтобы она вызывалась из PlayerControls.
 
         Inventory.getInstance().setX(Player.get().getX() + 100);
         Inventory.getInstance().setY(Player.get().getY() - 50);
@@ -35,8 +36,6 @@ public class InventoryManager
                  Inventory.getInstance().getY(),
                 (int)Inventory.getInstance().getImg().getWidth(),
                 (int)Inventory.getInstance().getImg().getHeight());
-        eat();
-        grab();
 
 
         for(int i = 0; i < Inventory.getInstance().getItemIcons().size();i++)
@@ -50,7 +49,7 @@ public class InventoryManager
     }
     //
     public void grab(){
-        if(MouseButtonListener.getInstance().getKeys()[0] ) {
+
             // System.out.println("нажате левая кнопка мыши");
             for(Container c: Engine.getCurrentLevel().getContainers()){
                 if(c.isInUse() && c.getItems().size()>= 1){
@@ -67,11 +66,11 @@ public class InventoryManager
                 }
             }
 
-        }
+
 
     }
     public void eat (){
-        if(MouseButtonListener.getInstance().getKeys()[0] ){
+
             System.out.println("кнопку мышки я нажал");
             if(Inventory.getInstance().isOpened()){
                 System.out.println("инвентарь при том открыл");
@@ -87,6 +86,6 @@ public class InventoryManager
                 }
             }
         }
-    }
+
 }
 
