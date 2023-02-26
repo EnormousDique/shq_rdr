@@ -14,6 +14,8 @@ import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.dev.DevLevel0;
+import ru.muwa.shq.zones.EnterZone;
+import ru.muwa.shq.zones.GameZone;
 
 import java.io.IOException;
 
@@ -51,16 +53,16 @@ public class Engine
         Launcher.hideFrame();
     }
 
-    public static void switchLevel(Level level)
+    public static void switchLevel(EnterZone z)
     {
-        System.out.println("going to level " + level);
+        System.out.println("going to level " + z.getLevel());
 
-        Player.get().setX(level.getStartPosX());
-        Player.get().setY(level.getStartPosY());
+        Player.get().setX(z.getWhereToX());
+        Player.get().setY(z.getWhereToY());
 
         Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
         Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
 
-        currentLevel = level;
+        currentLevel = z.getLevel();
     }
 }

@@ -12,16 +12,27 @@ import java.security.PublicKey;
 public class EnterZone extends GameZone
 {
     private Level level;
+    private int whereToX, whereToY;
 
     public Level getLevel()
     {
         return level;
     }
 
-    public EnterZone(int x, int y, int width, int height, Level level)
+    public int getWhereToX() {
+        return whereToX;
+    }
+
+    public int getWhereToY() {
+        return whereToY;
+    }
+
+    public EnterZone(int x, int y, int width, int height, Level level, int whereToX, int whereToY)
     {// Конструктор
         super(x,y,width,height);
         this.level = level;
+        this.whereToX = whereToX;
+        this.whereToY = whereToY;
         System.out.println("enter zone created, level reference is " + level);
     }
 
