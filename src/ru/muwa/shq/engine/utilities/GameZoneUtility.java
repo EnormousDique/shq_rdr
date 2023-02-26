@@ -24,7 +24,7 @@ public class GameZoneUtility
                     KeyListener.getInstance().getKeys()[KeyListener.getInstance().ENTER]
                     &&
                     z instanceof EnterZone)
-                Engine.switchLevel( ( (EnterZone) z ).getLevel() );
+                Engine.switchLevel((EnterZone) z);
 
     }
 }

@@ -23,22 +23,17 @@ public class DemoLevel0 extends Level
     }
 
     private DemoLevel0() throws IOException {
-
         super();
-        //objects.add(new Pavement(0, GameScreen.SCREEN_HEIGHT-Pavement.img.getHeight()));
-        //objects.add(new Crate0( 200,200));
-        startPosX = 10;
-        startPosY = GameScreen.SCREEN_HEIGHT - 150;
+        startPosX = GameScreen.SCREEN_WIDTH /  2;
+        startPosY = GameScreen.SCREEN_HEIGHT / 2;
         containers.add(new TrashCan(500,500));
         containers.get(0).addItem(new Flour());
         containers.get(0).addItem(new Flour());
         containers.get(0).addItem(new Flour());
         objects.add(new Crate0(100,100));
-       // objects.add(new TestBuilding(300,799));
         objects.add(new FatBuilding(0,1500));
         objects.add(new TallFatBuilding(1000,2500));
         instance = this;
-        zones.add(new EnterZone(520,1765,100,100, FatBuildingFloor1.getInstance()));
-
+        zones.add(new EnterZone(520,1765,100,100, FatBuildingFloor1.getInstance(), 100,100));
     }
 }

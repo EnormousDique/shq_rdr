@@ -37,14 +37,6 @@ public class PlayerControls
         Interactor.getInstance().interact();
     }
 
-    private void moveRight()
-    {
-        player.moveRight();
-    }
-    private void moveLeft()
-    {
-        player.moveLeft();
-    }
     private void jump()
     {
             //player.jump();
