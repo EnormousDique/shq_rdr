@@ -36,8 +36,9 @@ public class CollisionsChecker
      * @param objects - Остальные объекты
      */
     private void checkObjectCollisions(GameObject o, LinkedList<GameObject> objects) {
-        List<GameObject> list = objects.stream().filter(ob -> !ob.equals(o)).toList();
+        List<GameObject> list = objects.stream().filter(ob -> !ob.equals(o)).filter(ob -> ob.getIsSolid()) .toList();
         if (o != null ) {
+
             for (GameObject obj : list) { //Перебираем объекты.
                 if (o.getSolidBox().intersects(obj.getSolidBox())) // произошло столкновение
                 {
