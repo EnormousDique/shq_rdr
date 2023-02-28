@@ -16,9 +16,11 @@ public class GameZoneUtility
     private GameZoneUtility(){instance = this;}
     public static GameZoneUtility getInstance(){if(instance == null) return new GameZoneUtility(); else return instance;}
 
-    public void work()
-    {
-
-
+    public void work() {
+    for(GameZone z:Engine.getCurrentLevel().getZones()){
+        if(((EnterZone)z).isAuto() && z.contains(new Point(Player.get().getX(), Player.get().getY()))) {
+            Engine.switchLevel((EnterZone) z);
+        }
+    }
     }
 }

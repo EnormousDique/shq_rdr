@@ -5,33 +5,34 @@ import ru.muwa.shq.levels.demo.DemoLevel0;
 import ru.muwa.shq.objects.bounds.Wall300;
 import ru.muwa.shq.objects.bounds.Wall350;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
+import ru.muwa.shq.objects.containers.GarbageChute;
 import ru.muwa.shq.objects.containers.PostBox;
 import ru.muwa.shq.zones.EnterZone;
 
 import java.io.IOException;
 
 
-public class FatBuildingFloor1 extends Level
+public class FatBuildingFloor3 extends Level
 {
 
-    private static FatBuildingFloor1 instance;
-    public static FatBuildingFloor1 getInstance() throws IOException {
-        if(instance == null) return new FatBuildingFloor1(); else return instance;
+    private static FatBuildingFloor3 instance;
+    public static FatBuildingFloor3 getInstance() throws IOException {
+        if(instance == null) return new FatBuildingFloor3(); else return instance;
     }
-    private FatBuildingFloor1() throws IOException {
+    private FatBuildingFloor3() throws IOException {
         instance = this;
         startPosX = 0;
         startPosY = 0;
-       // containers.add(new PostBox(100,100));
-        zones.add(new EnterZone(300,100,100,100, DemoLevel0.getInstance(), 700,1800,false));
-        zones.add(new EnterZone(240,30,50,50, FatBuildingFloor1_5.getInstance(), 300,60,true));
+        // containers.add(new PostBox(100,100));
+        zones.add(new EnterZone(300,150,100,100, FatBuildingFloor2_5.getInstance(), 250,205,true));
+        zones.add(new EnterZone(240,30,50,50, FatBuildingFloor3_5.getInstance(), 300,100,true));
 
-       // objects.add(new ApartmentDoor(10,0,0));
-      //  objects.add(new ApartmentDoor(80,0,0));
+        // objects.add(new ApartmentDoor(10,0,0));
+        //  objects.add(new ApartmentDoor(80,0,0));
         objects.add(new TestEntrance(10,10));
         objects.add(new Stairs(150,30));
-       // objects.add(new Stairs(150,180));
-        objects.add(new SexStairs(150,160));
+        // objects.add(new Stairs(150,180));
+        objects.add(new Stairs(150,160));
         objects.add(new PostBox(10,80));
         objects.add(new Wall350(10 ,-40));
         objects.add(new Wall350(10,280));
@@ -41,3 +42,5 @@ public class FatBuildingFloor1 extends Level
 
     }
 }
+
+

@@ -45,7 +45,7 @@ public class Updater implements Runnable
             delta += (currTime - lastTime) / drawInterval;
             lastTime = currTime;
 
-            for(GameObject o : Engine.getCurrentLevel().getObjects()) CollisionsChecker.getInstance().checkCollisions(o, Engine.getCurrentLevel().getObjects());
+         //   for(GameObject o : Engine.getCurrentLevel().getObjects()) CollisionsChecker.getInstance().checkCollisions(o, Engine.getCurrentLevel().getObjects());
             //Попытка вынести расчёты столновений за ограничение в 60 итераций в секунду для исправления бага с выталкиванием за текстуры
             //TODO: вероятно стоит запустить отдельный поток для провери столновений вне основного потоа updater'a
             //Баг удалось исправить.
@@ -97,7 +97,7 @@ public class Updater implements Runnable
         for(GameObject o : Engine.getCurrentLevel().getObjects())
         {
             // Проверяем столкновения
-            CollisionsChecker.getInstance().checkCollisions(o, Engine.getCurrentLevel().getObjects());
+         //   CollisionsChecker.getInstance().checkCollisions(o, Engine.getCurrentLevel().getObjects());
 
             // Обновляем боксы
             SolidBoxUpdater.getInstance().updateSolidBox(o);
@@ -124,10 +124,10 @@ public class Updater implements Runnable
         }
 
         //Блок обработки объектов контейнеров из списка текущих.
-        for(Container con : Engine.getCurrentLevel().getContainers())
+         for(Container con : Engine.getCurrentLevel().getContainers())
         {
 
-            CollisionsChecker.getInstance().checkCollisions(con,Engine.getCurrentLevel().getObjects());
+          //  CollisionsChecker.getInstance().checkCollisions(con,Engine.getCurrentLevel().getObjects());
 
             // Обновляем бокс
             SolidBoxUpdater.getInstance().updateSolidBox(con);
