@@ -75,7 +75,7 @@ public class Updater implements Runnable
         //Блок обработки игрока.
 
         // Проверяем были ли команды игроку через игровое управление.
-        PlayerControls.getInstance().controlPlayer();
+        PlayerControls.getInstance().controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
 
         // Проверяем столкновение игрока с объектами.
         CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getObjects());
@@ -83,7 +83,8 @@ public class Updater implements Runnable
         //Обновляем бокс игрока.
         SolidBoxUpdater.getInstance().updateSolidBox(player);
 
-        //Вызываем службу инветнаря
+        //Обновляем окно инвентаря
+
         InventoryManager.getInstance().update();
 
         // Обновление зоны доступного использования
@@ -131,6 +132,10 @@ public class Updater implements Runnable
             // Обновляем бокс
             SolidBoxUpdater.getInstance().updateSolidBox(con);
         }
+        //Блок ПОСТ обработки
+
+        //Очищаем нажатые клавиши. (Фиксим баг с мульти прожатием клавиш)
+       // DropKeyUtility.getInstance().work(); //TODO: Убрать.
     }
     public static Updater getInstance()
     {
