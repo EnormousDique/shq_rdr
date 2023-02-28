@@ -18,13 +18,7 @@ public class GameZoneUtility
 
     public void work()
     {
-        for(GameZone z : Engine.getCurrentLevel().getZones())
-            if(z.contains(new Point(Player.get().getX(),Player.get().getY()))
-                    &&
-                    KeyListener.getInstance().getKeys()[KeyListener.getInstance().ENTER]
-                    &&
-                    z instanceof EnterZone)
-                Engine.switchLevel((EnterZone) z);
+
 
     }
 }

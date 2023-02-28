@@ -35,6 +35,7 @@ public class CollisionsChecker
      * @param o - Целевой обект. (Тот, кого проверяем и будем двигать)
      * @param objects - Остальные объекты
      */
+    //TODO: Переписать с опорой на центры объектов.
     private void checkObjectCollisions(GameObject o, LinkedList<GameObject> objects) {
         List<GameObject> list = objects.stream().filter(ob -> !ob.equals(o)).filter(ob -> ob.getIsSolid()) .toList();
         if (o != null ) {
@@ -42,29 +43,28 @@ public class CollisionsChecker
             for (GameObject obj : list) { //Перебираем объекты.
                 if (o.getSolidBox().intersects(obj.getSolidBox())) // произошло столкновение
                 {
-                    if(o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY()+obj.getHeight())
+                    if(o.getY() + o.getHeight() > obj.getY() + obj.getHeight() && o.getX() + o.getWidth() > obj.getX() && o.getX() < obj.getX()+obj.getWidth())
+                    o.setY(obj.getY()+obj.getHeight());//Вниз
+                else if(o.getY() < obj.getY() //Голова выше крыши
+                        &&
+                        o.getX() + o.getWidth() > obj.getX()  // внутри по х
+                        &&
+                        o.getX() < obj.getX()+obj.getWidth()) // внутри по х
+                    o.setY(obj.getY()-o.getHeight());//Вверх
+                    else if(o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY()+obj.getHeight())
                     {o.setX(obj.getX()+obj.getWidth());
                         System.out.println("право");}//Вправо
-                    if(o.getX()  < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY()+obj.getHeight())
+                    else if(o.getX()  < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY()+obj.getHeight() )
                     {o.setX(obj.getX()-o.getWidth());
-                        System.out.println("vlevo");}//Влево
-                    if(o.getY() + o.getHeight() > obj.getY() + obj.getHeight() && o.getX() + o.getWidth() > obj.getX() && o.getX() < obj.getX()+obj.getWidth())
-                        o.setY(obj.getY()+obj.getHeight());//Вниз
-                    if(o.getY() < obj.getY() //Голова выше крыши
-                            &&
-                            o.getX() > obj.getX()  // внутри по х
-                            &&
-                            o.getX() < obj.getX()+obj.getWidth()) // внутри по х
-                        o.setY(obj.getY()-o.getHeight());//Вверх
+                        System.out.println("vlevo");
+                        }//Влево
+
                 }
             }
         }
     }
 
-    public void checkBottomCollisions(GameObject o)
-    {
 
-    }
 
     public void checkCollisionsNPC(NPC c, LinkedList<GameObject> objects)
     {
