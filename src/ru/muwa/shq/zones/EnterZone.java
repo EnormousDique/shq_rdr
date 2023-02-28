@@ -41,4 +41,23 @@ public class EnterZone extends GameZone
 
     }
 
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
+    public void setWhereToX(int whereToX) {
+        this.whereToX = whereToX;
+    }
+
+    public void setWhereToY(int whereToY) {
+        this.whereToY = whereToY;
+    }
+
+    public boolean isAuto() {
+        return isAuto;
+    }
+
+    public void setAuto(boolean auto) {
+        isAuto = auto;
+    }
 }

@@ -1,6 +1,7 @@
 package ru.muwa.shq.engine.listeners;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.player.controls.Grabber;
 
@@ -29,7 +30,7 @@ public class MouseButtonListener implements MouseInputListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println("mouse clicked. x: " + e.getX() + " y : " + e.getY());
+        System.out.println("mouse clicked. x: " + (e.getX()+ Camera.getInstance().getX()) + " y : " + (e.getY()+Camera.getInstance().getY()));
         switch (e.getButton())
         {
             case 1:
