@@ -14,6 +14,9 @@ public class EnterZone extends GameZone
     private Level level;
     private int whereToX, whereToY;
 
+    private boolean isAuto;
+
+
     public Level getLevel()
     {
         return level;
@@ -27,13 +30,15 @@ public class EnterZone extends GameZone
         return whereToY;
     }
 
-    public EnterZone(int x, int y, int width, int height, Level level, int whereToX, int whereToY)
+    public EnterZone(int x, int y, int width, int height, Level level, int whereToX, int whereToY,boolean isAuto)
     {// Конструктор
         super(x,y,width,height);
         this.level = level;
         this.whereToX = whereToX;
         this.whereToY = whereToY;
         System.out.println("enter zone created, level reference is " + level);
+        this.isAuto =isAuto;
+
     }
 
 }
