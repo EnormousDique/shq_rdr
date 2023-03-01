@@ -11,10 +11,12 @@ import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.engine.listeners.MouseListener;
+import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.zones.GameZone;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferStrategy;
 
@@ -107,15 +109,16 @@ public class Renderer implements Runnable
      */
     public void render()
     {
+
         // ======= инициализация
         int camX = Camera.getInstance().getX(), camY = Camera.getInstance().getY();
         BufferStrategy bs = canvas.getBufferStrategy();
         if(bs==null)
         {
-            canvas.createBufferStrategy(2);
+            canvas.createBufferStrategy(4);
             return;
         }
-        g = bs.getDrawGraphics();
+        g = (Graphics2D) bs.getDrawGraphics();
         // =======
 
         // Закрашиваем задник черным
@@ -161,7 +164,11 @@ public class Renderer implements Runnable
         if(Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems()) if(i!=null) g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x-camX,Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y-camY,null);
 
         //Отрисовка текстуры игрока.
-        g.drawImage(player.getTexture(), player.getX()-camX,player.getY()-camY,null);
+
+        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //!!!!!!!!!!!!!!!!!!!!!!! ВЕРНУТЬ!!!!!!!!!!!!!!!!!!!
+
+        //g.drawImage(player.getTexture(), player.getX()-camX,player.getY()-camY,null);
 
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
 
@@ -182,6 +189,23 @@ public class Renderer implements Runnable
         //Отрисовка зон переходов по локациям
         g.setColor(Color.BLUE);
         for(GameZone z : Engine.getCurrentLevel().getZones()) g.drawRect(z.x-camX,z.y-camY,z.width,z.height);
+
+        // Отрисовка зоны использования
+
+        g.setColor(Color.GREEN);
+        g.drawRect(Player.get().getUseZone().x-camX,Player.get().getUseZone().y-camY,Player.get().getUseZone().width,Player.get().getUseZone().height);
+
+        // Отрисовка линий прицела
+        for(Line2D l : Aim.getInstance().getLines())
+            g.drawLine((int)l.getX1()-camX,(int)l.getY1()-camY,(int)l.getX2()-camX,(int)l.getY2()-camY);
+
+        AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX()-Camera.getInstance().getX(),Player.get().getY()-Camera.getInstance().getY());
+
+        //System.out.println(Math.toDegrees(Math.acos( ((4*4) + (3*3) - (5*5)) / (2 * 4 * 3) )) );
+
+        at.rotate(Math.toRadians(Aim.getInstance().calculateAngle()),(Player.get().getWidth()/2),(Player.get().getHeight()/2));
+        ((Graphics2D)g).drawImage(Player.get().getTexture(),at,null);
+
 
         // Все вышесказанное рисуем на холст и показываем на экране.
         g.dispose();
