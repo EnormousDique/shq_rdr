@@ -40,9 +40,9 @@ public class Aim {
 
     public void aim()
     {
-        line1.setLine(Player.get().getX(), Player.get().getSolidBox().getCenterY(), Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY());
+        line1.setLine(Player.get().getSolidBox().getCenterX(), Player.get().getY() + Player.get().getHeight(), Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY());
         line2.setLine(Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY(), MouseListener.getInstance().getX()+Camera.getInstance().getX(), MouseListener.getInstance().getY()+Camera.getInstance().getY());
-        line3.setLine(MouseListener.getInstance().getX()+Camera.getInstance().getX(), MouseListener.getInstance().getY()+Camera.getInstance().getY(), Player.get().getX(), Player.get().getSolidBox().getCenterY());
+        line3.setLine(MouseListener.getInstance().getX()+Camera.getInstance().getX(), MouseListener.getInstance().getY()+Camera.getInstance().getY(), Player.get().getSolidBox().getCenterX(), Player.get().getY() + Player.get().getHeight());
     }
     private int getLineSize(Line2D l)
     {
@@ -59,10 +59,15 @@ public class Aim {
 
     public double calculateAngle()
     {
+        boolean isMouseLeft = MouseListener.getInstance().getX()+Camera.getInstance().getX() < Player.get().getSolidBox().getCenterX();
         //System.out.println(Math.toDegrees(Math.acos( ((4*4) + (3*3) - (5*5)) / (2 * 4 * 3) )) );
-        System.out.println(Math.toDegrees(Math.acos( ((Math.pow(getLineSize(line2),2)) + (Math.pow(getLineSize(line1),2)) - (Math.pow(getLineSize(line3),2))) / (2 * getLineSize(line2) * getLineSize(line1)) )) );
+        //System.out.println(Math.toDegrees(Math.acos( ((Math.pow(getLineSize(line2),2)) + (Math.pow(getLineSize(line1),2)) - (Math.pow(getLineSize(line3),2))) / (2 * getLineSize(line2) * getLineSize(line1)) )) );
 
-        return Math.toDegrees(Math.acos( ((Math.pow(getLineSize(line2),2)) + (Math.pow(getLineSize(line1),2)) - (Math.pow(getLineSize(line3),2))) / (2 * getLineSize(line2) * getLineSize(line1)) ));
+        return isMouseLeft?
+
+                360 - Math.toDegrees(Math.acos( ((Math.pow(getLineSize(line2),2)) + (Math.pow(getLineSize(line1),2)) - (Math.pow(getLineSize(line3),2))) / (2 * getLineSize(line2) * getLineSize(line1)) ))
+                :
+                Math.toDegrees(Math.acos( ((Math.pow(getLineSize(line2),2)) + (Math.pow(getLineSize(line1),2)) - (Math.pow(getLineSize(line3),2))) / (2 * getLineSize(line2) * getLineSize(line1)) ));
     }
 
 }

@@ -79,9 +79,10 @@ public class Updater implements Runnable
         PlayerControls.getInstance().controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
 
         // Обновленци прицела
+
         Aim.getInstance().aim();
 
-        System.out.println(Aim.getInstance().calculateAngle());
+        //System.out.println(Aim.getInstance().calculateAngle());
 
         // Проверяем столкновение игрока с объектами.
         CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getObjects());

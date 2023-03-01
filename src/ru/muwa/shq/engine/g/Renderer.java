@@ -202,8 +202,8 @@ public class Renderer implements Runnable
         AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX()-Camera.getInstance().getX(),Player.get().getY()-Camera.getInstance().getY());
 
         //System.out.println(Math.toDegrees(Math.acos( ((4*4) + (3*3) - (5*5)) / (2 * 4 * 3) )) );
-
-        at.rotate(Math.toRadians(Aim.getInstance().calculateAngle()),(Player.get().getWidth()/2),(Player.get().getHeight()/2));
+        System.out.println((Aim.getInstance().calculateAngle()));
+        at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()),(Player.get().getWidth()/2),(Player.get().getHeight()/2));
         ((Graphics2D)g).drawImage(Player.get().getTexture(),at,null);
 
 

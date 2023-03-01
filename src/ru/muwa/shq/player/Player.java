@@ -40,7 +40,7 @@ public class Player extends Creature
 
 
         try {
-            img = ImageIO.read(new File(IMG_PATH+"player\\kulaginUP.png"));
+            img = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
             imgUp = ImageIO.read(new File(IMG_PATH+"player\\kulaginUP.png"));
             imgDown = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
             imgLeft = ImageIO.read(new File(IMG_PATH+"player\\kulaginLeft.png"));
