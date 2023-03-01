@@ -34,6 +34,6 @@ public class DemoLevel0 extends Level
         objects.add(new FatBuilding(0,1500));
         objects.add(new TallFatBuilding(1000,2500));
         instance = this;
-        zones.add(new EnterZone(520,1765,100,100, FatBuildingFloor1.getInstance(), 300,120,false));
+        zones.add(new EnterZone(520,1765,70,70, FatBuildingFloor1.getInstance(), 327,220,false));
     }
 }

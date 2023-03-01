@@ -7,6 +7,7 @@ import ru.muwa.shq.objects.bounds.Wall350;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
 import ru.muwa.shq.objects.containers.GarbageChute;
 import ru.muwa.shq.objects.containers.PostBox;
+import ru.muwa.shq.objects.containers.WirelessPanel;
 import ru.muwa.shq.zones.EnterZone;
 
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class FatBuildingFloor5 extends Level
         objects.add(new Stairs(150,180));
         // objects.add(new Stairs(150,180));
        // objects.add(new Stairs(150,160));
-        objects.add(new PostBox(10,80));
+        objects.add(new WirelessPanel(8,77));
         objects.add(new Wall350(10 ,-40));
         objects.add(new Wall350(10,280));
         objects.add(new Wall300(360,10));
