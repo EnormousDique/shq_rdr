@@ -40,7 +40,7 @@ public class Player extends Creature
 
 
         try {
-            img = ImageIO.read(new File(IMG_PATH+"player\\kulaginUP.png"));
+            img = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
             imgUp = ImageIO.read(new File(IMG_PATH+"player\\kulaginUP.png"));
             imgDown = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
             imgLeft = ImageIO.read(new File(IMG_PATH+"player\\kulaginLeft.png"));
@@ -86,7 +86,7 @@ public class Player extends Creature
     public void moveLeft() {
         if(!isBusy)super.moveLeft();
         Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
-        texture=imgLeft;
+       // texture=imgLeft;
 
 
     }
@@ -95,7 +95,7 @@ public class Player extends Creature
     public void moveRight() {
         if(!isBusy)super.moveRight();
         Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
-        texture=imgRight;
+     //   texture=imgRight;
     }
     public void jump(){
 
@@ -104,14 +104,14 @@ public class Player extends Creature
     public void moveUp(){
          super.moveUp();
          Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
-         texture=imgUp;
+       //  texture=imgUp;
 
      }
     @Override
      public void moveDown (){
         super.moveDown();
         Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
-        texture=imgDown;
+       // texture=imgDown;
      }
 }
 
