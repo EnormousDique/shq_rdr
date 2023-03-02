@@ -1,8 +1,10 @@
 package ru.muwa.shq.engine.p;
 import ru.muwa.shq.engine.ai.AI;
+import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.containers.Container;
+import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.player.controls.PlayerControls;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
@@ -74,8 +76,19 @@ public class Updater implements Runnable
 
         //Блок обработки игрока.
 
+        //Вызов CombutUtility
+        CombatUtility.getInstance().work();
+
+
+
         // Проверяем были ли команды игроку через игровое управление.
         PlayerControls.getInstance().controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
+
+        // Обновленци прицела
+
+        Aim.getInstance().aim();
+
+        //System.out.println(Aim.getInstance().calculateAngle());
 
         // Проверяем столкновение игрока с объектами.
         CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getObjects());

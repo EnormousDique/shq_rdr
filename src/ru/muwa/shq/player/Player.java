@@ -40,7 +40,7 @@ public class Player extends Creature
 
 
         try {
-            img = ImageIO.read(new File(IMG_PATH+"player\\kulaginUP.png"));
+            img = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
             imgUp = ImageIO.read(new File(IMG_PATH+"player\\kulaginUP.png"));
             imgDown = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
             imgLeft = ImageIO.read(new File(IMG_PATH+"player\\kulaginLeft.png"));
@@ -74,6 +74,8 @@ public class Player extends Creature
         agility = 8;
         speed = 7;
         maxJumpAx = 50;
+        hp = 100;
+
 
     }
 
@@ -85,8 +87,8 @@ public class Player extends Creature
     @Override
     public void moveLeft() {
         if(!isBusy)super.moveLeft();
-        Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
-        texture=imgLeft;
+        Camera.getInstance().setX(Player.get().getX() + Player.get().getWidth() - (GameScreen.SCREEN_HEIGHT/2));
+       // texture=imgLeft;
 
 
     }
@@ -94,24 +96,24 @@ public class Player extends Creature
     @Override
     public void moveRight() {
         if(!isBusy)super.moveRight();
-        Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
-        texture=imgRight;
+        Camera.getInstance().setX(Player.get().getX() + Player.get().getWidth() - (GameScreen.SCREEN_HEIGHT/2));
+     //   texture=imgRight;
     }
     public void jump(){
 
     }
      @Override
     public void moveUp(){
-         super.moveUp();
-         Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
-         texture=imgUp;
+         if(!isBusy)super.moveUp();
+         Camera.getInstance().setY(Player.get().getY() + Player.get().getHeight() - (GameScreen.SCREEN_WIDTH/2));
+       //  texture=imgUp;
 
      }
     @Override
      public void moveDown (){
-        super.moveDown();
-        Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
-        texture=imgDown;
+        if(!isBusy)super.moveDown();
+        Camera.getInstance().setY(Player.get().getY() + Player.get().getHeight() - (GameScreen.SCREEN_WIDTH/2));
+       // texture=imgDown;
      }
 }
 
