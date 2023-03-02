@@ -175,7 +175,9 @@ public class Renderer implements Runnable
 
         //frame
 
+        // полоску здовроья видно только при открытии инвентаря
         HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
+        //отрисовка текущего здоровья персонажа
         HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
 
 

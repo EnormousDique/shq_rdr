@@ -77,6 +77,7 @@ public class Player extends Creature
         hp = 100;
 
 
+
     }
 
     public boolean isBusy() {return isBusy;}

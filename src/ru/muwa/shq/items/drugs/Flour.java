@@ -16,8 +16,6 @@ public class Flour extends Item {
     public static final double WEIGHT = 1.0;
     private static BufferedImage img;
 
-
-
     static
     {
         try

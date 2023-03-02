@@ -71,15 +71,18 @@ public class InventoryManager
     }
     public void eat (){
 
-            System.out.println("кнопку мышки я нажал");
+         //   System.out.println("кнопку мышки я нажал");
             if(Inventory.getInstance().isOpened()){
-                System.out.println("инвентарь при том открыл");
+               // System.out.println("инвентарь при том открыл");
                 for(Rectangle r :Inventory.getInstance().getItemIcons()){
 
                     if(r.contains(new Point(MouseListener.getInstance().getX()+Camera.getInstance().getX(),MouseListener.getInstance().getY()+Camera.getInstance().getY() ))){
                         if(Inventory.getInstance().getItems().size() > Inventory.getInstance().getItemIcons().indexOf(r))
                         Inventory.getInstance().getItems().remove(Inventory.getInstance().getItemIcons().indexOf(r));
-                        System.out.println("не взял");
+                        Player.get().setHp(Player.get().getHp()+10);
+
+                         System.out.println("ВЗЯЛ");
+                        //System.out.println("не взял");
                         break;
 
                     }

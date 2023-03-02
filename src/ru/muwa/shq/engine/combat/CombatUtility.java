@@ -14,7 +14,7 @@ public class CombatUtility {
         instance = this;
     }
     public void work(){
-        System.out.println(Player.get().getHp());
+        // System.out.println(Player.get().getHp());
         for(NPC c: Engine.getCurrentLevel().getNPC()){
             if(c.getSolidBox().intersects(Player.get().getSolidBox())){
                 Player.get().setHp(Player.get().getHp()-1);
