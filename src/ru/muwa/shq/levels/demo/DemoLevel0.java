@@ -1,4 +1,6 @@
 package ru.muwa.shq.levels.demo;
+import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.drugs.Flour;
@@ -35,5 +37,7 @@ public class DemoLevel0 extends Level
         objects.add(new TallFatBuilding(1000,2500));
         instance = this;
         zones.add(new EnterZone(520,1765,70,70, FatBuildingFloor1.getInstance(), 327,220,false));
+        npc.add(new BadGuy0(800,1800));
+        npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
     }
 }

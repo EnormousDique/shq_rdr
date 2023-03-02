@@ -1,6 +1,7 @@
 package ru.muwa.shq.engine.g;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
+import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
@@ -172,6 +173,11 @@ public class Renderer implements Runnable
 
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
 
+        //frame
+
+        HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
+        HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
+
 
         //Отрисовка полей под иконки у инвентаря
         for(Rectangle r:Inventory.getInstance().getItemIcons())g.drawRect(r.x-camX,r.y-camY, r.width, r.height);
@@ -202,7 +208,7 @@ public class Renderer implements Runnable
         AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX()-Camera.getInstance().getX(),Player.get().getY()-Camera.getInstance().getY());
 
         //System.out.println(Math.toDegrees(Math.acos( ((4*4) + (3*3) - (5*5)) / (2 * 4 * 3) )) );
-        System.out.println((Aim.getInstance().calculateAngle()));
+       // System.out.println((Aim.getInstance().calculateAngle()));
         at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()),(Player.get().getWidth()/2),(Player.get().getHeight()/2));
         ((Graphics2D)g).drawImage(Player.get().getTexture(),at,null);
 

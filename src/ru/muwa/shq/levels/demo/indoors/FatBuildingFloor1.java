@@ -36,8 +36,8 @@ public class FatBuildingFloor1 extends Level
         objects.add(new WirelessPanel(8,77));
         objects.add(new Wall350(10 ,-40));
         objects.add(new Wall350(10,280));
-        objects.add(new Wall300(360,10));
-        objects.add(new Wall300(-40,10));
+        objects.add(new Wall300(360,-20));
+        objects.add(new Wall300(-40,-20));
         objects.add(new Perila(130,120));
 
     }
