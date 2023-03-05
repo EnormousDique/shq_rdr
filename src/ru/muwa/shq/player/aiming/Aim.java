@@ -25,19 +25,6 @@ public class Aim {
 
     private Line2D line1 = new Line2D.Double(), line2 = new Line2D.Double(), line3 = new Line2D.Double();
 
-    public int x1,y1,x2,y2;
-
-    public double getAngle() {
-        return angle;
-    }
-
-    public void setAngle(double angle) {
-        this.angle = angle;
-    }
-
-
-
-
     public void aim()
     {
         line1.setLine(Player.get().getSolidBox().getCenterX(), Player.get().getY() + Player.get().getHeight(), Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY());
@@ -60,8 +47,7 @@ public class Aim {
     public double calculateAngle()
     {
         boolean isMouseLeft = MouseListener.getInstance().getX()+Camera.getInstance().getX() < Player.get().getSolidBox().getCenterX();
-        //System.out.println(Math.toDegrees(Math.acos( ((4*4) + (3*3) - (5*5)) / (2 * 4 * 3) )) );
-        //System.out.println(Math.toDegrees(Math.acos( ((Math.pow(getLineSize(line2),2)) + (Math.pow(getLineSize(line1),2)) - (Math.pow(getLineSize(line3),2))) / (2 * getLineSize(line2) * getLineSize(line1)) )) );
+
 
         return isMouseLeft?
 

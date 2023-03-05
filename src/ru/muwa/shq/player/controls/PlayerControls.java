@@ -29,6 +29,8 @@ public class PlayerControls
 
     public  void controlPlayer()
     {
+        //проверка на открытие инвентаря
+        Player.get().setIsBusy(Inventory.getInstance().isOpened());
         // Клавиатура
         if(keyboard.getKeys()[keyboard.W]) w(); // Нажата W
         if(keyboard.getKeys()[keyboard.A]) a();// Нажата A
@@ -39,6 +41,7 @@ public class PlayerControls
         if(keyboard.getKeys()[keyboard.I]) i();/* */// Нажата I
         if(keyboard.getKeys()[keyboard.Q]) q();
         if(keyboard.getKeys()[keyboard.ENTER]) enter();
+
 
 
 

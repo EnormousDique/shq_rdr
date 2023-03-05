@@ -18,6 +18,15 @@ public abstract class Creature extends GameObject
     protected int maxJumpAx; // Максимальное ускорение прыжка
     protected int speed; //Скорость
 
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    protected int hp;
 
 
     protected RayCaster rayCaster; // Объект рей кастера. Создает лучи,
