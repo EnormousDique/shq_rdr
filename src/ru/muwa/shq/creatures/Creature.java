@@ -2,6 +2,7 @@ package ru.muwa.shq.creatures;
 import ru.muwa.shq.engine.raycaster.RayCaster;
 import ru.muwa.shq.objects.GameObject;
 
+import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
@@ -28,6 +29,16 @@ public abstract class Creature extends GameObject
 
     protected int hp;
 
+    protected Rectangle attackZone;
+
+
+    public Rectangle getAttackZone() {
+        return attackZone;
+    }
+
+    public void setAttackZone(Rectangle attackZone) {
+        this.attackZone = attackZone;
+    }
 
     protected RayCaster rayCaster; // Объект рей кастера. Создает лучи,
     // с помощью которых мы определяем поле зрения крича.
@@ -53,11 +64,14 @@ public abstract class Creature extends GameObject
      * @param y       - у коррдината
      * @param texture - текстура (файл с изборажением)
      */
+
     protected Creature(int x, int y, BufferedImage texture)
     {
         super(x, y, texture);
-
+        attackZone = new Rectangle();
     }
+
+
 
     /**
      * Методы ходьбы.

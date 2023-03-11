@@ -12,6 +12,7 @@ import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TestBuilding;
 import ru.muwa.shq.objects.containers.TrashCan;
 import ru.muwa.shq.objects.obstacles.crates.Crate0;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.zones.EnterZone;
 
 import java.io.IOException;
@@ -26,12 +27,13 @@ public class DemoLevel0 extends Level
 
     private DemoLevel0() throws IOException {
         super();
-        startPosX = 650;
-        startPosY =1800;
-        containers.add(new TrashCan(500,500));
+        startPosX =200;
+        startPosY = 200;
+        containers.add(new TrashCan(800,1900));
         containers.get(0).addItem(new Flour());
         containers.get(0).addItem(new Flour());
         containers.get(0).addItem(new Flour());
+        Inventory.getInstance().addItem(new Flour());
         objects.add(new Crate0(100,100));
         objects.add(new FatBuilding(0,1500));
         objects.add(new TallFatBuilding(1000,2500));

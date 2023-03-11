@@ -25,7 +25,7 @@ public class CollisionsChecker
         if(instance == null) return new CollisionsChecker();
         return instance;
     }
-    public void checkCollisions(GameObject o, LinkedList<GameObject> objects)
+    public void checkCollisions(GameObject o, List<GameObject> objects)
     {
         checkObjectCollisions(o,objects);
     }
@@ -36,7 +36,7 @@ public class CollisionsChecker
      * @param objects - Остальные объекты
      */
     //TODO: Переписать с опорой на центры объектов.
-    private void checkObjectCollisions(GameObject o, LinkedList<GameObject> objects) {
+    private void checkObjectCollisions(GameObject o, List<GameObject> objects) {
         List<GameObject> list = objects.stream().filter(ob -> !ob.equals(o)).filter(ob -> ob.getIsSolid()) .toList();
         if (o != null ) {
 

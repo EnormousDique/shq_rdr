@@ -175,7 +175,13 @@ public class Renderer implements Runnable
 
         //frame
 
+       // System.out.println(Player.get().getAttackZone().getBounds().x +" "+ Player.get().getAttackZone().getBounds().y +" "+ Player.get().getAttackZone().getBounds().width +" "+ Player.get().getAttackZone().getBounds().height);
+
+        g.drawRect(player.getAttackZone().getBounds().x-camX,player.getAttackZone().getBounds().y-camY,player.getAttackZone().getBounds().width,player.getAttackZone().getBounds().height );
+
+        // полоску здовроья видно только при открытии инвентаря
         HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
+        //отрисовка текущего здоровья персонажа
         HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
 
 

@@ -75,6 +75,7 @@ public class Player extends Creature
         speed = 7;
         maxJumpAx = 50;
         hp = 100;
+        attackZone.getBounds().setBounds(x,y-30,30,30);
 
 
     }
@@ -87,7 +88,7 @@ public class Player extends Creature
     @Override
     public void moveLeft() {
         if(!isBusy)super.moveLeft();
-        Camera.getInstance().setX(Player.get().getX() + Player.get().getWidth() - (GameScreen.SCREEN_HEIGHT/2));
+      //  Camera.getInstance().setX(Player.get().getX() + Player.get().getWidth() - (GameScreen.SCREEN_HEIGHT/2));
        // texture=imgLeft;
 
 
@@ -96,7 +97,7 @@ public class Player extends Creature
     @Override
     public void moveRight() {
         if(!isBusy)super.moveRight();
-        Camera.getInstance().setX(Player.get().getX() + Player.get().getWidth() - (GameScreen.SCREEN_HEIGHT/2));
+      //  Camera.getInstance().setX(Player.get().getX() + Player.get().getWidth() - (GameScreen.SCREEN_HEIGHT/2));
      //   texture=imgRight;
     }
     public void jump(){
@@ -105,14 +106,14 @@ public class Player extends Creature
      @Override
     public void moveUp(){
          if(!isBusy)super.moveUp();
-         Camera.getInstance().setY(Player.get().getY() + Player.get().getHeight() - (GameScreen.SCREEN_WIDTH/2));
+        // Camera.getInstance().setY(Player.get().getY() + Player.get().getHeight() - (GameScreen.SCREEN_WIDTH/2));
        //  texture=imgUp;
 
      }
     @Override
      public void moveDown (){
         if(!isBusy)super.moveDown();
-        Camera.getInstance().setY(Player.get().getY() + Player.get().getHeight() - (GameScreen.SCREEN_WIDTH/2));
+        // Camera.getInstance().setY(Player.get().getY() + Player.get().getHeight() - (GameScreen.SCREEN_WIDTH/2));
        // texture=imgDown;
      }
 }
