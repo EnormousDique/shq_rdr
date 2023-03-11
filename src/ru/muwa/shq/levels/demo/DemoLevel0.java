@@ -27,8 +27,8 @@ public class DemoLevel0 extends Level
 
     private DemoLevel0() throws IOException {
         super();
-        startPosX = 650;
-        startPosY =1800;
+        startPosX =200;
+        startPosY = 200;
         containers.add(new TrashCan(800,1900));
         containers.get(0).addItem(new Flour());
         containers.get(0).addItem(new Flour());

@@ -12,6 +12,9 @@ import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
 
+import java.util.LinkedList;
+import java.util.stream.Collectors;
+
 /**
  * Класс, отвечающий за изменение положения игровых объектов и сущностей в пространстве.
  *  А так же за вызов соотвеетствующих обновляющих служб.
@@ -93,6 +96,7 @@ public class Updater implements Runnable
         // Проверяем столкновение игрока с объектами.
         CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getObjects());
 
+        CollisionsChecker.getInstance().checkCollisions(player,  Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject) c ).collect(Collectors.toList()) );
         //Обновляем бокс игрока.
         SolidBoxUpdater.getInstance().updateSolidBox(player);
 
