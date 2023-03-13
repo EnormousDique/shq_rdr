@@ -31,6 +31,7 @@ public class BadGuy0 extends NPC
         speed = 1;
         direction = RIGHT;
         setRayCaster(new RayCaster(x,y,300));
+        hp = 20;
     }
     protected BadGuy0(int x, int y, BufferedImage texture)
     {

@@ -169,7 +169,7 @@ public class Renderer implements Runnable
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         //!!!!!!!!!!!!!!!!!!!!!!! ВЕРНУТЬ!!!!!!!!!!!!!!!!!!!
 
-        //g.drawImage(player.getTexture(), player.getX()-camX,player.getY()-camY,null);
+       // g.drawImage(player.getTexture(), player.getX()-camX,player.getY()-camY,null);
 
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
 
@@ -211,12 +211,9 @@ public class Renderer implements Runnable
         for(Line2D l : Aim.getInstance().getLines())
             g.drawLine((int)l.getX1()-camX,(int)l.getY1()-camY,(int)l.getX2()-camX,(int)l.getY2()-camY);
 
-        AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX()-Camera.getInstance().getX(),Player.get().getY()-Camera.getInstance().getY());
-
-        //System.out.println(Math.toDegrees(Math.acos( ((4*4) + (3*3) - (5*5)) / (2 * 4 * 3) )) );
-       // System.out.println((Aim.getInstance().calculateAngle()));
+        AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX()-camX,Player.get().getY()-camY);
         at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()),(Player.get().getWidth()/2),(Player.get().getHeight()/2));
-        //
+
         ((Graphics2D)g).drawImage(Player.get().getTexture(),at,null);
 
 

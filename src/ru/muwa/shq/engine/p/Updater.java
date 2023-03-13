@@ -1,7 +1,9 @@
 package ru.muwa.shq.engine.p;
 import ru.muwa.shq.engine.ai.AI;
+import ru.muwa.shq.engine.combat.BulletUtility;
 import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.engine.g.camera.CameraUpdateUtility;
 import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.aiming.Aim;
@@ -79,10 +81,11 @@ public class Updater implements Runnable
 
         //Блок обработки игрока.
 
-        //Вызов CombutUtility
+        //Вызов службы обработки боя
         CombatUtility.getInstance().work();
 
-
+        //Вызов службы обновления пуль
+        BulletUtility.getInstance().work();
 
         // Проверяем были ли команды игроку через игровое управление.
         PlayerControls.getInstance().controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
@@ -90,6 +93,9 @@ public class Updater implements Runnable
         // Обновленци прицела
 
         Aim.getInstance().aim();
+
+        //Обновление камеры.
+        CameraUpdateUtility.getInstance().work();
 
         //System.out.println(Aim.getInstance().calculateAngle());
 
