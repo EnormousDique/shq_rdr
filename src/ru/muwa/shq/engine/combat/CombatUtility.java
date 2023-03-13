@@ -1,5 +1,6 @@
 package ru.muwa.shq.engine.combat;
 
+import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
@@ -18,28 +19,29 @@ public class CombatUtility {
         instance = this;
     }
     public void work(){
-        // System.out.println(Player.get().getHp());
         updateAttackZone();
         for(NPC c: Engine.getCurrentLevel().getNPC()){
             if(c.getSolidBox().intersects(Player.get().getSolidBox())){
                 Player.get().setHp(Player.get().getHp()-1);
-
             }
-
         }
     }
     public void updateAttackZone(){
+        Player.get().getAttackZone().setBounds(Player.get().getX(),Player.get().getY() + 10,50,50);
+        AffineTransform rotate = AffineTransform.getRotateInstance(-Math.toRadians(Aim.getInstance().calculateAngle()),Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY());
+        Player.get().setAttackZone(rotate.createTransformedShape(Player.get().getAttackZone()).getBounds());
+    }
 
-        AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX()-Camera.getInstance().getX(),Player.get().getY()-Camera.getInstance().getY());
-        at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()),15,15);
-        System.out.println(Player.get().getAttackZone().getBounds().x +" "+ Player.get().getAttackZone().getBounds().y +" "+ Player.get().getAttackZone().getBounds().width +" "+ Player.get().getAttackZone().getBounds().height);
-        Player.get().getAttackZone().setBounds(Player.get().getX(),Player.get().getY()-30,30,30);
+    /**
+     * Функция обратного вызова для службы обработки боя. Позволяет нанести указанный урон целевому существу
+     * @param victim - жертва
+     * @param damage - урон
+     */
+    public void attack(Creature victim, int damage){
+        victim.setHp(victim.getHp()-damage);
 
-        System.out.println(Player.get().getAttackZone().getBounds().x +" "+ Player.get().getAttackZone().getBounds().y +" "+ Player.get().getAttackZone().getBounds().width +" "+ Player.get().getAttackZone().getBounds().height);
-
-        Player.get().setAttackZone(at.createTransformedShape(Player.get().getAttackZone()).getBounds2D().getBounds());
-
-
+        //TODO: Сделать нормальный механизм смерти. Пока так.
+        if( (!Player.get().equals(victim)) && victim.getHp() <= 0 )  Engine.getCurrentLevel().getNPC().remove(victim);
     }
 
 }

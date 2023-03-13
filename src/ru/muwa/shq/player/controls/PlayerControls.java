@@ -1,15 +1,20 @@
 package ru.muwa.shq.player.controls;
 
+import org.w3c.dom.ls.LSOutput;
+import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.engine.utilities.InventoryManager;
+import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.levels.dev.DevLevel0;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.GameZone;
 
@@ -78,7 +83,18 @@ public class PlayerControls
     }
     private void space()
     {
-
+        for(NPC npc : Engine.getCurrentLevel().getNPC())
+        {
+            if (npc.getSolidBox().intersects(Player.get().getAttackZone()))
+            {
+                //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
+                System.out.printf("hp " + npc.getHp());
+                CombatUtility.getInstance().attack(npc, 5);
+                System.out.printf("hp " + npc.getHp());
+            }
+        }
+        Engine.getCurrentLevel().getObjects().add( new Bullet((int)Player.get().getAttackZone().getCenterX(), (int)Player.get().getAttackZone().getCenterY(), -1*(Aim.getInstance().calculateAngle() - 90)));
+        keyboard.getKeys()[keyboard.SPACE] = false;
     }
     private void enter()
     {

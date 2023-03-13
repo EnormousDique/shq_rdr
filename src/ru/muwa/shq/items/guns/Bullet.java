@@ -96,7 +96,7 @@ public class Bullet extends GameObject
         return time;
     }
 
-    protected Bullet(int x, int y, double angle)
+    public Bullet(int x, int y, double angle)
     {
         super(x, y, img);
         initialX = x;
@@ -106,5 +106,6 @@ public class Bullet extends GameObject
         xVelocity = velocity * Math.cos(Math.toRadians(angle));
         yVelocity = velocity * Math.sin(Math.toRadians(angle));
         time = 0;
+        System.out.println("created bullet. y vel : "  + yVelocity + "  x vel : " + xVelocity + "  angle : " + angle);
     }
 }

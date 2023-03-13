@@ -22,7 +22,7 @@ public class KeyListener implements java.awt.event.KeyListener
      * ENTER - 10
      */
     private boolean[] keys; // Массив кнопок. Каждой кнопке соответствует свой индекс массива.
-    // Если кнопка нажата, в массиве под этим индексом хранится
+    // Если кнопка нажата, в массиве под этим индексом хранится true
     public final int
             W = 0,
             A = 1,

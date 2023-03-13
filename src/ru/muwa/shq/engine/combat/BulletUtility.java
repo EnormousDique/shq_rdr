@@ -1,6 +1,9 @@
 package ru.muwa.shq.engine.combat;
 
+import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.items.guns.Bullet;
+import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.zones.GameZone;
 
 import java.util.LinkedList;
 
@@ -18,11 +21,11 @@ public class BulletUtility
         if(instance == null) return new BulletUtility(); else return instance;
     }
 
-    public void update()
+    public void work()
     {
-        for(Bullet b : bullets)
+        for(GameObject o : Engine.getCurrentLevel().getObjects())
         {
-            moveBullet(b);
+           if(o instanceof Bullet ) moveBullet((Bullet) o);
         }
     }
 
