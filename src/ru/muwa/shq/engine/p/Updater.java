@@ -128,8 +128,9 @@ public class Updater implements Runnable
         }
 
         //Блок обработки НПЦ из списка текущих.
-        for(NPC c : Engine.getCurrentLevel().getNPC())
+        for(int i = 0; i< Engine.getCurrentLevel().getNPC().size(); i++)
         {
+            NPC c = Engine.getCurrentLevel().getNPC().get(i);
             //Передаем нпц ии, чтобы тот решил что ему делать.
             AI.getInstance().move(c);
 

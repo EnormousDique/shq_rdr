@@ -6,6 +6,7 @@ import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.LevelStorage;
+import ru.muwa.shq.levels.demo.hub.DemoHub;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
@@ -39,7 +40,14 @@ public class DemoLevel0 extends Level
         objects.add(new TallFatBuilding(1000,2500));
         instance = this;
         zones.add(new EnterZone(520,1765,70,70, FatBuildingFloor1.getInstance(), 327,220,false));
+        zones.add(new EnterZone(0,0,70,70, DemoHub.getInstance(), 0,0,false));
         npc.add(new BadGuy0(800,1800));
+        npc.add(new BadGuy0(950,1800));
+        npc.add(new BadGuy0(1100,1800));
+        npc.add(new BadGuy0(1300,1800));
         npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
+        npc.get(1).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
+        npc.get(2).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
+        npc.get(3).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
     }
 }

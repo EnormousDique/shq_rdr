@@ -5,6 +5,7 @@ import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.player.Player;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -49,7 +50,7 @@ public class CollisionsChecker
 
                     if(o.getY() + o.getHeight() > obj.getY() + obj.getHeight() && o.getX() + o.getWidth() > obj.getX() && o.getX() < obj.getX()+obj.getWidth())
                     o.setY(obj.getY()+obj.getHeight());//Вниз
-                else if(o.getY() < obj.getY() //Голова выше крыши
+                    else if(o.getY() < obj.getY() //Голова выше крыши
                         &&
                         o.getX() + o.getWidth() > obj.getX()  // внутри по х
                         &&
@@ -63,14 +64,10 @@ public class CollisionsChecker
                         System.out.println("vlevo");
                         }//Влево
 
-
-                    //Код для уничтожения пуль после столкновения
-                    //TODO: возможно требуется удалить
-                    if(obj instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(obj);
-                    if(o instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(o);
-
-
-
+                //Код для уничтожения пуль после столкновения
+                if(obj instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(obj);
+                if(o instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(o);
+                if(obj instanceof Bullet && o.equals(Player.get()))CombatUtility.getInstance().attack(Player.get(),10);
                 }
             }
         }
@@ -104,7 +101,7 @@ public class CollisionsChecker
 
 
 
-                    //Код для уничтожения пуль после столкновения
+                    //Код для уничтожения пуль после столкновения и нанесение урона
                     if(obj instanceof Bullet)
                     {
                         Engine.getCurrentLevel().getObjects().remove(obj);
