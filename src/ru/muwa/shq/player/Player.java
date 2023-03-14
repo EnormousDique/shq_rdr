@@ -3,6 +3,7 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.camera.Camera;
+import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.Usable;
 
 import javax.imageio.ImageIO;
@@ -19,6 +20,8 @@ public class Player extends Creature
 {
     private static Player instance;
 
+    public enum Direction{UP,DOWN,LEFT,RIGHT}
+    public Direction direction;
     private Rectangle useZone;
 
     private static BufferedImage img;
@@ -67,7 +70,6 @@ public class Player extends Creature
     protected Player(int x, int y, BufferedImage texture )
     {
         super(x, y, texture);
-        direction = DOWN;
         useZone = new Rectangle();
         isStanding = false;
         velocity = 2;
@@ -88,8 +90,7 @@ public class Player extends Creature
     @Override
     public void moveLeft() {
         if(!isBusy)super.moveLeft();
-      //  Camera.getInstance().setX(Player.get().getX() + Player.get().getWidth() - (GameScreen.SCREEN_HEIGHT/2));
-       // texture=imgLeft;
+        if(direction!= Direction.LEFT) direction = Direction.LEFT;
 
 
     }
@@ -97,8 +98,8 @@ public class Player extends Creature
     @Override
     public void moveRight() {
         if(!isBusy)super.moveRight();
-      //  Camera.getInstance().setX(Player.get().getX() + Player.get().getWidth() - (GameScreen.SCREEN_HEIGHT/2));
-     //   texture=imgRight;
+        if(direction!= Direction.RIGHT) direction = Direction.RIGHT;
+
     }
     public void jump(){
 
@@ -106,15 +107,13 @@ public class Player extends Creature
      @Override
     public void moveUp(){
          if(!isBusy)super.moveUp();
-        // Camera.getInstance().setY(Player.get().getY() + Player.get().getHeight() - (GameScreen.SCREEN_WIDTH/2));
-       //  texture=imgUp;
+         if(direction!= Direction.UP) direction = Direction.UP;
 
      }
     @Override
      public void moveDown (){
         if(!isBusy)super.moveDown();
-        // Camera.getInstance().setY(Player.get().getY() + Player.get().getHeight() - (GameScreen.SCREEN_WIDTH/2));
-       // texture=imgDown;
+        if(direction!= Direction.DOWN) direction = Direction.DOWN;
      }
 }
 
