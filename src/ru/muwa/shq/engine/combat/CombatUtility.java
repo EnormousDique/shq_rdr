@@ -18,7 +18,8 @@ public class CombatUtility {
     private CombatUtility (){
         instance = this;
     }
-    public void work(){
+    public void work()
+    {
         updateAttackZone();
         for(NPC c: Engine.getCurrentLevel().getNPC()){
             if(c.getSolidBox().intersects(Player.get().getSolidBox())){
@@ -27,7 +28,7 @@ public class CombatUtility {
         }
     }
     public void updateAttackZone(){
-        Player.get().getAttackZone().setBounds(Player.get().getX(),Player.get().getY() + 10,50,50);
+        Player.get().getAttackZone().setBounds(Player.get().getX(),Player.get().getY() + 10,40,40);
         AffineTransform rotate = AffineTransform.getRotateInstance(-Math.toRadians(Aim.getInstance().calculateAngle()),Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY());
         Player.get().setAttackZone(rotate.createTransformedShape(Player.get().getAttackZone()).getBounds());
     }
