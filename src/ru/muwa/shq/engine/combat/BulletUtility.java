@@ -3,12 +3,15 @@ package ru.muwa.shq.engine.combat;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.player.Player;
+import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.zones.GameZone;
 
 import java.util.LinkedList;
 
 public class BulletUtility
 {
+
     private LinkedList<Bullet> bullets = new LinkedList<>();
     private static BulletUtility instance;
     private BulletUtility()
@@ -35,6 +38,7 @@ public class BulletUtility
 
     private void moveBullet(Bullet b)
     {
+
         b.setTime(b.getTime() + 0.1);
         b.setX((int)(b.getInitialX() + b.getxVelocity() * b.getTime()));
         b.setY((int)(b.getInitialY() + b.getyVelocity() * b.getTime()));
