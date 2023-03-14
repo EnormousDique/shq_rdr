@@ -31,10 +31,10 @@ public class Aim {
         line2.setLine(Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY(), MouseListener.getInstance().getX()+Camera.getInstance().getX(), MouseListener.getInstance().getY()+Camera.getInstance().getY());
         line3.setLine(MouseListener.getInstance().getX()+Camera.getInstance().getX(), MouseListener.getInstance().getY()+Camera.getInstance().getY(), Player.get().getSolidBox().getCenterX(), Player.get().getY() + Player.get().getHeight());
     }
-    private int getLineSize(Line2D l)
+    private double getLineSize(Line2D l)
     {
         // По пифагору считаем длину линии
-        return (int) Math.sqrt(((l.getX2()-l.getX1())*(l.getX2()-l.getX1()))+((l.getY2()-l.getY1())*(l.getY2()-l.getY1())));
+        return Math.sqrt(((l.getX2()-l.getX1())*(l.getX2()-l.getX1()))+((l.getY2()-l.getY1())*(l.getY2()-l.getY1())));
     }
     public ArrayList<Line2D> getLines(){
 
