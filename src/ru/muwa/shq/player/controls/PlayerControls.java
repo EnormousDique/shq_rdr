@@ -95,6 +95,7 @@ public class PlayerControls
         }
         Engine.getCurrentLevel().getObjects().add( new Bullet((int)Player.get().getAttackZone().getCenterX(), (int)Player.get().getAttackZone().getCenterY(), -1*(Aim.getInstance().calculateAngle() - 90)));
         keyboard.getKeys()[keyboard.SPACE] = false;
+
     }
     private void enter()
     {

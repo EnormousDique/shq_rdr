@@ -10,7 +10,7 @@ import java.io.File;
 public class Bullet extends GameObject
 {
 
-    public static final int BULLET_SPEED = 10;
+    public static final int BULLET_SPEED = 40;
 
     private int initialX;
     private int initialY;
