@@ -52,7 +52,7 @@ public class Renderer implements Runnable
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        frame.add(canvas);
        frame.setSize(GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT + GameScreen.FRAME_TOP_HEIGHT);
-       frame.setResizable(false);//false
+       frame.setResizable(true);//false
        frame.setLocationRelativeTo(null);
        frame.setVisible(true);
        canvas.addMouseMotionListener(MouseListener.getInstance());

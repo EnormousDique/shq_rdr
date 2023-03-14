@@ -30,7 +30,7 @@ public class Launcher
         frame.setVisible(true);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setBounds(330,200, GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
+        frame.setBounds(0,0, GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
         buttons = new LinkedList<>();
         frame.add(startButton = new JButton("Начать"));
         startButton.setBounds(100,100,600,50);
