@@ -25,7 +25,7 @@ public class BulletUtility
     {
         for(GameObject o : Engine.getCurrentLevel().getObjects())
         {
-           if(o instanceof Bullet ) moveBullet((Bullet) o);
+             if(o instanceof Bullet ) moveBullet((Bullet) o);
         }
     }
 

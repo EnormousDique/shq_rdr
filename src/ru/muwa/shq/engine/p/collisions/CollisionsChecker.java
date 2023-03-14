@@ -1,5 +1,8 @@
 package ru.muwa.shq.engine.p.collisions;
+import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.GameScreen;
+import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 
@@ -43,6 +46,7 @@ public class CollisionsChecker
             for (GameObject obj : list) { //Перебираем объекты.
                 if (o.getSolidBox().intersects(obj.getSolidBox())) // произошло столкновение
                 {
+
                     if(o.getY() + o.getHeight() > obj.getY() + obj.getHeight() && o.getX() + o.getWidth() > obj.getX() && o.getX() < obj.getX()+obj.getWidth())
                     o.setY(obj.getY()+obj.getHeight());//Вниз
                 else if(o.getY() < obj.getY() //Голова выше крыши
@@ -58,6 +62,14 @@ public class CollisionsChecker
                     {o.setX(obj.getX()-o.getWidth());
                         System.out.println("vlevo");
                         }//Влево
+
+
+                    //Код для уничтожения пуль после столкновения
+                    //TODO: возможно требуется удалить
+                    if(obj instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(obj);
+                    if(o instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(o);
+
+
 
                 }
             }
@@ -88,6 +100,19 @@ public class CollisionsChecker
                     else if(c.getSolidBox().getCenterX() < obj.getSolidBox().getCenterX()) c.setX(obj.getX() - c.getWidth());
                         //И в другой бок.
                     else if(c.getSolidBox().getCenterX() > obj.getSolidBox().getCenterX()) c.setX(obj.getX() + obj.getWidth());
+
+
+
+
+                    //Код для уничтожения пуль после столкновения
+                    if(obj instanceof Bullet)
+                    {
+                        Engine.getCurrentLevel().getObjects().remove(obj);
+                        CombatUtility.getInstance().attack(c, 10);
+                        break;
+                    }
+
+
                 }
             }
         }
