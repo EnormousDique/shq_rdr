@@ -28,6 +28,7 @@ public class Engine
      * Статические поля.
      */
 
+    public static boolean pause ;
     private static Level currentLevel;
 
 

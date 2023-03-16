@@ -9,6 +9,10 @@ import java.awt.*;
 
 public class HUD {
 
+    public void clearActionWindow () {
+        actionWindow = new JPanel();
+    }
+
     private static HUD instance;
 
 

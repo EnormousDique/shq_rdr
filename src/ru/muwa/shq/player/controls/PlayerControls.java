@@ -17,6 +17,7 @@ import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.GameZone;
+import ru.muwa.shq.zones.InteractiveEnterZone;
 
 import java.awt.*;
 import java.util.Objects;
@@ -99,17 +100,23 @@ public class PlayerControls
         keyboard.getKeys()[keyboard.SPACE] = false;
 
     }
-    private void enter()
-    {
+    private void enter() {
 
-        for(GameZone z : Engine.getCurrentLevel().getZones())
-            if(z.contains(new Point(Player.get().getX(),Player.get().getY()))
+        for (GameZone z : Engine.getCurrentLevel().getZones()){
+            if (z.contains(new Point(Player.get().getX(), Player.get().getY()))
                     &&
                     KeyListener.getInstance().getKeys()[KeyListener.getInstance().ENTER]
                     &&
                     z instanceof EnterZone)
                 Engine.switchLevel((EnterZone) z);
+            if(z.contains(new Point(Player.get().getX(), Player.get().getY()))
+                    &&
+                    z instanceof InteractiveEnterZone) ((InteractiveEnterZone ) z).getGame().game();
+
+    }
+
         KeyListener.getInstance().getKeys()[KeyListener.getInstance().ENTER] = false;
+
 
     }
 

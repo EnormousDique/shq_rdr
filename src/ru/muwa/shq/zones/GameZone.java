@@ -5,7 +5,7 @@ import java.awt.*;
 /**
  * Класс, являющийся праодителем всех игровых зон.
  */
-public class GameZone extends Rectangle
+public abstract class GameZone extends Rectangle
 {
     protected GameZone(int x, int y, int width, int height)
     {
