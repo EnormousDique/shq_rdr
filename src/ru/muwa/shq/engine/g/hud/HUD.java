@@ -20,7 +20,6 @@ public class HUD {
         instance = this;
         healthBar.setValue(Player.get().getHp());
 
-
     }
     public JProgressBar getHealthBar() {
         return healthBar;

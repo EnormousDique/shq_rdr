@@ -51,8 +51,8 @@ public class Renderer implements Runnable
        canvas = new Canvas();
        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        frame.add(canvas);
-       frame.setSize(GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT + GameScreen.FRAME_TOP_HEIGHT);
-       frame.setResizable(false);//false
+       frame.setSize(GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT /* + GameScreen.FRAME_TOP_HEIGHT */);
+       frame.setResizable(true);//false
        frame.setLocationRelativeTo(null);
        frame.setVisible(true);
        canvas.addMouseMotionListener(MouseListener.getInstance());
@@ -183,6 +183,7 @@ public class Renderer implements Runnable
         HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
         //отрисовка текущего здоровья персонажа
         HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
+        HUD.getInstance().getHealthBar().setString(Integer.toString(HUD.getInstance().getHealthBar().getValue()));
 
 
         //Отрисовка полей под иконки у инвентаря

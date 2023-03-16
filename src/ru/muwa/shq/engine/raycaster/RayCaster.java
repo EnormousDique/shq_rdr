@@ -11,7 +11,7 @@ import java.util.LinkedList;
  */
 public class RayCaster
 {
-    public static final int RAYS_AMOUNT = 200;
+    public static final int RAYS_AMOUNT = 50;
 
     private LinkedList<Line2D.Float> borders; // Список линий, через который лучи не могут пройти.
     int x,y; // Координаты центра, из которого строятся лучи
