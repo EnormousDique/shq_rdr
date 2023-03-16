@@ -20,6 +20,8 @@ public class GameScreen extends JFrame
     private GameScreen(){
         instance = this;
         this.add(HUD.getInstance().getHealthBar());
+        this.add(HUD.getInstance().getActionWindow());
+
         HUD.getInstance().getHealthBar().setBounds(100+ Camera.getInstance().getX(),300+Camera.getInstance().getY(),400,50);
 
     } // Конструктор. (Приватный)

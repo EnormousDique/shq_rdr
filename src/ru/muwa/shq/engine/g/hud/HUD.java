@@ -4,12 +4,12 @@ package ru.muwa.shq.engine.g.hud;
 import ru.muwa.shq.player.Player;
 
 import javax.swing.*;
+import java.awt.*;
 
 
 public class HUD {
-    JProgressBar healthBar = new JProgressBar(0,100);
-    private static HUD instance;
 
+    private static HUD instance;
 
 
     public static HUD getInstance() {
@@ -19,10 +19,18 @@ public class HUD {
     private HUD (){
         instance = this;
         healthBar.setValue(Player.get().getHp());
+        actionWindow.setBounds(100,100,100,100);
 
     }
+
+    JProgressBar healthBar = new JProgressBar(0,100);
     public JProgressBar getHealthBar() {
         return healthBar;
     }
 
+    JPanel actionWindow = new JPanel();
+
+    public JPanel getActionWindow() {
+        return actionWindow;
+    }
 }
