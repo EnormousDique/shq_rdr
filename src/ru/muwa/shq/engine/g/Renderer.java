@@ -164,6 +164,12 @@ public class Renderer implements Runnable
         if(Inventory.getInstance().isOpened()) g.drawImage(Inventory.getInstance().getImg(), Inventory.getInstance().getX()-camX,Inventory.getInstance().getY()-camY,null);
         if(Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems()) if(i!=null) g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x-camX,Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y-camY,null);
 
+        // полоску здовроья видно только при открытии инвентаря
+        HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
+        HUD.getInstance().getActionWindow().setVisible(Inventory.getInstance().isOpened());
+        //отрисовка текущего здоровья персонажа
+        HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
+        HUD.getInstance().getHealthBar().setString(Integer.toString(HUD.getInstance().getHealthBar().getValue()));
         //Отрисовка текстуры игрока.
 
         // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -179,11 +185,7 @@ public class Renderer implements Runnable
 
         g.drawRect(player.getAttackZone().getBounds().x-camX,player.getAttackZone().getBounds().y-camY,player.getAttackZone().getBounds().width,player.getAttackZone().getBounds().height );
 
-        // полоску здовроья видно только при открытии инвентаря
-        HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
-        //отрисовка текущего здоровья персонажа
-        HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
-        HUD.getInstance().getHealthBar().setString(Integer.toString(HUD.getInstance().getHealthBar().getValue()));
+
 
 
         //Отрисовка полей под иконки у инвентаря
