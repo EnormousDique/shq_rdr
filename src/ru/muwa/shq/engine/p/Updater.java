@@ -57,7 +57,7 @@ public class Updater implements Runnable
             //TODO: вероятно стоит запустить отдельный поток для провери столновений вне основного потоа updater'a
             //Баг удалось исправить.
 
-            if(delta >= 1)
+            if(delta >= 1 && !Engine.pause)
             {
                 update();
                // Renderer.getInstance().render();
