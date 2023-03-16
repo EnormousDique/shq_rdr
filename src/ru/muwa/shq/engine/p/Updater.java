@@ -60,7 +60,7 @@ public class Updater implements Runnable
             if(delta >= 1)
             {
                 update();
-                Renderer.getInstance().render();
+               // Renderer.getInstance().render();
                 delta--;
             }
         }
