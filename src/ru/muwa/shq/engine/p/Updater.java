@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class Updater implements Runnable
 {
     public static Updater instance;
-    private Thread thread; // Поток движка игровых состояний.
+    public Thread thread; // Поток движка игровых состояний.
     private Player player; // Ссылка на игрока.
 
     private Updater()
@@ -48,21 +48,26 @@ public class Updater implements Runnable
 
         while(thread !=  null)
         {
+
             currTime = System.nanoTime();
             delta += (currTime - lastTime) / drawInterval;
             lastTime = currTime;
+
 
          //   for(GameObject o : Engine.getCurrentLevel().getObjects()) CollisionsChecker.getInstance().checkCollisions(o, Engine.getCurrentLevel().getObjects());
             //Попытка вынести расчёты столновений за ограничение в 60 итераций в секунду для исправления бага с выталкиванием за текстуры
             //TODO: вероятно стоит запустить отдельный поток для провери столновений вне основного потоа updater'a
             //Баг удалось исправить.
 
-            if(delta >= 1 && !Engine.pause)
+            if(delta >= 1 &&  !Engine.pause )
             {
                 update();
-               // Renderer.getInstance().render();
                 delta--;
             }
+        }
+        while (true)
+        {
+            System.out.println("pshx thread slomalsa");
         }
     }
 
@@ -75,6 +80,7 @@ public class Updater implements Runnable
     // Нужно проверить насколько это была необходимая мера и можно ли обойтись без неё.
     private void update()
     {
+
 
         //System.out.println(Math.toDegrees(Math.acos( ((4*4) + (3*3) - (5*5)) / (2 * 4 * 3) )) );
 

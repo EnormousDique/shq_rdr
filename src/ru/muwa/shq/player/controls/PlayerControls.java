@@ -9,6 +9,7 @@ import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
+import ru.muwa.shq.engine.s.Sounder;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.levels.dev.DevLevel0;
@@ -37,10 +38,11 @@ public class PlayerControls
 
     public  void controlPlayer()
     {
+        boolean p = Engine.pause;
         //проверка на открытие инвентаря
         Player.get().setIsBusy(Inventory.getInstance().isOpened());
         // Клавиатура
-        if(keyboard.getKeys()[keyboard.W]) w(); // Нажата W
+        if(keyboard.getKeys()[keyboard.W] ) w(); // Нажата W
         if(keyboard.getKeys()[keyboard.A]) a();// Нажата A
         if(keyboard.getKeys()[keyboard.S]) s();// Нажата S
         if(keyboard.getKeys()[keyboard.D]) d();// Нажата D
@@ -78,6 +80,7 @@ public class PlayerControls
     private void e()
     {
         Interactor.getInstance().interact();
+        Sounder.changeSong("src\\ru\\muwa\\shq\\sounds\\songs\\muzike1.wav");
     }
     private void i()
     {
@@ -100,6 +103,8 @@ public class PlayerControls
         //Блок стрельбы
         Engine.getCurrentLevel().getObjects().add( new Bullet((int)Player.get().getAttackZone().getCenterX() , (int)Player.get().getAttackZone().getCenterY(), -(Aim.getInstance().calculateAngle() - 90)));
         keyboard.getKeys()[keyboard.SPACE] = false;
+        Sounder.playSFX("src\\ru\\muwa\\shq\\sounds\\sfx\\vistrel05.wav");
+
 
     }
     private void enter() {
@@ -119,6 +124,11 @@ public class PlayerControls
                 while (!((InteractiveEnterZone ) z).getGame().victory())
                 {
                     System.out.println("мы находимся в миниигре падик лок");
+                    if(((InteractiveEnterZone ) z).getGame().victory()
+                    || ((PadikLock) ((InteractiveEnterZone ) z).getGame()).isForceQuit())
+                    {
+                       break;
+                    }
                 }
                 if( ! ((PadikLock)((InteractiveEnterZone)z).getGame() ).isForceQuit() ) {
                     Engine.pause = false;

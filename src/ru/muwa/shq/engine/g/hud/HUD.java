@@ -13,7 +13,7 @@ public class HUD {
     public void clearActionWindow () {
        for(int i = 0; i < actionWindow.getComponents().length; i++ )
        {
-           actionWindow.remove(i);
+           actionWindow.remove(actionWindow.getComponents()[i]);
        }
 
     }

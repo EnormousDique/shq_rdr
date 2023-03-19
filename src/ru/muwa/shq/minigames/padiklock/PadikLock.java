@@ -17,17 +17,18 @@ public class PadikLock implements MiniGame {
 
     public List<JButton> buttons = new ArrayList<>();
     @Override
-    public boolean victory() { //TODO: к удалению
-
+    public boolean victory() {
         if(victory) return victory;
-        return checkPassword();
+        else  return checkPassword();
     }
 
     @Override
     public void game() {
 
+        HUD.getInstance().clearActionWindow();
         victory = false;
         isForceQuit = false;
+        buttons = new ArrayList<>();
         HUD.getInstance().getActionWindow().setVisible(true); // включаем видимость панели мини игры
         Engine.pause = true;
 
@@ -49,9 +50,10 @@ public class PadikLock implements MiniGame {
         label = new JLabel(currInput);
         HUD.getInstance().getActionWindow().add(label);
 
-        for(JButton b :buttons)
-
-        HUD.getInstance().getActionWindow().add(b);
+        for(JButton b :buttons) {
+            System.out.println("adding button : " + b.getText());
+            HUD.getInstance().getActionWindow().add(b);
+        }
         HUD.getInstance().getActionWindow().updateUI();
         boolean success = false;
 

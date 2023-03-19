@@ -7,6 +7,7 @@ import ru.muwa.shq.engine.launcher.Launcher;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.p.Updater;
 //import ru.muwa.shq.levels.dev.LevelVovka1010;
+import ru.muwa.shq.engine.s.Sounder;
 import ru.muwa.shq.levels.LevelStorage;
 import ru.muwa.shq.levels.demo.DemoLevel0;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
@@ -51,6 +52,7 @@ public class Engine
         currentLevel = LevelStorage.demoLevel0;
         Updater.getInstance();
         Renderer.getInstance();
+        Sounder.getInstance();
         Launcher.hideFrame();
     }
 

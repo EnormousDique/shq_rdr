@@ -4,6 +4,7 @@ import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
+import ru.muwa.shq.engine.p.Updater;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
@@ -44,6 +45,7 @@ public class Renderer implements Runnable {
      */
     public Renderer() {
         System.out.println("Starting graphics eng initialization, setting renderer up..");
+
         if (instance != null) return;
         instance = this;
         frame = GameScreen.getInstance();
@@ -104,6 +106,8 @@ public class Renderer implements Runnable {
      */
     public void render() {
 
+
+        //System.out.println(Updater.getInstance().thread);
         // ======= инициализация
         int camX = Camera.getInstance().getX(), camY = Camera.getInstance().getY();
         BufferStrategy bs = canvas.getBufferStrategy();
@@ -119,12 +123,7 @@ public class Renderer implements Runnable {
         g.fillRect(0, 0, GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT);
 
 
-        //Отрисовка всех обектов из списка  текущих
-        /*
-        for (GameObject o : Engine.getCurrentLevel().getObjects())
-            g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
 
-         */
         for (int i = 0;i<Engine.getCurrentLevel().getObjects().size();i++){
             GameObject o = Engine.getCurrentLevel().getObjects().get(i);
             g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
@@ -139,8 +138,6 @@ public class Renderer implements Runnable {
                 g.drawImage(c.getUI(), c.getX() - camX, c.getY() - camY, null);
                 // отрисовка предмета в контейнере.
                 for (int i = 0; i < c.getItems().size(); i++) {
-
-
                     g.drawImage(c.getItems().get(i).getTexture(), c.getIcons().get(i).x - camX, c.getIcons().get(i).y - camY, null);
                 }
 

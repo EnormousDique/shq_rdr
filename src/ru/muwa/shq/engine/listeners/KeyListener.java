@@ -1,5 +1,8 @@
 package ru.muwa.shq.engine.listeners;
 
+import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.p.Updater;
+
 import java.awt.event.KeyEvent;
 
 /**
@@ -19,6 +22,7 @@ public class KeyListener implements java.awt.event.KeyListener
      * Q - 81
      * W - 87
      * S - 83
+     * P - 80
      * ENTER - 10
      */
     private boolean[] keys; // Массив кнопок. Каждой кнопке соответствует свой индекс массива.
@@ -32,7 +36,8 @@ public class KeyListener implements java.awt.event.KeyListener
             E = 5,
             I = 6,
             Q = 7,
-            ENTER = 8;
+            ENTER = 8,
+            P = 9;
     private static KeyListener instance;
 
     private KeyListener()
@@ -86,6 +91,8 @@ public class KeyListener implements java.awt.event.KeyListener
             case 10: // ENTER
                 keys[ENTER] = true;
                 break;
+            case 80: // P
+                Engine.pause = !Engine.pause;
 
 
         }
