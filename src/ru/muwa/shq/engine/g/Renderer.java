@@ -27,6 +27,7 @@ import java.awt.image.BufferStrategy;
 public class Renderer implements Runnable {
     private Graphics g; // Объект графики (Объект, который рисует)
     private GameScreen frame; // Игровой экран
+    public GameScreen getFrame(){return frame;}
     private Canvas canvas; // Холст на игровом экране
     private Thread thread; // Поток графического движка
     private Player player = Player.get(); // Ссылка на игрока

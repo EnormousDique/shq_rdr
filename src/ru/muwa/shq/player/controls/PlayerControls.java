@@ -5,12 +5,14 @@ import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.camera.Camera;
+import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.levels.dev.DevLevel0;
+import ru.muwa.shq.minigames.padiklock.PadikLock;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
@@ -111,7 +113,19 @@ public class PlayerControls
                 Engine.switchLevel((EnterZone) z);
             if(z.contains(new Point(Player.get().getX(), Player.get().getY()))
                     &&
-                    z instanceof InteractiveEnterZone) ((InteractiveEnterZone ) z).getGame().game();
+                    z instanceof InteractiveEnterZone)
+            {
+                ((InteractiveEnterZone ) z).getGame().game();
+                while (!((InteractiveEnterZone ) z).getGame().victory())
+                {
+                    System.out.println("мы находимся в миниигре падик лок");
+                }
+                if( ! ((PadikLock)((InteractiveEnterZone)z).getGame() ).isForceQuit() ) {
+                    Engine.pause = false;
+                    Engine.switchLevel(((InteractiveEnterZone) z).enterZone);
+                    HUD.getInstance().getActionWindow().setVisible(false);
+                }
+            }
 
     }
 

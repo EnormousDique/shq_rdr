@@ -1,6 +1,7 @@
 package ru.muwa.shq.engine.g.hud;
 
 
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.player.Player;
 
 import javax.swing.*;
@@ -10,7 +11,11 @@ import java.awt.*;
 public class HUD {
 
     public void clearActionWindow () {
-        actionWindow = new JPanel();
+       for(int i = 0; i < actionWindow.getComponents().length; i++ )
+       {
+           actionWindow.remove(i);
+       }
+
     }
 
     private static HUD instance;
