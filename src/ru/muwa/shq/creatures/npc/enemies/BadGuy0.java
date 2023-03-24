@@ -4,13 +4,18 @@ import ru.muwa.shq.engine.raycaster.RayCaster;
 import ru.muwa.shq.creatures.npc.NPC;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 import static ru.muwa.shq.objects.GameObject.Direction.RIGHT;
 
-public class BadGuy0 extends NPC
-{
+public class BadGuy0 extends NPC {
+
+
+
+
     private static BufferedImage img;
     static
     {
@@ -32,6 +37,16 @@ public class BadGuy0 extends NPC
         direction = RIGHT;
         setRayCaster(new RayCaster(x,y,300));
         hp = 20;
+        //текстура трупа
+        try
+        {
+            corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\BadGuyCorpse.png"));
+            System.out.println("BadGuyCorpse texture loaded");
+        }
+        catch (IOException e)
+        {
+            System.out.println("failed to load BadGuyCoprse texture");
+        }
     }
     protected BadGuy0(int x, int y, BufferedImage texture)
     {

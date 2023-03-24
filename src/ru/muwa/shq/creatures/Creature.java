@@ -14,6 +14,10 @@ import static ru.muwa.shq.objects.GameObject.Direction.*;
  */
 public abstract class Creature extends GameObject
 {
+    public  BufferedImage getcorpseimg() {
+        return corpseimg;
+    }
+    protected  BufferedImage corpseimg;
     protected int agility; // Ловкость
     protected int jumpAx; // Ускорение прыжка
     protected int maxJumpAx; // Максимальное ускорение прыжка
