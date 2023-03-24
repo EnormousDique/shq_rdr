@@ -4,6 +4,7 @@ import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingStraightFloor;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
+import ru.muwa.shq.objects.bounds.InvisibleWall;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
 import ru.muwa.shq.objects.containers.TrashCan;
@@ -33,9 +34,11 @@ public class DemoLevel0 extends Level
         objects.add(new Crate0(100,100));
         objects.add(new FatBuilding(0,1500));
         objects.add(new TallFatBuilding(1000,2500));
+
         instance = this;
       //  zones.add(new EnterZone(520,1765,70,70, FatBuildingFloor1.getInstance(), 327,220,false));
-        zones.add(new InteractiveEnterZone( new PadikLock(),new EnterZone(520,1665,70,70, FatBuildingStraightFloor.getInstance(), 287,982,false)));
+        zones.add(new InteractiveEnterZone( new PadikLock(),new EnterZone(520,1665,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
+        zones.add(new InteractiveEnterZone( new PadikLock(),new EnterZone(520,2115,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
         // zones.add(new EnterZone(0,0,70,70, DemoHub.getInstance(), 0,0,false));
         npc.add(new BadGuy0(800,1800));
         npc.add(new BadGuy0(950,1800));
@@ -44,6 +47,6 @@ public class DemoLevel0 extends Level
         npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         npc.get(1).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         npc.get(2).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
-          npc.get(3).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
+        npc.get(3).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
     }
 }

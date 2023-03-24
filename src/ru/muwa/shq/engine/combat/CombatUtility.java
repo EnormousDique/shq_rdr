@@ -2,11 +2,12 @@ package ru.muwa.shq.engine.combat;
 
 import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.engine.Engine;
-import ru.muwa.shq.engine.g.camera.Camera;
-import ru.muwa.shq.engine.g.hud.HUD;
+import ru.muwa.shq.objects.containers.Corpse;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
+
 
 import java.awt.geom.AffineTransform;
 
@@ -42,7 +43,13 @@ public class CombatUtility {
         victim.setHp(victim.getHp()-damage);
 
         //TODO: Сделать нормальный механизм смерти. Пока так.
-        if( (!Player.get().equals(victim)) && victim.getHp() <= 0 )  Engine.getCurrentLevel().getNPC().remove(victim);
+        if( (!Player.get().equals(victim)) && victim.getHp() <= 0 ) {
+            Engine.getCurrentLevel().getNPC().remove(victim);
+            Engine.getCurrentLevel().getContainers().add(new Corpse(victim.getX(),victim.getY(),victim.getcorpseimg()));
+
+
+        }
+
     }
 
 }

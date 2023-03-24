@@ -77,10 +77,10 @@ public class PlayerControls
     {
         Player.get().moveRight();
     }
-    private void e()
+     private void e()
     {
-        Interactor.getInstance().interact();
-        Sounder.changeSong("src\\ru\\muwa\\shq\\sounds\\songs\\muzike1.wav");
+    Interactor.getInstance().interact();
+     // Sounder.changeSong("src\\ru\\muwa\\shq\\sounds\\songs\\muzike1.wav");
     }
     private void i()
     {

@@ -9,7 +9,8 @@ import java.awt.image.BufferedImage;
  */
 public abstract class NPC extends Creature
 {
-    private boolean playerInSight;
+
+    protected boolean playerInSight;
 
     /**
      * Конструктор
@@ -47,5 +48,7 @@ public abstract class NPC extends Creature
     public Rectangle getRightWallZone(){
         return  rightWallZone ;
     }
+
+
 
 }

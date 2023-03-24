@@ -49,13 +49,11 @@ public class CollisionsChecker
                 {
 
                     if(o.getY() + o.getHeight() > obj.getY() + obj.getHeight() && o.getX() + o.getWidth() > obj.getX() && o.getX() < obj.getX()+obj.getWidth())
-                    o.setY(obj.getY()+obj.getHeight());//Вниз
-                    else if(o.getY() < obj.getY() //Голова выше крыши
-                        &&
-                        o.getX() + o.getWidth() > obj.getX()  // внутри по х
-                        &&
-                        o.getX() < obj.getX()+obj.getWidth()) // внутри по х
-                    o.setY(obj.getY()-o.getHeight());//Вверх
+                    {o.setY(obj.getY()+obj.getHeight());
+                        System.out.println("вниз");}//Вниз
+                    else if(o.getY() < obj.getY() && o.getX() + o.getWidth() > obj.getX() && o.getX() < obj.getX()+obj.getWidth() )
+                    {o.setY(obj.getY()-o.getHeight());
+                        System.out.println("вверх");}//Вверх
                     else if(o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY()+obj.getHeight())
                     {o.setX(obj.getX()+obj.getWidth());
                         System.out.println("право");}//Вправо
