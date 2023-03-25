@@ -57,7 +57,7 @@ public class InventoryManager
         JLabel faceIcon = new JLabel(new ImageIcon(face));
         Arrays.stream(HUD.getInstance().getStatusWindow().getComponents()).forEach(HUD.getInstance().getStatusWindow()::remove);
         HUD.getInstance().getStatusWindow().add(faceIcon);
-        HUD.getInstance().getStatusWindow().add(new JLabel("ТВОЁ ЗДОРОВЬЕ!"));
+        HUD.getInstance().getStatusWindow().add(new JLabel("ТВОЁ ЗДОРОВЬЕ! Друг!"));
         HUD.getInstance().getStatusWindow().add(new JLabel(String.valueOf(Player.get().getHp())));
         HUD.getInstance().getStatusWindow().updateUI();
     }
@@ -203,6 +203,7 @@ public class InventoryManager
                 //
                 if(Inventory.getInstance().getItems().get(i) !=null) {
                     itemTiles.add(new ItemPanel(Inventory.getInstance().getItems().get(i)));
+                    itemTiles.get(i).addMouseListener(MouseButtonListener.getInstance());
                 }
                 if(Inventory.getInstance().getItems().get(i).getTexture() !=null)
                 itemTiles.get(i).setIcon(new ImageIcon( Inventory.getInstance().getItems().get(i).getTexture()));

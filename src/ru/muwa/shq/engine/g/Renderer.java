@@ -4,9 +4,7 @@ import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
-import ru.muwa.shq.engine.p.Updater;
-import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
-import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
@@ -18,6 +16,7 @@ import ru.muwa.shq.zones.GameZone;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferStrategy;
@@ -26,7 +25,7 @@ import java.awt.image.BufferStrategy;
  * Класс, отвечающий за отрисовку изображения на экране.
  */
 public class Renderer implements Runnable {
-    private Graphics g; // Объект графики (Объект, который рисует)
+    public Graphics g; // Объект графики (Объект, который рисует)
     private GameScreen frame; // Игровой экран
     public GameScreen getFrame(){return frame;}
     private Canvas canvas; // Холст на игровом экране
@@ -186,7 +185,8 @@ public class Renderer implements Runnable {
 
             }
         }
-
+            // отрисовка информации о предмете при наводе мышки на онный
+           // drawDescription(g);
             // TODO: Проверить, нужны ли в прицнипе объекты класса ItemPhysicalAppearance
             //for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
 
@@ -224,7 +224,7 @@ public class Renderer implements Runnable {
             HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
             HUD.getInstance().getHealthBar().setString(Integer.toString(HUD.getInstance().getHealthBar().getValue()));
 
-
+   /*
             //Отрисовка полей под иконки у инвентаря
             for (Rectangle r : Inventory.getInstance().getItemIcons())
                 g.drawRect(r.x - camX, r.y - camY, r.width, r.height);
@@ -236,7 +236,7 @@ public class Renderer implements Runnable {
                         g.drawRect(c.getIcons().get(i).x - camX, c.getIcons().get(i).y - camY, c.getIcons().get(i).width, c.getIcons().get(i).height);
                     }
                 }
-
+*/
             // отрисоква бокса игрока
             g.drawRect(player.getX() - camX, player.getY() - camY, player.getWidth(), player.getHeight());
 
@@ -259,11 +259,59 @@ public class Renderer implements Runnable {
 
             ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
 
+            //отрисовка координат мыши.
+            g.setColor(Color.red);
+            g.setFont(g.getFont().deriveFont(Font.BOLD));
+            g.drawString(""+MouseListener.getInstance().getX()+" "+MouseListener.getInstance().getY(),100,100);
+            g.setColor(Color.cyan);
+            g.drawString(""+Camera.getInstance().getX()+" "+Camera.getInstance().getY(),100,130);
+            if(MouseButtonListener.getInstance().highlight != null && MouseButtonListener.getInstance().highlight.getSource() instanceof ItemPanel) {
 
+                g.drawString(((ItemPanel) MouseButtonListener.getInstance().highlight.getSource()).getItem().getDescription(), 200,200);
+            }
+            g.setColor(Color.GREEN);
+            g.drawString(""+(MouseListener.getInstance().getX()+camX)+" "+(MouseListener.getInstance().getY()+camY),100,160);
             // Все вышесказанное рисуем на холст и показываем на экране.
             g.dispose();
             canvas.getBufferStrategy().show();
 
 
+
         }
+        public void drawDescription(MouseEvent e)
+        {
+           // g.drawString(e.getSource().toString(),e.getX(),e.getY());
+ /*
+            String s1 = " ";String s2 = " ";String s3 = " ";
+            for(int i = 0 ; i < HUD.getInstance().getItemWindow().getComponents().length;i++){
+                if(HUD.getInstance().getItemWindow().getComponents()[i]instanceof ItemPanel) {
+                    int Mx = MouseListener.getInstance().getX();
+                    int My = MouseListener.getInstance().getY();
+                    int xOff = 0;//HUD.getInstance().getActionWindow().getX();
+                    int yOff = 0;//HUD.getInstance().getActionWindow().getY();
+
+                    ItemPanel ip = (ItemPanel) HUD.getInstance().getItemWindow().getComponents()[i];
+                    Rectangle rec = new Rectangle(ip.getX()+xOff,ip.getY()+yOff,ip.getWidth(),ip.getHeight());
+
+                    if(rec.contains(new Point(Mx,My))){
+                        System.out.println("мышка на иконке");
+                        s1 = ip.getItem().getDescription();
+                        s2 = String.valueOf(ip.getItem().getPrice());
+                        s3 = String.valueOf(ip.getItem().getWeight());
+                        g.drawString(s1,Mx-100,My-100);
+                        g.drawString(s2,Mx-100,My-50);
+                        g.drawString(s3,Mx-100,My );
+                    }
+
+
+
+
+
+                }
+            }
+
+
+  */
+        }
+
     }
