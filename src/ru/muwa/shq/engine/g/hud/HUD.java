@@ -15,7 +15,6 @@ public class HUD {
        {
            actionWindow.remove(actionWindow.getComponents()[i]);
        }
-
     }
 
     private static HUD instance;
@@ -29,17 +28,38 @@ public class HUD {
         instance = this;
         healthBar.setValue(Player.get().getHp());
         actionWindow.setBounds(100,100,100,100);
+        mainWindow.setBounds(920,500,50,100);
+        statisticWindow.setBounds(1500,300,100,100);
+        itemWindow.setBounds(1500,700,100,50);
 
     }
 
-    JProgressBar healthBar = new JProgressBar(0,100);
+    JProgressBar healthBar = new JProgressBar(0,100); //создание хелзбара
     public JProgressBar getHealthBar() {
         return healthBar;
     }
 
-    JPanel actionWindow = new JPanel();
+
+    JPanel actionWindow = new JPanel(); //создание окна длья миниигры
+    JPanel mainWindow = new JPanel();
+
+
+    public JPanel getItemWindow() {
+        return itemWindow;
+    }
+
+    JPanel itemWindow = new JPanel();// панель айтемов
+
+    public JPanel getMainWindow() {
+        return mainWindow;
+    }
 
     public JPanel getActionWindow() {
         return actionWindow;
+    }
+    JPanel statisticWindow = new JPanel();// окна информации
+
+    public JPanel getItemInfo() {
+        return statisticWindow;
     }
 }

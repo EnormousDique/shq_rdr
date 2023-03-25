@@ -49,6 +49,10 @@ public class Renderer implements Runnable {
         if (instance != null) return;
         instance = this;
         frame = GameScreen.getInstance();
+        frame.add(HUD.getInstance().getMainWindow());
+        frame.add(HUD.getInstance().getItemWindow());
+        frame.add(HUD.getInstance().getItemInfo());
+
         canvas = new Canvas();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(canvas);
