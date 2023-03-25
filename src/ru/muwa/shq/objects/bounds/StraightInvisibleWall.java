@@ -25,9 +25,9 @@ public class StraightInvisibleWall extends GameObject {
      */
     public StraightInvisibleWall(int x, int y ) {
         super(x, y,img);
-        System.out.println("отработал конструктор супер классса прямаястена невидимая ");
+       // System.out.println("отработал конструктор супер классса прямаястена невидимая ");
         this.isSolid = true;
-        System.out.println("отработал конструктор непосредствеННО классса прямаястена невидимая ");
+       // System.out.println("отработал конструктор непосредствеННО классса прямаястена невидимая ");
         System.out.println(getIsSolid());
     }
 }

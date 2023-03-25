@@ -28,10 +28,14 @@ public class HUD {
         healthBar.setValue(Player.get().getHp());
         actionWindow.setBounds(100,100,100,100);
         mainWindow.setBounds(620,500,50,100);
-        statisticWindow.setBounds(500,300,100,100);
+       // statisticWindow.setBounds(500,300,100,100);
         itemWindow.setBounds(500,700,200,300);
         itemWindow.addMouseListener(MouseButtonListener.getInstance());
         itemWindow.setLayout(null);
+        mainWindow.setBounds(920,500,50,100);
+        statusWindow.setBounds(500,300,100,300);
+        itemWindow.setBounds(1500,700,200,500);
+       // healthBar.setBounds(1000,300,40,200);
 
     }
 
@@ -58,9 +62,9 @@ public class HUD {
     public JPanel getActionWindow() {
         return actionWindow;
     }
-    JPanel statisticWindow = new JPanel();// окна информации
+    JPanel statusWindow = new JPanel();// окна информации
 
-    public JPanel getItemInfo() {
-        return statisticWindow;
+    public JPanel getStatusWindow() {
+        return statusWindow;
     }
 }
