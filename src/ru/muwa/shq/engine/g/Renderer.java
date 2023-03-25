@@ -209,6 +209,8 @@ public class Renderer implements Runnable {
             HUD.getInstance().getStatusWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getItemWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getMainWindow().setVisible(Inventory.getInstance().isOpened());
+            HUD.getInstance().getItemWindow().updateUI();
+            HUD.getInstance().getStatusWindow().updateUI();
             /*
 
             if (Inventory.getInstance().isOpened())
@@ -282,7 +284,7 @@ public class Renderer implements Runnable {
             g.drawString(""+Camera.getInstance().getX()+" "+Camera.getInstance().getY(),100,130);
             if(MouseButtonListener.getInstance().highlight != null && MouseButtonListener.getInstance().highlight.getSource() instanceof ItemPanel) {
 
-                g.drawString(((ItemPanel) MouseButtonListener.getInstance().highlight.getSource()).getItem().getDescription(), 200,200);
+                g.drawString(((ItemPanel) MouseButtonListener.getInstance().highlight.getSource()).getItem().getDescription(), MouseListener.getInstance().getX(), MouseListener.getInstance().getY()-50);
             }
             g.setColor(Color.GREEN);
             g.drawString(""+(MouseListener.getInstance().getX()+camX)+" "+(MouseListener.getInstance().getY()+camY),100,160);

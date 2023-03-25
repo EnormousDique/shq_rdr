@@ -3,8 +3,10 @@ package ru.muwa.shq.engine.listeners;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.camera.Camera;
+import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.controls.Grabber;
 
 import javax.swing.event.MouseInputListener;
@@ -47,6 +49,13 @@ public class MouseButtonListener implements MouseInputListener {
             case 3:
                 keys[1] = true;
                 break;
+        }
+
+        if(e.getSource() instanceof ItemPanel)
+        {
+            ((ItemPanel) e.getSource()).getItem().use();
+            Inventory.getInstance().getItems().remove(((ItemPanel) e.getSource()).getItem());
+            HUD.getInstance().getItemWindow().updateUI();
         }
     }
 

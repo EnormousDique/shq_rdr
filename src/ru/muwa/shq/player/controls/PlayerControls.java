@@ -124,7 +124,7 @@ public class PlayerControls
                 ((InteractiveEnterZone ) z).getGame().game();
                 while (!((InteractiveEnterZone ) z).getGame().victory())
                 {
-                    //System.out.println("мы находимся в миниигре падик лок");
+                    System.out.println("мы находимся в миниигре падик лок");
                     // System.out.println("мы находимся в миниигре падик лок");
                     if(KeyListener.getInstance().getKeys()[KeyListener.getInstance().Q])
                         break;
@@ -167,7 +167,7 @@ public class PlayerControls
 
         else */
         InventoryManager.getInstance().grab(); // Проверка на щелчок по вещи из открытого контейнера
-        InventoryManager.getInstance().eat(); // Проверка на щелчок по вещи из открытого окна вещей игрока
+       // InventoryManager.getInstance().eat(); // Проверка на щелчок по вещи из открытого окна вещей игрока
 
         MouseButtonListener.getInstance().keys[0]=false;
     }
