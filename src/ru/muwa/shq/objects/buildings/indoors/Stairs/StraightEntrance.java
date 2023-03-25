@@ -24,9 +24,9 @@ public class StraightEntrance extends GameObject {
      */
     public StraightEntrance(int x, int y ) {
         super(x, y,img);
-        System.out.println("отработал конструктор супер классса padik  ");
+       // System.out.println("отработал конструктор супер классса padik  ");
         this.isSolid = false;
-        System.out.println("отработал конструктор непосредствеННО классса padik ");
+       // System.out.println("отработал конструктор непосредствеННО классса padik ");
         System.out.println(getIsSolid());
     }
 }

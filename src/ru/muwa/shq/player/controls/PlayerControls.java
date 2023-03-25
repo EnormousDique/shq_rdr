@@ -88,14 +88,15 @@ public class PlayerControls
         keyboard.getKeys()[6] = false;
     }
     private void space()
-    {
-        for(NPC npc : Engine.getCurrentLevel().getNPC())
-        {
+    {   for(int i = 0; i < Engine.getCurrentLevel().getNPC().size();i++ )
+
+       // for(NPC npc : Engine.getCurrentLevel().getNPC())
+        { NPC npc = Engine.getCurrentLevel().getNPC().get(i);
             if (npc.getSolidBox().intersects(Player.get().getAttackZone()))
             {
                 //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
                 System.out.printf("hp " + npc.getHp());
-                CombatUtility.getInstance().attack(npc, 5);
+                CombatUtility.getInstance().attack(npc, 5); // пока дамага с руки 0 так как он и стреляет и бьет одновременно и если он убивает с руки то крашиться игра
                 System.out.printf("hp " + npc.getHp());
             }
         }

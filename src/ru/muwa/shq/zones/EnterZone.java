@@ -36,7 +36,7 @@ public class EnterZone extends GameZone
         this.level = level;
         this.whereToX = whereToX;
         this.whereToY = whereToY;
-        System.out.println("enter zone created, level reference is " + level);
+      //  System.out.println("enter zone created, level reference is " + level);
         this.isAuto =isAuto;
 
     }

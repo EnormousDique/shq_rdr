@@ -2,6 +2,7 @@ package ru.muwa.shq.engine.utilities;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
+import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.items.Item;
@@ -9,8 +10,16 @@ import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 
 public class InventoryManager
@@ -20,11 +29,31 @@ public class InventoryManager
     public static InventoryManager getInstance()
     {if (instance == null) return new InventoryManager(); else return instance;}
 
+    private void updateStatusWindow() throws IOException
+    {
+
+    BufferedImage face = ImageIO.read(new File(IMG_PATH+"face/FACE.png"));
+
+        JLabel faceIcon = new JLabel(new ImageIcon(face));
+        Arrays.stream(HUD.getInstance().getStatusWindow().getComponents()).forEach(HUD.getInstance().getStatusWindow()::remove);
+        HUD.getInstance().getStatusWindow().add(faceIcon);
+        HUD.getInstance().getStatusWindow().add(new JLabel("ТВОЁ ЗДОРОВЬЕ!"));
+        HUD.getInstance().getStatusWindow().add(new JLabel(String.valueOf(Player.get().getHp())));
+        HUD.getInstance().getStatusWindow().updateUI();
+    }
+
     public void drawContainerItems(Graphics g, Container c) {
 
     }
     public void update()
     {
+        // вызов морды персонажа
+        try {
+            updateStatusWindow();
+        } catch (IOException e) {
+            System.out.println("НЕ ГРУЗИТ КАРТИНКУ СУКА");
+            throw new RuntimeException(e);
+        }
         //TODO: Нужно перенести логику так, чтобы она вызывалась из PlayerControls.
 
         Inventory.getInstance().setX(Player.get().getX() + 100);

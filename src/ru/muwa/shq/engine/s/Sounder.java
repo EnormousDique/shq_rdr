@@ -24,8 +24,8 @@ public class Sounder implements Runnable{
     @Override
     public void run() {
         System.out.println("sound drive start");
-        playSong("src\\ru\\muwa\\shq\\sounds\\songs\\song.wav");
-        clip.loop(Integer.MAX_VALUE);
+       // playSong("src\\ru\\muwa\\shq\\sounds\\songs\\song.wav");
+        //clip.loop(Integer.MAX_VALUE);
 
     }
     public static void changeSong(String path){
