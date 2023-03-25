@@ -29,15 +29,30 @@ import java.util.Arrays;
 
 public class InventoryManager
 {
+
     static private InventoryManager instance;
-    private InventoryManager(){instance = this;}
+    private InventoryManager(){
+        instance = this;
+
+    }
     public static InventoryManager getInstance()
     {if (instance == null) return new InventoryManager(); else return instance;}
 
     private void updateStatusWindow() throws IOException
     {
-
-    BufferedImage face = ImageIO.read(new File(IMG_PATH+"face/FACE.png"));
+        BufferedImage face = null;
+     if(Player.get().getHp() <= 100) {
+         face = ImageIO.read(new File(IMG_PATH + "face/FACE.png"));
+    }
+     if(Player.get().getHp() <= 70) {
+         face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACENOBLOOD.png"));
+     }
+        if(Player.get().getHp() <= 40) {
+            face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACE.png"));
+        }
+        if(Player.get().getHp() <= 10) {
+            face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACEBLOOD.png"));
+        }
 
         JLabel faceIcon = new JLabel(new ImageIcon(face));
         Arrays.stream(HUD.getInstance().getStatusWindow().getComponents()).forEach(HUD.getInstance().getStatusWindow()::remove);

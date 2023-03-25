@@ -125,6 +125,8 @@ public class PlayerControls
                 while (!((InteractiveEnterZone ) z).getGame().victory())
                 {
                     System.out.println("мы находимся в миниигре падик лок");
+                    if(KeyListener.getInstance().getKeys()[KeyListener.getInstance().Q])
+                        break;
                     if(((InteractiveEnterZone ) z).getGame().victory()
                     || ((PadikLock) ((InteractiveEnterZone ) z).getGame()).isForceQuit())
                     {

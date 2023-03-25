@@ -36,7 +36,7 @@ public class HUD {
         itemWindow.setLayout(null);
         mainWindow.setBounds(920,500,50,100);
         statusWindow.setBounds(500,300,100,300);
-        itemWindow.setBounds(1500,700,100,50);
+        itemWindow.setBounds(1500,700,200,500);
        // healthBar.setBounds(1000,300,40,200);
 
     }
