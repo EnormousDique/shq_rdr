@@ -123,7 +123,7 @@ public class PlayerControls
                 ((InteractiveEnterZone ) z).getGame().game();
                 while (!((InteractiveEnterZone ) z).getGame().victory())
                 {
-                    System.out.println("мы находимся в миниигре падик лок");
+                    //System.out.println("мы находимся в миниигре падик лок");
                     if(((InteractiveEnterZone ) z).getGame().victory()
                     || ((PadikLock) ((InteractiveEnterZone ) z).getGame()).isForceQuit())
                     {
