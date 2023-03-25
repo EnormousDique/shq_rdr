@@ -25,7 +25,6 @@ public class PadikLock implements MiniGame {
     @Override
     public void game() {
 
-        HUD.getInstance().clearActionWindow();
         victory = false;
         isForceQuit = false;
         buttons = new ArrayList<>();
@@ -48,12 +47,15 @@ public class PadikLock implements MiniGame {
         bx.addActionListener(PadikLockButtonListener.getInstance(this));
         buttons.add(bx);
         label = new JLabel(currInput);
-        HUD.getInstance().getActionWindow().add(label);
+        //HUD.getInstance().getActionWindow().add(label);
+
+        HUD.getInstance().clearActionWindow();
 
         for(JButton b :buttons) {
             System.out.println("adding button : " + b.getText());
             HUD.getInstance().getActionWindow().add(b);
         }
+        HUD.getInstance().getActionWindow().add(label);
         HUD.getInstance().getActionWindow().updateUI();
         boolean success = false;
 

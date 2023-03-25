@@ -1,6 +1,7 @@
 package ru.muwa.shq.engine.g.hud;
 
-
+import java.util.*;
+import org.w3c.dom.ls.LSOutput;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.player.Player;
@@ -12,10 +13,7 @@ import java.awt.*;
 public class HUD {
 
     public void clearActionWindow () {
-       for(int i = 0; i < actionWindow.getComponents().length; i++ )
-       {
-           actionWindow.remove(actionWindow.getComponents()[i]);
-       }
+        Arrays.stream(actionWindow.getComponents()).forEach(actionWindow::remove);
     }
 
     private static HUD instance;
