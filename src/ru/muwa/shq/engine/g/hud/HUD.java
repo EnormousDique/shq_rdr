@@ -2,6 +2,7 @@ package ru.muwa.shq.engine.g.hud;
 
 
 import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.player.Player;
 
 import javax.swing.*;
@@ -28,9 +29,11 @@ public class HUD {
         instance = this;
         healthBar.setValue(Player.get().getHp());
         actionWindow.setBounds(100,100,100,100);
-        mainWindow.setBounds(920,500,50,100);
-        statisticWindow.setBounds(1500,300,100,100);
-        itemWindow.setBounds(1500,700,100,50);
+        mainWindow.setBounds(620,500,50,100);
+        statisticWindow.setBounds(500,300,100,100);
+        itemWindow.setBounds(500,700,200,300);
+        itemWindow.addMouseListener(MouseButtonListener.getInstance());
+        itemWindow.setLayout(null);
 
     }
 

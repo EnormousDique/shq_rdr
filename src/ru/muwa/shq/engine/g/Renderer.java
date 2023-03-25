@@ -191,12 +191,13 @@ public class Renderer implements Runnable {
             //for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
 
             //Отрисовка инвентаря игрока, если тот открыт
+            /*
             if (Inventory.getInstance().isOpened())
                 g.drawImage(Inventory.getInstance().getImg(), Inventory.getInstance().getX() - camX, Inventory.getInstance().getY() - camY, null);
             if (Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems())
                 if (i != null)
                     g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x - camX, Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y - camY, null);
-
+             */
             //Отрисовка текстуры игрока.
 
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
