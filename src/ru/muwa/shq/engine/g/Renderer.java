@@ -6,7 +6,7 @@ import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.p.Updater;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
-import ru.muwa.shq.engine.shell.Console;
+
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.objects.containers.Container;
@@ -181,6 +181,8 @@ public class Renderer implements Runnable {
             for (Line2D.Float line : c.getRayCaster().calcRays())
                 g.drawLine((int) line.x1 - camX, (int) line.y1 - camY, (int) line.x2 - camX, (int) line.y2 - camY);
         }
+
+         */
         //Если игрок в поле зрения, цвет луей меняется.
         // for(NPC c: Engine.getCurrentLevel().getNPC()) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1-camX,(int)r.y1-camY,(int)r.x2-camX,(int)r.y2-camY);}
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
@@ -193,7 +195,7 @@ public class Renderer implements Runnable {
             }
         }
 
-         */
+
 
             // отрисовка информации о предмете при наводе мышки на онный
            // drawDescription(g);
