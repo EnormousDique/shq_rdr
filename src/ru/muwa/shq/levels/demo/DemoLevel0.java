@@ -37,8 +37,8 @@ public class DemoLevel0 extends Level
 
         instance = this;
       //  zones.add(new EnterZone(520,1765,70,70, FatBuildingFloor1.getInstance(), 327,220,false));
-        zones.add(new InteractiveEnterZone( new PadikLock(),new EnterZone(520,1665,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
-        zones.add(new InteractiveEnterZone( new PadikLock(),new EnterZone(520,2115,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(520,1665,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
+        zones.add(new InteractiveEnterZone( new PadikLock("1488К228"),new EnterZone(520,2115,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
         // zones.add(new EnterZone(0,0,70,70, DemoHub.getInstance(), 0,0,false));
         npc.add(new BadGuy0(800,1800));
         npc.add(new BadGuy0(950,1800));

@@ -1,6 +1,7 @@
 package ru.muwa.shq.engine.listeners;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
@@ -15,6 +16,7 @@ import java.awt.event.MouseEvent;
  */
 public class MouseButtonListener implements MouseInputListener {
 
+    public MouseEvent highlight;
     private static MouseButtonListener instance;
 
     public MouseEvent event;
@@ -67,6 +69,11 @@ public class MouseButtonListener implements MouseInputListener {
     @Override
     public void mouseEntered(MouseEvent e) {
 
+    highlight = e;
+    if(e.getSource() instanceof ItemPanel)
+    {
+       Renderer.getInstance().drawDescription(e);
+    }
     }
 
     @Override
@@ -84,4 +91,6 @@ public class MouseButtonListener implements MouseInputListener {
 
     }
     public boolean[] getKeys(){return keys;}
+
+
 }

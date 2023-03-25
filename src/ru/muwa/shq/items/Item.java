@@ -10,8 +10,26 @@ import java.awt.image.BufferedImage;
 public abstract class Item
 {
 
+
+
+    protected String description ;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     protected Container myContainer;
     protected int id,price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
 
     protected double weight;
     protected BufferedImage texture; //Текстура (изображение) объекта
