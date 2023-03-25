@@ -11,7 +11,8 @@ import java.util.List;
 
 public class PadikLock implements MiniGame {
     private boolean victory,isForceQuit;
-    public String password = "321";
+    public String password;
+
     public String currInput ="";
     public JLabel label;
 
@@ -22,8 +23,13 @@ public class PadikLock implements MiniGame {
         else  return checkPassword();
     }
 
+     public PadikLock(String password){
+        this.password = password;
+     }
+
     @Override
     public void game() {
+
 
         victory = false;
         isForceQuit = false;
@@ -40,6 +46,35 @@ public class PadikLock implements MiniGame {
         JButton b3 = new JButton("3");
         b3.addActionListener(PadikLockButtonListener.getInstance(this));
         buttons.add(b3);
+        JButton b4 = new JButton("4");
+        b4.addActionListener(PadikLockButtonListener.getInstance(this));
+        buttons.add(b4);
+        JButton b5 = new JButton("5");
+        b5.addActionListener(PadikLockButtonListener.getInstance(this));
+        buttons.add(b5);
+        JButton b6 = new JButton("6");
+        b6.addActionListener(PadikLockButtonListener.getInstance(this));
+        buttons.add(b6);
+        JButton b7 = new JButton("7");
+        b7.addActionListener(PadikLockButtonListener.getInstance(this));
+        buttons.add(b7);
+        JButton b8 = new JButton("8");
+        b8.addActionListener(PadikLockButtonListener.getInstance(this));
+        buttons.add(b8);
+        JButton b9 = new JButton("9");
+        b9.addActionListener(PadikLockButtonListener.getInstance(this));
+        buttons.add(b9);
+        JButton b0 = new JButton("0");
+        b0.addActionListener(PadikLockButtonListener.getInstance(this));
+        buttons.add(b0);
+        JButton b11 = new JButton("К");
+        b11.addActionListener(PadikLockButtonListener.getInstance(this));
+        buttons.add(b11);
+        JButton b12 = new JButton("*");
+        b12.addActionListener(PadikLockButtonListener.getInstance(this));
+        buttons.add(b12);
+
+
         JButton bc = new JButton("c");
         bc.addActionListener(PadikLockButtonListener.getInstance(this));
         buttons.add(bc);

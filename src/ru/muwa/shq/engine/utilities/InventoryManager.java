@@ -12,26 +12,69 @@ import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 import java.util.Arrays;
 
 
 public class InventoryManager
 {
+
     static private InventoryManager instance;
-    private InventoryManager(){instance = this;}
+    private InventoryManager(){
+        instance = this;
+
+    }
     public static InventoryManager getInstance()
     {if (instance == null) return new InventoryManager(); else return instance;}
 
+    private void updateStatusWindow() throws IOException
+    {
+        BufferedImage face = null;
+     if(Player.get().getHp() <= 100) {
+         face = ImageIO.read(new File(IMG_PATH + "face/FACE.png"));
+    }
+     if(Player.get().getHp() <= 70) {
+         face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACENOBLOOD.png"));
+     }
+        if(Player.get().getHp() <= 40) {
+            face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACE.png"));
+        }
+        if(Player.get().getHp() <= 10) {
+            face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACEBLOOD.png"));
+        }
+
+        JLabel faceIcon = new JLabel(new ImageIcon(face));
+        Arrays.stream(HUD.getInstance().getStatusWindow().getComponents()).forEach(HUD.getInstance().getStatusWindow()::remove);
+        HUD.getInstance().getStatusWindow().add(faceIcon);
+        HUD.getInstance().getStatusWindow().add(new JLabel("ТВОЁ ЗДОРОВЬЕ! Друг!"));
+        HUD.getInstance().getStatusWindow().add(new JLabel(String.valueOf(Player.get().getHp())));
+        HUD.getInstance().getStatusWindow().updateUI();
+    }
+
     public void drawContainerItems(Graphics g, Container c) {
-        //Нихуя се старый ты умную вещь создал
+
     }
     public void update()
     {
         updateItemWindow();
+        // вызов морды персонажа
+        try {
+            updateStatusWindow();
+        } catch (IOException e) {
+            System.out.println("НЕ ГРУЗИТ КАРТИНКУ СУКА");
+            throw new RuntimeException(e);
+        }
         //TODO: Нужно перенести логику так, чтобы она вызывалась из PlayerControls.
 
         Inventory.getInstance().setX(Player.get().getX() + 100);
@@ -160,6 +203,7 @@ public class InventoryManager
                 //
                 if(Inventory.getInstance().getItems().get(i) !=null) {
                     itemTiles.add(new ItemPanel(Inventory.getInstance().getItems().get(i)));
+                    itemTiles.get(i).addMouseListener(MouseButtonListener.getInstance());
                 }
                 if(Inventory.getInstance().getItems().get(i).getTexture() !=null)
                 itemTiles.get(i).setIcon(new ImageIcon( Inventory.getInstance().getItems().get(i).getTexture()));

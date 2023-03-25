@@ -32,5 +32,6 @@ public class Flour extends Item {
     public Flour()
     {
         super(ID, PRICE, WEIGHT, img);
+        description = "мефчик бля ебанул и нихуя";
     }
 }

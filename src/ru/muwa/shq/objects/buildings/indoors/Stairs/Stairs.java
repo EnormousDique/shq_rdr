@@ -25,9 +25,9 @@ public class Stairs extends GameObject {
      */
     public Stairs(int x, int y ) {
         super(x, y,img);
-        System.out.println("отработал конструктор супер классса лестница ");
+      //  System.out.println("отработал конструктор супер классса лестница ");
         this.isSolid = false;
-        System.out.println("отработал конструктор непосредствеННО классса лестница ");
+     //   System.out.println("отработал конструктор непосредствеННО классса лестница ");
         System.out.println(getIsSolid());
     }
 }
