@@ -21,6 +21,15 @@ public abstract class Creature extends GameObject
     protected int agility; // Ловкость
     protected int jumpAx; // Ускорение прыжка
     protected int maxJumpAx; // Максимальное ускорение прыжка
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
     protected int speed; //Скорость
 
     public int getHp() {

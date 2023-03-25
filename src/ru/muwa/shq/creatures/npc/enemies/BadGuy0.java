@@ -33,9 +33,9 @@ public class BadGuy0 extends NPC {
     {
         super(x,y,img);
         velocity = 2;
-        speed = 1;
+        speed = 3;
         direction = RIGHT;
-        setRayCaster(new RayCaster(x,y,300));
+        setRayCaster(new RayCaster(x,y,600));
         hp = 20;
         //текстура трупа
         try

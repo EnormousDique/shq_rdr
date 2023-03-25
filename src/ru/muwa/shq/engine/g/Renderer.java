@@ -6,6 +6,7 @@ import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.p.Updater;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
+import ru.muwa.shq.engine.shell.Console;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.GameObject;
@@ -49,9 +50,11 @@ public class Renderer implements Runnable {
         if (instance != null) return;
         instance = this;
         frame = GameScreen.getInstance();
+
         frame.add(HUD.getInstance().getMainWindow());
         frame.add(HUD.getInstance().getItemWindow());
         frame.add(HUD.getInstance().getItemInfo());
+
 
         canvas = new Canvas();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -170,6 +173,7 @@ public class Renderer implements Runnable {
             for (Line2D.Float line : c.getRayCaster().calcRays())
                 g.drawLine((int) line.x1 - camX, (int) line.y1 - camY, (int) line.x2 - camX, (int) line.y2 - camY);
         */
+        /*
         for(int i = 0;i<Engine.getCurrentLevel().getNPC().size();i++){
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
             for (Line2D.Float line : c.getRayCaster().calcRays())
@@ -186,6 +190,8 @@ public class Renderer implements Runnable {
 
             }
         }
+
+         */
 
             // TODO: Проверить, нужны ли в прицнипе объекты класса ItemPhysicalAppearance
             //for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
