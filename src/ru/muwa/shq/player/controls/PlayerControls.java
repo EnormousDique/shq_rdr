@@ -158,10 +158,14 @@ public class PlayerControls
     }
     private void lmb()
     {
-        if(Inventory.getInstance().getBox().contains
+
+       /* if(Inventory.getInstance().getBox().contains
                 (new Point(MouseListener.getInstance().getX() + Camera.getInstance().getX(), MouseListener.getInstance().getY() + Camera.getInstance().getY())))
-            InventoryManager.getInstance().eat();
-        else InventoryManager.getInstance().grab();
+
+        else */
+        InventoryManager.getInstance().grab(); // Проверка на щелчок по вещи из открытого контейнера
+        InventoryManager.getInstance().eat(); // Проверка на щелчок по вещи из открытого окна вещей игрока
+
         MouseButtonListener.getInstance().keys[0]=false;
     }
     private void rmb()

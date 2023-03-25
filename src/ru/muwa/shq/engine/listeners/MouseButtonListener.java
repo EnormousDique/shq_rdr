@@ -2,10 +2,12 @@ package ru.muwa.shq.engine.listeners;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
+import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.player.controls.Grabber;
 
 import javax.swing.event.MouseInputListener;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 
 /**
@@ -14,6 +16,8 @@ import java.awt.event.MouseEvent;
 public class MouseButtonListener implements MouseInputListener {
 
     private static MouseButtonListener instance;
+
+    public MouseEvent event;
     private MouseButtonListener(){instance=this; keys = new boolean[2];} // Массив кнопок.
     // Каждой кнопке соответствует свой индекс массива.
     // Если кнопка нажата, в массиве под этим индексом хранится true
@@ -26,11 +30,13 @@ public class MouseButtonListener implements MouseInputListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 
+
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        System.out.println("mouse clicked. x: " + (e.getX()+ Camera.getInstance().getX()) + " y : " + (e.getY()+Camera.getInstance().getY()));
+        event = e;
+        System.out.println("mouse clicked. x: " + e.getX()/*+ Camera.getInstance().getX())*/ + " y : " + e.getY()/*+Camera.getInstance().getY()*/);
         switch (e.getButton())
         {
             case 1:
