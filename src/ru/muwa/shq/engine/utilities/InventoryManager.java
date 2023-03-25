@@ -50,16 +50,16 @@ public class InventoryManager
     //
     public void grab(){
 
-            // System.out.println("нажате левая кнопка мыши");
+            // System.out.println("нажата левая кнопка мыши");
             for(Container c: Engine.getCurrentLevel().getContainers()){
                 if(c.isInUse() && c.getItems().size()>= 1){
                     //System.out.println("есть открытый контейнер");
 
                     for(int i = 0; i < c.getIcons().size(); i++){
-                      //  System.out.println("смотрим квадрат с координатама "+ c.getIcons().get(i).x +" "+ c.getIcons().get(i).y);
-                      //  System.out.println("мышка бьет"+MouseListener.getInstance().getX()+ Camera.getInstance().getX()+" "+MouseListener.getInstance().getY()+Camera.getInstance().getY());
+
+
                         if (c.getIcons().get(i).contains(new Point(MouseListener.getInstance().getX()+ Camera.getInstance().getX(), MouseListener.getInstance().getY()+Camera.getInstance().getY()))){
-                         //   System.out.println("есть пробитие");
+
                             c.grabItem(i);
                         }
                     }
@@ -79,7 +79,7 @@ public class InventoryManager
                     if(r.contains(new Point(MouseListener.getInstance().getX()+Camera.getInstance().getX(),MouseListener.getInstance().getY()+Camera.getInstance().getY() ))){
                         if(Inventory.getInstance().getItems().size() > Inventory.getInstance().getItemIcons().indexOf(r))
                         Inventory.getInstance().getItems().remove(Inventory.getInstance().getItemIcons().indexOf(r));
-                        Player.get().setHp(Player.get().getHp()+10);
+                        Player.get().setHp(Player.get().getHp()+10);// TODO исправить систему отхила так как сейчас хиляет от употребления любого предмета в инвентаре
 
                          System.out.println("ВЗЯЛ");
                         //System.out.println("не взял");
