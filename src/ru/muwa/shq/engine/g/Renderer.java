@@ -57,7 +57,7 @@ public class Renderer implements Runnable {
         frame.add(HUD.getInstance().getMainWindow());
         frame.add(HUD.getInstance().getItemWindow());
         frame.add(HUD.getInstance().getStatusWindow());
-
+        frame.add(HUD.getInstance().getDialogueWindow()).setVisible(false);
 
         canvas = new Canvas();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -189,9 +189,9 @@ public class Renderer implements Runnable {
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
             if (c.getRayCaster().isPlayerInSight()) {
-                g.setColor(Color.GREEN);
-                for (Line2D.Float r : c.getRayCaster().calcRays())
-                    g.drawLine((int) r.x1 - camX, (int) r.y1 - camY, (int) r.x2 - camX, (int) r.y2 - camY);
+                g.setColor(Color.green);
+               // for (Line2D.Float r : c.getRayCaster().calcRays())
+                   // g.drawLine((int) r.x1 - camX, (int) r.y1 - camY, (int) r.x2 - camX, (int) r.y2 - camY);
 
             }
         }
@@ -199,6 +199,7 @@ public class Renderer implements Runnable {
 
 
             // отрисовка информации о предмете при наводе мышки на онный
+
            // drawDescription(g);
 
 
@@ -292,6 +293,7 @@ public class Renderer implements Runnable {
             g.drawString(""+MouseListener.getInstance().getX()+" "+MouseListener.getInstance().getY(),100,100);
             g.setColor(Color.cyan);
             g.drawString(""+Camera.getInstance().getX()+" "+Camera.getInstance().getY(),100,130);
+             // отрисовка информации о предмете при наводе мышки на онный
             if(MouseButtonListener.getInstance().highlight != null && MouseButtonListener.getInstance().highlight.getSource() instanceof ItemPanel) {
 
                 g.drawString(((ItemPanel) MouseButtonListener.getInstance().highlight.getSource()).getItem().getDescription(), MouseListener.getInstance().getX(), MouseListener.getInstance().getY()-50);

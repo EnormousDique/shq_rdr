@@ -1,5 +1,6 @@
 package ru.muwa.shq.items.drugs;
 
+import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
@@ -35,7 +36,7 @@ public class Flour extends Item {
     public Flour()
     {
         super(ID, PRICE, WEIGHT, img);
-        description = "мефчик бля ебанул и нихуя";
+        description = "мефчик бля , ебанул и нихуя";
     }
 
     @Override
@@ -50,5 +51,6 @@ public class Flour extends Item {
         if(Player.get().getHp() >= 90) Player.get().setHp(100);
         else
         Player.get().setHp(Player.get().getHp()+10);
+        EffectUtility.getInstance().getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+60_000L);
     }
 }
