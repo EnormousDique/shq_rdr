@@ -57,6 +57,8 @@ public class Updater implements Runnable
 
             if(delta>3)
             {
+                System.out.println("delta: "+delta);
+                System.out.println("pause: "+Engine.pause);
                 delta = 1.1;
             }
 
