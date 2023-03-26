@@ -2,12 +2,15 @@ package ru.muwa.shq.creatures.npc.enemies;
 
 import ru.muwa.shq.engine.raycaster.RayCaster;
 import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.drugs.Flour;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static ru.muwa.shq.objects.GameObject.Direction.RIGHT;
 
@@ -48,8 +51,20 @@ public class BadGuy0 extends NPC {
             System.out.println("failed to load BadGuyCoprse texture");
         }
     }
+
+    @Override
+    public ArrayList<Item> getRandomLoot() {
+
+        ArrayList<Item> loot = new ArrayList<>();
+
+        loot.add(new Flour());
+
+        return loot;
+    }
+
     protected BadGuy0(int x, int y, BufferedImage texture)
     {
         super(x, y, texture);
     }
+
 }

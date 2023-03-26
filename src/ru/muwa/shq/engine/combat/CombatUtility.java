@@ -45,7 +45,7 @@ public class CombatUtility {
         //TODO: Сделать нормальный механизм смерти. Пока так.
         if( (!Player.get().equals(victim)) && victim.getHp() <= 0 ) {
             Engine.getCurrentLevel().getNPC().remove(victim);
-            Engine.getCurrentLevel().getContainers().add(new Corpse(victim.getX(),victim.getY(),victim.getcorpseimg()));
+            Engine.getCurrentLevel().getContainers().add(new Corpse(victim.getX(),victim.getY(),victim.getcorpseimg(), victim.getRandomLoot()));
 
 
         }

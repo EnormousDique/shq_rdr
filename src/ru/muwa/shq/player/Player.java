@@ -3,6 +3,7 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.camera.Camera;
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.Usable;
 
@@ -10,6 +11,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.ArrayList;
 
 import static ru.muwa.shq.objects.GameObject.Direction.DOWN;
 
@@ -60,6 +62,12 @@ public class Player extends Creature
 
     private boolean isBusy;
     private Usable currentObject;
+
+    @Override
+    public ArrayList<Item> getRandomLoot() {
+        return null;
+    }
+
     /**
      * Конструктор
      *

@@ -53,8 +53,9 @@ public class MouseButtonListener implements MouseInputListener {
 
         if(e.getSource() instanceof ItemPanel)
         {
-            ((ItemPanel) e.getSource()).getItem().use();
+
             Inventory.getInstance().getItems().remove(((ItemPanel) e.getSource()).getItem());
+            ((ItemPanel) e.getSource()).getItem().pick();
             HUD.getInstance().getItemWindow().updateUI();
         }
     }

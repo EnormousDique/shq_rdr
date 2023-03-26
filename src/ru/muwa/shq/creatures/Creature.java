@@ -1,10 +1,12 @@
 package ru.muwa.shq.creatures;
 import ru.muwa.shq.engine.raycaster.RayCaster;
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.GameObject;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 import static ru.muwa.shq.objects.GameObject.Direction.*;
@@ -29,6 +31,7 @@ public abstract class Creature extends GameObject
     public void setSpeed(int speed) {
         this.speed = speed;
     }
+    public abstract ArrayList<Item> getRandomLoot();
 
     protected int speed; //Скорость
 

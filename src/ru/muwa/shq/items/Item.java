@@ -1,5 +1,6 @@
 package ru.muwa.shq.items;
 
+import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.objects.containers.Container;
 
 import java.awt.image.BufferedImage;
@@ -46,5 +47,14 @@ public abstract class Item
     public void setMyContainer(Container c){myContainer = c;}
     public Container getMyContainer(){return myContainer;}
 
+    public void pick()
+    {
+        boolean isInContainer = false;
+        Container container = null;
+        for (Container c : Engine.getCurrentLevel().getContainers())
+            if(c.isInUse()){ isInContainer = true; container = c;}
+        if(isInContainer) give(container); else use();
+    }
+    public abstract void give(Container c);
     public abstract void use();
 }
