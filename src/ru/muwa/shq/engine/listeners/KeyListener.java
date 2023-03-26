@@ -23,6 +23,7 @@ public class KeyListener implements java.awt.event.KeyListener
      * W - 87
      * S - 83
      * P - 80
+     * T - 84
      * ENTER - 10
      */
     private boolean[] keys; // Массив кнопок. Каждой кнопке соответствует свой индекс массива.
@@ -37,13 +38,14 @@ public class KeyListener implements java.awt.event.KeyListener
             I = 6,
             Q = 7,
             ENTER = 8,
-            P = 9;
+            P = 9,
+            T = 10;
     private static KeyListener instance;
 
     private KeyListener()
     {
         instance = this;
-        keys = new boolean[9];
+        keys = new boolean[11];
     }
 
     public static KeyListener getInstance()
@@ -93,6 +95,9 @@ public class KeyListener implements java.awt.event.KeyListener
                 break;
             case 80: // P
                 Engine.pause = !Engine.pause;
+            case 84: // T
+                keys[T] = true;
+                break;
 
 
         }
@@ -129,6 +134,9 @@ public class KeyListener implements java.awt.event.KeyListener
                 break;
             case 10: // ENTER
                 keys[ENTER] = false;
+                break;
+            case 84: // T
+                keys[T] = false;
                 break;
 
         }

@@ -1,5 +1,6 @@
 package ru.muwa.shq.levels.demo;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
+import ru.muwa.shq.creatures.npc.enemies.VelvetTank;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingStraightFloor;
@@ -10,7 +11,9 @@ import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
 import ru.muwa.shq.objects.containers.TrashCan;
 import ru.muwa.shq.objects.obstacles.crates.Crate0;
 import ru.muwa.shq.player.Inventory;
+import ru.muwa.shq.zones.DialogueZone;
 import ru.muwa.shq.zones.EnterZone;
+import ru.muwa.shq.zones.GameZone;
 import ru.muwa.shq.zones.InteractiveEnterZone;
 
 import java.io.IOException;
@@ -34,12 +37,14 @@ public class DemoLevel0 extends Level
         objects.add(new Crate0(100,100));
         objects.add(new FatBuilding(0,1500));
         objects.add(new TallFatBuilding(1000,2500));
+        zones.add(new DialogueZone(520,1500,100,100,false));
 
         instance = this;
       //  zones.add(new EnterZone(520,1765,70,70, FatBuildingFloor1.getInstance(), 327,220,false));
         zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(520,1665,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
         zones.add(new InteractiveEnterZone( new PadikLock("1488К228"),new EnterZone(520,2115,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
         // zones.add(new EnterZone(0,0,70,70, DemoHub.getInstance(), 0,0,false));
+        npc.add(new VelvetTank(750,1800));
         npc.add(new BadGuy0(800,1800));
         npc.add(new BadGuy0(950,1800));
         npc.add(new BadGuy0(1100,1800));
@@ -48,5 +53,6 @@ public class DemoLevel0 extends Level
         npc.get(1).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         npc.get(2).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         npc.get(3).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
+        npc.get(4).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
     }
 }

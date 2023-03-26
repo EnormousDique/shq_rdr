@@ -35,6 +35,7 @@ public class HUD {
         mainWindow.setBounds(920,500,50,100);
         statusWindow.setBounds(500,300,140,300);
         itemWindow.setBounds(500,700,200,500);
+        dialogueWindow.setBounds(610,765,700,700);
        // healthBar.setBounds(1000,300,40,200);
 
     }
@@ -47,6 +48,9 @@ public class HUD {
 
     JPanel actionWindow = new JPanel(); //создание окна длья миниигры
     JPanel mainWindow = new JPanel();
+
+    JPanel dialogueWindow = new JPanel();  //создание даилогового окна
+    public  JPanel getDialogueWindow(){return dialogueWindow;}  // геттер для диалогового окна
 
 
     public JPanel getItemWindow() {

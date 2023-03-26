@@ -18,6 +18,7 @@ import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
+import ru.muwa.shq.zones.DialogueZone;
 import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.GameZone;
 import ru.muwa.shq.zones.InteractiveEnterZone;
@@ -51,6 +52,7 @@ public class PlayerControls
         if(keyboard.getKeys()[keyboard.I]) i();/* */// Нажата I
         if(keyboard.getKeys()[keyboard.Q]) q();
         if(keyboard.getKeys()[keyboard.ENTER]) enter();
+        if(keyboard.getKeys()[keyboard.T]) t(); // нважата T
 
 
 
@@ -61,7 +63,15 @@ public class PlayerControls
 
     }
 
-
+    private void t() {
+        for(GameZone z : Engine.getCurrentLevel().getZones())
+        {
+            if(z instanceof DialogueZone && z.contains(Player.get().getX(),Player.get().getY()))
+            {
+                HUD.getInstance().getDialogueWindow().setVisible(true);
+            }
+        }
+    }
     private void w() {
         Player.get().moveUp();
     }
@@ -158,6 +168,7 @@ public class PlayerControls
         }
         Inventory.getInstance().setIsOpened(false);
         for(Container c: Engine.getCurrentLevel().getContainers())c.setIsInUse(false);
+        HUD.getInstance().getDialogueWindow().setVisible(false);
     }
     private void lmb()
     {

@@ -6,7 +6,7 @@ import java.awt.geom.Line2D;
 import java.util.LinkedList;
 
 /**
- * thnx vry much to brandon d's ray cast tutor
+ * thx vry much to brandon d's ray cast tutor
  * Класс, отвечающий за простоение лучей.
  */
 public class RayCaster

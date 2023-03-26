@@ -56,7 +56,7 @@ public class Renderer implements Runnable {
         frame.add(HUD.getInstance().getMainWindow());
         frame.add(HUD.getInstance().getItemWindow());
         frame.add(HUD.getInstance().getStatusWindow());
-
+        frame.add(HUD.getInstance().getDialogueWindow()).setVisible(false);
 
         canvas = new Canvas();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -188,9 +188,9 @@ public class Renderer implements Runnable {
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
             if (c.getRayCaster().isPlayerInSight()) {
-                g.setColor(Color.GREEN);
-                for (Line2D.Float r : c.getRayCaster().calcRays())
-                    g.drawLine((int) r.x1 - camX, (int) r.y1 - camY, (int) r.x2 - camX, (int) r.y2 - camY);
+                g.setColor(Color.green);
+               // for (Line2D.Float r : c.getRayCaster().calcRays())
+                   // g.drawLine((int) r.x1 - camX, (int) r.y1 - camY, (int) r.x2 - camX, (int) r.y2 - camY);
 
             }
         }
