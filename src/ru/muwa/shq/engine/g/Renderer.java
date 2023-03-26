@@ -185,7 +185,7 @@ public class Renderer implements Runnable {
 
             }
         }
-            // отрисовка информации о предмете при наводе мышки на онный
+
            // drawDescription(g);
             // TODO: Проверить, нужны ли в прицнипе объекты класса ItemPhysicalAppearance
             //for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
@@ -265,6 +265,7 @@ public class Renderer implements Runnable {
             g.drawString(""+MouseListener.getInstance().getX()+" "+MouseListener.getInstance().getY(),100,100);
             g.setColor(Color.cyan);
             g.drawString(""+Camera.getInstance().getX()+" "+Camera.getInstance().getY(),100,130);
+             // отрисовка информации о предмете при наводе мышки на онный
             if(MouseButtonListener.getInstance().highlight != null && MouseButtonListener.getInstance().highlight.getSource() instanceof ItemPanel) {
 
                 g.drawString(((ItemPanel) MouseButtonListener.getInstance().highlight.getSource()).getItem().getDescription(), 200,200);
