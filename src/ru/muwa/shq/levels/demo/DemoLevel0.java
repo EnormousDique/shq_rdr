@@ -2,6 +2,7 @@ package ru.muwa.shq.levels.demo;
 import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.creatures.npc.enemies.VelvetTank;
+import ru.muwa.shq.dialogues.demo.Conversation0;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingStraightFloor;
@@ -44,6 +45,7 @@ public class DemoLevel0 extends Level
         zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(520,1665,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
         zones.add(new InteractiveEnterZone( new PadikLock("1488К228"),new EnterZone(520,2115,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
         // zones.add(new EnterZone(0,0,70,70, DemoHub.getInstance(), 0,0,false));
+        zones.add(new DialogueZone(Conversation0.getInstance(),400,400,100,100,false));
         npc.add(new VelvetTank(750,1800));
         npc.add(new BadGuy0(800,1800));
         npc.add(new BadGuy0(950,1800));

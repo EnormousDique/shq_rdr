@@ -5,6 +5,7 @@ import ru.muwa.shq.engine.ai.AI;
 import ru.muwa.shq.objects.containers.Container;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Conversation0 extends Dialogue {
     private static Conversation0 instance;
@@ -31,6 +32,7 @@ public class Conversation0 extends Dialogue {
                                 new Respond("Пока."))));
 
         initialMessage = new Message("Привет, как дела?",responds);
+        currentMessage = new Message( initialMessage.getText(),initialMessage.getResponds());
 
     }
 

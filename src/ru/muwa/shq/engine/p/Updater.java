@@ -1,4 +1,5 @@
 package ru.muwa.shq.engine.p;
+import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.ai.AI;
 import ru.muwa.shq.engine.combat.BulletUtility;
 import ru.muwa.shq.engine.combat.CombatUtility;
@@ -93,6 +94,7 @@ public class Updater implements Runnable
         EffectUtility.getInstance().work();
         //Вызов службы обновления пуль
         BulletUtility.getInstance().work();
+
 
         // Проверяем были ли команды игроку через игровое управление.
         PlayerControls.getInstance().controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.

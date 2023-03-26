@@ -1,6 +1,5 @@
 package ru.muwa.shq.engine.utilities;
-
-import ru.muwa.shq.player.Player;
+import ru.muwa.shq.player.*;
 
 import java.util.HashMap;
 import java.util.Map;

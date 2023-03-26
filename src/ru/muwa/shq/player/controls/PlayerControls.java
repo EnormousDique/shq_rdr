@@ -69,6 +69,7 @@ public class PlayerControls
             if(z instanceof DialogueZone && z.contains(Player.get().getX(),Player.get().getY()))
             {
                 HUD.getInstance().getDialogueWindow().setVisible(true);
+                ((DialogueZone)z).setActive(true);
             }
         }
     }

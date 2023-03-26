@@ -1,5 +1,6 @@
 package ru.muwa.shq.engine.g;
 import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
+import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
@@ -213,6 +214,8 @@ public class Renderer implements Runnable {
             HUD.getInstance().getMainWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getItemWindow().updateUI();
             HUD.getInstance().getStatusWindow().updateUI();
+            //Вызов службы диалогов.
+            DialogueManager.getInstance().work();
             /*
 
             if (Inventory.getInstance().isOpened())
