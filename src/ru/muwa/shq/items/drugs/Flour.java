@@ -1,6 +1,8 @@
 package ru.muwa.shq.items.drugs;
 
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.objects.containers.Container;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
 import javax.imageio.ImageIO;
@@ -35,10 +37,18 @@ public class Flour extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "мефчик бля ебанул и нихуя";
     }
+
+    @Override
+    public void give(Container c) {
+        Inventory.getInstance().getItems().remove(this);
+        c.addItem(this);
+    }
+
     @Override
     public void use()
     {
         if(Player.get().getHp() >= 90) Player.get().setHp(100);
+        else
         Player.get().setHp(Player.get().getHp()+10);
     }
 }

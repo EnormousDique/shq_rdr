@@ -14,7 +14,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Inventory
 {
-    public static final int INVENTORY_CAPACITY = 4;
+    //  public static final int INVENTORY_CAPACITY = 4;
     private Rectangle item0,item1,item2,item3,item4,item5,item6,item7;
     private ArrayList<Rectangle> itemIcons;
     private ArrayList<Item> items;
@@ -84,7 +84,7 @@ public class Inventory
 
 
     public void addItem(Item item) {
-         if(items.size()<=INVENTORY_CAPACITY)items.add(item);
+         /*if(items.size()<=INVENTORY_CAPACITY)*/items.add(item);
         System.out.println("added item: " + item);
     }
     public ArrayList<Item> getItems(){return items;}

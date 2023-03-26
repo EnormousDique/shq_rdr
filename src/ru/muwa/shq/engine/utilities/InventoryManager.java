@@ -67,9 +67,11 @@ public class InventoryManager
     }
     public void update()
     {
+
+
         updateItemWindow();
         // вызов морды персонажа
-        try {
+        try {//TODO: ВОВАН ПЕРЕНЕСИ БЛОК ТРАЙ КЕЧ В НУТЫРЬ МЕТОДА. НЕ надо тут его разводить
             updateStatusWindow();
         } catch (IOException e) {
             System.out.println("НЕ ГРУЗИТ КАРТИНКУ СУКА");
@@ -214,15 +216,15 @@ public class InventoryManager
             Arrays.stream(window.getComponents()).forEach(window::remove);
 
             //Добавляем заголовок
-            JLabel titleLabel = new JLabel("BEW,U");
+            JLabel titleLabel = new JLabel("BEW,N");
             window.add(titleLabel);
             titleLabel.setBounds(10,10,100,20);
 
             for(int i = 0; i<itemTiles.size(); i++)
             {
-                if(i != 0 && i % 3 == 0){ yOffset += 50; }//Перенос строки после 4-х панелек
+                if(i != 0 && i % 4 == 0){ yOffset += 50; }//Перенос строки после 4-х панелек
                 window.add(itemTiles.get(i));
-                itemTiles.get(i).setBounds(i%3*50,yOffset,40,40);
+                itemTiles.get(i).setBounds(i%4*50,yOffset,40,40);
 
             }
         }

@@ -143,7 +143,7 @@ public class Renderer implements Runnable {
             g.drawImage(con.getTexture(), con.getX() - camX, con.getY() - camY, null);
         // Также отрисовываем интерфейс тех контейнеров, которые сейчас используются.
         for (Container c : Engine.getCurrentLevel().getContainers())
-            if (c.isInUse() && c.getItems().size() >= 1) {
+            if (c.isInUse()/* && c.getItems().size() >=  1*/) {
                 g.drawImage(c.getUI(), c.getX() - camX, c.getY() - camY, null);
                 // отрисовка предмета в контейнере.
                 for (int i = 0; i < c.getItems().size(); i++) {

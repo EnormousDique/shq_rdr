@@ -1,6 +1,7 @@
 package ru.muwa.shq.items.guns;
 
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.objects.containers.Container;
 
 import java.awt.image.BufferedImage;
 
@@ -12,6 +13,11 @@ public class Weapon extends Item {
 
     public Weapon(int id, int price, double weight, BufferedImage texture) {
         super(id, price, weight, texture);
+    }
+
+    @Override
+    public void give(Container c) {
+
     }
 
     @Override
