@@ -113,10 +113,11 @@ public class PlayerControls
         }
 
         //Блок стрельбы
-        //Engine.getCurrentLevel().getObjects().add( new Bullet((int)Player.get().getAttackZone().getCenterX() , (int)Player.get().getAttackZone().getCenterY(), -(Aim.getInstance().calculateAngle() - 90)));
-        keyboard.getKeys()[keyboard.SPACE] = false;
+        Engine.getCurrentLevel().getObjects().add( new Bullet((int)Player.get().getAttackZone().getCenterX() , (int)Player.get().getAttackZone().getCenterY(), -(Aim.getInstance().calculateAngle() - 90)));
         Sounder.playSFX("src\\ru\\muwa\\shq\\sounds\\sfx\\vistrel05.wav");
 
+
+        keyboard.getKeys()[keyboard.SPACE] = false;
 
     }
     private void enter() {
