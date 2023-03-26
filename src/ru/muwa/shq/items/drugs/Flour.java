@@ -1,6 +1,7 @@
 package ru.muwa.shq.items.drugs;
 
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.player.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -33,5 +34,11 @@ public class Flour extends Item {
     {
         super(ID, PRICE, WEIGHT, img);
         description = "мефчик бля ебанул и нихуя";
+    }
+    @Override
+    public void use()
+    {
+        if(Player.get().getHp() >= 90) Player.get().setHp(100);
+        Player.get().setHp(Player.get().getHp()+10);
     }
 }

@@ -34,6 +34,22 @@ public class AI
             if (npc.isPlayerInSight())  // Если нпц сейчас видит игрока
             {
                                          // описано поведение НПЦ, в случае если тот видит игрока
+
+                double r =Math.random();
+
+                if(r<0.5d) {
+                    npc.setX(npc.getX() > Player.get().getX() ? npc.getX() - npc.getSpeed() : npc.getX() + npc.getSpeed());
+                    r =Math.random();
+                    if(r>0.5) return;
+                    npc.setY(npc.getY() > Player.get().getY() ? npc.getY() - npc.getSpeed() : npc.getY() + npc.getSpeed());
+
+                }else {
+                    npc.setY(npc.getY() > Player.get().getY() ? npc.getY() - npc.getSpeed() : npc.getY() + npc.getSpeed());
+                    r =Math.random();
+                    if(r>0.5) return;
+                    npc.setX(npc.getX() > Player.get().getX() ? npc.getX() - npc.getSpeed() : npc.getX() + npc.getSpeed());
+
+                }
             }
             // Раньше тут была некоторая логика, но теперь ее нет.
         }

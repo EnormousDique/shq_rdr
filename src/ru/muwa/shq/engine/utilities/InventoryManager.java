@@ -140,7 +140,9 @@ public class InventoryManager
 
                     if (rect.contains(new Point(mx, my))) {
                         System.out.println("POPAL");
+                        ((ItemPanel) c).getItem().use();
                         Inventory.getInstance().getItems().remove(((ItemPanel) c).getItem());
+
                     }
                 }
             }

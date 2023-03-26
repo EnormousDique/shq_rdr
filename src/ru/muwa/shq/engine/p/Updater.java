@@ -142,6 +142,7 @@ public class Updater implements Runnable
 
             // Проверяем столкновения.
             CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
+            CollisionsChecker.getInstance().checkCollisionsNPC(c, new LinkedList<>( Engine.getCurrentLevel().getNPC().stream().map(npc->(GameObject)npc).collect(Collectors.toList())));
 
             // Обновляем бокс.
             SolidBoxUpdater.getInstance().updateSolidBox(c);

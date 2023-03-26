@@ -4,6 +4,10 @@ import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
+import ru.muwa.shq.engine.p.Updater;
+import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
+
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.GameObject;
@@ -48,9 +52,11 @@ public class Renderer implements Runnable {
         if (instance != null) return;
         instance = this;
         frame = GameScreen.getInstance();
+
         frame.add(HUD.getInstance().getMainWindow());
         frame.add(HUD.getInstance().getItemWindow());
         frame.add(HUD.getInstance().getStatusWindow());
+
 
         canvas = new Canvas();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -169,11 +175,14 @@ public class Renderer implements Runnable {
             for (Line2D.Float line : c.getRayCaster().calcRays())
                 g.drawLine((int) line.x1 - camX, (int) line.y1 - camY, (int) line.x2 - camX, (int) line.y2 - camY);
         */
+        /*
         for(int i = 0;i<Engine.getCurrentLevel().getNPC().size();i++){
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
             for (Line2D.Float line : c.getRayCaster().calcRays())
                 g.drawLine((int) line.x1 - camX, (int) line.y1 - camY, (int) line.x2 - camX, (int) line.y2 - camY);
         }
+
+         */
         //Если игрок в поле зрения, цвет луей меняется.
         // for(NPC c: Engine.getCurrentLevel().getNPC()) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1-camX,(int)r.y1-camY,(int)r.x2-camX,(int)r.y2-camY);}
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
@@ -186,7 +195,14 @@ public class Renderer implements Runnable {
             }
         }
 
+
+
+            // отрисовка информации о предмете при наводе мышки на онный
+
            // drawDescription(g);
+
+
+
             // TODO: Проверить, нужны ли в прицнипе объекты класса ItemPhysicalAppearance
             //for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
 
@@ -194,6 +210,8 @@ public class Renderer implements Runnable {
             HUD.getInstance().getStatusWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getItemWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getMainWindow().setVisible(Inventory.getInstance().isOpened());
+            HUD.getInstance().getItemWindow().updateUI();
+            HUD.getInstance().getStatusWindow().updateUI();
             /*
 
             if (Inventory.getInstance().isOpened())
@@ -268,7 +286,7 @@ public class Renderer implements Runnable {
              // отрисовка информации о предмете при наводе мышки на онный
             if(MouseButtonListener.getInstance().highlight != null && MouseButtonListener.getInstance().highlight.getSource() instanceof ItemPanel) {
 
-                g.drawString(((ItemPanel) MouseButtonListener.getInstance().highlight.getSource()).getItem().getDescription(), 200,200);
+                g.drawString(((ItemPanel) MouseButtonListener.getInstance().highlight.getSource()).getItem().getDescription(), MouseListener.getInstance().getX(), MouseListener.getInstance().getY()-50);
             }
             g.setColor(Color.GREEN);
             g.drawString(""+(MouseListener.getInstance().getX()+camX)+" "+(MouseListener.getInstance().getY()+camY),100,160);

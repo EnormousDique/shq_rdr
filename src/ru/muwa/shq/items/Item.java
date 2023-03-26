@@ -46,4 +46,5 @@ public abstract class Item
     public void setMyContainer(Container c){myContainer = c;}
     public Container getMyContainer(){return myContainer;}
 
+    public abstract void use();
 }

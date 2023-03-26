@@ -14,4 +14,9 @@ public class Weapon extends Item {
         super(id, price, weight, texture);
     }
 
+    @Override
+    public void use() {
+        //TODO: помещение объекта в экипирову
+    }
+
 }
