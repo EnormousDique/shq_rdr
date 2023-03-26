@@ -1,7 +1,15 @@
 package ru.muwa.shq.engine.ai;
 import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
+import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.camera.Camera;
+import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.player.Player;
 
+import java.awt.geom.Line2D;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 import static ru.muwa.shq.objects.GameObject.Direction.LEFT;
 import static ru.muwa.shq.objects.GameObject.Direction.RIGHT;
@@ -51,7 +59,42 @@ public class AI
 
                 }
             }
-            // Раньше тут была некоторая логика, но теперь ее нет.
+
+
+            //ЛОГИКА ДЛЯ ЦЕЛЯЩИСЯ (СТРЕЛЯЮЩИХ НПЦ)
+            aimAI();
         }
+    }
+    private void aimAI()
+    {
+        LinkedList<NPC> list = Engine.getCurrentLevel().getNPC();
+        for(int i = 0 ; i < list.size(); i++)
+        {
+            if(list.get(i) instanceof AimingGuy)
+            {
+                aimAIMath(list.get(i));
+
+            }
+        }
+    }
+    private void aimAIMath(NPC c)
+    {
+        List<Line2D> list = ((AimingGuy)c).getLines();
+       for (int i = 0; i<  list.size(); i++){
+           switch (i)
+           {
+               case 0:
+                   list.get(i).setLine(c.getSolidBox().getCenterX(), c.getY() + c.getHeight(), c.getSolidBox().getCenterX(),c.getSolidBox().getCenterY());
+                   break;
+               case 1:
+                   list.get(i).setLine(c.getSolidBox().getCenterX(),c.getSolidBox().getCenterY(), Player.get().getX()/*+ Camera.getInstance().getX()*/, Player.get().getY()/*+Camera.getInstance().getY()*/);
+                   break;
+               case 2:
+                   list.get(i).setLine(Player.get().getX()/*+Camera.getInstance().getX()*/, Player.get().getY()/*+Camera.getInstance().getY()*/, c.getSolidBox().getCenterX(), c.getY() +c.getHeight());
+
+
+           }
+       }
+
     }
 }

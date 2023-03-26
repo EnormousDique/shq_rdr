@@ -1,4 +1,5 @@
 package ru.muwa.shq.levels.demo;
+import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.levels.Level;
@@ -44,9 +45,11 @@ public class DemoLevel0 extends Level
         npc.add(new BadGuy0(950,1800));
         npc.add(new BadGuy0(1100,1800));
         npc.add(new BadGuy0(1300,1800));
+        npc.add(new AimingGuy(500,500));
         npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
-        npc.get(1).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
-        npc.get(2).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
-        npc.get(3).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
+        npc.get(1).setRayCasterBorders(npc.get(1).getRayCaster().buildLines(objects));
+        npc.get(2).setRayCasterBorders(npc.get(2).getRayCaster().buildLines(objects));
+        npc.get(3).setRayCasterBorders(npc.get(3).getRayCaster().buildLines(objects));
+        npc.get(4).setRayCasterBorders(npc.get(4).getRayCaster().buildLines(objects));
     }
 }

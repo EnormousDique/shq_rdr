@@ -1,4 +1,5 @@
 package ru.muwa.shq.engine.g;
+import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
@@ -232,7 +233,7 @@ public class Renderer implements Runnable {
 
             // System.out.println(Player.get().getAttackZone().getBounds().x +" "+ Player.get().getAttackZone().getBounds().y +" "+ Player.get().getAttackZone().getBounds().width +" "+ Player.get().getAttackZone().getBounds().height);
 
-            g.drawRect(player.getAttackZone().getBounds().x - camX, player.getAttackZone().getBounds().y - camY, player.getAttackZone().getBounds().width, player.getAttackZone().getBounds().height);
+           // g.drawRect(player.getAttackZone().getBounds().x - camX, player.getAttackZone().getBounds().y - camY, player.getAttackZone().getBounds().width, player.getAttackZone().getBounds().height);
 
             // полоску здовроья видно только при открытии инвентаря
             HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
@@ -264,17 +265,26 @@ public class Renderer implements Runnable {
 
             // Отрисовка зоны использования
 
-            g.setColor(Color.GREEN);
-            g.drawRect(Player.get().getUseZone().x - camX, Player.get().getUseZone().y - camY, Player.get().getUseZone().width, Player.get().getUseZone().height);
+           // g.setColor(Color.GREEN);
+           // g.drawRect(Player.get().getUseZone().x - camX, Player.get().getUseZone().y - camY, Player.get().getUseZone().width, Player.get().getUseZone().height);
 
             // Отрисовка линий прицела
-            for (Line2D l : Aim.getInstance().getLines())
-                g.drawLine((int) l.getX1() - camX, (int) l.getY1() - camY, (int) l.getX2() - camX, (int) l.getY2() - camY);
+             for (Line2D l : Aim.getInstance().getLines())
+               g.drawLine((int) l.getX1() - camX, (int) l.getY1() - camY, (int) l.getX2() - camX, (int) l.getY2() - camY);
+            //Отрисовка прицела целящихся нпц
+             for(int i  = 0; i < Engine.getCurrentLevel().getNPC().size();i++)
+             {
+                 if(Engine.getCurrentLevel().getNPC().get(i) instanceof AimingGuy)
+                 {
+                     for (Line2D l : ((AimingGuy) Engine.getCurrentLevel().getNPC().get(i)).getLines())
+                         g.drawLine((int) l.getX1() - camX, (int) l.getY1() - camY, (int) l.getX2() - camX, (int) l.getY2() - camY);
 
+                 }
+             }
             AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
             at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getWidth() / 2), (Player.get().getHeight() / 2));
 
-            ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
+         //   ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
 
             //отрисовка координат мыши.
             g.setColor(Color.red);
