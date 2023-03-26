@@ -34,6 +34,7 @@ public class DialogueManager {
                 ArrayList<JButton> responseButtons = new ArrayList<>();
 
                 //Чистим диалоговое окно
+                //window.setLayout(null);
                 Arrays.stream(window.getComponents()).forEach(window::remove);
 
                 //Выводим сообщение
@@ -41,15 +42,24 @@ public class DialogueManager {
                 System.out.println("new msg label text wiill bee : " + messageLabel.getText());
                 System.out.println("current message " + dialogue.getCurrentMessage().getText());
                 window.add(messageLabel);
+                messageLabel.setBounds(50,50,300,200);
 
                 //Выводим ответы
+                int x = 50, y = 300;
                 for(int i = 0; i < dialogue.getCurrentMessage().responds.size(); i++)
                 {
-                    responseButtons.add(new JButton(dialogue.getCurrentMessage().responds.get(i).text));
-                   // System.out.println("otvety : " + dialogue.getCurrentMessage().responds.get(i).text);
-
+                    JButton b = new JButton(dialogue.getCurrentMessage().responds.get(i).text);
+                    responseButtons.add(b);
+                    window.add(b);
+                    b.addActionListener(DialogueWindowButtonListener.getInstance());
+                    b.setBounds(x,y,60,30);
+                    x += 65;
+                    if(i % 2 == 0)
+                    {
+                        x = 50;
+                        y+= 40;
+                    }
                 }
-                for(JButton b : responseButtons){ window.add(b); b.addActionListener(DialogueWindowButtonListener.getInstance());}
 
                 window.updateUI();
 

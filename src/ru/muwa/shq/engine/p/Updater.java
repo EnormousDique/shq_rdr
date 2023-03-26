@@ -49,20 +49,20 @@ public class Updater implements Runnable
 
         while(thread !=  null)
         {
+                currTime = System.nanoTime();
+                delta += (currTime - lastTime) / drawInterval;
+                lastTime = currTime;
+            System.out.println("delta: "+delta);
+            System.out.println("pause: "+Engine.pause);
 
-            currTime = System.nanoTime();
-            delta += (currTime - lastTime) / drawInterval;
-            lastTime = currTime;
-
-
-         //   for(GameObject o : Engine.getCurrentLevel().getObjects()) CollisionsChecker.getInstance().checkCollisions(o, Engine.getCurrentLevel().getObjects());
-            //Попытка вынести расчёты столновений за ограничение в 60 итераций в секунду для исправления бага с выталкиванием за текстуры
-            //TODO: вероятно стоит запустить отдельный поток для провери столновений вне основного потоа updater'a
-            //Баг удалось исправить.
-
-            if(delta >= 1 &&  !Engine.pause )
+            if(delta>3)
             {
-                update();
+                delta = 1.1;
+            }
+
+            if(delta >= 1)
+            {
+                if(!Engine.pause) update();
                 delta--;
             }
         }

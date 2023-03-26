@@ -64,8 +64,8 @@ public class KeyListener implements java.awt.event.KeyListener
     public void keyPressed(KeyEvent e)
     {
         System.out.println(e.getKeyCode());
-        switch (e.getKeyCode())
-        {
+
+        switch (e.getKeyCode()) {
             case 32: // Пробел
                 keys[SPACE] = true;
                 break;
@@ -101,6 +101,7 @@ public class KeyListener implements java.awt.event.KeyListener
 
 
         }
+
         //System.out.println("key pressed: " + e.getKeyCode());
     }
 
