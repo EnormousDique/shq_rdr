@@ -36,7 +36,7 @@ public class PadikLock implements MiniGame {
         buttons = new ArrayList<>();
         HUD.getInstance().getActionWindow().setVisible(true); // включаем видимость панели мини игры
         Engine.pause = true;
-
+        // добавление кнопок
         JButton b1 = new JButton("1");
         b1.addActionListener(PadikLockButtonListener.getInstance(this));
         buttons.add(b1);

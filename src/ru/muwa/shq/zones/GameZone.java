@@ -14,4 +14,6 @@ public abstract class GameZone extends Rectangle
         this.width = width;
         this.height = height;
     }
+
+
 }

@@ -19,9 +19,11 @@ public class GameZoneUtility
 
     public void work() {
     for(GameZone z:Engine.getCurrentLevel().getZones()){
-        if(!(z instanceof InteractiveEnterZone)  && ((EnterZone)z).isAuto() && z.contains(new Point(Player.get().getX(), Player.get().getY()))) {
+        if(z instanceof EnterZone ) {
+            if(((EnterZone)z).isAuto() && z.contains(new Point(Player.get().getX(), Player.get().getY()))) {
             Engine.switchLevel((EnterZone) z);
-        }
+        }}
+
     }
     }
 }

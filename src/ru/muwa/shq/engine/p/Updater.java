@@ -89,7 +89,8 @@ public class Updater implements Runnable
 
         //Вызов службы обработки боя
         CombatUtility.getInstance().work();
-
+        //вызов службы эфектов
+        EffectUtility.getInstance().work();
         //Вызов службы обновления пуль
         BulletUtility.getInstance().work();
 
