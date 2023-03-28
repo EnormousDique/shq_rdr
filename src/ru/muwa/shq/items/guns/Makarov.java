@@ -60,11 +60,10 @@ public class Makarov extends Weapon implements Firearm{
     }
 
     @Override
-    public void reload()
-    {
-        //Тут будет код перезарядки
-
+    public void reload() {
+        this.currAmmo = maxAmmo;
     }
+
 
     @Override
     public void use() {
