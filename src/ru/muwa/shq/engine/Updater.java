@@ -3,6 +3,7 @@ import ru.muwa.shq.engine.ai.AI;
 import ru.muwa.shq.engine.combat.BulletUtility;
 import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.camera.CameraUpdateUtility;
+import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.aiming.Aim;
@@ -49,8 +50,7 @@ public class Updater implements Runnable
                 currTime = System.nanoTime();
                 delta += (currTime - lastTime) / drawInterval;
                 lastTime = currTime;
-            //System.out.println("delta: "+delta);
-            //System.out.println("pause: "+Engine.pause);
+
 
             if(delta>3)
             {
@@ -82,8 +82,10 @@ public class Updater implements Runnable
     {
 
 
-        //System.out.println(Math.toDegrees(Math.acos( ((4*4) + (3*3) - (5*5)) / (2 * 4 * 3) )) );
-
+        //Спавнер
+        Spawner.regularSpawn();
+        System.out.println("spawner counter : " + Spawner.getSpawnedNPCCounter());
+        System.out.println("spawner interval :  " + Spawner.getSpawnInterval());
 
         //Блок обработки игрока.
 
@@ -97,6 +99,8 @@ public class Updater implements Runnable
 
         // Проверяем были ли команды игроку через игровое управление.
         PlayerControls.getInstance().controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
+        //Обновляем бокс игрока.
+        SolidBoxUpdater.getInstance().updateSolidBox(player);
 
         // Обновленци прицела
 
@@ -111,8 +115,7 @@ public class Updater implements Runnable
         CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getObjects());
 
         CollisionsChecker.getInstance().checkCollisions(player,  Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject) c ).collect(Collectors.toList()) );
-        //Обновляем бокс игрока.
-        SolidBoxUpdater.getInstance().updateSolidBox(player);
+
 
         //Обновляем окно инвентаря
 

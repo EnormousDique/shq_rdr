@@ -120,7 +120,14 @@ public class PlayerControls
         //Блок стрельбы
         if(isFirearmEquipped && gun.getCurrAmmo()>0) {
             ((Firearm)gun).shot();
-            Engine.getCurrentLevel().getObjects().add(new Bullet((int) Player.get().getAttackZone().getCenterX(), (int) Player.get().getAttackZone().getCenterY(), -(Aim.getInstance().calculateAngle() - 90)));
+            double angle = -(Aim.getInstance().calculateAngle() - 90);
+
+            Engine.getCurrentLevel().getObjects().add(
+                    new Bullet((int)
+                            Player.get().getAttackZone().getCenterX(),
+                            (int) Player.get().getAttackZone().getCenterY(),
+                            angle));
+
             Sounder.playSFX("src\\ru\\muwa\\shq\\sounds\\sfx\\vistrel05.wav");
         }
 

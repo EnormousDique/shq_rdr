@@ -86,8 +86,6 @@ public class Player extends Creature
         maxJumpAx = 50;
         hp = 100;
         attackZone.getBounds().setBounds(x,y-30,30,30);
-
-
     }
 
     public boolean isBusy() {return isBusy;}
@@ -99,18 +97,15 @@ public class Player extends Creature
     public void moveLeft() {
         if(!isBusy)super.moveLeft();
         if(direction!= Direction.LEFT) direction = Direction.LEFT;
-
-
     }
 
     @Override
     public void moveRight() {
         if(!isBusy)super.moveRight();
         if(direction!= Direction.RIGHT) direction = Direction.RIGHT;
-
     }
     public void jump(){
-
+        //Да, когда-то мы умели прыгать..
     }
      @Override
     public void moveUp(){

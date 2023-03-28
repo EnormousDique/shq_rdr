@@ -3,6 +3,7 @@ import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.creatures.npc.enemies.VelvetTank;
 import ru.muwa.shq.dialogues.demo.Conversation0;
+import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.items.guns.Makarov;
 import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
@@ -20,6 +21,7 @@ import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.GameZone;
 import ru.muwa.shq.zones.InteractiveEnterZone;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class DemoLevel0 extends Level
@@ -66,5 +68,6 @@ public class DemoLevel0 extends Level
         npc.get(3).setRayCasterBorders(npc.get(3).getRayCaster().buildLines(objects));
         npc.get(4).setRayCasterBorders(npc.get(4).getRayCaster().buildLines(objects));
         npc.get(5).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
+        Spawner.updateTimers();
     }
 }

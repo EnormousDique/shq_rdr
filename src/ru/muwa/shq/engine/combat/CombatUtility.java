@@ -4,6 +4,7 @@ import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.objects.containers.Corpse;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
@@ -29,7 +30,7 @@ public class CombatUtility {
         }
     }
     public void updateAttackZone(){
-        Player.get().getAttackZone().setBounds(Player.get().getX(),Player.get().getY() + 10,40,40);
+        Player.get().getAttackZone().setBounds(Player.get().getX(),Player.get().getY() + 10,60,60);
         AffineTransform rotate = AffineTransform.getRotateInstance(-Math.toRadians(Aim.getInstance().calculateAngle()),Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY());
         Player.get().setAttackZone(rotate.createTransformedShape(Player.get().getAttackZone()).getBounds());
     }
@@ -46,6 +47,7 @@ public class CombatUtility {
         if( (!Player.get().equals(victim)) && victim.getHp() <= 0 ) {
             Engine.getCurrentLevel().getNPC().remove(victim);
             Engine.getCurrentLevel().getContainers().add(new Corpse(victim.getX(),victim.getY(),victim.getcorpseimg(), victim.getRandomLoot()));
+            Spawner.decreaseSpawnCounter();
 
 
         }
