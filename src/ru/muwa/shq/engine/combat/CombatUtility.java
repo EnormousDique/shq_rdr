@@ -5,7 +5,9 @@ import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.spawner.Spawner;
+import ru.muwa.shq.items.guns.Firearm;
 import ru.muwa.shq.objects.containers.Corpse;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
 
@@ -30,7 +32,21 @@ public class CombatUtility {
         }
     }
     public void updateAttackZone(){
-        Player.get().getAttackZone().setBounds(Player.get().getX(),Player.get().getY() + 10,60,60);
+
+        boolean holdingGun = false;
+        int zoneHeight = 50;
+
+        for(int i = 0; i< Inventory.getInstance().getItems().size(); i++)
+
+            if(Inventory.getInstance().getItems().get(i).isEquipped()
+            &&
+                Inventory.getInstance().getItems().get(i) instanceof Firearm)
+                holdingGun = true;
+
+        if(holdingGun)  zoneHeight = 120;
+
+
+        Player.get().getAttackZone().setBounds(Player.get().getX(),Player.get().getY() + 10,60,zoneHeight);
         AffineTransform rotate = AffineTransform.getRotateInstance(-Math.toRadians(Aim.getInstance().calculateAngle()),Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY());
         Player.get().setAttackZone(rotate.createTransformedShape(Player.get().getAttackZone()).getBounds());
     }
