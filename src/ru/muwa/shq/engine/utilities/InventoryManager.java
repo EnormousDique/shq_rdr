@@ -221,7 +221,7 @@ public class InventoryManager
 
             //Цикл
             //  Проходимся по вещам из инвентаря, и добавляем панель под каждую на окно ItemWindow
-            for(int i = 0; i<itemsSize; i++)
+            for(int i = 0; i<Inventory.getInstance().getItems().size(); i++)
             {
                 //
                 if(Inventory.getInstance().getItems().get(i) !=null) {

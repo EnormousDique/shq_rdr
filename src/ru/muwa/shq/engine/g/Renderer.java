@@ -170,7 +170,7 @@ public class Renderer implements Runnable {
 
         //Отрисовка лучей рейкастера для всех нпц из списка  текущих
         // (ОПЦИОНАЛЬНО) !!!
-        g.setColor(Color.red);
+         g.setColor(Color.red);
         /*
         for (NPC c : Engine.getCurrentLevel().getNPC())
 
@@ -197,54 +197,41 @@ public class Renderer implements Runnable {
             }
         }
 
-
-
-            // отрисовка информации о предмете при наводе мышки на онный
-
-           // drawDescription(g);
-
-
-
-            // TODO: Проверить, нужны ли в прицнипе объекты класса ItemPhysicalAppearance
-            //for(ItemPhysicalAppearance i : Engine.getCurrentLevel().getIcons()) g.drawRect(i.getBox().x-camX, i.getBox().y-camY,i.getBox().width,i.getBox().height);
-
-            //Отрисовка инвентаря игрока, если тот открыт
+        // ОТИСОВКА HUD
             HUD.getInstance().getStatusWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getItemWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getMainWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getItemWindow().updateUI();
             HUD.getInstance().getStatusWindow().updateUI();
+        // полоску здовроья видно только при открытии инвентаря
+        HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
+        HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
+        HUD.getInstance().getHealthBar().setString(Integer.toString(HUD.getInstance().getHealthBar().getValue()));
             //Вызов службы диалогов.
             DialogueManager.getInstance().work();
             /*
-
             if (Inventory.getInstance().isOpened())
                 g.drawImage(Inventory.getInstance().getImg(), Inventory.getInstance().getX() - camX, Inventory.getInstance().getY() - camY, null);
             if (Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems())
                 if (i != null)
                     g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x - camX, Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y - camY, null);
              */
-            //Отрисовка текстуры игрока.
 
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //!!!!!!!!!!!!!!!!!!!!!!! ВЕРНУТЬ!!!!!!!!!!!!!!!!!!!
+            // ОТРИСОВКА ПЕрСОНАЖА
+              AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
+               at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getWidth() / 2), (Player.get().getHeight() / 2));
 
-            // g.drawImage(player.getTexture(), player.getX()-camX,player.getY()-camY,null);
+                ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
 
-            // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
 
-            //frame
+        // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
+
 
             // System.out.println(Player.get().getAttackZone().getBounds().x +" "+ Player.get().getAttackZone().getBounds().y +" "+ Player.get().getAttackZone().getBounds().width +" "+ Player.get().getAttackZone().getBounds().height);
 
            // g.drawRect(player.getAttackZone().getBounds().x - camX, player.getAttackZone().getBounds().y - camY, player.getAttackZone().getBounds().width, player.getAttackZone().getBounds().height);
 
-            // полоску здовроья видно только при открытии инвентаря
-            HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
-            // HUD.getInstance().getActionWindow().setVisible(Inventory.getInstance().isOpened());
-            //отрисовка текущего здоровья персонажа
-            HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
-            HUD.getInstance().getHealthBar().setString(Integer.toString(HUD.getInstance().getHealthBar().getValue()));
+
 
    /*
             //Отрисовка полей под иконки у инвентаря
@@ -276,6 +263,7 @@ public class Renderer implements Runnable {
              for (Line2D l : Aim.getInstance().getLines())
                g.drawLine((int) l.getX1() - camX, (int) l.getY1() - camY, (int) l.getX2() - camX, (int) l.getY2() - camY);
             //Отрисовка прицела целящихся нпц
+        /*
              for(int i  = 0; i < Engine.getCurrentLevel().getNPC().size();i++)
              {
                  if(Engine.getCurrentLevel().getNPC().get(i) instanceof AimingGuy)
@@ -285,10 +273,8 @@ public class Renderer implements Runnable {
 
                  }
              }
-            AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
-            at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getWidth() / 2), (Player.get().getHeight() / 2));
 
-         //   ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
+         */
 
             //отрисовка координат мыши.
             g.setColor(Color.red);

@@ -52,8 +52,8 @@ public class Updater implements Runnable
                 currTime = System.nanoTime();
                 delta += (currTime - lastTime) / drawInterval;
                 lastTime = currTime;
-            System.out.println("delta: "+delta);
-            System.out.println("pause: "+Engine.pause);
+            //System.out.println("delta: "+delta);
+            //System.out.println("pause: "+Engine.pause);
 
             if(delta>3)
             {

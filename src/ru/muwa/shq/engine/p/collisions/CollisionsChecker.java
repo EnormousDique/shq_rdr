@@ -3,6 +3,7 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.items.guns.Bullet;
+import ru.muwa.shq.items.guns.EnemyBullet;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
@@ -65,7 +66,11 @@ public class CollisionsChecker
                 //Код для уничтожения пуль после столкновения
                 if(obj instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(obj);
                 if(o instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(o);
-                if(obj instanceof Bullet && o.equals(Player.get()))CombatUtility.getInstance().attack(Player.get(),10);
+                if(obj instanceof Bullet && o.equals(Player.get()))
+                {
+                    CombatUtility.getInstance().attack(Player.get(),10);
+
+                }
                 }
             }
         }

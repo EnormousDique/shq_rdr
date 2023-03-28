@@ -4,7 +4,10 @@ import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.MouseListener;
+import ru.muwa.shq.items.guns.Bullet;
+import ru.muwa.shq.items.guns.EnemyBullet;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.player.aiming.Aim;
 
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
@@ -45,6 +48,31 @@ public class AI
 
                 double r =Math.random();
 
+                //Блок для "отступания" целящихся нпц
+                if(npc instanceof  AimingGuy && ((AimingGuy) npc).getNearZone().intersects(Player.get().getSolidBox()))
+                {
+
+
+                    if(r<0.5d) {
+                        npc.setX(npc.getX() > Player.get().getX() ? npc.getX() + npc.getSpeed() : npc.getX() - npc.getSpeed());
+                        r =Math.random();
+                        if(r>0.5) return;
+                        npc.setY(npc.getY() > Player.get().getY() ? npc.getY() + npc.getSpeed() : npc.getY() - npc.getSpeed());
+
+                    }else {
+                        npc.setY(npc.getY() > Player.get().getY() ? npc.getY() + npc.getSpeed() : npc.getY() - npc.getSpeed());
+                        r =Math.random();
+                        if(r>0.5) return;
+                        npc.setX(npc.getX() > Player.get().getX() ? npc.getX() + npc.getSpeed() : npc.getX() - npc.getSpeed());
+
+                    }
+                }else
+
+
+                //Блок движения НПЦ в стандартном порядке
+
+                r =Math.random();
+
                 if(r<0.5d) {
                     npc.setX(npc.getX() > Player.get().getX() ? npc.getX() - npc.getSpeed() : npc.getX() + npc.getSpeed());
                     r =Math.random();
@@ -63,6 +91,11 @@ public class AI
 
             //ЛОГИКА ДЛЯ ЦЕЛЯЩИСЯ (СТРЕЛЯЮЩИХ НПЦ)
             aimAI();
+            if(npc instanceof  AimingGuy)
+            {
+                ((AimingGuy) npc).updateNearZone();
+            }
+
         }
     }
     private void aimAI()
@@ -73,9 +106,18 @@ public class AI
             if(list.get(i) instanceof AimingGuy)
             {
                 aimAIMath(list.get(i));
+                if(list.get(i).isPlayerInSight())
+                {
+                   // System.out.println("SEE YOU");
+                    if(((AimingGuy) list.get(i)).getLastTimeShot() + 1_000 < System.currentTimeMillis()) {
+                        ((AimingGuy) list.get(i)).setLastTimeShot(System.currentTimeMillis());
+                        EnemyBullet.enemyShot((int) list.get(i).getSolidBox().getCenterX(), (int) list.get(i).getSolidBox().getCenterY(), -1 *(Aim.getInstance().calculateAngleFoNpc(list.get(i)) - 90), list.get(i));
+                    }
 
+                }
             }
         }
+
     }
     private void aimAIMath(NPC c)
     {
@@ -87,10 +129,10 @@ public class AI
                    list.get(i).setLine(c.getSolidBox().getCenterX(), c.getY() + c.getHeight(), c.getSolidBox().getCenterX(),c.getSolidBox().getCenterY());
                    break;
                case 1:
-                   list.get(i).setLine(c.getSolidBox().getCenterX(),c.getSolidBox().getCenterY(), Player.get().getX()/*+ Camera.getInstance().getX()*/, Player.get().getY()/*+Camera.getInstance().getY()*/);
+                   list.get(i).setLine(c.getSolidBox().getCenterX(),c.getSolidBox().getCenterY(), Player.get().getSolidBox().getCenterX(), Player.get().getSolidBox().getCenterY());
                    break;
                case 2:
-                   list.get(i).setLine(Player.get().getX()/*+Camera.getInstance().getX()*/, Player.get().getY()/*+Camera.getInstance().getY()*/, c.getSolidBox().getCenterX(), c.getY() +c.getHeight());
+                   list.get(i).setLine(Player.get().getSolidBox().getCenterX(), Player.get().getSolidBox().getCenterY(), c.getSolidBox().getCenterX(), c.getY() +c.getHeight());
 
 
            }
