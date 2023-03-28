@@ -80,7 +80,6 @@ public class CollisionsChecker
 
     public void checkCollisionsNPC(NPC c, LinkedList<GameObject> objects)
     {
-
         if(c != null && !c.isStatic())
         { //Неподвижные объекты мимо.
             for (GameObject obj : objects)
@@ -100,9 +99,6 @@ public class CollisionsChecker
                     else if(c.getSolidBox().getCenterX() < obj.getSolidBox().getCenterX()) c.setX(obj.getX() - c.getWidth());
                         //И в другой бок.
                     else if(c.getSolidBox().getCenterX() > obj.getSolidBox().getCenterX()) c.setX(obj.getX() + obj.getWidth());
-
-
-
 
                     //Код для уничтожения пуль после столкновения и нанесение урона
                     if(obj instanceof Bullet)

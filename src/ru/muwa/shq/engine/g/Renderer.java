@@ -59,6 +59,7 @@ public class Renderer implements Runnable {
         frame.add(HUD.getInstance().getItemWindow());
         frame.add(HUD.getInstance().getStatusWindow());
         frame.add(HUD.getInstance().getDialogueWindow()).setVisible(false);
+        frame.add(HUD.getInstance().getEquipWindow());
 
         canvas = new Canvas();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -126,8 +127,8 @@ public class Renderer implements Runnable {
             canvas.createBufferStrategy(4);
             return;
         }
-        g = (Graphics2D) bs.getDrawGraphics();
-        // =======
+        g = bs.getDrawGraphics();
+
 
         // Закрашиваем задник черным
         g.setColor(Color.black);
@@ -141,8 +142,10 @@ public class Renderer implements Runnable {
         }
 
         //Отрисовка всех контейнеров из списка  текущих
-        for (Container con : Engine.getCurrentLevel().getContainers())
+        for (int i = 0; i< Engine.getCurrentLevel().getContainers().size(); i++) {
+            Container con = Engine.getCurrentLevel().getContainers().get(i);
             g.drawImage(con.getTexture(), con.getX() - camX, con.getY() - camY, null);
+        }
         // Также отрисовываем интерфейс тех контейнеров, которые сейчас используются.
         for (Container c : Engine.getCurrentLevel().getContainers())
             if (c.isInUse()/* && c.getItems().size() >=  1*/) {
@@ -155,12 +158,6 @@ public class Renderer implements Runnable {
 
             }
 
-        //Отрисовка всех нпц из списка  текущих
-        /*
-        for (NPC c : Engine.getCurrentLevel().getNPC())
-            g.drawImage(c.getTexture(), c.getX() - camX, c.getY() - camY, c.getWidth(), c.getHeight(), null);
-
-         */
 
         for(int i = 0;i<Engine.getCurrentLevel().getNPC().size();i++){
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
@@ -201,6 +198,8 @@ public class Renderer implements Runnable {
             HUD.getInstance().getStatusWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getItemWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getMainWindow().setVisible(Inventory.getInstance().isOpened());
+            HUD.getInstance().getEquipWindow().setVisible(Inventory.getInstance().isOpened());
+            HUD.getInstance().getEquipWindow().updateUI();
             HUD.getInstance().getItemWindow().updateUI();
             HUD.getInstance().getStatusWindow().updateUI();
         // полоску здовроья видно только при открытии инвентаря
@@ -209,13 +208,6 @@ public class Renderer implements Runnable {
         HUD.getInstance().getHealthBar().setString(Integer.toString(HUD.getInstance().getHealthBar().getValue()));
             //Вызов службы диалогов.
             DialogueManager.getInstance().work();
-            /*
-            if (Inventory.getInstance().isOpened())
-                g.drawImage(Inventory.getInstance().getImg(), Inventory.getInstance().getX() - camX, Inventory.getInstance().getY() - camY, null);
-            if (Inventory.getInstance().isOpened()) for (Item i : Inventory.getInstance().getItems())
-                if (i != null)
-                    g.drawImage(i.getTexture(), Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).x - camX, Inventory.getInstance().getItemIcons(Inventory.getInstance().getItems().indexOf(i)).y - camY, null);
-             */
 
             // ОТРИСОВКА ПЕрСОНАЖА
               AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
@@ -226,26 +218,9 @@ public class Renderer implements Runnable {
 
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
 
-
             // System.out.println(Player.get().getAttackZone().getBounds().x +" "+ Player.get().getAttackZone().getBounds().y +" "+ Player.get().getAttackZone().getBounds().width +" "+ Player.get().getAttackZone().getBounds().height);
-
            // g.drawRect(player.getAttackZone().getBounds().x - camX, player.getAttackZone().getBounds().y - camY, player.getAttackZone().getBounds().width, player.getAttackZone().getBounds().height);
 
-
-
-   /*
-            //Отрисовка полей под иконки у инвентаря
-            for (Rectangle r : Inventory.getInstance().getItemIcons())
-                g.drawRect(r.x - camX, r.y - camY, r.width, r.height);
-
-            for (Container c : Engine.getCurrentLevel().getContainers())
-                if (c.isInUse()) {
-                    // отрисовка иконок под предметы в контейнере.
-                    for (int i = 0; i < c.getItems().size(); i++) {
-                        g.drawRect(c.getIcons().get(i).x - camX, c.getIcons().get(i).y - camY, c.getIcons().get(i).width, c.getIcons().get(i).height);
-                    }
-                }
-*/
             // отрисоква бокса игрока
             g.drawRect(player.getX() - camX, player.getY() - camY, player.getWidth(), player.getHeight());
 

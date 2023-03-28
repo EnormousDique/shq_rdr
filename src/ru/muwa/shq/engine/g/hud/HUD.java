@@ -22,43 +22,42 @@ public class HUD {
     public static HUD getInstance() {
         if(instance == null) return new HUD();else return instance;
     }
+    JProgressBar healthBar = new JProgressBar(0,100); //создание хелзбара
+    JPanel actionWindow = new JPanel(); //создание окна длья миниигры
+    JPanel mainWindow = new JPanel();
+    JPanel dialogueWindow = new JPanel();  //создание даилогового окна
+    JPanel itemWindow = new JPanel();// панель айтемов
+    JPanel statusWindow = new JPanel();// окна информации
+    JPanel equipWindow = new JPanel();
 
     private HUD (){
         instance = this;
         healthBar.setValue(Player.get().getHp());
         actionWindow.setBounds(100,100,300,300);
         mainWindow.setBounds(620,500,50,100);
-       // statisticWindow.setBounds(500,300,100,100);
         itemWindow.setBounds(500,700,200,300);
         itemWindow.addMouseListener(MouseButtonListener.getInstance());
         itemWindow.setLayout(null);
+        equipWindow.setLayout(null);
         mainWindow.setBounds(920,500,50,100);
         statusWindow.setBounds(500,300,140,300);
         itemWindow.setBounds(500,700,200,500);
         dialogueWindow.setBounds(610,765,700,700);
-       // healthBar.setBounds(1000,300,40,200);
-
+        equipWindow.setBounds(10,10,100,150);
     }
 
-    JProgressBar healthBar = new JProgressBar(0,100); //создание хелзбара
-    public JProgressBar getHealthBar() {
-        return healthBar;
-    }
-
-
-    JPanel actionWindow = new JPanel(); //создание окна длья миниигры
-    JPanel mainWindow = new JPanel();
-
-    JPanel dialogueWindow = new JPanel();  //создание даилогового окна
     public  JPanel getDialogueWindow(){return dialogueWindow;}  // геттер для диалогового окна
-
-
     public JPanel getItemWindow() {
         return itemWindow;
     }
 
-    JPanel itemWindow = new JPanel();// панель айтемов
+    public JProgressBar getHealthBar() {
+        return healthBar;
+    }
 
+    public JPanel getEquipWindow() {
+        return equipWindow;
+    }
     public JPanel getMainWindow() {
         return mainWindow;
     }
@@ -66,7 +65,6 @@ public class HUD {
     public JPanel getActionWindow() {
         return actionWindow;
     }
-    JPanel statusWindow = new JPanel();// окна информации
 
     public JPanel getStatusWindow() {
         return statusWindow;

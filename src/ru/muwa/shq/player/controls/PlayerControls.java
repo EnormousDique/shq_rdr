@@ -12,6 +12,8 @@ import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.engine.s.Sounder;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.guns.Bullet;
+import ru.muwa.shq.items.guns.Firearm;
+import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.levels.dev.DevLevel0;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
 import ru.muwa.shq.objects.containers.Container;
@@ -99,23 +101,44 @@ public class PlayerControls
         keyboard.getKeys()[6] = false;
     }
     private void space()
-    {   for(int i = 0; i < Engine.getCurrentLevel().getNPC().size();i++ )
+    {
+        //Определяем есть ли оружие в руках (огнестрельное)
+        boolean isFirearmEquipped = false;
+        Weapon gun = null;
 
-       // for(NPC npc : Engine.getCurrentLevel().getNPC())
-        { NPC npc = Engine.getCurrentLevel().getNPC().get(i);
-            if (npc.getSolidBox().intersects(Player.get().getAttackZone()))
+        for(int i = 0; i < Inventory.getInstance().getItems().size(); i++)
+        {
+            if(Inventory.getInstance().getItems().get(i).isEquipped() &&
+               Inventory.getInstance().getItems().get(i) instanceof Firearm)
             {
-                //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
-                System.out.printf("hp " + npc.getHp());
-                CombatUtility.getInstance().attack(npc, 5); // пока дамага с руки 0 так как он и стреляет и бьет одновременно и если он убивает с руки то крашиться игра
-                System.out.printf("hp " + npc.getHp());
+                isFirearmEquipped = true;
+                gun = (Weapon) Inventory.getInstance().getItems().get(i);
             }
         }
 
-        //Блок стрельбы
-        Engine.getCurrentLevel().getObjects().add( new Bullet((int)Player.get().getAttackZone().getCenterX() , (int)Player.get().getAttackZone().getCenterY(), -(Aim.getInstance().calculateAngle() - 90)));
-        Sounder.playSFX("src\\ru\\muwa\\shq\\sounds\\sfx\\vistrel05.wav");
 
+        //Блок стрельбы
+        if(isFirearmEquipped && gun.getCurrAmmo()>0) {
+            ((Firearm)gun).shot();
+            Engine.getCurrentLevel().getObjects().add(new Bullet((int) Player.get().getAttackZone().getCenterX(), (int) Player.get().getAttackZone().getCenterY(), -(Aim.getInstance().calculateAngle() - 90)));
+            Sounder.playSFX("src\\ru\\muwa\\shq\\sounds\\sfx\\vistrel05.wav");
+        }
+
+
+        //Блок рукопашки
+        if(!isFirearmEquipped) {
+
+            for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
+                NPC npc = Engine.getCurrentLevel().getNPC().get(i);
+                if (npc.getSolidBox().intersects(Player.get().getAttackZone())) {
+                    //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
+                    System.out.printf("hp " + npc.getHp());
+                    CombatUtility.getInstance().attack(npc, 5); // пока дамага с руки 0 так как он и стреляет и бьет одновременно и если он убивает с руки то крашиться игра
+                    System.out.printf("hp " + npc.getHp());
+                }
+            }
+
+        }
 
         keyboard.getKeys()[keyboard.SPACE] = false;
 
