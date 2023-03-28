@@ -1,15 +1,12 @@
-package ru.muwa.shq.engine.p;
-import ru.muwa.shq.dialogues.DialogueManager;
+package ru.muwa.shq.engine;
 import ru.muwa.shq.engine.ai.AI;
 import ru.muwa.shq.engine.combat.BulletUtility;
 import ru.muwa.shq.engine.combat.CombatUtility;
-import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.camera.CameraUpdateUtility;
 import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.player.controls.PlayerControls;
-import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;

@@ -1,15 +1,11 @@
 package ru.muwa.shq.engine.g;
-import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
-import ru.muwa.shq.engine.p.Updater;
-import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 
-import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.GameObject;

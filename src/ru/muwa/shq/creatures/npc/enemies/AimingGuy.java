@@ -2,6 +2,8 @@ package ru.muwa.shq.creatures.npc.enemies;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.engine.raycaster.RayCaster;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Line2D;
@@ -81,6 +83,10 @@ public class AimingGuy extends NPC {
 
     @Override
     public ArrayList<Item> getRandomLoot() {
-        return new ArrayList<>();
+
+        ArrayList<Item> drop = new ArrayList<>();
+        drop.add(new MakarovAmmo());
+        return drop;
+
     }
 }

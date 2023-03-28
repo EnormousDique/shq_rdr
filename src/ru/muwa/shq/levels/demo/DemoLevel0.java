@@ -31,6 +31,7 @@ public class DemoLevel0 extends Level
 
     private DemoLevel0() throws IOException {
         super();
+        this.isStreet = true;
         startPosX =641;
         startPosY = 1626;
         containers.add(new TrashCan(800,1900));
@@ -48,7 +49,7 @@ public class DemoLevel0 extends Level
         objects.add(new TallFatBuilding(1000,2500));
 
         instance = this;
-      //  zones.add(new EnterZone(520,1765,70,70, FatBuildingFloor1.getInstance(), 327,220,false));
+        // zones.add(new EnterZone(520,1765,70,70, FatBuildingFloor1.getInstance(), 327,220,false));
         zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(520,1665,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
         zones.add(new InteractiveEnterZone( new PadikLock("1488К228"),new EnterZone(520,2115,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
         // zones.add(new EnterZone(0,0,70,70, DemoHub.getInstance(), 0,0,false));
