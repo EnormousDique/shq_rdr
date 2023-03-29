@@ -24,6 +24,14 @@ public abstract class Item
     protected Container myContainer;
     protected int id,price;
 
+    protected boolean isEquipped;
+
+    public boolean isAbleToEquip() {
+        return isAbleToEquip;
+    }
+
+    protected boolean isAbleToEquip;
+
     public int getPrice() {
         return price;
     }
@@ -49,12 +57,29 @@ public abstract class Item
 
     public void pick()
     {
-        boolean isInContainer = false;
-        Container container = null;
-        for (Container c : Engine.getCurrentLevel().getContainers())
-            if(c.isInUse()){ isInContainer = true; container = c;}
-        if(isInContainer) give(container); else use();
+        boolean isClickedOnEquipped = this.isEquipped;
+        if(isClickedOnEquipped) this.isEquipped = false;
+        else {
+            boolean isInContainer = false;
+            Container container = null;
+            for (Container c : Engine.getCurrentLevel().getContainers())
+                if (c.isInUse()) {
+                    isInContainer = true;
+                    container = c;
+                }
+            if (isInContainer) give(container);
+            else use();
+        }
     }
     public abstract void give(Container c);
     public abstract void use();
+    public abstract void equip();
+
+    public boolean isEquipped() {
+        return isEquipped;
+    }
+
+    public void setEquipped(boolean equipped) {
+        isEquipped = equipped;
+    }
 }

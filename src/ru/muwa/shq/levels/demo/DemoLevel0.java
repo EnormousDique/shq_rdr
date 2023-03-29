@@ -1,7 +1,12 @@
 package ru.muwa.shq.levels.demo;
+import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.creatures.npc.enemies.VelvetTank;
+import ru.muwa.shq.dialogues.demo.Conversation0;
+import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.items.drugs.Flour;
+import ru.muwa.shq.items.guns.Makarov;
+import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingStraightFloor;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
@@ -16,6 +21,7 @@ import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.GameZone;
 import ru.muwa.shq.zones.InteractiveEnterZone;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class DemoLevel0 extends Level
@@ -27,6 +33,7 @@ public class DemoLevel0 extends Level
 
     private DemoLevel0() throws IOException {
         super();
+        this.isStreet = true;
         startPosX =641;
         startPosY = 1626;
         containers.add(new TrashCan(800,1900));
@@ -34,25 +41,33 @@ public class DemoLevel0 extends Level
         containers.get(0).addItem(new Flour());
         containers.get(0).addItem(new Flour());
         Inventory.getInstance().addItem(new Flour());
+        Inventory.getInstance().addItem(new Makarov());
+        Inventory.getInstance().addItem(new Makarov());
+        Inventory.getInstance().addItem(new MakarovAmmo());
+        Inventory.getInstance().addItem(new MakarovAmmo());
+        Inventory.getInstance().addItem(new MakarovAmmo());
         objects.add(new Crate0(100,100));
         objects.add(new FatBuilding(0,1500));
         objects.add(new TallFatBuilding(1000,2500));
-        zones.add(new DialogueZone(520,1500,100,100,false));
 
         instance = this;
-      //  zones.add(new EnterZone(520,1765,70,70, FatBuildingFloor1.getInstance(), 327,220,false));
+        // zones.add(new EnterZone(520,1765,70,70, FatBuildingFloor1.getInstance(), 327,220,false));
         zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(520,1665,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
         zones.add(new InteractiveEnterZone( new PadikLock("1488К228"),new EnterZone(520,2115,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
         // zones.add(new EnterZone(0,0,70,70, DemoHub.getInstance(), 0,0,false));
+        zones.add(new DialogueZone(Conversation0.getInstance(),400,400,100,100,false));
         npc.add(new VelvetTank(750,1800));
         npc.add(new BadGuy0(800,1800));
         npc.add(new BadGuy0(950,1800));
         npc.add(new BadGuy0(1100,1800));
         npc.add(new BadGuy0(1300,1800));
+        npc.add(new AimingGuy(500,500));
         npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
-        npc.get(1).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
-        npc.get(2).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
-        npc.get(3).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
-        npc.get(4).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
+        npc.get(1).setRayCasterBorders(npc.get(1).getRayCaster().buildLines(objects));
+        npc.get(2).setRayCasterBorders(npc.get(2).getRayCaster().buildLines(objects));
+        npc.get(3).setRayCasterBorders(npc.get(3).getRayCaster().buildLines(objects));
+        npc.get(4).setRayCasterBorders(npc.get(4).getRayCaster().buildLines(objects));
+        npc.get(5).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
+        Spawner.updateTimers();
     }
 }

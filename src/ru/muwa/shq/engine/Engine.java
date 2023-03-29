@@ -4,21 +4,12 @@ import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.launcher.Launcher;
-import ru.muwa.shq.engine.listeners.KeyListener;
-import ru.muwa.shq.engine.p.Updater;
 //import ru.muwa.shq.levels.dev.LevelVovka1010;
 import ru.muwa.shq.engine.s.Sounder;
 import ru.muwa.shq.levels.LevelStorage;
-import ru.muwa.shq.levels.demo.DemoLevel0;
-import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
-import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
-import ru.muwa.shq.levels.dev.DevLevel0;
 import ru.muwa.shq.zones.EnterZone;
-import ru.muwa.shq.zones.GameZone;
-
-import java.io.IOException;
 
 /**
  * Класс, запускающий и хранящий основные компоненты игрового движка.

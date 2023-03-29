@@ -16,7 +16,6 @@ import static ru.muwa.shq.objects.GameObject.Direction.RIGHT;
 
 public class VelvetTank extends NPC {
 
-
     private static BufferedImage img;
 
     static {

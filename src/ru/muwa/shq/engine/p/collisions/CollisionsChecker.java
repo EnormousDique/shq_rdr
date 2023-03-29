@@ -3,6 +3,7 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.items.guns.Bullet;
+import ru.muwa.shq.items.guns.EnemyBullet;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
@@ -48,16 +49,16 @@ public class CollisionsChecker
                 if (o.getSolidBox().intersects(obj.getSolidBox())) // произошло столкновение
                 {
 
-                    if(o.getY() + o.getHeight() > obj.getY() + obj.getHeight() && o.getX() + o.getWidth() > obj.getX() && o.getX() < obj.getX()+obj.getWidth())
+                    if(o.getY() + o.getHeight() > obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX()+obj.getWidth() && o.getX() > obj.getX())
                     {o.setY(obj.getY()+obj.getHeight());
                         System.out.println("вниз");}//Вниз
-                    else if(o.getY() < obj.getY() && o.getX() + o.getWidth() > obj.getX() && o.getX() < obj.getX()+obj.getWidth() )
+                    /*else*/ if(o.getY() < obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX()+obj.getWidth() && o.getX() > obj.getX() )
                     {o.setY(obj.getY()-o.getHeight());
                         System.out.println("вверх");}//Вверх
-                    else if(o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY()+obj.getHeight())
+                    /*else*/ if(o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY()+obj.getHeight())
                     {o.setX(obj.getX()+obj.getWidth());
                         System.out.println("право");}//Вправо
-                    else if(o.getX()  < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY()+obj.getHeight() )
+                    /*else*/ if(o.getX()  < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY()+obj.getHeight() )
                     {o.setX(obj.getX()-o.getWidth());
                         System.out.println("vlevo");
                         }//Влево
@@ -65,7 +66,11 @@ public class CollisionsChecker
                 //Код для уничтожения пуль после столкновения
                 if(obj instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(obj);
                 if(o instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(o);
-                if(obj instanceof Bullet && o.equals(Player.get()))CombatUtility.getInstance().attack(Player.get(),10);
+                if(obj instanceof Bullet && o.equals(Player.get()))
+                {
+                    CombatUtility.attack(Player.get(),10);
+
+                }
                 }
             }
         }
@@ -75,7 +80,6 @@ public class CollisionsChecker
 
     public void checkCollisionsNPC(NPC c, LinkedList<GameObject> objects)
     {
-
         if(c != null && !c.isStatic())
         { //Неподвижные объекты мимо.
             for (GameObject obj : objects)
@@ -96,14 +100,11 @@ public class CollisionsChecker
                         //И в другой бок.
                     else if(c.getSolidBox().getCenterX() > obj.getSolidBox().getCenterX()) c.setX(obj.getX() + obj.getWidth());
 
-
-
-
                     //Код для уничтожения пуль после столкновения и нанесение урона
                     if(obj instanceof Bullet)
                     {
                         Engine.getCurrentLevel().getObjects().remove(obj);
-                        CombatUtility.getInstance().attack(c, 10);
+                        CombatUtility.attack(c, 10);
                         break;
                     }
 

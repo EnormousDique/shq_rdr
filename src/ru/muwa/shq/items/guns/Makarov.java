@@ -1,6 +1,8 @@
 package ru.muwa.shq.items.guns;
 
 import ru.muwa.shq.engine.combat.BulletUtility;
+import ru.muwa.shq.items.Item;
+import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
@@ -34,7 +36,6 @@ public class Makarov extends Weapon implements Firearm{
             System.out.println("makarov texture load NOT ok");
         }
     }
-    private int currAmmo; //Текущее кол-во патронов в магазине
 
     public Makarov(int id, int price, double weight, BufferedImage texture)
     {
@@ -43,6 +44,10 @@ public class Makarov extends Weapon implements Firearm{
     public Makarov()
     {
         super(MAKAROV_ID,MAKAROV_PRICE,MAKAROV_WEIGHT,MAKAROV_IMG);
+        this.description = "пистолет макарова";
+        this.isAbleToEquip = true;
+        this.maxAmmo = 8;
+        this.currAmmo = maxAmmo;
 
     }
 
@@ -52,14 +57,38 @@ public class Makarov extends Weapon implements Firearm{
         if(this.currAmmo > 0)
         {
             this.currAmmo = this.currAmmo -1;
-            BulletUtility.getInstance().addBullet(new Bullet(Player.get().getX(), Player.get().getY(),45));
         }
     }
 
     @Override
-    public void reload()
-    {
-        //Тут будет код перезарядки
+    public void reload() {
+        this.currAmmo = maxAmmo;
+    }
 
+
+    @Override
+    public void use() {
+        System.out.println("MAKAROV use() ");
+        boolean isSomeItemAlreadyEquipped = false;
+        System.out.println("is smth already equiped = " + isSomeItemAlreadyEquipped);
+
+        for(int i = 0; i < Inventory.getInstance().getItems().size();i++){
+            System.out.println(Inventory.getInstance().getItems().get(i));
+            if(Inventory.getInstance().getItems().get(i).isEquipped())
+
+                isSomeItemAlreadyEquipped = true;
+            }
+        if(!isSomeItemAlreadyEquipped)
+        {
+            System.out.println("makarov has to be equipped now");
+            setEquipped( true);
+        }
+
+    }
+
+    @Override
+    public void give(Container c) {
+        Inventory.getInstance().getItems().remove(this);
+        c.addItem(this);
     }
 }

@@ -13,11 +13,7 @@ import java.awt.*;
 
 public class GameZoneUtility
 {
-    private static GameZoneUtility instance;
-    private GameZoneUtility(){instance = this;}
-    public static GameZoneUtility getInstance(){if(instance == null) return new GameZoneUtility(); else return instance;}
-
-    public void work() {
+    public static void work() {
     for(GameZone z:Engine.getCurrentLevel().getZones()){
         if(z instanceof EnterZone ) {
             if(((EnterZone)z).isAuto() && z.contains(new Point(Player.get().getX(), Player.get().getY()))) {

@@ -18,6 +18,13 @@ public abstract class Level
      * Поля
      */
     protected int startPosX, startPosY;
+
+    protected boolean isStreet;
+
+    public boolean isStreet() {
+        return isStreet;
+    }
+
     protected Level()
     {
         objects = new LinkedList<>();
