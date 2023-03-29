@@ -43,8 +43,7 @@ public class CombatUtility {
                 Inventory.getInstance().getItems().get(i) instanceof Firearm)
                 holdingGun = true;
 
-        if(holdingGun)  zoneHeight = 120;
-
+        if(holdingGun)  zoneHeight = 100;
 
         Player.get().getAttackZone().setBounds(Player.get().getX(),Player.get().getY() + 10,60,zoneHeight);
         AffineTransform rotate = AffineTransform.getRotateInstance(-Math.toRadians(Aim.getInstance().calculateAngle()),Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY());

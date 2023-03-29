@@ -40,7 +40,6 @@ public class BulletUtility
 
     private void moveBullet(Bullet b)
     {
-
         b.setTime(b.getTime() + 0.1);
         b.setX((int)(b.getInitialX() + b.getxVelocity() * b.getTime()));
         b.setY((int)(b.getInitialY() + b.getyVelocity() * b.getTime()));

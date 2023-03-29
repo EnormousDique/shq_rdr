@@ -37,10 +37,17 @@ public class AI
     }
     private AI(){instance = this;}
     public void move(NPC npc) { // Метод, который отвечал за передвижение НПЦ по игровому миру.
+        long time = System.currentTimeMillis();
         // Если игрока двигает ввод с клавиатуры, то НПЦ двиает этот класс (ИИ).
         if(npc != null)
         {
-            npc.checkForPlayerInSight(); // Дергаем RayCater, чтобы тот обновил значение видимости игрока npc
+
+
+                npc.checkForPlayerInSight(); // Дергаем RayCater, чтобы тот обновил значение видимости игрока npc
+
+
+
+
 
             if (npc.isPlayerInSight())  // Если нпц сейчас видит игрока
             {
@@ -85,6 +92,7 @@ public class AI
                     if(r>0.5) return;
                     npc.setX(npc.getX() > Player.get().getX() ? npc.getX() - npc.getSpeed() : npc.getX() + npc.getSpeed());
 
+                    System.out.println("move : "+ (System.currentTimeMillis()-time));
                 }
             }
 

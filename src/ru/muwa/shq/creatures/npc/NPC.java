@@ -35,7 +35,7 @@ public abstract class NPC extends Creature
     } // Сеттер этого значения
     public void checkForPlayerInSight() // Метод проверки - видит ли НПЦ игрока
     {
-        playerInSight = rayCaster.isPlayerInSight();
+       //  playerInSight = rayCaster.isPlayerInSight();
     }
 
     protected Rectangle leftWallZone; // TODO: Сделать поиск пути через AI, убрать зоны проверки стен.

@@ -52,7 +52,7 @@ public class Updater implements Runnable
                 lastTime = currTime;
 
 
-            if(delta>3)
+            if(delta>2)
             {
                 System.out.println("delta: "+delta);
                 System.out.println("pause: "+Engine.pause);
@@ -81,26 +81,28 @@ public class Updater implements Runnable
     private void update()
     {
 
-
+        long time = System.currentTimeMillis();
+        long localTime = System.currentTimeMillis();
         //Спавнер
         Spawner.regularSpawn();
-        System.out.println("spawner counter : " + Spawner.getSpawnedNPCCounter());
-        System.out.println("spawner interval :  " + Spawner.getSpawnInterval());
+        //System.out.println("spawner counter : " + Spawner.getSpawnedNPCCounter());
+        //System.out.println("spawner interval :  " + Spawner.getSpawnInterval());
 
         //Блок обработки игрока.
+        // Проверяем были ли команды игроку через игровое управление.
+        PlayerControls.getInstance().controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
+        //Обновляем бокс игрока.
+        SolidBoxUpdater.getInstance().updateSolidBox(player);
 
         //Вызов службы обработки боя
+
         CombatUtility.getInstance().work();
+
         //вызов службы эфектов
         EffectUtility.getInstance().work();
         //Вызов службы обновления пуль
         BulletUtility.getInstance().work();
 
-
-        // Проверяем были ли команды игроку через игровое управление.
-        PlayerControls.getInstance().controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
-        //Обновляем бокс игрока.
-        SolidBoxUpdater.getInstance().updateSolidBox(player);
 
         // Обновленци прицела
 
@@ -115,6 +117,7 @@ public class Updater implements Runnable
         CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getObjects());
 
         CollisionsChecker.getInstance().checkCollisions(player,  Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject) c ).collect(Collectors.toList()) );
+
 
 
         //Обновляем окно инвентаря
@@ -141,21 +144,22 @@ public class Updater implements Runnable
         //Блок обработки НПЦ из списка текущих.
         for(int i = 0; i< Engine.getCurrentLevel().getNPC().size(); i++)
         {
+
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
             //Передаем нпц ии, чтобы тот решил что ему делать.
             AI.getInstance().move(c);
+            // Обновляем бокс.
+            SolidBoxUpdater.getInstance().updateSolidBox(c);
 
             // Проверяем столкновения.
             CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
             CollisionsChecker.getInstance().checkCollisionsNPC(c, new LinkedList<>( Engine.getCurrentLevel().getNPC().stream().map(npc->(GameObject)npc).collect(Collectors.toList())));
 
-            // Обновляем бокс.
-            SolidBoxUpdater.getInstance().updateSolidBox(c);
-
             // Обновляем стены рейкастера и сам рейкастер.
             // TODO: Проверить насколько необходимо обновление каждую итерацию и скорость при большом кол-ве нпц.
             c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
             RayCasterUpdater.getInstance().updateRayCaster(c.getRayCaster(),c);
+
 
         }
 
@@ -172,6 +176,7 @@ public class Updater implements Runnable
 
         //Очищаем нажатые клавиши. (Фиксим баг с мульти прожатием клавиш)
        // DropKeyUtility.getInstance().work(); //TODO: Убрать.
+       // System.out.println("time : " + (System.currentTimeMillis() - time));
     }
     public static Updater getInstance()
     {
