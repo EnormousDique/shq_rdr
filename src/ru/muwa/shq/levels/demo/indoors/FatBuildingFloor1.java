@@ -21,17 +21,15 @@ public class FatBuildingFloor1 extends Level
     }
     private FatBuildingFloor1() throws IOException {
         instance = this;
-        startPosX = 0;
-        startPosY = 0;
+        startPosX = 300;
+        startPosY = 200;
        // containers.add(new PostBox(100,100));
         zones.add(new EnterZone(290,192,70,70, DemoLevel0.getInstance(), 700,1800,false));
         zones.add(new EnterZone(310,30,60,80, FatBuildingFloor1_5.getInstance(), 300,60,true));
 
-       // objects.add(new ApartmentDoor(10,0,0));
-      //  objects.add(new ApartmentDoor(80,0,0));
         objects.add(new TestEntrance(10,10));
         objects.add(new Stairs(150,30));
-       // objects.add(new Stairs(150,180));
+
         objects.add(new SexStairs(150,160));
         objects.add(new WirelessPanel(8,77));
         objects.add(new Wall350(10 ,-40));

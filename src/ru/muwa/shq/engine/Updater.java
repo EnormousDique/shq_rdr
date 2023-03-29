@@ -61,7 +61,7 @@ public class Updater implements Runnable
 
             if(delta >= 1)
             {
-                if(!Engine.pause) update();
+                if(!Engine.pause && ! Engine.cutscene) update();
                 delta--;
             }
         }
@@ -97,6 +97,9 @@ public class Updater implements Runnable
         //Вызов службы обработки боя
 
         CombatUtility.work();
+
+        // Вызов службы проверки активации зон сцен
+        CutsceneZoneUtility.work();
 
         //вызов службы эфектов
         EffectUtility.work();

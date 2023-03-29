@@ -20,7 +20,7 @@ public class Spawner {
         return spawnInterval;
     }
 
-    private static final int TIME_INTERVAL = 1_000;
+    private static final int TIME_INTERVAL = 20_000;
     private static final int DISTANCE_INTERVAL = SCREEN_WIDTH / 2;
 
     private static long lastSpawnTime;  //Таймер

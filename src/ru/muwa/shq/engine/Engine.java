@@ -1,5 +1,6 @@
 package ru.muwa.shq.engine;
 
+import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.camera.Camera;
@@ -20,7 +21,7 @@ public class Engine
      * Статические поля.
      */
 
-    public static boolean pause ;
+    public static boolean pause , cutscene ;
     private static Level currentLevel;
 
 
@@ -38,13 +39,13 @@ public class Engine
      */
     public static void gameOn()
     {
-
         System.out.println("Game started");
         currentLevel = LevelStorage.demoLevel0;
         Updater.getInstance();
         Renderer.getInstance();
         Sounder.getInstance();
         Launcher.hideFrame();
+        Animator.getInstance();
     }
 
     public static void switchLevel(EnterZone z)
