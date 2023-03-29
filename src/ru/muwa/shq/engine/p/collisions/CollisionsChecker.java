@@ -68,7 +68,7 @@ public class CollisionsChecker
                 if(o instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(o);
                 if(obj instanceof Bullet && o.equals(Player.get()))
                 {
-                    CombatUtility.getInstance().attack(Player.get(),10);
+                    CombatUtility.attack(Player.get(),10);
 
                 }
                 }
@@ -104,7 +104,7 @@ public class CollisionsChecker
                     if(obj instanceof Bullet)
                     {
                         Engine.getCurrentLevel().getObjects().remove(obj);
-                        CombatUtility.getInstance().attack(c, 10);
+                        CombatUtility.attack(c, 10);
                         break;
                     }
 

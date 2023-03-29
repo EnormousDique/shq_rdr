@@ -7,29 +7,27 @@ import java.util.Map;
 import static ru.muwa.shq.engine.utilities.EffectUtility.Effects.SPEED;
 
 public class EffectUtility {
-    static private EffectUtility instance;
-    private EffectUtility(){
-        instance = this;
+
+
+    private static HashMap<Effects,Long> currentEffects;
+
+    public static HashMap<Effects, Long> getCurrentEffects() {
+        return currentEffects;
+    }
+
+
+    static {
+
         currentEffects = new HashMap<>();
         currentEffects.put(SPEED,0L);
 
     }
-    public static EffectUtility getInstance(){
-        if(instance==null) return new EffectUtility();
-        else return instance;
-    }
-
     public enum Effects {
         SPEED
     }
 
-    private HashMap<Effects,Long> currentEffects;
 
-    public HashMap<Effects, Long> getCurrentEffects() {
-        return currentEffects;
-    }
-
-    public void work (){
+    public static void work (){
        for(Map.Entry<Effects,Long> entry :currentEffects.entrySet())
        {
            switch (entry.getKey()) {

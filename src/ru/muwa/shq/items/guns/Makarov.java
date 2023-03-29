@@ -2,6 +2,7 @@ package ru.muwa.shq.items.guns;
 
 import ru.muwa.shq.engine.combat.BulletUtility;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
@@ -83,5 +84,11 @@ public class Makarov extends Weapon implements Firearm{
             setEquipped( true);
         }
 
+    }
+
+    @Override
+    public void give(Container c) {
+        Inventory.getInstance().getItems().remove(this);
+        c.addItem(this);
     }
 }

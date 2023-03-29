@@ -15,14 +15,7 @@ import ru.muwa.shq.player.aiming.Aim;
 import java.awt.geom.AffineTransform;
 
 public class CombatUtility {
-    private static CombatUtility instance;
-    public static CombatUtility getInstance() {
-        if(instance == null) return new CombatUtility();else return instance;
-    }
-    private CombatUtility (){
-        instance = this;
-    }
-    public void work()
+    public static void work()
     {
         updateAttackZone();
         for(NPC c: Engine.getCurrentLevel().getNPC()){
@@ -31,7 +24,7 @@ public class CombatUtility {
             }
         }
     }
-    public void updateAttackZone(){
+    public static void updateAttackZone(){
 
         boolean holdingGun = false;
         int zoneHeight = 50;
@@ -55,7 +48,7 @@ public class CombatUtility {
      * @param victim - жертва
      * @param damage - урон
      */
-    public void attack(Creature victim, int damage){
+    public static void attack(Creature victim, int damage){
         victim.setHp(victim.getHp()-damage);
 
         //TODO: Сделать нормальный механизм смерти. Пока так.

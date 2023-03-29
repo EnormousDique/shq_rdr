@@ -32,15 +32,9 @@ import java.util.Map;
 public class InventoryManager
 {
 
-    static private InventoryManager instance;
-    private InventoryManager(){
-        instance = this;
 
-    }
-    public static InventoryManager getInstance()
-    {if (instance == null) return new InventoryManager(); else return instance;}
 
-    private void updateStatusWindow() throws IOException
+    private static void updateStatusWindow() throws IOException
     {
 
         BufferedImage face = null;
@@ -57,7 +51,7 @@ public class InventoryManager
             face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACEBLOOD.png"));
         }
         String s = " " ;
-        for(Map.Entry<EffectUtility.Effects,Long> entry :EffectUtility.getInstance().getCurrentEffects().entrySet()){
+        for(Map.Entry<EffectUtility.Effects,Long> entry :EffectUtility.getCurrentEffects().entrySet()){
             switch (entry.getKey()){
                 case SPEED :
                     //TODO добавить побольше проверок if на здоровье (типа когда он обутюженный и хп > 50 то на ебале кровь
@@ -81,10 +75,10 @@ public class InventoryManager
 
     }
 
-    public void drawContainerItems(Graphics g, Container c) {
+    public static void drawContainerItems(Graphics g, Container c) {
 
     }
-    public void update()
+    public static void update()
     {
 
         Inventory.getInstance().setX(Player.get().getX() + 100);
@@ -119,7 +113,7 @@ public class InventoryManager
 
     }
     //
-    public void grab(){
+    public static void grab(){
             // System.out.println("нажата левая кнопка мыши");
             for(Container c: Engine.getCurrentLevel().getContainers()){
                 if(c.isInUse() && c.getItems().size()>= 1){
@@ -135,7 +129,7 @@ public class InventoryManager
             }
     }
 
-        private void updateItemWindow(){
+        private static void updateItemWindow(){
 
             //Получаем окно
             JPanel window = HUD.getInstance().getItemWindow();
@@ -178,7 +172,7 @@ public class InventoryManager
 
             }
         }
-        private void updateEquipWindow()
+        private static void updateEquipWindow()
         {
             Arrays.stream(HUD.getInstance().getEquipWindow().getComponents()).forEach(HUD.getInstance().getEquipWindow()::remove);
 

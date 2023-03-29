@@ -8,10 +8,7 @@ import ru.muwa.shq.creatures.Creature;
  */
 public class RayCasterUpdater
 {
-    private static RayCasterUpdater instance;
-    private RayCasterUpdater(){instance = this;}
-    public static RayCasterUpdater getInstance(){if (instance == null) return new RayCasterUpdater(); else return instance;}
-    public void updateRayCaster(RayCaster rayCaster, Creature creature)
+    public static void updateRayCaster(RayCaster rayCaster, Creature creature)
     {
         rayCaster.setX(creature.getX());
         rayCaster.setY(creature.getY());

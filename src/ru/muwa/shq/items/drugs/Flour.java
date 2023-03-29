@@ -51,7 +51,7 @@ public class Flour extends Item {
         if(Player.get().getHp() >= 90) Player.get().setHp(100);
         else
         Player.get().setHp(Player.get().getHp()+10);
-        EffectUtility.getInstance().getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+60_000L);
+        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+60_000L);
         Inventory.getInstance().getItems().remove(this);
     }
 

@@ -90,18 +90,18 @@ public class Updater implements Runnable
 
         //Блок обработки игрока.
         // Проверяем были ли команды игроку через игровое управление.
-        PlayerControls.getInstance().controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
+        PlayerControls.controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
         //Обновляем бокс игрока.
-        SolidBoxUpdater.getInstance().updateSolidBox(player);
+        SolidBoxUpdater.updateSolidBox(player);
 
         //Вызов службы обработки боя
 
-        CombatUtility.getInstance().work();
+        CombatUtility.work();
 
         //вызов службы эфектов
-        EffectUtility.getInstance().work();
+        EffectUtility.work();
         //Вызов службы обновления пуль
-        BulletUtility.getInstance().work();
+        BulletUtility.work();
 
 
         // Обновленци прицела
@@ -122,13 +122,13 @@ public class Updater implements Runnable
 
         //Обновляем окно инвентаря
 
-        InventoryManager.getInstance().update();
+        InventoryManager.update();
 
         // Обновление зоны доступного использования
-        UseZoneUpdater.getInstance().update();
+        UseZoneUpdater.update();
 
         // Через службу проверки игровых зон смотрим взаимодействие игрока с той или иной зоной
-        GameZoneUtility.getInstance().work();
+        GameZoneUtility.work();
 
         //Блок обработки обычных объектов из списка текущих.
         for(GameObject o : Engine.getCurrentLevel().getObjects())
@@ -137,7 +137,7 @@ public class Updater implements Runnable
          //   CollisionsChecker.getInstance().checkCollisions(o, Engine.getCurrentLevel().getObjects());
 
             // Обновляем боксы
-            SolidBoxUpdater.getInstance().updateSolidBox(o);
+            SolidBoxUpdater.updateSolidBox(o);
 
         }
 
@@ -149,7 +149,7 @@ public class Updater implements Runnable
             //Передаем нпц ии, чтобы тот решил что ему делать.
             AI.getInstance().move(c);
             // Обновляем бокс.
-            SolidBoxUpdater.getInstance().updateSolidBox(c);
+            SolidBoxUpdater.updateSolidBox(c);
 
             // Проверяем столкновения.
             CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
@@ -158,7 +158,7 @@ public class Updater implements Runnable
             // Обновляем стены рейкастера и сам рейкастер.
             // TODO: Проверить насколько необходимо обновление каждую итерацию и скорость при большом кол-ве нпц.
             c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
-            RayCasterUpdater.getInstance().updateRayCaster(c.getRayCaster(),c);
+            RayCasterUpdater.updateRayCaster(c.getRayCaster(),c);
 
         }
         //Для нпц вызываем службу обновления поля зрения
@@ -171,7 +171,7 @@ public class Updater implements Runnable
           //  CollisionsChecker.getInstance().checkCollisions(con,Engine.getCurrentLevel().getObjects());
 
             // Обновляем бокс
-            SolidBoxUpdater.getInstance().updateSolidBox(con);
+            SolidBoxUpdater.updateSolidBox(con);
         }
         //Блок ПОСТ обработки
 

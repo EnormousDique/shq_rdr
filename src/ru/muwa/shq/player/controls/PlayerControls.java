@@ -33,13 +33,10 @@ import java.util.Objects;
  */
 public class PlayerControls
 {
-    private static PlayerControls instance;
-    private PlayerControls(){instance = this;}
-    public static PlayerControls getInstance(){if(instance == null) return new PlayerControls(); else return instance;}
-    private  KeyListener keyboard = KeyListener.getInstance();
-    private  Player player = Player.get();
+    private static KeyListener keyboard = KeyListener.getInstance();
+    private static Player player = Player.get();
 
-    public  void controlPlayer()
+    public static   void controlPlayer()
     {
         boolean p = Engine.pause;
         //проверка на открытие инвентаря
@@ -65,7 +62,7 @@ public class PlayerControls
 
     }
 
-    private void t() {
+    private static void t() {
         for(GameZone z : Engine.getCurrentLevel().getZones())
         {
             if(z instanceof DialogueZone && z.contains(Player.get().getX(),Player.get().getY()))
@@ -75,32 +72,32 @@ public class PlayerControls
             }
         }
     }
-    private void w() {
+    private static void w() {
         Player.get().moveUp();
     }
-    private void a()
+    private static void a()
     {
         Player.get().moveLeft();
     }
-    private void s()
+    private static void s()
     {
         Player.get().moveDown();
     }
-    private void d()
+    private static void d()
     {
         Player.get().moveRight();
     }
-     private void e()
+     private static void e()
     {
     Interactor.getInstance().interact();
      // Sounder.changeSong("src\\ru\\muwa\\shq\\sounds\\songs\\muzike1.wav");
     }
-    private void i()
+    private static void i()
     {
         Inventory.getInstance().setIsOpened(!Inventory.getInstance().isOpened());
         keyboard.getKeys()[6] = false;
     }
-    private void space()
+    private static void space()
     {
         //Определяем есть ли оружие в руках (огнестрельное)
         boolean isFirearmEquipped = false;
@@ -140,7 +137,7 @@ public class PlayerControls
                 if (npc.getSolidBox().intersects(Player.get().getAttackZone())) {
                     //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
                     System.out.printf("hp " + npc.getHp());
-                    CombatUtility.getInstance().attack(npc, 5); // пока дамага с руки 0 так как он и стреляет и бьет одновременно и если он убивает с руки то крашиться игра
+                    CombatUtility.attack(npc, 5); // пока дамага с руки 0 так как он и стреляет и бьет одновременно и если он убивает с руки то крашиться игра
                     System.out.printf("hp " + npc.getHp());
                 }
             }
@@ -150,7 +147,7 @@ public class PlayerControls
         keyboard.getKeys()[keyboard.SPACE] = false;
 
     }
-    private void enter() {
+    private static void enter() {
 
         for (GameZone z : Engine.getCurrentLevel().getZones()){
             if (z.contains(new Point(Player.get().getX(), Player.get().getY()))
@@ -190,7 +187,7 @@ public class PlayerControls
 
     }
 
-    private void q()
+    private static void q()
     {
         if(Player.get().isBusy() && Player.get().getCurrentObject() != null)
         {
@@ -202,19 +199,19 @@ public class PlayerControls
         for(Container c: Engine.getCurrentLevel().getContainers())c.setIsInUse(false);
         HUD.getInstance().getDialogueWindow().setVisible(false);
     }
-    private void lmb()
+    private static void lmb()
     {
 
        /* if(Inventory.getInstance().getBox().contains
                 (new Point(MouseListener.getInstance().getX() + Camera.getInstance().getX(), MouseListener.getInstance().getY() + Camera.getInstance().getY())))
 
         else */
-        InventoryManager.getInstance().grab(); // Проверка на щелчок по вещи из открытого контейнера
+        InventoryManager.grab(); // Проверка на щелчок по вещи из открытого контейнера
        // InventoryManager.getInstance().eat(); // Проверка на щелчок по вещи из открытого окна вещей игрока
 
         MouseButtonListener.getInstance().keys[0]=false;
     }
-    private void rmb()
+    private static void rmb()
     {
 
     }
