@@ -10,16 +10,18 @@ import ru.muwa.shq.player.Player;
 
 import java.util.Random;
 
+import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
+
 public class Spawner {
 
-    private static final int MAX_NPC = 15;
+    private static final int MAX_NPC = 20;
 
     public static long getSpawnInterval() {
         return spawnInterval;
     }
 
-    private static final int TIME_INTERVAL = 2_000;
-    private static final int DISTANCE_INTERVAL = 700;
+    private static final int TIME_INTERVAL = 1_000;
+    private static final int DISTANCE_INTERVAL = SCREEN_WIDTH / 2;
 
     private static long lastSpawnTime;  //Таймер
     private static long spawnInterval;

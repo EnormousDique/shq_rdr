@@ -14,11 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 public class AimingGuy extends NPC {
     private static BufferedImage img;
-    Line2D line1 = new Line2D.Double();
-    Line2D line2 = new Line2D.Double();
+
     private long lastTimeShot;
-    Line2D line3 = new Line2D.Double();
-    List<Line2D> lines = List.of(line1,line2,line3);
     private Rectangle nearZone = new Rectangle();
 
     static

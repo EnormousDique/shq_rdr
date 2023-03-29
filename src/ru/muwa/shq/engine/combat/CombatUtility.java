@@ -62,7 +62,7 @@ public class CombatUtility {
         if( (!Player.get().equals(victim)) && victim.getHp() <= 0 ) {
             Engine.getCurrentLevel().getNPC().remove(victim);
             Engine.getCurrentLevel().getContainers().add(new Corpse(victim.getX(),victim.getY(),victim.getcorpseimg(), victim.getRandomLoot()));
-            Spawner.decreaseSpawnCounter();
+           // Spawner.decreaseSpawnCounter();
 
 
         }

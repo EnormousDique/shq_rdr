@@ -160,8 +160,9 @@ public class Updater implements Runnable
             c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
             RayCasterUpdater.getInstance().updateRayCaster(c.getRayCaster(),c);
 
-
         }
+        //Для нпц вызываем службу обновления поля зрения
+        NPCViewFieldUtility.work();
 
         //Блок обработки объектов контейнеров из списка текущих.
          for(Container con : Engine.getCurrentLevel().getContainers())

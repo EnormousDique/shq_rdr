@@ -43,7 +43,7 @@ public class AI
         {
 
 
-                npc.checkForPlayerInSight(); // Дергаем RayCater, чтобы тот обновил значение видимости игрока npc
+                npc.checkForPlayerInSight(); // Проверяем в поле зряния ли игрок (иможно ли до него добраться)
 
 
 
@@ -123,13 +123,15 @@ public class AI
                     }
 
                 }
+            }else {
+                aimAIMath(list.get(i));
             }
         }
 
     }
     private void aimAIMath(NPC c)
     {
-        List<Line2D> list = ((AimingGuy)c).getLines();
+        List<Line2D> list = c.getLines();
        for (int i = 0; i<  list.size(); i++){
            switch (i)
            {
