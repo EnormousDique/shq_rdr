@@ -2,20 +2,14 @@ package ru.muwa.shq.engine.ai;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
 import ru.muwa.shq.engine.Engine;
-import ru.muwa.shq.engine.g.camera.Camera;
-import ru.muwa.shq.engine.listeners.MouseListener;
-import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.items.guns.EnemyBullet;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
 
 import java.awt.geom.Line2D;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
-import static ru.muwa.shq.objects.GameObject.Direction.LEFT;
-import static ru.muwa.shq.objects.GameObject.Direction.RIGHT;
+
 /**
  * Класс, реализующий логику принятия решений NPC
  */

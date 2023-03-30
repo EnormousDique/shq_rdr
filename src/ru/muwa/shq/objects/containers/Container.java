@@ -1,10 +1,11 @@
 package ru.muwa.shq.objects.containers;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.GameObject;
+
+
 import ru.muwa.shq.objects.Usable;
 import ru.muwa.shq.player.Inventory;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

@@ -4,12 +4,8 @@ import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.Usable;
 import ru.muwa.shq.player.Inventory;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class Corpse extends Container implements Usable {
 

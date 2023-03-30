@@ -10,7 +10,7 @@ import java.util.LinkedList;
 /**
  * Класс, реализующий логику кнопок лаунчера игры. Является прослушкой кнопок.
  */
-public class LauncherButtonListener  extends ButtonListener
+public class LauncherButtonListener extends ButtonListener
 {
     LinkedList<JButton> buttons; // Список кнопок.
     public LauncherButtonListener(LinkedList<JButton> buttons) //Конструктор

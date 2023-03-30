@@ -1,7 +1,5 @@
 package ru.muwa.shq.objects.containers;
 
-import ru.muwa.shq.items.ItemPhysicalAppearance;
-import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.objects.Usable;
 import ru.muwa.shq.player.Inventory;
 

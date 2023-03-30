@@ -2,6 +2,7 @@ package ru.muwa.shq.objects.containers;
 
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.objects.Usable;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.ui.containers.GarbageChuteUI;
 
 import javax.imageio.ImageIO;
@@ -10,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GarbageChute extends Container implements Usable
+public class HubChest extends Container implements Usable
 {
     private static BufferedImage img;
     public static final int GB_CH_Y_OFFSET = 210,GB_CH_X_OFFSET = 70 ;
@@ -19,7 +20,7 @@ public class GarbageChute extends Container implements Usable
     {
         try
         {
-            img = ImageIO.read(new File(IMG_PATH +"containers\\GarbageChute.png"));
+            img = ImageIO.read(new File(IMG_PATH +"InvisibleTextures\\4040empty.png"));
             System.out.println("crate0 texture loaded");
         }
         catch (IOException e)
@@ -28,14 +29,15 @@ public class GarbageChute extends Container implements Usable
         }
 
     }
-    public GarbageChute(int x, int y) throws IOException {
-        super(x,y,img);
-        capacity = 1;
-        items = new ArrayList<>(capacity);
-        items.add(new Flour());
+    public HubChest(int x, int y) throws IOException {
+        super(x, y,img);
+        this.isSolid = true;
+        items = new ArrayList<>();
 
-        items.get(0).setMyContainer(this);
-        UI = GarbageChuteUI.img;
+
+
+
+        UI = Inventory.getInstance().getImg();
     }
 
     @Override

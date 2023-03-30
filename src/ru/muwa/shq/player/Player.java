@@ -1,10 +1,8 @@
 package ru.muwa.shq.player;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.creatures.Creature;
-import ru.muwa.shq.engine.g.GameScreen;
-import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.items.Item;
-import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.items.guns.Firearm;
 import ru.muwa.shq.objects.Usable;
 
 import javax.imageio.ImageIO;
@@ -12,8 +10,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-
-import static ru.muwa.shq.objects.GameObject.Direction.DOWN;
 
 /**
  * Класс игрока.
@@ -41,16 +37,9 @@ public class Player extends Creature
     {
         if (instance == null)
         {
-
-
-
+            if(Inventory.getInstance().getItems().get())
         try {
             img = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
-            imgUp = ImageIO.read(new File(IMG_PATH+"player\\kulaginUP.png"));
-            imgDown = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
-            imgLeft = ImageIO.read(new File(IMG_PATH+"player\\kulaginLeft.png"));
-            imgRight = ImageIO.read(new File(IMG_PATH+"player\\kulaginRight.png"));
-
         } catch (Exception e) {
             System.out.println("Failed to load player textures");
             return null;

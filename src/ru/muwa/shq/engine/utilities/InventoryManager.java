@@ -1,7 +1,6 @@
 package ru.muwa.shq.engine.utilities;
 
 import ru.muwa.shq.engine.Engine;
-import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
@@ -15,17 +14,15 @@ import ru.muwa.shq.player.Player;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
-import java.util.Arrays;
+
 import java.util.Map;
 
 

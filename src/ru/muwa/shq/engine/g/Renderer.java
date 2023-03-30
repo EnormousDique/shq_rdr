@@ -250,7 +250,7 @@ public class Renderer implements Runnable {
             //отрисовка координат мыши.
             g.setColor(Color.red);
             g.setFont(g.getFont().deriveFont(Font.BOLD));
-            g.drawString(""+MouseListener.getInstance().getX()+" "+MouseListener.getInstance().getY(),100,100);
+            g.drawString(""+ MouseListener.getInstance().getX()+" "+ MouseListener.getInstance().getY(),100,100);
             g.setColor(Color.cyan);
             g.drawString(""+Camera.getInstance().getX()+" "+Camera.getInstance().getY(),100,130);
              // отрисовка информации о предмете при наводе мышки на онный

@@ -4,13 +4,10 @@ package ru.muwa.shq.player.controls;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.MouseListener;
-import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
-
-import javax.swing.text.html.HTMLDocument;
 
 /**
  * Класс, отвечающий за взаимодейстиве игрока с usable и container объектами

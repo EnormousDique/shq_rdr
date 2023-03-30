@@ -3,7 +3,6 @@ package ru.muwa.shq.minigames.padiklock;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.minigames.MiniGame;
-import ru.muwa.shq.zones.EnterZone;
 
 import javax.swing.*;
 import java.util.ArrayList;

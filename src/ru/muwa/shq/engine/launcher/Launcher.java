@@ -1,10 +1,7 @@
 package ru.muwa.shq.engine.launcher;
 
 import ru.muwa.shq.engine.g.GameScreen;
-import ru.muwa.shq.engine.g.Renderer;
-import ru.muwa.shq.engine.listeners.ButtonListener;
 
-import javax.print.attribute.standard.JobName;
 import javax.swing.*;
 import java.util.LinkedList;
 
