@@ -17,7 +17,7 @@ public class Cutscene0 extends Cutscene {
         // чтобы мы могли просто передавать его как аргумент метода,
         // и таким образом выцеплять нужного крича для сцены.
 
-//        movements.add(new Movement(LevelStorage.demoLevel0.getNPC().get(0),300,300));
+        movements.add(new Movement("Hachique",300,300));
     }
     public static Cutscene0 getInstance(){
         if(instance ==null)return new Cutscene0();

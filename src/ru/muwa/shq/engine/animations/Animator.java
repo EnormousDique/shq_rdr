@@ -19,7 +19,7 @@ public class Animator implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Animations engine initialized. Updater thread started.");
+        System.out.println("Animations engine initialized. Animator thread started.");
 
         double drawInterval = 1_000_000_000/60;
         double delta=0;
@@ -46,8 +46,11 @@ public class Animator implements Runnable {
     public static void playCutscene(Cutscene cutscene)
     {
         Engine.cutscene = true;
-        for (Cutscene.Movement m : cutscene.getMovements())
+        for (Cutscene.Movement m : cutscene.getMovements()) {
+          //  System.out.println("performing movement " + m.toString());
+
             cutscene.playMovement(m);
+        }
         Engine.cutscene = false;
     }
 }

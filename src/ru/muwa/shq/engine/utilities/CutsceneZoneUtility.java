@@ -13,7 +13,8 @@ public class CutsceneZoneUtility
     {
         for(GameZone z : Engine.getCurrentLevel().getZones())
         {
-            if(z instanceof CutsceneZone && Player.get().getSolidBox().intersects(z) && !((CutsceneZone)z).isBeenPlayed()) {
+            if(z instanceof CutsceneZone && Player.get().getSolidBox().intersects(z)/* && !((CutsceneZone)z).isBeenPlayed()*/) {
+                //System.out.println("player in cutscene zone");
                 Animator.playCutscene(((CutsceneZone) z).getCutscene());
                 ((CutsceneZone) z).setBeenPlayed(true);
             }

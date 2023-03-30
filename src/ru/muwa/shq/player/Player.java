@@ -6,51 +6,39 @@ import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.Usable;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-
 import static ru.muwa.shq.objects.GameObject.Direction.DOWN;
-
 /**
  * Класс игрока.
  */
 public class Player extends Creature
 {
     private static Player instance;
-
     public enum Direction{UP,DOWN,LEFT,RIGHT}
     public Direction direction;
     private Rectangle useZone;
-
     private static BufferedImage img;
     private static BufferedImage imgUp;
-
     private static BufferedImage imgDown;
     private static BufferedImage imgLeft;
     private static BufferedImage imgRight;
-
     public Rectangle getUseZone() {
         return useZone;
     }
-
     public static Player get()
     {
         if (instance == null)
         {
-
-
-
         try {
             img = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
             imgUp = ImageIO.read(new File(IMG_PATH+"player\\kulaginUP.png"));
             imgDown = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
             imgLeft = ImageIO.read(new File(IMG_PATH+"player\\kulaginLeft.png"));
             imgRight = ImageIO.read(new File(IMG_PATH+"player\\kulaginRight.png"));
-
         } catch (Exception e) {
             System.out.println("Failed to load player textures");
             return null;
@@ -59,15 +47,12 @@ public class Player extends Creature
         }
         else return instance;
     }
-
     private boolean isBusy;
     private Usable currentObject;
-
     @Override
     public ArrayList<Item> getRandomLoot() {
         return null;
     }
-
     /**
      * Конструктор
      *
@@ -86,6 +71,7 @@ public class Player extends Creature
         maxJumpAx = 50;
         hp = 100;
         attackZone.getBounds().setBounds(x,y-30,30,30);
+        this.name = "Player";
     }
 
     public boolean isBusy() {return isBusy;}

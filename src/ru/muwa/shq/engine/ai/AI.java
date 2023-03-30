@@ -1,6 +1,7 @@
 package ru.muwa.shq.engine.ai;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
+import ru.muwa.shq.creatures.npc.questnpc.Hachique;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.MouseListener;
@@ -39,14 +40,10 @@ public class AI
     public void move(NPC npc) { // Метод, который отвечал за передвижение НПЦ по игровому миру.
         long time = System.currentTimeMillis();
         // Если игрока двигает ввод с клавиатуры, то НПЦ двиает этот класс (ИИ).
-        if(npc != null)
+        if(npc != null && !(npc  instanceof Hachique))
         {
 
-
                 npc.checkForPlayerInSight(); // Проверяем в поле зряния ли игрок (иможно ли до него добраться)
-
-
-
 
 
             if (npc.isPlayerInSight())  // Если нпц сейчас видит игрока
@@ -91,8 +88,6 @@ public class AI
                     r =Math.random();
                     if(r>0.5) return;
                     npc.setX(npc.getX() > Player.get().getX() ? npc.getX() - npc.getSpeed() : npc.getX() + npc.getSpeed());
-
-                    System.out.println("move : "+ (System.currentTimeMillis()-time));
                 }
             }
 

@@ -69,15 +69,11 @@ public class CollisionsChecker
                 if(obj instanceof Bullet && o.equals(Player.get()))
                 {
                     CombatUtility.attack(Player.get(),10);
-
                 }
                 }
             }
         }
     }
-
-
-
     public void checkCollisionsNPC(NPC c, LinkedList<GameObject> objects)
     {
         if(c != null && !c.isStatic())
@@ -99,7 +95,6 @@ public class CollisionsChecker
                     else if(c.getSolidBox().getCenterX() < obj.getSolidBox().getCenterX()) c.setX(obj.getX() - c.getWidth());
                         //И в другой бок.
                     else if(c.getSolidBox().getCenterX() > obj.getSolidBox().getCenterX()) c.setX(obj.getX() + obj.getWidth());
-
                     //Код для уничтожения пуль после столкновения и нанесение урона
                     if(obj instanceof Bullet)
                     {
@@ -107,8 +102,6 @@ public class CollisionsChecker
                         CombatUtility.attack(c, 10);
                         break;
                     }
-
-
                 }
             }
         }

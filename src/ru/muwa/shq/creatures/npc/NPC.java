@@ -15,11 +15,7 @@ public abstract class NPC extends Creature
 {
 
     protected boolean playerInSight;
-    protected String name;
 
-    public String getName() {
-        return name;
-    }
 
     public Rectangle getViewField() {
         return viewField;

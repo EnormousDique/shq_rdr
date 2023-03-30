@@ -2,6 +2,7 @@ package ru.muwa.shq.levels.demo;
 import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.creatures.npc.enemies.VelvetTank;
+import ru.muwa.shq.creatures.npc.questnpc.Hachique;
 import ru.muwa.shq.dialogues.demo.Conversation0;
 import ru.muwa.shq.engine.animations.cutscenes.Cutscene0;
 import ru.muwa.shq.engine.spawner.Spawner;
@@ -60,12 +61,14 @@ public class DemoLevel0 extends Level
         npc.add(new BadGuy0(1100,1800));
         npc.add(new BadGuy0(1300,1800));
         npc.add(new AimingGuy(500,500));
+        npc.add(new Hachique(-300,-200));
         npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         npc.get(1).setRayCasterBorders(npc.get(1).getRayCaster().buildLines(objects));
         npc.get(2).setRayCasterBorders(npc.get(2).getRayCaster().buildLines(objects));
         npc.get(3).setRayCasterBorders(npc.get(3).getRayCaster().buildLines(objects));
         npc.get(4).setRayCasterBorders(npc.get(4).getRayCaster().buildLines(objects));
         npc.get(5).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
+        npc.get(6).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         Spawner.updateTimers();
     }
 }

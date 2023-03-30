@@ -1,6 +1,7 @@
 package ru.muwa.shq.creatures.npc.questnpc;
 
 import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.engine.raycaster.RayCaster;
 import ru.muwa.shq.items.Item;
 
 import javax.imageio.ImageIO;
@@ -16,12 +17,12 @@ public class Hachique extends NPC {
     {
         try
         {
-            img = ImageIO.read(new File(IMG_PATH + "creatures\\BadGuy0.png"));
+            img = ImageIO.read(new File(IMG_PATH + "creatures\\Hachique.png"));
             System.out.println("BadGuy0 loaded ok");
         }
         catch(Exception e)
         {
-            System.out.println("failed to load BadGuy0 texture");
+            System.out.println("failed to load Hachique texture");
         }
     }
 
@@ -31,10 +32,14 @@ public class Hachique extends NPC {
      *
      * @param x       - х коррдината
      * @param y       - у коррдината
-     * @param texture - текстура (файл с изборажением)
+     *
      */
-    protected Hachique(int x, int y) {
+    public Hachique(int x, int y) {
         super(x, y, img);
+        this.name = "Hachique";
+        setRayCaster(new RayCaster(x,y,600));
+        this.speed = 5;
+
     }
 
     @Override
