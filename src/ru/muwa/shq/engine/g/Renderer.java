@@ -22,14 +22,16 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 /**
  * Класс, отвечающий за отрисовку изображения на экране.
  */
 public class Renderer implements Runnable {
-    public Graphics g; // Объект графики (Объект, который рисует)
+    public static Graphics g; // Объект графики (Объект, который рисует)
     private GameScreen frame; // Игровой экран
     public GameScreen getFrame(){return frame;}
+    public static JFrame loadingScreen ;
     private Canvas canvas; // Холст на игровом экране
     private Thread thread; // Поток графического движка
     private Player player = Player.get(); // Ссылка на игрока
@@ -302,5 +304,21 @@ public class Renderer implements Runnable {
 
   */
         }
+        public static void showLoading()
+        {
+            loadingScreen = new JFrame("ZAGRUZKA");
+            JPanel p = new JPanel();
+            loadingScreen.setBounds(500,500,500,500);
+            p.add(new JLabel("ЗАГРУЗКА / ZAGRUZKA"));
+            loadingScreen.add(p);
+            loadingScreen.add(new JLabel("ЗАГРУЗКА / ZAGRUZKA"));
+            loadingScreen.setVisible(true);
+        }
+
+        public static void hideLoading()
+        {
+            loadingScreen.setVisible(false);
+        }
+
 
     }

@@ -40,12 +40,16 @@ public class Engine
     public static void gameOn()
     {
         System.out.println("Game started");
-        currentLevel = LevelStorage.demoLevel0;
-        Updater.getInstance();
-        Renderer.getInstance();
-        Sounder.getInstance();
         Launcher.hideFrame();
+        Renderer.showLoading();
+        currentLevel = LevelStorage.demoLevel0;
+        Renderer.getInstance();
+        Updater.getInstance();
+
+        Sounder.getInstance();
         Animator.getInstance();
+        Renderer.hideLoading();
+
     }
 
     public static void switchLevel(EnterZone z)

@@ -62,7 +62,7 @@ public class KeyListener implements java.awt.event.KeyListener
     @Override
     public void keyPressed(KeyEvent e)
     {
-        System.out.println(e.getKeyCode());
+      //  System.out.println(e.getKeyCode());
 
         switch (e.getKeyCode()) {
             case 32: // Пробел
