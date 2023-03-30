@@ -53,7 +53,7 @@ public class DemoLevel0 extends Level
         //objects.add(new TallFatBuilding(1000,2500));
         instance = this;
         zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1280,1130,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
-        zones.add(new InteractiveEnterZone( new PadikLock("1488К228"),new EnterZone(1280,1160,70,70, FatBuildingFloor1.getInstance(), FatBuildingFloor1.getInstance().getStartPosX(), FatBuildingFloor1.getInstance().getStartPosY(), false)));
+        zones.add(new InteractiveEnterZone( new PadikLock("1488К228"),new EnterZone(1280,1600,70,70, FatBuildingFloor1.getInstance(), FatBuildingFloor1.getInstance().getStartPosX(), FatBuildingFloor1.getInstance().getStartPosY(), false)));
         zones.add(new CutsceneZone(-200,-200,50,50, Cutscene0.getInstance()));
         zones.add(new DialogueZone(Conversation0.getInstance(),400,400,100,100,false));
         npc.add(new VelvetTank(750,1800));
