@@ -182,7 +182,7 @@ public class Renderer implements Runnable {
         // for(NPC c: Engine.getCurrentLevel().getNPC()) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1-camX,(int)r.y1-camY,(int)r.x2-camX,(int)r.y2-camY);}
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
-            if (c.getRayCaster().isPlayerInSight()) {
+            if (c.isPlayerInSight()) {
                 g.setColor(Color.green);
                // for (Line2D.Float r : c.getRayCaster().calcRays())
                    // g.drawLine((int) r.x1 - camX, (int) r.y1 - camY, (int) r.x2 - camX, (int) r.y2 - camY);

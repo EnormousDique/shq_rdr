@@ -41,6 +41,13 @@ public class Hachique extends NPC {
         this.speed = 5;
 
     }
+    public Hachique(int x, int y, String name) {
+        super(x, y, img);
+        this.name = name;
+        setRayCaster(new RayCaster(x,y,600));
+        this.speed = 5;
+
+    }
 
     @Override
     public ArrayList<Item> getRandomLoot() {

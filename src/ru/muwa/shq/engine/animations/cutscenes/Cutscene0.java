@@ -18,6 +18,8 @@ public class Cutscene0 extends Cutscene {
         // и таким образом выцеплять нужного крича для сцены.
 
         movements.add(new Movement("Hachique",300,300));
+        movements.add(new Movement("Hachique",400,400));
+        movements.add(new Movement("Vasya",480,400));
     }
     public static Cutscene0 getInstance(){
         if(instance ==null)return new Cutscene0();
