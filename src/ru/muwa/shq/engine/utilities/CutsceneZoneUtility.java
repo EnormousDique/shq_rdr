@@ -19,10 +19,12 @@ public class CutsceneZoneUtility
                 ((CutsceneZone) z).setBeenPlayed(true);
             }
             //TODO: КОД НУЖЕН НА ВРЕМЯ ТЕСТА.
+            /*
             if(z instanceof CutsceneZone && !Player.get().getSolidBox().intersects(z))
             {
                 ((CutsceneZone) z).setBeenPlayed(false);
             }
+            */
             //TODO: КОД НУЖЕН НА ВРЕМЯ ТЕСТА. УДАЛИТЬ!
 
         }
