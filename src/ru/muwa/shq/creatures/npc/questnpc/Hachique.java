@@ -7,11 +7,10 @@ import ru.muwa.shq.items.Item;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Hachique extends NPC {
-
-
     private static BufferedImage img;
     static
     {
@@ -26,7 +25,6 @@ public class Hachique extends NPC {
         }
     }
 
-
     /**
      * Конструктор
      *
@@ -39,6 +37,15 @@ public class Hachique extends NPC {
         this.name = "Hachique";
         setRayCaster(new RayCaster(x,y,600));
         this.speed = 5;
+        try
+        {
+            corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\BadGuyCorpse.png"));
+            System.out.println("BadGuyCorpse texture loaded");
+        }
+        catch (IOException e)
+        {
+            System.out.println("failed to load BadGuyCoprse texture");
+        }
 
     }
     public Hachique(int x, int y, String name) {
@@ -46,9 +53,17 @@ public class Hachique extends NPC {
         this.name = name;
         setRayCaster(new RayCaster(x,y,600));
         this.speed = 5;
+        try
+        {
+            corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\BadGuyCorpse.png"));
+            System.out.println("BadGuyCorpse texture loaded");
+        }
+        catch (IOException e)
+        {
+            System.out.println("failed to load BadGuyCoprse texture");
+        }
 
     }
-
     @Override
     public ArrayList<Item> getRandomLoot() {
         return new ArrayList<>();

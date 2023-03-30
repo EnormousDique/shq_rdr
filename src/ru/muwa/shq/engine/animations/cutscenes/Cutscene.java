@@ -36,11 +36,17 @@ public abstract class Cutscene
 
     public void playMovement(Movement m)
     {
+        Creature c = null;
+        try {
+            c = Engine.getCurrentLevel().getNPC()
+                    .stream().map(cr->(Creature)cr)
+                    .filter(cr-> cr.getName()!= null && cr.getName().equals(m.targetCreatureName)).findFirst().get();
+            System.out.println("found  creature for script " + c);
+        } catch (Exception e)
+        {
+            System.out.println("СЦЕНКА НЕ МОЖЕТ ПРОИГРАТЬСЯ КОРРЕКТНО ПРОТОМУ ЧТО НЕ НАЙДЕН ОДИН ИЗ АКТЁРОВ");
+        }
 
-        Creature c = Engine.getCurrentLevel().getNPC()
-                .stream().map(cr->(Creature)cr)
-                .filter(cr-> cr.getName()!= null && cr.getName().equals(m.targetCreatureName)).findFirst().get();
-        System.out.println("found  creature for script " + c);
 
         if(c != null)
         {
@@ -58,18 +64,15 @@ public abstract class Cutscene
                 currTime = System.nanoTime();
                 delta += (currTime - lastTime) / drawInterval;
                 lastTime = currTime;
-
                 if(delta >= 1) {
-
                     if (xDistance > yDistance) {
-                        if (c.getX() > m.distX) c.moveLeft();
+                        if (c.getSolidBox().getCenterX() > m.distX) c.moveLeft();
                         else c.moveRight();
 
                     } else {
-                        if (c.getY() > m.distY) c.moveUp();
+                        if (c.getSolidBox().getCenterY() > m.distY) c.moveUp();
                         else c.moveDown();
                     }
-
                     Camera.getInstance().setX(c.getX()- (SCREEN_WIDTH/2));
                     Camera.getInstance().setY(c.getY()- (SCREEN_HEIGHT/2));
 
