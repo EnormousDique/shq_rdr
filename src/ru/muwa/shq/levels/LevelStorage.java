@@ -1,6 +1,6 @@
 package ru.muwa.shq.levels;
 
-import ru.muwa.shq.levels.demo.DemoLevel0;
+import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 
 import java.io.IOException;

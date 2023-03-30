@@ -1,9 +1,5 @@
 package ru.muwa.shq.engine.animations.cutscenes;
 
-import ru.muwa.shq.levels.LevelStorage;
-import ru.muwa.shq.levels.demo.DemoLevel0;
-import ru.muwa.shq.player.Player;
-
 import java.util.ArrayList;
 
 public class Cutscene0 extends Cutscene {

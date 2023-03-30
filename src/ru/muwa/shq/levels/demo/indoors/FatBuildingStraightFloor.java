@@ -1,15 +1,11 @@
 package ru.muwa.shq.levels.demo.indoors;
 
 import ru.muwa.shq.levels.Level;
-import ru.muwa.shq.levels.demo.DemoLevel0;
+import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.objects.bounds.InvisibleWall;
 import ru.muwa.shq.objects.bounds.StraightInvisibleWall;
-import ru.muwa.shq.objects.bounds.Wall300;
-import ru.muwa.shq.objects.bounds.Wall350;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
 import ru.muwa.shq.objects.containers.GarbageChute;
-import ru.muwa.shq.objects.containers.PostBox;
-import ru.muwa.shq.objects.containers.WirelessPanel;
 import ru.muwa.shq.zones.EnterZone;
 
 import java.io.IOException;

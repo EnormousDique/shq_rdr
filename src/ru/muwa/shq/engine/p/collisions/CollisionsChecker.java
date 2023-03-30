@@ -80,7 +80,7 @@ public class CollisionsChecker
         { //Неподвижные объекты мимо.
             for (GameObject obj : objects)
             { //Перебираем объекты.
-                if (c.getSolidBox().intersects(obj.getSolidBox()))
+                if (c.getSolidBox().intersects(obj.getSolidBox()) && obj.solid())
                 { //Проверяем на пересечение.
                     //System.out.println("Обекты пересекаются");
                     //Если ноги выше крыши, то толкаем вверх.

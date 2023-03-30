@@ -90,7 +90,7 @@ public abstract class NPC extends Creature
         Line2D l = new Line2D.Double(solidBox.getCenterX(),solidBox.getCenterY(), Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY());
 
         for(int i = 0; i < Engine.getCurrentLevel().getObjects().size(); i++)
-            if(l.intersects(Engine.getCurrentLevel().getObjects().get(i).getSolidBox()))
+            if(l.intersects(Engine.getCurrentLevel().getObjects().get(i).getSolidBox()) && Engine.getCurrentLevel().getObjects().get(i).getIsSolid() )
                 playerInStraightLine = false;
 
         playerInAFieldOfView = viewField.intersects(Player.get().getSolidBox());

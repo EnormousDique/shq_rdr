@@ -1,4 +1,4 @@
-package ru.muwa.shq.levels.demo;
+package ru.muwa.shq.levels.demo.demoLevel0;
 import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.creatures.npc.enemies.VelvetTank;
@@ -13,7 +13,6 @@ import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingStraightFloor;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
-import ru.muwa.shq.objects.bounds.InvisibleWall;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
 import ru.muwa.shq.objects.containers.TrashCan;
@@ -21,7 +20,6 @@ import ru.muwa.shq.objects.obstacles.crates.Crate0;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.zones.*;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class DemoLevel0 extends Level
@@ -47,12 +45,15 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new MakarovAmmo());
         Inventory.getInstance().addItem(new MakarovAmmo());
         Inventory.getInstance().addItem(new MakarovAmmo());
+        objects.add(new DemoLevel0_BG(0,0));
         objects.add(new Crate0(100,100));
-        objects.add(new FatBuilding(0,1500));
-        objects.add(new TallFatBuilding(1000,2500));
+        objects.add(new FatBuilding(735,825));
+        objects.add(new FatBuilding(735,825));
+
+        //objects.add(new TallFatBuilding(1000,2500));
         instance = this;
-        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(520,1665,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
-        zones.add(new InteractiveEnterZone( new PadikLock("1488К228"),new EnterZone(520,2115,70,70, FatBuildingFloor1.getInstance(), FatBuildingFloor1.getInstance().getStartPosX(), FatBuildingFloor1.getInstance().getStartPosY(), false)));
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1280,1130,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
+        zones.add(new InteractiveEnterZone( new PadikLock("1488К228"),new EnterZone(1280,1160,70,70, FatBuildingFloor1.getInstance(), FatBuildingFloor1.getInstance().getStartPosX(), FatBuildingFloor1.getInstance().getStartPosY(), false)));
         zones.add(new CutsceneZone(-200,-200,50,50, Cutscene0.getInstance()));
         zones.add(new DialogueZone(Conversation0.getInstance(),400,400,100,100,false));
         npc.add(new VelvetTank(750,1800));
