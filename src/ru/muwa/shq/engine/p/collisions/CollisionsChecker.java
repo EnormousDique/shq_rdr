@@ -49,11 +49,19 @@ public class CollisionsChecker {
                 if (o.getSolidBox().intersects(obj.getSolidBox())) // произошло столкновение
                 {
 
-                    if (o.getY() + o.getHeight() > obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
+                    if (o.getSolidBox().getCenterY() > obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
                         o.setY(obj.getY() + obj.getHeight());
                         System.out.println("вниз");
                     }//Вниз
                     /*else*/
+
+
+
+                    //я тупой дибил пидарас и сука крышу у людей последнее
+
+
+
+
                     if (o.getY() < obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
                         o.setY(obj.getY() - o.getHeight());
                         System.out.println("вверх");
