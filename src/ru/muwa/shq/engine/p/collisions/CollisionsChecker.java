@@ -17,6 +17,15 @@ import static ru.muwa.shq.objects.GameObject.Direction.DOWN;
  * Класс, отвечающий за проверку столкновений игровых объектов.
  */
 public class CollisionsChecker {
+
+    //TODO
+    // *
+    // *
+    // * Добавить отталкивание при столкновении с пулей в сторону ускорения пули помноженной на скорость
+    // *
+    // *
+
+
     private static CollisionsChecker instance;
 
     private CollisionsChecker() {
@@ -52,6 +61,7 @@ public class CollisionsChecker {
                     if (o.getSolidBox().getCenterY() > obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
                         o.setY(obj.getY() + obj.getHeight());
                         System.out.println("вниз");
+                        continue;
                     }//Вниз
                     /*else*/
 
@@ -65,16 +75,19 @@ public class CollisionsChecker {
                     if (o.getY() < obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
                         o.setY(obj.getY() - o.getHeight());
                         System.out.println("вверх");
+                        continue;
                     }//Вверх
                     /*else*/
                     if (o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
                         o.setX(obj.getX() + obj.getWidth());
                         System.out.println("право");
+                        continue;
                     }//Вправо
                     /*else*/
                     if (o.getX() < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
                         o.setX(obj.getX() - o.getWidth());
                         System.out.println("vlevo");
+                        continue;
                     }//Влево
 
                     //Код для уничтожения пуль после столкновения

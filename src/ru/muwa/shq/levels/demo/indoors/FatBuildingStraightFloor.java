@@ -40,11 +40,5 @@ public class FatBuildingStraightFloor extends Level
         objects.add(new StraightInvisibleWall(9,9));
         objects.add(new StraightInvisibleWall(800,9));
 
-
-
-
-
-
-
     }
 }

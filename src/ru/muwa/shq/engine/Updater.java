@@ -178,9 +178,9 @@ public class Updater implements Runnable
         }
         //Блок ПОСТ обработки
 
-        //Очищаем нажатые клавиши. (Фиксим баг с мульти прожатием клавиш)
-       // DropKeyUtility.getInstance().work(); //TODO: Убрать.
-       // System.out.println("time : " + (System.currentTimeMillis() - time));
+          // Очищаем нажатые клавиши. (Фиксим баг с мульти прожатием клавиш)
+         //  DropKeyUtility.getInstance().work(); //TODO: Убрать.
+        //   System.out.println("time : " + (System.currentTimeMillis() - time));
     }
     public static Updater getInstance()
     {
