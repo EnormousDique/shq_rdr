@@ -308,7 +308,7 @@ public class Renderer implements Runnable {
         {
             loadingScreen = new JFrame("ZAGRUZKA");
             JPanel p = new JPanel();
-            loadingScreen.setBounds(500,500,500,500);
+            loadingScreen.setBounds(400,400,300,150);
             p.add(new JLabel("ЗАГРУЗКА / ZAGRUZKA"));
             loadingScreen.add(p);
             loadingScreen.add(new JLabel("ЗАГРУЗКА / ZAGRUZKA"));
