@@ -19,11 +19,11 @@ import static ru.muwa.shq.objects.GameObject.Direction.DOWN;
 public class CollisionsChecker {
 
     //TODO
-    // *
-    // *
-    // * Добавить отталкивание при столкновении с пулей в сторону ускорения пули помноженной на скорость
-    // *
-    // *
+    //  *
+    //  *
+    //  * Добавить отталкивание при столкновении с пулей в сторону ускорения пули помноженной на скорость
+    //  *
+    //  *
 
 
     private static CollisionsChecker instance;
@@ -44,10 +44,12 @@ public class CollisionsChecker {
     }
 
     /**
+     *
      * Метод определения столкновений игрового объекта с остальными объектами.
      *
      * @param o       - Целевой обект. (Тот, кого проверяем и будем двигать)
      * @param objects - Остальные объекты
+     *
      */
     //TODO: Переписать с опорой на центры объектов.
     private void checkObjectCollisions(GameObject o, List<GameObject> objects) {
