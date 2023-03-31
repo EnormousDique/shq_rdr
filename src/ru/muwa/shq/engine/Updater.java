@@ -88,6 +88,7 @@ public class Updater implements Runnable
         //System.out.println("spawner counter : " + Spawner.getSpawnedNPCCounter());
         //System.out.println("spawner interval :  " + Spawner.getSpawnInterval());
 
+
         //Блок обработки игрока.
         // Проверяем были ли команды игроку через игровое управление.
         PlayerControls.controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
@@ -118,8 +119,8 @@ public class Updater implements Runnable
 
         CollisionsChecker.getInstance().checkCollisions(player,  Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject) c ).collect(Collectors.toList()) );
 
-
-
+// обновляем текстурку игрока
+        PlayerControls.update();
         //Обновляем окно инвентаря
 
         InventoryManager.update();

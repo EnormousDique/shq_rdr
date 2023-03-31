@@ -207,7 +207,7 @@ public class Renderer implements Runnable {
 
             // ОТРИСОВКА ПЕрСОНАЖА
               AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
-               at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getWidth() / 2), (Player.get().getHeight() / 2));
+               at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getTexture().getWidth() / 2), (Player.get().getTexture().getHeight() / 2));
 
                 ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
 

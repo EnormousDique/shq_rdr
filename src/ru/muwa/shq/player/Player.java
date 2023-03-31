@@ -1,8 +1,11 @@
 package ru.muwa.shq.player;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.creatures.Creature;
+import ru.muwa.shq.items.BluntWeapons.BaseballBat;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.guns.Firearm;
+import ru.muwa.shq.items.guns.Makarov;
+import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.Usable;
 
 import javax.imageio.ImageIO;
@@ -17,12 +20,12 @@ import java.util.ArrayList;
 public class Player extends Creature
 {
     private static Player instance;
+    private static BufferedImage img;
 
     public enum Direction{UP,DOWN,LEFT,RIGHT}
     public Direction direction;
     private Rectangle useZone;
 
-    private static BufferedImage img;
     private static BufferedImage imgUp;
 
     private static BufferedImage imgDown;
@@ -33,13 +36,10 @@ public class Player extends Creature
         return useZone;
     }
 
-    public static Player get()
-    {
+    public static Player get() {
         if (instance == null)
         {
-            if(Inventory.getInstance().getItems().get())
-        try {
-            img = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
+            try { img = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
         } catch (Exception e) {
             System.out.println("Failed to load player textures");
             return null;
@@ -48,15 +48,12 @@ public class Player extends Creature
         }
         else return instance;
     }
-
     private boolean isBusy;
     private Usable currentObject;
-
     @Override
     public ArrayList<Item> getRandomLoot() {
         return null;
     }
-
     /**
      * Конструктор
      *
@@ -87,7 +84,6 @@ public class Player extends Creature
         if(!isBusy)super.moveLeft();
         if(direction!= Direction.LEFT) direction = Direction.LEFT;
     }
-
     @Override
     public void moveRight() {
         if(!isBusy)super.moveRight();
@@ -95,12 +91,12 @@ public class Player extends Creature
     }
     public void jump(){
         //Да, когда-то мы умели прыгать..
+        // нессы еще взелтим-с (С)vov4que1010.@mail.com
     }
      @Override
     public void moveUp(){
          if(!isBusy)super.moveUp();
          if(direction!= Direction.UP) direction = Direction.UP;
-
      }
     @Override
      public void moveDown (){

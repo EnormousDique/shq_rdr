@@ -57,6 +57,11 @@ public abstract class GameObject
         isSolid = true;
 
     }
+
+    public void setTexture(BufferedImage read) {
+        texture = read;
+    }
+
     /**
      * Перечисление возможных направлений.
      */
