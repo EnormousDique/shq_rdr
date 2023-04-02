@@ -7,16 +7,13 @@ import java.awt.*;
 import java.security.PublicKey;
 
 /**
- * Класс, представляющий из себя зону перехода на другую локацию.
+ * Класс, представляющий собой зону перехода на другую локацию.
  */
 public class EnterZone extends GameZone
 {
     private Level level;
     private int whereToX, whereToY;
-
     private boolean isAuto;
-
-
     public Level getLevel()
     {
         return level;

@@ -9,6 +9,8 @@ import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
 import ru.muwa.shq.objects.containers.HubChest;
 import ru.muwa.shq.objects.containers.TrashCan;
 import ru.muwa.shq.zones.EnterZone;
+import ru.muwa.shq.zones.InDoorsSpawnZone;
+
 
 import java.io.IOException;
 
@@ -24,6 +26,8 @@ public class Hub extends Level
     }
     private Hub() throws IOException {
 
+        this.isInDoors = true;
+
         instance = this;
         startPosX = 0;
         startPosY = 0;
@@ -31,13 +35,14 @@ public class Hub extends Level
 
 
         //текстура его величества падика
-        objects.add(new HubBuild(0,0));
+       // objects.add(new HubBuild(0,0));
         containers.add(new HubChest(700,5));
         zones.add(new EnterZone(1,743,120,60,DemoLevel0.getInstance(),520,1800,true));
-        objects.add(new Wall350(0,-50));
-        objects.add(new Wall350(-48,800));//нижнаяя
-        objects.add(new Wall350(308,800));//нижнаяя
-        objects.add(new Wall350(608,800));//нижнаяя
+     //   objects.add(new Wall350(0,-50));
+      //  objects.add(new Wall350(-48,800));//нижнаяя
+      //  objects.add(new Wall350(308,800));//нижнаяя
+      //  objects.add(new Wall350(608,800));//нижнаяя
+        zones.add(new InDoorsSpawnZone(2000,200,100,150));
 
 
         objects.add(new Wall350(351,-50));

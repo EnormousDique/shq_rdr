@@ -85,6 +85,7 @@ public class Updater implements Runnable
         long localTime = System.currentTimeMillis();
         //Спавнер
         Spawner.regularSpawn();
+        Spawner.inDoorsSpawn();
         //System.out.println("spawner counter : " + Spawner.getSpawnedNPCCounter());
         //System.out.println("spawner interval :  " + Spawner.getSpawnInterval());
 

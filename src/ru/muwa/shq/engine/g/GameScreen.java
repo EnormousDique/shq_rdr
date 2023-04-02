@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Класс, представляющий из себя окно игры.
+ * Класс, представляющий собой окно игры.
  */
 
 public class GameScreen extends JFrame

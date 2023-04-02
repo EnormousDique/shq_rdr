@@ -1,5 +1,9 @@
 package ru.muwa.shq.objects;
 
+import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.zones.EnterZone;
+import ru.muwa.shq.zones.GameZone;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -45,6 +49,7 @@ public abstract class GameObject
      */
     protected GameObject(int x, int y, BufferedImage texture)
     {
+
         this.texture = texture;
         this.x = x;
         this.y = y;

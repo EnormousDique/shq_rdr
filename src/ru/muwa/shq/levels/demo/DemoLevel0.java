@@ -61,6 +61,8 @@ public class DemoLevel0 extends Level
 
 
 
+         // маного танков для проверки отдачи от холодног оружия
+        /*
         npc.add(new VelvetTank(750,1800));
 
         npc.add(new VelvetTank(750,1800));
@@ -68,6 +70,8 @@ public class DemoLevel0 extends Level
         npc.add(new VelvetTank(750,1800));
         npc.add(new VelvetTank(750,1800));
         npc.add(new VelvetTank(750,1800));
+
+
 
         npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         npc.get(1).setRayCasterBorders(npc.get(1).getRayCaster().buildLines(objects));
@@ -75,6 +79,8 @@ public class DemoLevel0 extends Level
         npc.get(3).setRayCasterBorders(npc.get(3).getRayCaster().buildLines(objects));
         npc.get(4).setRayCasterBorders(npc.get(4).getRayCaster().buildLines(objects));
         npc.get(5).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
+
+         */
         Spawner.updateTimers();
 
 
