@@ -75,6 +75,25 @@ public class CollisionsChecker
             }
         }
     }
+    public  void  checkAttackZoneCollisions(){
+        //todo переделай чекобжект коллизионс на работу с зоной и списком обьектов. вместо гейм обджектов аткка зона вместо листа гейобьектов лист нпс
+        //todo в этом классе есть метод чек нпс коллизионс он уже настноен на раоту с нпц мб будет проще взять.
+        for (int i = 0; i < Engine.getCurrentLevel().getNPC().size();i++){
+            NPC npc = Engine.getCurrentLevel().getNPC().get(i);
+           if (Engine.getCurrentLevel().getNPC().get(i).getSolidBox().intersects(Player.get().getAttackZone()))
+           {
+               if(npc.getY() + npc.getHeight() < Player.get().getSolidBox().getCenterY())
+               {
+                   npc.setY((int) (Player.get().getAttackZone().getY() - npc.getHeight() - 30));
+                   npc.setStanding(true);
+               }
+               else if(npc.getY() > Player.get().getAttackZone().getY()+ Player.get().getAttackZone().getHeight() -20) npc.setY((int) (Player.get().getAttackZone().getY() + Player.get().getAttackZone().getHeight() + 30));
+               else if(npc.getSolidBox().getCenterX() < Player.get().getAttackZone().getCenterX()) npc.setX((int) (Player.get().getAttackZone().getX() - npc.getWidth()));
+               else if(npc.getSolidBox().getCenterX() > Player.get().getAttackZone().getCenterX()) npc.setX((int) (Player.get().getAttackZone().getX() + Player.get().getAttackZone().getWidth()));
+           }
+        }
+        }
+
 
 
 
@@ -99,6 +118,7 @@ public class CollisionsChecker
                     else if(c.getSolidBox().getCenterX() < obj.getSolidBox().getCenterX()) c.setX(obj.getX() - c.getWidth());
                         //И в другой бок.
                     else if(c.getSolidBox().getCenterX() > obj.getSolidBox().getCenterX()) c.setX(obj.getX() + obj.getWidth());
+
 
                     //Код для уничтожения пуль после столкновения и нанесение урона
                     if(obj instanceof Bullet)

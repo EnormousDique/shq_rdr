@@ -6,6 +6,7 @@ import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
+import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.engine.s.Sounder;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.BluntWeapons.BaseballBat;
@@ -62,42 +63,8 @@ public class PlayerControls
         if(MouseButtonListener.getInstance().keys[0]) rmb();
 
     }
-    private static void updatePlayerTexture(){ // метод который отвечает за изменение текстуры игрока взависимости от его оружия
-        try {
 
-            boolean isbaseballBatEquipped = false;
-            boolean isMakarovEquipped = false;
-            Weapon bat = null;
-            Weapon gun = null;
-            for (int i = 0; i < Inventory.getInstance().getItems().size(); i++) { // проходимся циклом фор по инвентарю
-                if (Inventory.getInstance().getItems().get(i).isEquipped() &&
-                        Inventory.getInstance().getItems().get(i) instanceof BaseballBat) { // если предмет экипирован и бейспольная
-                    isbaseballBatEquipped = true;
-                    bat = (Weapon) Inventory.getInstance().getItems().get(i);
-                }
-                else if((Inventory.getInstance().getItems().get(i).isEquipped() &&
-                        Inventory.getInstance().getItems().get(i) instanceof Makarov)) { // если предмет экипирован и он макаров
-                    isMakarovEquipped = true   ;
-                    gun = (Weapon) Inventory.getInstance().getItems().get(i);
-                }
-            }
-            if (isMakarovEquipped && gun instanceof Makarov) {
-                Player.get().setTexture(ImageIO.read(new File(IMG_PATH + "player\\kulaginPistol2.png")));
-            }
-            if (isbaseballBatEquipped && bat instanceof BaseballBat) {   // проверка на то что оружие экипированно и Бита.
-                Player.get().setTexture(ImageIO.read(new File(IMG_PATH + "player\\kulaginBat2.png")));// устанавливаем текстуру игрока на текстуру с битой
-            }
-            else if(!isbaseballBatEquipped && !isMakarovEquipped) {
-                Player.get().setTexture(ImageIO.read(new File(IMG_PATH + "player\\kulaginFist.png"))); // если бита не жкипирована и оружие в руках не ьита то стандартная текстура
-            }
-        } catch (Exception e){
-            System.out.println("Failed to load player rexture");
-        }
-    }
-    public static void update()
-    {
-        updatePlayerTexture();
-    }
+
 
     private static void t() {
         for(GameZone z : Engine.getCurrentLevel().getZones())
@@ -175,6 +142,8 @@ public class PlayerControls
                     //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
 
                     CombatUtility.attack(npc, 5);
+                    CollisionsChecker.getInstance().checkAttackZoneCollisions();
+
 
                 }
             }

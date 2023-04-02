@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Player extends Creature
 {
     private static Player instance;
-    private static BufferedImage img;
+    public static BufferedImage img;
 
     public enum Direction{UP,DOWN,LEFT,RIGHT}
     public Direction direction;
@@ -39,7 +39,7 @@ public class Player extends Creature
     public static Player get() {
         if (instance == null)
         {
-            try { img = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
+            try { img = ImageIO.read(new File(IMG_PATH+"player\\kulaginBat2.png"));
         } catch (Exception e) {
             System.out.println("Failed to load player textures");
             return null;

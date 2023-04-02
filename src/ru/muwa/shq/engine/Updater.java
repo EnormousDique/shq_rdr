@@ -119,8 +119,8 @@ public class Updater implements Runnable
 
         CollisionsChecker.getInstance().checkCollisions(player,  Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject) c ).collect(Collectors.toList()) );
 
-// обновляем текстурку игрока
-        PlayerControls.update();
+        // обновляем текстурку игрока
+        CombatUtility.updatePlayerTexture();
         //Обновляем окно инвентаря
 
         InventoryManager.update();
@@ -130,6 +130,8 @@ public class Updater implements Runnable
 
         // Через службу проверки игровых зон смотрим взаимодействие игрока с той или иной зоной
         GameZoneUtility.work();
+        // вован ЭКСПЕРЕМЕНТИРУЕТ С ОТТАЛКИВАНИЕ БИТЫ! !!!!!!!!!!!!!!!!!!!
+
 
         //Блок обработки обычных объектов из списка текущих.
         for(GameObject o : Engine.getCurrentLevel().getObjects())
@@ -147,6 +149,7 @@ public class Updater implements Runnable
         {
 
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
+
             //Передаем нпц ии, чтобы тот решил что ему делать.
             AI.getInstance().move(c);
             // Обновляем бокс.

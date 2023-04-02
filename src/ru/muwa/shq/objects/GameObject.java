@@ -15,9 +15,10 @@ public abstract class GameObject
     public static final String IMG_PATH = "src\\ru\\muwa\\shq\\textures\\";
     //TODO: Вован сделай такое же поле для себя, а мое закомментируй при работе в своей ветке.
     //public static final String IMG_PATH = "C:\\Users\\darkm\\IdeaProjects\\shq_rdr\\src\\ru\\muwa\\shq\\textures\\";
-    protected int x, y; //Координаты положения в пространстве
-    protected int height; // Высота
-    protected int width; // Широта
+    protected int x;
+    protected  int y; //Координаты положения в пространстве
+    protected  int height; // Высота
+    protected  int width; // Широта
     protected int velocity; //Скорость
 
     protected double fallAx;
@@ -25,7 +26,7 @@ public abstract class GameObject
     protected boolean isSolid; //Объект твердый. Через него нельзя пройти.
 
     protected boolean isStatic; //Объект статичен. Он не двигается вообще. Не может двигаться.
-    protected boolean isStanding; //Объект стоит на платформе или поверхности. Он устойчив и не падает. //TODO:  Проверить, возожно получится обойтись isFalling
+    protected  boolean isStanding; //Объект стоит на платформе или поверхности. Он устойчив и не падает. //TODO:  Проверить, возожно получится обойтись isFalling
     protected boolean onGround; // Объект стоит на земле. Нижняя часть экрана, почва.
     protected boolean isFalling; // Обект падает (на него действует гравитация
     protected boolean isInUse;
@@ -72,16 +73,16 @@ public abstract class GameObject
     /**
      * Методы - сеттеры
      */
-    public void setX( int x)
+    public void setX(int x)
     {
         this.x=x;
     }
-    public void setY( int y)
+    public void setY(int y)
     {
         this.y=y;
     }
     public void setStanding(){isStanding = true;}
-    public void setStanding(boolean bool){isStanding = bool;}
+    public  void setStanding(boolean bool){isStanding = bool;}
     public void setDirection(Direction direction){this.direction = direction;}
     public void setIsFalling(boolean bool){this.isFalling = bool;}
     public void setFallAx(double fallAx)
@@ -95,11 +96,11 @@ public abstract class GameObject
     /**
      * Методы - геттеры
      */
-    public int getHeight()
+    public  int getHeight()
     {
         return  height;
     }
-    public int getWidth()
+    public  int getWidth()
     {
         return  width;
     }
@@ -107,7 +108,7 @@ public abstract class GameObject
     {
         return isSolid;
     }
-    public int getY()
+    public  int getY()
     {
         return y;
     }
@@ -129,7 +130,7 @@ public abstract class GameObject
     {
         return texture;
     }
-    public Rectangle getSolidBox()
+    public  Rectangle getSolidBox()
     {
         return solidBox;
     }

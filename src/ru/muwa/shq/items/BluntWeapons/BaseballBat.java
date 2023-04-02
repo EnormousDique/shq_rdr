@@ -18,7 +18,9 @@ public class BaseballBat extends Weapon {
             BaseballBat_WEIGHT =1000.0;
     public static  BufferedImage BaseballBat_IMG = null;
     public BaseballBat(){
+
         super(BaseballBat_ID,BaseballBat_Price,BaseballBat_WEIGHT,BaseballBat_IMG);
+        damage = 20;
         this.description = "Битааа , ХУякс.... и башка пробитааа!";
         this.isAbleToEquip = true;
     }

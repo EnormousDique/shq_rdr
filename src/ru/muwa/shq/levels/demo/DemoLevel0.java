@@ -46,6 +46,7 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new MakarovAmmo());
         Inventory.getInstance().addItem(new BaseballBat());
 
+
         objects.add(new Crate0(100,100));
         objects.add(new FatBuilding(0,1500));
         objects.add(new TallFatBuilding(1000,2500));
@@ -57,13 +58,17 @@ public class DemoLevel0 extends Level
         zones.add(new EnterZone(520,1800,70,70,Hub.getInstance(),51,705,false));
         // zones.add(new EnterZone(0,0,70,70, DemoHub.getInstance(), 0,0,false));
         zones.add(new DialogueZone(Conversation0.getInstance(),400,400,100,100,false));
-        /*
+
+
+
         npc.add(new VelvetTank(750,1800));
-        npc.add(new BadGuy0(800,1800));
-        npc.add(new BadGuy0(950,1800));
-        npc.add(new BadGuy0(1100,1800));
-        npc.add(new BadGuy0(1300,1800));
-        npc.add(new AimingGuy(500,500));
+
+        npc.add(new VelvetTank(750,1800));
+        npc.add(new VelvetTank(750,1800));
+        npc.add(new VelvetTank(750,1800));
+        npc.add(new VelvetTank(750,1800));
+        npc.add(new VelvetTank(750,1800));
+
         npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         npc.get(1).setRayCasterBorders(npc.get(1).getRayCaster().buildLines(objects));
         npc.get(2).setRayCasterBorders(npc.get(2).getRayCaster().buildLines(objects));
@@ -71,7 +76,7 @@ public class DemoLevel0 extends Level
         npc.get(4).setRayCasterBorders(npc.get(4).getRayCaster().buildLines(objects));
         npc.get(5).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
         Spawner.updateTimers();
-        as
-         */
+
+
     }
 }
