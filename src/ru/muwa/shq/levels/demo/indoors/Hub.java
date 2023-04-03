@@ -35,13 +35,13 @@ public class Hub extends Level
 
 
         //текстура его величества падика
-       // objects.add(new HubBuild(0,0));
+        objects.add(new HubBuild(0,0));
         containers.add(new HubChest(700,5));
         zones.add(new EnterZone(1,743,120,60,DemoLevel0.getInstance(),520,1800,true));
-     //   objects.add(new Wall350(0,-50));
-      //  objects.add(new Wall350(-48,800));//нижнаяя
-      //  objects.add(new Wall350(308,800));//нижнаяя
-      //  objects.add(new Wall350(608,800));//нижнаяя
+        objects.add(new Wall350(0,-50));
+       objects.add(new Wall350(-48,800));//нижнаяя
+        objects.add(new Wall350(308,800));//нижнаяя
+       objects.add(new Wall350(608,800));//нижнаяя
         zones.add(new InDoorsSpawnZone(2000,200,100,150));
 
 

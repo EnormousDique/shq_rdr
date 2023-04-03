@@ -83,10 +83,9 @@ public class Spawner {
             }
         }
     }
+    // кусок кода отвечающий за появление бэдгая внутри квадрата InDoorsSpawnZone.
     public static void inDoorsSpawn() {
-
         Level level = Engine.getCurrentLevel();
-
         if (level.isInDoors()) {
             if(lastSpawnTime + spawnInterval < System.currentTimeMillis() && spawnedNPCCounter <= MAX_NPC) {
                 for (GameZone z : Engine.getCurrentLevel().getZones()) {
