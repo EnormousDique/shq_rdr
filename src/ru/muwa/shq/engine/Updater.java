@@ -78,6 +78,9 @@ public class Updater implements Runnable {
         CombatUtility.work();
         //вызов службы эфектов
         EffectUtility.work();
+        //вызов слуюбы психометра
+        EffectUtility.psychOmetr();
+        //System.out.println(System.currentTimeMillis()+"ВРЕМЯ");
         //Вызов службы обновления пуль
         BulletUtility.work();
         // Обновленци прицела

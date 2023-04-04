@@ -110,7 +110,6 @@ public class Renderer implements Runnable {
      * Координаты объета относительно экрана получаются в результате учета координат камеры.
      */
     public void render() {
-        //System.out.println(Updater.getInstance().thread);                                                             // todo спросить мишгана надолиэто тут
         // ======= инициализация
         int camX = Camera.getInstance().getX(), camY = Camera.getInstance().getY();
         BufferStrategy bs = canvas.getBufferStrategy();
@@ -162,14 +161,11 @@ public class Renderer implements Runnable {
         }
          */
         //Если игрок в поле зрения, цвет луей меняется.
-        // for(NPC c: Engine.getCurrentLevel().getNPC()) if(c.getRayCaster().isPlayerInSight()) {g.setColor(Color.GREEN); for(Line2D.Float r : c.getRayCaster().calcRays()) g.drawLine((int)r.x1-camX,(int)r.y1-camY,(int)r.x2-camX,(int)r.y2-camY);}
         g.setColor(Color.red);
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
             if (c.getRayCaster().isPlayerInSight()) {
                 g.setColor(Color.green);
-               // for (Line2D.Float r : c.getRayCaster().calcRays())
-                   // g.drawLine((int) r.x1 - camX, (int) r.y1 - camY, (int) r.x2 - camX, (int) r.y2 - camY);            // todo спросить мишгана надолиэто тут
             }
         }
         // ОТИСОВКА HUD
@@ -184,6 +180,10 @@ public class Renderer implements Runnable {
             HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
             HUD.getInstance().getHealthBar().setString(Integer.toString(HUD.getInstance().getHealthBar().getValue()));
+            // полоску упора видно ток из инвентаря
+        HUD.getInstance().getDrugEffectBar().setVisible(Inventory.getInstance().isOpened());
+        HUD.getInstance().getDrugEffectBar().setValue((int) Player.get().getHighMeter());
+        HUD.getInstance().getDrugEffectBar().setString(Integer.toString(HUD.getInstance().getDrugEffectBar().getValue()));
             //Вызов службы диалогов.
             DialogueManager.getInstance().work();
 
@@ -192,34 +192,17 @@ public class Renderer implements Runnable {
             at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getTexture().getWidth() / 2), (Player.get().getTexture().getHeight() / 2));
             ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
-                                                                                                                        // todo спросить мишгана надолиэто тут
-            // System.out.println(Player.get().getAttackZone().getBounds().x +" "+ Player.get().getAttackZone().getBounds().y +" "+ Player.get().getAttackZone().getBounds().width +" "+ Player.get().getAttackZone().getBounds().height);
-           // g.drawRect(player.getAttackZone().getBounds().x - camX, player.getAttackZone().getBounds().y - camY, player.getAttackZone().getBounds().width, player.getAttackZone().getBounds().height);
-                                                                                                                        // todo спросить мишгана надолиэто тут
+        //
+        //
             // отрисоква бокса игрока
             g.drawRect(player.getX() - camX, player.getY() - camY, (int)player.getSolidBox().getWidth(), (int) player.getSolidBox().getHeight());
             //Отрисовка зон переходов по локациям
             g.setColor(Color.BLUE);
             for (GameZone z : Engine.getCurrentLevel().getZones())
                 g.drawRect(z.x - camX, z.y - camY, z.width, z.height);
-            // Отрисовка зоны использования
-           // g.setColor(Color.GREEN);                                                                                  // todo спросить мишгана надолиэто тут
-           // g.drawRect(Player.get().getUseZone().x - camX, Player.get().getUseZone().y - camY, Player.get().getUseZone().width, Player.get().getUseZone().height);
             // Отрисовка линий прицела
              for (Line2D l : Aim.getInstance().getLines())
                g.drawLine((int) l.getX1() - camX, (int) l.getY1() - camY, (int) l.getX2() - camX, (int) l.getY2() - camY);
-            //Отрисовка прицела целящихся нпц
-        /*
-             for(int i  = 0; i < Engine.getCurrentLevel().getNPC().size();i++)
-             {
-                 if(Engine.getCurrentLevel().getNPC().get(i) instanceof AimingGuy)                                      // todo спросить мишгана надолиэто тут
-                 {
-                     for (Line2D l : ((AimingGuy) Engine.getCurrentLevel().getNPC().get(i)).getLines())
-                         g.drawLine((int) l.getX1() - camX, (int) l.getY1() - camY, (int) l.getX2() - camX, (int) l.getY2() - camY);
-                 }
-             }
-         */
-
             //отрисовка координат мыши.
             g.setColor(Color.red);
             g.setFont(g.getFont().deriveFont(Font.BOLD));
@@ -227,9 +210,9 @@ public class Renderer implements Runnable {
             g.setColor(Color.cyan);
             g.drawString(""+Camera.getInstance().getX()+" "+Camera.getInstance().getY(),100,130);
              // отрисовка информации о предмете при наводе мышки на онный
-            g.setColor(Color.ORANGE);
+            g.setColor(Color.red);
             if(MouseButtonListener.getInstance().highlight != null && MouseButtonListener.getInstance().highlight.getSource() instanceof ItemPanel) {  // если мышкин хайлайтпредметов показывает нуль и пердмет подсвечивает предмент который айтем панел
-                g.drawString(((ItemPanel) MouseButtonListener.getInstance().highlight.getSource()).getItem().getDescription(), MouseListener.getInstance().getX()-50, MouseListener.getInstance().getY()-50); // то рисуем по координатам мыши - 50 строку описания предмета.
+                g.drawString(((ItemPanel) MouseButtonListener.getInstance().highlight.getSource()).getItem().getDescription(), HUD.getInstance().getMainWindow().getX(), HUD.getInstance().getMainWindow().getY()+200); // было по мышке сделал по маинвиндоуву// то рисуем по координатам мыши - 50 строку описания предмета.
             }
             g.setColor(Color.GREEN);
             g.drawString(""+(MouseListener.getInstance().getX()+camX)+" "+(MouseListener.getInstance().getY()+camY),100,160);
@@ -239,28 +222,6 @@ public class Renderer implements Runnable {
         }
         public void drawDescription(MouseEvent e)
         {
-           // g.drawString(e.getSource().toString(),e.getX(),e.getY());
- /*
-            String s1 = " ";String s2 = " ";String s3 = " ";                                                            // todo спросить мишгана надолиэто тут
-            for(int i = 0 ; i < HUD.getInstance().getItemWindow().getComponents().length;i++){
-                if(HUD.getInstance().getItemWindow().getComponents()[i]instanceof ItemPanel) {
-                    int Mx = MouseListener.getInstance().getX();
-                    int My = MouseListener.getInstance().getY();
-                    int xOff = 0;//HUD.getInstance().getActionWindow().getX();
-                    int yOff = 0;//HUD.getInstance().getActionWindow().getY();
-                    ItemPanel ip = (ItemPanel) HUD.getInstance().getItemWindow().getComponents()[i];
-                    Rectangle rec = new Rectangle(ip.getX()+xOff,ip.getY()+yOff,ip.getWidth(),ip.getHeight());          // todo спросить мишгана надолиэто тут
-                    if(rec.contains(new Point(Mx,My))){
-                        System.out.println("мышка на иконке");
-                        s1 = ip.getItem().getDescription();
-                        s2 = String.valueOf(ip.getItem().getPrice());
-                        s3 = String.valueOf(ip.getItem().getWeight());
-                        g.drawString(s1,Mx-100,My-100);
-                        g.drawString(s2,Mx-100,My-50);
-                        g.drawString(s3,Mx-100,My );
-                    }                                                                                                   // todo спросить мишгана надолиэто тут
-                }
-            }
-  */
+
         }
     }

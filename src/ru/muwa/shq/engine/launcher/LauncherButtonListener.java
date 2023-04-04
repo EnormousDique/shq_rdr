@@ -12,19 +12,35 @@ import java.util.LinkedList;
  */
 public class LauncherButtonListener extends ButtonListener
 {
+    public void addButton(JButton save){
+        buttons.add(save);
+    }
+
+
     LinkedList<JButton> buttons; // Список кнопок.
-    public LauncherButtonListener(LinkedList<JButton> buttons) //Конструктор
+    public LauncherButtonListener(LinkedList<JButton> buttons ) //Конструктор
     {
         super();
         this.buttons = buttons;
+
     }
     @Override
     public void actionPerformed(ActionEvent e)
     {   //  Метод запускается, если была нажата одна из кнопок.
         if(e.getSource().equals(buttons.get(Launcher.START))) Engine.gameOn();
-        if(e.getSource().equals(buttons.get(Launcher.SET))) System.out.println("settings");;
-        if(e.getSource().equals(buttons.get(Launcher.EDIT))) System.out.println("editor");;
+        if(e.getSource().equals(buttons.get(Launcher.SET)))  Launcher.showScreenSettings();
+        if(e.getSource().equals(buttons.get(Launcher.EDIT))) System.out.println("editor");
         if(e.getSource().equals(buttons.get(Launcher.EXIT))) Launcher.quit();
+        if(((JButton)e.getSource()).getText().equals("ПРименить настройки")){Launcher.hideScreenSettings();Launcher.showFrame();}
+
         e=null;
+    }
+    public void CheckButtonS(ActionEvent a){
+        if(((JRadioButton)a.getSource()).getText().equals("800x600"))
+
+        {
+            System.out.println("выбраноо 800на 600");
+        }
+
     }
 }

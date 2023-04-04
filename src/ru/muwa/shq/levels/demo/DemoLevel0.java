@@ -41,6 +41,17 @@ public class DemoLevel0 extends Level
         containers.get(0).addItem(new Makarov());
         containers.get(0).addItem(new Makarov());
         Inventory.getInstance().addItem(new Flour());
+        Inventory.getInstance().addItem(new Flour());
+        Inventory.getInstance().addItem(new Flour());
+        Inventory.getInstance().addItem(new Flour());
+        Inventory.getInstance().addItem(new Flour());
+        Inventory.getInstance().addItem(new Flour());
+        Inventory.getInstance().addItem(new Flour());
+
+        Inventory.getInstance().addItem(new Flour());
+        Inventory.getInstance().addItem(new Flour());
+        Inventory.getInstance().addItem(new Flour());
+        Inventory.getInstance().addItem(new Flour());
         Inventory.getInstance().addItem(new Makarov());
         Inventory.getInstance().addItem(new Makarov());
         Inventory.getInstance().addItem(new MakarovAmmo());

@@ -1,11 +1,7 @@
 package ru.muwa.shq.player;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.creatures.Creature;
-import ru.muwa.shq.items.BluntWeapons.BaseballBat;
 import ru.muwa.shq.items.Item;
-import ru.muwa.shq.items.guns.Firearm;
-import ru.muwa.shq.items.guns.Makarov;
-import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.Usable;
 
 import javax.imageio.ImageIO;
@@ -25,6 +21,13 @@ public class Player extends Creature
     public enum Direction{UP,DOWN,LEFT,RIGHT}
     public Direction direction;
     private Rectangle useZone;
+
+
+    private double highMeter ;
+
+    private double highMeterLock;
+
+
 
     private static BufferedImage imgUp;
 
@@ -72,6 +75,8 @@ public class Player extends Creature
         maxJumpAx = 50;
         hp = 100;
         attackZone.getBounds().setBounds(x,y-30,30,30);
+        highMeter = 0;
+        highMeterLock = 0;
     }
 
     public boolean isBusy() {return isBusy;}
@@ -103,6 +108,21 @@ public class Player extends Creature
         if(!isBusy)super.moveDown();
         if(direction!= Direction.DOWN) direction = Direction.DOWN;
      }
+    public double getHighMeter() {
+        return highMeter;
+    }
+
+    public void setHighMeter(double highMeter) {
+        this.highMeter = highMeter;
+    }
+    public double getHighMeterLock() {
+        return highMeterLock;
+    }
+
+    public void setHighMeterLock(double highMeterLock) {
+        this.highMeterLock = highMeterLock;
+    }
+
 }
 
 
