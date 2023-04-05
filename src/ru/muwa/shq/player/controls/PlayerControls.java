@@ -141,7 +141,7 @@ public class PlayerControls
                 if (npc.getSolidBox().intersects(Player.get().getAttackZone())) {
                     //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
 
-                    CombatUtility.attack(npc, 5);
+                    CombatUtility.attack(npc, Player.get().currentWeapon.getDamage());
                     CollisionsChecker.getInstance().checkAttackZoneCollisions();
 
 

@@ -3,6 +3,7 @@ package ru.muwa.shq.items.BluntWeapons;
 import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
+import ru.muwa.shq.player.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -45,6 +46,7 @@ public class BaseballBat extends Weapon {
         if(!isSomeItemAlreadyEquipped)
         {
             setEquipped( true);
+            Player.get().currentWeapon = this;
         }
     }
 

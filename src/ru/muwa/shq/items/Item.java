@@ -2,6 +2,7 @@ package ru.muwa.shq.items;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.objects.containers.Container;
+import ru.muwa.shq.player.Player;
 
 import java.awt.image.BufferedImage;
 
@@ -58,8 +59,11 @@ public abstract class Item
     public void pick()
     {
         boolean isClickedOnEquipped = this.isEquipped;
-        if(isClickedOnEquipped) this.isEquipped = false;
-        else {
+        if(isClickedOnEquipped){
+            this.isEquipped = false;
+            Player.get().currentWeapon = null;
+
+        } else {
             boolean isInContainer = false;
             Container container = null;
             for (Container c : Engine.getCurrentLevel().getContainers())

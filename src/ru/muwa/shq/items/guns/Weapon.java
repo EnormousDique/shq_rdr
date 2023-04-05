@@ -41,6 +41,7 @@ public abstract class Weapon extends Item {
     @Override
     public void use() {
         //TODO: помещение объекта в экипирову
+
     }
 
     @Override

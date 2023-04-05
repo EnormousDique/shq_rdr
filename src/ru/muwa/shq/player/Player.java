@@ -2,6 +2,7 @@ package ru.muwa.shq.player;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.Usable;
 
 import javax.imageio.ImageIO;
@@ -38,6 +39,8 @@ public class Player extends Creature
     public Rectangle getUseZone() {
         return useZone;
     }
+
+    public Weapon currentWeapon ;
 
     public static Player get() {
         if (instance == null)
