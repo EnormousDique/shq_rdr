@@ -2,7 +2,6 @@ package ru.muwa.shq.minigames.padiklock;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.hud.HUD;
-import ru.muwa.shq.engine.launcher.Launcher;
 import ru.muwa.shq.engine.listeners.ButtonListener;
 
 import javax.swing.*;

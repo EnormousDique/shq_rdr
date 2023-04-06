@@ -80,8 +80,8 @@ public class Makarov extends Weapon implements Firearm{
             }
         if(!isSomeItemAlreadyEquipped)
         {
-            System.out.println("makarov has to be equipped now");
             setEquipped( true);
+            Player.get().currentWeapon = this;
         }
 
     }

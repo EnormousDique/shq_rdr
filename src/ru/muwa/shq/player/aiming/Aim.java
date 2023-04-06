@@ -1,15 +1,12 @@
 package ru.muwa.shq.player.aiming;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
-import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.player.Player;
-import javax.sound.sampled.Line;
-import java.awt.*;
+
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 public class Aim {
     private static Aim instance;

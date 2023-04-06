@@ -1,20 +1,19 @@
 package ru.muwa.shq.player.controls;
 
-import org.w3c.dom.ls.LSOutput;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.combat.CombatUtility;
-import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
-import ru.muwa.shq.engine.listeners.MouseListener;
+import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.engine.s.Sounder;
 import ru.muwa.shq.engine.utilities.InventoryManager;
+import ru.muwa.shq.items.BluntWeapons.BaseballBat;
 import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.items.guns.Firearm;
+import ru.muwa.shq.items.guns.Makarov;
 import ru.muwa.shq.items.guns.Weapon;
-import ru.muwa.shq.levels.dev.DevLevel0;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
@@ -25,8 +24,11 @@ import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.GameZone;
 import ru.muwa.shq.zones.InteractiveEnterZone;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
-import java.util.Objects;
+import java.io.File;
+
+import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 /**
  * Класс, отвечающий за управление игроком.
@@ -61,6 +63,8 @@ public class PlayerControls
         if(MouseButtonListener.getInstance().keys[0]) rmb();
 
     }
+
+
 
     private static void t() {
         for(GameZone z : Engine.getCurrentLevel().getZones())
@@ -136,9 +140,11 @@ public class PlayerControls
                 NPC npc = Engine.getCurrentLevel().getNPC().get(i);
                 if (npc.getSolidBox().intersects(Player.get().getAttackZone())) {
                     //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
-                    System.out.printf("hp " + npc.getHp());
-                    CombatUtility.attack(npc, 5); // пока дамага с руки 0 так как он и стреляет и бьет одновременно и если он убивает с руки то крашиться игра
-                    System.out.printf("hp " + npc.getHp());
+
+                    CombatUtility.attack(npc, Player.get().currentWeapon.getDamage());
+                    CollisionsChecker.getInstance().checkAttackZoneCollisions();
+
+
                 }
             }
 

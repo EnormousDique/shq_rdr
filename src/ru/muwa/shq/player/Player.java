@@ -1,16 +1,15 @@
 package ru.muwa.shq.player;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.creatures.Creature;
-import ru.muwa.shq.engine.g.GameScreen;
-import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.items.Item;
-import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.Usable;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+
 import static ru.muwa.shq.objects.GameObject.Direction.DOWN;
 /**
  * Класс игрока.
@@ -18,10 +17,19 @@ import static ru.muwa.shq.objects.GameObject.Direction.DOWN;
 public class Player extends Creature
 {
     private static Player instance;
+    public static BufferedImage img;
+
     public enum Direction{UP,DOWN,LEFT,RIGHT}
     public Direction direction;
     private Rectangle useZone;
-    private static BufferedImage img;
+
+
+    private double highMeter ;
+
+    private double highMeterLock;
+
+
+
     private static BufferedImage imgUp;
     private static BufferedImage imgDown;
     private static BufferedImage imgLeft;
@@ -29,16 +37,13 @@ public class Player extends Creature
     public Rectangle getUseZone() {
         return useZone;
     }
-    public static Player get()
-    {
+
+    public Weapon currentWeapon ;
+
+    public static Player get() {
         if (instance == null)
         {
-        try {
-            img = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
-            imgUp = ImageIO.read(new File(IMG_PATH+"player\\kulaginUP.png"));
-            imgDown = ImageIO.read(new File(IMG_PATH+"player\\kulaginDown.png"));
-            imgLeft = ImageIO.read(new File(IMG_PATH+"player\\kulaginLeft.png"));
-            imgRight = ImageIO.read(new File(IMG_PATH+"player\\kulaginRight.png"));
+            try { img = ImageIO.read(new File(IMG_PATH+"player\\kulaginBat2.png"));
         } catch (Exception e) {
             System.out.println("Failed to load player textures");
             return null;
@@ -47,12 +52,15 @@ public class Player extends Creature
         }
         else return instance;
     }
+
     private boolean isBusy;
     private Usable currentObject;
+
     @Override
     public ArrayList<Item> getRandomLoot() {
         return null;
     }
+
     /**
      * Конструктор
      *
@@ -72,6 +80,8 @@ public class Player extends Creature
         hp = 100;
         attackZone.getBounds().setBounds(x,y-30,30,30);
         this.name = "Player";
+        highMeter = 0;
+        highMeterLock = 0;
     }
 
     public boolean isBusy() {return isBusy;}
@@ -84,7 +94,6 @@ public class Player extends Creature
         if(!isBusy)super.moveLeft();
         if(direction!= Direction.LEFT) direction = Direction.LEFT;
     }
-
     @Override
     public void moveRight() {
         if(!isBusy)super.moveRight();
@@ -92,18 +101,33 @@ public class Player extends Creature
     }
     public void jump(){
         //Да, когда-то мы умели прыгать..
+        // нессы еще взелтим-с (С)vov4que1010.@mail.com
     }
      @Override
     public void moveUp(){
          if(!isBusy)super.moveUp();
          if(direction!= Direction.UP) direction = Direction.UP;
-
      }
     @Override
      public void moveDown (){
         if(!isBusy)super.moveDown();
         if(direction!= Direction.DOWN) direction = Direction.DOWN;
      }
+    public double getHighMeter() {
+        return highMeter;
+    }
+
+    public void setHighMeter(double highMeter) {
+        this.highMeter = highMeter;
+    }
+    public double getHighMeterLock() {
+        return highMeterLock;
+    }
+
+    public void setHighMeterLock(double highMeterLock) {
+        this.highMeterLock = highMeterLock;
+    }
+
 }
 
 

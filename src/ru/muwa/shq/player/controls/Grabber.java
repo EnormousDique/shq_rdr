@@ -6,10 +6,6 @@ import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
-import ru.muwa.shq.player.Inventory;
-
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class Grabber
 {

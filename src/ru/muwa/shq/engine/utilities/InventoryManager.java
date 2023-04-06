@@ -1,7 +1,6 @@
 package ru.muwa.shq.engine.utilities;
 
 import ru.muwa.shq.engine.Engine;
-import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
@@ -15,17 +14,15 @@ import ru.muwa.shq.player.Player;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
-import java.util.Arrays;
+
 import java.util.Map;
 
 
@@ -34,45 +31,49 @@ public class InventoryManager
 
 
 
-    private static void updateStatusWindow() throws IOException
+    private static void updateStatusWindow()
     {
+        try {
 
-        BufferedImage face = null;
-     if(Player.get().getHp() <= 100) {
-         face = ImageIO.read(new File(IMG_PATH + "face/FACE.png"));
-    }
-     if(Player.get().getHp() <= 70) {
-         face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACENOBLOOD.png"));
-     }
-        if(Player.get().getHp() <= 40) {
-            face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACE.png"));
-        }
-        if(Player.get().getHp() <= 10) {
-            face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACEBLOOD.png"));
-        }
-        String s = " " ;
-        for(Map.Entry<EffectUtility.Effects,Long> entry :EffectUtility.getCurrentEffects().entrySet()){
-            switch (entry.getKey()){
-                case SPEED :
-                    //TODO добавить побольше проверок if на здоровье (типа когда он обутюженный и хп > 50 то на ебале кровь
-                    if(entry.getValue() > System.currentTimeMillis()) {
-                        s += "я под мефом";
-                        face = ImageIO.read(new File(IMG_PATH + "face/FACEMEF.png"));
-                    } break;
+            BufferedImage face = null;
+            if (Player.get().getHp() <= 100) {
+                face = ImageIO.read(new File(IMG_PATH + "face/FACE.png"));
+            }
+            if (Player.get().getHp() <= 70) {
+                face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACENOBLOOD.png"));
+            }
+            if (Player.get().getHp() <= 40) {
+                face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACE.png"));
+            }
+            if (Player.get().getHp() <= 10) {
+                face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACEBLOOD.png"));
+            }
+            String s = " ";
+            for (Map.Entry<EffectUtility.Effects, Long> entry : EffectUtility.getCurrentEffects().entrySet()) {
+                switch (entry.getKey()) {
+                    case SPEED:
+                        //TODO добавить побольше проверок if на здоровье (типа когда он обутюженный и хп > 50 то на ебале кровь
+                        if (entry.getValue() > System.currentTimeMillis()) {
+                            s += "я под мефом";
+                            face = ImageIO.read(new File(IMG_PATH + "face/FACEMEF.png"));
+                        }
+                        break;
+                }
+
             }
 
+            JLabel faceIcon = new JLabel(new ImageIcon(face));
+            Arrays.stream(HUD.getInstance().getStatusWindow().getComponents()).forEach(HUD.getInstance().getStatusWindow()::remove);
+            HUD.getInstance().getStatusWindow().add(faceIcon);
+            HUD.getInstance().getStatusWindow().add(new JLabel("ТВОЁ ЗДОРОВЬЕ! Друг!"));
+            HUD.getInstance().getStatusWindow().add(new JLabel(String.valueOf(Player.get().getHp())));
+            JLabel effectsLabel = new JLabel(s);
+            HUD.getInstance().getStatusWindow().add(effectsLabel);
+            HUD.getInstance().getStatusWindow().updateUI();
+
+        }catch (Exception e){
+            System.out.println("НЕ ГРУЗИТ КАРТИНКУ СУКА");
         }
-
-        JLabel faceIcon = new JLabel(new ImageIcon(face));
-        Arrays.stream(HUD.getInstance().getStatusWindow().getComponents()).forEach(HUD.getInstance().getStatusWindow()::remove);
-        HUD.getInstance().getStatusWindow().add(faceIcon);
-        HUD.getInstance().getStatusWindow().add(new JLabel("ТВОЁ ЗДОРОВЬЕ! Друг!"));
-        HUD.getInstance().getStatusWindow().add(new JLabel(String.valueOf(Player.get().getHp())));
-        JLabel effectsLabel = new JLabel(s);
-        HUD.getInstance().getStatusWindow().add(effectsLabel);
-        HUD.getInstance().getStatusWindow().updateUI();
-
-
     }
 
     public static void drawContainerItems(Graphics g, Container c) {
@@ -100,14 +101,8 @@ public class InventoryManager
 
         updateItemWindow();
         updateEquipWindow();
+        updateStatusWindow();
 
-
-        try {//TODO: ВОВАН ПЕРЕНЕСИ БЛОК ТРАЙ КЕЧ В НУТЫРЬ МЕТОДА. НЕ надо тут его разводить (сделай так чтобы у апдейт статус виндоувс небыло ексептиона
-            updateStatusWindow();
-        } catch (IOException e) {
-            System.out.println("НЕ ГРУЗИТ КАРТИНКУ СУКА");
-            throw new RuntimeException(e);
-        }
         //TODO: Нужно перенести логику так, чтобы она вызывалась из PlayerControls.
         //TODO: Хули до сих пор не сделано)))))
 

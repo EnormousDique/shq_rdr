@@ -19,44 +19,35 @@ public class Flour extends Item {
     public static final int ID = 0, PRICE = 3000;
     public static final double WEIGHT = 1.0;
     private static BufferedImage img;
-
-    static
-    {
-        try
-        {
+    static {
+        try {
             img = ImageIO.read(new File(IMG_PATH + "drugs\\flour.png"));
         }
-        catch(IOException e)
-        {
+        catch(IOException e) {
             System.out.println("failed to load flour image");
         }
     }
-
-
-    public Flour()
-    {
+    public Flour() {
         super(ID, PRICE, WEIGHT, img);
         description = "мефчик бля , ебанул и нихуя";
     }
-
     @Override
     public void give(Container c) {
         Inventory.getInstance().getItems().remove(this);
         c.addItem(this);
     }
-
     @Override
-    public void use()
-    {
+    public void use() {
         if(Player.get().getHp() >= 90) Player.get().setHp(100);
         else
         Player.get().setHp(Player.get().getHp()+10);
-        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+60_000L);
+        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+10_000L);
+       // System.out.println(System.currentTimeMillis()+" ВРЕМЯЯ!!!!!!!!!!!!");
+        Player.get().setHighMeter(Player.get().getHighMeter()+20);
+        Player.get().setHighMeterLock(Player.get().getHighMeterLock()+20);
         Inventory.getInstance().getItems().remove(this);
     }
-
     @Override
     public void equip() {
-
     }
 }

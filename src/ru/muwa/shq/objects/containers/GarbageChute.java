@@ -1,12 +1,10 @@
 package ru.muwa.shq.objects.containers;
 
-import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.objects.Usable;
 import ru.muwa.shq.ui.containers.GarbageChuteUI;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

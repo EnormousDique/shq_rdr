@@ -13,10 +13,10 @@ public class Hub extends GameObject {
     static BufferedImage img;
     static{
         try{
-            img = ImageIO.read(new File(IMG_PATH + "buildings\\hub.png"));
-            System.out.println("OK OK to load door texture");
+            img = ImageIO.read(new File(IMG_PATH + "Hub\\hub400.png"));
+            System.out.println("OK OK to load HUB texture");
         }catch (Exception e){
-            System.out.println("Failed to load door texture");
+            System.out.println("Failed to load HUB texture");
         }
     }
     /**

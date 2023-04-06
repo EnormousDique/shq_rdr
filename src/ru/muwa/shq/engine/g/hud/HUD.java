@@ -3,6 +3,7 @@ package ru.muwa.shq.engine.g.hud;
 import java.util.*;
 import org.w3c.dom.ls.LSOutput;
 import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.player.Player;
 
@@ -30,9 +31,13 @@ public class HUD {
     JPanel statusWindow = new JPanel();// окна информации
     JPanel equipWindow = new JPanel();
 
+
+    JProgressBar drugEffectBar = new JProgressBar(0,100);
+
     private HUD (){
         instance = this;
         healthBar.setValue(Player.get().getHp());
+        drugEffectBar.setValue((int) Player.get().getHighMeter());
         actionWindow.setBounds(100,100,300,300);
         mainWindow.setBounds(620,500,50,100);
         itemWindow.setBounds(500,700,200,300);
@@ -40,10 +45,17 @@ public class HUD {
         itemWindow.setLayout(null);
         equipWindow.setLayout(null);
         mainWindow.setBounds(920,500,50,100);
-        statusWindow.setBounds(500,300,140,300);
+        statusWindow.setBounds(1432,1,140,150);
         itemWindow.setBounds(500,700,200,500);
         dialogueWindow.setBounds(610,765,700,700);
-        equipWindow.setBounds(10,10,100,150);
+        equipWindow.setBounds(1430,161,90,140);
+     //   this.add(HUD.getInstance().getHealthBar());
+     //   this.add(HUD.getInstance().getActionWindow());
+     //   HUD.getInstance().getActionWindow().setVisible(false);
+      //  HUD.getInstance().getHealthBar().setBounds(100+ Camera.getInstance().getX(),300+Camera.getInstance().getY(),400,50);
+        healthBar.setBounds(1027,0,400,50);
+        drugEffectBar.setBounds(1146,68,200,20);
+
     }
 
     public  JPanel getDialogueWindow(){return dialogueWindow;}  // геттер для диалогового окна
@@ -69,4 +81,6 @@ public class HUD {
     public JPanel getStatusWindow() {
         return statusWindow;
     }
+    public JProgressBar getDrugEffectBar() {return drugEffectBar;}
+
 }

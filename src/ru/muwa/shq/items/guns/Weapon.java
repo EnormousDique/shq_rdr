@@ -7,6 +7,10 @@ import java.awt.image.BufferedImage;
 
 public abstract class Weapon extends Item {
 
+    public int getDamage() {
+        return damage;
+    }
+
     protected int damage;
     protected boolean isFireArm;
     protected int rateOfFire;
@@ -37,6 +41,7 @@ public abstract class Weapon extends Item {
     @Override
     public void use() {
         //TODO: помещение объекта в экипирову
+
     }
 
     @Override
