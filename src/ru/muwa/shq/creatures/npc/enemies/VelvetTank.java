@@ -33,7 +33,7 @@ public class VelvetTank extends NPC {
         speed = 5;
         direction = RIGHT;
         setRayCaster(new RayCaster(x, y, 600));
-        hp = 100;
+        hp = 50;
         //текстура трупа
         try {
             corpseimg = ImageIO.read(new File(IMG_PATH + "containers\\VELVETTANKCorpse.png"));

@@ -4,7 +4,7 @@ import ru.muwa.shq.engine.combat.BulletUtility;
 import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.camera.CameraUpdateUtility;
 import ru.muwa.shq.engine.spawner.Spawner;
-import ru.muwa.shq.engine.utilities1.*;
+import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.player.controls.PlayerControls;

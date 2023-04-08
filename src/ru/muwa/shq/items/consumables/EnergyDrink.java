@@ -1,6 +1,6 @@
 package ru.muwa.shq.items.consumables;
 
-import ru.muwa.shq.engine.utilities1.EffectUtility;
+import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;

@@ -16,9 +16,6 @@ import static ru.muwa.shq.objects.GameObject.Direction.RIGHT;
 
 public class BadGuy0 extends NPC {
 
-
-
-
     private static BufferedImage img;
     static
     {

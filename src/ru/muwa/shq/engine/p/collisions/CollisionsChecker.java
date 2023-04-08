@@ -72,8 +72,6 @@ public class CollisionsChecker {
                     //я тупой дибил пидарас и сука крышу у людей последнее
 
 
-
-
                     if (o.getY() < obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
                         o.setY(obj.getY() - o.getHeight());
                         System.out.println("вверх");
@@ -128,7 +126,17 @@ public class CollisionsChecker {
                 if (c.getSolidBox().intersects(obj.getSolidBox()) && obj.getIsSolid()) // произошло столкновение
                 {
 
-                    if (c.getY() + c.getHeight() > obj.getSolidBox().getCenterY() && c.getX() + c.getWidth() < obj.getX() + obj.getWidth() && c.getX() > obj.getX()) {
+                    if(obj instanceof Bullet)
+                    {
+                        c.setX((int) (c.getX() + ( ( (Bullet)obj).getxVelocity() )*0.3 ) );
+                        c.setY((int) (c.getY() + ( ((Bullet)obj).getyVelocity() )*0.3) );
+                        Engine.getCurrentLevel().getObjects().remove(obj);
+                        CombatUtility.attack(c, 10);
+                        continue;
+                    }
+
+
+                        if (c.getY() + c.getHeight() > obj.getSolidBox().getCenterY() && c.getX() + c.getWidth() < obj.getX() + obj.getWidth() && c.getX() > obj.getX()) {
                         c.setY(obj.getY() + obj.getHeight());
                         System.out.println("вниз");
                     }//Вниз
@@ -148,12 +156,7 @@ public class CollisionsChecker {
                         System.out.println("vlevo");
                     }//Влево
 
-                    //Код для уничтожения пуль после столкновения и нанесение урона
-                    if (obj instanceof Bullet) {
-                        Engine.getCurrentLevel().getObjects().remove(obj);
-                        CombatUtility.attack(c, 10);
-                        break;
-                    }
+
 
                 }
 

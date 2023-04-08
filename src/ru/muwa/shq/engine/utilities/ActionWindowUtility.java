@@ -1,4 +1,4 @@
-package ru.muwa.shq.engine.utilities1;
+package ru.muwa.shq.engine.utilities;
 
 public class ActionWindowUtility {
     public static void work (){
