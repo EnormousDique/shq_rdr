@@ -68,8 +68,10 @@ public class DemoLevel0 extends Level
 
 
         objects.add(new Crate0(100,100));
-        objects.add(new FatBuilding(735,825));
-        objects.add(new FatBuilding(735,825));
+        objects.add(new FatBuilding(1690,680));
+        objects.add(new FatBuilding(3630,680));
+        objects.add(new FatBuilding(1690,1500));
+        objects.add(new FatBuilding(3630,1500));
 
         //objects.add(new TallFatBuilding(1000,2500));
         instance = this;
