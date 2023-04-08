@@ -8,7 +8,7 @@ import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.engine.s.Sounder;
-import ru.muwa.shq.engine.utilities1.InventoryManager;
+import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.items.guns.Firearm;
 import ru.muwa.shq.items.guns.Weapon;

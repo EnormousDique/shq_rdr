@@ -61,14 +61,16 @@ public class Renderer implements Runnable {
 
         HUD.getInstance().getMainWindow().setBounds(GameScreen.SCREEN_WIDTH/2,GameScreen.SCREEN_HEIGHT/2,100,100);
         HUD.getInstance().getStatusWindow().setBounds(GameScreen.SCREEN_WIDTH-300,0,300,150);
-        HUD.getInstance().getEquipWindow().setBounds(GameScreen.SCREEN_WIDTH-300,150,100,100);
+        HUD.getInstance().getEquipWindow().setBounds(GameScreen.SCREEN_WIDTH-300,150,100,160);
         HUD.getInstance().getItemWindow().setBounds(0,GameScreen.SCREEN_HEIGHT-400,200,300);
         HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,200,20);
+        HUD.getInstance().getDialogueWindow().setBounds(((GameScreen.SCREEN_WIDTH-500)/2),GameScreen.SCREEN_HEIGHT-200,500,200);
+
         canvas = new Canvas();                                                  //создаем новое полотно
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             // команда для зачершения работы программы при зкрытии окна.
         frame.add(canvas);                                              // добовляем полотно
         frame.setSize(GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT /* + GameScreen.FRAME_TOP_HEIGHT */);  // устонавливаем размер окна по нашим  переменныт высоты и широты SCREEN_WIDTH AND SCREEN_HEIGHT
-        frame.setResizable(true);      //false                               // установка для изменения разрешения окна
+        frame.setResizable(false);      //false                               // установка для изменения разрешения окна
         frame.setLocationRelativeTo(null);                    //установка экрана в пространстве если null то посередине
         frame.setVisible(true);                               // установка видимости основного фрейма.
         canvas.addMouseMotionListener(MouseListener.getInstance());  // добовляем службу отлсежки движения мыши

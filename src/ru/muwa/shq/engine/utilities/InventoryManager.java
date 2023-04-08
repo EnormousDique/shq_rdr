@@ -1,4 +1,4 @@
-package ru.muwa.shq.engine.utilities1;
+package ru.muwa.shq.engine.utilities;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;

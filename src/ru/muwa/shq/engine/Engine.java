@@ -8,9 +8,12 @@ import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.launcher.Launcher;
 import ru.muwa.shq.engine.s.Sounder;
 import ru.muwa.shq.levels.LevelStorage;
+import ru.muwa.shq.levels.demo.indoors.Hub;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.zones.EnterZone;
+
+import java.io.IOException;
 
 /**
  * Класс, запускающий и хранящий основные компоненты игрового движка.
@@ -42,7 +45,11 @@ public class Engine
         System.out.println("Game started");
         Launcher.hideFrame();
         Renderer.showLoading();
-        currentLevel = LevelStorage.demoLevel0;
+        try {
+            currentLevel = Hub.getInstance();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Renderer.getInstance();
         Updater.getInstance();
 
