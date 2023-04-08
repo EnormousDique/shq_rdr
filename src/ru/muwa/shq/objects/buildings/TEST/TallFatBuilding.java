@@ -12,7 +12,7 @@ public class TallFatBuilding extends GameObject {
 
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "buildings\\HomeTall.png"));
+            img = ImageIO.read(new File(IMG_PATH + "buildings\\TallHouse.png"));
             System.out.println("TallFat texture loaded");
         } catch (IOException e) {
             System.out.println("failed to load tallFat roof texture");

@@ -40,7 +40,9 @@ public class Hub extends Level
        objects.add(new Wall350(-48,800));//нижнаяя
         objects.add(new Wall350(308,800));//нижнаяя
        objects.add(new Wall350(608,800));//нижнаяя
-        zones.add(new InDoorsSpawnZone(2000,200,100,150));
+        //zones.add(new InDoorsSpawnZone(2000,200,100,150));
+
+        zones.add(new EnterZone(30, 740,100,100,FatBuildingFloor5.getInstance(), 30,30,false));
 
 
         objects.add(new Wall350(351,-50));

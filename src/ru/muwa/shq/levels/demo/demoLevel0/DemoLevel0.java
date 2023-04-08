@@ -37,6 +37,7 @@ public class DemoLevel0 extends Level
     private DemoLevel0() throws IOException
     {
         super();
+        instance = this;
         this.isStreet = true;
         startPosX =641;
         startPosY = 1626;
@@ -72,19 +73,12 @@ public class DemoLevel0 extends Level
         objects.add(new FatBuilding(3630,680));
         objects.add(new FatBuilding(1690,1500));
         objects.add(new FatBuilding(3630,1500));
-        objects.add(new TallFatBuilding(1925,2590));
-        objects.add(new TallFatBuilding(2690,3170));
+        objects.add(new TallFatBuilding(1730,2450));
+        objects.add(new TallFatBuilding(2640,3045));
 
-
-        //objects.add(new TallFatBuilding(1000,2500));
-        instance = this;
-        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1280,1130,70,70, FatBuildingStraightFloor.getInstance(), 172,644,false)));
-        zones.add(new InteractiveEnterZone( new PadikLock("1488К228"),new EnterZone(1280,1600,70,70, FatBuildingFloor1.getInstance(), FatBuildingFloor1.getInstance().getStartPosX(), FatBuildingFloor1.getInstance().getStartPosY(), false)));
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,1200,70,70, FatBuildingFloor1.getInstance(), 190,290,false)));
         zones.add(new CutsceneZone(-200,-200,50,50, Cutscene0.getInstance()));
-        // zones.add(new EnterZone(520,1765,70,70, FatBuildingFloor1.getInstance(), 327,220,false));
-      //  zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(520,1665,70,70, Hub.getInstance(), 172,644,false)));
-      //  zones.add(new InteractiveEnterZone( new PadikLock("1488К228"),new EnterZone(520,2115,70,70, Hub.getInstance(), 172,644,false)));
-        zones.add(new EnterZone(520,1800,70,70,Hub.getInstance(),51,705,false));
+        zones.add(new EnterZone(520,1800,70,70,Hub.getInstance(),290,705,false));
         // zones.add(new EnterZone(0,0,70,70, DemoHub.getInstance(), 0,0,false));
         zones.add(new DialogueZone(Conversation0.getInstance(),400,400,100,100,false));
 
