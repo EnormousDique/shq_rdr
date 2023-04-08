@@ -132,11 +132,11 @@ public class Renderer implements Runnable {
         }
         //Отрисовка всех контейнеров из списка  текущих
         for (int i = 0; i< Engine.getCurrentLevel().getContainers().size(); i++) {
-            Container con = Engine.getCurrentLevel().getContainers().get(i);
+            ru.muwa.shq.objects.containers.Container con = Engine.getCurrentLevel().getContainers().get(i);
             g.drawImage(con.getTexture(), con.getX() - camX, con.getY() - camY, null);
         }
         // Также отрисовываем интерфейс тех контейнеров, которые сейчас используются.
-        for (Container c : Engine.getCurrentLevel().getContainers())
+        for (ru.muwa.shq.objects.containers.Container c : Engine.getCurrentLevel().getContainers())
             if (c.isInUse()/* && c.getItems().size() >=  1*/) {
                 g.drawImage(c.getUI(), c.getX() - camX, c.getY() - camY, null);
                 // отрисовка предмета в контейнере.

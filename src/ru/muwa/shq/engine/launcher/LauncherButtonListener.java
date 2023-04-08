@@ -31,7 +31,9 @@ public class LauncherButtonListener extends ButtonListener
         if(e.getSource().equals(buttons.get(Launcher.SET)))  Launcher.showScreenSettings();
         if(e.getSource().equals(buttons.get(Launcher.EDIT))) System.out.println("editor");
         if(e.getSource().equals(buttons.get(Launcher.EXIT))) Launcher.quit();
-        if(((JButton)e.getSource()).getText().equals("ПРименить настройки")){Launcher.hideScreenSettings();Launcher.showFrame();}
+        if(((JButton)e.getSource()).getText().equals("ПРименить настройки")){
+            Launcher.hideScreenSettings();
+            Launcher.showFrame();}
 
         e=null;
     }

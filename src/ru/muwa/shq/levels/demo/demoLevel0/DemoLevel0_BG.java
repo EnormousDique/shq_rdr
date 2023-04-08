@@ -12,7 +12,7 @@ public class DemoLevel0_BG extends GameObject {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "background\\level0bg.png"));
+            img = ImageIO.read(new File(IMG_PATH + "background\\level0_0bg.png"));
             System.out.println("TestBuilding texture loaded");
         } catch (IOException e) {
             System.out.println("failed to load level0bg texture");

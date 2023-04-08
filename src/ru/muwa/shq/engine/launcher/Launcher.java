@@ -1,11 +1,8 @@
 package ru.muwa.shq.engine.launcher;
 
 import ru.muwa.shq.engine.g.GameScreen;
-import ru.muwa.shq.engine.g.hud.HUD;
 
 import javax.swing.*;
-import java.net.JarURLConnection;
-import java.util.Arrays;
 import java.util.LinkedList;
 
 /**

@@ -1,6 +1,5 @@
 package ru.muwa.shq.engine.launcher;
 
-import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.listeners.ButtonListener;
 
