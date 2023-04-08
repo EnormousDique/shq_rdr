@@ -4,6 +4,9 @@ import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.Usable;
+import ru.muwa.shq.quests.Quest;
+import ru.muwa.shq.quests.QuestUtility;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -19,6 +22,7 @@ public class Player extends Creature
     private static Player instance;
     public static BufferedImage img;
 
+    public ArrayList<Quest> quests = new ArrayList<>();
     public enum Direction{UP,DOWN,LEFT,RIGHT}
     public Direction direction;
     private Rectangle useZone;
@@ -82,6 +86,7 @@ public class Player extends Creature
         this.name = "Player";
         highMeter = 0;
         highMeterLock = 0;
+
     }
 
     public boolean isBusy() {return isBusy;}

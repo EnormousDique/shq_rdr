@@ -26,6 +26,8 @@ public class HUD {
     JProgressBar healthBar = new JProgressBar(0,100); //создание хелзбара
     JPanel actionWindow = new JPanel(); //создание окна длья миниигры
     JPanel mainWindow = new JPanel();
+
+    JPanel questWindow = new JPanel();
     JPanel dialogueWindow = new JPanel();  //создание даилогового окна
     JPanel itemWindow = new JPanel();// панель айтемов
     JPanel statusWindow = new JPanel();// окна информации
@@ -33,6 +35,10 @@ public class HUD {
 
 
     JProgressBar drugEffectBar = new JProgressBar(0,100);
+
+    public JPanel getQuestWindow() {
+        return questWindow;
+    }
 
     private HUD (){
         instance = this;
@@ -49,6 +55,7 @@ public class HUD {
         itemWindow.setBounds(500,700,200,500);
         dialogueWindow.setBounds(610,765,700,700);
         equipWindow.setBounds(1430,161,90,140);
+        questWindow.setBounds(500,500,100,100);
      //   this.add(HUD.getInstance().getHealthBar());
      //   this.add(HUD.getInstance().getActionWindow());
      //   HUD.getInstance().getActionWindow().setVisible(false);

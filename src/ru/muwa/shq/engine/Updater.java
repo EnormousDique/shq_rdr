@@ -12,6 +12,7 @@ import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.quests.QuestUtility;
 
 import java.util.LinkedList;
 import java.util.stream.Collectors;
@@ -74,6 +75,7 @@ public class Updater implements Runnable {
        // Spawner.regularSpawn();
         Spawner.inDoorsSpawn();
         //Блок обработки игрока.
+        QuestUtility.maintainPlayerQuests();
         // Проверяем были ли команды игроку через игровое управление.
         PlayerControls.controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
         //Обновляем бокс игрока.

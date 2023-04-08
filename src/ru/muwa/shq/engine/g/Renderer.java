@@ -56,6 +56,7 @@ public class Renderer implements Runnable {
         frame.add(HUD.getInstance().getStatusWindow());            // вызываем к  окну статуса
         frame.add(HUD.getInstance().getDialogueWindow()).setVisible(false);    // делаем окно диалогов невидимым
         frame.add(HUD.getInstance().getEquipWindow());                        // вызываем окно экипируемых предметов
+        frame.add(HUD.getInstance().getQuestWindow());
 
         //блокк  кода в кторомом худу перезщапизываем коорды
 
@@ -64,6 +65,7 @@ public class Renderer implements Runnable {
         HUD.getInstance().getEquipWindow().setBounds(GameScreen.SCREEN_WIDTH-300,150,100,100);
         HUD.getInstance().getItemWindow().setBounds(0,GameScreen.SCREEN_HEIGHT-400,200,300);
         HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,200,20);
+        HUD.getInstance().getQuestWindow().setBounds(0,0,200,150);
         canvas = new Canvas();                                                  //создаем новое полотно
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             // команда для зачершения работы программы при зкрытии окна.
         frame.add(canvas);                                              // добовляем полотно
@@ -186,6 +188,8 @@ public class Renderer implements Runnable {
             HUD.getInstance().getEquipWindow().updateUI();
             HUD.getInstance().getItemWindow().updateUI();
             HUD.getInstance().getStatusWindow().updateUI();
+            HUD.getInstance().getQuestWindow().setVisible(Inventory.getInstance().isOpened());
+            HUD.getInstance().getQuestWindow().updateUI();
         // полоску здовроья видно только при открытии инвентаря
             HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getHealthBar().setValue(Player.get().getHp());

@@ -20,6 +20,7 @@ import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
 import ru.muwa.shq.objects.containers.TrashCan;
 import ru.muwa.shq.objects.obstacles.crates.Crate0;
 import ru.muwa.shq.player.Inventory;
+import ru.muwa.shq.quests.QuestUtility;
 import ru.muwa.shq.zones.DialogueZone;
 import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.InteractiveEnterZone;
@@ -77,6 +78,7 @@ public class DemoLevel0 extends Level
         objects.add(new TallFatBuilding(2640,3045));
 
         zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,1200,70,70, FatBuildingFloor1.getInstance(), 190,290,false)));
+
         zones.add(new CutsceneZone(-200,-200,50,50, Cutscene0.getInstance()));
         zones.add(new EnterZone(520,1800,70,70,Hub.getInstance(),290,705,false));
         // zones.add(new EnterZone(0,0,70,70, DemoHub.getInstance(), 0,0,false));
@@ -112,6 +114,7 @@ public class DemoLevel0 extends Level
         npc.get(5).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
 
          */
+        QuestUtility.startQuest1();
         Spawner.updateTimers();
 
 

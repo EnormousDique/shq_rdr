@@ -101,6 +101,7 @@ public class InventoryManager
         updateItemWindow();
         updateEquipWindow();
         updateStatusWindow();
+        updateQuestWindow();
 
         //TODO: Нужно перенести логику так, чтобы она вызывалась из PlayerControls.
         //TODO: Хули до сих пор не сделано)))))
@@ -195,6 +196,31 @@ public class InventoryManager
                 }
             }
             HUD.getInstance().getEquipWindow().updateUI();
+        }
+        public static void updateQuestWindow()
+        {
+            String s = new String();
+
+            for(int i =0 ; i< Player.get().quests.size(); i++)
+            {
+
+                s += "Квест " + i+1 + "\n";
+                for(int j = 0 ; j < Player.get().quests.get(i).tasks.size(); j++)
+                {
+                    s += "Задание : ";
+                    s += Player.get().quests.get(i).tasks.get(j).name + "статус : " + Player.get().quests.get(i).tasks.get(j).isCompleted + "\n";
+                }
+                s+= "\n";
+                System.out.println("Описание квеста : " + s );
+
+            }
+
+            Arrays.stream(HUD.getInstance().getQuestWindow().getComponents()).forEach(HUD.getInstance().getEquipWindow()::remove);
+
+            JLabel quests = new JLabel(s);
+            HUD.getInstance().getQuestWindow().add(quests);
+
+
         }
 }
 

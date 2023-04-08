@@ -49,9 +49,6 @@ public class PlayerControls
         if(keyboard.getKeys()[keyboard.ENTER]) enter();
         if(keyboard.getKeys()[keyboard.T]) t(); // нважата T
 
-
-
-
         //Мышь
         if(MouseButtonListener.getInstance().keys[0]) lmb();
         if(MouseButtonListener.getInstance().keys[0]) rmb();
