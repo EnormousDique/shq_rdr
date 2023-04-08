@@ -1,13 +1,11 @@
 package ru.muwa.shq.levels.demo.indoors;
 
-import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.objects.bounds.Wall300;
 import ru.muwa.shq.objects.bounds.Wall350;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
 import ru.muwa.shq.objects.containers.HubChest;
-import ru.muwa.shq.objects.containers.TrashCan;
 import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.InDoorsSpawnZone;
 
