@@ -8,11 +8,9 @@ import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.engine.s.Sounder;
-import ru.muwa.shq.engine.utilities.InventoryManager;
-import ru.muwa.shq.items.BluntWeapons.BaseballBat;
+import ru.muwa.shq.engine.utilities1.InventoryManager;
 import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.items.guns.Firearm;
-import ru.muwa.shq.items.guns.Makarov;
 import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
 import ru.muwa.shq.objects.containers.Container;
@@ -24,11 +22,7 @@ import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.GameZone;
 import ru.muwa.shq.zones.InteractiveEnterZone;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.File;
-
-import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 /**
  * Класс, отвечающий за управление игроком.

@@ -1,4 +1,4 @@
-package ru.muwa.shq.engine.utilities;
+package ru.muwa.shq.engine.utilities1;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
@@ -17,7 +17,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 

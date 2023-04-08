@@ -1,14 +1,14 @@
 package ru.muwa.shq.engine.g.hud;
 
 import java.util.*;
-import org.w3c.dom.ls.LSOutput;
-import ru.muwa.shq.engine.g.Renderer;
-import ru.muwa.shq.engine.g.camera.Camera;
+
+import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.player.Player;
 
 import javax.swing.*;
-import java.awt.*;
+
+import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
 
 
 public class HUD {
@@ -38,9 +38,9 @@ public class HUD {
         instance = this;
         healthBar.setValue(Player.get().getHp());
         drugEffectBar.setValue((int) Player.get().getHighMeter());
-        actionWindow.setBounds(100,100,300,300);
-        mainWindow.setBounds(620,500,50,100);
-        itemWindow.setBounds(500,700,200,300);
+        actionWindow.setBounds(SCREEN_WIDTH/2,GameScreen.SCREEN_HEIGHT/2,300,300);
+        mainWindow.setBounds(SCREEN_WIDTH/2-25,GameScreen.SCREEN_HEIGHT/2-50,50,100);
+        itemWindow.setBounds(SCREEN_WIDTH-500, SCREEN_WIDTH-700,200,300);
         itemWindow.addMouseListener(MouseButtonListener.getInstance());
         itemWindow.setLayout(null);
         equipWindow.setLayout(null);
@@ -53,8 +53,8 @@ public class HUD {
      //   this.add(HUD.getInstance().getActionWindow());
      //   HUD.getInstance().getActionWindow().setVisible(false);
       //  HUD.getInstance().getHealthBar().setBounds(100+ Camera.getInstance().getX(),300+Camera.getInstance().getY(),400,50);
-        healthBar.setBounds(1027,0,400,50);
-        drugEffectBar.setBounds(1146,68,200,20);
+        healthBar.setBounds(SCREEN_WIDTH-1027, SCREEN_WIDTH-0,400,50);
+        drugEffectBar.setBounds(SCREEN_WIDTH-1146, SCREEN_WIDTH-68,200,20);
 
     }
 
