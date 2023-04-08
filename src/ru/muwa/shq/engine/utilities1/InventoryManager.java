@@ -199,12 +199,15 @@ public class InventoryManager
         }
         public static void updateQuestWindow()
         {
-            String s = new String();
             Arrays.stream(HUD.getInstance().getQuestWindow().getComponents()).forEach(HUD.getInstance().getQuestWindow()::remove);
-
+            String s;
 
             for(int i =0 ; i< Player.get().quests.size(); i++)
             {
+
+                //Выполненные квесты не отрисовываем.
+                if(Player.get().quests.get(i).tasks.get(Player.get().quests.get(i).tasks.size()-1).isCompleted) continue;
+
                 s = "Квест " + (i+1);
                 JLabel label = new JLabel(s);
                 HUD.getInstance().getQuestWindow().add(label);

@@ -10,6 +10,7 @@ import ru.muwa.shq.items.BluntWeapons.BaseballBat;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.items.guns.Makarov;
 import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
+import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingStraightFloor;
@@ -46,6 +47,7 @@ public class DemoLevel0 extends Level
         containers.get(0).addItem(new Flour());
         containers.get(0).addItem(new Flour());
         containers.get(0).addItem(new Flour());
+        containers.get(0).addItem(new KladBlue());
         containers.get(0).addItem(new Makarov());
         containers.get(0).addItem(new Makarov());
         Inventory.getInstance().addItem(new Flour());
@@ -81,39 +83,9 @@ public class DemoLevel0 extends Level
 
         zones.add(new CutsceneZone(-200,-200,50,50, Cutscene0.getInstance()));
         zones.add(new EnterZone(520,1800,70,70,Hub.getInstance(),290,705,false));
-        // zones.add(new EnterZone(0,0,70,70, DemoHub.getInstance(), 0,0,false));
         zones.add(new DialogueZone(Conversation0.getInstance(),400,400,100,100,false));
 
 
-
-         // маного танков для проверки отдачи от холодног оружия
-        /*
-        npc.add(new VelvetTank(750,1800));
-
-        npc.add(new VelvetTank(750,1800));
-        npc.add(new VelvetTank(750,1800));
-        npc.add(new VelvetTank(750,1800));
-        npc.add(new VelvetTank(750,1800));
-        npc.add(new BadGuy0(800,1800));
-        npc.add(new BadGuy0(950,1800));
-        npc.add(new BadGuy0(1100,1800));
-        npc.add(new BadGuy0(1300,1800));
-        npc.add(new AimingGuy(500,500));
-        npc.add(new Hachique(-300,-200));
-        npc.add(new Hachique(-350,-150,"Vasya"));
-
-        npc.add(new VelvetTank(750,1800));
-
-
-
-        npc.get(0).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
-        npc.get(1).setRayCasterBorders(npc.get(1).getRayCaster().buildLines(objects));
-        npc.get(2).setRayCasterBorders(npc.get(2).getRayCaster().buildLines(objects));
-        npc.get(3).setRayCasterBorders(npc.get(3).getRayCaster().buildLines(objects));
-        npc.get(4).setRayCasterBorders(npc.get(4).getRayCaster().buildLines(objects));
-        npc.get(5).setRayCasterBorders(npc.get(0).getRayCaster().buildLines(objects));
-
-         */
         QuestUtility.startQuest1();
         Spawner.updateTimers();
 

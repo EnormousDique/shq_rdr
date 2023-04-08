@@ -75,7 +75,12 @@ public class Updater implements Runnable {
        // Spawner.regularSpawn();
         Spawner.inDoorsSpawn();
         //Блок обработки игрока.
-        QuestUtility.maintainPlayerQuests();
+
+
+
+        //QuestUtility.maintainPlayerQuests();
+        QuestUtility.work();
+
         // Проверяем были ли команды игроку через игровое управление.
         PlayerControls.controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
         //Обновляем бокс игрока.

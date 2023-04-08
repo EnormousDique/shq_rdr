@@ -1,7 +1,9 @@
 package ru.muwa.shq.quests;
 
+import ru.muwa.shq.quests.conditions.TaskCondition;
 import ru.muwa.shq.zones.CompleteTaskZone;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,20 +18,30 @@ public class Quest {
     }
     public void addTask(String name, CompleteTaskZone z){
         this.tasks.add(new Task(name,z));
-    };
+    }
+    public void addTask(String name, TaskCondition с){
+        this.tasks.add(new Task(name,с));
+    }
     public List<Task> getTasks(){return tasks;}
     public static class Task{
         public String name;
         public boolean isCompleted;
         public CompleteTaskZone completeTaskZone;
-        public void setCompleted(boolean flag){isCompleted = flag;}
-
+        public TaskCondition condition;
+        boolean hasCondition;
         public Task(String name, CompleteTaskZone z)
         {
             this.name = name;
             isCompleted = false;
             completeTaskZone = z;
         }
+        public Task(String name, TaskCondition condition)
+        {
+            this.name = name;
+            this.condition = condition;
+            hasCondition = true;
+        }
     }
+
 
 }
