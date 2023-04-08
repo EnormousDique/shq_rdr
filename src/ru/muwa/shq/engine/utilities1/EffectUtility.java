@@ -1,10 +1,10 @@
-package ru.muwa.shq.engine.utilities;
+package ru.muwa.shq.engine.utilities1;
 import ru.muwa.shq.player.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static ru.muwa.shq.engine.utilities.EffectUtility.Effects.SPEED;
+import static ru.muwa.shq.engine.utilities1.EffectUtility.Effects.SPEED;
 
 public class EffectUtility {
     private static HashMap<Effects, Long> currentEffects;

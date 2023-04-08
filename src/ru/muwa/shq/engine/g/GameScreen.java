@@ -14,8 +14,8 @@ public class GameScreen extends JFrame
 {
     private static GameScreen instance;
 
-    private static Dimension sSize = Toolkit.getDefaultToolkit ().getScreenSize ();
-    public static  int SCREEN_HEIGHT = sSize.height, SCREEN_WIDTH = sSize.width, // Широта и высота экрана
+    //private static Dimension sSize = Toolkit.getDefaultToolkit ().getScreenSize ();
+    public static  int SCREEN_HEIGHT= 600 , SCREEN_WIDTH = 800 , // Широта и высота экрана
             FRAME_TOP_HEIGHT = 37; // Высота шапки экрана. (Верхняя панель)
     private GameScreen(){
         instance = this;

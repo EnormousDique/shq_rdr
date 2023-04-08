@@ -57,6 +57,13 @@ public class Renderer implements Runnable {
         frame.add(HUD.getInstance().getDialogueWindow()).setVisible(false);    // делаем окно диалогов невидимым
         frame.add(HUD.getInstance().getEquipWindow());                        // вызываем окно экипируемых предметов
 
+        //блокк  кода в кторомом худу перезщапизываем коорды
+
+        HUD.getInstance().getMainWindow().setBounds(GameScreen.SCREEN_WIDTH/2,GameScreen.SCREEN_HEIGHT/2,100,100);
+        HUD.getInstance().getStatusWindow().setBounds(GameScreen.SCREEN_WIDTH-300,0,300,150);
+        HUD.getInstance().getEquipWindow().setBounds(GameScreen.SCREEN_WIDTH-300,150,100,100);
+        HUD.getInstance().getItemWindow().setBounds(0,GameScreen.SCREEN_HEIGHT-400,200,300);
+        HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,200,20);
         canvas = new Canvas();                                                  //создаем новое полотно
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             // команда для зачершения работы программы при зкрытии окна.
         frame.add(canvas);                                              // добовляем полотно
