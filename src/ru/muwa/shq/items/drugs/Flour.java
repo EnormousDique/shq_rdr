@@ -38,13 +38,11 @@ public class Flour extends Item {
     }
     @Override
     public void use() {
-        if(Player.get().getHp() >= 90) Player.get().setHp(100);
-        else
-        Player.get().setHp(Player.get().getHp()+10);
-        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+10_000L);
+
+        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+45_000L);
        // System.out.println(System.currentTimeMillis()+" ВРЕМЯЯ!!!!!!!!!!!!");
-        Player.get().setHighMeter(Player.get().getHighMeter()+20);
-        Player.get().setHighMeterLock(Player.get().getHighMeterLock()+20);
+        Player.get().setHighMeterLock(Player.get().getHighMeterLock()+30);
+        Player.get().setHighMeter(Player.get().getHighMeter()+30);
         Inventory.getInstance().getItems().remove(this);
     }
     @Override

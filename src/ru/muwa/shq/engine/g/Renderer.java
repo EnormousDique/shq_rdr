@@ -1,4 +1,6 @@
 package ru.muwa.shq.engine.g;
+
+import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
@@ -74,6 +76,7 @@ public class Renderer implements Runnable {
         System.out.println("render thread is running in standart mode");
         System.out.println("Graphics eng initialized.");
     }
+
     /**
      * Метод run потока игрового движка. Метод запускается при старте потока.
      */
@@ -164,7 +167,7 @@ public class Renderer implements Runnable {
         g.setColor(Color.red);
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
-            if (c.getRayCaster().isPlayerInSight()) {
+            if (c.isPlayerInSight()) {
                 g.setColor(Color.green);
             }
         }
@@ -224,4 +227,21 @@ public class Renderer implements Runnable {
         {
 
         }
+        public static void showLoading()
+        {
+            loadingScreen = new JFrame("ZAGRUZKA");
+            JPanel p = new JPanel();
+            loadingScreen.setBounds(400,400,300,150);
+            p.add(new JLabel("ЗАГРУЗКА / ZAGRUZKA"));
+            loadingScreen.add(p);
+            loadingScreen.add(new JLabel("ЗАГРУЗКА / ZAGRUZKA"));
+            loadingScreen.setVisible(true);
+        }
+
+        public static void hideLoading()
+        {
+            loadingScreen.setVisible(false);
+        }
+
+
     }

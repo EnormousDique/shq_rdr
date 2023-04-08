@@ -5,6 +5,7 @@ import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Player;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 /**
  * Абстрактный класс, прародитель всех предметов.
@@ -86,4 +87,6 @@ public abstract class Item
     public void setEquipped(boolean equipped) {
         isEquipped = equipped;
     }
+
+
 }
