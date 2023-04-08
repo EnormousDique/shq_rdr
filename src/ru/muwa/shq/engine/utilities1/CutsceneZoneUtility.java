@@ -1,10 +1,9 @@
-package ru.muwa.shq.engine.utilities;
+package ru.muwa.shq.engine.utilities1;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.zones.CutsceneZone;
-import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.GameZone;
 
 public class CutsceneZoneUtility

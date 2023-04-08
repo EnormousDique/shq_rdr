@@ -3,7 +3,7 @@ package ru.muwa.shq.engine.animations.cutscenes;
 import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
-import ru.muwa.shq.engine.utilities.SolidBoxUpdater;
+import ru.muwa.shq.engine.utilities1.SolidBoxUpdater;
 
 import java.awt.*;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package ru.muwa.shq.items.drugs;
 
-import ru.muwa.shq.engine.utilities.EffectUtility;
+import ru.muwa.shq.engine.utilities1.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
@@ -10,7 +10,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.security.spec.ECField;
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
