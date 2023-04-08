@@ -14,22 +14,22 @@ import java.security.spec.ECField;
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
-public class Flour extends Item {
+public class Lyrica extends Item {
 
-    public static final int ID = 0, PRICE = 3000;
-    public static final double WEIGHT = 1.0;
+    public static final int ID = 0, PRICE = 450;
+    public static final double WEIGHT = 0.2;
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "drugs\\flour.png"));
+            img = ImageIO.read(new File(IMG_PATH + "drugs\\Lyrica.png"));
         }
         catch(IOException e) {
-            System.out.println("failed to load flour image");
+            System.out.println("failed to load Lyrica image");
         }
     }
-    public Flour() {
+    public Lyrica() {
         super(ID, PRICE, WEIGHT, img);
-        description = "мефчик бля , ебанул и нихуя";
+        description = "Нармальна ебашит !!! ДА ???";
     }
     @Override
     public void give(Container c) {
@@ -39,10 +39,9 @@ public class Flour extends Item {
     @Override
     public void use() {
 
-        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+45_000L);
-       // System.out.println(System.currentTimeMillis()+" ВРЕМЯЯ!!!!!!!!!!!!");
-        Player.get().setHighMeterLock(Player.get().getHighMeterLock()+30);
+            Player.get().setHp(Player.get().getHp()-5);
         Player.get().setHighMeter(Player.get().getHighMeter()+30);
+        Player.get().setHighMeterLock(Player.get().getHighMeterLock()+50);
         Inventory.getInstance().getItems().remove(this);
     }
     @Override

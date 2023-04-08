@@ -140,8 +140,13 @@ public class PlayerControls
                 NPC npc = Engine.getCurrentLevel().getNPC().get(i);
                 if (npc.getSolidBox().intersects(Player.get().getAttackZone())) {
                     //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
-
-                    CombatUtility.attack(npc, Player.get().currentWeapon.getDamage());
+                   try {
+                       CombatUtility.attack(npc, Player.get().currentWeapon.getDamage());
+                   }
+                    catch (Exception e)
+                    {
+                        CombatUtility.attack(npc, 5);
+                    }
                     CollisionsChecker.getInstance().checkAttackZoneCollisions();
 
 
@@ -149,6 +154,7 @@ public class PlayerControls
             }
 
         }
+
 
         keyboard.getKeys()[keyboard.SPACE] = false;
 

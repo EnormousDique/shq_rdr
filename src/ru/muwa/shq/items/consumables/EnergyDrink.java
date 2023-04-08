@@ -1,4 +1,4 @@
-package ru.muwa.shq.items.drugs;
+package ru.muwa.shq.items.consumables;
 
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
@@ -14,22 +14,22 @@ import java.security.spec.ECField;
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
-public class Flour extends Item {
+public class EnergyDrink extends Item {
 
-    public static final int ID = 0, PRICE = 3000;
-    public static final double WEIGHT = 1.0;
+    public static final int ID = 0, PRICE = 59;
+    public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "drugs\\flour.png"));
+            img = ImageIO.read(new File(IMG_PATH + "consumables\\Energetica.png"));
         }
         catch(IOException e) {
-            System.out.println("failed to load flour image");
+            System.out.println("failed to load energy image");
         }
     }
-    public Flour() {
+    public EnergyDrink() {
         super(ID, PRICE, WEIGHT, img);
-        description = "мефчик бля , ебанул и нихуя";
+        description = "ЭНЕРГЕТИКА!";
     }
     @Override
     public void give(Container c) {
@@ -38,11 +38,9 @@ public class Flour extends Item {
     }
     @Override
     public void use() {
-
-        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+45_000L);
-       // System.out.println(System.currentTimeMillis()+" ВРЕМЯЯ!!!!!!!!!!!!");
-        Player.get().setHighMeterLock(Player.get().getHighMeterLock()+30);
-        Player.get().setHighMeter(Player.get().getHighMeter()+30);
+        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+10_000L);
+        Player.get().setHighMeter(Player.get().getHighMeter()+0);
+        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-2);
         Inventory.getInstance().getItems().remove(this);
     }
     @Override

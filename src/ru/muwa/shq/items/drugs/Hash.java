@@ -14,22 +14,22 @@ import java.security.spec.ECField;
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
-public class Flour extends Item {
+public class Hash extends Item {
 
-    public static final int ID = 0, PRICE = 3000;
+    public static final int ID = 0, PRICE = 900;
     public static final double WEIGHT = 1.0;
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "drugs\\flour.png"));
+            img = ImageIO.read(new File(IMG_PATH + "drugs\\hash.png"));
         }
         catch(IOException e) {
-            System.out.println("failed to load flour image");
+            System.out.println("failed to load hash image");
         }
     }
-    public Flour() {
+    public Hash() {
         super(ID, PRICE, WEIGHT, img);
-        description = "мефчик бля , ебанул и нихуя";
+        description = "Хэщ , хэш они курят хеш!!!";
     }
     @Override
     public void give(Container c) {
@@ -38,11 +38,11 @@ public class Flour extends Item {
     }
     @Override
     public void use() {
-
-        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+45_000L);
-       // System.out.println(System.currentTimeMillis()+" ВРЕМЯЯ!!!!!!!!!!!!");
-        Player.get().setHighMeterLock(Player.get().getHighMeterLock()+30);
-        Player.get().setHighMeter(Player.get().getHighMeter()+30);
+        if(Player.get().getHp() >= 90) Player.get().setHp(100);
+        else
+            Player.get().setHp(Player.get().getHp()+10);
+        Player.get().setHighMeter(Player.get().getHighMeter()+10);
+        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-50);
         Inventory.getInstance().getItems().remove(this);
     }
     @Override
