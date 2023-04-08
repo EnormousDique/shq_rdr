@@ -50,6 +50,7 @@ public class HUD {
         itemWindow.addMouseListener(MouseButtonListener.getInstance());
         itemWindow.setLayout(null);
         equipWindow.setLayout(null);
+        questWindow.setLayout(null);
         mainWindow.setBounds(920,500,50,100);
         statusWindow.setBounds(1432,1,140,150);
         itemWindow.setBounds(500,700,200,500);

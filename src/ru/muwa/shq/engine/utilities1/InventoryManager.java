@@ -200,27 +200,25 @@ public class InventoryManager
         public static void updateQuestWindow()
         {
             String s = new String();
+            Arrays.stream(HUD.getInstance().getQuestWindow().getComponents()).forEach(HUD.getInstance().getQuestWindow()::remove);
+
 
             for(int i =0 ; i< Player.get().quests.size(); i++)
             {
+                s = "Квест " + (i+1);
+                JLabel label = new JLabel(s);
+                HUD.getInstance().getQuestWindow().add(label);
+                label.setBounds(0,0,200,30);
 
-                s += "Квест " + i+1 + "\n";
                 for(int j = 0 ; j < Player.get().quests.get(i).tasks.size(); j++)
                 {
-                    s += "Задание : ";
-                    s += Player.get().quests.get(i).tasks.get(j).name + "статус : " + Player.get().quests.get(i).tasks.get(j).isCompleted + "\n";
+                    s = Player.get().quests.get(i).tasks.get(j).name + " : " + (Player.get().quests.get(i).tasks.get(j).isCompleted?"v":"x");
+                    label = new JLabel(s);
+                    HUD.getInstance().getQuestWindow().add(label);
+                    label.setBounds(0,(j+1)*10,200,30);
                 }
-                s+= "\n";
-                System.out.println("Описание квеста : " + s );
-
             }
-
-            Arrays.stream(HUD.getInstance().getQuestWindow().getComponents()).forEach(HUD.getInstance().getEquipWindow()::remove);
-
-            JLabel quests = new JLabel(s);
-            HUD.getInstance().getQuestWindow().add(quests);
-
-
+            HUD.getInstance().getQuestWindow().updateUI();
         }
 }
 
