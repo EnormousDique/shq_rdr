@@ -72,7 +72,7 @@ public class Updater implements Runnable {
         long time = System.currentTimeMillis();
         long localTime = System.currentTimeMillis();
         //Спавнер
-       // Spawner.regularSpawn();
+        Spawner.regularSpawn();
         Spawner.inDoorsSpawn();
         //Блок обработки игрока.
 

@@ -218,7 +218,7 @@ public class InventoryManager
                     s = Player.get().quests.get(i).tasks.get(j).name + " : " + (Player.get().quests.get(i).tasks.get(j).isCompleted?"v":"x");
                     label = new JLabel(s);
                     HUD.getInstance().getQuestWindow().add(label);
-                    label.setBounds(0,(j+1)*10,200,30);
+                    label.setBounds(0,(j+1)*12,200,30);
                 }
             }
             HUD.getInstance().getQuestWindow().updateUI();
