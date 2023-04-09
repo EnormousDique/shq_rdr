@@ -56,12 +56,25 @@ public class Engine
     {
         System.out.println("going to level " + z.getLevel());
 
+
+
+        currentLevel = z.getLevel();
         Player.get().setX(z.getWhereToX());
         Player.get().setY(z.getWhereToY());
 
         Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
         Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
+    }
+    public static void switchLevel(Level l, int x,int y)
+    {
+        System.out.println("going to level " + l);
 
-        currentLevel = z.getLevel();
+        currentLevel = l;
+
+        Player.get().setX(x);
+        Player.get().setY(y);
+
+        Camera.getInstance().setY(Player.get().getY() - (GameScreen.SCREEN_WIDTH/2));
+        Camera.getInstance().setX(Player.get().getX() - (GameScreen.SCREEN_HEIGHT/2));
     }
 }

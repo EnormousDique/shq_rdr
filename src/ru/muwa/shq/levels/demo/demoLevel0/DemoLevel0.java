@@ -43,33 +43,14 @@ public class DemoLevel0 extends Level
         this.isStreet = true;
         startPosX =641;
         startPosY = 1626;
-        containers.add(new TrashCan(800,1900));
-        containers.get(0).addItem(new Flour());
-        containers.get(0).addItem(new Flour());
-        containers.get(0).addItem(new Flour());
-        containers.get(0).addItem(new KladBlue());
-        containers.get(0).addItem(new Makarov());
-        containers.get(0).addItem(new Makarov());
-        Inventory.getInstance().addItem(new Flour());
-        Inventory.getInstance().addItem(new Flour());
-        Inventory.getInstance().addItem(new Flour());
-        Inventory.getInstance().addItem(new Flour());
-        Inventory.getInstance().addItem(new Flour());
-        Inventory.getInstance().addItem(new Flour());
-        Inventory.getInstance().addItem(new Flour());
 
-        Inventory.getInstance().addItem(new Flour());
-        Inventory.getInstance().addItem(new Flour());
-        Inventory.getInstance().addItem(new Flour());
-        Inventory.getInstance().addItem(new Flour());
-        Inventory.getInstance().addItem(new Makarov());
-        Inventory.getInstance().addItem(new Makarov());
+        containers.add(new TrashCan(800,1900));
+        containers.get(0).addItem(new Makarov());
+
         Inventory.getInstance().addItem(new MakarovAmmo());
-        Inventory.getInstance().addItem(new MakarovAmmo());
-        Inventory.getInstance().addItem(new MakarovAmmo());
-        objects.add(new DemoLevel0_BG(0,0));
         Inventory.getInstance().addItem(new BaseballBat());
 
+        objects.add(new DemoLevel0_BG(0,0));
 
         objects.add(new Crate0(100,100));
         objects.add(new FatBuilding(1690,680));
@@ -88,7 +69,6 @@ public class DemoLevel0 extends Level
 
         QuestUtility.startQuest1();
         Spawner.updateTimers();
-
 
     }
 }

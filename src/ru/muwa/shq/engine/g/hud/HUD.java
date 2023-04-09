@@ -32,12 +32,17 @@ public class HUD {
     JPanel itemWindow = new JPanel();// панель айтемов
     JPanel statusWindow = new JPanel();// окна информации
     JPanel equipWindow = new JPanel();
+    JPanel  deathWindow = new JPanel();
 
 
     JProgressBar drugEffectBar = new JProgressBar(0,100);
 
     public JPanel getQuestWindow() {
         return questWindow;
+    }
+
+    public JPanel getDeathWindow() {
+        return deathWindow;
     }
 
     private HUD (){
@@ -52,6 +57,8 @@ public class HUD {
         equipWindow.setLayout(null);
         questWindow.setLayout(null);
         mainWindow.setBounds(920,500,50,100);
+        deathWindow.setBounds(0,0, SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
+        deathWindow.setVisible(false);
         statusWindow.setBounds(1432,1,140,150);
         itemWindow.setBounds(500,700,200,500);
         dialogueWindow.setBounds(610,765,700,700);
