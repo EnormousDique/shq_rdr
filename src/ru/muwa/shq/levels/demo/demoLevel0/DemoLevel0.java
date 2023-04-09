@@ -79,7 +79,7 @@ public class DemoLevel0 extends Level
         objects.add(new TallFatBuilding(1730,2450));
         objects.add(new TallFatBuilding(2640,3045));
 
-        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,1200,70,70, FatBuildingFloor1.getInstance(), 190,290,false)));
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,1200,70,70, FatBuildingFloor1.getInstance(), 190,220,false)));
 
         zones.add(new CutsceneZone(-200,-200,50,50, Cutscene0.getInstance()));
         zones.add(new EnterZone(520,1800,70,70,Hub.getInstance(),290,705,false));
