@@ -122,7 +122,8 @@ public class CollisionsChecker {
 
     public void checkCollisionsNPC(NPC c, LinkedList<GameObject> objects) {
         if (c != null && !c.isStatic()) { //Неподвижные объекты мимо.
-            for (GameObject obj : objects) { //Перебираем объекты.
+            for (int i =0; i< objects.size() ; i++) { //Перебираем объекты.
+                GameObject obj = objects.get(i);
                 if (c.getSolidBox().intersects(obj.getSolidBox()) && obj.getIsSolid()) // произошло столкновение
                 {
 

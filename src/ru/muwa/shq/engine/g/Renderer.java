@@ -62,7 +62,7 @@ public class Renderer implements Runnable {
 
         HUD.getInstance().getMainWindow().setBounds(GameScreen.SCREEN_WIDTH/2,GameScreen.SCREEN_HEIGHT/2,100,100);
         HUD.getInstance().getStatusWindow().setBounds(GameScreen.SCREEN_WIDTH-300,0,300,150);
-        HUD.getInstance().getEquipWindow().setBounds(GameScreen.SCREEN_WIDTH-300,150,100,100);
+        HUD.getInstance().getEquipWindow().setBounds(GameScreen.SCREEN_WIDTH-300,150,100,150);
         HUD.getInstance().getItemWindow().setBounds(0,GameScreen.SCREEN_HEIGHT-400,200,300);
         HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,200,20);
         HUD.getInstance().getQuestWindow().setBounds(0,0,200,150);

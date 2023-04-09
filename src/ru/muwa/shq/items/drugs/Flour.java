@@ -43,6 +43,8 @@ public class Flour extends Item {
         Player.get().setHighMeterLock(Player.get().getHighMeterLock()+30);
         Player.get().setHighMeter(Player.get().getHighMeter()+30);
         Inventory.getInstance().getItems().remove(this);
+        if(Player.get().getHp()>=90) Player.get().setHp(100);
+        else Player.get().setHp(Player.get().getHp()+10);
     }
     @Override
     public void equip() {
