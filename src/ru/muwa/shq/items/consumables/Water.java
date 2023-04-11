@@ -40,6 +40,7 @@ public class Water extends Item {
         // System.out.println(System.currentTimeMillis()+" ВРЕМЯЯ!!!!!!!!!!!!");
         Player.get().setHighMeter(Player.get().getHighMeter()-5);
         Player.get().setHighMeterLock(Player.get().getHighMeterLock()-1);
+        Player.get().setThirst(Player.get().getThirst()+50);
         Inventory.getInstance().getItems().remove(this);
     }
     @Override

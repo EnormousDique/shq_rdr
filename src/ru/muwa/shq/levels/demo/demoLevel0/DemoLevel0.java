@@ -8,6 +8,7 @@ import ru.muwa.shq.dialogues.demo.StartConversation;
 import ru.muwa.shq.engine.animations.cutscenes.Cutscene0;
 import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.items.BluntWeapons.BaseballBat;
+import ru.muwa.shq.items.consumables.Water;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.items.guns.Makarov;
 import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
@@ -16,6 +17,7 @@ import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingStraightFloor;
 import ru.muwa.shq.levels.demo.indoors.Hub;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
+import ru.muwa.shq.objects.buildings.TEST.Bazar;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
 import ru.muwa.shq.objects.containers.TrashCan;
@@ -49,9 +51,11 @@ public class DemoLevel0 extends Level
         containers.get(0).addItem(new Flour());
         containers.get(0).addItem(new Makarov());
         containers.get(0).addItem(new Makarov());
-
+        Inventory.getInstance().addItem(new Flour());
+        Inventory.getInstance().addItem(new Flour());
         objects.add(new DemoLevel0_BG(0,0));
         Inventory.getInstance().addItem(new BaseballBat());
+        Inventory.getInstance().addItem(new Water());
 
 
         objects.add(new Crate0(100,100));
@@ -61,13 +65,14 @@ public class DemoLevel0 extends Level
         objects.add(new FatBuilding(3630,1500));
         objects.add(new TallFatBuilding(1730,2450));
         objects.add(new TallFatBuilding(2640,3045));
+        objects.add(new Bazar(2200,6300));
 
         zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,1200,70,70, FatBuildingFloor1.getInstance(), 190,290,false)));
         zones.add(new CutsceneZone(-200,-200,50,50, Cutscene0.getInstance()));
         zones.add(new EnterZone(520,1800,70,70,Hub.getInstance(),290,705,false));
         // zones.add(new EnterZone(0,0,70,70, DemoHub.getInstance(), 0,0,false));
         objects.add(new Car(1350,1060));
-        zones.add(new DialogueZone(StartConversation.getInstance(),0,0,100,100,true));
+
 
         Spawner.updateTimers();
 

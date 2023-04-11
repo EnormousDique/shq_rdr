@@ -50,7 +50,7 @@ public class InventoryManager
             String s = " ";
             for (Map.Entry<EffectUtility.Effects, Long> entry : EffectUtility.getCurrentEffects().entrySet()) {
                 switch (entry.getKey()) {
-                    case SPEED:
+                    case StaminaRegen:
                         //TODO добавить побольше проверок if на здоровье (типа когда он обутюженный и хп > 50 то на ебале кровь
                         if (entry.getValue() > System.currentTimeMillis()) {
                             s += "я под мефом";

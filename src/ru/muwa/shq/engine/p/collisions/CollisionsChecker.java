@@ -66,14 +66,7 @@ public class CollisionsChecker {
                         continue;
                     }//Вниз
                     /*else*/
-
-
-
                     //я тупой дибил пидарас и сука крышу у людей последнее
-
-
-
-
                     if (o.getY() < obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
                         o.setY(obj.getY() - o.getHeight());
                         System.out.println("вверх");
@@ -86,7 +79,7 @@ public class CollisionsChecker {
                         continue;
                     }//Вправо
                     /*else*/
-                    if (o.getX() < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
+                    if (o.getX() < obj.getX()&& o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
                         o.setX(obj.getX() - o.getWidth());
                         System.out.println("vlevo");
                         continue;

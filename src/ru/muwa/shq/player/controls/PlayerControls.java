@@ -8,6 +8,7 @@ import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.engine.s.Sounder;
+import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.items.guns.Firearm;
@@ -48,7 +49,7 @@ public class PlayerControls
         if(keyboard.getKeys()[keyboard.Q]) q();
         if(keyboard.getKeys()[keyboard.ENTER]) enter();
         if(keyboard.getKeys()[keyboard.T]) t(); // нважата T
-
+        if(keyboard.getKeys()[keyboard.SHIFT]) shift();
 
 
 
@@ -73,10 +74,7 @@ public class PlayerControls
     private static void w() {
         Player.get().moveUp();
     }
-    private static void a()
-    {
-        Player.get().moveLeft();
-    }
+    private static void a() {Player.get().moveLeft();}
     private static void s()
     {
         Player.get().moveDown();
@@ -85,11 +83,8 @@ public class PlayerControls
     {
         Player.get().moveRight();
     }
-     private static void e()
-    {
-    Interactor.getInstance().interact();
+     private static void e() {Interactor.getInstance().interact();}
      // Sounder.changeSong("src\\ru\\muwa\\shq\\sounds\\songs\\muzike1.wav");
-    }
     private static void i()
     {
         Inventory.getInstance().setIsOpened(!Inventory.getInstance().isOpened());
@@ -195,6 +190,7 @@ public class PlayerControls
 
     private static void q()
     {
+
         if(Player.get().isBusy() && Player.get().getCurrentObject() != null)
         {
             Player.get().getCurrentObject().setInUse(false);
@@ -221,4 +217,26 @@ public class PlayerControls
     {
 
     }
+    private static void shift() {
+        if(Player.get().getStamina() >0) {
+            Player.get().setStamina(Player.get().getStamina() - 3);
+            EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,  (System.currentTimeMillis()+2));
+        }
+         else if(Player.get().getStamina() <= 10) {
+            Player.get().setStamina(Player.get().getStamina()-0);
+            EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,  (System.currentTimeMillis()-5));
+        }
+        KeyListener.getInstance().getKeys()[KeyListener.getInstance().SHIFT] = false;
+        // EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+1_000L); // типа скорость
+    }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        PlayerControls.player = player;
+    }
+
+
 }

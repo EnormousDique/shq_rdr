@@ -24,6 +24,7 @@ public class KeyListener implements java.awt.event.KeyListener
      * P - 80
      * T - 84
      * ENTER - 10
+     * SHIFT - 16
      */
     private boolean[] keys; // Массив кнопок. Каждой кнопке соответствует свой индекс массива.
     // Если кнопка нажата, в массиве под этим индексом хранится true
@@ -38,13 +39,14 @@ public class KeyListener implements java.awt.event.KeyListener
             Q = 7,
             ENTER = 8,
             P = 9,
-            T = 10;
+            T = 10,
+            SHIFT = 11;
     private static KeyListener instance;
 
     private KeyListener()
     {
         instance = this;
-        keys = new boolean[11];
+        keys = new boolean[12];
     }
 
     public static KeyListener getInstance()
@@ -97,6 +99,9 @@ public class KeyListener implements java.awt.event.KeyListener
             case 84: // T
                 keys[T] = true;
                 break;
+            case 16: // SHIFT
+                keys[SHIFT] = true;
+                break;
 
 
         }
@@ -137,6 +142,9 @@ public class KeyListener implements java.awt.event.KeyListener
                 break;
             case 84: // T
                 keys[T] = false;
+                break;
+            case 16: // SHIFT
+                keys[11] = false;
                 break;
 
         }

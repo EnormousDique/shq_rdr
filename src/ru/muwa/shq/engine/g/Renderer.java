@@ -22,6 +22,9 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferStrategy;
 
+import static ru.muwa.shq.engine.g.GameScreen.SCREEN_HEIGHT;
+import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
+
 /**
  * Класс, отвечающий за отрисовку изображения на экране.
  */
@@ -63,8 +66,12 @@ public class Renderer implements Runnable {
         HUD.getInstance().getStatusWindow().setBounds(GameScreen.SCREEN_WIDTH-300,0,300,150);
         HUD.getInstance().getEquipWindow().setBounds(GameScreen.SCREEN_WIDTH-300,150,100,160);
         HUD.getInstance().getItemWindow().setBounds(0,GameScreen.SCREEN_HEIGHT-400,200,300);
-        HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,200,20);
         HUD.getInstance().getDialogueWindow().setBounds(((GameScreen.SCREEN_WIDTH-500)/2),GameScreen.SCREEN_HEIGHT-200,500,200);
+        HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,100,20);
+        HUD.getInstance().getStaminaBar().setBounds(GameScreen.SCREEN_WIDTH-500, +20,100,20);
+        HUD.getInstance().getThirstBar().setBounds(GameScreen.SCREEN_WIDTH-500, +40,100,20);
+
+
 
         canvas = new Canvas();                                                  //создаем новое полотно
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             // команда для зачершения работы программы при зкрытии окна.
@@ -188,14 +195,22 @@ public class Renderer implements Runnable {
             HUD.getInstance().getEquipWindow().updateUI();
             HUD.getInstance().getItemWindow().updateUI();
             HUD.getInstance().getStatusWindow().updateUI();
-        // полоску здовроья видно только при открытии инвентаря
-            HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
-            HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
-            HUD.getInstance().getHealthBar().setString(Integer.toString(HUD.getInstance().getHealthBar().getValue()));
+            HUD.getInstance().getStaminaBar().updateUI();
+            HUD.getInstance().getThirstBar().updateUI();
+
+        // полоску стамины видно только при открытии инвентаря
+            HUD.getInstance().getStaminaBar().setVisible(Inventory.getInstance().isOpened());
+            HUD.getInstance().getStaminaBar().setValue((int) Player.get().getStamina());
+            HUD.getInstance().getStaminaBar().setString(String.valueOf(Player.get().getStamina()));
+            HUD.getInstance().getStaminaBar().setString(Integer.toString(HUD.getInstance().getStaminaBar().getValue()));
             // полоску упора видно ток из инвентаря
         HUD.getInstance().getDrugEffectBar().setVisible(Inventory.getInstance().isOpened());
         HUD.getInstance().getDrugEffectBar().setValue((int) Player.get().getHighMeter());
         HUD.getInstance().getDrugEffectBar().setString(Integer.toString(HUD.getInstance().getDrugEffectBar().getValue()));
+        // полоску воды видно из инвентаря тока
+        HUD.getInstance().getThirstBar().setVisible(Inventory.getInstance().isOpened());
+        HUD.getInstance().getThirstBar().setValue((int) Player.get().getThirst());
+        HUD.getInstance().getThirstBar().setString(Integer.toString(HUD.getInstance().getThirstBar().getValue()));
             //Вызов службы диалогов.
             DialogueManager.getInstance().work();
 
