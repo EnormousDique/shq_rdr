@@ -1,6 +1,7 @@
 package ru.muwa.shq.engine.listeners;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.player.controls.PlayerControls;
 
 import java.awt.event.KeyEvent;
 
@@ -145,6 +146,7 @@ public class KeyListener implements java.awt.event.KeyListener
                 break;
             case 16: // SHIFT
                 keys[11] = false;
+                PlayerControls.shiftRelease();
                 break;
 
         }

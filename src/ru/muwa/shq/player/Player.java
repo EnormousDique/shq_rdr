@@ -25,6 +25,26 @@ public class Player extends Creature
     private double thirst;
     private double highMeter ;
 
+    public int getRegSpeed() {
+        return regSpeed;
+    }
+
+    public void setRegSpeed(int regSpeed) {
+        this.regSpeed = regSpeed;
+    }
+
+    private int regSpeed = 5;
+
+    public int getShiftSpeed() {
+        return shiftSpeed;
+    }
+
+    public void setShiftSpeed(int shiftSpeed) {
+        this.shiftSpeed = shiftSpeed;
+    }
+
+    private int shiftSpeed = 10;
+
     private double highMeterLock;
     private double Stamina;
     private static BufferedImage imgUp;
@@ -68,6 +88,7 @@ public class Player extends Creature
     protected Player(int x, int y, BufferedImage texture )
     {
         super(x, y, texture);
+
         useZone = new Rectangle();
         isStanding = false;
         velocity = 2;
@@ -88,6 +109,8 @@ public class Player extends Creature
     public Usable getCurrentObject(){return currentObject;}
     public void setCurrentObject(Usable u){currentObject = u;}
 
+
+    //todo вынести в отдельный класс  PlayerStats
     public void staminaRegen(){
         if(Player.get().getStamina() < 100)
             Player.get().setStamina(Player.get().getStamina()+0.3);

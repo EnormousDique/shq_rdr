@@ -72,16 +72,70 @@ public class PlayerControls
         }
     }
     private static void w() {
-        Player.get().moveUp();
+        if(keyboard.getKeys()[keyboard.SHIFT]){
+            if(Player.get().getStamina() >0) {
+                Player.get().setStamina(Player.get().getStamina() - 1);
+                Player.get().setSpeed(Player.get().getShiftSpeed());
+                Player.get().moveUp();
+            }
+            else if(Player.get().getStamina() <= 10) {
+                Player.get().setStamina(Player.get().getStamina()-0);
+                Player.get().setSpeed(Player.get().getRegSpeed());
+                Player.get().moveUp();
+
+            }
+        }else Player.get().moveUp();
+
+
     }
-    private static void a() {Player.get().moveLeft();}
+    private static void a() {
+        if(keyboard.getKeys()[keyboard.SHIFT]){
+            if(Player.get().getStamina() >0) {
+                Player.get().setStamina(Player.get().getStamina() - 1);
+                Player.get().setSpeed(Player.get().getShiftSpeed());
+                Player.get().moveLeft();
+            }
+            else if(Player.get().getStamina() <= 10) {
+                Player.get().setStamina(Player.get().getStamina()-0);
+                Player.get().setSpeed(Player.get().getRegSpeed());
+                Player.get().moveLeft();
+            }
+        }else Player.get().moveLeft();
+
+    }
     private static void s()
-    {
-        Player.get().moveDown();
+    { if(keyboard.getKeys()[keyboard.SHIFT]){
+        if(Player.get().getStamina() >0) {
+            Player.get().setStamina(Player.get().getStamina() - 1);
+            Player.get().setSpeed(Player.get().getShiftSpeed());
+            Player.get().moveDown();
+        }
+        else if(Player.get().getStamina() <= 10) {
+            Player.get().setStamina(Player.get().getStamina()-0);
+            Player.get().setSpeed(Player.get().getRegSpeed());
+            Player.get().moveDown();
+        }
+    }else Player.get().moveDown();
+
+
     }
     private static void d()
     {
-        Player.get().moveRight();
+        if(keyboard.getKeys()[keyboard.SHIFT]){
+            if(Player.get().getStamina() >0) {
+                Player.get().setStamina(Player.get().getStamina() - 1);
+                Player.get().setSpeed(Player.get().getShiftSpeed());
+                Player.get().moveRight();
+            }
+            else if(Player.get().getStamina() <= 10) {
+                Player.get().setStamina(Player.get().getStamina()-0);
+                Player.get().setSpeed(Player.get().getRegSpeed());
+                Player.get().moveRight();
+
+            }
+        }else Player.get().moveRight();
+
+
     }
      private static void e() {Interactor.getInstance().interact();}
      // Sounder.changeSong("src\\ru\\muwa\\shq\\sounds\\songs\\muzike1.wav");
@@ -218,16 +272,7 @@ public class PlayerControls
 
     }
     private static void shift() {
-        if(Player.get().getStamina() >0) {
-            Player.get().setStamina(Player.get().getStamina() - 3);
-            EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,  (System.currentTimeMillis()+2));
-        }
-         else if(Player.get().getStamina() <= 10) {
-            Player.get().setStamina(Player.get().getStamina()-0);
-            EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,  (System.currentTimeMillis()-5));
-        }
-        KeyListener.getInstance().getKeys()[KeyListener.getInstance().SHIFT] = false;
-        // EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+1_000L); // типа скорость
+
     }
 
     public static Player getPlayer() {
@@ -236,6 +281,10 @@ public class PlayerControls
 
     public static void setPlayer(Player player) {
         PlayerControls.player = player;
+    }
+
+    public static void shiftRelease(){
+        Player.get().setSpeed(Player.get().getRegSpeed());
     }
 
 

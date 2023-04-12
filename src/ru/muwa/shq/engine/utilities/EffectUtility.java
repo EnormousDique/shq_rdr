@@ -32,7 +32,7 @@ public class EffectUtility {
                 case SPEED:
                     if (entry.getValue() > System.currentTimeMillis()) {
                         Player.get().setSpeed(19);
-                    } else Player.get().setSpeed(7);
+                    } else Player.get().setSpeed(Player.get().getSpeed());
                     break;
                 case StaminaRegen:
                 {
@@ -44,6 +44,7 @@ public class EffectUtility {
             }
         }
     }
+    //todo вынести в отдельный класс
 
     public static void psychOmetr() {
 
