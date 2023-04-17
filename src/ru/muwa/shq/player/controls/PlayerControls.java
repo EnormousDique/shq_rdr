@@ -2,6 +2,9 @@ package ru.muwa.shq.player.controls;
 
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.animations.A_PlayerFistPunch;
+import ru.muwa.shq.engine.animations.Animation;
+import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
@@ -127,16 +130,21 @@ public class PlayerControls
         //Блок рукопашки
         if(!isFirearmEquipped) {
 
+            System.out.println("player controls блок рукопашки");
+            Animator.playPlayerAnimation(new A_PlayerFistPunch());
+
             for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
                 NPC npc = Engine.getCurrentLevel().getNPC().get(i);
                 if (npc.getSolidBox().intersects(Player.get().getAttackZone())) {
                     //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
                    try {
-                       CombatUtility.attack(npc, Player.get().currentWeapon.getDamage());
+                       int damage = Player.get().currentWeapon==null? 5: Player.get().currentWeapon.getDamage();
+                       CombatUtility.attack(npc, damage);
+
                    }
                     catch (Exception e)
                     {
-                        CombatUtility.attack(npc, 5);
+                        //CombatUtility.attack(npc, 5);
                     }
                     CollisionsChecker.getInstance().checkAttackZoneCollisions();
 

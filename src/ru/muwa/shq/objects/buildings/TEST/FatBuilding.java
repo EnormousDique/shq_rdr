@@ -3,6 +3,7 @@ package ru.muwa.shq.objects.buildings.TEST;
 import ru.muwa.shq.objects.GameObject;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -27,5 +28,6 @@ public class FatBuilding extends GameObject {
      */
     public FatBuilding(int x, int y) {
         super(x, y, img);
+        solidBox = new Rectangle(x,y+400,width,height-400);
     }
 }

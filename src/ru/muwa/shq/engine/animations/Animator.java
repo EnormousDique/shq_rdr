@@ -2,10 +2,17 @@ package ru.muwa.shq.engine.animations;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.cutscenes.Cutscene;
+import ru.muwa.shq.player.Player;
+
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Animator implements Runnable {
     private static Animator instance ;
     private Thread thread;
+    private static boolean busy;
+    private static ArrayList<Animation> animationQueue = new ArrayList<>();
     private Animator(){
         instance = this;
         thread = new Thread(instance);
@@ -34,7 +41,8 @@ public class Animator implements Runnable {
 
             if(delta >= 1)
             {
-
+                System.out.println();
+                checkAnimationQueue();
             }
         }
         while (true)
@@ -47,10 +55,38 @@ public class Animator implements Runnable {
     {
         Engine.cutscene = true;
         for (Cutscene.Movement m : cutscene.getMovements()) {
-          //  System.out.println("performing movement " + m.toString());
-
             cutscene.playMovement(m);
         }
         Engine.cutscene = false;
     }
+    public static void playPlayerAnimation(Animation a)
+    {
+        if(!busy) {
+            animationQueue.add(a);
+            System.out.println("в очередь анимаций добавлено : " + a);
+        }
+
+    }
+    public static void checkAnimationQueue()
+    {
+        for(int i = 0; i< animationQueue.size(); i++ )
+        {
+            System.out.println("В очереди есть анимация");
+            for(int j = 0 ; j < animationQueue.get(i).getSprites().size() ; j++)
+            {
+                busy = true;
+                System.out.println("меняем текстуру игрока");
+                Player.get().setTexture(animationQueue.get(i).getSprites().get(j));
+                System.out.println("поменяли текстуру игрока");
+                try{
+                    Thread.sleep(300);
+                }catch (Exception e){}
+            }
+            //animationQueue = animationQueue.subList(1,animationQueue.size());
+            //animationQueue.remove(animationQueue.get(i));
+            busy = false;
+        }
+        animationQueue = new ArrayList<>();
+    }
+
 }

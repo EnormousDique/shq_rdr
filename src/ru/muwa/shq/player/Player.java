@@ -27,17 +27,9 @@ public class Player extends Creature
     public Direction direction;
     private Rectangle useZone;
 
-
     private double highMeter ;
-
     private double highMeterLock;
 
-
-
-    private static BufferedImage imgUp;
-    private static BufferedImage imgDown;
-    private static BufferedImage imgLeft;
-    private static BufferedImage imgRight;
     public Rectangle getUseZone() {
         return useZone;
     }

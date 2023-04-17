@@ -18,14 +18,6 @@ import static ru.muwa.shq.objects.GameObject.Direction.DOWN;
  */
 public class CollisionsChecker {
 
-    //TODO
-    //  *
-    //  *
-    //  * Добавить отталкивание при столкновении с пулей в сторону ускорения пули помноженной на скорость
-    //  *
-    //  *
-
-
     private static CollisionsChecker instance;
 
     private CollisionsChecker() {
@@ -61,7 +53,7 @@ public class CollisionsChecker {
                 {
 
                     if (o.getSolidBox().getCenterY() > obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
-                        o.setY(obj.getY() + obj.getHeight());
+                        o.setY((int)obj.getSolidBox().getY() + (int)obj.getSolidBox().getHeight());
                         System.out.println("вниз");
                         continue;
                     }//Вниз
@@ -73,19 +65,19 @@ public class CollisionsChecker {
 
 
                     if (o.getY() < obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
-                        o.setY(obj.getY() - o.getHeight());
+                        o.setY((int)obj.getSolidBox().getY() - o.getHeight());
                         System.out.println("вверх");
                         continue;
                     }//Вверх
                     /*else*/
                     if (o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
-                        o.setX(obj.getX() + obj.getWidth());
+                        o.setX((int)obj.getSolidBox().getX() + (int)obj.getSolidBox().getWidth());
                         System.out.println("право");
                         continue;
                     }//Вправо
                     /*else*/
                     if (o.getX() < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
-                        o.setX(obj.getX() - o.getWidth());
+                        o.setX((int)obj.getSolidBox().getX() - o.getWidth());
                         System.out.println("vlevo");
                         continue;
                     }//Влево
@@ -101,8 +93,6 @@ public class CollisionsChecker {
         }
     }
     public  void  checkAttackZoneCollisions(){
-        //todo переделай чекобжект коллизионс на работу с зоной и списком обьектов. вместо гейм обджектов аткка зона вместо листа гейобьектов лист нпс
-        //todo в этом классе есть метод чек нпс коллизионс он уже настноен на раоту с нпц мб будет проще взять.
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size();i++){
             NPC npc = Engine.getCurrentLevel().getNPC().get(i);
            if (Engine.getCurrentLevel().getNPC().get(i).getSolidBox().intersects(Player.get().getAttackZone()))

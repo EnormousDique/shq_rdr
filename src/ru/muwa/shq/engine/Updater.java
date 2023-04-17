@@ -5,6 +5,7 @@ import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.camera.CameraUpdateUtility;
 import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.engine.utilities.*;
+import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.player.controls.PlayerControls;
@@ -106,7 +107,7 @@ public class Updater implements Runnable {
         CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getObjects());
         CollisionsChecker.getInstance().checkCollisions(player,  Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject) c ).collect(Collectors.toList()) );
         // обновляем текстурку игрока
-        CombatUtility.updatePlayerTexture();
+        // CombatUtility.updatePlayerTexture();
         //Обновляем окно инвентаря
         InventoryManager.update();
         // Обновление зоны доступного использования
@@ -116,7 +117,7 @@ public class Updater implements Runnable {
         //Блок обработки обычных объектов из списка текущих.
         for(GameObject o : Engine.getCurrentLevel().getObjects()) {
             // Обновляем боксы
-            SolidBoxUpdater.updateSolidBox(o);
+            if(! (o instanceof FatBuilding))SolidBoxUpdater.updateSolidBox(o);
         }
         //Блок обработки НПЦ из списка текущих.
         for(int i = 0; i< Engine.getCurrentLevel().getNPC().size(); i++) {
@@ -126,8 +127,11 @@ public class Updater implements Runnable {
             // Обновляем бокс.
             SolidBoxUpdater.updateSolidBox(c);
             // Проверяем столкновения.
-            CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
-            CollisionsChecker.getInstance().checkCollisionsNPC(c, new LinkedList<>( Engine.getCurrentLevel().getNPC().stream().map(npc->(GameObject)npc).collect(Collectors.toList())));
+            CollisionsChecker.getInstance().checkCollisions(c, Engine.getCurrentLevel().getObjects());
+            CollisionsChecker.getInstance().checkCollisions(c,  Engine.getCurrentLevel().getNPC().stream().map(npc -> (GameObject) npc ).collect(Collectors.toList()) );
+
+            // CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
+            //CollisionsChecker.getInstance().checkCollisionsNPC(c, new LinkedList<>( Engine.getCurrentLevel().getNPC().stream().map(npc->(GameObject)npc).collect(Collectors.toList())));
             // Обновляем стены рейкастера и сам рейкастер.
             // TODO: Проверить насколько необходимо обновление каждую итерацию и скорость при большом кол-ве нпц.
             c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
