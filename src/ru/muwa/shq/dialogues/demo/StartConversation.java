@@ -7,14 +7,14 @@ import ru.muwa.shq.objects.containers.Container;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Conversation0 extends Dialogue {
-    private static Conversation0 instance;
-    public static Conversation0 getInstance()
+public class StartConversation extends Dialogue {
+    private static StartConversation instance;
+    public static StartConversation getInstance()
     {
-        if(instance == null) return new Conversation0();
+        if(instance == null) return new StartConversation();
         else return instance;
     }
-    private Conversation0(){
+    private StartConversation(){
 
         instance = this;
         ArrayList<Respond> responds = new ArrayList<>();
@@ -23,15 +23,15 @@ public class Conversation0 extends Dialogue {
                 (new Respond("Пошёл нахуй",
                         new Message("Ты че охуел, нормально же общались?",
                                 new Respond("Пошёл нахуй, я сказал",
-                                        new Message("ууу сука бля..",
-                                                new Respond("..."))))));
+                                        new Message("ууу сука бля.. ну и ипиздуй играй",
+                                                new Respond("мать чекай разраб пидор"))))));
 
         responds.add(
-                new Respond("Нормально",
+                new Respond("да я новичок",
                         new Message("Ну вот и збс",
                                 new Respond("Пока."))));
 
-        initialMessage = new Message("Привет, как дела?",responds);
+        initialMessage = new Message("ЗДарова заебал,Добро пожаловать в игру , НАучить тебя что куда сувать?",responds);
         currentMessage = new Message( initialMessage.getText(),initialMessage.getResponds());
 
     }

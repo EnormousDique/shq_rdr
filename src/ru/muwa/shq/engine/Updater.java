@@ -6,6 +6,7 @@ import ru.muwa.shq.engine.g.camera.CameraUpdateUtility;
 import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
+import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.player.controls.PlayerControls;
@@ -91,11 +92,15 @@ public class Updater implements Runnable {
 
         // Вызов службы проверки активации зон сцен
         CutsceneZoneUtility.work();
-
+        //вызов автодиалогов
+        AutoDialogueZoneUtility.checkAutoDialogueZone();
         //вызов службы эфектов
         EffectUtility.work();
         //вызов слуюбы психометра
         EffectUtility.psychOmetr();
+        //вызов жажды
+        EffectUtility.thirstMetr();
+        Player.get().staminaRegen();
         //System.out.println(System.currentTimeMillis()+"ВРЕМЯ");
         //Вызов службы обновления пуль
         BulletUtility.work();

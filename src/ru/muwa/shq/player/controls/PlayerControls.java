@@ -11,6 +11,8 @@ import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.engine.s.Sounder;
+import ru.muwa.shq.engine.utilities.EffectUtility;
+import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.items.guns.Firearm;
@@ -51,6 +53,9 @@ public class PlayerControls
         if(keyboard.getKeys()[keyboard.Q]) q();
         if(keyboard.getKeys()[keyboard.ENTER]) enter();
         if(keyboard.getKeys()[keyboard.T]) t(); // нважата T
+        if(keyboard.getKeys()[keyboard.SHIFT]) shift();
+
+
 
         //Мышь
         if(MouseButtonListener.getInstance().keys[0]) lmb();
@@ -71,25 +76,73 @@ public class PlayerControls
         }
     }
     private static void w() {
-        Player.get().moveUp();
+        if(keyboard.getKeys()[keyboard.SHIFT]){
+            if(Player.get().getStamina() >0) {
+                Player.get().setStamina(Player.get().getStamina() - 1);
+                Player.get().setSpeed(Player.get().getShiftSpeed());
+                Player.get().moveUp();
+            }
+            else if(Player.get().getStamina() <= 10) {
+                Player.get().setStamina(Player.get().getStamina()-0);
+                Player.get().setSpeed(Player.get().getRegSpeed());
+                Player.get().moveUp();
+
+            }
+        }else Player.get().moveUp();
+
+
     }
-    private static void a()
-    {
-        Player.get().moveLeft();
+    private static void a() {
+        if(keyboard.getKeys()[keyboard.SHIFT]){
+            if(Player.get().getStamina() >0) {
+                Player.get().setStamina(Player.get().getStamina() - 1);
+                Player.get().setSpeed(Player.get().getShiftSpeed());
+                Player.get().moveLeft();
+            }
+            else if(Player.get().getStamina() <= 10) {
+                Player.get().setStamina(Player.get().getStamina()-0);
+                Player.get().setSpeed(Player.get().getRegSpeed());
+                Player.get().moveLeft();
+            }
+        }else Player.get().moveLeft();
+
     }
     private static void s()
-    {
-        Player.get().moveDown();
+    { if(keyboard.getKeys()[keyboard.SHIFT]){
+        if(Player.get().getStamina() >0) {
+            Player.get().setStamina(Player.get().getStamina() - 1);
+            Player.get().setSpeed(Player.get().getShiftSpeed());
+            Player.get().moveDown();
+        }
+        else if(Player.get().getStamina() <= 10) {
+            Player.get().setStamina(Player.get().getStamina()-0);
+            Player.get().setSpeed(Player.get().getRegSpeed());
+            Player.get().moveDown();
+        }
+    }else Player.get().moveDown();
+
+
     }
     private static void d()
     {
-        Player.get().moveRight();
+        if(keyboard.getKeys()[keyboard.SHIFT]){
+            if(Player.get().getStamina() >0) {
+                Player.get().setStamina(Player.get().getStamina() - 1);
+                Player.get().setSpeed(Player.get().getShiftSpeed());
+                Player.get().moveRight();
+            }
+            else if(Player.get().getStamina() <= 10) {
+                Player.get().setStamina(Player.get().getStamina()-0);
+                Player.get().setSpeed(Player.get().getRegSpeed());
+                Player.get().moveRight();
+
+            }
+        }else Player.get().moveRight();
+
+
     }
-     private static void e()
-    {
-    Interactor.getInstance().interact();
+     private static void e() {Interactor.getInstance().interact();}
      // Sounder.changeSong("src\\ru\\muwa\\shq\\sounds\\songs\\muzike1.wav");
-    }
     private static void i()
     {
         Inventory.getInstance().setIsOpened(!Inventory.getInstance().isOpened());
@@ -155,6 +208,7 @@ public class PlayerControls
             }
         }
 
+
         keyboard.getKeys()[keyboard.SPACE] = false;
 
     }
@@ -200,6 +254,7 @@ public class PlayerControls
 
     private static void q()
     {
+
         if(Player.get().isBusy() && Player.get().getCurrentObject() != null)
         {
             Player.get().getCurrentObject().setInUse(false);
@@ -226,4 +281,21 @@ public class PlayerControls
     {
 
     }
+    private static void shift() {
+
+    }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        PlayerControls.player = player;
+    }
+
+    public static void shiftRelease(){
+        Player.get().setSpeed(Player.get().getRegSpeed());
+    }
+
+
 }

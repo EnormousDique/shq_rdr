@@ -1,5 +1,6 @@
 package ru.muwa.shq.engine.g.hud;
 
+import java.awt.*;
 import java.util.*;
 
 import ru.muwa.shq.engine.g.GameScreen;
@@ -8,6 +9,7 @@ import ru.muwa.shq.player.Player;
 
 import javax.swing.*;
 
+import static ru.muwa.shq.engine.g.GameScreen.SCREEN_HEIGHT;
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
 
 
@@ -23,7 +25,8 @@ public class HUD {
     public static HUD getInstance() {
         if(instance == null) return new HUD();else return instance;
     }
-    JProgressBar healthBar = new JProgressBar(0,100); //создание хелзбара
+    JProgressBar ThirstBar = new JProgressBar(0,100);
+    JProgressBar StaminaBar = new JProgressBar(0,100); //создание стаминабара
     JPanel actionWindow = new JPanel(); //создание окна длья миниигры
     JPanel mainWindow = new JPanel();
 
@@ -47,7 +50,9 @@ public class HUD {
 
     private HUD (){
         instance = this;
-        healthBar.setValue(Player.get().getHp());
+        StaminaBar.setValue((int) Player.get().getStamina());
+        ThirstBar.setValue((int) Player.get().getThirst());
+        ThirstBar.setStringPainted(true);
         drugEffectBar.setValue((int) Player.get().getHighMeter());
         actionWindow.setBounds(SCREEN_WIDTH/2,GameScreen.SCREEN_HEIGHT/2,300,300);
         mainWindow.setBounds(SCREEN_WIDTH/2-25,GameScreen.SCREEN_HEIGHT/2-50,50,100);
@@ -68,8 +73,14 @@ public class HUD {
      //   this.add(HUD.getInstance().getActionWindow());
      //   HUD.getInstance().getActionWindow().setVisible(false);
       //  HUD.getInstance().getHealthBar().setBounds(100+ Camera.getInstance().getX(),300+Camera.getInstance().getY(),400,50);
-        healthBar.setBounds(SCREEN_WIDTH-1027, SCREEN_WIDTH-0,400,50);
+        //   healthBar.setBounds(SCREEN_WIDTH-1027, SCREEN_WIDTH-0,400,50);
         drugEffectBar.setBounds(SCREEN_WIDTH-1146, SCREEN_WIDTH-68,200,20);
+//цвета полосок
+        drugEffectBar.setForeground(Color.magenta);
+        ThirstBar.setForeground(Color.BLUE);
+        StaminaBar.setForeground(Color.green);
+
+
 
     }
 
@@ -78,8 +89,8 @@ public class HUD {
         return itemWindow;
     }
 
-    public JProgressBar getHealthBar() {
-        return healthBar;
+    public JProgressBar getStaminaBar() {
+        return StaminaBar;
     }
 
     public JPanel getEquipWindow() {
@@ -97,5 +108,7 @@ public class HUD {
         return statusWindow;
     }
     public JProgressBar getDrugEffectBar() {return drugEffectBar;}
+    public JProgressBar getThirstBar() {return ThirstBar;}
+    public void setThirstBar(JProgressBar thirstBar) {ThirstBar = thirstBar;}
 
 }

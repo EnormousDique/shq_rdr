@@ -1,10 +1,8 @@
 package ru.muwa.shq.engine.g;
 
-import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Класс, представляющий собой окно игры.
@@ -19,7 +17,8 @@ public class GameScreen extends JFrame
             FRAME_TOP_HEIGHT = 37; // Высота шапки экрана. (Верхняя панель)
     private GameScreen(){
         instance = this;
-        this.add(HUD.getInstance().getHealthBar());
+        this.add(HUD.getInstance().getStaminaBar());
+        this.add(HUD.getInstance().getThirstBar());
         this.add(HUD.getInstance().getActionWindow());
         HUD.getInstance().getActionWindow().setVisible(false);
         this.add(HUD.getInstance().getDrugEffectBar());

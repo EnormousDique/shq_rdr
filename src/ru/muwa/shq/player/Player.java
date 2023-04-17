@@ -26,10 +26,35 @@ public class Player extends Creature
     public enum Direction{UP,DOWN,LEFT,RIGHT}
     public Direction direction;
     private Rectangle useZone;
-
+    private double thirst;
     private double highMeter ;
-    private double highMeterLock;
 
+    public int getRegSpeed() {
+        return regSpeed;
+    }
+
+    public void setRegSpeed(int regSpeed) {
+        this.regSpeed = regSpeed;
+    }
+
+    private int regSpeed = 5;
+
+    public int getShiftSpeed() {
+        return shiftSpeed;
+    }
+
+    public void setShiftSpeed(int shiftSpeed) {
+        this.shiftSpeed = shiftSpeed;
+    }
+
+    private int shiftSpeed = 10;
+
+    private double highMeterLock;
+    private double Stamina;
+    private static BufferedImage imgUp;
+    private static BufferedImage imgDown;
+    private static BufferedImage imgLeft;
+    private static BufferedImage imgRight;
     public Rectangle getUseZone() {
         return useZone;
     }
@@ -67,13 +92,16 @@ public class Player extends Creature
     protected Player(int x, int y, BufferedImage texture )
     {
         super(x, y, texture);
+
         useZone = new Rectangle();
         isStanding = false;
         velocity = 2;
         agility = 8;
-        speed = 7;
+        speed = 5;
+        thirst = 100;
         maxJumpAx = 50;
         hp = 100;
+        Stamina = 100; //todo: Вова пидор, переименуй нормально.
         attackZone.getBounds().setBounds(x,y-30,30,30);
         this.name = "Player";
         highMeter = 0;
@@ -85,6 +113,14 @@ public class Player extends Creature
     public void setIsBusy(boolean isBusy){this.isBusy = isBusy;}
     public Usable getCurrentObject(){return currentObject;}
     public void setCurrentObject(Usable u){currentObject = u;}
+
+
+    //todo вынести в отдельный класс  PlayerStats
+    public void staminaRegen(){
+        if(Player.get().getStamina() < 100)
+            Player.get().setStamina(Player.get().getStamina()+0.3);
+        else {Player.get().setStamina(Player.get().getStamina()+0);}
+    }
 
     @Override
     public void moveLeft() {
@@ -110,20 +146,15 @@ public class Player extends Creature
         if(!isBusy)super.moveDown();
         if(direction!= Direction.DOWN) direction = Direction.DOWN;
      }
-    public double getHighMeter() {
-        return highMeter;
-    }
-
-    public void setHighMeter(double highMeter) {
-        this.highMeter = highMeter;
-    }
-    public double getHighMeterLock() {
-        return highMeterLock;
-    }
-
-    public void setHighMeterLock(double highMeterLock) {
-        this.highMeterLock = highMeterLock;
-    }
+     //геттеры и сеттеры ЫЫЫ))))
+    public double getHighMeter() {return highMeter;}
+    public void setHighMeter(double highMeter) {this.highMeter = highMeter;}
+    public double getHighMeterLock() {return highMeterLock;}
+    public void setHighMeterLock(double highMeterLock) {this.highMeterLock = highMeterLock;}
+    public double getStamina() {return Stamina;}
+    public void setStamina(double stamina){this.Stamina = stamina;}
+    public double getThirst() {return thirst;}
+    public void setThirst(double thirst) {this.thirst = thirst;}
 
 }
 

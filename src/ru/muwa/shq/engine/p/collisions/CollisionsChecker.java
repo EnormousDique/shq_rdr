@@ -64,6 +64,8 @@ public class CollisionsChecker {
                     //я тупой дибил пидарас и сука крышу у людей последнее
 
 
+
+
                     if (o.getY() < obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
                         o.setY((int)obj.getSolidBox().getY() - o.getHeight());
                         System.out.println("вверх");
