@@ -74,12 +74,9 @@ public class Updater implements Runnable {
         long time = System.currentTimeMillis();
         long localTime = System.currentTimeMillis();
         //Спавнер
-        Spawner.regularSpawn();
-        Spawner.inDoorsSpawn();
+        //  Spawner.regularSpawn();
+        //  Spawner.inDoorsSpawn();
         //Блок обработки игрока.
-
-
-
         //QuestUtility.maintainPlayerQuests();
         QuestUtility.work();
 
@@ -89,6 +86,8 @@ public class Updater implements Runnable {
         SolidBoxUpdater.updateSolidBox(player);
         //Вызов службы обработки боя
         CombatUtility.work();
+
+
 
         // Вызов службы проверки активации зон сцен
         CutsceneZoneUtility.work();

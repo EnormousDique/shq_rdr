@@ -25,7 +25,7 @@ public class FatBuildingFloor4_5 extends Level {
         startPosX = 0;
         startPosY = 0;
         // containers.add(new PostBox(100,100));
-        zones.add(new EnterZone(15,35,60,80, FatBuildingFloor3.getInstance(), 100, 50, true));
+        zones.add(new EnterZone(15,35,60,80, FatBuildingFloor4.getInstance(), 100, 50, true));
         zones.add(new EnterZone(13,162,60,80, FatBuildingFloor5.getInstance(), 100, 250, true));
 
 

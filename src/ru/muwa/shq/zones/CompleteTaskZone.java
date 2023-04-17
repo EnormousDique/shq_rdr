@@ -1,7 +1,9 @@
 package ru.muwa.shq.zones;
 
 import ru.muwa.shq.levels.Level;
+import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.quests.Quest;
+import ru.muwa.shq.quests.actions.Q2T1_Action;
 
 public class CompleteTaskZone extends GameZone{
 
@@ -10,4 +12,5 @@ public class CompleteTaskZone extends GameZone{
         super(x, y, width, height);
         this.level = level;
     }
+
 }

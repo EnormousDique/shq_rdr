@@ -9,11 +9,12 @@ import java.io.File;
 import java.io.IOException;
 
 public class FatBuilding extends GameObject {
-    static BufferedImage img;
+    static BufferedImage img ,img2;
 
     static {
         try {
             img = ImageIO.read(new File(IMG_PATH + "buildings\\FatBuilding_0.png"));
+            img2 = ImageIO.read(new File(IMG_PATH + "buildings\\FatBuilding_0_trans.png"));
             System.out.println("TestBuilding texture loaded");
         } catch (IOException e) {
             System.out.println("failed to load testbuilding roof texture");
@@ -29,5 +30,7 @@ public class FatBuilding extends GameObject {
     public FatBuilding(int x, int y) {
         super(x, y, img);
         solidBox = new Rectangle(x,y+400,width,height-400);
+        transTexture =  img2;
+
     }
 }

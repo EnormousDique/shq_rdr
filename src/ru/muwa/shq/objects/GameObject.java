@@ -37,6 +37,15 @@ public abstract class GameObject
     protected BufferedImage ImgLeft; // !!! володя делает тексутру в лево.
 
     protected BufferedImage texture; //Текстура (изображение) объекта
+    protected BufferedImage transTexture , solidTexture;
+
+    public BufferedImage getTransTexture() {
+        return transTexture;
+    }
+
+    public BufferedImage getSolidTexture() {
+        return solidTexture;
+    }
     protected BufferedImage UI; //Текстура (изображение) объекта
 
     protected  Rectangle solidBox; //Квадрат "жесткости" //TODO: Вероятно, можно обойтись текстурой.

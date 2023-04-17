@@ -34,7 +34,7 @@ public class DialogueWindowButtonListener implements ActionListener {
                     if (r.text.equals(((JButton) e.getSource()).getText()))
                         respond = r;
                 }
-                if(respond.msg==null){ HUD.getInstance().getDialogueWindow().setVisible(false); ((DialogueZone)z).setActive(false); Engine.pause = false; dialogue.restore();}
+                if(respond.msg==null){ HUD.getInstance().getDialogueWindow().setVisible(false); ((DialogueZone)z).setActive(false); Engine.pause = false; dialogue.restore();DialogueManager.dropDialogue();}
 
                 else ((DialogueZone)z).getDialog().setCurrentMessage(((respond.msg)));
             }

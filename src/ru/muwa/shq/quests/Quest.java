@@ -1,5 +1,7 @@
 package ru.muwa.shq.quests;
 
+import ru.muwa.shq.quests.actions.Q2T1_Action;
+import ru.muwa.shq.quests.actions.QuestAction;
 import ru.muwa.shq.quests.conditions.TaskCondition;
 import ru.muwa.shq.zones.CompleteTaskZone;
 
@@ -23,10 +25,17 @@ public class Quest {
         this.tasks.add(new Task(name,с));
     }
     public List<Task> getTasks(){return tasks;}
+
+    public void addTask(String name, CompleteTaskZone z, Q2T1_Action a) {
+        this.tasks.add(new Task(name,z,a));
+    }
+
     public static class Task{
         public String name;
         public boolean isCompleted;
+        public boolean isTriggeringAction;
         public CompleteTaskZone completeTaskZone;
+        public QuestAction action;
         public TaskCondition condition;
         boolean hasCondition;
         public Task(String name, CompleteTaskZone z)
@@ -41,7 +50,15 @@ public class Quest {
             this.condition = condition;
             hasCondition = true;
         }
+
+        public Task(String name, CompleteTaskZone z, Q2T1_Action a) {
+            this.name=name;
+            isTriggeringAction = true;
+            action = a;
+            this.completeTaskZone =z;
+        }
     }
+
 
 
 }

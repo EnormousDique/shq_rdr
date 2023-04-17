@@ -10,6 +10,7 @@ import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
@@ -82,7 +83,7 @@ public class Renderer implements Runnable {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);             // команда для зачершения работы программы при зкрытии окна.
         frame.add(canvas);                                              // добовляем полотно
         frame.setSize(GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT /* + GameScreen.FRAME_TOP_HEIGHT */);  // устонавливаем размер окна по нашим  переменныт высоты и широты SCREEN_WIDTH AND SCREEN_HEIGHT
-        frame.setResizable(false);      //false                               // установка для изменения разрешения окна
+        frame.setResizable(true);      //false                               // установка для изменения разрешения окна
         frame.setLocationRelativeTo(null);                    //установка экрана в пространстве если null то посередине
         frame.setVisible(true);                               // установка видимости основного фрейма.
         canvas.addMouseMotionListener(MouseListener.getInstance());  // добовляем службу отлсежки движения мыши
@@ -92,7 +93,7 @@ public class Renderer implements Runnable {
         canvas.setFocusable(true);             // определение возможности фокусировки на обьекте
         canvas.transferFocus();                 // Переносит фокус на следующий компонент если  этот компонент был владельцем фокуса.
         thread.start();                         // хз запуск потока
-        System.out.println("render thread is running in standart mode");
+        System.out.println("render thread is running in standard mode");
         System.out.println("Graphics eng initialized.");
     }
 
@@ -149,7 +150,21 @@ public class Renderer implements Runnable {
         //отрисовка обьектов из списка текущих обьектов
         for (int i = 0;i<Engine.getCurrentLevel().getObjects().size();i++){
             GameObject o = Engine.getCurrentLevel().getObjects().get(i);
-            g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
+
+            if(o instanceof FatBuilding){
+                Rectangle rectangle = new Rectangle(o.getX(),o.getY(),o.getWidth(),o.getHeight());
+                if(Player.get().getSolidBox().intersects(rectangle))
+                {
+                    g.drawImage(o.getTransTexture(), o.getX() - camX, o.getY() - camY, null);
+                }
+                else g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
+
+            }else{
+                g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
+            }
+
+
+
         }
         //Отрисовка всех контейнеров из списка  текущих
         for (int i = 0; i< Engine.getCurrentLevel().getContainers().size(); i++) {
@@ -225,10 +240,10 @@ public class Renderer implements Runnable {
             //Вызов службы диалогов.
             DialogueManager.getInstance().work();
 
-            // ОТРИСОВКА ПЕрСОНАЖА
-            AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
-            at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getTexture().getWidth() / 2), (Player.get().getTexture().getHeight() / 2));
-            ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
+        // ОТРИСОВКА ПЕрСОНАЖА
+        AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
+        at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getTexture().getWidth() / 2), (Player.get().getTexture().getHeight() / 2));
+        ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
         //
         //

@@ -6,6 +6,7 @@ import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.Hub;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.quests.actions.Q2T1_Action;
 import ru.muwa.shq.quests.conditions.C_HasPlayerFoundKlad;
 import ru.muwa.shq.zones.CompleteTaskZone;
 import ru.muwa.shq.zones.InteractiveEnterZone;
@@ -54,6 +55,9 @@ public class QuestUtility {
                     if(Player.get().getSolidBox().intersects(Player.get().quests.get(i).tasks.get(j).completeTaskZone))
                     {
                         Player.get().quests.get(i).tasks.get(j).isCompleted = true;
+                        //Если по завершению задачи должно происодить заскриптованное событие, вызываем его.
+                        if(Player.get().quests.get(i).tasks.get(j).isTriggeringAction)
+                        {Player.get().quests.get(i).tasks.get(j).action.performAction();}
                     }
                 }
                 if (Player.get().quests.get(i).tasks.get(j).hasCondition) // Блок обработки заданий с условиями
@@ -115,7 +119,7 @@ public class QuestUtility {
             System.out.println("ИНИНЦИАЛИЗАЦИЯ КВЕСТА 2 ПРОИЗОШЛА ОШИБКА");
         }
 
-        quest2.addTask("Дойти до рынка", ctzQ2T1);
+        quest2.addTask("Дойти до рынка", ctzQ2T1, new Q2T1_Action());
 
         Player.get().quests.add(quest2);
     }
