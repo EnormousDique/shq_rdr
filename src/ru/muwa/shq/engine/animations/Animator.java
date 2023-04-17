@@ -33,6 +33,7 @@ public class Animator implements Runnable {
         long lastTime = System.nanoTime();
         long currTime;
 
+
         while(thread !=  null)
         {
             currTime = System.nanoTime();
@@ -41,7 +42,7 @@ public class Animator implements Runnable {
 
             if(delta >= 1)
             {
-                System.out.println();
+                System.out.printf("");// КОСТЫЛЬ. БЕЗ ЭТОЙ СТРОЧКИ НИЧЕГО НЕ РАБОТАЕТ.
                 checkAnimationQueue();
             }
         }
