@@ -84,8 +84,7 @@ public class Animator implements Runnable {
                     Thread.sleep(100);
                 }catch (Exception e){}
             }
-            //animationQueue = animationQueue.subList(1,animationQueue.size());
-            //animationQueue.remove(animationQueue.get(i));
+
             busy = false;
         }
         animationQueue = new ArrayList<>();
