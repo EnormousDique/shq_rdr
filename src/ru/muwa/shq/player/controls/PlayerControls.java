@@ -97,6 +97,7 @@ public class PlayerControls
     }
     private static void space()
     {
+
         //Определяем есть ли оружие в руках (огнестрельное)
         boolean isFirearmEquipped = false;
         Weapon gun = null;
@@ -130,30 +131,29 @@ public class PlayerControls
         //Блок рукопашки
         if(!isFirearmEquipped) {
 
-            System.out.println("player controls блок рукопашки");
-            Animator.playPlayerAnimation(new A_PlayerFistPunch());
+            if (!Animator.isBusy()) {// Проверяем не занят ли аниматор (не воспроизводится ли уже анимация удара.)
+                System.out.println("player controls блок рукопашки");
+                Animator.playPlayerAnimation(new A_PlayerFistPunch());
 
-            for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
-                NPC npc = Engine.getCurrentLevel().getNPC().get(i);
-                if (npc.getSolidBox().intersects(Player.get().getAttackZone())) {
-                    //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
-                   try {
-                       int damage = Player.get().currentWeapon==null? 5: Player.get().currentWeapon.getDamage();
-                       CombatUtility.attack(npc, damage);
+                for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
+                    NPC npc = Engine.getCurrentLevel().getNPC().get(i);
+                    if (npc.getSolidBox().intersects(Player.get().getAttackZone())) {
+                        //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
+                        try {
+                            int damage = Player.get().currentWeapon == null ? 5 : Player.get().currentWeapon.getDamage();
+                            CombatUtility.attack(npc, damage);
 
-                   }
-                    catch (Exception e)
-                    {
-                        //CombatUtility.attack(npc, 5);
+                        } catch (Exception e) {
+                            //CombatUtility.attack(npc, 5);
+                        }
+                        CollisionsChecker.getInstance().checkAttackZoneCollisions();
+
+
                     }
-                    CollisionsChecker.getInstance().checkAttackZoneCollisions();
-
-
                 }
+
             }
-
         }
-
 
         keyboard.getKeys()[keyboard.SPACE] = false;
 

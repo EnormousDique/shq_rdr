@@ -12,6 +12,7 @@ public class Animator implements Runnable {
     private static Animator instance ;
     private Thread thread;
     private static boolean busy;
+    static public boolean isBusy() {return busy;}
     private static ArrayList<Animation> animationQueue = new ArrayList<>();
     private Animator(){
         instance = this;
@@ -80,7 +81,7 @@ public class Animator implements Runnable {
                 Player.get().setTexture(animationQueue.get(i).getSprites().get(j));
                 System.out.println("поменяли текстуру игрока");
                 try{
-                    Thread.sleep(300);
+                    Thread.sleep(100);
                 }catch (Exception e){}
             }
             //animationQueue = animationQueue.subList(1,animationQueue.size());
