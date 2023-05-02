@@ -2,7 +2,7 @@ package ru.muwa.shq.engine.utilities;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.hud.HUD;
-import ru.muwa.shq.levels.demo.indoors.Hub;
+import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
@@ -45,7 +45,7 @@ public class DeathUtility {
     private static void resurrect()
     {
         try {
-            Engine.switchLevel(Hub.getInstance(),110,110);
+            Engine.switchLevel(HubHataIgoryana.getInstance(),110,110);
         } catch (IOException e) {
             System.out.println("Не могу воскресить игрока : не грузит хаб");
         }

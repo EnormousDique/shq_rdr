@@ -35,6 +35,7 @@ public class Money_500 extends Money {
 
     }
 
+   
     @Override
     public void use() {
 

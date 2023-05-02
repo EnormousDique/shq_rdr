@@ -9,8 +9,10 @@ import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.containers.Container;
+import ru.muwa.shq.objects.containers.ContainerPanel;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.quests.Quest;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -23,6 +25,7 @@ import java.util.Arrays;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class InventoryManager

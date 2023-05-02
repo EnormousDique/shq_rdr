@@ -41,12 +41,16 @@ public class HUD {
     JPanel containerWindow = new JPanel();// окно контейнеров
     JProgressBar drugEffectBar = new JProgressBar(0,100);
 
+    public JPanel getQuestWindow() {
+        return questWindow;
+    }
+
     public JPanel getGifScenesWindow() {
         return GifScenesWindow;
     }
 
-    public void setGifScenesWindow(JPanel gifScenesWindow) {
-        GifScenesWindow = gifScenesWindow;
+    public JPanel getDeathWindow() {
+        return deathWindow;
     }
 
     JPanel GifScenesWindow = new JPanel();

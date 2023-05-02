@@ -2,6 +2,7 @@ package ru.muwa.shq.items;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.objects.containers.Container;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
 import java.awt.image.BufferedImage;
@@ -92,7 +93,10 @@ public abstract class Item
     }
     public abstract void give(Container c);
 
-    public abstract void take(Container c);
+    public void take(Container c){
+        c.getItems().remove(this);
+        Inventory.getInstance().addItem(this);
+    }
     public abstract void use();
     public abstract void equip();
 

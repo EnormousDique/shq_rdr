@@ -9,7 +9,7 @@ import ru.muwa.shq.zones.GifSceneZone;
 import java.awt.*;
 
 public class AutoGifSceneYtility {
-    public static void checkAutoGifSceneYtilityZone (){
+    public static void checkAutoGifSceneUtilityZone(){
         for(GameZone z: Engine.getCurrentLevel().getZones()){
             if(z instanceof GifSceneZone && ((GifSceneZone)z).isGifSceneAuto() && z.contains(new Point(Player.get().getX(),Player.get().getY()))){
                 HUD.getInstance().getGifScenesWindow().setVisible(true);

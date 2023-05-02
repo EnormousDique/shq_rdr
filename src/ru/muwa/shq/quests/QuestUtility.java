@@ -4,7 +4,7 @@ import jdk.jshell.spi.SPIResolutionException;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
-import ru.muwa.shq.levels.demo.indoors.Hub;
+import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.actions.Q2T1_Action;
 import ru.muwa.shq.quests.conditions.C_HasPlayerFoundKlad;
@@ -92,7 +92,7 @@ public class QuestUtility {
             System.out.println("ИНИНЦИАЛИЗАЦИЯ КВЕСТА 1 ПРОИЗОШЛА ОШИБКА");
         }
         try{
-            ctzQ1T2 = new CompleteTaskZone(100,100,100,100, Hub.getInstance());
+            ctzQ1T2 = new CompleteTaskZone(100,100,100,100, HubHataIgoryana.getInstance());
         } catch (IOException e) {
             System.out.println("ИНИНЦИАЛИЗАЦИЯ КВЕСТА 1 ПРОИЗОШЛА ОШИБКА");
         }

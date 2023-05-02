@@ -1,6 +1,5 @@
 package ru.muwa.shq.engine.g;
 
-import ru.muwa.shq.gifScenes.GifScenesManager;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
@@ -243,9 +242,9 @@ public class Renderer implements Runnable {
         HUD.getInstance().getThirstBar().setValue((int) Player.get().getThirst());
         HUD.getInstance().getThirstBar().setString(Integer.toString(HUD.getInstance().getThirstBar().getValue()));
             //Вызов службы диалогов.
-            DialogueManager.getInstance().work();
+            DialogueManager.work();
             //вызов службы гиф роликов
-            GifScenesManager.getInstance().work();
+           // GifScenesManager.getInstance().work();
             DialogueManager.work();
             // Вызов службы торговли
             TradeUtility.work();

@@ -23,8 +23,8 @@ public class FatBuildingFloor1 extends Level
         startPosX = 0;
         startPosY = 0;
         // containers.add(new PostBox(100,100));
-        zones.add(new EnterZone(300,164,60,80, DemoLevel0.getInstance(), 1900,1200,true));
-        zones.add(new EnterZone(310,30,60,80, FatBuildingFloor1.getInstance(), 300,100,true));
+        zones.add(new EnterZone(300,164,60,80, DemoLevel0.getInstance(), 1900,1200,false));
+        zones.add(new EnterZone(310,30,60,80, FatBuildingFloor1_5.getInstance(), 300,100,true));
 
         // objects.add(new ApartmentDoor(10,0,0));
         //  objects.add(new ApartmentDoor(80,0,0));

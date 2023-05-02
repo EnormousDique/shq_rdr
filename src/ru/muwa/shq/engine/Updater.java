@@ -6,7 +6,6 @@ import ru.muwa.shq.engine.g.camera.CameraUpdateUtility;
 import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
-import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.player.controls.PlayerControls;
@@ -79,6 +78,8 @@ public class Updater implements Runnable {
         //Блок обработки игрока.
         //QuestUtility.maintainPlayerQuests();
         QuestUtility.work();
+        InventoryManager.updateQuestWindow();
+        InventoryManager.updateContainerWindow();
 
         // Проверяем были ли команды игроку через игровое управление.
         PlayerControls.controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
@@ -93,7 +94,7 @@ public class Updater implements Runnable {
         CutsceneZoneUtility.work();
         //вызов автодиалогов
         AutoDialogueZoneUtility.checkAutoDialogueZone();
-        AutoGifSceneYtility.checkAutoGifSceneYtilityZone();
+        AutoGifSceneYtility.checkAutoGifSceneUtilityZone();
         //вызов службы эфектов
         EffectUtility.work();
         //вызов слуюбы психометра
