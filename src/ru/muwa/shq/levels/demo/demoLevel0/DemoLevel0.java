@@ -16,6 +16,8 @@ import ru.muwa.shq.items.consumables.Cigarettes;
 import ru.muwa.shq.items.consumables.EnergyDrink;
 import ru.muwa.shq.items.bluntWeapons.BaseballBat;
 import ru.muwa.shq.items.consumables.Water;
+import ru.muwa.shq.items.drugs.Flour;
+import ru.muwa.shq.items.drugs.IceOlator;
 import ru.muwa.shq.items.drugs.Lyrica;
 import ru.muwa.shq.items.guns.Makarov;
 import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
@@ -64,6 +66,9 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new BaseballBat());
         Inventory.getInstance().addItem(new Makarov());
         Inventory.getInstance().addItem(new KladBlue());
+        Inventory.getInstance().addItem(new IceOlator());
+        Inventory.getInstance().addItem(new Flour());
+
 
 
         objects.add(new DemoLevel0_BG(0,0));

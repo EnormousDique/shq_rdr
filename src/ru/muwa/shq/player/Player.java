@@ -76,6 +76,7 @@ public class Player extends Creature
     }
 
     private boolean isBusy;
+    public boolean isConfused;
     private Usable currentObject;
 
     @Override
@@ -125,11 +126,15 @@ public class Player extends Creature
 
     @Override
     public void moveLeft() {
+        if(isConfused && Math.random() > 0.666){ moveRight();return;}
         if(!isBusy)super.moveLeft();
         if(direction!= Direction.LEFT) direction = Direction.LEFT;
+
     }
     @Override
     public void moveRight() {
+        if(isConfused && Math.random() > 0.666){ moveLeft();return;}
+
         if(!isBusy)super.moveRight();
         if(direction!= Direction.RIGHT) direction = Direction.RIGHT;
     }
@@ -139,11 +144,14 @@ public class Player extends Creature
     }
      @Override
     public void moveUp(){
+         if(isConfused && Math.random() > 0.666) {moveDown();return;}
          if(!isBusy)super.moveUp();
          if(direction!= Direction.UP) direction = Direction.UP;
      }
     @Override
      public void moveDown (){
+        if(isConfused && Math.random() > 0.666){ moveUp();return;}
+
         if(!isBusy)super.moveDown();
         if(direction!= Direction.DOWN) direction = Direction.DOWN;
      }

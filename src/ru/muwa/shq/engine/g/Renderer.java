@@ -10,6 +10,7 @@ import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.engine.utilities.TradeUtility;
 import ru.muwa.shq.items.ItemPanel;
+import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0_BG;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.player.Inventory;
@@ -38,6 +39,7 @@ public class Renderer implements Runnable {
     private Canvas canvas; // Холст на игровом экране
     private Thread thread; // Поток графического движка
     private Player player = Player.get(); // Ссылка на игрока
+    public boolean isDrawingBg = true;
 
     private static Renderer instance;
 
@@ -151,13 +153,11 @@ public class Renderer implements Runnable {
 
         // Закрашиваем задник черным
         g.setColor(Color.black);
-        g.fillRect(0, 0, GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT);
+        if(isDrawingBg) g.fillRect(0, 0, GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT);
         //отрисовка обьектов из списка текущих обьектов
         for (int i = 0;i<Engine.getCurrentLevel().getObjects().size();i++){
             GameObject o = Engine.getCurrentLevel().getObjects().get(i);
-            if(o.getTexture() !=null) {
-                g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
-            }
+            if(o instanceof DemoLevel0_BG && !isDrawingBg) continue;
 
             if(o instanceof FatBuilding){
                 Rectangle rectangle = new Rectangle(o.getX(),o.getY(),o.getWidth(),o.getHeight());
@@ -170,6 +170,7 @@ public class Renderer implements Runnable {
             }else{
                 g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
             }
+
 
 
 

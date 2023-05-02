@@ -1,6 +1,7 @@
 package ru.muwa.shq.items.drugs;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
@@ -43,6 +44,7 @@ public class IceOlator extends Item {
         Player.get().setHighMeter(Player.get().getHighMeter()+20);
         Player.get().setHighMeterLock(Player.get().getHighMeterLock()-50);
         Inventory.getInstance().getItems().remove(this);
+        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.STONED, System.currentTimeMillis()+10_000);
     }
     @Override
     public void equip() {

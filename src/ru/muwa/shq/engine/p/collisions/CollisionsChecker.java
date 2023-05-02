@@ -57,7 +57,7 @@ public class CollisionsChecker {
                         o.setY((int)obj.getSolidBox().getY() + (int)obj.getSolidBox().getHeight());
                         System.out.println("вниз");
                      //   continue;
-                        break;
+
                     }//Вниз
                     /*else*/
 
@@ -72,35 +72,30 @@ public class CollisionsChecker {
                         o.setY((int)obj.getSolidBox().getY() - o.getHeight());
                         System.out.println("вверх");
                      //   continue;
-                        break;
+
                     }//Вверх
                     /*else*/
                     if (o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
                         o.setX((int)obj.getSolidBox().getX() + (int)obj.getSolidBox().getWidth());
                         System.out.println("право");
                        // continue;
-                        break;
+
                     }//Вправо
                     /*else*/
                     if (o.getX() < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
                         o.setX((int)obj.getSolidBox().getX() - o.getWidth());
                         System.out.println("vlevo");
                       //  continue;
-                        break;
+
                     }//Влево
 
                     //Код для уничтожения пуль после столкновения
                    // if (obj instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(obj);
-                    if (o instanceof Bullet) {
-                        if(obj.equals(Player.get())) CombatUtility.attack(Player.get(), 10);
-                        if(obj instanceof NPC) CombatUtility.attack(((NPC)o),10);
-                        Engine.getCurrentLevel().getObjects().remove(o);
 
-                    }
 
                     if (obj instanceof Bullet) {
                         if(o.equals(Player.get())) CombatUtility.attack(Player.get(), 10);
-                        if(o instanceof NPC) CombatUtility.attack(((NPC)o),10);
+                      //  if(o instanceof NPC) CombatUtility.attack(((NPC)o),10);
                         Engine.getCurrentLevel().getObjects().remove(obj);
 
                     }

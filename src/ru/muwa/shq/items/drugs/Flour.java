@@ -42,15 +42,13 @@ public class Flour extends Item {
     @Override
     public void use() {
 
-        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.StaminaRegen, System.currentTimeMillis() + 10_000L);
-        // System.out.println(System.currentTimeMillis()+" ВРЕМЯЯ!!!!!!!!!!!!");
+        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED, System.currentTimeMillis() + 10_000L);
         Player.get().setHighMeterLock(Player.get().getHighMeterLock() + 30);
-        // Player.get().setStamina(Player.get().getStamina()+100);
         Player.get().setThirst(Player.get().getThirst() - 10);
         Player.get().setHighMeter(Player.get().getHighMeter() + 30);
         Inventory.getInstance().getItems().remove(this);
-        if(Player.get().getHp()>=90) Player.get().setHp(100);
-        else Player.get().setHp(Player.get().getHp()+10);
+       // if(Player.get().getHp()>=90) Player.get().setHp(100);
+      //  else Player.get().setHp(Player.get().getHp()+10);
     }
 
     @Override

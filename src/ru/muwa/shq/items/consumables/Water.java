@@ -1,6 +1,7 @@
 package ru.muwa.shq.items.consumables;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
@@ -46,9 +47,12 @@ public class Water extends Item {
 
         // System.out.println(System.currentTimeMillis()+" ВРЕМЯЯ!!!!!!!!!!!!");
         Player.get().setHighMeter(Player.get().getHighMeter()-5);
-        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-1);
+        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-2);
         Player.get().setThirst(Player.get().getThirst()+50);
+        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.StaminaRegen,System.currentTimeMillis()+10_000);
         Inventory.getInstance().getItems().remove(this);
+        Player.get().setHp(Player.get().getHp()+2);
+
     }
     @Override
     public void equip() {

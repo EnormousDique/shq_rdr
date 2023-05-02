@@ -1,12 +1,12 @@
 package ru.muwa.shq.engine.utilities;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.player.*;
 
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
-import static ru.muwa.shq.engine.utilities.EffectUtility.Effects.SPEED;
-import static ru.muwa.shq.engine.utilities.EffectUtility.Effects.SPEED;
-import static ru.muwa.shq.engine.utilities.EffectUtility.Effects.StaminaRegen;
+import static ru.muwa.shq.engine.utilities.EffectUtility.Effects.*;
 
 
 public class EffectUtility {
@@ -20,28 +20,58 @@ public class EffectUtility {
         currentEffects = new HashMap<>();
         currentEffects.put(SPEED, 0L);
         currentEffects.put(StaminaRegen, 0L);
+        currentEffects.put(ODYSHKA,0L);
     }
 
     public enum Effects {
         SPEED,
-        StaminaRegen
+        StaminaRegen,
+        ODYSHKA,
+        STONED;
+
     }
 
     public static void work() {
         for (Map.Entry<Effects, Long> entry : currentEffects.entrySet()) {
             switch (entry.getKey()) {
+
                 case SPEED:
                     if (entry.getValue() > System.currentTimeMillis()) {
-                        Player.get().setSpeed(19);
-                    } else Player.get().setSpeed(Player.get().getSpeed());
+                        Player.get().setStamina(Player.get().getStamina()+2);
+                    }
                     break;
-                case StaminaRegen:
-                {
-                    if(entry.getValue() > System.currentTimeMillis()){
-                        Player.get().setStamina(100);
-                    }//else Player.get().setStamina(99);
-                }
 
+                case StaminaRegen:
+                    if(entry.getValue() > System.currentTimeMillis()){
+                        Player.get().setStamina(Player.get().getStamina()+1);
+                        Player.get().setHp(Math.random()>0.99&&Player.get().getHp()<99?Player.get().getHp()+1:Player.get().getHp());
+
+                    }
+
+                case ODYSHKA:
+                    if(entry.getValue()>System.currentTimeMillis()) Player.get().setStamina(Player.get().getStamina()-1);
+                    break;
+
+
+                case STONED:
+                    if (entry.getValue()>System.currentTimeMillis())
+                    {
+                        Renderer.getInstance().isDrawingBg = false;
+                        if(Math.random()>0.98 && Player.get().getHighMeter()>1)
+                        {
+                            Player.get().setHighMeterLock(Player.get().getHighMeterLock()-1);
+                            if(Math.random()>0.66) Player.get().setHighMeter(Player.get().getHighMeter()+1);
+                        }
+
+                        Player.get().isConfused=true;
+                    }
+                    else {
+                        Player.get().isConfused=false;
+                        Renderer.getInstance().isDrawingBg = true;
+                    }
+
+
+                    break;
             }
         }
     }
