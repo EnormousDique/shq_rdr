@@ -47,6 +47,13 @@ public abstract class GameObject
     /**
      * Конструктор
      */
+    protected GameObject(int x,int y,int width,int height){
+        this.x= x;
+        this.y=y;
+        this.width=width;
+        this.height=height;
+        solidBox = new Rectangle(x,y,width,height);
+    }
     protected GameObject(int x, int y, BufferedImage texture)
     {
 

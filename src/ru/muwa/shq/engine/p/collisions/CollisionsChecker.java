@@ -57,32 +57,37 @@ public class CollisionsChecker {
         if (o != null) {
 
             for (GameObject obj : list) { //Перебираем объекты.
+                //todo если пересекает больше двух  обьектов написать другую логику.
                 if (o.getSolidBox().intersects(obj.getSolidBox())) // произошло столкновение
                 {
 
                     if (o.getSolidBox().getCenterY() > obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
-                        o.setY(obj.getY() + obj.getHeight());
+                        o.setY(obj.getY() + obj.getHeight()+1);
                         System.out.println("вниз");
-                        continue;
+                     //   continue;
+                        break;
                     }//Вниз
                     /*else*/
                     //я тупой дибил пидарас и сука крышу у людей последнее
                     if (o.getY() < obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
-                        o.setY(obj.getY() - o.getHeight());
+                        o.setY(obj.getY() - o.getHeight()-1);
                         System.out.println("вверх");
-                        continue;
+                     //   continue;
+                        break;
                     }//Вверх
                     /*else*/
                     if (o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
-                        o.setX(obj.getX() + obj.getWidth());
+                        o.setX(obj.getX() + obj.getWidth()+1);
                         System.out.println("право");
-                        continue;
+                       // continue;
+                        break;
                     }//Вправо
                     /*else*/
                     if (o.getX() < obj.getX()&& o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
-                        o.setX(obj.getX() - o.getWidth());
+                        o.setX(obj.getX() - o.getWidth()-1);
                         System.out.println("vlevo");
-                        continue;
+                      //  continue;
+                        break;
                     }//Влево
 
                     //Код для уничтожения пуль после столкновения

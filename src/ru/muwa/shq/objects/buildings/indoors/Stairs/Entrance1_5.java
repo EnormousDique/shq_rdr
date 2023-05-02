@@ -1,11 +1,9 @@
 package ru.muwa.shq.objects.buildings.indoors.Stairs;
-
 import ru.muwa.shq.objects.GameObject;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-
 public class Entrance1_5 extends GameObject {
     private static BufferedImage img;
     static{
@@ -20,13 +18,9 @@ public class Entrance1_5 extends GameObject {
      *
      * @param x
      * @param y
-
      */
     public Entrance1_5(int x, int y ) {
         super(x, y,img);
-       // System.out.println("отработал конструктор супер классса лестница ");
         this.isSolid = false;
-      //  System.out.println("отработал конструктор непосредствеННО классса лестница ");
-        System.out.println(getIsSolid());
     }
 }

@@ -1,7 +1,6 @@
 package ru.muwa.shq.levels.demo.indoors;
 
 import ru.muwa.shq.levels.Level;
-import ru.muwa.shq.levels.LevelStorage;
 import ru.muwa.shq.objects.bounds.Wall300;
 import ru.muwa.shq.objects.bounds.Wall350;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
@@ -33,7 +32,7 @@ public class FatBuildingFloor5 extends Level
         objects.add(new Wall300(-40,10));
         objects.add(new Perila(130,120));
 
-        zones.add(new EnterZone(25,20,70,70, Hub.getInstance(),40,760,false));
+        zones.add(new EnterZone(25,20,70,70, HubHataIgoryana.getInstance(),40,760,false));
 
     }
 }

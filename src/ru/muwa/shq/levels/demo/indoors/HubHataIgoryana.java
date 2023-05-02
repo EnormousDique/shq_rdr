@@ -1,29 +1,29 @@
 package ru.muwa.shq.levels.demo.indoors;
 
+import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.dialogues.demo.Conversation1;
 import ru.muwa.shq.levels.Level;
-import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.objects.bounds.*;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
 import ru.muwa.shq.objects.containers.HubChest;
 import ru.muwa.shq.zones.DialogueZone;
 import ru.muwa.shq.zones.EnterZone;
-import ru.muwa.shq.zones.InDoorsSpawnZone;
+import ru.muwa.shq.zones.GifSceneZone;
 
 
 import java.io.IOException;
 
 
-public class Hub extends Level
+public class HubHataIgoryana extends Level
 {
 
 
-    private static Hub instance;
-    public static Hub getInstance() throws IOException {
-        if(instance == null) return new Hub(); else return instance;
+    private static HubHataIgoryana instance;
+    public static HubHataIgoryana getInstance() throws IOException {
+        if(instance == null) return new HubHataIgoryana(); else return instance;
 
     }
-    private Hub() throws IOException {
+    private HubHataIgoryana() throws IOException {
         this.isInDoors = true;
         instance = this;
         startPosX = 0;
@@ -36,6 +36,7 @@ public class Hub extends Level
         zones.add(new EnterZone(30, 740,100,100,FatBuildingFloor5.getInstance(), 30,30,false));
         // диалог с мамой
         zones.add(new DialogueZone(Conversation1.getInstance(),100,100,100,100,false));
+        zones.add(new GifSceneZone(200,200,70,70,true));
         // стены хаюа
         objects.add(new Wall350(351,-50));
         objects.add(new Wall350(701,-50));
@@ -51,6 +52,7 @@ public class Hub extends Level
         objects.add(new Wall350(-48,800));//нижнаяя
         objects.add(new Wall350(308,800));//нижнаяя
         objects.add(new Wall350(608,800));//нижнаяя
+
 
         // невидимые стены дома
         objects.add(new InvisibleWall620x10( 182,450));

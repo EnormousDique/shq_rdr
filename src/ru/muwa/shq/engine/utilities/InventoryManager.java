@@ -9,6 +9,7 @@ import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.containers.Container;
+import ru.muwa.shq.objects.containers.ContainerPanel;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
@@ -75,9 +76,7 @@ public class InventoryManager
         }
     }
 
-    public static void drawContainerItems(Graphics g, Container c) {
 
-    }
     public static void update()
     {
 
@@ -101,6 +100,7 @@ public class InventoryManager
         updateItemWindow();
         updateEquipWindow();
         updateStatusWindow();
+        updateContainerWindow();
 
         //TODO: Нужно перенести логику так, чтобы она вызывалась из PlayerControls.
         //TODO: Хули до сих пор не сделано)))))
@@ -133,15 +133,11 @@ public class InventoryManager
             ArrayList<ItemPanel> itemTiles = new ArrayList<>(); // Список панелек для вещей
             int yOffset = 50; // Смещение по оси у (для переноса строки каждые 4 панельки)
             int skip = 0;
-
-
             //Цикл
             //  Проходимся по вещам из инвентаря, и добавляем панель под каждую на окно ItemWindow
-            for(int i = 0; i<Inventory.getInstance().getItems().size(); i++)
-            {
+            for(int i = 0; i<Inventory.getInstance().getItems().size(); i++) {
                 if(Inventory.getInstance().getItems().get(i).isEquipped()) skip++;
                 if(!Inventory.getInstance().getItems().get(i).isEquipped()) {
-
                     if (Inventory.getInstance().getItems().get(i) != null) {
                         itemTiles.add(new ItemPanel(Inventory.getInstance().getItems().get(i)));
                         itemTiles.get(i-skip).addMouseListener(MouseButtonListener.getInstance());
@@ -150,22 +146,55 @@ public class InventoryManager
                         itemTiles.get(i-skip).setIcon(new ImageIcon(Inventory.getInstance().getItems().get(i).getTexture()));
                 }
             }
-
             Arrays.stream(window.getComponents()).forEach(window::remove);
-
             //Добавляем заголовок
             JLabel titleLabel = new JLabel("BEW,N");
             window.add(titleLabel);
             titleLabel.setBounds(10,10,100,20);
-
-            for(int i = 0; i<itemTiles.size(); i++)
-            {
+            for(int i = 0; i<itemTiles.size(); i++) {
                 if(i != 0 && i % 4 == 0){ yOffset += 50; }//Перенос строки после 4-х панелек
                 window.add(itemTiles.get(i));
-                itemTiles.get(i).setBounds(i%4*50,yOffset,40,40);
-
+                itemTiles.get(i).setBounds(i%4*50,yOffset,50,50);
             }
         }
+    public static void updateContainerWindow() {
+        JPanel containerWindow = HUD.getInstance().getContainerWindow();
+
+        ArrayList<ContainerPanel> containerTiles = new ArrayList<>(); // Список панелек для вещей
+        int yOffset = 50; // Смещение по оси у (для переноса строки каждые 4 панельки)
+
+        for (Container c : Engine.getCurrentLevel().getContainers()) {
+            if (c.isInUse()/* && c.getItems().size() >=  1*/) {
+                //отрисовка инвентаря контейнера
+                HUD.getInstance().getContainerWindow().setVisible(true);
+                // g.drawImage(c.getUI(), c.getX() - camX, c.getY() - camY, null);
+                // отрисовка предмета в контейнере.
+                for (int i = 0; i < c.getItems().size(); i++) {
+                    if (!c.getItems().get(i).isEquipped()) {
+                        if (c.getItems().get(i) != null) {
+                            containerTiles.add(new ContainerPanel(c.getItems().get(i)));
+                            containerTiles.get(i).addMouseListener(MouseButtonListener.getInstance());
+                        }
+                        if (c.getItems().get(i).getTexture() != null)
+                            containerTiles.get(i).setIcon(new ImageIcon(c.getItems().get(i).getTexture()));
+                    }
+                    // g.drawImage(c.getItems().get(i).getTexture(), c.getIcons().get(i).x - camX, c.getIcons().get(i).y - camY , null);
+                }
+            }
+        }
+
+        Arrays.stream(containerWindow.getComponents()).forEach(containerWindow::remove);
+        JLabel shmonlabel = new JLabel("ШМОН");
+        containerWindow.add(shmonlabel);
+        shmonlabel.setBounds(10,10,100,20);
+        for(int i = 0; i<containerTiles.size(); i++) {
+            if(i != 0 && i % 4 == 0){ yOffset += 50; }//Перенос строки после 4-х панелек
+            containerWindow.add(containerTiles.get(i));
+            containerTiles.get(i).setBounds(i%4*50,yOffset,50,50);
+        }
+
+
+    }
         private static void updateEquipWindow()
         {
             Arrays.stream(HUD.getInstance().getEquipWindow().getComponents()).forEach(HUD.getInstance().getEquipWindow()::remove);
@@ -196,5 +225,6 @@ public class InventoryManager
             }
             HUD.getInstance().getEquipWindow().updateUI();
         }
+
 }
 

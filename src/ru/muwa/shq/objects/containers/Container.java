@@ -38,20 +38,18 @@ public abstract class Container extends GameObject implements Usable
 
     }
     public void addItem (Item i) {
-        icons.add(new Rectangle(this.x + (50 * (items.size()-1)),this.y,50,50));
+
         items.add(i);
-
-
     }
     public ArrayList<Rectangle> getIcons(){
         return icons;
     }
     public void grabItem(int a){
-        Inventory.getInstance().addItem(this.getItems().get(a));
+
         removeItem(a);
     }
     public void removeItem(int a){
-         icons.remove(a);
+        // icons.remove(a);
          items.remove(a);
 
     }

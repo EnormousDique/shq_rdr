@@ -1,5 +1,6 @@
 package ru.muwa.shq.items.guns.ammo;
 
+import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.guns.Makarov;
 import ru.muwa.shq.items.guns.Weapon;
@@ -66,5 +67,10 @@ public class MakarovAmmo extends Ammo{
     @Override
     public void equip() {
 
+    }
+    @Override
+    public void take(Container c){
+        c.getItems().remove(this);
+        Inventory.getInstance().addItem(this);
     }
 }

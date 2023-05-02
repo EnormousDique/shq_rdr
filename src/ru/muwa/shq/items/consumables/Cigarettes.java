@@ -1,5 +1,6 @@
 package ru.muwa.shq.items.consumables;
 
+import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
@@ -33,6 +34,12 @@ public class Cigarettes extends Item {
     public void give(Container c) {
         Inventory.getInstance().getItems().remove(this);
         c.addItem(this);
+    }
+    @Override
+    public void take(Container c){
+        c.getItems().remove(this);
+        Inventory.getInstance().addItem(this);
+
     }
     @Override
     public void use() {

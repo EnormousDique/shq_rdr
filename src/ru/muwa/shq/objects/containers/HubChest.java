@@ -1,5 +1,6 @@
 package ru.muwa.shq.objects.containers;
 
+import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.objects.Usable;
 import ru.muwa.shq.player.Inventory;
@@ -14,8 +15,6 @@ import java.util.ArrayList;
 public class HubChest extends Container implements Usable
 {
     private static BufferedImage img;
-    public static final int GB_CH_Y_OFFSET = 210,GB_CH_X_OFFSET = 70 ;
-
     static
     {
         try
@@ -34,10 +33,6 @@ public class HubChest extends Container implements Usable
         this.isSolid = true;
         items = new ArrayList<>();
 
-
-
-
-        UI = Inventory.getInstance().getImg();
     }
 
     @Override

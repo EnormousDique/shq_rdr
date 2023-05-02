@@ -42,7 +42,8 @@ public class Engine
         System.out.println("Game started");
         Launcher.hideFrame();
         Renderer.showLoading();
-        currentLevel = LevelStorage.demoLevel0;
+        //currentLevel = LevelStorage.demoLevel0;
+        currentLevel = LevelStorage.WhiteBlueTallBuildingFloor1;
         Renderer.getInstance();
         Updater.getInstance();
 
