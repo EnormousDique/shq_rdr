@@ -11,6 +11,7 @@ import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.quests.Quest;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -23,6 +24,7 @@ import java.util.Arrays;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 public class InventoryManager
@@ -201,24 +203,22 @@ public class InventoryManager
         {
             Arrays.stream(HUD.getInstance().getQuestWindow().getComponents()).forEach(HUD.getInstance().getQuestWindow()::remove);
             String s;
+            ArrayList<Quest> activeQuests = new ArrayList<>(Player.get().quests.stream().filter(q-> !q.tasks.get(q.tasks.size()-1).isCompleted).collect(Collectors.toList()));
 
-            for(int i =0 ; i< Player.get().quests.size(); i++)
+            for(int i =0 ; i< activeQuests.size(); i++)
             {
 
-                //Выполненные квесты не отрисовываем.
-                if(Player.get().quests.get(i).tasks.get(Player.get().quests.get(i).tasks.size()-1).isCompleted) continue;
-
-                s = "Квест " + (i+1);
+                s = "Квест " + (Player.get().quests.indexOf(activeQuests.get(i))+1);
                 JLabel label = new JLabel(s);
                 HUD.getInstance().getQuestWindow().add(label);
-                label.setBounds(0,0,200,30);
+                label.setBounds(0,i*50,200,30);
 
-                for(int j = 0 ; j < Player.get().quests.get(i).tasks.size(); j++)
+                for(int j = 0 ; j < activeQuests.get(i).tasks.size(); j++)
                 {
-                    s = Player.get().quests.get(i).tasks.get(j).name + " : " + (Player.get().quests.get(i).tasks.get(j).isCompleted?"v":"x");
+                    s = activeQuests.get(i).tasks.get(j).name + " : " + (activeQuests.get(i).tasks.get(j).isCompleted?"v":"x");
                     label = new JLabel(s);
                     HUD.getInstance().getQuestWindow().add(label);
-                    label.setBounds(0,(j+1)*12,200,30);
+                    label.setBounds(0,(i*50)+(j+1)*12,200,30);
                 }
             }
             HUD.getInstance().getQuestWindow().updateUI();

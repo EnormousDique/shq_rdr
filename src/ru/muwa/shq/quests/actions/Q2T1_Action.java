@@ -6,6 +6,7 @@ import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
 import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor3_5;
+import ru.muwa.shq.quests.QuestUtility;
 
 import java.io.IOException;
 
@@ -23,6 +24,7 @@ public class Q2T1_Action extends QuestAction{
         } catch (IOException e) {
             System.out.println("Не удалось получить уровень 3_5 этаж дома 1.");
         }
+        QuestUtility.startQuest3();
     }
 
 }

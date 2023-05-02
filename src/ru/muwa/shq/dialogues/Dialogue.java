@@ -18,6 +18,11 @@ public abstract class Dialogue {
         this.currentMessage = currentMessage;
     }
 
+    public void init()
+    {
+
+    }
+
     public void restore() {
         currentMessage = new Message(initialMessage.text,initialMessage.responds);
         System.out.println("MESSAGE RESTORED");

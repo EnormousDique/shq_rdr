@@ -1,7 +1,9 @@
 package ru.muwa.shq.levels.demo.demoLevel0;
+import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.dialogues.demo.Conversation0;
 import ru.muwa.shq.dialogues.demo.Q2T1_Conversation;
+import ru.muwa.shq.dialogues.demo.Q3_PoliceConversation;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
 import ru.muwa.shq.engine.animations.cutscenes.Q3_PoliceCutscene;
@@ -74,6 +76,7 @@ public class DemoLevel0 extends Level
                     if(i instanceof KladBlue)
                     {
                         Animator.playCutscene(Q3_PoliceCutscene.getInstance());
+                        DialogueManager.playDialogueOnDemand(Q3_PoliceConversation.getInstance());
                        // DialogueManager.playDialogueOnDemand(Q2T1_Conversation.getInstance());
 
                     }
@@ -84,8 +87,6 @@ public class DemoLevel0 extends Level
 
         zones.add(new EnterZone(520,1800,70,70,Hub.getInstance(),290,705,false));
         zones.add(new DialogueZone(Conversation0.getInstance(),400,400,100,100,false));
-
-
 
 
         QuestUtility.startQuest1();
