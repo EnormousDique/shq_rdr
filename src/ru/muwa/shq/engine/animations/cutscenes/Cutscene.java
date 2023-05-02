@@ -66,11 +66,11 @@ public abstract class Cutscene
                 lastTime = currTime;
                 if(delta >= 1) {
                     if (xDistance > yDistance) {
-                        if (c.getSolidBox().getCenterX() > m.distX) c.moveLeft();
+                        if (c.getSolidBox().getCenterX() >= m.distX) c.moveLeft();
                         else c.moveRight();
 
                     } else {
-                        if (c.getSolidBox().getCenterY() > m.distY) c.moveUp();
+                        if (c.getSolidBox().getCenterY() >= m.distY) c.moveUp();
                         else c.moveDown();
                     }
                     Camera.getInstance().setX(c.getX()- (SCREEN_WIDTH/2));

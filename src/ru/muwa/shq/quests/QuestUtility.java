@@ -8,6 +8,7 @@ import ru.muwa.shq.levels.demo.indoors.Hub;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.actions.Q2T1_Action;
 import ru.muwa.shq.quests.conditions.C_HasPlayerFoundKlad;
+import ru.muwa.shq.quests.conditions.TaskCondition;
 import ru.muwa.shq.zones.CompleteTaskZone;
 import ru.muwa.shq.zones.InteractiveEnterZone;
 
@@ -120,8 +121,16 @@ public class QuestUtility {
         }
 
         quest2.addTask("Дойти до рынка", ctzQ2T1, new Q2T1_Action());
+        quest2.addTask("Закупиться продуктами", new TaskCondition() {
+            @Override
+            public boolean checkCondition() {
+                //TODO: добавить код проверки купленных продуктов
+                return false;
+            }
+        });
 
         Player.get().quests.add(quest2);
+
     }
     // КОНЕЦ КВЕСТА 2
     //***************************************************************************************************************
@@ -137,6 +146,13 @@ public class QuestUtility {
     public static void startQuest3(){
 
         quest3.addTask("Найти стаффчик", new C_HasPlayerFoundKlad());
+        quest3.addTask("Вернуться к хачику", new TaskCondition() {
+            @Override
+            public boolean checkCondition() {
+                //todo добавить код проверки вернулся ли игрок со стаффом к хачику
+                return false;
+            }
+        });
 
         Player.get().quests.add(quest3);
     }

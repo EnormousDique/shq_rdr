@@ -48,6 +48,7 @@ public class Hachique extends NPC {
         }
 
     }
+
     public Hachique(int x, int y, String name) {
         super(x, y, img);
         this.name = name;
@@ -64,6 +65,8 @@ public class Hachique extends NPC {
         }
 
     }
+
+
     @Override
     public ArrayList<Item> getRandomLoot() {
         return new ArrayList<>();

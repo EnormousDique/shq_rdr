@@ -1,11 +1,13 @@
 package ru.muwa.shq.levels.demo.indoors;
 
+import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.objects.bounds.Wall300;
 import ru.muwa.shq.objects.bounds.Wall350;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.Entrance1_5;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.Perila;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.Stairs;
+import ru.muwa.shq.objects.containers.PostBox;
 import ru.muwa.shq.zones.EnterZone;
 
 import java.io.IOException;
@@ -24,7 +26,8 @@ public class FatBuildingFloor3_5 extends Level {
         instance = this;
         startPosX = 0;
         startPosY = 0;
-        // containers.add(new PostBox(100,100));
+        containers.add(new PostBox(100,100));
+
         zones.add(new EnterZone(15,35,60,80, FatBuildingFloor3.getInstance(), 100, 50, true));
         zones.add(new EnterZone(13,162,60,80, FatBuildingFloor4.getInstance(), 100, 250, true));
 

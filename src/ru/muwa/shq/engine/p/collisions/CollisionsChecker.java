@@ -85,10 +85,19 @@ public class CollisionsChecker {
                     }//Влево
 
                     //Код для уничтожения пуль после столкновения
-                    if (obj instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(obj);
-                    if (o instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(o);
-                    if (obj instanceof Bullet && o.equals(Player.get())) {
-                        CombatUtility.attack(Player.get(), 10);
+                   // if (obj instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(obj);
+                    if (o instanceof Bullet) {
+                        if(obj.equals(Player.get())) CombatUtility.attack(Player.get(), 10);
+                        if(obj instanceof NPC) CombatUtility.attack(((NPC)o),10);
+                        Engine.getCurrentLevel().getObjects().remove(o);
+
+                    }
+
+                    if (obj instanceof Bullet) {
+                        if(o.equals(Player.get())) CombatUtility.attack(Player.get(), 10);
+                        if(o instanceof NPC) CombatUtility.attack(((NPC)o),10);
+                        Engine.getCurrentLevel().getObjects().remove(obj);
+
                     }
                 }
             }

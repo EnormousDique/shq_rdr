@@ -116,6 +116,8 @@ public class Updater implements Runnable {
         InventoryManager.update();
         // Обновление зоны доступного использования
         UseZoneUpdater.update();
+        //Обновление зон заскриптованныз действий
+        ActionZoneUtility.work();
         // Через службу проверки игровых зон смотрим взаимодействие игрока с той или иной зоной
         GameZoneUtility.work();
         //Блок обработки обычных объектов из списка текущих.
@@ -131,8 +133,8 @@ public class Updater implements Runnable {
             // Обновляем бокс.
             SolidBoxUpdater.updateSolidBox(c);
             // Проверяем столкновения.
-            CollisionsChecker.getInstance().checkCollisions(c, Engine.getCurrentLevel().getObjects());
-            CollisionsChecker.getInstance().checkCollisions(c,  Engine.getCurrentLevel().getNPC().stream().map(npc -> (GameObject) npc ).collect(Collectors.toList()) );
+            CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
+            CollisionsChecker.getInstance().checkCollisionsNPC(c,  new LinkedList<>( Engine.getCurrentLevel().getNPC().stream().map(npc -> (GameObject) npc ).collect(Collectors.toList())) );
 
             // CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
             //CollisionsChecker.getInstance().checkCollisionsNPC(c, new LinkedList<>( Engine.getCurrentLevel().getNPC().stream().map(npc->(GameObject)npc).collect(Collectors.toList())));

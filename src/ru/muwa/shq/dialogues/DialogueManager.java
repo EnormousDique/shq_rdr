@@ -13,16 +13,14 @@ import java.util.Arrays;
 public class DialogueManager {
     private static DialogueManager instance;
     private static boolean playingDialogueOnDemand;
+    public static boolean isPlayingDialogueOnDemand(){return playingDialogueOnDemand;}
     private static Dialogue currentDialogue;
-    public static DialogueManager getInstance()
-    {
-        if(instance == null) return new DialogueManager();
-        else return instance;
-    }
+    public static Dialogue getCurrentDialogue(){return currentDialogue;}
+
     private DialogueManager(){
     instance = this;
     }
-    public void work()
+    public static void work()
     {
         for(GameZone z : Engine.getCurrentLevel().getZones())
         {
@@ -119,8 +117,9 @@ public class DialogueManager {
     }
     public static void playDialogueOnDemand(Dialogue d)
     {
-        playingDialogueOnDemand = true;
-        currentDialogue = d;
-
+        if(currentDialogue != d ) {
+            playingDialogueOnDemand = true;
+            currentDialogue = d;
+        }
     }
 }

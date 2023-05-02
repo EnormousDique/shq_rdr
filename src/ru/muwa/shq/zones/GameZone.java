@@ -8,7 +8,6 @@ import java.awt.*;
 public abstract class GameZone extends Rectangle
 {
 
-
     protected GameZone(int x, int y, int width, int height)
     {
         this.x = x;
@@ -17,6 +16,5 @@ public abstract class GameZone extends Rectangle
         this.height = height;
 
     }
-
 
 }

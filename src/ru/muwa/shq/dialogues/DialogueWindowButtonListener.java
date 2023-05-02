@@ -24,6 +24,7 @@ public class DialogueWindowButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         for (GameZone z : Engine.getCurrentLevel().getZones())
         {
+            //Код для обработки диалога, открытого через зону диалогов
             if(z instanceof DialogueZone  && ((DialogueZone)z).isActive())
             {
 
@@ -38,6 +39,20 @@ public class DialogueWindowButtonListener implements ActionListener {
 
                 else ((DialogueZone)z).getDialog().setCurrentMessage(((respond.msg)));
             }
+        }
+        //Блок обработки диалогов, запущенных по запросу
+        if(DialogueManager.isPlayingDialogueOnDemand() && DialogueManager.getCurrentDialogue() != null)
+        {
+            Dialogue dialogue = DialogueManager.getCurrentDialogue();
+            Dialogue.Respond respond =null;
+            for(Dialogue.Respond r : dialogue.getCurrentMessage().responds) {
+
+                if (r.text.equals(((JButton) e.getSource()).getText()))
+                    respond = r;
+            }
+            if(respond.msg==null){ HUD.getInstance().getDialogueWindow().setVisible(false);  Engine.pause = false; dialogue.restore();DialogueManager.dropDialogue();}
+
+            else dialogue.setCurrentMessage(((respond.msg)));
         }
     }
 }

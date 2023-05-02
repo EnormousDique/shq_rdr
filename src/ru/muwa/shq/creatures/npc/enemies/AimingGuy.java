@@ -53,6 +53,22 @@ public class AimingGuy extends NPC {
         }
         nearZone.setBounds(this.x - 150, this.y -150,300,300);
     }
+    public AimingGuy(int x, int y, String name) {
+        super(x, y, img);
+        this.name = name;
+        setRayCaster(new RayCaster(x,y,600));
+        this.speed = 4;
+        try
+        {
+            corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\BadGuyCorpse.png"));
+            System.out.println("BadGuyCorpse texture loaded");
+        }
+        catch (IOException e)
+        {
+            System.out.println("failed to load BadGuyCoprse texture");
+        }
+
+    }
 
     public Rectangle getNearZone() {
         return nearZone;

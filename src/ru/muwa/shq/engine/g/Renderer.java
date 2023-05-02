@@ -153,7 +153,7 @@ public class Renderer implements Runnable {
 
             if(o instanceof FatBuilding){
                 Rectangle rectangle = new Rectangle(o.getX(),o.getY(),o.getWidth(),o.getHeight());
-                if(Player.get().getSolidBox().intersects(rectangle))
+                if(/*Player.get().getSolidBox().intersects(rectangle) */ Player.get().getY() < o.getSolidBox().getY())
                 {
                     g.drawImage(o.getTransTexture(), o.getX() - camX, o.getY() - camY, null);
                 }
@@ -238,7 +238,7 @@ public class Renderer implements Runnable {
         HUD.getInstance().getThirstBar().setValue((int) Player.get().getThirst());
         HUD.getInstance().getThirstBar().setString(Integer.toString(HUD.getInstance().getThirstBar().getValue()));
             //Вызов службы диалогов.
-            DialogueManager.getInstance().work();
+            DialogueManager.work();
 
         // ОТРИСОВКА ПЕрСОНАЖА
         AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
