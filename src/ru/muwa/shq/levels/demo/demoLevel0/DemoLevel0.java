@@ -20,6 +20,7 @@ import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.items.drugs.IceOlator;
 import ru.muwa.shq.items.drugs.Lyrica;
 import ru.muwa.shq.items.guns.Makarov;
+import ru.muwa.shq.items.guns.Obrez;
 import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
 import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.Level;
@@ -68,6 +69,7 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new KladBlue());
         Inventory.getInstance().addItem(new IceOlator());
         Inventory.getInstance().addItem(new Flour());
+        Inventory.getInstance().addItem(new Obrez());
 
 
 

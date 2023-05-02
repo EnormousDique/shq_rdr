@@ -1,6 +1,7 @@
 package ru.muwa.shq.items;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
@@ -97,7 +98,20 @@ public abstract class Item
         c.getItems().remove(this);
         Inventory.getInstance().addItem(this);
     }
-    public abstract void use();
+    public  void use(){
+        boolean isSomeItemAlreadyEquipped = false;
+        System.out.println("is smth already equiped = " + isSomeItemAlreadyEquipped);
+
+        for(int i = 0; i < Inventory.getInstance().getItems().size();i++){
+            if(Inventory.getInstance().getItems().get(i).isEquipped())
+                isSomeItemAlreadyEquipped = true;
+        }
+        if(!isSomeItemAlreadyEquipped)
+        {
+            setEquipped( true);
+            Player.get().currentWeapon = (Weapon) this;
+        }
+    }
     public abstract void equip();
 
     public boolean isEquipped() {

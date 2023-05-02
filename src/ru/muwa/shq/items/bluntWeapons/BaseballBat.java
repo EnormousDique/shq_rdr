@@ -36,7 +36,7 @@ public class BaseballBat extends Weapon {
             System.out.println("BaseballBat texture load NOT ok");
         }
     }
-    @Override
+  /*  @Override
     public void use() {
         boolean isSomeItemAlreadyEquipped = false;
         for(int i = 0; i < Inventory.getInstance().getItems().size(); i++){
@@ -48,7 +48,7 @@ public class BaseballBat extends Weapon {
             setEquipped( true);
             Player.get().currentWeapon = this;
         }
-    }
+    }*/
 
     @Override
     public void give(Container c) {
