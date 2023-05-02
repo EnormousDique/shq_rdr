@@ -93,6 +93,7 @@ public class Updater implements Runnable {
         CutsceneZoneUtility.work();
         //вызов автодиалогов
         AutoDialogueZoneUtility.checkAutoDialogueZone();
+        AutoGifSceneYtility.checkAutoGifSceneYtilityZone();
         //вызов службы эфектов
         EffectUtility.work();
         //вызов слуюбы психометра

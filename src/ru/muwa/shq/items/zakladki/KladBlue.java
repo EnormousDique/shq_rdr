@@ -1,5 +1,6 @@
 package ru.muwa.shq.items.zakladki;
 
+import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.items.drugs.Hash;
@@ -38,6 +39,14 @@ public class KladBlue extends Item {
         Inventory.getInstance().getItems().remove(this);
         c.addItem(this);
     }
+
+    @Override
+    public void take(Container c) {
+        c.getItems().remove(this);
+        Inventory.getInstance().addItem(this);
+
+    }
+
     @Override
     public void use() {
 

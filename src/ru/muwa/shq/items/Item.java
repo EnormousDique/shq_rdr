@@ -57,7 +57,7 @@ public abstract class Item
     public void setMyContainer(Container c){myContainer = c;}
     public Container getMyContainer(){return myContainer;}
 
-    public void pick()
+    public void pick() // положить предмет с контейнера
     {
 
         boolean isClickedOnEquipped = this.isEquipped;
@@ -75,9 +75,24 @@ public abstract class Item
                 }
             if (isInContainer) give(container);
             else use();
+
         }
     }
+    public void get() { // взять предмет с контейнера
+        boolean isInContainer = false;
+        Container container = null;
+        for (Container c : Engine.getCurrentLevel().getContainers())
+            if (c.isInUse()) {
+                isInContainer = true;
+                container = c;
+            }
+        if (isInContainer) take(container);
+
+
+    }
     public abstract void give(Container c);
+
+    public abstract void take(Container c);
     public abstract void use();
     public abstract void equip();
 

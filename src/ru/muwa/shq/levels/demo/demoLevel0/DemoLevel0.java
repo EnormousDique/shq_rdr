@@ -8,17 +8,22 @@ import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
 import ru.muwa.shq.engine.animations.cutscenes.Q3_PoliceCutscene;
+
+import ru.muwa.shq.engine.animations.cutscenes.Cutscene0;
 import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.items.BluntWeapons.BaseballBat;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.consumables.Cigarettes;
 import ru.muwa.shq.items.consumables.EnergyDrink;
+import ru.muwa.shq.items.bluntWeapons.BaseballBat;
 import ru.muwa.shq.items.consumables.Water;
 import ru.muwa.shq.items.drugs.Lyrica;
 import ru.muwa.shq.items.guns.Makarov;
 import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
 import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.Level;
+import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1;
+import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.Hub;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
@@ -26,6 +31,7 @@ import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
 import ru.muwa.shq.objects.containers.TrashCan;
 import ru.muwa.shq.objects.obstacles.crates.Crate0;
+import ru.muwa.shq.objects.street.Car;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.QuestUtility;
@@ -63,7 +69,7 @@ public class DemoLevel0 extends Level
 
 
         objects.add(new DemoLevel0_BG(0,0));
-
+        objects.add(new Car(1350,1060));
         objects.add(new Crate0(100,100));
         objects.add(new FatBuilding(1690,280));
         objects.add(new FatBuilding(3630,680));
@@ -103,9 +109,11 @@ public class DemoLevel0 extends Level
             }
         }));
 
+            zones.add(new EnterZone(1800 ,3256, 100,70,WhiteBlueTallBuildingFloor1.getInstance(),522,809,false));
 
         QuestUtility.startQuest1();
         Spawner.updateTimers();
+
 
     }
 }

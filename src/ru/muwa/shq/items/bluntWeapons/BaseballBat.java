@@ -1,4 +1,4 @@
-package ru.muwa.shq.items.BluntWeapons;
+package ru.muwa.shq.items.bluntWeapons;
 
 import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.containers.Container;
@@ -54,7 +54,12 @@ public class BaseballBat extends Weapon {
     public void give(Container c) {
         Inventory.getInstance().getItems().remove(this);
         c.addItem(this);
+    }
 
+    @Override
+    public void take(Container c) {
+        c.getItems().remove(this);
+        Inventory.getInstance().addItem(this);
 
     }
 

@@ -2,10 +2,8 @@ package ru.muwa.shq.engine.combat;
 
 import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.creatures.npc.NPC;
-import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.engine.Engine;
-import ru.muwa.shq.engine.spawner.Spawner;
-import ru.muwa.shq.items.BluntWeapons.BaseballBat;
+import ru.muwa.shq.items.bluntWeapons.BaseballBat;
 import ru.muwa.shq.items.guns.Firearm;
 import ru.muwa.shq.items.guns.Makarov;
 import ru.muwa.shq.items.guns.Weapon;

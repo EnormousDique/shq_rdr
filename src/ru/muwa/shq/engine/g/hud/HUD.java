@@ -32,22 +32,24 @@ public class HUD {
 
     JPanel questWindow = new JPanel();
     JPanel dialogueWindow = new JPanel();  //создание даилогового окна
-    JPanel itemWindow = new JPanel();// панель айтемов
+    JPanel itemWindow = new JPanel();// инвентарть айтемов
     JPanel statusWindow = new JPanel();// окна информации
     JPanel equipWindow = new JPanel();
     JPanel  deathWindow = new JPanel();
 
 
+    JPanel containerWindow = new JPanel();// окно контейнеров
     JProgressBar drugEffectBar = new JProgressBar(0,100);
 
-    public JPanel getQuestWindow() {
-        return questWindow;
+    public JPanel getGifScenesWindow() {
+        return GifScenesWindow;
     }
 
-    public JPanel getDeathWindow() {
-        return deathWindow;
+    public void setGifScenesWindow(JPanel gifScenesWindow) {
+        GifScenesWindow = gifScenesWindow;
     }
 
+    JPanel GifScenesWindow = new JPanel();
     private HUD (){
         instance = this;
         StaminaBar.setValue((int) Player.get().getStamina());
@@ -61,13 +63,17 @@ public class HUD {
         itemWindow.setLayout(null);
         equipWindow.setLayout(null);
         questWindow.setLayout(null);
+        containerWindow.setLayout(null);
         mainWindow.setBounds(920,500,50,100);
         deathWindow.setBounds(0,0, SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
         deathWindow.setVisible(false);
         statusWindow.setBounds(1432,1,140,150);
         itemWindow.setBounds(500,700,200,500);
+        containerWindow.setBounds(500,700,200,500);
         dialogueWindow.setBounds(610,765,700,700);
         equipWindow.setBounds(1430,161,90,140);
+        containerWindow.setBounds(210,GameScreen.SCREEN_HEIGHT-400,200,300);
+        GifScenesWindow.setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
         questWindow.setBounds(500,500,100,100);
      //   this.add(HUD.getInstance().getHealthBar());
      //   this.add(HUD.getInstance().getActionWindow());
@@ -79,36 +85,29 @@ public class HUD {
         drugEffectBar.setForeground(Color.magenta);
         ThirstBar.setForeground(Color.BLUE);
         StaminaBar.setForeground(Color.green);
-
-
-
     }
-
     public  JPanel getDialogueWindow(){return dialogueWindow;}  // геттер для диалогового окна
     public JPanel getItemWindow() {
         return itemWindow;
     }
-
     public JProgressBar getStaminaBar() {
         return StaminaBar;
     }
-
     public JPanel getEquipWindow() {
         return equipWindow;
     }
     public JPanel getMainWindow() {
         return mainWindow;
     }
-
     public JPanel getActionWindow() {
         return actionWindow;
     }
-
     public JPanel getStatusWindow() {
         return statusWindow;
     }
     public JProgressBar getDrugEffectBar() {return drugEffectBar;}
     public JProgressBar getThirstBar() {return ThirstBar;}
     public void setThirstBar(JProgressBar thirstBar) {ThirstBar = thirstBar;}
-
+    public JPanel getContainerWindow() {return containerWindow;}
+    public void setContainerWindow(JPanel containerWindow) {this.containerWindow = containerWindow;}
 }

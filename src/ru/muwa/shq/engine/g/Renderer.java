@@ -1,5 +1,6 @@
 package ru.muwa.shq.engine.g;
 
+import ru.muwa.shq.gifScenes.GifScenesManager;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
@@ -63,6 +64,8 @@ public class Renderer implements Runnable {
         frame.add(HUD.getInstance().getEquipWindow());                        // вызываем окно экипируемых предметов
         frame.add(HUD.getInstance().getQuestWindow());
         frame.add(HUD.getInstance().getDeathWindow());
+        frame.add(HUD.getInstance().getContainerWindow()).setVisible(false);
+        frame.add(HUD.getInstance().getGifScenesWindow()).setVisible(false);
 
         //блокк  кода в кторомом худу перезщапизываем коорды
 
@@ -77,6 +80,8 @@ public class Renderer implements Runnable {
         HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,100,20);
         HUD.getInstance().getStaminaBar().setBounds(GameScreen.SCREEN_WIDTH-500, +20,100,20);
         HUD.getInstance().getThirstBar().setBounds(GameScreen.SCREEN_WIDTH-500, +40,100,20);
+        HUD.getInstance().getContainerWindow().setBounds(210,GameScreen.SCREEN_HEIGHT-400,200,300);
+        HUD.getInstance().getGifScenesWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 
 
 
@@ -151,6 +156,9 @@ public class Renderer implements Runnable {
         //отрисовка обьектов из списка текущих обьектов
         for (int i = 0;i<Engine.getCurrentLevel().getObjects().size();i++){
             GameObject o = Engine.getCurrentLevel().getObjects().get(i);
+            if(o.getTexture() !=null) {
+                g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
+            }
 
             if(o instanceof FatBuilding){
                 Rectangle rectangle = new Rectangle(o.getX(),o.getY(),o.getWidth(),o.getHeight());
@@ -173,14 +181,8 @@ public class Renderer implements Runnable {
             g.drawImage(con.getTexture(), con.getX() - camX, con.getY() - camY, null);
         }
         // Также отрисовываем интерфейс тех контейнеров, которые сейчас используются.
-        for (ru.muwa.shq.objects.containers.Container c : Engine.getCurrentLevel().getContainers())
-            if (c.isInUse()/* && c.getItems().size() >=  1*/) {
-                g.drawImage(c.getUI(), c.getX() - camX, c.getY() - camY, null);
-                // отрисовка предмета в контейнере.
-                for (int i = 0; i < c.getItems().size(); i++) {
-                    g.drawImage(c.getItems().get(i).getTexture(), c.getIcons().get(i).x - camX, c.getIcons().get(i).y - camY, null);
-                }
-            }
+       // InventoryManager.drawContainerItems(g);
+        //отрисовка персонажей
         for(int i = 0;i<Engine.getCurrentLevel().getNPC().size();i++){
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
             g.drawImage(c.getTexture(), c.getX() - camX, c.getY() - camY, c.getWidth(), c.getHeight(), null);
@@ -213,6 +215,7 @@ public class Renderer implements Runnable {
             HUD.getInstance().getItemWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getMainWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getEquipWindow().setVisible(Inventory.getInstance().isOpened());
+           // HUD.getInstance().getContainerWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getEquipWindow().updateUI();
             HUD.getInstance().getItemWindow().updateUI();
             HUD.getInstance().getStatusWindow().updateUI();
@@ -224,6 +227,7 @@ public class Renderer implements Runnable {
             //HUD.getInstance().getHealthBar().setString(Integer.toString(HUD.getInstance().getHealthBar().getValue()));
             HUD.getInstance().getStaminaBar().updateUI();
             HUD.getInstance().getThirstBar().updateUI();
+            HUD.getInstance().getContainerWindow().updateUI();
 
         // полоску стамины видно только при открытии инвентаря
             HUD.getInstance().getStaminaBar().setVisible(Inventory.getInstance().isOpened());
@@ -239,6 +243,9 @@ public class Renderer implements Runnable {
         HUD.getInstance().getThirstBar().setValue((int) Player.get().getThirst());
         HUD.getInstance().getThirstBar().setString(Integer.toString(HUD.getInstance().getThirstBar().getValue()));
             //Вызов службы диалогов.
+            DialogueManager.getInstance().work();
+            //вызов службы гиф роликов
+            GifScenesManager.getInstance().work();
             DialogueManager.work();
             // Вызов службы торговли
             TradeUtility.work();

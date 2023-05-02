@@ -1,6 +1,5 @@
 package ru.muwa.shq.engine.utilities;
 
-import ru.muwa.shq.economics.money.Money;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
@@ -12,7 +11,6 @@ import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
-import ru.muwa.shq.quests.Quest;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -25,7 +23,6 @@ import java.util.Arrays;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 import java.util.Map;
-import java.util.stream.Collectors;
 
 
 public class InventoryManager
@@ -104,25 +101,12 @@ public class InventoryManager
         updateItemWindow();
         updateEquipWindow();
         updateStatusWindow();
-        updateQuestWindow();
-        convertMoney();
 
         //TODO: Нужно перенести логику так, чтобы она вызывалась из PlayerControls.
         //TODO: Хули до сих пор не сделано)))))
 
     }
-
-    private static void convertMoney() {
-        for(int i = 0; i < Inventory.getInstance().getItems().size();i++)
-        {
-            if(Inventory.getInstance().getItems().get(i) instanceof Money)
-            {
-                Player.get().money+= Inventory.getInstance().getItems().get(i).getPrice();
-                Inventory.getInstance().getItems().remove(i);
-            }
-        }
-    }
-
+    //
     public static void grab(){
             // System.out.println("нажата левая кнопка мыши");
             for(Container c: Engine.getCurrentLevel().getContainers()){
@@ -183,10 +167,47 @@ public class InventoryManager
             {
                 if(i != 0 && i % 4 == 0){ yOffset += 50; }//Перенос строки после 4-х панелек
                 window.add(itemTiles.get(i));
-                itemTiles.get(i).setBounds(i%4*50,yOffset,40,40);
-
+                itemTiles.get(i).setBounds(i%4*50,yOffset,50,50);
             }
         }
+    public static void updateContainerWindow() {
+        JPanel containerWindow = HUD.getInstance().getContainerWindow();
+
+        ArrayList<ContainerPanel> containerTiles = new ArrayList<>(); // Список панелек для вещей
+        int yOffset = 50; // Смещение по оси у (для переноса строки каждые 4 панельки)
+
+        for (Container c : Engine.getCurrentLevel().getContainers()) {
+            if (c.isInUse()/* && c.getItems().size() >=  1*/) {
+                //отрисовка инвентаря контейнера
+                HUD.getInstance().getContainerWindow().setVisible(true);
+                // g.drawImage(c.getUI(), c.getX() - camX, c.getY() - camY, null);
+                // отрисовка предмета в контейнере.
+                for (int i = 0; i < c.getItems().size(); i++) {
+                    if (!c.getItems().get(i).isEquipped()) {
+                        if (c.getItems().get(i) != null) {
+                            containerTiles.add(new ContainerPanel(c.getItems().get(i)));
+                            containerTiles.get(i).addMouseListener(MouseButtonListener.getInstance());
+                        }
+                        if (c.getItems().get(i).getTexture() != null)
+                            containerTiles.get(i).setIcon(new ImageIcon(c.getItems().get(i).getTexture()));
+                    }
+                    // g.drawImage(c.getItems().get(i).getTexture(), c.getIcons().get(i).x - camX, c.getIcons().get(i).y - camY , null);
+                }
+            }
+        }
+
+        Arrays.stream(containerWindow.getComponents()).forEach(containerWindow::remove);
+        JLabel shmonlabel = new JLabel("ШМОН");
+        containerWindow.add(shmonlabel);
+        shmonlabel.setBounds(10,10,100,20);
+        for(int i = 0; i<containerTiles.size(); i++) {
+            if(i != 0 && i % 4 == 0){ yOffset += 50; }//Перенос строки после 4-х панелек
+            containerWindow.add(containerTiles.get(i));
+            containerTiles.get(i).setBounds(i%4*50,yOffset,50,50);
+        }
+
+
+    }
         private static void updateEquipWindow()
         {
             Arrays.stream(HUD.getInstance().getEquipWindow().getComponents()).forEach(HUD.getInstance().getEquipWindow()::remove);

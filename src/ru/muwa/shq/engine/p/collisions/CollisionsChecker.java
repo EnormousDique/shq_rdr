@@ -49,13 +49,15 @@ public class CollisionsChecker {
         if (o != null) {
 
             for (GameObject obj : list) { //Перебираем объекты.
+                //todo если пересекает больше двух  обьектов написать другую логику.
                 if (o.getSolidBox().intersects(obj.getSolidBox())) // произошло столкновение
                 {
 
                     if (o.getSolidBox().getCenterY() > obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
                         o.setY((int)obj.getSolidBox().getY() + (int)obj.getSolidBox().getHeight());
                         System.out.println("вниз");
-                        continue;
+                     //   continue;
+                        break;
                     }//Вниз
                     /*else*/
 
@@ -69,19 +71,22 @@ public class CollisionsChecker {
                     if (o.getY() < obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
                         o.setY((int)obj.getSolidBox().getY() - o.getHeight());
                         System.out.println("вверх");
-                        continue;
+                     //   continue;
+                        break;
                     }//Вверх
                     /*else*/
                     if (o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
                         o.setX((int)obj.getSolidBox().getX() + (int)obj.getSolidBox().getWidth());
                         System.out.println("право");
-                        continue;
+                       // continue;
+                        break;
                     }//Вправо
                     /*else*/
                     if (o.getX() < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
                         o.setX((int)obj.getSolidBox().getX() - o.getWidth());
                         System.out.println("vlevo");
-                        continue;
+                      //  continue;
+                        break;
                     }//Влево
 
                     //Код для уничтожения пуль после столкновения

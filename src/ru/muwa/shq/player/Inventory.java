@@ -43,12 +43,8 @@ public class Inventory
         {
             System.out.println("inventory texture load failed");
         }
-
     }
-    private Inventory()
-
-    {
-        System.out.println("inventory initiated");
+    private Inventory() {
         instance = this;
         items = new ArrayList<>();
         item0 = new Rectangle(x,y,50,50);
@@ -59,20 +55,13 @@ public class Inventory
        // item5 = new Rectangle(x,y,50,50);
        // item6 = new Rectangle(x,y,50,50);
        // item7 = new Rectangle(x,y,50,50);
-
-
         itemIcons = new ArrayList<>();
         itemIcons.add(item0);itemIcons.add(item1);itemIcons.add(item2);itemIcons.add(item3);//itemIcons.add(item4);itemIcons.add(item5);itemIcons.add(item6);itemIcons.add(item7);
-
         box = new Rectangle(x,y,img.getWidth(),img.getHeight());
-
-
     }
     public static Inventory getInstance(){if(instance!=null) return instance; else return new Inventory();}
-
     public boolean isOpened(){return isOpened;}
     public void setIsOpened(boolean isOpened){this.isOpened = isOpened;}
-
     public BufferedImage getImg() {
         return img;
     }
@@ -81,11 +70,6 @@ public class Inventory
     public int getY(){return y;}
     public void setY(int y){this.y = y;}
     public Rectangle getBox(){return box;}
-
-
-    public void addItem(Item item) {
-         /*if(items.size()<=INVENTORY_CAPACITY)*/items.add(item);
-        System.out.println("added item: " + item);
-    }
+    public void addItem(Item item) {/*if(items.size()<=INVENTORY_CAPACITY)*/items.add(item);}
     public ArrayList<Item> getItems(){return items;}
 }

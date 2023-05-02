@@ -7,7 +7,7 @@ import ru.muwa.shq.player.Player;
  */
 public class SolidBoxUpdater {
     public static void updateSolidBox(GameObject o) {
-        o.getSolidBox().setBounds(o.getX(),o.getY(),o.getTexture().getWidth(),o.getTexture().getHeight());
+        o.getSolidBox().setBounds(o.getX(),o.getY(),o.getWidth(),o.getHeight());
         if(o.equals(Player.get())){
         }
     }

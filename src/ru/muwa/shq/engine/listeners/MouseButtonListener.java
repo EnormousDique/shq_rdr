@@ -6,6 +6,8 @@ import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
+import ru.muwa.shq.objects.containers.Container;
+import ru.muwa.shq.objects.containers.ContainerPanel;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.controls.Grabber;
 
@@ -41,8 +43,7 @@ public class MouseButtonListener implements MouseInputListener {
     public void mousePressed(MouseEvent e) {
         event = e;
         System.out.println("mouse clicked. x: " + e.getX()/*+ Camera.getInstance().getX())*/ + " y : " + e.getY()/*+Camera.getInstance().getY()*/);
-        switch (e.getButton())
-        {
+        switch (e.getButton()) {
             case 1:
                 keys[0] = true;
                 break;
@@ -51,11 +52,17 @@ public class MouseButtonListener implements MouseInputListener {
                 break;
         }
 
-        if(e.getSource() instanceof ItemPanel)
-        {
+        if (e.getSource() instanceof ItemPanel) {
             ((ItemPanel) e.getSource()).getItem().pick();
             HUD.getInstance().getItemWindow().updateUI();
         }
+        else if (e.getSource() instanceof ContainerPanel) {
+                ((ContainerPanel) e.getSource()).getItem().get();
+                HUD.getInstance().getContainerWindow().updateUI();
+
+        }
+
+
     }
 
     @Override

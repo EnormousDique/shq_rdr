@@ -1,8 +1,8 @@
 package ru.muwa.shq.levels;
 
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
-import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
-import ru.muwa.shq.levels.demo.indoors.Hub;
+import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1;
+import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 
 import java.io.IOException;
 
@@ -18,22 +18,22 @@ public class LevelStorage
             throw new RuntimeException(e);
         }
     }
-    static public FatBuildingFloor1 fatBuildingFloor1;
+    static public WhiteBlueTallBuildingFloor1 WhiteBlueTallBuildingFloor1;
     static
     {
         try {
-            fatBuildingFloor1 = FatBuildingFloor1.getInstance();
-            System.out.println("fat buildinglevel floor1 done");
+            WhiteBlueTallBuildingFloor1 = ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1.getInstance();
+            System.out.println("WhiteBlueTallBuildingFloor1 floor1 done");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    static public Hub DemoHub;
+    static public HubHataIgoryana DemoHub;
     static
     {
         try {
-            DemoHub = Hub.getInstance();
+            DemoHub = HubHataIgoryana.getInstance();
             System.out.println("level HUb done");
         } catch (Exception e) {
             throw new RuntimeException(e);

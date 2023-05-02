@@ -51,6 +51,7 @@ public class PlayerControls
         if(keyboard.getKeys()[keyboard.ENTER]) enter();
         if(keyboard.getKeys()[keyboard.T]) t(); // нважата T
         if(keyboard.getKeys()[keyboard.SHIFT]) shift();
+      //  if(keyboard.getKeys()[keyboard.V]) v();
 
 
 
@@ -59,9 +60,10 @@ public class PlayerControls
         if(MouseButtonListener.getInstance().keys[0]) rmb();
 
     }
+    //камера на кнопку V
+    private static void v(){
 
-
-
+    }
     private static void t() {
         for(GameZone z : Engine.getCurrentLevel().getZones())
         {
@@ -76,6 +78,7 @@ public class PlayerControls
             }
         }
     }
+    // движение вверх с бегом и снятием стамины
     private static void w() {
         if(keyboard.getKeys()[keyboard.SHIFT]){
             if(Player.get().getStamina() >0) {
@@ -92,7 +95,7 @@ public class PlayerControls
         }else Player.get().moveUp();
 
 
-    }
+    }// движение влево с бегом и снятием стамины
     private static void a() {
         if(keyboard.getKeys()[keyboard.SHIFT]){
             if(Player.get().getStamina() >0) {
@@ -108,6 +111,7 @@ public class PlayerControls
         }else Player.get().moveLeft();
 
     }
+    // движение вниз с бегом и снятием стамины
     private static void s()
     { if(keyboard.getKeys()[keyboard.SHIFT]){
         if(Player.get().getStamina() >0) {
@@ -123,7 +127,7 @@ public class PlayerControls
     }else Player.get().moveDown();
 
 
-    }
+    }// движение вправо с бегом и снятием стамины
     private static void d()
     {
         if(keyboard.getKeys()[keyboard.SHIFT]){
@@ -142,8 +146,10 @@ public class PlayerControls
 
 
     }
+    // действие на кнопку е
      private static void e() {Interactor.getInstance().interact();}
      // Sounder.changeSong("src\\ru\\muwa\\shq\\sounds\\songs\\muzike1.wav");
+    // открытие инвентаря на i
     private static void i()
     {
         Inventory.getInstance().setIsOpened(!Inventory.getInstance().isOpened());
@@ -252,7 +258,7 @@ public class PlayerControls
 
 
     }
-
+    // выход из окон контейнеров диалогов инвентаря на q
     private static void q()
     {
 
@@ -263,8 +269,10 @@ public class PlayerControls
             Player.get().setIsBusy(false);
         }
         Inventory.getInstance().setIsOpened(false);
+        HUD.getInstance().getContainerWindow().setVisible(false);
         for(Container c: Engine.getCurrentLevel().getContainers())c.setIsInUse(false);
         HUD.getInstance().getDialogueWindow().setVisible(false);
+
     }
     private static void lmb()
     {
@@ -273,7 +281,7 @@ public class PlayerControls
                 (new Point(MouseListener.getInstance().getX() + Camera.getInstance().getX(), MouseListener.getInstance().getY() + Camera.getInstance().getY())))
 
         else */
-        InventoryManager.grab(); // Проверка на щелчок по вещи из открытого контейнера
+       // InventoryManager.grab(); // Проверка на щелчок по вещи из открытого контейнера
        // InventoryManager.getInstance().eat(); // Проверка на щелчок по вещи из открытого окна вещей игрока
 
         MouseButtonListener.getInstance().keys[0]=false;
@@ -283,20 +291,13 @@ public class PlayerControls
 
     }
     private static void shift() {
-
     }
 
     public static Player getPlayer() {
         return player;
     }
-
     public static void setPlayer(Player player) {
         PlayerControls.player = player;
     }
-
-    public static void shiftRelease(){
-        Player.get().setSpeed(Player.get().getRegSpeed());
-    }
-
-
+    public static void shiftRelease(){Player.get().setSpeed(Player.get().getRegSpeed());} // отпускание шифта возвращает обычную скорость игрока
 }
