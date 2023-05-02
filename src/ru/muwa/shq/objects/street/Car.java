@@ -28,6 +28,5 @@ public class Car extends GameObject {
 
         this.isSolid = true;
 
-        System.out.println(getIsSolid());
     }
 }

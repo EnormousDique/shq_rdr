@@ -13,7 +13,7 @@ public class TestBuilding extends GameObject {
     static {
         try {
             img = ImageIO.read(new File(IMG_PATH + "buildings\\tallHouse.png"));
-            System.out.println("TestBuilding texture loaded");
+           // System.out.println("TestBuilding texture loaded");
         } catch (IOException e) {
             System.out.println("failed to load testbuilding roof texture");
         }

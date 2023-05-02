@@ -59,7 +59,7 @@ public class DemoLevel0 extends Level
         this.isStreet = true;
         startPosX =641;
         startPosY = 1626;
-
+        System.out.println("test 1");
         containers.add(new TrashCan(800,1900));
         containers.get(0).addItem(new Makarov());
 
@@ -72,6 +72,7 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new Obrez());
 
 
+        System.out.println("test 2");
 
         objects.add(new DemoLevel0_BG(0,0));
         objects.add(new Car(1350,1060));
@@ -82,6 +83,7 @@ public class DemoLevel0 extends Level
         objects.add(new FatBuilding(3630,1500));
         objects.add(new TallFatBuilding(1730,2450));
         objects.add(new TallFatBuilding(2640,3045));
+        System.out.println("test 2.5");
 
         zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,1200,70,70, FatBuildingFloor1.getInstance(), 190,220,false)));
         zones.add(new ActionZone(1800, 1200, 200, 200, new QuestAction() {
@@ -99,6 +101,8 @@ public class DemoLevel0 extends Level
                 }
             }
         }));
+
+        System.out.println("test 3");
 
 
         zones.add(new EnterZone(520,1800,70,70,HubHataIgoryana.getInstance(),290,705,false));
@@ -118,6 +122,7 @@ public class DemoLevel0 extends Level
 
         QuestUtility.startQuest1();
         Spawner.updateTimers();
+        System.out.println("test 4");
 
 
     }

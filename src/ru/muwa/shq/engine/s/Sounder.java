@@ -48,7 +48,7 @@ public class Sounder implements Runnable{
         }catch (Exception e)
         {
             System.out.println("Ошибка при проигрывании песни");
-            System.out.println(e.getMessage());
+            System.out.println("text : "+e.getMessage());
         }
 
     }
@@ -71,7 +71,7 @@ public class Sounder implements Runnable{
         }catch (Exception e)
         {
             System.out.println("Ошибка при проигрывании песни");
-            System.out.println(e.getMessage());
+            System.out.println("text : "+e.getMessage());
         }
 
     }
@@ -94,7 +94,7 @@ public class Sounder implements Runnable{
         }catch (Exception e)
         {
             System.out.println("Ошибка при проигрывании песни");
-            System.out.println(e.getMessage());
+            System.out.println("text : "+e.getMessage());
         }
 
     }

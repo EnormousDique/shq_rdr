@@ -23,7 +23,7 @@ public class A_PlayerFistPunch extends Animation{
         catch(Exception e)
         {
             System.out.println("Произошла ошибка при загрузке анимации удара");
-            System.out.println(e);
+            System.out.println("text owubku : "+e);
         }
 
     }
