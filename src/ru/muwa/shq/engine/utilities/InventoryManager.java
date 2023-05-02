@@ -1,5 +1,6 @@
 package ru.muwa.shq.engine.utilities;
 
+import ru.muwa.shq.economics.money.Money;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
@@ -104,12 +105,24 @@ public class InventoryManager
         updateEquipWindow();
         updateStatusWindow();
         updateQuestWindow();
+        convertMoney();
 
         //TODO: Нужно перенести логику так, чтобы она вызывалась из PlayerControls.
         //TODO: Хули до сих пор не сделано)))))
 
     }
-    //
+
+    private static void convertMoney() {
+        for(int i = 0; i < Inventory.getInstance().getItems().size();i++)
+        {
+            if(Inventory.getInstance().getItems().get(i) instanceof Money)
+            {
+                Player.get().money+= Inventory.getInstance().getItems().get(i).getPrice();
+                Inventory.getInstance().getItems().remove(i);
+            }
+        }
+    }
+
     public static void grab(){
             // System.out.println("нажата левая кнопка мыши");
             for(Container c: Engine.getCurrentLevel().getContainers()){
@@ -160,6 +173,11 @@ public class InventoryManager
             JLabel titleLabel = new JLabel("BEW,N");
             window.add(titleLabel);
             titleLabel.setBounds(10,10,100,20);
+
+            //Добавляем строку о деньгах
+            JLabel moneyLabel = new JLabel("$$$ : "+ Player.get().money);
+            window.add(moneyLabel);
+            moneyLabel.setBounds(10,20,100,20);
 
             for(int i = 0; i<itemTiles.size(); i++)
             {

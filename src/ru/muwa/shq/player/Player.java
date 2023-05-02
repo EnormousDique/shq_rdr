@@ -21,6 +21,7 @@ public class Player extends Creature
 {
     private static Player instance;
     public static BufferedImage img;
+    public int money = 1000;
 
     public ArrayList<Quest> quests = new ArrayList<>();
     public enum Direction{UP,DOWN,LEFT,RIGHT}

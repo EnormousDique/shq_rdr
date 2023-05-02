@@ -1,5 +1,6 @@
 package ru.muwa.shq.creatures.npc.enemies;
 
+import ru.muwa.shq.economics.money.Money_500;
 import ru.muwa.shq.engine.raycaster.RayCaster;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.items.Item;
@@ -49,6 +50,7 @@ public class VelvetTank extends NPC {
         ArrayList<Item> loot = new ArrayList<>();
 
         loot.add(new Flour());
+        loot.add(new Money_500());
 
         return loot;
     }

@@ -37,8 +37,8 @@ public class Cigarettes extends Item {
     @Override
     public void use() {
         Player.get().setHp(Player.get().getHp()-5);
-        Player.get().setHighMeter(Player.get().getHighMeter()+1);
-        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-1);
+        Player.get().setHighMeter(Player.get().getHighMeter()-1);
+        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-5);
         Inventory.getInstance().getItems().remove(this);
     }
     @Override

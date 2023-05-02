@@ -8,6 +8,7 @@ import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
+import ru.muwa.shq.engine.utilities.TradeUtility;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
@@ -239,6 +240,8 @@ public class Renderer implements Runnable {
         HUD.getInstance().getThirstBar().setString(Integer.toString(HUD.getInstance().getThirstBar().getValue()));
             //Вызов службы диалогов.
             DialogueManager.work();
+            // Вызов службы торговли
+            TradeUtility.work();
 
         // ОТРИСОВКА ПЕрСОНАЖА
         AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);

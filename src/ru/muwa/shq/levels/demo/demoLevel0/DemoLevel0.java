@@ -4,12 +4,17 @@ import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.dialogues.demo.Conversation0;
 import ru.muwa.shq.dialogues.demo.Q2T1_Conversation;
 import ru.muwa.shq.dialogues.demo.Q3_PoliceConversation;
+import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
 import ru.muwa.shq.engine.animations.cutscenes.Q3_PoliceCutscene;
 import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.items.BluntWeapons.BaseballBat;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.consumables.Cigarettes;
+import ru.muwa.shq.items.consumables.EnergyDrink;
+import ru.muwa.shq.items.consumables.Water;
+import ru.muwa.shq.items.drugs.Lyrica;
 import ru.muwa.shq.items.guns.Makarov;
 import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
 import ru.muwa.shq.items.zakladki.KladBlue;
@@ -87,6 +92,16 @@ public class DemoLevel0 extends Level
 
         zones.add(new EnterZone(520,1800,70,70,Hub.getInstance(),290,705,false));
         zones.add(new DialogueZone(Conversation0.getInstance(),400,400,100,100,false));
+        zones.add(new TradeZone(3000, 1000, 300, 300, new Trade() {
+            @Override
+            public void setGoods() {
+                goods.add(new MakarovAmmo());
+                goods.add(new Water());
+                goods.add(new EnergyDrink());
+                goods.add(new Cigarettes());
+                goods.add(new Lyrica());
+            }
+        }));
 
 
         QuestUtility.startQuest1();

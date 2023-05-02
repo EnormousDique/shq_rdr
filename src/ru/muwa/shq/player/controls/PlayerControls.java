@@ -22,10 +22,7 @@ import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
-import ru.muwa.shq.zones.DialogueZone;
-import ru.muwa.shq.zones.EnterZone;
-import ru.muwa.shq.zones.GameZone;
-import ru.muwa.shq.zones.InteractiveEnterZone;
+import ru.muwa.shq.zones.*;
 
 import java.awt.*;
 
@@ -72,6 +69,10 @@ public class PlayerControls
             {
                 HUD.getInstance().getDialogueWindow().setVisible(true);
                 ((DialogueZone)z).setActive(true);
+            }
+            if(z instanceof TradeZone && z.contains(Player.get().getX(), Player.get().getY()))
+            {
+                ((TradeZone)z).isActive = true;
             }
         }
     }

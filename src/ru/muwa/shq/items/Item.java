@@ -59,6 +59,7 @@ public abstract class Item
 
     public void pick()
     {
+
         boolean isClickedOnEquipped = this.isEquipped;
         if(isClickedOnEquipped){
             this.isEquipped = false;

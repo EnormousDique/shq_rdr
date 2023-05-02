@@ -1,6 +1,7 @@
 package ru.muwa.shq.levels.demo.indoors;
 
 import ru.muwa.shq.dialogues.demo.Conversation1;
+import ru.muwa.shq.economics.money.Money_500;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.objects.bounds.*;
@@ -32,6 +33,7 @@ public class Hub extends Level
         objects.add(new HubBuild(0,0));
         // хабовый сундук
         containers.add(new HubChest(700,5));
+        for (int i = 0; i<6; i++)containers.get(0).addItem(new Money_500());
         //выход в падик
         zones.add(new EnterZone(30, 740,100,100,FatBuildingFloor5.getInstance(), 30,30,false));
         // диалог с мамой
