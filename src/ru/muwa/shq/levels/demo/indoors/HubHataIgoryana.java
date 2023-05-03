@@ -38,7 +38,7 @@ public class HubHataIgoryana extends Level
         zones.add(new EnterZone(30, 740,100,100,FatBuildingFloor5.getInstance(), 30,30,false));
         // диалог с мамой
         zones.add(new DialogueZone(Conversation1.getInstance(),100,100,100,100,false));
-        zones.add(new GifSceneZone(200,200,70,70,true));
+       // zones.add(new GifSceneZone(200,200,70,70,true));
         // стены хаюа
         objects.add(new Wall350(351,-50));
         objects.add(new Wall350(701,-50));
@@ -54,7 +54,6 @@ public class HubHataIgoryana extends Level
         objects.add(new Wall350(-48,800));//нижнаяя
         objects.add(new Wall350(308,800));//нижнаяя
         objects.add(new Wall350(608,800));//нижнаяя
-
 
         // невидимые стены дома
         objects.add(new InvisibleWall620x10( 182,450));

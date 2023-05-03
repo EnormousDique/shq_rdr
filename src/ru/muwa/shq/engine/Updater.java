@@ -3,6 +3,7 @@ import ru.muwa.shq.engine.ai.AI;
 import ru.muwa.shq.engine.combat.BulletUtility;
 import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.camera.CameraUpdateUtility;
+import ru.muwa.shq.engine.spawner.Kladmen;
 import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
@@ -73,8 +74,9 @@ public class Updater implements Runnable {
         long time = System.currentTimeMillis();
         long localTime = System.currentTimeMillis();
         //Спавнер
-         Spawner.regularSpawn();
-          Spawner.inDoorsSpawn();
+        Spawner.regularSpawn();
+        Spawner.inDoorsSpawn();
+        Kladmen.mudak();  /** Кладмен мудак */
         //Блок обработки игрока.
         //QuestUtility.maintainPlayerQuests();
         QuestUtility.work();

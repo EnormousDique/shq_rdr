@@ -1,5 +1,6 @@
 package ru.muwa.shq.levels.demo.indoors;
 
+import ru.muwa.shq.engine.spawner.Kladmen;
 import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.objects.bounds.Wall300;
@@ -45,6 +46,6 @@ public class FatBuildingFloor3_5 extends Level {
         objects.add(new Wall300(-40, 10));
         objects.add(new Perila(10, 120));
 
-
+        Kladmen.register(this);
     }
 }
