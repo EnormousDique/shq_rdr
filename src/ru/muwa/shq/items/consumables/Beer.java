@@ -14,22 +14,22 @@ import java.io.IOException;
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
-public class Water extends Item {
+public class Beer extends Item {
 
-    public static final int ID = 0, PRICE = 100;
+    public static final int ID = 28, PRICE = 39;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "consumables\\water2.png"));
+            img = ImageIO.read(new File(IMG_PATH + "consumables\\BEER.png"));
         }
         catch(IOException e) {
-            System.out.println("failed to load WAter image");
+            System.out.println("failed to load BEER image");
         }
     }
-    public Water() {
+    public Beer() {
         super(ID, PRICE, WEIGHT, img);
-        description = "Дайте че нибудь,попить пожалуйста,Попить будде добры";
+        description = "ПОчинчКИ Темное 18% остальное по смс";
     }
     @Override
     public void give(Container c) {
@@ -44,19 +44,12 @@ public class Water extends Item {
     }
     @Override
     public void use() {
-
-        // System.out.println(System.currentTimeMillis()+" ВРЕМЯЯ!!!!!!!!!!!!");
-        Player.get().setHighMeter(Player.get().getHighMeter()-5);
-        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-2);
-        Player.get().setThirst(Player.get().getThirst()+50);
+        Player.get().setHp(Player.get().getHp()-5);
+        Player.get().setHighMeter(Player.get().getHighMeter()+5);
         EffectUtility.getCurrentEffects().put(EffectUtility.Effects.StaminaRegen,System.currentTimeMillis()+10_000);
         Inventory.getInstance().getItems().remove(this);
-        Player.get().setHp(Player.get().getHp()+2);
-
     }
     @Override
     public void equip() {
     }
-
-
 }

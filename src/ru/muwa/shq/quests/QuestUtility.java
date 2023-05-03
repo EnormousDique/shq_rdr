@@ -2,9 +2,11 @@ package ru.muwa.shq.quests;
 
 import jdk.jshell.spi.SPIResolutionException;
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.items.consumables.Water;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.actions.Q2T1_Action;
 import ru.muwa.shq.quests.conditions.C_HasPlayerFoundKlad;
@@ -78,7 +80,7 @@ public class QuestUtility {
 
 
     /**
-     * КВЕСТ 1 : МАМЕНЬКИН СыНОК ВОЗВРАЩАЕТСЯ ДОМОЙ
+     * КВЕСТ 1 : МАМЕНЬКИН СыНОК ВОЗВРАЩАЕТСЯ ДОМОЙ /5
      */
 
     //***************************************************************************************************************
@@ -156,5 +158,38 @@ public class QuestUtility {
     }
     // КОНЕЦ КВЕСТА 3
     //***************************************************************************************************************
+
+    /**
+     * КВЕСТ 4  : TEST
+     */
+    //***************************************************************************************************************
+
+
+    private static Quest quest4 = new Quest();
+
+    public static void setQuest4(){
+
+        quest4.addTask("тест", new TaskCondition() {
+            @Override
+            public boolean checkCondition() {
+                for(int i = 0; i < Inventory.getInstance().getItems().size();i++){
+                    if(Inventory.getInstance().getItems().get(i) instanceof Water){
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+        CompleteTaskZone ctzQ4T2 = null;
+        try {
+             ctzQ4T2 = new CompleteTaskZone(3000,3000,100,100,DemoLevel0.getInstance());
+        } catch (IOException e) {
+            System.out.println("неудалось получить доступ к демоуровню");
+        }
+        quest4.addTask("иди нахуй",ctzQ4T2);
+
+       Player.get().quests.add(quest4);
+    }
+
 
 }
