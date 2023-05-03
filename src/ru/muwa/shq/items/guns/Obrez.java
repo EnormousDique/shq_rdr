@@ -68,6 +68,8 @@ public class Obrez extends Weapon implements Firearm{
 
     @Override
     public void reload() {
-
+        currAmmo = maxAmmo;
     }
+
+
 }

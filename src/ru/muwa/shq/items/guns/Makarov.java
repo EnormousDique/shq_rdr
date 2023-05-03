@@ -75,17 +75,11 @@ public class Makarov extends Weapon implements Firearm{
 
     @Override
     public void reload() {
-        this.currAmmo = maxAmmo;
+        currAmmo = maxAmmo;
     }
 
 
 
-
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
     @Override
     public void take(Container c){
         c.getItems().remove(this);

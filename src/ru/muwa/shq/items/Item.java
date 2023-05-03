@@ -92,7 +92,10 @@ public abstract class Item
 
 
     }
-    public abstract void give(Container c);
+    public void give(Container c){
+        Inventory.getInstance().getItems().remove(this);
+        c.addItem(this);
+    }
 
     public void take(Container c){
         c.getItems().remove(this);
