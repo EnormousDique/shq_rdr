@@ -47,8 +47,9 @@ public class Flour extends Item {
         Player.get().setThirst(Player.get().getThirst() - 10);
         Player.get().setHighMeter(Player.get().getHighMeter() + 30);
         Inventory.getInstance().getItems().remove(this);
-       // if(Player.get().getHp()>=90) Player.get().setHp(100);
-      //  else Player.get().setHp(Player.get().getHp()+10);
+        if(Math.random() < 0.333) EffectUtility.isPlayerAddictedToSpeed = true;
+        if(Player.get().getHp()>=90) Player.get().setHp(100);
+        else Player.get().setHp(Player.get().getHp()+10);
     }
 
     @Override

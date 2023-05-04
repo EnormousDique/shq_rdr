@@ -12,6 +12,7 @@ import static ru.muwa.shq.engine.utilities.EffectUtility.Effects.*;
 
 public class EffectUtility {
     private static HashMap<Effects, Long> currentEffects;
+    public static boolean isPlayerAddictedToSpeed =false;
 
     public static HashMap<Effects, Long> getCurrentEffects() {
         return currentEffects;
@@ -75,7 +76,7 @@ public class EffectUtility {
                     break;
 
                 case SPEED_WITHDRAWAL:
-                    if(Player.get().getHighMeter() >= 16 && currentEffects.get(SPEED) + 20_000 < System.currentTimeMillis())
+                    if(Player.get().getHighMeter() >= 5 && currentEffects.get(SPEED) + 20_000 < System.currentTimeMillis() && isPlayerAddictedToSpeed )
                     {
                         CameraUpdateUtility.isShaking = true;
                     }

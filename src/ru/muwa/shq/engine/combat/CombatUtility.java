@@ -90,12 +90,10 @@ public class CombatUtility {
         victim.setHp(victim.getHp()-damage);
 
         //TODO: Сделать нормальный механизм смерти. Пока так.
-        if( (!Player.get().equals(victim)) && victim.getHp() <= 0 ) {
+        if( (!Player.get().equals(victim)) && victim.getHp() <= 0 && Engine.getCurrentLevel().getNPC().contains(victim)) {
             Engine.getCurrentLevel().getNPC().remove(victim);
             Engine.getCurrentLevel().getContainers().add(new Corpse(victim.getX(),victim.getY(),victim.getcorpseimg(), victim.getRandomLoot()));
            // Spawner.decreaseSpawnCounter();
-
-
         }
 
     }
