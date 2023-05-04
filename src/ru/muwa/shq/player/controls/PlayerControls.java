@@ -2,9 +2,7 @@ package ru.muwa.shq.player.controls;
 
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.engine.Engine;
-import ru.muwa.shq.engine.animations.A_PlayerFistPunch;
-import ru.muwa.shq.engine.animations.Animation;
-import ru.muwa.shq.engine.animations.Animator;
+import ru.muwa.shq.engine.animations.*;
 import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
@@ -14,9 +12,8 @@ import ru.muwa.shq.engine.s.Sounder;
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.engine.utilities.InventoryManager;
-import ru.muwa.shq.items.guns.Bullet;
-import ru.muwa.shq.items.guns.Firearm;
-import ru.muwa.shq.items.guns.Weapon;
+import ru.muwa.shq.items.guns.*;
+import ru.muwa.shq.items.knifes.Kortique;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
@@ -157,7 +154,6 @@ public class PlayerControls
     }
     private static void space()
     {
-
         //Определяем есть ли оружие в руках (огнестрельное)
         boolean isFirearmEquipped = false;
         Weapon gun = null;
@@ -171,45 +167,45 @@ public class PlayerControls
                 gun = (Weapon) Inventory.getInstance().getItems().get(i);
             }
         }
-
-
         //Блок стрельбы
         if(isFirearmEquipped && gun.getCurrAmmo()>0) {
-            ((Firearm)gun).shot();
 
+            if(!Animator.isBusy()) {
+                if(Player.get().currentWeapon instanceof Makarov) {
+                    Animator.playPlayerAnimation(new A_MakarovShot());
+                    ((Firearm) gun).shot();
+                }
+                if(Player.get().currentWeapon instanceof Obrez) {
+                    Animator.playPlayerAnimation(new A_ObrezShot());
+                    ((Firearm) gun).shot();
+                }
+            }
         }
-
-
         //Блок рукопашки
         if(!isFirearmEquipped) {
 
             if (!Animator.isBusy()) {// Проверяем не занят ли аниматор (не воспроизводится ли уже анимация удара.)
-                System.out.println("player controls блок рукопашки");
-                Animator.playPlayerAnimation(new A_PlayerFistPunch());
 
+                //Наносим урон врагам, находящимся в зоне атаки
                 for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
                     NPC npc = Engine.getCurrentLevel().getNPC().get(i);
                     if (npc.getSolidBox().intersects(Player.get().getAttackZone())) {
-                        //TODO: здесь должа передаваться атака текущего оружия героя как аргумент. Пока так.
                         try {
                             int damage = Player.get().currentWeapon == null ? 5 : Player.get().currentWeapon.getDamage();
                             CombatUtility.attack(npc, damage);
-
                         } catch (Exception e) {
-                            //CombatUtility.attack(npc, 5);
                         }
                         CollisionsChecker.getInstance().checkAttackZoneCollisions();
 
-
                     }
                 }
-
+                //Блок анимации
+                Weapon w = Player.get().currentWeapon;
+                if(w instanceof Kortique) Animator.playPlayerAnimation(new A_KnifeStab());
+                if(w == null) Animator.playPlayerAnimation(new A_PlayerFistPunch());
             }
         }
-
-
         keyboard.getKeys()[keyboard.SPACE] = false;
-
     }
     private static void enter() {
 
