@@ -38,11 +38,12 @@ public class IceOlator extends Item {
     }
     @Override
     public void use() {
-        if(Player.get().getHp() >= 90) Player.get().setHp(100);
+        if(Player.get().getHp() >= 95) Player.get().setHp(100);
         else
-            Player.get().setHp(Player.get().getHp()+15);
+            Player.get().setHp(Player.get().getHp()+5);
+
         Player.get().setHighMeter(Player.get().getHighMeter()+20);
-        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-50);
+        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-15);
         Inventory.getInstance().getItems().remove(this);
         EffectUtility.getCurrentEffects().put(EffectUtility.Effects.STONED, System.currentTimeMillis()+10_000);
     }

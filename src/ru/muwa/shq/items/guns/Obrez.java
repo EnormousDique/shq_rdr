@@ -30,7 +30,7 @@ public class Obrez extends Weapon implements Firearm{
         super(0, 1000, 0, OBREZ_IMG);
         this.description = "охуенный  бля обрез";
         this.isAbleToEquip = true;
-        this.maxAmmo = 2;
+        this.maxAmmo = 2000;
         this.currAmmo = maxAmmo;
     }
     private Obrez(int id, int price, double weight, BufferedImage texture) {

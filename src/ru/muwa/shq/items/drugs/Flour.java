@@ -43,7 +43,7 @@ public class Flour extends Item {
     public void use() {
 
         EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED, System.currentTimeMillis() + 10_000L);
-        Player.get().setHighMeterLock(Player.get().getHighMeterLock() + 30);
+        Player.get().setHighMeterLock(Player.get().getHighMeterLock() + 15);
         Player.get().setThirst(Player.get().getThirst() - 10);
         Player.get().setHighMeter(Player.get().getHighMeter() + 30);
         Inventory.getInstance().getItems().remove(this);

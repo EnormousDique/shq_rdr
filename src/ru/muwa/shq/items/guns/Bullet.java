@@ -106,8 +106,8 @@ public class Bullet extends GameObject
         xVelocity = velocity * Math.cos(Math.toRadians(angle));
         yVelocity = velocity * Math.sin(Math.toRadians(angle));
         time = 0;
-        this.x =this.x+ (int) xVelocity*10;
-        this.y=this.y+ (int) yVelocity*10;
+        this.x =this.x+ (int) xVelocity;
+        this.y=this.y+ (int) yVelocity;
         System.out.println("created bullet. y vel : "  + yVelocity + "  x vel : " + xVelocity + "  angle : " + angle);
     }
 }

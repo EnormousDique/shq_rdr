@@ -64,7 +64,7 @@ public class CombatUtility {
     public static void updateAttackZone(){
 
         boolean holdingGun = false;
-        int zoneHeight = 50;
+        int yOFF = 50;
 
         for(int i = 0; i< Inventory.getInstance().getItems().size(); i++)
 
@@ -73,9 +73,9 @@ public class CombatUtility {
                 Inventory.getInstance().getItems().get(i) instanceof Firearm)
                 holdingGun = true;
 
-        if(holdingGun)  zoneHeight = 100;
+        if(holdingGun)  yOFF = 20;
 
-        Player.get().getAttackZone().setBounds(Player.get().getX(),Player.get().getY() + 70,70,70);//todo поиграться с отталкиванием холодным оружием. пока норм
+        Player.get().getAttackZone().setBounds(Player.get().getX(),Player.get().getY() + yOFF,50,50);//todo поиграться с отталкиванием холодным оружием. пока норм
         AffineTransform rotate = AffineTransform.getRotateInstance(-Math.toRadians(Aim.getInstance().calculateAngle()),Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY());
         Player.get().setAttackZone(rotate.createTransformedShape(Player.get().getAttackZone()).getBounds());
     }

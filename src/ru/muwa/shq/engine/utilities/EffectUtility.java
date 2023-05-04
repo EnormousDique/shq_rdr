@@ -1,5 +1,6 @@
 package ru.muwa.shq.engine.utilities;
 import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.engine.g.camera.CameraUpdateUtility;
 import ru.muwa.shq.player.*;
 
 import java.awt.*;
@@ -21,13 +22,16 @@ public class EffectUtility {
         currentEffects.put(SPEED, 0L);
         currentEffects.put(StaminaRegen, 0L);
         currentEffects.put(ODYSHKA,0L);
+        currentEffects.put(STONED,0L);
+        currentEffects.put(SPEED_WITHDRAWAL,0L);
     }
 
     public enum Effects {
         SPEED,
         StaminaRegen,
         ODYSHKA,
-        STONED;
+        STONED,
+        SPEED_WITHDRAWAL;
 
     }
 
@@ -62,15 +66,23 @@ public class EffectUtility {
                             Player.get().setHighMeterLock(Player.get().getHighMeterLock()-1);
                             if(Math.random()>0.66) Player.get().setHighMeter(Player.get().getHighMeter()+1);
                         }
-
                         Player.get().isConfused=true;
                     }
                     else {
                         Player.get().isConfused=false;
                         Renderer.getInstance().isDrawingBg = true;
                     }
+                    break;
 
-
+                case SPEED_WITHDRAWAL:
+                    if(Player.get().getHighMeter() >= 16 && currentEffects.get(SPEED) + 20_000 < System.currentTimeMillis())
+                    {
+                        CameraUpdateUtility.isShaking = true;
+                    }
+                    else
+                    {
+                        CameraUpdateUtility.isShaking = false;
+                    }
                     break;
             }
         }
@@ -78,11 +90,8 @@ public class EffectUtility {
     //todo вынести в отдельный класс
 
     public static void psychOmetr() {
-
-        if (Player.get().getHighMeter() > 0 && Player.get().getHighMeterLock() < 50) {
-            Player.get().setHighMeter((Player.get().getHighMeter() - 0.02));
-        }else if (Player.get().getHighMeter() > 50 && Player.get().getHighMeterLock() >50) {
-            Player.get().setHighMeter((Player.get().getHighMeter() - 0.01));
+       if (Player.get().getHighMeter() > Player.get().getHighMeterLock()) {
+            Player.get().setHighMeter(Player.get().getHighMeter() - (Player.get().getHighMeterLock() > 50? 0.005 : 0.02));
         }
     }
     public static void thirstMetr(){

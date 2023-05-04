@@ -40,6 +40,7 @@ public class Renderer implements Runnable {
     private Thread thread; // Поток графического движка
     private Player player = Player.get(); // Ссылка на игрока
     public boolean isDrawingBg = true;
+    public boolean isShakingCamera = false;
 
     private static Renderer instance;
 
@@ -170,11 +171,9 @@ public class Renderer implements Runnable {
             }else{
                 g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
             }
-
-
-
-
         }
+
+
         //Отрисовка всех контейнеров из списка  текущих
         for (int i = 0; i< Engine.getCurrentLevel().getContainers().size(); i++) {
             ru.muwa.shq.objects.containers.Container con = Engine.getCurrentLevel().getContainers().get(i);
@@ -283,7 +282,10 @@ public class Renderer implements Runnable {
             g.dispose();
             canvas.getBufferStrategy().show();
         }
-        public void drawDescription(MouseEvent e)
+
+
+
+    public void drawDescription(MouseEvent e)
         {
 
         }
