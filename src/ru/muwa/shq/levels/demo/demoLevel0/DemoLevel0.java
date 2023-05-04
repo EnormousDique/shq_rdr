@@ -11,6 +11,7 @@ import ru.muwa.shq.engine.animations.cutscenes.Q3_PoliceCutscene;
 
 import ru.muwa.shq.engine.spawner.Spawner;
 
+import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.consumables.Cigarettes;
 import ru.muwa.shq.items.consumables.EnergyDrink;
@@ -59,6 +60,7 @@ public class DemoLevel0 extends Level
         this.isStreet = true;
         startPosX =641;
         startPosY = 1626;
+        QuestUtility.setQuest4();
         System.out.println("test 1");
         containers.add(new TrashCan(800,1900));
         containers.get(0).addItem(new Makarov());
@@ -101,7 +103,14 @@ public class DemoLevel0 extends Level
                 }
             }
         }));
-
+        // как использовать актион зону для володички
+            zones.add(new ActionZone(3000, 2800, 200, 200, new QuestAction() {
+                @Override
+                public void performAction() {
+                    EffectUtility.getCurrentEffects().put(EffectUtility.Effects.STONED,100000l+System.currentTimeMillis());
+                    System.out.println("я в говнро");
+                }
+            }));
         System.out.println("test 3");
 
 
