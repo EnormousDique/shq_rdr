@@ -6,8 +6,12 @@ import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
+
+import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 /**
  * Абстрактный класс, прародитель всех предметов.
@@ -66,6 +70,13 @@ public abstract class Item
         if(isClickedOnEquipped){
             this.isEquipped = false;
             Player.get().currentWeapon = null;
+            try {
+                Player.get().setTexture(ImageIO.read(new File(IMG_PATH + "player\\kulaginFist_a3.png")));
+
+            }catch (Exception e)
+            {
+                System.out.println("failed to load player");
+            }
 
         } else {
             boolean isInContainer = false;

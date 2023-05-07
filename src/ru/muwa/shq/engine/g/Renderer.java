@@ -257,14 +257,15 @@ public class Renderer implements Runnable {
         //
         //
             // отрисоква бокса игрока
-            g.drawRect(player.getX() - camX, player.getY() - camY, (int)player.getSolidBox().getWidth(), (int) player.getSolidBox().getHeight());
-            //Отрисовка зон переходов по локациям
+         //   g.drawRect(player.getX() - camX, player.getY() - camY, (int)player.getSolidBox().getWidth(), (int) player.getSolidBox().getHeight());
+            //Отрисовка зон
             g.setColor(Color.BLUE);
             for (GameZone z : Engine.getCurrentLevel().getZones())
                 g.drawRect(z.x - camX, z.y - camY, z.width, z.height);
             // Отрисовка линий прицела
-             for (Line2D l : Aim.getInstance().getLines())
-               g.drawLine((int) l.getX1() - camX, (int) l.getY1() - camY, (int) l.getX2() - camX, (int) l.getY2() - camY);
+            // for (Line2D l : Aim.getInstance().getLines())
+            //   g.drawLine((int) l.getX1() - camX, (int) l.getY1() - camY, (int) l.getX2() - camX, (int) l.getY2() - camY);
+
             //отрисовка координат мыши.
             g.setColor(Color.red);
             g.setFont(g.getFont().deriveFont(Font.BOLD));

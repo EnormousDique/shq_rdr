@@ -1,6 +1,7 @@
 package ru.muwa.shq.items.guns;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.animations.A_ObrezShot;
 import ru.muwa.shq.engine.s.Sounder;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
@@ -13,6 +14,18 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Obrez extends Weapon implements Firearm{
     public static  BufferedImage OBREZ_IMG = null;
+
+    @Override
+    public void use() {
+        super.use();
+        try {
+            Player.get().setTexture(ImageIO.read(new File(IMG_PATH + "player\\shotgun2.png")));
+        }catch (Exception e)
+        {
+            System.out.println("failed to load obrez textues");
+        }
+
+    }
 
     static
     {

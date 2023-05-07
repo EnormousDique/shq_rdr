@@ -112,8 +112,11 @@ public class Updater implements Runnable {
         //Обновление камеры.
         CameraUpdateUtility.getInstance().work();
         // Проверяем столкновение игрока с объектами.
-        CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getObjects());
-        CollisionsChecker.getInstance().checkCollisions(player,  Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject) c ).collect(Collectors.toList()) );
+        for(int i =0;i<4;i++) { //ТЕСТ. Запускаем несколько проверок столкновений для анализа и дальнейшего багфикса.
+            CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getObjects());
+            CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject) c).collect(Collectors.toList()));
+        }
+
         // обновляем текстурку игрока
         // CombatUtility.updatePlayerTexture();
         //Обновляем окно инвентаря
