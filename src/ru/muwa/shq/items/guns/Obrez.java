@@ -24,7 +24,6 @@ public class Obrez extends Weapon implements Firearm{
         {
             System.out.println("failed to load obrez textues");
         }
-
     }
 
     static

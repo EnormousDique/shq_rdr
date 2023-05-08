@@ -251,13 +251,13 @@ public class Renderer implements Runnable {
 
         // ОТРИСОВКА ПЕрСОНАЖА
         AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
-        at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getTexture().getWidth() / 2), (Player.get().getTexture().getHeight() / 2));
+        at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getTexture().getWidth() / 2), (Player.get().getTexture().getHeight()/2.5));
         ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
         //
         //
             // отрисоква бокса игрока
-         //   g.drawRect(player.getX() - camX, player.getY() - camY, (int)player.getSolidBox().getWidth(), (int) player.getSolidBox().getHeight());
+            g.drawRect(player.getX() - camX, player.getY() - camY, (int)player.getSolidBox().getWidth(), (int) player.getSolidBox().getHeight());
             //Отрисовка зон
             g.setColor(Color.BLUE);
             for (GameZone z : Engine.getCurrentLevel().getZones())
