@@ -5,6 +5,7 @@ import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.camera.CameraUpdateUtility;
 import ru.muwa.shq.engine.spawner.Kladmen;
 import ru.muwa.shq.engine.spawner.Spawner;
+import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.engine.utilities.*;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.containers.Container;
@@ -38,6 +39,7 @@ public class Updater implements Runnable {
     public void run()
     {
         System.out.println("Physx engin initialized. Updater thread started.");
+        TimeMachine.setStartTime();
         double drawInterval = 1_000_000_000/60;
         double delta=0;
         long lastTime = System.nanoTime();
@@ -90,6 +92,8 @@ public class Updater implements Runnable {
         //Вызов службы обработки боя
         CombatUtility.work();
 
+        //Вызов времени
+        TimeMachine.work();
 
 
         // Вызов службы проверки активации зон сцен

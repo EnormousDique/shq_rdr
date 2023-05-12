@@ -8,6 +8,7 @@ import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
+import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.engine.utilities.TradeUtility;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0_BG;
@@ -186,6 +187,11 @@ public class Renderer implements Runnable {
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
             g.drawImage(c.getTexture(), c.getX() - camX, c.getY() - camY, c.getWidth(), c.getHeight(), null);
         }
+
+
+
+
+
         //Отрисовка лучей рейкастера для всех нпц из списка  текущих
         // (ОПЦИОНАЛЬНО) !!!                                                                                            // todo спросить мишгана надолиэто тут
 
@@ -253,6 +259,16 @@ public class Renderer implements Runnable {
         AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
         at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getTexture().getWidth() / 2), (Player.get().getTexture().getHeight() / 2));
         ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
+
+
+        //Отрисовка тени ночи
+        switch (TimeMachine.getTimeOfTheDay())
+        {
+            case MORNING : System.out.println("утро"); break;
+            case DUSK : if(Engine.getCurrentLevel().isStreet()){ g.setColor(new Color(0,0,0,180)); g.fillRect( camX-Player.get().getX()+(SCREEN_WIDTH/2)-100,camY-Player.get().getY()+(SCREEN_HEIGHT/2)-100, SCREEN_WIDTH+100, SCREEN_HEIGHT+100);}
+
+        }
+
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
         //
         //
@@ -272,6 +288,9 @@ public class Renderer implements Runnable {
             g.drawString(""+ MouseListener.getInstance().getX()+" "+ MouseListener.getInstance().getY(),100,100);
             g.setColor(Color.cyan);
             g.drawString(""+Camera.getInstance().getX()+" "+Camera.getInstance().getY(),100,130);
+            //отрисовка времени
+        g.setColor(Color.white);
+        g.drawString(TimeMachine.getStringTime(),100,200);
              // отрисовка информации о предмете при наводе мышки на онный
             g.setColor(Color.red);
             if(MouseButtonListener.getInstance().highlight != null && MouseButtonListener.getInstance().highlight.getSource() instanceof ItemPanel) {  // если мышкин хайлайтпредметов показывает нуль и пердмет подсвечивает предмент который айтем панел
@@ -279,6 +298,11 @@ public class Renderer implements Runnable {
             }
             g.setColor(Color.GREEN);
             g.drawString(""+(MouseListener.getInstance().getX()+camX)+" "+(MouseListener.getInstance().getY()+camY),100,160);
+
+
+
+
+
             // Все вышесказанное рисуем на холст и показываем на экране.
             g.dispose();
             canvas.getBufferStrategy().show();
