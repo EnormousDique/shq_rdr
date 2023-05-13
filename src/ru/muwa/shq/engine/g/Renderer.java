@@ -9,6 +9,7 @@ import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.engine.time.TimeMachine;
+import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.engine.utilities.TradeUtility;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0_BG;
@@ -155,7 +156,7 @@ public class Renderer implements Runnable {
 
         // Закрашиваем задник черным
         g.setColor(Color.black);
-        if(isDrawingBg) g.fillRect(0, 0, GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT);
+        if(isDrawingBg ) g.fillRect(0, 0, GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT);
         //отрисовка обьектов из списка текущих обьектов
         for (int i = 0;i<Engine.getCurrentLevel().getObjects().size();i++){
             GameObject o = Engine.getCurrentLevel().getObjects().get(i);
@@ -254,6 +255,7 @@ public class Renderer implements Runnable {
             DialogueManager.work();
             // Вызов службы торговли
             TradeUtility.work();
+        InventoryManager.update();
 
         // ОТРИСОВКА ПЕрСОНАЖА
         AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
@@ -265,7 +267,7 @@ public class Renderer implements Runnable {
         switch (TimeMachine.getTimeOfTheDay())
         {
             case MORNING : System.out.println("утро"); break;
-            case DUSK : if(Engine.getCurrentLevel().isStreet()){ g.setColor(new Color(0,0,0,180)); g.fillRect( camX-Player.get().getX()+(SCREEN_WIDTH/2)-100,camY-Player.get().getY()+(SCREEN_HEIGHT/2)-100, SCREEN_WIDTH+100, SCREEN_HEIGHT+100);}
+            case DUSK : if(Engine.getCurrentLevel().isStreet()  ) if(isDrawingBg){ g.setColor(new Color(0,0,0,150)); g.fillRect( camX-Player.get().getX()+(SCREEN_WIDTH/2)-100,camY-Player.get().getY()+(SCREEN_HEIGHT/2)-100, SCREEN_WIDTH+100, SCREEN_HEIGHT+100);}
 
         }
 

@@ -4,12 +4,15 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.containers.ContainerPanel;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.controls.Grabber;
+import ru.muwa.shq.zones.BuyoutZone;
+import ru.muwa.shq.zones.GameZone;
 
 import javax.swing.event.MouseInputListener;
 import java.awt.*;
@@ -52,15 +55,41 @@ public class MouseButtonListener implements MouseInputListener {
                 break;
         }
 
-        if (e.getSource() instanceof ItemPanel) {
+        boolean isPlayerInBuyoutMode = false;
+        BuyoutZone bz = null;
+        for(GameZone z : Engine.getCurrentLevel().getZones())
+            if(z instanceof BuyoutZone && ((BuyoutZone)z).isActive)
+            {bz = (BuyoutZone) z; isPlayerInBuyoutMode=true;
+                System.out.println("Player clicked in buyout mode");}
+
+        if(e.getSource() instanceof  ItemPanel && isPlayerInBuyoutMode && bz != null)
+        {
+            System.out.println("Player clicked on item panel");
+            Item pressedItem = ((ItemPanel)e.getSource()).getItem(); //Вещь, на которую нажали
+            boolean isPressedOnItemInInventory = Inventory.getInstance().getItems().contains(pressedItem); //Определяем нажал игрок на свою вещь или на вещь в выкупе.
+
+            if(isPressedOnItemInInventory)
+            {
+                System.out.println("player clicked on inventory item " + pressedItem);
+                Inventory.getInstance().getItems().remove(pressedItem);
+                bz.buyout.goods.add(pressedItem);
+            }else {
+                Inventory.getInstance().addItem(pressedItem);
+                bz.buyout.goods.remove(pressedItem);
+            }
+        }
+
+        if (e.getSource() instanceof ItemPanel && !isPlayerInBuyoutMode) {
             ((ItemPanel) e.getSource()).getItem().pick();
             HUD.getInstance().getItemWindow().updateUI();
         }
-        else if (e.getSource() instanceof ContainerPanel) {
+        if (e.getSource() instanceof ContainerPanel) {
                 ((ContainerPanel) e.getSource()).getItem().get();
                 HUD.getInstance().getContainerWindow().updateUI();
 
         }
+
+
 
 
     }

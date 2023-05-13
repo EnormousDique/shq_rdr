@@ -28,7 +28,7 @@ public class TimeMachine {
         if(500_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay <600_000) timeOfTheDay = TimesOfTheDay.EVENING;
         if(600_000 < timeFromTheBeginningOfADay) timeOfTheDay = TimesOfTheDay.NIGHT;
 
-        System.out.println(dayNumber);
+
 
 
 

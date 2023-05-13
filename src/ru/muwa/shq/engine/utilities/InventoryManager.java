@@ -151,7 +151,6 @@ public class InventoryManager
             int yOffset = 50; // Смещение по оси у (для переноса строки каждые 4 панельки)
             int skip = 0;
 
-
             //Цикл
             //  Проходимся по вещам из инвентаря, и добавляем панель под каждую на окно ItemWindow
             for(int i = 0; i<Inventory.getInstance().getItems().size(); i++)
@@ -167,7 +166,7 @@ public class InventoryManager
                         itemTiles.get(i-skip).setIcon(new ImageIcon(Inventory.getInstance().getItems().get(i).getTexture()));
                 }
             }
-
+            if(HUD.getInstance().getItemWindow().getComponents().length>0)
             Arrays.stream(window.getComponents()).forEach(window::remove);
 
             //Добавляем заголовок
@@ -257,7 +256,17 @@ public class InventoryManager
         }
         public static void updateQuestWindow()
         {
-            Arrays.stream(HUD.getInstance().getQuestWindow().getComponents()).forEach(HUD.getInstance().getQuestWindow()::remove);
+
+           // Arrays.stream(HUD.getInstance().getQuestWindow().getComponents()).forEach(HUD.getInstance().getQuestWindow()::remove);}
+            for(int i = 0; i < HUD.getInstance().getQuestWindow().getComponents().length;i++)
+            {
+                try {
+                    HUD.getInstance().getQuestWindow().remove(i);
+
+                }catch (Exception e){}
+            }
+
+
             String s;
             ArrayList<Quest> activeQuests = new ArrayList<>(Player.get().quests.stream().filter(q-> !q.tasks.get(q.tasks.size()-1).isCompleted).collect(Collectors.toList()));
 

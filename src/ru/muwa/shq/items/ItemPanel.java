@@ -8,6 +8,7 @@ public class ItemPanel extends JLabel {
     {
         super();
         this.item = item;
+        this.setIcon(new ImageIcon(item.getTexture()));
     }
 
     public Item getItem() {

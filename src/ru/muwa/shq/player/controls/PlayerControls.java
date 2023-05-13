@@ -73,6 +73,10 @@ public class PlayerControls
             {
                 ((TradeZone)z).isActive = true;
             }
+            if(z instanceof BuyoutZone && z.contains(Player.get().getX(), Player.get().getY()))
+            {
+                ((BuyoutZone)z).isActive = true;
+            }
         }
     }
     // движение вверх с бегом и снятием стамины
@@ -224,7 +228,6 @@ public class PlayerControls
                 while (!((InteractiveEnterZone ) z).getGame().victory())
                 {
                     System.out.println("мы находимся в миниигре падик лок");
-                    // System.out.println("мы находимся в миниигре падик лок");
                     if(KeyListener.getInstance().getKeys()[KeyListener.getInstance().Q])
                         break;
                     if(((InteractiveEnterZone ) z).getGame().victory()

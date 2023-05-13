@@ -4,6 +4,7 @@ import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.dialogues.demo.Conversation0;
 import ru.muwa.shq.dialogues.demo.Q2T1_Conversation;
 import ru.muwa.shq.dialogues.demo.Q3_PoliceConversation;
+import ru.muwa.shq.economics.trading.Buyout;
 import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
@@ -110,7 +111,7 @@ public class DemoLevel0 extends Level
                 @Override
                 public void performAction() {
                     EffectUtility.getCurrentEffects().put(EffectUtility.Effects.STONED,100000l+System.currentTimeMillis());
-                    System.out.println("я в говнро");
+                    System.out.println("я в говно");
                 }
             }));
         System.out.println("test 3");
@@ -126,6 +127,12 @@ public class DemoLevel0 extends Level
                 goods.add(new EnergyDrink());
                 goods.add(new Cigarettes());
                 goods.add(new Lyrica());
+            }
+        }));
+        zones.add(new BuyoutZone(300, 150, 300, 300, new Buyout() {
+            @Override
+            public void init() {
+
             }
         }));
 

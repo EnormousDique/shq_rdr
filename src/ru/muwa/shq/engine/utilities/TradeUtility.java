@@ -1,6 +1,7 @@
 package ru.muwa.shq.engine.utilities;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.zones.BuyoutZone;
 import ru.muwa.shq.zones.GameZone;
 import ru.muwa.shq.zones.TradeZone;
 
@@ -12,6 +13,10 @@ public class TradeUtility {
                 if(z instanceof TradeZone && ((TradeZone)z).isActive)
                 {
                     ((TradeZone)z).trade.trade();
+                }
+                if(z instanceof BuyoutZone && ((BuyoutZone)z).isActive)
+                {
+                    ((BuyoutZone)z).buyout.trade();
                 }
             }
     }

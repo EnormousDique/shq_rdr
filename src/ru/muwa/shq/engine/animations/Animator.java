@@ -44,7 +44,7 @@ public class Animator implements Runnable {
             if(delta >= 1)
             {
                 System.out.printf("");// КОСТЫЛЬ. БЕЗ ЭТОЙ СТРОЧКИ НИЧЕГО НЕ РАБОТАЕТ.
-                System.out.println("Работ ает поток аниматора, размер очереди : " + animationQueue.size());
+                //  System.out.println("Работ ает поток аниматора, размер очереди : " + animationQueue.size());
                 checkAnimationQueue();
             }
         }

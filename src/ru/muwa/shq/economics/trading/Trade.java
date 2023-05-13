@@ -48,12 +48,7 @@ public abstract class Trade {
             exitButton.setBounds(HUD.getInstance().getActionWindow().getWidth()-100,
                    0,100,50);
             exitButton.addActionListener(listener);
-/*
-            try {
-                Thread.sleep(70);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }*/
+
 y++;
         }
     }
