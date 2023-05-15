@@ -10,6 +10,7 @@ import ru.muwa.shq.objects.containers.HubChest;
 import ru.muwa.shq.zones.DialogueZone;
 import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.GifSceneZone;
+import ru.muwa.shq.zones.SleepZone;
 
 
 import java.io.IOException;
@@ -39,6 +40,7 @@ public class HubHataIgoryana extends Level
         // диалог с мамой
         zones.add(new DialogueZone(Conversation1.getInstance(),100,100,100,100,false));
        // zones.add(new GifSceneZone(200,200,70,70,true));
+        zones.add(new SleepZone(200,200,50,50));
         // стены хаюа
         objects.add(new Wall350(351,-50));
         objects.add(new Wall350(701,-50));

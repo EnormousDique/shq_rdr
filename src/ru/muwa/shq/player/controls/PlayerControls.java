@@ -4,11 +4,13 @@ import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.*;
 import ru.muwa.shq.engine.combat.CombatUtility;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.engine.s.Sounder;
+import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.engine.utilities.InventoryManager;
@@ -48,6 +50,7 @@ public class PlayerControls
         if(keyboard.getKeys()[keyboard.ENTER]) enter();
         if(keyboard.getKeys()[keyboard.T]) t(); // нважата T
         if(keyboard.getKeys()[keyboard.SHIFT]) shift();
+        if(keyboard.getKeys()[keyboard.U]) u();
       //  if(keyboard.getKeys()[keyboard.V]) v();
 
 
@@ -97,6 +100,23 @@ public class PlayerControls
 
 
     }// движение влево с бегом и снятием стамины
+
+
+
+    private static void u()
+    {
+        for(GameZone z : Engine.getCurrentLevel().getZones())
+        {
+            if(z instanceof SleepZone)
+            {
+                SleepZone zz = (SleepZone) z;
+                TimeMachine.rewind(250_000);
+                Renderer.playSleepyFilter();
+            }
+        }
+    }
+
+
     private static void a() {
         if(keyboard.getKeys()[keyboard.SHIFT]){
             if(Player.get().getStamina() >0) {

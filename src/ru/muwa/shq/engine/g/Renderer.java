@@ -36,6 +36,18 @@ import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
 public class Renderer implements Runnable {
     public static Graphics g; // Объект графики (Объект, который рисует)
     private GameScreen frame; // Игровой экран
+    private boolean isSleeping =false;
+
+    public static void playSleepyFilter()  {
+            instance.isSleeping = true;
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                System.out.println("ОШИБКА СНА-съ");
+            }
+            instance.isSleeping = false;
+    }
+
     public GameScreen getFrame(){return frame;}
     public static JFrame loadingScreen ;
     private Canvas canvas; // Холст на игровом экране
@@ -127,7 +139,7 @@ public class Renderer implements Runnable {
             delta += (currTime - lastTime) / drawInterval;
             lastTime = currTime;
             if (delta >= 1) {
-                render();
+                if(!isSleeping) render();
                 delta--;
             }
         }

@@ -13,24 +13,20 @@ public class TimeMachine {
     private static long startTime;
     private static long currentTime;
     public static void setStartTime(){
-        startTime = System.currentTimeMillis();
+        startTime = /* System.currentTimeMillis(); */ 0 ;
         currentTime = startTime;
     }
     public static void work()
     {
-        currentTime = System.currentTimeMillis() - startTime;
+        currentTime = currentTime + (1_000 /60);
         dayNumber = (int) Math.floor(currentTime/DAY_LENGTH) +1;
 
         long timeFromTheBeginningOfADay = currentTime % DAY_LENGTH;
-        if(timeFromTheBeginningOfADay < 100_000) timeOfTheDay = TimesOfTheDay.DUSK;
-        if(200_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay < 300_000) timeOfTheDay = TimesOfTheDay.NOON;
-        if(400_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay < 500_000) timeOfTheDay = TimesOfTheDay.DUSK;
+        if(timeFromTheBeginningOfADay < 100_000) timeOfTheDay = TimesOfTheDay.SUNRISE;
+        if(200_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay < 300_000) timeOfTheDay = TimesOfTheDay.MORNING;
+        if(300_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay < 500_000) timeOfTheDay = TimesOfTheDay.AFTERNOON;
         if(500_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay <600_000) timeOfTheDay = TimesOfTheDay.EVENING;
         if(600_000 < timeFromTheBeginningOfADay) timeOfTheDay = TimesOfTheDay.NIGHT;
-
-
-
-
 
     }
 
@@ -49,9 +45,15 @@ public class TimeMachine {
             else minutes = minutes.charAt(0) + "" + minutes.charAt(1);
         }
 
-        output += "" + hours +":"+minutes;
+        output += "" + hours +":"+minutes + " ; day " + dayNumber;
 
         return output;
     }
+
+    public static void rewind(int n){
+        currentTime += n;
+        dayNumber = (int) Math.floor(currentTime/DAY_LENGTH) +1;
+    }
+
 
 }

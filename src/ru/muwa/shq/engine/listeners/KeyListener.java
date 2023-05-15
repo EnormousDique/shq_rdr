@@ -25,6 +25,7 @@ public class KeyListener implements java.awt.event.KeyListener
      * P - 80
      * T - 84
      * V - 86
+     * U - 85
      * ENTER - 10
      * SHIFT - 16
      */
@@ -42,15 +43,16 @@ public class KeyListener implements java.awt.event.KeyListener
             ENTER = 8,
             P = 9,
             T = 10,
-            V = 86,
-            SHIFT = 11;
+            SHIFT = 11,
+            V = 12,
+            U = 13;
 
     private static KeyListener instance;
 
     private KeyListener()
     {
         instance = this;
-        keys = new boolean[15];
+        keys = new boolean[14];
     }
 
     public static KeyListener getInstance()
@@ -68,7 +70,7 @@ public class KeyListener implements java.awt.event.KeyListener
     @Override
     public void keyPressed(KeyEvent e)
     {
-      //  System.out.println(e.getKeyCode());
+        System.out.println(e.getKeyCode());
 
         switch (e.getKeyCode()) {
             case 32: // Пробел
@@ -108,6 +110,9 @@ public class KeyListener implements java.awt.event.KeyListener
                 break;
             case 86: // V
                 keys[V] = true;
+                break;
+            case 85: //U
+                keys[U] = true;
                 break;
 
 
@@ -156,6 +161,9 @@ public class KeyListener implements java.awt.event.KeyListener
                 break;
             case 86: // SHIFT
                 keys[V] = false;
+                break;
+            case 85: //U
+                keys[U] = false;
                 break;
 
         }
