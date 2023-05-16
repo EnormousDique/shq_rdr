@@ -7,6 +7,9 @@ import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
 
+import java.awt.*;
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -40,46 +43,109 @@ public class CollisionsChecker {
      * @param objects - Остальные объекты
      *
      */
-    //TODO: Переписать с опорой на центры объектов.
+    //TODO: Переписать с опорой на линии солид бокса
     private void checkObjectCollisions(GameObject o, List<GameObject> objects) {
+
+
         List<GameObject> list = objects.stream().filter(ob -> !ob.equals(o)).filter(ob -> ob.getIsSolid()).toList();
         if (o != null) {
 
-            for (GameObject obj : list) { //Перебираем объекты.
-                //todo если пересекает больше двух  обьектов написать другую логику.
-                if (o.getSolidBox().intersects(obj.getSolidBox())) // произошло столкновение
-                {
+            Point2D
+                    lt = new Point(o.getX(),o.getY()),
+                    rt = new Point(o.getX()+o.getWidth(),o.getY()),
+                    lb = new Point(o.getX(),o.getY()+o.getHeight()),
+                    rb = new Point(o.getX()+o.getWidth(),o.getY()+o.getHeight());
 
-                    if (o.getSolidBox().getCenterY() > obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
-                        o.setY((int)obj.getSolidBox().getY() + (int)obj.getSolidBox().getHeight());
-                        System.out.println("вниз");
+            Line2D
+                    topLine = new Line2D.Double(lt,rt),
+                    bottomLine = new Line2D.Double(lb,rb),
+                    leftLine = new Line2D.Double(lt,lb),
+                    rightLine = new Line2D.Double(rt,rb);
+
+
+            for (GameObject obj : list) {
+
+
+
+                //Перебираем объекты.
+                //todo если пересекает больше двух  обьектов написать другую логику??
+//
+//
+//
+//
+//
+//
+//                if ( o.getSolidBox().intersects(obj.getSolidBox())) // произошло столкновение
+  //              {
+//
+  //                  if (o.getSolidBox().getCenterY() > obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
+    //                    o.setY((int)obj.getSolidBox().getY() + (int)obj.getSolidBox().getHeight());
+      //                  System.out.println("вниз");
                      //   continue;
 
-                    }//Вниз
+        //            }//Вниз
                     /*else*/
 
                     //я тупой дибил пидарас и сука крышу у людей последнее
 
-                    if (o.getY() < obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
-                        o.setY((int)obj.getSolidBox().getY() - o.getHeight());
-                        System.out.println("вверх");
+          //          if (o.getY() < obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
+            //            o.setY((int)obj.getSolidBox().getY() - o.getHeight());
+              //          System.out.println("вверх");
                      //   continue;
 
-                    }//Вверх
+      //              }//Вверх
                     /*else*/
-                    if (o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
-                        o.setX((int)obj.getSolidBox().getX() + (int)obj.getSolidBox().getWidth());
-                        System.out.println("право");
+     //               if (o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
+    //                    o.setX((int)obj.getSolidBox().getX() + (int)obj.getSolidBox().getWidth());
+    //                    System.out.println("право");
                        // continue;
 
-                    }//Вправо
+    //                }//Вправо
                     /*else*/
-                    if (o.getX() < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
-                        o.setX((int)obj.getSolidBox().getX() - o.getWidth());
-                        System.out.println("vlevo");
+    //                if (o.getX() < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
+     //                   o.setX((int)obj.getSolidBox().getX() - o.getWidth());
+    //                    System.out.println("vlevo");
                       //  continue;
 
-                    }//Влево
+  //                  }//Влево
+
+
+
+                //Новый код проверки столкновений
+
+                //Проверка,что проверяемый объект зашел в стену "верхом"
+                if(obj.getSolidBox().contains(lt) &&
+                   obj.getSolidBox().contains(rt) &&
+                  !obj.getSolidBox().contains(lb) &&
+                  !obj.getSolidBox().contains(rb) )
+                {
+                    o.setY(obj.getY()+obj.getHeight());
+                }
+                //Проверка,что проверяемый объект зашел в стену "низом"
+                if(obj.getSolidBox().contains(lb) &&
+                        obj.getSolidBox().contains(rb) &&
+                        !obj.getSolidBox().contains(lt) &&
+                        !obj.getSolidBox().contains(rt) )
+                {
+                    o.setY(obj.getY()-o.getHeight());
+                }
+                //Проверка,что проверяемый объект зашел в стену "левом"
+                if(obj.getSolidBox().contains(lb) &&
+                        obj.getSolidBox().contains(lt) &&
+                        !obj.getSolidBox().contains(rt) &&
+                        !obj.getSolidBox().contains(rb) )
+                {
+                    o.setX(obj.getX()+obj.getWidth());
+                }
+                //Проверка,что проверяемый объект зашел в стену "правом"
+                if(obj.getSolidBox().contains(rb) &&
+                        obj.getSolidBox().contains(rt) &&
+                        !obj.getSolidBox().contains(lt) &&
+                        !obj.getSolidBox().contains(lb) )
+                {
+                    o.setX(obj.getX()-o.getWidth());
+                }
+
 
                     //Код для уничтожения пуль после столкновения
                    // if (obj instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(obj);
@@ -94,7 +160,7 @@ public class CollisionsChecker {
                 }
             }
         }
-    }
+
     public  void checkAttackCollisions(){
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size();i++){
             NPC npc = Engine.getCurrentLevel().getNPC().get(i);
