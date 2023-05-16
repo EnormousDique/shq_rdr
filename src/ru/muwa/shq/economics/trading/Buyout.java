@@ -43,13 +43,13 @@ public abstract class Buyout {
 
         if(goods.size()>0) {
 
-            for (Item i : goods) {
-                ItemPanel p = new ItemPanel(i);
+            for (int i = 0 ; i< goods.size(); i++) {
+                ItemPanel p = new ItemPanel(goods.get(i));
                 HUD.getInstance().getActionWindow().add(p);
                 p.setBounds(x, y * 50, 50, 50);
                 p.addMouseListener(MouseButtonListener.getInstance());
 
-                String s = "цена : " + i.getPrice();
+                String s = "цена : " + goods.get(i).getPrice();
                 JLabel l = new JLabel(s);
                 HUD.getInstance().getActionWindow().add(l);
                 l.setBounds(50,y*50,100,50);

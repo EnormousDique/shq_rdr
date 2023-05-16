@@ -166,8 +166,8 @@ public class InventoryManager
                         itemTiles.get(i-skip).setIcon(new ImageIcon(Inventory.getInstance().getItems().get(i).getTexture()));
                 }
             }
-            if(HUD.getInstance().getItemWindow().getComponents().length>0)
-            Arrays.stream(window.getComponents()).forEach(window::remove);
+            if(HUD.getInstance().getItemWindow().getComponents().length>0){
+            Arrays.stream(window.getComponents()).forEach(window::remove);}
 
             //Добавляем заголовок
             JLabel titleLabel = new JLabel("BEW,N");

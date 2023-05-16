@@ -40,7 +40,7 @@ public class HubHataIgoryana extends Level
         // диалог с мамой
         zones.add(new DialogueZone(Conversation1.getInstance(),100,100,100,100,false));
        // zones.add(new GifSceneZone(200,200,70,70,true));
-        zones.add(new SleepZone(200,200,50,50));
+        zones.add(new SleepZone(740,5,50,100));
         // стены хаюа
         objects.add(new Wall350(351,-50));
         objects.add(new Wall350(701,-50));
