@@ -192,7 +192,8 @@ public class InventoryManager
         ArrayList<ContainerPanel> containerTiles = new ArrayList<>(); // Список панелек для вещей
         int yOffset = 50; // Смещение по оси у (для переноса строки каждые 4 панельки)
 
-        for (Container c : Engine.getCurrentLevel().getContainers()) {
+        for (int j = 0; j< Engine.getCurrentLevel().getContainers().size();j++) {
+            Container c = Engine.getCurrentLevel().getContainers().get(j);
             if (c.isInUse()/* && c.getItems().size() >=  1*/) {
                 //отрисовка инвентаря контейнера
                 HUD.getInstance().getContainerWindow().setVisible(true);

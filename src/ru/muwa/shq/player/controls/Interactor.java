@@ -9,6 +9,8 @@ import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
+import java.util.ArrayList;
+
 /**
  * Класс, отвечающий за взаимодейстиве игрока с usable и container объектами
  */
@@ -24,20 +26,31 @@ public class Interactor
     {
         int x = MouseListener.getInstance().getX();
         int y = MouseListener.getInstance().getY();
-        //System.out.println( "мышь х: " + x + " у: " + y);
-        //System.out.println( "мышь с учетом камеры х: " + (x + Camera.getInstance().getX()) + " у: " + (y+ Camera.getInstance().getY()));
+
+        //Блок обработки нажатий на контейнер
+
+        ArrayList<Container> activeContainers = new ArrayList<>();
+
         for(Container c : Engine.getCurrentLevel().getContainers()) {
+
             if ( c.getSolidBox().inside(x + Camera.getInstance().getX(), y + Camera.getInstance().getY())
                     && Player.get().getUseZone().contains(x + Camera.getInstance().getX(), y + Camera.getInstance().getY()))
             {
-                //System.out.println("Курсор находится на обекте контейнер");
+                activeContainers.add(c);
+
+            }
+        }
+            if(activeContainers.size() >0) {
+                Container c = activeContainers.get(0);
                 c.setIsInUse(true);
                 Inventory.getInstance().setIsOpened(true);
                 Player.get().setIsBusy(true);
                 Player.get().setCurrentObject(c);
-
             }
-        }
+            if(false){}//TODO: добавить возможность открыть несколько окон шмона или переключаться между ними, если activeContainers.size() > 1
+
+               //======================================================
+
         for(NPC n : Engine.getCurrentLevel().getNPC()) if(n.getSolidBox().contains(x+Camera.getInstance().getX(),y+Camera.getInstance().getY()))
             System.out.println("Курсор находится на обекте нпц");
     }
