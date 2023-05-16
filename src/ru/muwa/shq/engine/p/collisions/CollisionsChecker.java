@@ -1,17 +1,14 @@
 package ru.muwa.shq.engine.p.collisions;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.combat.CombatUtility;
-import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.items.guns.Bullet;
-import ru.muwa.shq.items.guns.EnemyBullet;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.player.aiming.Aim;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import static ru.muwa.shq.objects.GameObject.Direction.DOWN;
 
 /**
  * Класс, отвечающий за проверку столкновений игровых объектов.
@@ -98,19 +95,21 @@ public class CollisionsChecker {
             }
         }
     }
-    public  void  checkAttackZoneCollisions(){
+    public  void checkAttackCollisions(){
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size();i++){
             NPC npc = Engine.getCurrentLevel().getNPC().get(i);
            if (Engine.getCurrentLevel().getNPC().get(i).getSolidBox().intersects(Player.get().getAttackZone()))
            {
-               if(npc.getY() + npc.getHeight() < Player.get().getSolidBox().getCenterY())
-               {
-                   npc.setY((int) (Player.get().getAttackZone().getY() - npc.getHeight() - 30));
-                   npc.setStanding(true);
-               }
-               else if(npc.getY() > Player.get().getAttackZone().getY()+ Player.get().getAttackZone().getHeight() -20) npc.setY((int) (Player.get().getAttackZone().getY() + Player.get().getAttackZone().getHeight() + 30));
-               else if(npc.getSolidBox().getCenterX() < Player.get().getAttackZone().getCenterX()) npc.setX((int) (Player.get().getAttackZone().getX() - npc.getWidth()));
-               else if(npc.getSolidBox().getCenterX() > Player.get().getAttackZone().getCenterX()) npc.setX((int) (Player.get().getAttackZone().getX() + Player.get().getAttackZone().getWidth()));
+               double
+                       velocity = Player.get().currentWeapon == null? 5.0 : Player.get().currentWeapon.getDamage(),
+
+                       xVelocity = velocity * Math.cos(Math.toRadians(Aim.getInstance().calculateAngle())),
+
+                       yVelocity = velocity * Math.sin(Math.toRadians(Aim.getInstance().calculateAngle()));
+
+
+               npc.setX((int) (npc.getX() + ( ( xVelocity )*(4 ) )));
+               npc.setY((int) (npc.getY() + ( (yVelocity )*(4) )));
            }
         }
         }

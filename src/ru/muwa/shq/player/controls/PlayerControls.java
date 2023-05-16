@@ -9,18 +9,13 @@ import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
-import ru.muwa.shq.engine.s.Sounder;
 import ru.muwa.shq.engine.time.TimeMachine;
-import ru.muwa.shq.engine.utilities.EffectUtility;
-import ru.muwa.shq.engine.utilities.InventoryManager;
-import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.guns.*;
 import ru.muwa.shq.items.knifes.Kortique;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
-import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.zones.*;
 
 import java.awt.*;
@@ -211,15 +206,17 @@ public class PlayerControls
             if (!Animator.isBusy()) {// Проверяем не занят ли аниматор (не воспроизводится ли уже анимация удара.)
 
                 //Наносим урон врагам, находящимся в зоне атаки
+
                 for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
                     NPC npc = Engine.getCurrentLevel().getNPC().get(i);
                     if (npc.getSolidBox().intersects(Player.get().getAttackZone())) {
+                        CollisionsChecker.getInstance().checkAttackCollisions();
                         try {
                             int damage = Player.get().currentWeapon == null ? 5 : Player.get().currentWeapon.getDamage();
                             CombatUtility.attack(npc, damage);
                         } catch (Exception e) {
                         }
-                        CollisionsChecker.getInstance().checkAttackZoneCollisions();
+
 
                     }
                 }
