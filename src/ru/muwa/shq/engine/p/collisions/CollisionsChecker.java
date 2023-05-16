@@ -152,7 +152,7 @@ public class CollisionsChecker {
 
 
                     if (obj instanceof Bullet) {
-                        if(o.equals(Player.get())) CombatUtility.attack(Player.get(), 10);
+                        if(o.equals(Player.get())) CombatUtility.attack(Player.get(), 5); // ТЕСТ. игрок получает 5,  не 10 урона от пуль
                       //  if(o instanceof NPC) CombatUtility.attack(((NPC)o),10);
                         Engine.getCurrentLevel().getObjects().remove(obj);
 
@@ -167,14 +167,17 @@ public class CollisionsChecker {
            if (Engine.getCurrentLevel().getNPC().get(i).getSolidBox().intersects(Player.get().getAttackZone()))
            {
                double
-                       velocity = Player.get().currentWeapon == null? 5.0 : Player.get().currentWeapon.getDamage(),
+                       velocity =
+                               Player.get().currentWeapon == null? 20 : Player.get().currentWeapon.getThrowback(),
 
-                       xVelocity = velocity * Math.cos(Math.toRadians(Aim.getInstance().calculateAngle())),
+                       xVelocity =
+                               velocity * Math.cos(-1*Math.toRadians(Aim.getInstance().calculateAngle() )+90),
 
-                       yVelocity = velocity * Math.sin(Math.toRadians(Aim.getInstance().calculateAngle()));
+                       yVelocity =
+                               velocity * Math.sin(-1*Math.toRadians(Aim.getInstance().calculateAngle())+90);
 
 
-               npc.setX((int) (npc.getX() + ( ( xVelocity )*(4 ) )));
+               npc.setX((int) (npc.getX() + ( ( xVelocity  )*(4 ) )));
                npc.setY((int) (npc.getY() + ( (yVelocity )*(4) )));
            }
         }

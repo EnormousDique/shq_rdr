@@ -9,8 +9,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import static ru.muwa.shq.objects.GameObject.Direction.*;
-
 /**
  * Класс, являющийся прародителем всех игровых существ.
  */
@@ -40,15 +38,15 @@ public abstract class Creature extends GameObject
 
     protected int speed; //Скорость
 
-    public int getHp() {
+    public double getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
+    public void setHp(double hp) {
         this.hp = hp;
     }
 
-    protected int hp;
+    protected double hp;
 
     protected Rectangle attackZone;
 

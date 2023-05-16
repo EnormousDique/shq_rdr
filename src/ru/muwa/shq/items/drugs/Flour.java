@@ -1,6 +1,5 @@
 package ru.muwa.shq.items.drugs;
 
-import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;

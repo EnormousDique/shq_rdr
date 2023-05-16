@@ -6,7 +6,6 @@ import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.drugs.Flour;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

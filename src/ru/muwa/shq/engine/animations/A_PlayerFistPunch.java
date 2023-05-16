@@ -15,9 +15,11 @@ public class A_PlayerFistPunch extends Animation{
         sprites = new ArrayList<>();
         try
         {
-            sprites.add(ImageIO.read(new File(IMG_PATH + "player\\kulaginFist_a1.png")));
-            sprites.add(ImageIO.read(new File(IMG_PATH + "player\\kulaginFist_a2.png")));
-            sprites.add(ImageIO.read(new File(IMG_PATH + "player\\kulaginFist_a3.png")));
+
+            sprites.add(ImageIO.read(new File(IMG_PATH + "player\\kulaginFist2.png")));
+            sprites.add(ImageIO.read(new File(IMG_PATH + "player\\kulaginFist3.png")));
+            sprites.add(ImageIO.read(new File(IMG_PATH + "player\\kulaginFist6.png")));
+            sprites.add(ImageIO.read(new File(IMG_PATH + "player\\kulaginFist.png")));
             System.out.println("произошла загрузка анимации удара");
         }
         catch(Exception e)

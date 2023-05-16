@@ -67,7 +67,7 @@ public class Spawner {
                 xOff = (int) (Math.random() + 1) * DISTANCE_INTERVAL * (Math.random() > 0.5? 1 : -1);
                 yOff = (int) (Math.random() + 1) * DISTANCE_INTERVAL * (Math.random() > 0.5? 1 : -1);
                 c = new AimingGuy(Player.get().getX() + xOff, Player.get().getY() + yOff);
-                level.getNPC().add(c);
+                if(Math.random() > 0.75) level.getNPC().add(c);
                 spawnedNPCCounter++;
                 c.setRayCasterBorders(c.getRayCaster().buildLines(level.getObjects()));
                 // спавним танка

@@ -24,6 +24,7 @@ public class BaseballBat extends Weapon {
         damage = 20;
         this.description = "Битааа , ХУякс.... и башка пробитааа!";
         this.isAbleToEquip = true;
+        this.throwback = 50;
     }
     static
     {

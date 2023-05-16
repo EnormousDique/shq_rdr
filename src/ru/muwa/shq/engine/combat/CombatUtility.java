@@ -25,42 +25,11 @@ public class CombatUtility {
         updateAttackZone();
         for(NPC c: Engine.getCurrentLevel().getNPC()){
             if(c.getSolidBox().intersects(Player.get().getSolidBox())){
-                Player.get().setHp(Player.get().getHp()-1);
+                Player.get().setHp(Player.get().getHp()-0.2);
             }
         }
     }
-    public static void updatePlayerTexture(){ // метод который отвечает за изменение текстуры игрока взависимости от его оружия
-        try {
 
-            boolean isbaseballBatEquipped = false;
-            boolean isMakarovEquipped = false;
-            Weapon bat = null;
-            Weapon gun = null;
-            for (int i = 0; i < Inventory.getInstance().getItems().size(); i++) { // проходимся циклом фор по инвентарю
-                if (Inventory.getInstance().getItems().get(i).isEquipped() &&
-                        Inventory.getInstance().getItems().get(i) instanceof BaseballBat) { // если предмет экипирован и бейспольная
-                    isbaseballBatEquipped = true;
-                    bat = (Weapon) Inventory.getInstance().getItems().get(i);
-                }
-                else if((Inventory.getInstance().getItems().get(i).isEquipped() &&
-                        Inventory.getInstance().getItems().get(i) instanceof Makarov)) { // если предмет экипирован и он макаров
-                    isMakarovEquipped = true   ;
-                    gun = (Weapon) Inventory.getInstance().getItems().get(i);
-                }
-            }
-            if (isMakarovEquipped && gun instanceof Makarov) {
-                Player.get().setTexture(ImageIO.read(new File(IMG_PATH + "player\\kulaginPistol3.png")));
-            }
-            if (isbaseballBatEquipped && bat instanceof BaseballBat) {   // проверка на то что оружие экипированно и Бита.
-                Player.get().setTexture(ImageIO.read(new File(IMG_PATH + "player\\kulaginBat2.png")));// устанавливаем текстуру игрока на текстуру с битой
-            }
-            else if(!isbaseballBatEquipped && !isMakarovEquipped) {
-                Player.get().setTexture(ImageIO.read(new File(IMG_PATH + "player\\kulaginFist.png"))); // если бита не жкипирована и оружие в руках не ьита то стандартная текстура
-            }
-        } catch (Exception e){
-            System.out.println("Failed to load player rexture");
-        }
-    }
     public static void updateAttackZone(){
 
         boolean holdingGun = false;

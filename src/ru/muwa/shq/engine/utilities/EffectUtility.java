@@ -49,7 +49,7 @@ public class EffectUtility {
                 case StaminaRegen:
                     if(entry.getValue() > System.currentTimeMillis()){
                         Player.get().setStamina(Player.get().getStamina()+1);
-                        Player.get().setHp(Math.random()>0.99&&Player.get().getHp()<99?Player.get().getHp()+1:Player.get().getHp());
+                        Player.get().setHp(Math.random()>0.99&&Player.get().getHp()<99?Player.get().getHp()+1.0:Player.get().getHp());
 
                     }
 

@@ -8,6 +8,12 @@ public abstract class Weapon extends Item {
         return damage;
     }
     protected int damage;
+    protected int throwback;
+
+    public int getThrowback() {
+        return throwback;
+    }
+
     protected boolean isFireArm;
     protected int rateOfFire;
     protected int currAmmo; //Текущее кол-во патронов в магазине

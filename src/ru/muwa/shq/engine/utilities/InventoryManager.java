@@ -102,7 +102,11 @@ public class InventoryManager
 
         }
 
-        updateItemWindow();
+        try {
+            updateItemWindow();
+        }catch (Exception e){
+            System.out.println("инвентарь навернулся. все ок, едем дальше");
+        }
         updateEquipWindow();
         updateStatusWindow();
         updateQuestWindow();
@@ -140,7 +144,7 @@ public class InventoryManager
             }
     }
 
-        private static void updateItemWindow(){
+        private static void updateItemWindow() throws Exception{
 
             //Получаем окно
             JPanel window = HUD.getInstance().getItemWindow();
@@ -167,7 +171,16 @@ public class InventoryManager
                 }
             }
             if(HUD.getInstance().getItemWindow().getComponents().length>0){
-            Arrays.stream(window.getComponents()).forEach(window::remove);}
+
+                try {
+                    Arrays.stream(window.getComponents()).forEach(window::remove);
+                }catch (Exception e)
+                {
+                    System.out.println("опять эта х**ня с инвентарем)");
+                    return;
+                }
+
+            }
 
             //Добавляем заголовок
             JLabel titleLabel = new JLabel("BEW,N");
@@ -200,15 +213,21 @@ public class InventoryManager
                 // g.drawImage(c.getUI(), c.getX() - camX, c.getY() - camY, null);
                 // отрисовка предмета в контейнере.
                 for (int i = 0; i < c.getItems().size(); i++) {
-                    if (!c.getItems().get(i).isEquipped()) {
-                        if (c.getItems().get(i) != null) {
-                            containerTiles.add(new ContainerPanel(c.getItems().get(i)));
-                            containerTiles.get(i).addMouseListener(MouseButtonListener.getInstance());
+                    try {
+                        if (!c.getItems().get(i).isEquipped()) {
+                            if (c.getItems().get(i) != null) {
+                                containerTiles.add(new ContainerPanel(c.getItems().get(i)));
+                                containerTiles.get(i).addMouseListener(MouseButtonListener.getInstance());
+                            }
+                            if (c.getItems().get(i).getTexture() != null)
+                                containerTiles.get(i).setIcon(new ImageIcon(c.getItems().get(i).getTexture()));
                         }
-                        if (c.getItems().get(i).getTexture() != null)
-                            containerTiles.get(i).setIcon(new ImageIcon(c.getItems().get(i).getTexture()));
+
+                    }catch (Exception e) {
+                        System.out.println("Исключение при отрисовке шмона. жить можно, идем дальше");
+                        return;
                     }
-                    // g.drawImage(c.getItems().get(i).getTexture(), c.getIcons().get(i).x - camX, c.getIcons().get(i).y - camY , null);
+
                 }
             }
         }

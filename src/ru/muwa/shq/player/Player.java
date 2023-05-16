@@ -1,11 +1,9 @@
 package ru.muwa.shq.player;
-import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.Usable;
 import ru.muwa.shq.quests.Quest;
-import ru.muwa.shq.quests.QuestUtility;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -13,7 +11,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 
-import static ru.muwa.shq.objects.GameObject.Direction.DOWN;
 /**
  * Класс игрока.
  */
@@ -65,7 +62,7 @@ public class Player extends Creature
     public static Player get() {
         if (instance == null)
         {
-            try { img = ImageIO.read(new File(IMG_PATH+"player\\kulaginBat2.png"));
+            try { img = ImageIO.read(new File(IMG_PATH + "player\\kulaginFist.png"));
         } catch (Exception e) {
             System.out.println("Failed to load player textures");
             return null;

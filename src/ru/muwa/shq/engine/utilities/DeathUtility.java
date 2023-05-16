@@ -17,7 +17,7 @@ public class DeathUtility {
     {
         if(Player.get().getHp() <=0)
         {
-            die();
+         //   die();
         }
     }
     private static void die()
