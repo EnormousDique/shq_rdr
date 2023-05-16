@@ -34,7 +34,7 @@ public class InventoryManager
 
 
 
-    private static void updateStatusWindow()
+    private static void updateStatusWindow()throws Exception
     {
         try {
 
@@ -104,12 +104,14 @@ public class InventoryManager
 
         try {
             updateItemWindow();
+            updateEquipWindow();
+            updateStatusWindow();
+            updateQuestWindow();
+
         }catch (Exception e){
             System.out.println("инвентарь навернулся. все ок, едем дальше");
         }
-        updateEquipWindow();
-        updateStatusWindow();
-        updateQuestWindow();
+
         convertMoney();
 
         //TODO: Нужно перенести логику так, чтобы она вызывалась из PlayerControls.
@@ -244,7 +246,7 @@ public class InventoryManager
 
 
     }
-        private static void updateEquipWindow()
+        private static void updateEquipWindow()throws Exception
         {
             Arrays.stream(HUD.getInstance().getEquipWindow().getComponents()).forEach(HUD.getInstance().getEquipWindow()::remove);
 
@@ -274,16 +276,16 @@ public class InventoryManager
             }
             HUD.getInstance().getEquipWindow().updateUI();
         }
-        public static void updateQuestWindow()
+        public static void updateQuestWindow() throws Exception
         {
 
            // Arrays.stream(HUD.getInstance().getQuestWindow().getComponents()).forEach(HUD.getInstance().getQuestWindow()::remove);}
             for(int i = 0; i < HUD.getInstance().getQuestWindow().getComponents().length;i++)
             {
-                try {
+
                     HUD.getInstance().getQuestWindow().remove(i);
 
-                }catch (Exception e){}
+
             }
 
 

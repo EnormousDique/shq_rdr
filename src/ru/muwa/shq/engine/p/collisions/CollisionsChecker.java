@@ -119,7 +119,7 @@ public class CollisionsChecker {
                   !obj.getSolidBox().contains(lb) &&
                   !obj.getSolidBox().contains(rb) )
                 {
-                    o.setY(obj.getY()+obj.getHeight());
+                    o.setY((int) (obj.getSolidBox().getY()+obj.getHeight()));
                 }
                 //Проверка,что проверяемый объект зашел в стену "низом"
                 if(obj.getSolidBox().contains(lb) &&
@@ -127,7 +127,7 @@ public class CollisionsChecker {
                         !obj.getSolidBox().contains(lt) &&
                         !obj.getSolidBox().contains(rt) )
                 {
-                    o.setY(obj.getY()-o.getHeight());
+                    o.setY((int) (obj.getSolidBox().getY()-o.getHeight()));
                 }
                 //Проверка,что проверяемый объект зашел в стену "левом"
                 if(obj.getSolidBox().contains(lb) &&
@@ -135,7 +135,7 @@ public class CollisionsChecker {
                         !obj.getSolidBox().contains(rt) &&
                         !obj.getSolidBox().contains(rb) )
                 {
-                    o.setX(obj.getX()+obj.getWidth());
+                    o.setX((int) (obj.getSolidBox().getX()+obj.getWidth()));
                 }
                 //Проверка,что проверяемый объект зашел в стену "правом"
                 if(obj.getSolidBox().contains(rb) &&
@@ -143,7 +143,7 @@ public class CollisionsChecker {
                         !obj.getSolidBox().contains(lt) &&
                         !obj.getSolidBox().contains(lb) )
                 {
-                    o.setX(obj.getX()-o.getWidth());
+                    o.setX((int) (obj.getSolidBox().getX()-o.getWidth()));
                 }
 
 
@@ -202,22 +202,22 @@ public class CollisionsChecker {
 
 
                         if (c.getY() + c.getHeight() > obj.getSolidBox().getCenterY() && c.getX() + c.getWidth() < obj.getX() + obj.getWidth() && c.getX() > obj.getX()) {
-                        c.setY(obj.getY() + obj.getHeight());
+                        c.setY((int) (obj.getSolidBox().getY() + obj.getHeight()));
                         System.out.println("вниз");
                     }//Вниз
                     /*else*/
                     if (c.getY() < obj.getSolidBox().getCenterY() && c.getX() + c.getWidth() < obj.getX() + obj.getWidth() && c.getX() > obj.getX()) {
-                        c.setY(obj.getY() - c.getHeight());
+                        c.setY((int) (obj.getSolidBox().getY() - c.getHeight()));
                         System.out.println("вверх");
                     }//Вверх
                     /*else*/
                     if (c.getX() + c.getWidth() > obj.getX() + obj.getWidth() && c.getY() + c.getHeight() > obj.getY() && c.getY() < obj.getY() + obj.getHeight()) {
-                        c.setX(obj.getX() + obj.getWidth());
+                        c.setX((int) (obj.getSolidBox().getX() + obj.getWidth()));
                         System.out.println("право");
                     }//Вправо
                     /*else*/
                     if (c.getX() < obj.getX() && c.getY() + c.getHeight() > obj.getY() && c.getY() < obj.getY() + obj.getHeight()) {
-                        c.setX(obj.getX() - c.getWidth());
+                        c.setX((int) (obj.getSolidBox().getX() - c.getWidth()));
                         System.out.println("vlevo");
                     }//Влево
 
