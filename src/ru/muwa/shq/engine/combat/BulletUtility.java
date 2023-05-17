@@ -27,6 +27,7 @@ public class BulletUtility
         b.setTime(b.getTime() + 0.1);
         b.setX((int)(b.getInitialX() + b.getxVelocity() * b.getTime()));
         b.setY((int)(b.getInitialY() + b.getyVelocity() * b.getTime()));
+        System.out.println("bullet is moving. x: " + b.getX()+ " y: " + b.getY());
     }
 
 

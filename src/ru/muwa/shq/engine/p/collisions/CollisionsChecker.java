@@ -151,7 +151,7 @@ public class CollisionsChecker {
                    // if (obj instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(obj);
 
 
-                    if (obj instanceof Bullet) {
+                    if (obj instanceof Bullet && o.getSolidBox().intersects(obj.getSolidBox())) {
                         if(o.equals(Player.get())) CombatUtility.attack(Player.get(), 5); // ТЕСТ. игрок получает 5,  не 10 урона от пуль
                       //  if(o instanceof NPC) CombatUtility.attack(((NPC)o),10);
                         Engine.getCurrentLevel().getObjects().remove(obj);

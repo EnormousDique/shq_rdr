@@ -10,7 +10,7 @@ import java.io.File;
 public class Bullet extends GameObject
 {
 
-    public static final int BULLET_SPEED = 200;
+    public static final int BULLET_SPEED = 2;
 
     private int initialX;
     private int initialY;
@@ -108,6 +108,8 @@ public class Bullet extends GameObject
         time = 0;
         this.x =this.x+ (int) xVelocity;
         this.y=this.y+ (int) yVelocity;
+
         System.out.println("created bullet. y vel : "  + yVelocity + "  x vel : " + xVelocity + "  angle : " + angle);
+        System.out.println("bullet coords. x: " + initialX + " y: " + initialY);
     }
 }

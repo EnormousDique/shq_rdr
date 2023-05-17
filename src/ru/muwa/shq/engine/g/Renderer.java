@@ -288,6 +288,7 @@ public class Renderer implements Runnable {
         //
             // отрисоква бокса игрока
             g.drawRect(player.getX() - camX, player.getY() - camY, (int)player.getSolidBox().getWidth(), (int) player.getSolidBox().getHeight());
+            g.drawRect(player.getAttackZone().x-camX,player.getAttackZone().y-camY,player.getAttackZone().width,player.getAttackZone().height);
             //Отрисовка зон
             g.setColor(Color.BLUE);
             for (GameZone z : Engine.getCurrentLevel().getZones())
@@ -305,7 +306,7 @@ public class Renderer implements Runnable {
             //отрисовка времени
         g.setColor(Color.white);
         g.drawString(TimeMachine.getStringTime(),100,200);
-             // отрисовка информации о предмете при наводе мышки на онный
+             // отрисовка информации о предмете при наводе мышки на оный
             g.setColor(Color.red);
             if(MouseButtonListener.getInstance().highlight != null && MouseButtonListener.getInstance().highlight.getSource() instanceof ItemPanel) {  // если мышкин хайлайтпредметов показывает нуль и пердмет подсвечивает предмент который айтем панел
                 g.drawString(((ItemPanel) MouseButtonListener.getInstance().highlight.getSource()).getItem().getDescription(), HUD.getInstance().getMainWindow().getX(), HUD.getInstance().getMainWindow().getY()+200); // было по мышке сделал по маинвиндоуву// то рисуем по координатам мыши - 50 строку описания предмета.
