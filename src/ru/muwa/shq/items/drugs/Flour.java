@@ -1,5 +1,6 @@
 package ru.muwa.shq.items.drugs;
 
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
@@ -46,9 +47,11 @@ public class Flour extends Item {
         Player.get().setThirst(Player.get().getThirst() - 10);
         Player.get().setHighMeter(Player.get().getHighMeter() + 30);
         Inventory.getInstance().getItems().remove(this);
-        if(Math.random() < 0.333) EffectUtility.isPlayerAddictedToSpeed = true;
+        if(Math.random() < 0.333){ EffectUtility.isPlayerAddictedToSpeed = true; Renderer.addMessage("Игрок подсел на меф");}
         if(Player.get().getHp()>=90) Player.get().setHp(100);
         else Player.get().setHp(Player.get().getHp()+10);
+        Renderer.addMessage("нюхнул");
+
     }
 
     @Override

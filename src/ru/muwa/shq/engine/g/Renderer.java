@@ -26,6 +26,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Line2D;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
 
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_HEIGHT;
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
@@ -37,6 +38,36 @@ public class Renderer implements Runnable {
     public static Graphics g; // Объект графики (Объект, который рисует)
     private GameScreen frame; // Игровой экран
     private boolean isSleeping =false;
+
+    private static ArrayList<String> messages = new ArrayList<>();
+    private static long lastTimeMessageUpdated;
+    public static void addMessage(String s){
+        messages.add(s);
+        lastTimeMessageUpdated  = System.currentTimeMillis();
+    }
+    private static void handleMessages(Graphics g){
+
+        //Отрисовываем поле под сообщения
+        if(messages.size()>0) {
+            g.setColor(new Color(50, 25, 50, 100));
+            g.fillRect(SCREEN_WIDTH-200, SCREEN_HEIGHT-200, 200, 200);
+        }
+
+        //Отрисовываем сообщения
+        g.setColor(Color.GREEN);
+        int y = SCREEN_HEIGHT-190;
+        for(int i = 0; i < messages.size(); i++)
+        {
+            g.drawString(messages.get(i), SCREEN_WIDTH - 195,y);
+            y+=15;
+        }
+        //Удаляем старые
+        if(lastTimeMessageUpdated + 3_000 < System.currentTimeMillis() && messages.size()>0){
+            messages.remove(0);
+            lastTimeMessageUpdated=System.currentTimeMillis();
+        }
+
+    }
 
     public static void playSleepyFilter()  {
             instance.isSleeping = true;
@@ -201,6 +232,9 @@ public class Renderer implements Runnable {
             g.drawImage(c.getTexture(), c.getX() - camX, c.getY() - camY, c.getWidth(), c.getHeight(), null);
         }
 
+
+        //ОТРИСОВКА СООБЩЕНИЙ НА ЭКРАНЕ
+        handleMessages(g);
 
 
 

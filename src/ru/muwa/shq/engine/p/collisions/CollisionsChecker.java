@@ -48,7 +48,7 @@ public class CollisionsChecker {
         for (int i = 0; i < Engine.getCurrentLevel().getObjects().size();i++)
         {
             GameObject o = Engine.getCurrentLevel().getObjects().get(i);
-            if(!o.equals(b) &&  o.getIsSolid() && o.getSolidBox().intersects(b.getSolidBox()))
+            if(!(o instanceof Bullet)  &&  o.getIsSolid() && o.getSolidBox().intersects(b.getSolidBox()))
 
             {
                 Engine.getCurrentLevel().getObjects().remove(b);

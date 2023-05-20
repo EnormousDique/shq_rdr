@@ -1,12 +1,20 @@
 package ru.muwa.shq.engine.time;
 
+import ru.muwa.shq.economics.bills.Bill;
+import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class TimeMachine {
     private static final long DAY_LENGTH = 720_000;
    // private static final long GAME_CYCLE_LENGTH = 16;
+    public static ArrayList<Bill> bills = new ArrayList<>();
     private static TimesOfTheDay timeOfTheDay = TimesOfTheDay.SUNRISE;
     public static TimesOfTheDay getTimeOfTheDay() {return timeOfTheDay;}
     public enum TimesOfTheDay{
-        SUNRISE, MORNING,NOON,AFTERNOON,DUSK,EVENING,NIGHT;
+        SUNRISE, MORNING,AFTERNOON,DUSK,EVENING,NIGHT;
 
     }
     private static int dayNumber;
@@ -27,6 +35,26 @@ public class TimeMachine {
         if(300_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay < 500_000) timeOfTheDay = TimesOfTheDay.AFTERNOON;
         if(500_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay <600_000) timeOfTheDay = TimesOfTheDay.EVENING;
         if(600_000 < timeFromTheBeginningOfADay) timeOfTheDay = TimesOfTheDay.NIGHT;
+
+        try {
+            sendBills();
+        }catch (Exception e)
+        {
+
+        }
+
+
+    }
+
+    private static void sendBills() throws IOException {
+
+        int week = (int) Math.ceil(dayNumber / 7.0);
+        System.out.println("week : " + week);
+
+        if(week > 1)
+        {
+            if(bills.isEmpty()) {bills.add(new Bill(100,1));HubHataIgoryana.getInstance().getContainers().get(0).addItem(bills.get(0));}
+        }
 
     }
 

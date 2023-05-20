@@ -105,7 +105,7 @@ public class PlayerControls
             if(z instanceof SleepZone)
             {
                 SleepZone zz = (SleepZone) z;
-                TimeMachine.rewind(250_000);
+                TimeMachine.rewind(2_500_000);
                 Renderer.playSleepyFilter();
             }
         }
