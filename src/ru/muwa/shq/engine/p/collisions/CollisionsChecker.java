@@ -2,6 +2,7 @@ package ru.muwa.shq.engine.p.collisions;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.items.guns.Bullet;
+import ru.muwa.shq.items.guns.EnemyBullet;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Player;
@@ -33,6 +34,27 @@ public class CollisionsChecker {
 
     public void checkCollisions(GameObject o, List<GameObject> objects) {
         checkObjectCollisions(o, objects);
+        for(int i = 0; i < Engine.getCurrentLevel().getObjects().size();i++) {
+            if (Engine.getCurrentLevel().getObjects().get(i) instanceof Bullet
+                    ||
+                    Engine.getCurrentLevel().getObjects().get(i) instanceof EnemyBullet) {
+                bulletCollisions((Bullet) Engine.getCurrentLevel().getObjects().get(i));
+            }
+        }
+    }
+
+    private static void bulletCollisions(Bullet b)
+    {
+        for (int i = 0; i < Engine.getCurrentLevel().getObjects().size();i++)
+        {
+            GameObject o = Engine.getCurrentLevel().getObjects().get(i);
+            if(!o.equals(b) &&  o.getIsSolid() && o.getSolidBox().intersects(b.getSolidBox()))
+
+            {
+                Engine.getCurrentLevel().getObjects().remove(b);
+                System.out.println("пуля врезалась вв стену и была удалена");
+            }
+        }
     }
 
     /**
@@ -153,10 +175,14 @@ public class CollisionsChecker {
 
                     if (obj instanceof Bullet && o.getSolidBox().intersects(obj.getSolidBox())) {
                         if(o.equals(Player.get())) CombatUtility.attack(Player.get(), 5); // ТЕСТ. игрок получает 5,  не 10 урона от пуль
-                      //  if(o instanceof NPC) CombatUtility.attack(((NPC)o),10);
                         Engine.getCurrentLevel().getObjects().remove(obj);
 
                     }
+                    if(o instanceof Bullet & o.getSolidBox().intersects(obj.getSolidBox()))
+                        Engine.getCurrentLevel().getObjects().remove(o);
+                if(obj instanceof Bullet & obj.getSolidBox().intersects(o.getSolidBox()))
+                    Engine.getCurrentLevel().getObjects().remove(obj);
+                    //Тестируем удаление пуль при столкновении с твердыми объектами
                 }
             }
         }
@@ -221,12 +247,7 @@ public class CollisionsChecker {
                         System.out.println("vlevo");
                     }//Влево
 
-
-
                 }
-
-
-
 
             /*
             for (GameObject obj : objects)

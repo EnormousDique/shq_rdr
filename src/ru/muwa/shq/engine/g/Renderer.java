@@ -288,7 +288,6 @@ public class Renderer implements Runnable {
         //
             // отрисоква бокса игрока
             g.drawRect(player.getX() - camX, player.getY() - camY, (int)player.getSolidBox().getWidth(), (int) player.getSolidBox().getHeight());
-            g.drawRect(player.getAttackZone().x-camX,player.getAttackZone().y-camY,player.getAttackZone().width,player.getAttackZone().height);
             //Отрисовка зон
             g.setColor(Color.BLUE);
             for (GameZone z : Engine.getCurrentLevel().getZones())
