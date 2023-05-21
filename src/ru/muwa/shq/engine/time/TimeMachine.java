@@ -53,7 +53,26 @@ public class TimeMachine {
 
         if(week > 1)
         {
-            if(bills.isEmpty()) {bills.add(new Bill(100,1));HubHataIgoryana.getInstance().getContainers().get(0).addItem(bills.get(0));}
+            if(bills.isEmpty()) {bills.add(new Bill(1000,1));HubHataIgoryana.getInstance().getContainers().get(0).addItem(bills.get(0));}
+        }
+        if (week>2)
+        {
+            System.out.println("наступила третья или больше неделя");
+            int billTotal = 1000;
+
+            if(!bills.get(week-3).isPayed())
+            {
+                System.out.println("счет за предыдущую неделю не оплачен. Удваиваем счет");
+                billTotal *= 2;
+            }
+
+
+            if(bills.size() < week-1)
+            {
+                System.out.println("счет за прошедную неделю не был отправлен");
+                bills.add(new Bill(billTotal,week-1));
+                HubHataIgoryana.getInstance().getContainers().get(0).addItem(bills.get(week-2));
+            }
         }
 
     }

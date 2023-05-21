@@ -33,9 +33,9 @@ public class Bill extends Item {
         super(0,0,0.0,img);
         this.total=total;
         this.week = week;
-        isSent = true;
+        this.isSent = true;
         description = "Счет на сумму : " + total + " за неделю : " +week;
-        TimeMachine.bills.add(this);
+
 
     }
 
