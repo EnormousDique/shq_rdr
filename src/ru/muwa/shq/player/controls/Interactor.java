@@ -41,7 +41,13 @@ public class Interactor
             }
         }
             if(activeContainers.size() >0) {
-                Container c = activeContainers.get(0);
+                int i = 0;
+                for(i = 0; i < activeContainers.size(); i++)
+                {
+                    if(activeContainers.get(i).getItems().size()>0)
+                        break;
+                }
+                Container c = activeContainers.get(i);
                 c.setIsInUse(true);
                 Inventory.getInstance().setIsOpened(true);
                 Player.get().setIsBusy(true);
