@@ -207,6 +207,8 @@ public class PlayerControls
 
                 //Наносим урон врагам, находящимся в зоне атаки
 
+                Weapon w = Player.get().currentWeapon;
+
                 for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
                     NPC npc = Engine.getCurrentLevel().getNPC().get(i);
                     if (npc.getSolidBox().intersects(Player.get().getAttackZone())) {
@@ -214,14 +216,28 @@ public class PlayerControls
                         try {
                             int damage = Player.get().currentWeapon == null ? 5 : Player.get().currentWeapon.getDamage();
                             CombatUtility.attack(npc, damage);
+
+                            //Поломка холодного оружия
+                            if(w != null && ! (w instanceof Firearm))
+                            {
+                                w.setDurability(w.getDurability()-1);
+                                if(w.getDurability() < 1) {
+                                    Inventory.getInstance().getItems().remove(w);
+                                    Player.get().currentWeapon  = null;
+                                    Renderer.addMessage("Оружие сломалось!  " + w.toString().split("\\.")[5].split("@")[0]);
+                                }
+                            }
+
                         } catch (Exception e) {
                         }
 
 
                     }
                 }
+
+
+
                 //Блок анимации
-                Weapon w = Player.get().currentWeapon;
                 if(w instanceof Kortique) Animator.playPlayerAnimation(new A_KnifeStab());
                 if(w == null) Animator.playPlayerAnimation(new A_PlayerFistPunch());
             }

@@ -26,6 +26,7 @@ public class Kortique extends Weapon {
         damage = 30;
         isAbleToEquip=true;
         description = "Достал нож реж";
+        durability = 10;
     }
     private Kortique(int id, int price, double weight, BufferedImage texture) {
         super(id, price, weight, texture);

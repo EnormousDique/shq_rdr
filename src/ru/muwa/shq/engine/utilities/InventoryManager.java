@@ -8,6 +8,7 @@ import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPanel;
+import ru.muwa.shq.items.guns.Firearm;
 import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.containers.ContainerPanel;
@@ -266,12 +267,20 @@ public class InventoryManager
                     panel.setIcon(new ImageIcon(panel.getItem().getTexture()));
                     panel.addMouseListener(MouseButtonListener.getInstance());
 
-                    if(item instanceof Weapon){
-                    String ammoString = ((Weapon) item).getCurrAmmo() + "/" + ((Weapon) item).getMaxAmmo();
+                    if(item instanceof Firearm){
+                    String ammoString = "Пули-с : " + ((Weapon) item).getCurrAmmo() + "/" + ((Weapon) item).getMaxAmmo();
                     JLabel ammoLabel = new JLabel(ammoString);
                     HUD.getInstance().getEquipWindow().add(ammoLabel);
-                    ammoLabel.setBounds(30,120,100,30);
+                    ammoLabel.setBounds(10,120,100,30);
                     }
+                    else
+                    {
+                        String durabilityString = "Прочность: " + ((Weapon) item).getDurability();
+                        JLabel durabilityLabel = new JLabel(durabilityString);
+                        HUD.getInstance().getEquipWindow().add(durabilityLabel);
+                        durabilityLabel.setBounds(10,120,100,30);
+                    }
+
                 }
             }
             HUD.getInstance().getEquipWindow().updateUI();

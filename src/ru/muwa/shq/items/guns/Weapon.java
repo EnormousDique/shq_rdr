@@ -15,6 +15,16 @@ public abstract class Weapon extends Item {
     }
 
     protected boolean isFireArm;
+    protected int durability;
+
+    public void setDurability(int durability) {
+        this.durability = durability;
+    }
+
+    public int getDurability() {
+        return durability;
+    }
+
     protected int rateOfFire;
     protected int currAmmo; //Текущее кол-во патронов в магазине
     protected int maxAmmo;
