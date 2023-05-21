@@ -1,7 +1,9 @@
 package ru.muwa.shq.items.drugs;
 
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.consumables.Water;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
@@ -10,6 +12,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
@@ -37,14 +40,30 @@ public class IceOlator extends Item {
     }
     @Override
     public void use() {
-        if(Player.get().getHp() >= 95) Player.get().setHp(100);
-        else
-            Player.get().setHp(Player.get().getHp()+5);
 
-        Player.get().setHighMeter(Player.get().getHighMeter()+20);
-        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-15);
-        Inventory.getInstance().getItems().remove(this);
-        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.STONED, System.currentTimeMillis()+10_000);
+        Water bottle = null;
+        //TODO: Добавить проверку на сигареты и зажигалку.
+        try {
+            bottle = (Water) Inventory.getInstance().getItems().stream().filter(i -> i instanceof Water).collect(Collectors.toList()).get(0);
+
+        }catch (Exception e)
+        {
+            Renderer.addMessage("Чтобы дунуть нужна бутылка!");
+        }
+
+        if(bottle != null) {
+            if (Player.get().getHp() >= 95) Player.get().setHp(100);
+            else
+                Player.get().setHp(Player.get().getHp() + 5);
+
+            Player.get().setHighMeter(Player.get().getHighMeter() + 20);
+            Player.get().setHighMeterLock(Player.get().getHighMeterLock() - 15);
+            Inventory.getInstance().getItems().remove(this);
+            EffectUtility.getCurrentEffects().put(EffectUtility.Effects.STONED, System.currentTimeMillis() + 10_000);
+            Inventory.getInstance().getItems().remove(bottle);
+        }
+
+
     }
     @Override
     public void equip() {
