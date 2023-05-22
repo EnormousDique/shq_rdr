@@ -163,7 +163,11 @@ public class PlayerControls
 
     }
     // действие на кнопку е
-     private static void e() {Interactor.getInstance().interact();}
+     private static void e() {
+
+             Interactor.getInstance().interact();
+
+     }
      // Sounder.changeSong("src\\ru\\muwa\\shq\\sounds\\songs\\muzike1.wav");
     // открытие инвентаря на i
     private static void i()

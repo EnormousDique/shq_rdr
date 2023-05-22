@@ -134,8 +134,8 @@ public class CollisionsChecker {
                     //Проверка, что проверяемый обект зашел боковыми линиями
                     if(leftLine.intersects(obj.getSolidBox()) && rightLine.intersects(obj.getSolidBox()))
                     {
-                       if(obj.getSolidBox().getY()+obj.getSolidBox().getHeight() > o.getY()) o.setY(obj.getY()-o.getHeight());
-                       if(obj.getSolidBox().getY() < o.getY() + o.getHeight()) o.setY((int) (obj.getY()+obj.getSolidBox().getHeight()));
+                       if(obj.getSolidBox().getY()+obj.getSolidBox().getHeight() > o.getY()) o.setY(obj.getSolidBox().y-o.getHeight());
+                       if(obj.getSolidBox().getY() < o.getY() + o.getHeight()) o.setY((int) (obj.getSolidBox().y+obj.getSolidBox().getHeight()));
                     }
                     //Проверка, что проверяемый обект зашел верхней и нижней линиями
                     if(topLine.intersects(obj.getSolidBox()) && bottomLine.intersects(obj.getSolidBox()))
@@ -176,6 +176,7 @@ public class CollisionsChecker {
                     {
                         o.setY(obj.getSolidBox().y + o.getHeight());
                     }
+                    //TODO: проверить верх + пр + лв ; проерить вер + лв ; проверить верх+ пр; все то е для низа
 
 
                     //Код для уничтожения пуль после столкновения
