@@ -28,8 +28,8 @@ public class HubHataIgoryana extends Level
     private HubHataIgoryana() throws IOException {
         this.isInDoors = true;
         instance = this;
-        startPosX = 0;
-        startPosY = 0;
+        startPosX = 300;
+        startPosY = 300;
         // текстура хаба
         objects.add(new HubBuild(0,0));
         // хабовый сундук
