@@ -11,8 +11,10 @@ import ru.muwa.shq.player.aiming.Aim;
 import java.awt.*;
 import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Класс, отвечающий за проверку столкновений игровых объектов.
@@ -69,122 +71,131 @@ public class CollisionsChecker {
     private void checkObjectCollisions(GameObject o, List<GameObject> objects) {
 
 
+        //Отффильтровываем объекты для работы
         List<GameObject> list = objects.stream().filter(ob -> !ob.equals(o)).filter(ob -> ob.getIsSolid()).toList();
+
+        //Определяем ключевые точки и линии для проверяемого объекта
         if (o != null) {
 
             Point2D
-                    lt = new Point(o.getX(),o.getY()),
-                    rt = new Point(o.getX()+o.getWidth(),o.getY()),
-                    lb = new Point(o.getX(),o.getY()+o.getHeight()),
-                    rb = new Point(o.getX()+o.getWidth(),o.getY()+o.getHeight());
+                    lt = new Point(o.getX(), o.getY()),
+                    rt = new Point(o.getX() + o.getWidth(), o.getY()),
+                    lb = new Point(o.getX(), o.getY() + o.getHeight()),
+                    rb = new Point(o.getX() + o.getWidth(), o.getY() + o.getHeight());
 
             Line2D
-                    topLine = new Line2D.Double(lt,rt),
-                    bottomLine = new Line2D.Double(lb,rb),
-                    leftLine = new Line2D.Double(lt,lb),
-                    rightLine = new Line2D.Double(rt,rb);
+                    topLine = new Line2D.Double(lt, rt),
+                    bottomLine = new Line2D.Double(lb, rb),
+                    leftLine = new Line2D.Double(lt, lb),
+                    rightLine = new Line2D.Double(rt, rb);
 
 
-            for (GameObject obj : list) {
+            //Определяем с каким кол-вом стен произошло пересечение
+            ArrayList<GameObject> walls = new ArrayList<>();
+
+            for (GameObject ob : list) {
+                if (Player.get().getSolidBox().intersects(ob.getSolidBox())) walls.add(ob);
+            }
 
 
-
-                //Перебираем объекты.
-                //todo если пересекает больше двух  обьектов написать другую логику??
-//
-//
-//
-//
-//
-//
-//                if ( o.getSolidBox().intersects(obj.getSolidBox())) // произошло столкновение
-  //              {
-//
-  //                  if (o.getSolidBox().getCenterY() > obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
-    //                    o.setY((int)obj.getSolidBox().getY() + (int)obj.getSolidBox().getHeight());
-      //                  System.out.println("вниз");
-                     //   continue;
-
-        //            }//Вниз
-                    /*else*/
-
-                    //я тупой дибил пидарас и сука крышу у людей последнее
-
-          //          if (o.getY() < obj.getSolidBox().getCenterY() && o.getX() + o.getWidth() < obj.getX() + obj.getWidth() && o.getX() > obj.getX()) {
-            //            o.setY((int)obj.getSolidBox().getY() - o.getHeight());
-              //          System.out.println("вверх");
-                     //   continue;
-
-      //              }//Вверх
-                    /*else*/
-     //               if (o.getX() + o.getWidth() > obj.getX() + obj.getWidth() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
-    //                    o.setX((int)obj.getSolidBox().getX() + (int)obj.getSolidBox().getWidth());
-    //                    System.out.println("право");
-                       // continue;
-
-    //                }//Вправо
-                    /*else*/
-    //                if (o.getX() < obj.getX() && o.getY() + o.getHeight() > obj.getY() && o.getY() < obj.getY() + obj.getHeight()) {
-     //                   o.setX((int)obj.getSolidBox().getX() - o.getWidth());
-    //                    System.out.println("vlevo");
-                      //  continue;
-
-  //                  }//Влево
-
-
-
-                //Новый код проверки столкновений
-
-                //Проверка,что проверяемый объект зашел в стену "верхом"
-                if(obj.getSolidBox().contains(lt) &&
-                   obj.getSolidBox().contains(rt) &&
-                  !obj.getSolidBox().contains(lb) &&
-                  !obj.getSolidBox().contains(rb) )
-                {
-                    o.setY((int) (obj.getSolidBox().getY()+obj.getHeight()));
-                }
-                //Проверка,что проверяемый объект зашел в стену "низом"
-                if(obj.getSolidBox().contains(lb) &&
-                        obj.getSolidBox().contains(rb) &&
-                        !obj.getSolidBox().contains(lt) &&
-                        !obj.getSolidBox().contains(rt) )
-                {
-                    o.setY((int) (obj.getSolidBox().getY()-o.getHeight()));
-                }
-                //Проверка,что проверяемый объект зашел в стену "левом"
-                if(obj.getSolidBox().contains(lb) &&
-                        obj.getSolidBox().contains(lt) &&
-                        !obj.getSolidBox().contains(rt) &&
-                        !obj.getSolidBox().contains(rb) )
-                {
-                    o.setX((int) (obj.getSolidBox().getX()+obj.getWidth()));
-                }
-                //Проверка,что проверяемый объект зашел в стену "правом"
-                if(obj.getSolidBox().contains(rb) &&
-                        obj.getSolidBox().contains(rt) &&
-                        !obj.getSolidBox().contains(lt) &&
-                        !obj.getSolidBox().contains(lb) )
-                {
-                    o.setX((int) (obj.getSolidBox().getX()-o.getWidth()));
-                }
+                //Если столкновение только с одной стеной
+                for (GameObject obj : walls) {
+                    //Перебираем объекты.
+                    //Новый код проверки столкновений
+                    //Проверка ниже работает  только при пересечении с 1-м обектом
+                    //Проверка,что проверяемый объект зашел в стену "верхом"
+                    if (obj.getSolidBox().contains(lt) &&
+                            obj.getSolidBox().contains(rt) &&
+                            !obj.getSolidBox().contains(lb) &&
+                            !obj.getSolidBox().contains(rb)) {
+                        o.setY((int) (obj.getSolidBox().getY() + obj.getSolidBox().getHeight()));
+                    }
+                    //Проверка,что проверяемый объект зашел в стену "низом"
+                    if (obj.getSolidBox().contains(lb) &&
+                            obj.getSolidBox().contains(rb) &&
+                            !obj.getSolidBox().contains(lt) &&
+                            !obj.getSolidBox().contains(rt)) {
+                        o.setY((int) (obj.getSolidBox().getY() - o.getHeight()));
+                    }
+                    //Проверка,что проверяемый объект зашел в стену "левом"
+                    if (obj.getSolidBox().contains(lb) &&
+                            obj.getSolidBox().contains(lt) &&
+                            !obj.getSolidBox().contains(rt) &&
+                            !obj.getSolidBox().contains(rb)) {
+                        o.setX((int) (obj.getSolidBox().getX() + obj.getSolidBox().getWidth()));
+                    }
+                    //Проверка,что проверяемый объект зашел в стену "правом"
+                    if (obj.getSolidBox().contains(rb) &&
+                            obj.getSolidBox().contains(rt) &&
+                            !obj.getSolidBox().contains(lt) &&
+                            !obj.getSolidBox().contains(lb)) {
+                        o.setX((int) (obj.getSolidBox().getX() - o.getWidth()));
+                    }
+                    //Проверка, что проверяемый обект зашел боковыми линиями
+                    if(leftLine.intersects(obj.getSolidBox()) && rightLine.intersects(obj.getSolidBox()))
+                    {
+                       if(obj.getSolidBox().getY()+obj.getSolidBox().getHeight() > o.getY()) o.setY(obj.getY()-o.getHeight());
+                       if(obj.getSolidBox().getY() < o.getY() + o.getHeight()) o.setY((int) (obj.getY()+obj.getSolidBox().getHeight()));
+                    }
+                    //Проверка, что проверяемый обект зашел верхней и нижней линиями
+                    if(topLine.intersects(obj.getSolidBox()) && bottomLine.intersects(obj.getSolidBox()))
+                    {
+                        if(obj.getSolidBox().getX()+obj.getSolidBox().getWidth() > o.getX()) o.setX(obj.getX()-o.getWidth());
+                        if(obj.getSolidBox().getX() < o.getX() + o.getWidth()) o.setX((int) (obj.getX()+obj.getSolidBox().getWidth()));
+                    }
+                    //TODO: сделать провеки если только одна линия пересекается, а остальные нет. (для тонких и невидимых стен )
+                    //Столкновение со стеной только верхней линией
+                    if(topLine.intersects(obj.getSolidBox()) &&
+                        !leftLine.intersects(obj.getSolidBox())&&
+                        !rightLine.intersects(obj.getSolidBox())&&
+                        !bottomLine.intersects(obj.getSolidBox()))
+                    {
+                        o.setY(obj.getSolidBox().y + obj.getHeight());
+                    }
+                    //Столкновение со стеной только левой линией
+                    if(!topLine.intersects(obj.getSolidBox()) &&
+                            leftLine.intersects(obj.getSolidBox())&&
+                            !rightLine.intersects(obj.getSolidBox())&&
+                            !bottomLine.intersects(obj.getSolidBox()))
+                    {
+                        o.setX(obj.getSolidBox().x + obj.getWidth());
+                    }
+                    //Столкновение со стеной только правой линией
+                    if(!topLine.intersects(obj.getSolidBox()) &&
+                            !leftLine.intersects(obj.getSolidBox())&&
+                            rightLine.intersects(obj.getSolidBox())&&
+                            !bottomLine.intersects(obj.getSolidBox()))
+                    {
+                        o.setX(obj.getSolidBox().x - o.getWidth());
+                    }
+                    //Столкновение со стеной только нижней линией
+                    if(topLine.intersects(obj.getSolidBox()) &&
+                            !leftLine.intersects(obj.getSolidBox())&&
+                            !rightLine.intersects(obj.getSolidBox())&&
+                            bottomLine.intersects(obj.getSolidBox()))
+                    {
+                        o.setY(obj.getSolidBox().y + o.getHeight());
+                    }
 
 
                     //Код для уничтожения пуль после столкновения
-                   // if (obj instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(obj);
+                    // if (obj instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(obj);
 
 
                     if (obj instanceof Bullet && o.getSolidBox().intersects(obj.getSolidBox())) {
-                        if(o.equals(Player.get())) CombatUtility.attack(Player.get(), 5); // ТЕСТ. игрок получает 5,  не 10 урона от пуль
+                        if (o.equals(Player.get()))
+                            CombatUtility.attack(Player.get(), 5); // ТЕСТ. игрок получает 5,  не 10 урона от пуль
                         Engine.getCurrentLevel().getObjects().remove(obj);
 
                     }
-                    if(o instanceof Bullet & o.getSolidBox().intersects(obj.getSolidBox()))
+                    if (o instanceof Bullet & o.getSolidBox().intersects(obj.getSolidBox()))
                         Engine.getCurrentLevel().getObjects().remove(o);
-                if(obj instanceof Bullet & obj.getSolidBox().intersects(o.getSolidBox()))
-                    Engine.getCurrentLevel().getObjects().remove(obj);
+                    if (obj instanceof Bullet & obj.getSolidBox().intersects(o.getSolidBox()))
+                        Engine.getCurrentLevel().getObjects().remove(obj);
                     //Тестируем удаление пуль при столкновении с твердыми объектами
                 }
             }
+
         }
 
     public  void checkAttackCollisions(){
