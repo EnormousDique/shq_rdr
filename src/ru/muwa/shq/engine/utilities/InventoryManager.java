@@ -76,7 +76,7 @@ public class InventoryManager
             HUD.getInstance().getStatusWindow().updateUI();
 
         }catch (Exception e){
-            System.out.println("НЕ ГРУЗИТ КАРТИНКУ СУКА");
+            System.out.println("НЕ ГРУЗИТ КАРТИНКУ здоровья СУКА");
         }
     }
 
@@ -117,6 +117,7 @@ public class InventoryManager
 
         //TODO: Нужно перенести логику так, чтобы она вызывалась из PlayerControls.
         //TODO: Хули до сих пор не сделано)))))
+        //TODO:A?
 
     }
 

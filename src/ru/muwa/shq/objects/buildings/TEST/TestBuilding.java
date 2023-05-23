@@ -1,5 +1,6 @@
 package ru.muwa.shq.objects.buildings.TEST;
 
+import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.GameObject;
 
 import javax.imageio.ImageIO;
@@ -7,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class TestBuilding extends GameObject {
+public class TestBuilding extends Building {
     static BufferedImage img;
 
     static {
@@ -24,7 +25,6 @@ public class TestBuilding extends GameObject {
      *
      * @param x
      * @param y
-     * @param texture
      */
     public TestBuilding(int x, int y) {
         super(x, y, img);
