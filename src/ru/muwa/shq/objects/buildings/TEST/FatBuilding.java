@@ -1,5 +1,6 @@
 package ru.muwa.shq.objects.buildings.TEST;
 
+import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.GameObject;
 
 import javax.imageio.ImageIO;
@@ -8,16 +9,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class FatBuilding extends GameObject {
+public class FatBuilding extends Building {
     static BufferedImage img ,img2;
 
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "buildings\\FatBuilding_0.png"));
-            img2 = ImageIO.read(new File(IMG_PATH + "buildings\\FatBuilding_0_trans.png"));
-            System.out.println("TestBuilding texture loaded");
+            img = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\fatbuilding\\FatBuilding_0.png"));
+            img2 = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\fatbuilding\\FatBuilding_0_trans.png"));
+            System.out.println("FatBuilding texture loaded");
         } catch (IOException e) {
-            System.out.println("failed to load testbuilding roof texture");
+            System.out.println("failed to load Fatbuilding roof texture");
         }
     }
 

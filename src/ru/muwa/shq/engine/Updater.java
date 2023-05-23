@@ -7,6 +7,7 @@ import ru.muwa.shq.engine.spawner.Kladmen;
 import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.engine.utilities.*;
+import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.aiming.Aim;
@@ -134,7 +135,7 @@ public class Updater implements Runnable {
         //Блок обработки обычных объектов из списка текущих.
         for(GameObject o : Engine.getCurrentLevel().getObjects()) {
             // Обновляем боксы
-            if(! (o instanceof FatBuilding))SolidBoxUpdater.updateSolidBox(o);
+            if(! (o instanceof Building))SolidBoxUpdater.updateSolidBox(o);
         }
         //Блок обработки НПЦ из списка текущих.
         for(int i = 0; i< Engine.getCurrentLevel().getNPC().size(); i++) {

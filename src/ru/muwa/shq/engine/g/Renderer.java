@@ -13,6 +13,7 @@ import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.engine.utilities.TradeUtility;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0_BG;
+import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.player.Inventory;
@@ -205,7 +206,7 @@ public class Renderer implements Runnable {
             GameObject o = Engine.getCurrentLevel().getObjects().get(i);
             if(o instanceof DemoLevel0_BG && !isDrawingBg) continue;
 
-            if(o instanceof FatBuilding){
+            if(o instanceof Building){
                 Rectangle rectangle = new Rectangle(o.getX(),o.getY(),o.getWidth(),o.getHeight());
                 if(/*Player.get().getSolidBox().intersects(rectangle) */ Player.get().getY() < o.getSolidBox().getY())
                 {

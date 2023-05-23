@@ -31,6 +31,9 @@ import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
+import ru.muwa.shq.objects.buildings.NewBuildings.LoongGrayBuildingFront;
+import ru.muwa.shq.objects.buildings.NewBuildings.LoongGrayBuildingSide;
+import ru.muwa.shq.objects.buildings.NewBuildings.ShopBiolog;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
 import ru.muwa.shq.objects.containers.TrashCan;
@@ -86,8 +89,15 @@ public class DemoLevel0 extends Level
         objects.add(new FatBuilding(3630,680));
         objects.add(new FatBuilding(1690,1500));
         objects.add(new FatBuilding(3630,1500));
-        objects.add(new TallFatBuilding(1730,2450));
+        objects.add(new TallFatBuilding(1730,2134));
         objects.add(new TallFatBuilding(2640,3045));
+
+        //новые билдинги
+        objects.add(new LoongGrayBuildingFront(5490,214));
+        objects.add(new LoongGrayBuildingSide(5490,894));// боковина среднего дома
+        // магаз на рынке
+        objects.add(new ShopBiolog(3616,6400));
+
         System.out.println("test 2.5");
 
         zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,1200,70,70, FatBuildingFloor1.getInstance(), 190,220,false)));
@@ -101,7 +111,6 @@ public class DemoLevel0 extends Level
                         Animator.playCutscene(Q3_PoliceCutscene.getInstance());
                         DialogueManager.playDialogueOnDemand(Q3_PoliceConversation.getInstance());
                        // DialogueManager.playDialogueOnDemand(Q2T1_Conversation.getInstance());
-
                     }
                 }
             }
