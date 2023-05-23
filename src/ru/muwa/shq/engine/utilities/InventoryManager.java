@@ -195,7 +195,7 @@ public class InventoryManager
             //Добавляем строку о деньгах
             JLabel moneyLabel = new JLabel("$$$ : "+ Player.get().money);
             window.add(moneyLabel);
-            moneyLabel.setBounds(10,40,100,20);
+            moneyLabel.setBounds(10,30,100,20);
 
             for(int i = 0; i<itemTiles.size(); i++)
             {
@@ -204,7 +204,7 @@ public class InventoryManager
 
                     JLabel amountLabel = new JLabel("" + itemTiles.get(i).getItem().amount);
                     itemTiles.get(i).add(amountLabel);
-                    amountLabel.setBounds(35, 35, 10, 15);
+                    amountLabel.setBounds(30, 35, 20, 15);
                     amountLabel.setForeground(Color.red);
                 }
                 window.add(itemTiles.get(i));

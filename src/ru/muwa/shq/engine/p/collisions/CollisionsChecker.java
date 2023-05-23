@@ -156,7 +156,7 @@ public class CollisionsChecker {
                             rightLine.intersects(obj.getSolidBox())&&
                             !bottomLine.intersects(obj.getSolidBox()))
                     {
-                        o.setY(obj.getSolidBox().y + obj.getHeight());
+                        o.setY(obj.getSolidBox().y + (int) obj.getSolidBox().getHeight());
                         o.setX(obj.getSolidBox().x - o.getWidth());
                     }
                     //Столкновение со стеной низ + право + лево
@@ -174,7 +174,7 @@ public class CollisionsChecker {
                             bottomLine.intersects(obj.getSolidBox()))
                     {
                         o.setY(obj.getSolidBox().y + o.getHeight());
-                        o.setX(obj.getSolidBox().x + obj.getWidth());
+                        o.setX(obj.getSolidBox().x +(int) obj.getSolidBox().getWidth());
                     }
                     //Столкновение со стеной нижним правым углом
                     if(!topLine.intersects(obj.getSolidBox()) &&
