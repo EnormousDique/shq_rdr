@@ -77,6 +77,11 @@ public class CollisionsChecker {
         //Определяем ключевые точки и линии для проверяемого объекта
         if (o != null) {
 
+            //TODO: Снова перелопатить логику.
+            // За итерацию цикла делать следующие действия:
+            // - Проходимся по объектам, и проверяем, какие стороны игрока "застряли в стене"
+            // - Уже после определния сторон, "застрявших в стене" принимаем решение о направлении выталкивания.
+
             Point2D
                     lt = new Point(o.getX(), o.getY()),
                     rt = new Point(o.getX() + o.getWidth(), o.getY()),
@@ -173,7 +178,7 @@ public class CollisionsChecker {
                             !rightLine.intersects(obj.getSolidBox())&&
                             bottomLine.intersects(obj.getSolidBox()))
                     {
-                        o.setY(obj.getSolidBox().y + o.getHeight());
+                        o.setY(obj.getSolidBox().y - o.getHeight());
                         o.setX(obj.getSolidBox().x +(int) obj.getSolidBox().getWidth());
                     }
                     //Столкновение со стеной нижним правым углом
