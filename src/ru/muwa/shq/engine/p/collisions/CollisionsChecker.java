@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Класс, отвечающий за проверку столкновений игровых объектов.
@@ -72,7 +73,7 @@ public class CollisionsChecker {
 
 
         //Отффильтровываем объекты для работы
-        List<GameObject> list = objects.stream().filter(ob -> !ob.equals(o)).filter(ob -> ob.getIsSolid()).toList();
+        List<GameObject> list = objects.stream().filter(ob -> !ob.equals(o)).filter(ob -> ob.getIsSolid()).collect(Collectors.toList());
 
         //Определяем ключевые точки и линии для проверяемого объекта
         if (o != null) {
