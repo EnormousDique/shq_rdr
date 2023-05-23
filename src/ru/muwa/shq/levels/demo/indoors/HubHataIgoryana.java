@@ -58,16 +58,5 @@ public class HubHataIgoryana extends Level
         objects.add(new Wall350(608,800));//нижнаяя
 
         // невидимые стены дома
-        objects.add(new InvisibleWall620x10( 182,450));
-        objects.add(new InvisibleWall5x230(123,572));
-        objects.add(new InvisibleWall5x230(344,572));
-        objects.add(new InvisibleWall120x5(226,561));
-        objects.add(new InvisibleWall120x5(-31,443));
-        objects.add(new InvisibleWall120x5(270,795));
-
-        objects.add(new InvisibleWall120x5(688,2));
-        objects.add(new InvisibleWall120x5(360,2));
-        objects.add(new InvisibleWall120x5(310,2));
-        objects.add(new InvisibleWall120x5(5,8)); objects.add(new InvisibleWall5x230(5,3));
     }
 }
