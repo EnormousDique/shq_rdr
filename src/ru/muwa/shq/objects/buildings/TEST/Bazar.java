@@ -1,13 +1,14 @@
 package ru.muwa.shq.objects.buildings.TEST;
 
 
+import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.GameObject;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class Bazar extends GameObject {
+public class Bazar extends Building {
     private static BufferedImage img;
     static{
         try{
