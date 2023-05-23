@@ -35,6 +35,7 @@ public class MakarovAmmo extends Ammo{
     public MakarovAmmo()
     {
         super(MAKAROV_AMMO_ID,MAKAROV_AMMO_PRICE,MAKAROV_AMMO_WEIGHT,img);
+        stackable = true;
         this.description = "Патроны для макарыча. Вся обойма - штук.";
     }
     public MakarovAmmo(int id, int price, double weight, BufferedImage texture) {
@@ -57,7 +58,7 @@ public class MakarovAmmo extends Ammo{
                Inventory.getInstance().getItems().get(i)instanceof Makarov)
             {
                 gun = (Makarov)Inventory.getInstance().getItems().get(i);
-                Inventory.getInstance().getItems().remove(this);
+                if(amount>1) amount -=1; else Inventory.getInstance().getItems().remove(this);
                 gun.reload();
 
             }

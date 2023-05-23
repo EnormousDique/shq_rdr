@@ -45,6 +45,7 @@ public class Inventory
         }
     }
     private Inventory() {
+        //TODO:
         instance = this;
         items = new ArrayList<>();
         item0 = new Rectangle(x,y,50,50);
@@ -70,6 +71,39 @@ public class Inventory
     public int getY(){return y;}
     public void setY(int y){this.y = y;}
     public Rectangle getBox(){return box;}
-    public void addItem(Item item) {/*if(items.size()<=INVENTORY_CAPACITY)*/items.add(item);}
+
+    public boolean inventoryContains(Item item)
+    {
+        for(int i = 0; i < items.size(); i++)
+        {
+            if(items.get(i).getDescription().equals(item.getDescription())) return true;
+
+        }
+        return false;
+    }
+
+    public void addItem(Item item) {
+        /*if(items.size()<=INVENTORY_CAPACITY)*/
+        System.out.println("Взял вещь. \n описание : "+ item.getDescription() +  "\n стакабл: " + item.isStackable() + "\n колич-во : " + item.amount );
+        if(!inventoryContains(item) || !item.isStackable()) {
+            items.add(item);
+        }else {
+            System.out.println("сработал блок елс. вещь уже есть в инвентаре. она стакабл");
+            Item increaasingAmountItem = null;
+            for(int i = 0; i< items.size(); i++)
+            {
+                if(items.get(i).getDescription().equals(item.getDescription()))
+                {
+                    increaasingAmountItem = items.get(i);
+                }
+            }
+            if(increaasingAmountItem !=null)
+            {
+                System.out.println(" Я сработал. ");
+                increaasingAmountItem.amount += item.amount;
+            }
+        }
+
+    }
     public ArrayList<Item> getItems(){return items;}
 }

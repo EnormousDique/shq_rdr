@@ -49,7 +49,7 @@ public class TimeMachine {
     private static void sendBills() throws IOException {
 
         int week = (int) Math.ceil(dayNumber / 7.0);
-        System.out.println("week : " + week);
+      //  System.out.println("week : " + week);
 
         if(week > 1)
         {

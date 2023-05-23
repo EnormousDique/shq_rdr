@@ -132,6 +132,7 @@ public class InventoryManager
     }
 
     public static void grab(){
+        //TODO: Удалить?
             // System.out.println("нажата левая кнопка мыши");
             for(Container c: Engine.getCurrentLevel().getContainers()){
                 if(c.isInUse() && c.getItems().size()>= 1){
@@ -198,6 +199,13 @@ public class InventoryManager
             for(int i = 0; i<itemTiles.size(); i++)
             {
                 if(i != 0 && i % 4 == 0){ yOffset += 50; }//Перенос строки после 4-х панелек
+                if(itemTiles.get(i).getItem().isStackable()) {
+
+                    JLabel amountLabel = new JLabel("" + itemTiles.get(i).getItem().amount);
+                    itemTiles.get(i).add(amountLabel);
+                    amountLabel.setBounds(35, 35, 10, 15);
+                    amountLabel.setForeground(Color.red);
+                }
                 window.add(itemTiles.get(i));
                 itemTiles.get(i).setBounds(i%4*50,yOffset,50,50);
             }
@@ -225,12 +233,10 @@ public class InventoryManager
                             if (c.getItems().get(i).getTexture() != null)
                                 containerTiles.get(i).setIcon(new ImageIcon(c.getItems().get(i).getTexture()));
                         }
-
                     }catch (Exception e) {
                         System.out.println("Исключение при отрисовке шмона. жить можно, идем дальше");
                         return;
                     }
-
                 }
             }
         }

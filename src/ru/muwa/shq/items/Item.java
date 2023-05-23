@@ -22,6 +22,8 @@ public abstract class Item
 
 
     protected String description ;
+    protected boolean stackable;
+    public int amount = 1;
     public String getDescription() {
         return description;
     }
@@ -106,6 +108,10 @@ public abstract class Item
     public void give(Container c){
         Inventory.getInstance().getItems().remove(this);
         c.addItem(this);
+    }
+
+    public boolean isStackable() {
+        return stackable;
     }
 
     public void take(Container c){

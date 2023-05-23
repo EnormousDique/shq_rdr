@@ -67,7 +67,7 @@ public class Player extends Creature
             System.out.println("Failed to load player textures");
             return null;
         }
-        return instance = new Player(0, 0, img);
+        return instance = new Player(300, 300, img);
         }
         else return instance;
     }

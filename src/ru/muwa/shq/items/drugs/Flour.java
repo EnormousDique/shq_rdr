@@ -30,6 +30,7 @@ public class Flour extends Item {
 
     public Flour() {
         super(ID, PRICE, WEIGHT, img);
+        stackable = true;
         description = "мефчик бля , ебанул и нихуя";
     }
 
@@ -46,10 +47,10 @@ public class Flour extends Item {
         Player.get().setHighMeterLock(Player.get().getHighMeterLock() + 15);
         Player.get().setThirst(Player.get().getThirst() - 10);
         Player.get().setHighMeter(Player.get().getHighMeter() + 30);
-        Inventory.getInstance().getItems().remove(this);
         if(Math.random() < 0.333){ EffectUtility.isPlayerAddictedToSpeed = true; Renderer.addMessage("Игрок подсел на меф");}
         if(Player.get().getHp()>=90) Player.get().setHp(100);
         else Player.get().setHp(Player.get().getHp()+10);
+        if(amount>1) amount -=1; else Inventory.getInstance().getItems().remove(this);
         Renderer.addMessage("нюхнул");
 
     }

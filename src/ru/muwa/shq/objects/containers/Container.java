@@ -45,11 +45,10 @@ public abstract class Container extends GameObject implements Usable
         return icons;
     }
     public void grabItem(int a){
-
         removeItem(a);
     }
     public void removeItem(int a){
-        // icons.remove(a);
+
          items.remove(a);
 
     }

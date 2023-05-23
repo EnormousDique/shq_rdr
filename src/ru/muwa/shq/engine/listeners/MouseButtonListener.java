@@ -44,6 +44,7 @@ public class MouseButtonListener implements MouseInputListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
+
         event = e;
         System.out.println("mouse clicked. x: " + e.getX()/*+ Camera.getInstance().getX())*/ + " y : " + e.getY()/*+Camera.getInstance().getY()*/);
         switch (e.getButton()) {
@@ -55,13 +56,29 @@ public class MouseButtonListener implements MouseInputListener {
                 break;
         }
 
+        //Сперва определяем, находится  ли игрок в режиме выкупа. Это влияет на дальнейшую логику.
         boolean isPlayerInBuyoutMode = false;
         BuyoutZone bz = null;
         for(GameZone z : Engine.getCurrentLevel().getZones())
             if(z instanceof BuyoutZone && ((BuyoutZone)z).isActive)
-            {bz = (BuyoutZone) z; isPlayerInBuyoutMode=true;
-                System.out.println("Player clicked in buyout mode");}
+            {
+                bz = (BuyoutZone) z; isPlayerInBuyoutMode=true;
+                System.out.println("Player clicked in buyout mode");
+            }
+        //Определили
 
+        // Код, отвечающий за логику, при нажатии на иконку в инвентаре
+        if (e.getSource() instanceof ItemPanel && !isPlayerInBuyoutMode) {
+            ((ItemPanel) e.getSource()).getItem().pick();
+            HUD.getInstance().getItemWindow().updateUI();
+        }
+        //Код, отвечающий за логику, при нажатии на иконку в контейнере
+        if (e.getSource() instanceof ContainerPanel) {
+                ((ContainerPanel) e.getSource()).getItem().get();
+                HUD.getInstance().getContainerWindow().updateUI();
+
+        }
+        // Код, отвечающий за логику, при нажатии на иконку в инвентаре в режиме выкупа
         if(e.getSource() instanceof  ItemPanel && isPlayerInBuyoutMode && bz != null)
         {
             System.out.println("Player clicked on item panel");
@@ -77,16 +94,6 @@ public class MouseButtonListener implements MouseInputListener {
                 Inventory.getInstance().addItem(pressedItem);
                 bz.buyout.goods.remove(pressedItem);
             }
-        }
-
-        if (e.getSource() instanceof ItemPanel && !isPlayerInBuyoutMode) {
-            ((ItemPanel) e.getSource()).getItem().pick();
-            HUD.getInstance().getItemWindow().updateUI();
-        }
-        if (e.getSource() instanceof ContainerPanel) {
-                ((ContainerPanel) e.getSource()).getItem().get();
-                HUD.getInstance().getContainerWindow().updateUI();
-
         }
 
 

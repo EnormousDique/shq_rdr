@@ -51,7 +51,7 @@ public class Interactor
                 c.setIsInUse(true);
                 Inventory.getInstance().setIsOpened(true);
                 Player.get().setIsBusy(true);
-                Player.get().setCurrentObject(c);
+               // Player.get().setCurrentObject(c); // ВРОДЕ БЫ ЭТА ШТУКА НЕ НУЖНА
             }
             if(false){}//TODO: добавить возможность открыть несколько окон шмона или переключаться между ними, если activeContainers.size() > 1
 
