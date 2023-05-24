@@ -88,7 +88,8 @@ public class MouseButtonListener implements MouseInputListener {
             if(isPressedOnItemInInventory)
             {
                 System.out.println("player clicked on inventory item " + pressedItem);
-                Inventory.getInstance().getItems().remove(pressedItem);
+                if(pressedItem.amount <=1) Inventory.getInstance().getItems().remove(pressedItem);
+                else pressedItem.amount -=1;
                 bz.buyout.goods.add(pressedItem);
             }else {
                 Inventory.getInstance().addItem(pressedItem);

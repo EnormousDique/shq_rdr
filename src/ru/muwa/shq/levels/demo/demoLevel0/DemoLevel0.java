@@ -122,7 +122,7 @@ public class DemoLevel0 extends Level
 
         /* Брат биолог */
         objects.add(new ShopBiolog(3400,6600));
-        zones.add(new BuyoutZone(300, 150, 300, 300, new Buyout() {
+        zones.add(new BuyoutZone(3300, 6660, 300, 300, new Buyout() {
             @Override
             public void init() {
                 //Тут скорее всего будет дополнительный код, запускаемый при создании зоны.
