@@ -16,6 +16,15 @@ public abstract class NPC extends Creature
 
     protected boolean playerInSight;
 
+    protected int pX, pY;
+
+    public void setpX(int pX) {
+        this.pX = pX;
+    }
+
+    public void setpY(int pY) {
+        this.pY = pY;
+    }
 
     public Rectangle getViewField() {
         return viewField;
@@ -83,6 +92,15 @@ public abstract class NPC extends Creature
     {
         this.playerInSight = bool;
     } // Сеттер этого значения
+
+    public int getpX() {
+        return pX;
+    }
+
+    public int getpY() {
+        return pY;
+    }
+
     public void checkForPlayerInSight() // Метод проверки - видит ли НПЦ игрока
     {
         boolean playerInAFieldOfView = false;

@@ -34,7 +34,7 @@ public class AI
     public void move(NPC npc) { // Метод, который отвечал за передвижение НПЦ по игровому миру.
         long time = System.currentTimeMillis();
         // Если игрока двигает ввод с клавиатуры, то НПЦ двиает этот класс (ИИ).
-        if(npc != null && !(npc  instanceof Hachique))
+        if(npc != null && !(npc  instanceof Hachique)) // Я не помню зачем условие с хачиком, но боюсь проверять. И так работает.
         {
 
                 npc.checkForPlayerInSight(); // Проверяем в поле зряния ли игрок (иможно ли до него добраться)
@@ -42,56 +42,80 @@ public class AI
 
             if (npc.isPlayerInSight())  // Если нпц сейчас видит игрока
             {
-                                         // описано поведение НПЦ, в случае если тот видит игрока
+                npc.setpX( Player.get().getX() );
+                npc.setpY( Player.get().getY() );
+                //Обновляем "положение игрока в памяти нпц)
+            }
 
-                double r =Math.random();
+            //Логика на случай когда НПЦ видит или  видел игрока где-то,то еще не дошел до него или до последнего места где его видел
+            if(!npc.getSolidBox().intersects(npc.getpX()+1,npc.getpY()+1,1,1) && ( (npc.getpX()!=0) && (npc.getpY()!=0)  )) {
+                double r = Math.random();
 
                 //Блок для "отступания" целящихся нпц
-                if(npc instanceof  AimingGuy && ((AimingGuy) npc).getNearZone().intersects(Player.get().getSolidBox()))
-                {
+                if (npc instanceof AimingGuy && ((AimingGuy) npc).getNearZone().intersects(Player.get().getSolidBox())) {
 
 
-                    if(r<0.5d) {
+                    if (r < 0.5d) {
                         npc.setX(npc.getX() > Player.get().getX() ? npc.getX() + npc.getSpeed() : npc.getX() - npc.getSpeed());
-                        r =Math.random();
-                        if(r>0.5) return;
+                        r = Math.random();
+                        if (r > 0.5) return;
                         npc.setY(npc.getY() > Player.get().getY() ? npc.getY() + npc.getSpeed() : npc.getY() - npc.getSpeed());
 
-                    }else {
+                    } else {
                         npc.setY(npc.getY() > Player.get().getY() ? npc.getY() + npc.getSpeed() : npc.getY() - npc.getSpeed());
-                        r =Math.random();
-                        if(r>0.5) return;
+                        r = Math.random();
+                        if (r > 0.5) return;
                         npc.setX(npc.getX() > Player.get().getX() ? npc.getX() + npc.getSpeed() : npc.getX() - npc.getSpeed());
 
                     }
-                }else
+                } else
 
 
-                //Блок движения НПЦ в стандартном порядке
+                    //Блок движения НПЦ в стандартном порядке
 
-                r =Math.random();
+                    r = Math.random();
 
-                if(r<0.5d) {
-                    npc.setX(npc.getX() > Player.get().getX() ? npc.getX() - npc.getSpeed() : npc.getX() + npc.getSpeed());
-                    r =Math.random();
-                    if(r>0.5) return;
-                    npc.setY(npc.getY() > Player.get().getY() ? npc.getY() - npc.getSpeed() : npc.getY() + npc.getSpeed());
+                if (r < 0.5d) {
+                    npc.setX(npc.getX() > npc.getpX() ? npc.getX() - npc.getSpeed() : npc.getX() + npc.getSpeed());
+                    r = Math.random();
+                    if (r > 0.5) return;
+                    npc.setY(npc.getY() > npc.getpY() ? npc.getY() - npc.getSpeed() : npc.getY() + npc.getSpeed());
 
-                }else {
-                    npc.setY(npc.getY() > Player.get().getY() ? npc.getY() - npc.getSpeed() : npc.getY() + npc.getSpeed());
-                    r =Math.random();
-                    if(r>0.5) return;
-                    npc.setX(npc.getX() > Player.get().getX() ? npc.getX() - npc.getSpeed() : npc.getX() + npc.getSpeed());
+                } else {
+                    npc.setY(npc.getY() > npc.getpY() ? npc.getY() - npc.getSpeed() : npc.getY() + npc.getSpeed());
+                    r = Math.random();
+                    if (r > 0.5) return;
+                    npc.setX(npc.getX() > npc.getpX() ? npc.getX() - npc.getSpeed() : npc.getX() + npc.getSpeed());
+                }
+
+
+                //ЛОГИКА ДЛЯ ЦЕЛЯЩИСЯ (СТРЕЛЯЮЩИХ НПЦ)
+                aimAI();
+                if (npc instanceof AimingGuy) {
+                    ((AimingGuy) npc).updateNearZone();
+                }
+                return; // Закончили. Код дальше  только для "незрячих" или "потерявшихся".
+            }
+            if(!npc.isPlayerInSight())
+            {
+                int random = (int) (Math.random() * 4);
+                switch (random)
+                {
+                    case 0:
+                        npc.moveUp();
+                        break;
+                    case 1:
+                        npc.moveDown();
+                        break;
+                    case 2:
+                        npc.moveRight();
+                        break;
+                    case 3:
+                        npc.moveLeft();
+                        break;
                 }
             }
 
-
-            //ЛОГИКА ДЛЯ ЦЕЛЯЩИСЯ (СТРЕЛЯЮЩИХ НПЦ)
-            aimAI();
-            if(npc instanceof  AimingGuy)
-            {
-                ((AimingGuy) npc).updateNearZone();
-            }
 
         }
     }
