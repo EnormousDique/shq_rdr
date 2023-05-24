@@ -20,6 +20,12 @@ public class TimeMachine {
     private static int dayNumber;
     private static long startTime;
     private static long currentTime;
+
+    public static long getCurrentTime() {
+        return currentTime;
+    }
+
+
     public static void setStartTime(){
         startTime = /* System.currentTimeMillis(); */ 0 ;
         currentTime = startTime;

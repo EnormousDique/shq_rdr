@@ -165,7 +165,11 @@ public class PlayerControls
     // действие на кнопку е
      private static void e() {
 
+         try {
              Interactor.getInstance().interact();
+         } catch (Exception e) {
+             System.out.println("инетрактор наебнулся все ровно)");
+         }
 
      }
      // Sounder.changeSong("src\\ru\\muwa\\shq\\sounds\\songs\\muzike1.wav");
