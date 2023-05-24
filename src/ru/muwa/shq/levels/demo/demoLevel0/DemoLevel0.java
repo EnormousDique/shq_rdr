@@ -63,12 +63,9 @@ public class DemoLevel0 extends Level
         super();
         instance = this;
         this.isStreet = true;
-        startPosX =641;
-        startPosY = 1626;
-        QuestUtility.setQuest4();
+
+        //QuestUtility.setQuest4();
         System.out.println("test 1");
-        containers.add(new TrashCan(800,1900));
-        containers.get(0).addItem(new Makarov());
 
         Inventory.getInstance().addItem(new MakarovAmmo());
         Inventory.getInstance().addItem(new BaseballBat());
@@ -82,25 +79,61 @@ public class DemoLevel0 extends Level
 
         System.out.println("test 2");
 
+        /** ЗАДНИК **/
         objects.add(new DemoLevel0_BG(0,0));
+
+
         objects.add(new Car(1350,1060));
         objects.add(new Crate0(100,100));
+
+        /** Дома **/
+
+        /* Дом 1 */
+
+        //Сам дом
         objects.add(new FatBuilding(1690,280));
-        objects.add(new FatBuilding(3630,680));
-        objects.add(new FatBuilding(1690,1500));
-        objects.add(new FatBuilding(3630,1500));
+        //Вход в подъезд : 1
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,800,70,70, FatBuildingFloor1.getInstance(), 190,220,false)));
+
+        /* Дом 2 */
+        objects.add(new FatBuilding(3630,280));
+
+        /* Дом 3 */
+        objects.add(new FatBuilding(1690,1100));
+
+        /* Дом 4 */
+        objects.add(new FatBuilding(3630,1100));
+
+        /* Дом 5 */
         objects.add(new TallFatBuilding(1730,2134));
+
+        /* Дом 6 */
         objects.add(new TallFatBuilding(2640,3045));
 
-        //новые билдинги
+        /* Дом 7 */
         objects.add(new LoongGrayBuildingFront(5490,214));
+
+        /* Дом 8 */
         objects.add(new LoongGrayBuildingSide(5490,894));// боковина среднего дома
-        // магаз на рынке
-        objects.add(new ShopBiolog(3616,6400));
+
+
+
+        /** Палатки на рынке **/
+
+        /* Брат биолог */
+        objects.add(new ShopBiolog(3400,6600));
+        zones.add(new BuyoutZone(300, 150, 300, 300, new Buyout() {
+            @Override
+            public void init() {
+                //Тут скорее всего будет дополнительный код, запускаемый при создании зоны.
+                // Предположительно, он будет влиять на коэффициенты стоимости и прочие ограничения продажи
+                // например, на список товаров, который может купить скупщик.
+            }
+        }));
+        /* Следующая паталка */
 
         System.out.println("test 2.5");
 
-        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,1200,70,70, FatBuildingFloor1.getInstance(), 190,220,false)));
         zones.add(new ActionZone(1800, 1200, 200, 200, new QuestAction() {
             @Override
             public void performAction() {
@@ -123,7 +156,7 @@ public class DemoLevel0 extends Level
                     System.out.println("я в говно");
                 }
             }));
-        System.out.println("test 3");
+
 
 
         zones.add(new EnterZone(520,1800,70,70,HubHataIgoryana.getInstance(),290,705,false));
@@ -138,12 +171,7 @@ public class DemoLevel0 extends Level
                 goods.add(new Lyrica());
             }
         }));
-        zones.add(new BuyoutZone(300, 150, 300, 300, new Buyout() {
-            @Override
-            public void init() {
 
-            }
-        }));
 
             zones.add(new EnterZone(1800 ,3256, 100,70,WhiteBlueTallBuildingFloor1.getInstance(),522,809,false));
 
