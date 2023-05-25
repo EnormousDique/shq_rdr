@@ -204,7 +204,11 @@ public class Renderer implements Runnable {
         //отрисовка обьектов из списка текущих обьектов
         for (int i = 0;i<Engine.getCurrentLevel().getObjects().size();i++){
             GameObject o = Engine.getCurrentLevel().getObjects().get(i);
-            if(o instanceof DemoLevel0_BG && !isDrawingBg) continue;
+            if(o instanceof DemoLevel0_BG && !isDrawingBg) {
+                g.setColor(new Color(200,200,200,40));
+                g.fillRect(camX,camY,SCREEN_WIDTH,SCREEN_HEIGHT);
+                continue;
+            }
 
             if(o instanceof Building){
                 Rectangle rectangle = new Rectangle(o.getX(),o.getY(),o.getWidth(),o.getHeight());

@@ -3,6 +3,7 @@ package ru.muwa.shq.engine.combat;
 import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.items.bluntWeapons.BaseballBat;
 import ru.muwa.shq.items.guns.Firearm;
 import ru.muwa.shq.items.guns.Makarov;
@@ -23,6 +24,7 @@ public class CombatUtility {
     public static void work()
     {
         updateAttackZone();
+
         for(NPC c: Engine.getCurrentLevel().getNPC()){
             if(c.getSolidBox().intersects(Player.get().getSolidBox())){
                 Player.get().setHp(Player.get().getHp()-0.2);
@@ -62,9 +64,12 @@ public class CombatUtility {
         if( (!Player.get().equals(victim)) && victim.getHp() <= 0 && Engine.getCurrentLevel().getNPC().contains(victim)) {
             Engine.getCurrentLevel().getNPC().remove(victim);
             Engine.getCurrentLevel().getContainers().add(new Corpse(victim.getX(),victim.getY(),victim.getcorpseimg(), victim.getRandomLoot()));
+
            // Spawner.decreaseSpawnCounter();
         }
 
     }
 
-}
+    }
+
+

@@ -22,7 +22,7 @@ public class Interactor
     public static Interactor getInstance(){if(instance!=null) return instance; else return new Interactor();}
 
 
-    public void interact()
+    public void interact() throws Exception
     {
         int x = MouseListener.getInstance().getX();
         int y = MouseListener.getInstance().getY();
@@ -47,7 +47,7 @@ public class Interactor
                     if(activeContainers.get(i).getItems().size()>0)
                         break;
                 }
-                Container c = activeContainers.get( activeContainers.size() > 1? i : 0);
+                Container c = activeContainers.get( activeContainers.size() > 1? i : 0);  //todo выбрасывает ошибку идекса out of bounds при лутании трупов.
                 c.setIsInUse(true);
                 Inventory.getInstance().setIsOpened(true);
                 Player.get().setIsBusy(true);
