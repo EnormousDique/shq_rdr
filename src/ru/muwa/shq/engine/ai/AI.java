@@ -129,7 +129,7 @@ public class AI
                 aimAIMath(list.get(i));
                 if(list.get(i).isPlayerInSight())
                 {
-                   // System.out.println("SEE YOU");
+
                     if(((AimingGuy) list.get(i)).getLastTimeShot() + 1_000 < System.currentTimeMillis()) {
                         ((AimingGuy) list.get(i)).setLastTimeShot(System.currentTimeMillis());
                         EnemyBullet.enemyShot((int) list.get(i).getSolidBox().getCenterX(), (int) list.get(i).getSolidBox().getCenterY(), -1 *(Aim.getInstance().calculateAngleFoNpc(list.get(i)) - 90), list.get(i));

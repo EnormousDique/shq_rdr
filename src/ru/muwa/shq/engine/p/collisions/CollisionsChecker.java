@@ -304,7 +304,7 @@ public class CollisionsChecker {
 
 
                         if (c.getY() + c.getHeight() > obj.getSolidBox().getCenterY() && c.getX() + c.getWidth() < obj.getX() + obj.getWidth() && c.getX() > obj.getX()) {
-                        c.setY((int) (obj.getSolidBox().getY() - obj.getSolidBox().getHeight()));
+                        c.setY((int) (obj.getSolidBox().getY() + obj.getSolidBox().getHeight()));
                         System.out.println("вниз");
                     }//Вниз
                     /*else*/
