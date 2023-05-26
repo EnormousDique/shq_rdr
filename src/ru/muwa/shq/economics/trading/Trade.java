@@ -39,9 +39,11 @@ public abstract class Trade {
             l.setBounds(0,y*50,50,50);
 
             String s = "цена : " + i.getPrice();
+            for(int j =0 ; j< 100; j++) s +=" \n ";
+            s += i.getDescription();
             JButton b = new JButton(s);
             HUD.getInstance().getActionWindow().add(b);
-            b.setBounds(50,y*50,100,50);
+            b.setBounds(50,y*50,150,50);
             b.addActionListener(listener);
 
             HUD.getInstance().getActionWindow().add(exitButton);
@@ -67,7 +69,7 @@ public abstract class Trade {
                     String key = ((JButton)e.getSource()).getText(); // строка - ключ, в которой содержится инфо о цене вещи
                     for(Item ii : zz.trade.goods)
                     {
-                        if(key.contains(""+ii.getPrice())) i = ii;
+                        if(key.contains(""+ii.getDescription())) i = ii;
                     }
                     if(i!=null)//Если вещь нашлась
                     {

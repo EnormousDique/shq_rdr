@@ -74,7 +74,7 @@ public abstract class Item
     public void setMyContainer(Container c){myContainer = c;}
     public Container getMyContainer(){return myContainer;}
 
-    public void pick() // положить предмет с контейнера
+    public void pick() //
     {
 
         boolean isClickedOnEquipped = this.isEquipped;
@@ -128,17 +128,18 @@ public abstract class Item
         Inventory.getInstance().addItem(this);
     }
     public  void use(){
-        boolean isSomeItemAlreadyEquipped = false;
-        System.out.println("is smth already equiped = " + isSomeItemAlreadyEquipped);
+        if(this.isAbleToEquip) {
+            boolean isSomeItemAlreadyEquipped = false;
+            System.out.println("is smth already equiped = " + isSomeItemAlreadyEquipped);
 
-        for(int i = 0; i < Inventory.getInstance().getItems().size();i++){
-            if(Inventory.getInstance().getItems().get(i).isEquipped())
-                isSomeItemAlreadyEquipped = true;
-        }
-        if(!isSomeItemAlreadyEquipped)
-        {
-            setEquipped( true);
-            Player.get().currentWeapon = (Weapon) this;
+            for (int i = 0; i < Inventory.getInstance().getItems().size(); i++) {
+                if (Inventory.getInstance().getItems().get(i).isEquipped())
+                    isSomeItemAlreadyEquipped = true;
+            }
+            if (!isSomeItemAlreadyEquipped) {
+                setEquipped(true);
+                Player.get().currentWeapon = (Weapon) this;
+            }
         }
     }
     public abstract void equip();

@@ -28,6 +28,5 @@ public class Onion extends Item {
 
     @Override
     public void equip() {
-
     }
 }
