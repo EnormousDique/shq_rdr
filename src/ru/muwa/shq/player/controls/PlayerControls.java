@@ -255,20 +255,28 @@ public class PlayerControls
     private static void enter() {
 
         for (GameZone z : Engine.getCurrentLevel().getZones()){
+
+
             if (z.contains(new Point(Player.get().getX(), Player.get().getY()))
                     &&
                     KeyListener.getInstance().getKeys()[KeyListener.getInstance().ENTER]
                     &&
                     z instanceof EnterZone)
                 Engine.switchLevel((EnterZone) z);
+
+
+
             if(z.contains(new Point(Player.get().getX(), Player.get().getY()))
                     &&
                     z instanceof InteractiveEnterZone)
             {
                 ((InteractiveEnterZone ) z).getGame().game();
+
+
                 while (!((InteractiveEnterZone ) z).getGame().victory())
                 {
                     System.out.println("мы находимся в миниигре падик лок");
+
                     if(KeyListener.getInstance().getKeys()[KeyListener.getInstance().Q])
                         break;
                     if(((InteractiveEnterZone ) z).getGame().victory()
@@ -277,6 +285,7 @@ public class PlayerControls
                        break;
                     }
                 }
+
                 if( ! ((PadikLock)((InteractiveEnterZone)z).getGame() ).isForceQuit() ) {
                     Engine.pause = false;
                     Engine.switchLevel(((InteractiveEnterZone) z).enterZone);

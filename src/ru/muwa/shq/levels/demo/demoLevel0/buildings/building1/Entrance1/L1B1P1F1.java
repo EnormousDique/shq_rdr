@@ -14,7 +14,6 @@ import java.io.IOException;
 
 public class L1B1P1F1 extends Level
 {
-
     private static L1B1P1F1 instance;
     public static L1B1P1F1 getInstance() throws IOException {
         if(instance == null) return new L1B1P1F1(); else return instance;
@@ -23,7 +22,7 @@ public class L1B1P1F1 extends Level
         instance = this;
         startPosX = 0;
         startPosY = 0;
-        // containers.add(new PostBox(100,100));
+
         zones.add(new EnterZone(300,164,60,80, DemoLevel0.getInstance(), 1900,1200,false));
         zones.add(new EnterZone(310,30,60,80, L1B1P1F1_5.getInstance(), 300,100,true));
 
@@ -39,7 +38,6 @@ public class L1B1P1F1 extends Level
         objects.add(new Wall300(360,10));
         objects.add(new Wall300(-40,10));
         objects.add(new Perila(130,120));
-
     }
 }
 

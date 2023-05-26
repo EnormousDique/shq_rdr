@@ -105,11 +105,13 @@ public class CollisionsChecker {
 
 
                 /** ПРОВЕРКИ ПО ТОЧКАМ **/
+
                 //Если столкновение только с одной стеной
                 for (GameObject obj : walls) {
                     //Перебираем объекты.
                     //Новый код проверки столкновений
                     //Проверка,что проверяемый объект зашел в стену "верхом"
+
                     if (obj.getSolidBox().contains(lt) &&
                             obj.getSolidBox().contains(rt) &&
                             !obj.getSolidBox().contains(lb) &&
@@ -137,6 +139,8 @@ public class CollisionsChecker {
                             !obj.getSolidBox().contains(lb)) {
                         o.setX((int) (obj.getSolidBox().getX() - o.getWidth()));
                     }
+
+
                     /** ПРОВЕРКИ ПО ЛИНИЯМ **/
                     //Проверка по 3-м линиям
                     //Столкновение со стеной верх + право + лево
@@ -233,7 +237,7 @@ public class CollisionsChecker {
                             !rightLine.intersects(obj.getSolidBox())&&
                             bottomLine.intersects(obj.getSolidBox()))
                     {
-                        o.setY(obj.getSolidBox().y - o.getHeight());
+                        o.setY(obj.getSolidBox().y - (int) o.getSolidBox().getHeight());
                     }
                     //TODO: проверить верх + пр + лв ; проерить вер + лв ; проверить верх+ пр; все то е для низа
 
@@ -300,7 +304,7 @@ public class CollisionsChecker {
 
 
                         if (c.getY() + c.getHeight() > obj.getSolidBox().getCenterY() && c.getX() + c.getWidth() < obj.getX() + obj.getWidth() && c.getX() > obj.getX()) {
-                        c.setY((int) (obj.getSolidBox().getY() + obj.getHeight()));
+                        c.setY((int) (obj.getSolidBox().getY() + obj.getSolidBox().getHeight()));
                         System.out.println("вниз");
                     }//Вниз
                     /*else*/

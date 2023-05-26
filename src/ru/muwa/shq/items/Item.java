@@ -18,8 +18,16 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
  */
 public abstract class Item
 {
+    /** Сей метод не надлежит использовать напрямую-с.
+     * Напротив, его необходимо переопределять для предметов, у коих истинно stackable
+     * Использовать следует исключительно переопределённый метод-с!**/
+    public  Item copy(){return new Item(0,0,0,null) {
+        @Override
+        public void equip() {
 
-
+        }
+        String description = "";
+    };}
 
     protected String description ;
     protected boolean stackable;
@@ -59,6 +67,7 @@ public abstract class Item
         this.weight = weight;
         this.texture = texture;
     }
+
     public BufferedImage getTexture() {return texture;}
 
 

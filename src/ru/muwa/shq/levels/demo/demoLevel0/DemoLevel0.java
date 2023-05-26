@@ -25,6 +25,8 @@ import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
 import ru.muwa.shq.items.knifes.Kortique;
 import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.Level;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.VegetablesVendor;
 import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
@@ -61,12 +63,8 @@ public class DemoLevel0 extends Level
         super();
         instance = this;
         this.isStreet = true;
-        startPosX =641;
-        startPosY = 1626;
-        QuestUtility.setQuest4();
+
         System.out.println("test 1");
-        containers.add(new TrashCan(800,1900));
-        containers.get(0).addItem(new Makarov());
 
         Inventory.getInstance().addItem(new MakarovAmmo());
         Inventory.getInstance().addItem(new BaseballBat());
@@ -80,25 +78,83 @@ public class DemoLevel0 extends Level
 
         System.out.println("test 2");
 
+        /** ЗАДНИК **/
         objects.add(new DemoLevel0_BG(0,0));
+
+
         objects.add(new Car(1350,1060));
         objects.add(new Crate0(100,100));
+
+        /** Дома **/
+
+        /* Дом 1 */
+
+        //Сам дом
         objects.add(new FatBuilding(1690,280));
-        objects.add(new FatBuilding(3630,680));
-        objects.add(new FatBuilding(1690,1500));
-        objects.add(new FatBuilding(3630,1500));
+        //Вход в подъезд : 1
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,800,70,70, FatBuildingFloor1.getInstance(), 190,220,false)));
+
+        /* Дом 2 */
+        objects.add(new FatBuilding(3630,280));
+
+        /* Дом 3 */
+        objects.add(new FatBuilding(1690,1100));
+
+        /* Дом 4 */
+        objects.add(new FatBuilding(3630,1100));
+
+        /* Дом 5 */
         objects.add(new TallFatBuilding(1730,2134));
+
+        /* Дом 6 */
         objects.add(new TallFatBuilding(2640,3045));
 
-        //новые билдинги
+        /* Дом 7 */
         objects.add(new LoongGrayBuildingFront(5490,214));
+
+        /* Дом 8 */
         objects.add(new LoongGrayBuildingSide(5490,894));// боковина среднего дома
-        // магаз на рынке
-        objects.add(new ShopBiolog(3616,6400));
 
-        System.out.println("test 2.5");
 
-        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,1200,70,70, FatBuildingFloor1.getInstance(), 190,220,false)));
+        //2930 6600
+        /** РЫНОК **/
+        //Зона входа в  рынок
+        zones.add(new EnterZone(2930,6600,200,200, MarketInteriors.getInstance(),100,100,false));
+
+        /** Палатки на рынке **/
+
+        /* Брат биолог */
+        objects.add(new ShopBiolog(3400,6600));
+        zones.add(new BuyoutZone(3300, 6660, 300, 300, new Buyout() {
+            @Override
+            public void init() {
+                //Тут скорее всего будет дополнительный код, запускаемый при создании зоны.
+                // Предположительно, он будет влиять на коэффициенты стоимости и прочие ограничения продажи
+                // например, на список товаров, который может купить скупщик.
+            }
+        }));
+        /* Овощная и фруктовая палатка */
+        objects.add(new VegetablesVendor(2900, 6800));
+        zones.add(new TradeZone(2900, 6800, 100, 200, new Trade() {
+            @Override
+            public void setGoods() {
+                goods.add(new Potato());
+                goods.add(new Carrot());
+                goods.add(new Gurken());
+            }
+        }));
+        zones.add(new TradeZone(3000, 6800, 100, 200, new Trade() {
+            @Override
+            public void setGoods() {
+                goods.add(new Onion()  );
+                goods.add(new Beetroot());
+                goods.add(new Cabbage());
+                goods.add(new Tomato());
+            }
+        }));
+
+
+
         zones.add(new ActionZone(1800, 1200, 200, 200, new QuestAction() {
             @Override
             public void performAction() {
@@ -108,7 +164,6 @@ public class DemoLevel0 extends Level
                     {
                         Animator.playCutscene(Q3_PoliceCutscene.getInstance());
                         DialogueManager.playDialogueOnDemand(Q3_PoliceConversation.getInstance());
-                       // DialogueManager.playDialogueOnDemand(Q2T1_Conversation.getInstance());
                     }
                 }
             }
@@ -121,7 +176,7 @@ public class DemoLevel0 extends Level
                     System.out.println("я в говно");
                 }
             }));
-        System.out.println("test 3");
+
 
 
         zones.add(new EnterZone(520,1800,70,70,HubHataIgoryana.getInstance(),290,705,false));
@@ -136,12 +191,7 @@ public class DemoLevel0 extends Level
                 goods.add(new Lyrica());
             }
         }));
-        zones.add(new BuyoutZone(300, 150, 300, 300, new Buyout() {
-            @Override
-            public void init() {
 
-            }
-        }));
 
         zones.add(new TradeZone(3500, 6500, 300, 300, new Trade() {
                     @Override

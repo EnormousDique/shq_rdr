@@ -8,6 +8,7 @@ import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.launcher.Launcher;
 import ru.muwa.shq.engine.s.Sounder;
 import ru.muwa.shq.levels.LevelStorage;
+import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
@@ -45,10 +46,12 @@ public class Engine
         System.out.println("Game started");
         Launcher.hideFrame();
         Renderer.showLoading();
-        //currentLevel = LevelStorage.demoLevel0;
-        //currentLevel = LevelStorage.WhiteBlueTallBuildingFloor1;
-        //currentLevel = HubHataIgoryana.getInstance();
-        currentLevel = LevelStorage.demoLevel0;
+
+        try {
+            currentLevel = DemoLevel0.getInstance();
+        } catch (IOException e) {
+            System.out.println("LOX");
+        }
         Renderer.getInstance();
         Updater.getInstance();
 
