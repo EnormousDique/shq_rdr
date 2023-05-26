@@ -1,5 +1,8 @@
 package ru.muwa.shq.dialogues;
 
+import ru.muwa.shq.quests.Quest;
+import ru.muwa.shq.quests.actions.QuestAction;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,16 +51,24 @@ public abstract class Dialogue {
     protected class Respond{
         String text;
         Message msg;
+        QuestAction action;
 
         public Respond(String text, Message msg)
         {
             this.text = text;
             this.msg = msg;
         }
+
         public Respond(String text)
         {   //Конечная ветка диалога.
             this.text = text;
         }
+
+        public Respond(String text, QuestAction action) {
+            this.action=action;
+            this.text=text;
+        }
+
         public String getText(){return text;}
         public Message getMsg(){return msg;}
     }

@@ -6,6 +6,7 @@ import ru.muwa.shq.items.consumables.Water;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
+import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor4;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.actions.Q2T1_Action;
@@ -191,5 +192,33 @@ public class QuestUtility {
        Player.get().quests.add(quest4);
     }
 
+    // КОНЕЦ КВЕСТА 4
+    //***************************************************************************************************************
 
+    /**
+     * КВЕСТ 5  : КРАЖА ПАЦАНА
+     */
+    //***************************************************************************************************************
+
+    public static void startQuest5(){
+
+
+        CompleteTaskZone ctzQ5T1 = null;
+        try {
+            ctzQ5T1 = new CompleteTaskZone(100,100,100,100, WhiteBlueTallBuildingFloor4.getInstance());
+        } catch (IOException e) {
+            System.out.println("неудалось получить доступ к 4-му  этажу  синего дома");
+        }
+        quest4.addTask("Прокрасться в хату к пацанёнку.",ctzQ5T1);
+
+        quest4.addTask("Выкрасть пацана", new TaskCondition() {
+            @Override
+            public boolean checkCondition() {
+                //TODO: Реализовать проверку на украденного пацана.
+                return false;
+            }
+        });
+
+        Player.get().quests.add(quest4);
+    }
 }

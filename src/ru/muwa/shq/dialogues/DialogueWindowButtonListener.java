@@ -35,7 +35,15 @@ public class DialogueWindowButtonListener implements ActionListener {
                     if (r.text.equals(((JButton) e.getSource()).getText()))
                         respond = r;
                 }
-                if(respond.msg==null){ HUD.getInstance().getDialogueWindow().setVisible(false); ((DialogueZone)z).setActive(false); Engine.pause = false; dialogue.restore();DialogueManager.dropDialogue();}
+                if(respond.msg==null){
+                    HUD.getInstance().getDialogueWindow().setVisible(false);
+                    ((DialogueZone)z).setActive(false);
+                    Engine.pause = false;
+                    if(respond.action!=null) respond.action.performAction();
+                    dialogue.restore();
+                    DialogueManager.dropDialogue();
+
+                }
 
                 else ((DialogueZone)z).getDialog().setCurrentMessage(((respond.msg)));
             }
@@ -50,7 +58,16 @@ public class DialogueWindowButtonListener implements ActionListener {
                 if (r.text.equals(((JButton) e.getSource()).getText()))
                     respond = r;
             }
-            if(respond.msg==null){ HUD.getInstance().getDialogueWindow().setVisible(false);  Engine.pause = false; dialogue.restore();DialogueManager.dropDialogue();}
+
+            if(respond != null&&respond.msg==null){
+
+                HUD.getInstance().getDialogueWindow().setVisible(false);
+                Engine.pause = false;
+                if(respond.action!=null) respond.action.performAction();
+                dialogue.restore();
+                DialogueManager.dropDialogue();
+
+            }
 
             else dialogue.setCurrentMessage(((respond.msg)));
         }
