@@ -111,6 +111,10 @@ public abstract class NPC extends Creature
             if(l.intersects(Engine.getCurrentLevel().getObjects().get(i).getSolidBox()) && Engine.getCurrentLevel().getObjects().get(i).getIsSolid() )
                 playerInStraightLine = false;
 
+        for(int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++)
+            if(l.intersects(Engine.getCurrentLevel().getNPC().get(i).getSolidBox()) && !Engine.getCurrentLevel().getNPC().get(i).equals(this) )
+                playerInStraightLine = false;
+
         playerInAFieldOfView = viewField.intersects(Player.get().getSolidBox());
 
         playerInSight = playerInAFieldOfView && playerInStraightLine;
