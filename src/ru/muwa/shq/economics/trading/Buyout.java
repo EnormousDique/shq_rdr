@@ -25,7 +25,7 @@ public abstract class Buyout {
 
 
     public abstract void init();
-    public void trade()
+    public void trade() throws Exception
     {
         Engine.pause = true;
         HUD.getInstance().getActionWindow().setVisible(true);

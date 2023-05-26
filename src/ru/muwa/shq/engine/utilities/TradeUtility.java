@@ -16,7 +16,11 @@ public class TradeUtility {
                 }
                 if(z instanceof BuyoutZone && ((BuyoutZone)z).isActive)
                 {
-                    ((BuyoutZone)z).buyout.trade();
+                    try {
+                        ((BuyoutZone)z).buyout.trade();
+                    } catch (Exception e) {
+                        System.out.println("Да, говнокод. А иначе б вылетало :)))) \n Сломалась зона выкупа");
+                    }
                 }
             }
     }

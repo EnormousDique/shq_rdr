@@ -59,6 +59,7 @@ public abstract class Item
         this.weight = weight;
         this.texture = texture;
     }
+
     public BufferedImage getTexture() {return texture;}
 
 
