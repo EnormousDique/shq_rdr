@@ -45,7 +45,7 @@ public class CellPhone extends Item {
     @Override
     public void use() {
 
-        Inventory.getInstance().getItems().remove(this);
+
     }
     @Override
     public void equip() {

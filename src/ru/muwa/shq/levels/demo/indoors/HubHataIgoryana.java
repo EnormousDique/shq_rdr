@@ -3,17 +3,20 @@ package ru.muwa.shq.levels.demo.indoors;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.dialogues.demo.Conversation1;
 import ru.muwa.shq.economics.money.Money_500;
+import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.items.consumables.CellPhone;
+import ru.muwa.shq.items.consumables.Potato;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.objects.bounds.*;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
+import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.containers.HubChest;
-import ru.muwa.shq.zones.DialogueZone;
-import ru.muwa.shq.zones.EnterZone;
-import ru.muwa.shq.zones.GifSceneZone;
-import ru.muwa.shq.zones.SleepZone;
+import ru.muwa.shq.zones.*;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 
 public class HubHataIgoryana extends Level
@@ -40,7 +43,29 @@ public class HubHataIgoryana extends Level
         // диалог с мамой
         zones.add(new DialogueZone(Conversation1.getInstance(),100,100,100,100,false));
        // zones.add(new GifSceneZone(200,200,70,70,true));
+
+        /** Используемые предметы **/
+        //Сон
         zones.add(new SleepZone(740,5,50,100));
+        //Кухня
+        containers.add(new HubChest(740,600));
+        zones.add(new InteractionZone(740,650,100,100) {
+            @Override
+            public void use() {
+                Container pot = containers.get(1); //СЕЙЧАС "КАСТРЮЛЯ" ЭТО ВТОРОЙ ПО СЧЕТУ КОНТЕЙНЕР В УРОВНЕ.
+                boolean isPotatoIn = pot.getItems().stream().anyMatch(i -> i instanceof Potato);
+                if(isPotatoIn)
+                {
+                    containers.get(1).setItems(new ArrayList<>());
+                    containers.get(1).getItems().add(new CellPhone());
+                }
+                else
+                {
+                    Renderer.addMessage("Из такой хуйни супа не сваришь");
+                }
+
+            }
+        });
         // стены хаюа
         objects.add(new Wall350(351,-50));
         objects.add(new Wall350(701,-50));

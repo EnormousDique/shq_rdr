@@ -15,7 +15,7 @@ public class VegetablesVendor extends GameObject {
         try {
             img = ImageIO.read(new File(IMG_PATH + "buildings\\indoors\\vegetables.png"));
         } catch (IOException e) {
-            System.out.println("failed to load flour image");
+            System.out.println("failed to load овощная палатка image");
         }
     }
 

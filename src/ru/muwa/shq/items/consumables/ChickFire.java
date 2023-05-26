@@ -1,6 +1,7 @@
 package ru.muwa.shq.items.consumables;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
@@ -44,8 +45,7 @@ public class ChickFire extends Item {
     }
     @Override
     public void use() {
-
-        Inventory.getInstance().getItems().remove(this);
+        Renderer.addMessage(description);
     }
     @Override
     public void equip() {

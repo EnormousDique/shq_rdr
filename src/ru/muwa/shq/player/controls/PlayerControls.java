@@ -102,13 +102,20 @@ public class PlayerControls
     {
         for(GameZone z : Engine.getCurrentLevel().getZones())
         {
-            if(z instanceof SleepZone)
+            if(z instanceof SleepZone && Player.get().getSolidBox().intersects(z))
             {
                 SleepZone zz = (SleepZone) z;
                 TimeMachine.rewind(2_500_000);
                 Renderer.playSleepyFilter();
             }
+            if(z instanceof InteractionZone && Player.get().getSolidBox().intersects(z))
+            {
+
+                    ((InteractionZone)z).use();
+
+            }
         }
+        keyboard.getKeys()[keyboard.U] = false;
     }
 
 
