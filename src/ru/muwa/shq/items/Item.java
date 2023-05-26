@@ -18,9 +18,9 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
  */
 public abstract class Item
 {
-
-
-
+    /** Сей метод не надлежит использовать напрямую-с.
+     * Напротив, его необходимо переопределять для предметов, у коих истинно stackable
+     * Использовать следует исключительно переопределённый метод-с!**/
     public  Item copy(){return new Item(0,0,0,null) {
         @Override
         public void equip() {
@@ -28,6 +28,7 @@ public abstract class Item
         }
         String description = "";
     };}
+
     protected String description ;
     protected boolean stackable;
     public int amount = 1;

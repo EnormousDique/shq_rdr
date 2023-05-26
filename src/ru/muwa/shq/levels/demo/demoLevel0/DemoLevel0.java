@@ -27,6 +27,7 @@ import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
 import ru.muwa.shq.items.knifes.Kortique;
 import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.Level;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
 import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
@@ -117,6 +118,10 @@ public class DemoLevel0 extends Level
         objects.add(new LoongGrayBuildingSide(5490,894));// боковина среднего дома
 
 
+        //2930 6600
+        /** РЫНОК **/
+        //Зона входа в  рынок
+        zones.add(new EnterZone(2930,6600,200,200, MarketInteriors.getInstance(),100,100,false));
 
         /** Палатки на рынке **/
 
