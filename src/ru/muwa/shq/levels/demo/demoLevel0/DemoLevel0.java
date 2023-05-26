@@ -14,10 +14,8 @@ import ru.muwa.shq.engine.spawner.Spawner;
 
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
-import ru.muwa.shq.items.consumables.Cigarettes;
-import ru.muwa.shq.items.consumables.EnergyDrink;
+import ru.muwa.shq.items.consumables.*;
 import ru.muwa.shq.items.bluntWeapons.BaseballBat;
-import ru.muwa.shq.items.consumables.Water;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.items.drugs.IceOlator;
 import ru.muwa.shq.items.drugs.Lyrica;
@@ -144,6 +142,18 @@ public class DemoLevel0 extends Level
 
             }
         }));
+
+        zones.add(new TradeZone(3500, 6500, 300, 300, new Trade() {
+                    @Override
+                    public void setGoods() {
+                        goods.add(new CellPhone());
+                        goods.add(new HomemadeAnuses());
+                        goods.add(new LeBottle());
+                        goods.add(new EpicRing());
+                        goods.add(new ChickFire());
+                        goods.add(new CannedSoup());
+                    }
+                }));
 
             zones.add(new EnterZone(1800 ,3256, 100,70,WhiteBlueTallBuildingFloor1.getInstance(),522,809,false));
 

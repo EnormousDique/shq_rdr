@@ -164,6 +164,8 @@ public class Updater implements Runnable {
             SolidBoxUpdater.updateSolidBox(con);
         }
          DeathUtility.work();
+        // служба очистки трупов
+         CorpseCleanerUtility.work();
         //Блок ПОСТ обработки
         //Очищаем нажатые клавиши. (Фиксим баг с мульти прожатием клавиш)
        // DropKeyUtility.getInstance().work(); //TODO: Убрать.

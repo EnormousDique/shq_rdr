@@ -47,11 +47,8 @@ public class Engine
         Renderer.showLoading();
         //currentLevel = LevelStorage.demoLevel0;
         //currentLevel = LevelStorage.WhiteBlueTallBuildingFloor1;
-        try {
-            currentLevel = HubHataIgoryana.getInstance();
-        } catch (IOException e) {
-            System.out.println("LOX");
-        }
+        //currentLevel = HubHataIgoryana.getInstance();
+        currentLevel = LevelStorage.demoLevel0;
         Renderer.getInstance();
         Updater.getInstance();
 
