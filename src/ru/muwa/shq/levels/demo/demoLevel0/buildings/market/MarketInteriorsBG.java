@@ -11,7 +11,7 @@ public class MarketInteriorsBG extends GameObject {
     private static BufferedImage img;
     static{
         try{
-            img = ImageIO.read(new File(IMG_PATH + "buildings\\market\\market_bg.png"));
+            img = ImageIO.read(new File(IMG_PATH + "buildings\\indoors\\market.png"));
         }catch (Exception e){
             System.out.println("Failed to load market  bg texture");
         }

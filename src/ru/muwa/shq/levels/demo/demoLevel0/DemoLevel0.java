@@ -65,7 +65,6 @@ public class DemoLevel0 extends Level
         instance = this;
         this.isStreet = true;
 
-        //QuestUtility.setQuest4();
         System.out.println("test 1");
 
         Inventory.getInstance().addItem(new MakarovAmmo());
@@ -148,7 +147,6 @@ public class DemoLevel0 extends Level
                     {
                         Animator.playCutscene(Q3_PoliceCutscene.getInstance());
                         DialogueManager.playDialogueOnDemand(Q3_PoliceConversation.getInstance());
-                       // DialogueManager.playDialogueOnDemand(Q2T1_Conversation.getInstance());
                     }
                 }
             }
