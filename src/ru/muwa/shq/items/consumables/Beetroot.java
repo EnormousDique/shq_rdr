@@ -1,6 +1,8 @@
 package ru.muwa.shq.items.consumables;
 
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.player.Inventory;
+import ru.muwa.shq.player.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -25,10 +27,23 @@ public class Beetroot extends Item {
     public Beetroot() {
         super(ID, PRICE, WEIGHT, img);
         description = "ну че ты пялишься? свёкла";
+        stackable = true;
     }
 
     @Override
     public void equip() {
 
+    }
+
+    @Override
+    public void use() {
+        if(amount <= 1) Inventory.getInstance().getItems().remove(this);
+        else amount-=1;
+        Player.get().setHp(Player.get().getHp() +2);
+    }
+
+    @Override
+    public Beetroot copy() {
+        return new Beetroot();
     }
 }

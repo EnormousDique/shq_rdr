@@ -1,6 +1,8 @@
 package ru.muwa.shq.items.consumables;
 
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.player.Inventory;
+import ru.muwa.shq.player.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -24,10 +26,23 @@ public class Tomato extends Item {
     public Tomato() {
         super(ID, PRICE, WEIGHT, img);
         description = "Охуенен и пиздат. К сожалению, томат.";
+        stackable=true;
     }
 
     @Override
     public void equip() {
 
+    }
+
+    @Override
+    public void use() {
+        if(amount <= 1) Inventory.getInstance().getItems().remove(this);
+        else amount-=1;
+        Player.get().setHp(Player.get().getHp() +2);
+    }
+
+    @Override
+    public Tomato copy() {
+        return new Tomato();
     }
 }

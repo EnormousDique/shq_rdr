@@ -1,6 +1,9 @@
 package ru.muwa.shq.items.consumables;
 
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.objects.street.Car;
+import ru.muwa.shq.player.Inventory;
+import ru.muwa.shq.player.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -25,10 +28,23 @@ public class Carrot extends Item {
     public Carrot() {
         super(ID, PRICE, WEIGHT, img);
         description = "любофь маркофь)))";
+        stackable = true;
     }
 
     @Override
     public void equip() {
 
+    }
+
+    @Override
+    public void use() {
+        if(amount <= 1) Inventory.getInstance().getItems().remove(this);
+        else amount-=1;
+        Player.get().setHp(Player.get().getHp() +2);
+    }
+
+    @Override
+    public Carrot copy() {
+        return new Carrot();
     }
 }
