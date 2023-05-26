@@ -28,6 +28,7 @@ import ru.muwa.shq.items.knifes.Kortique;
 import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.VegetablesVendor;
 import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
@@ -134,9 +135,22 @@ public class DemoLevel0 extends Level
                 // например, на список товаров, который может купить скупщик.
             }
         }));
-        /* Следующая паталка */
+        /* Овощная и фруктовая палатка */
+        objects.add(new VegetablesVendor(2900, 6800));
+        zones.add(new TradeZone(2900, 6800, 100, 200, new Trade() {
+            @Override
+            public void setGoods() {
+                goods.add(new Makarov());
+            }
+        }));
+        zones.add(new TradeZone(3000, 6800, 100, 200, new Trade() {
+            @Override
+            public void setGoods() {
+                goods.add(new Obrez());
+            }
+        }));
 
-        System.out.println("test 2.5");
+
 
         zones.add(new ActionZone(1800, 1200, 200, 200, new QuestAction() {
             @Override

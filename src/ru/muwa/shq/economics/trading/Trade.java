@@ -49,7 +49,7 @@ public abstract class Trade {
                    0,100,50);
             exitButton.addActionListener(listener);
 
-y++;
+            y++;
         }
     }
     private static class TradeButtonListener implements ActionListener{
@@ -75,7 +75,9 @@ y++;
                         {
                             Inventory.getInstance().addItem(i);
                             Player.get().money = Player.get().money - i.getPrice();
-                        }else /* если нехватает */ new JDialog(Renderer.getInstance().getFrame(),"Нехватает бабла!  (лох)");
+                        }else /* если нехватает */ {
+                            Renderer.addMessage("Нехватает бабок! (лох)");
+                        }
                     }
                 }
             }
