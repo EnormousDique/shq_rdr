@@ -38,6 +38,7 @@ public class EffectUtility {
 
     public static void work() {
         if(Player.get().getHighMeterLock()>100)  Player.get().setHighMeterLock(100.0);
+        if(Player.get().getHighMeter()>100) Player.get().setHighMeter(100.0);
         for (Map.Entry<Effects, Long> entry : currentEffects.entrySet()) {
             switch (entry.getKey()) {
 

@@ -3,6 +3,9 @@ package ru.muwa.shq.items.drugs;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.consumables.ChickFire;
+import ru.muwa.shq.items.consumables.Cigarettes;
+import ru.muwa.shq.items.consumables.LeBottle;
 import ru.muwa.shq.items.consumables.Water;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
@@ -32,6 +35,7 @@ public class IceOlator extends Item {
     public IceOlator() {
         super(ID, PRICE, WEIGHT, img);
         description = "Его Величество Изолятор , пацаны с гидры сказали норм";
+        stackable=true;
     }
     @Override
     public void give(Container c) {
@@ -41,26 +45,35 @@ public class IceOlator extends Item {
     @Override
     public void use() {
 
-        Water bottle = null;
+        LeBottle bottle = null;
+        Cigarettes smokes = null;
+        ChickFire fire = null;
         //TODO: Добавить проверку на сигареты и зажигалку.
         try {
-            bottle = (Water) Inventory.getInstance().getItems().stream().filter(i -> i instanceof Water).collect(Collectors.toList()).get(0);
+            bottle = (LeBottle) Inventory.getInstance().getItems().stream().filter(i -> i instanceof LeBottle).collect(Collectors.toList()).get(0);
+            smokes = (Cigarettes) Inventory.getInstance().getItems().stream().filter(i -> i instanceof Cigarettes).collect(Collectors.toList()).get(0);
+            fire = (ChickFire) Inventory.getInstance().getItems().stream().filter(i -> i instanceof ChickFire).collect(Collectors.toList()).get(0);
 
         }catch (Exception e)
         {
-            Renderer.addMessage("Чтобы дунуть нужна бутылка!");
+            Renderer.addMessage("Нужна бутылка и сижки! i jiga");
         }
 
-        if(bottle != null) {
-            if (Player.get().getHp() >= 95) Player.get().setHp(100);
-            else
-                Player.get().setHp(Player.get().getHp() + 5);
+        if(bottle != null && smokes!=null && fire!=null) {
 
             Player.get().setHighMeter(Player.get().getHighMeter() + 20);
             Player.get().setHighMeterLock(Player.get().getHighMeterLock() - 15);
-            Inventory.getInstance().getItems().remove(this);
             EffectUtility.getCurrentEffects().put(EffectUtility.Effects.STONED, System.currentTimeMillis() + 10_000);
+
+            if(amount<=1)Inventory.getInstance().getItems().remove(this);
+            else amount -=1;
+
             Inventory.getInstance().getItems().remove(bottle);
+            Inventory.getInstance().getItems().remove(smokes);
+
+            if (Player.get().getHp() >= 95) Player.get().setHp(100);
+            else
+                Player.get().setHp(Player.get().getHp() + 5);
         }
 
 
@@ -72,5 +85,10 @@ public class IceOlator extends Item {
     public void take(Container c){
         c.getItems().remove(this);
         Inventory.getInstance().addItem(this);
+    }
+
+    @Override
+    public IceOlator copy() {
+        return new IceOlator();
     }
 }
