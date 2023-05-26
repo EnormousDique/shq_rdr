@@ -60,6 +60,11 @@ public class Flour extends Item {
     }
 
     @Override
+    public Flour copy() {
+        return new Flour();
+    }
+
+    @Override
     public void take(Container c) {
         c.getItems().remove(this);
         Inventory.getInstance().addItem(this);

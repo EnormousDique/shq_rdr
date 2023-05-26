@@ -21,6 +21,13 @@ public abstract class Item
 
 
 
+    public  Item copy(){return new Item(0,0,0,null) {
+        @Override
+        public void equip() {
+
+        }
+        String description = "";
+    };}
     protected String description ;
     protected boolean stackable;
     public int amount = 1;

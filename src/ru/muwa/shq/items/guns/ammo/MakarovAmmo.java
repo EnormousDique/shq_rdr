@@ -74,4 +74,9 @@ public class MakarovAmmo extends Ammo{
         c.getItems().remove(this);
         Inventory.getInstance().addItem(this);
     }
+
+    @Override
+    public Item copy() {
+        return new MakarovAmmo();
+    }
 }
