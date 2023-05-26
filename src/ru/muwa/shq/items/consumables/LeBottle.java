@@ -14,22 +14,22 @@ import java.io.IOException;
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
-public class Ring extends Item {
+public class LeBottle extends Item {
 
-    public static final int ID = 0, PRICE = 13000;
+    public static final int ID = 0, PRICE = 1;
     public static final double WEIGHT = 0.1;
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "consumables\\EpRing.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\waterEmpty.png"));
         }
         catch(IOException e) {
-            System.out.println("failed to load Ring image");
+            System.out.println("failed to load emptyBottle image");
         }
     }
-    public Ring() {
+    public LeBottle() {
         super(ID, PRICE, WEIGHT, img);
-        description = "Бабкино кольцо..Хз.. мб Дедкино...продай да и все!";
+        description = "Продырявь меня )";
     }
     @Override
     public void give(Container c) {

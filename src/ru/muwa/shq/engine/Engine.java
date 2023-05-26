@@ -46,6 +46,7 @@ public class Engine
         System.out.println("Game started");
         Launcher.hideFrame();
         Renderer.showLoading();
+
         try {
             currentLevel = DemoLevel0.getInstance();
         } catch (IOException e) {

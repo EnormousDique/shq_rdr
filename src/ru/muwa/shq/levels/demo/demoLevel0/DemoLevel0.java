@@ -193,6 +193,18 @@ public class DemoLevel0 extends Level
         }));
 
 
+        zones.add(new TradeZone(3500, 6500, 300, 300, new Trade() {
+                    @Override
+                    public void setGoods() {
+                        goods.add(new CellPhone());
+                        goods.add(new HomemadeAnuses());
+                        goods.add(new LeBottle());
+                        goods.add(new EpicRing());
+                        goods.add(new ChickFire());
+                        goods.add(new CannedSoup());
+                    }
+                }));
+
             zones.add(new EnterZone(1800 ,3256, 100,70,WhiteBlueTallBuildingFloor1.getInstance(),522,809,false));
 
         QuestUtility.startQuest1();

@@ -14,22 +14,22 @@ import java.io.IOException;
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
-public class Ring extends Item {
+public class ChickFire extends Item {
 
-    public static final int ID = 0, PRICE = 13000;
+    public static final int ID = 0, PRICE = 50;
     public static final double WEIGHT = 0.1;
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "consumables\\EpRing.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\DicKK.png"));
         }
         catch(IOException e) {
-            System.out.println("failed to load Ring image");
+            System.out.println("failed to load ChickFire image");
         }
     }
-    public Ring() {
+    public ChickFire() {
         super(ID, PRICE, WEIGHT, img);
-        description = "Бабкино кольцо..Хз.. мб Дедкино...продай да и все!";
+        description = "хей хей хей .... ФААААЙЙЙАААААААА";
     }
     @Override
     public void give(Container c) {
