@@ -14,10 +14,8 @@ import ru.muwa.shq.engine.spawner.Spawner;
 
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
-import ru.muwa.shq.items.consumables.Cigarettes;
-import ru.muwa.shq.items.consumables.EnergyDrink;
+import ru.muwa.shq.items.consumables.*;
 import ru.muwa.shq.items.bluntWeapons.BaseballBat;
-import ru.muwa.shq.items.consumables.Water;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.items.drugs.IceOlator;
 import ru.muwa.shq.items.drugs.Lyrica;
@@ -140,13 +138,18 @@ public class DemoLevel0 extends Level
         zones.add(new TradeZone(2900, 6800, 100, 200, new Trade() {
             @Override
             public void setGoods() {
-                goods.add(new Makarov());
+                goods.add(new Potato());
+                goods.add(new Carrot());
+                goods.add(new Gurken());
             }
         }));
         zones.add(new TradeZone(3000, 6800, 100, 200, new Trade() {
             @Override
             public void setGoods() {
-                goods.add(new Obrez());
+                goods.add(new Onion()  );
+                goods.add(new Beetroot());
+                goods.add(new Cabbage());
+                goods.add(new Tomato());
             }
         }));
 

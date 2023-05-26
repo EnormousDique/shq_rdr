@@ -73,6 +73,7 @@ public abstract class Trade {
                     {
                         if(Player.get().money >= i.getPrice())//Смотрим хватает ли денег
                         {
+                            //Если хватает
                             Inventory.getInstance().addItem(i);
                             Player.get().money = Player.get().money - i.getPrice();
                         }else /* если нехватает */ {
