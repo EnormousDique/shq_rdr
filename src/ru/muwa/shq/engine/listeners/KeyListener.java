@@ -1,6 +1,7 @@
 package ru.muwa.shq.engine.listeners;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.player.controls.PlayerControls;
 
 import java.awt.event.KeyEvent;
@@ -101,7 +102,9 @@ public class KeyListener implements java.awt.event.KeyListener
                 keys[ENTER] = true;
                 break;
             case 80: // P
-                Engine.pause = !Engine.pause;
+                Engine.pause = true;
+                HUD.getInstance().getPauseMenuWindow().setVisible(true);
+
             case 84: // T
                 keys[T] = true;
                 break;

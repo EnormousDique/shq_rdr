@@ -15,7 +15,6 @@ import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0_BG;
 import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.GameObject;
-import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
@@ -25,21 +24,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Line2D;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_HEIGHT;
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
-import static ru.muwa.shq.engine.time.TimeMachine.TimesOfTheDay.DUSK;
-import static ru.muwa.shq.engine.time.TimeMachine.TimesOfTheDay.EVENING;
 
 /**
  * Класс, отвечающий за отрисовку изображения на экране.
  */
 public class Renderer implements Runnable {
     public static Graphics g; // Объект графики (Объект, который рисует)
-    private GameScreen frame; // Игровой экран
+    public GameScreen frame; // Игровой экран
     private boolean isSleeping =false;
 
     private static ArrayList<String> messages = new ArrayList<>();
@@ -116,6 +112,8 @@ public class Renderer implements Runnable {
         frame.add(HUD.getInstance().getDeathWindow());
         frame.add(HUD.getInstance().getContainerWindow()).setVisible(false);
         frame.add(HUD.getInstance().getGifScenesWindow()).setVisible(false);
+        frame.add(HUD.getInstance().getPauseMenuWindow());
+        frame.add(HUD.getInstance().getPauseMenuWindow()).setVisible(false);
 
         //блокк  кода в кторомом худу перезщапизываем коорды
 
@@ -132,6 +130,7 @@ public class Renderer implements Runnable {
         HUD.getInstance().getThirstBar().setBounds(GameScreen.SCREEN_WIDTH-500, +40,100,20);
         HUD.getInstance().getContainerWindow().setBounds(210,GameScreen.SCREEN_HEIGHT-400,200,300);
         HUD.getInstance().getGifScenesWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+        HUD.getInstance().getPauseMenuWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 
 
 
@@ -263,6 +262,7 @@ public class Renderer implements Runnable {
             HUD.getInstance().getStatusWindow().updateUI();
             HUD.getInstance().getQuestWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getQuestWindow().updateUI();
+            HUD.getInstance().getPauseMenuWindow().updateUI();
         // полоску здовроья видно только при открытии инвентаря
         //   HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
           //  HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
