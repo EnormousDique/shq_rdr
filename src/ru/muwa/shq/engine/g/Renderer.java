@@ -305,6 +305,10 @@ public class Renderer implements Runnable {
                 switch (TimeMachine.getTimeOfTheDay())
                 {
 
+                    case MORNING:
+                        g.setColor(new Color(20, 20,0 , 60));
+                        g.fillRect(camX - Player.get().getX() + (SCREEN_WIDTH / 2) - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100);
+                        break;
                 case EVENING:
                     g.setColor(new Color(20, 5, 5, 80));
                     g.fillRect(camX - Player.get().getX() + (SCREEN_WIDTH / 2) - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100);
