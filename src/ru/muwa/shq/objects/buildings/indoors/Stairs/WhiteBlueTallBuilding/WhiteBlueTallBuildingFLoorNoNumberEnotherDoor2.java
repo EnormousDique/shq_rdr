@@ -11,7 +11,7 @@ public class WhiteBlueTallBuildingFLoorNoNumberEnotherDoor2 extends GameObject {
         try{
             img = ImageIO.read(new File(IMG_PATH + "buildings\\indoors\\padikenotherdoor2.png"));
         }catch (Exception e){
-            System.out.println("Failed to load postbox texture");
+            System.out.println("Failed to load ?????? padik??? texture");
         }
     }
     /**

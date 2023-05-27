@@ -15,7 +15,6 @@ import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0_BG;
 import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.GameObject;
-import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
@@ -306,7 +305,7 @@ public class Renderer implements Runnable {
                 {
 
                     case MORNING:
-                        g.setColor(new Color(20, 20,0 , 60));
+                        g.setColor(new Color(250, 250,0 , 50));
                         g.fillRect(camX - Player.get().getX() + (SCREEN_WIDTH / 2) - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100);
                         break;
                 case EVENING:
@@ -319,7 +318,7 @@ public class Renderer implements Runnable {
                         break;
 
                     case SUNRISE:
-                        g.setColor(new Color(30, 10, 10, 150));
+                        g.setColor(new Color(50, 10, 0, 150));
                         g.fillRect(camX - Player.get().getX() + (SCREEN_WIDTH / 2) - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100);
                         break;
                 }
@@ -354,10 +353,6 @@ public class Renderer implements Runnable {
             }
             g.setColor(Color.GREEN);
             g.drawString(""+(MouseListener.getInstance().getX()+camX)+" "+(MouseListener.getInstance().getY()+camY),100,160);
-
-
-
-
 
             // Все вышесказанное рисуем на холст и показываем на экране.
             g.dispose();

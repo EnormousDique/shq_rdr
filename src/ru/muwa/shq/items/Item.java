@@ -49,6 +49,11 @@ public abstract class Item
     }
 
     protected boolean isAbleToEquip;
+    protected boolean alwaysEquipped;
+
+    public boolean isAlwaysEquipped() {
+        return alwaysEquipped;
+    }
 
     public int getPrice() {
         return price;
@@ -78,7 +83,9 @@ public abstract class Item
     {
 
         boolean isClickedOnEquipped = this.isEquipped;
-        if(isClickedOnEquipped){
+        boolean isClickedOnAlwaysEquipped = this.alwaysEquipped;
+
+        if(isClickedOnEquipped && !isClickedOnAlwaysEquipped){
             this.isEquipped = false;
             Player.get().currentWeapon = null;
             try {
