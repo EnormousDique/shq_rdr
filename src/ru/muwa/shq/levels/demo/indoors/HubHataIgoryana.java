@@ -1,5 +1,6 @@
 package ru.muwa.shq.levels.demo.indoors;
 
+import ru.muwa.shq.craftsmanship.cooking.Cook;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.dialogues.demo.Conversation1;
 import ru.muwa.shq.economics.money.Money_500;
@@ -53,16 +54,7 @@ public class HubHataIgoryana extends Level
             @Override
             public void use() {
                 Container pot = containers.get(1); //СЕЙЧАС "КАСТРЮЛЯ" ЭТО ВТОРОЙ ПО СЧЕТУ КОНТЕЙНЕР В УРОВНЕ.
-                boolean isPotatoIn = pot.getItems().stream().anyMatch(i -> i instanceof Potato);
-                if(isPotatoIn)
-                {
-                    containers.get(1).setItems(new ArrayList<>());
-                    containers.get(1).getItems().add(new CellPhone());
-                }
-                else
-                {
-                    Renderer.addMessage("Из такой хуйни супа не сваришь");
-                }
+                if(!Cook.cook(pot)) Renderer.addMessage("Из такой хуйни супа не свришь.");
 
             }
         });

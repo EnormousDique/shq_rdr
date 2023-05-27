@@ -31,11 +31,7 @@ public class Ring extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "Бабкино кольцо..Хз.. мб Дедкино...продай да и все!";
     }
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
     @Override
     public void take(Container c){
         c.getItems().remove(this);

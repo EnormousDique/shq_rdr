@@ -29,11 +29,7 @@ public class Lyrica extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "Нармальна ебашит !!! ДА ???";
     }
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
     @Override
     public void use() {
 

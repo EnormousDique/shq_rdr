@@ -31,11 +31,7 @@ public class CannedSoup extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "суп из семи залуп.три покрошены , остальные так брошены";
     }
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
     @Override
     public void take(Container c){
         c.getItems().remove(this);

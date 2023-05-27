@@ -31,14 +31,7 @@ public class Zanax extends Item {
         description = "МНе нужен ZANAX";
     }
     @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
-    @Override
     public void use() {
-
-
         Player.get().setHighMeter(Player.get().getHighMeter()-5);
         Player.get().setHighMeterLock(Player.get().getHighMeterLock()-20);
         Inventory.getInstance().getItems().remove(this);

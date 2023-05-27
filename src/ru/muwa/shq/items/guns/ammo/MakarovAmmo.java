@@ -42,11 +42,7 @@ public class MakarovAmmo extends Ammo{
         super(id, price, weight, texture);
     }
 
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
 
     @Override
     public void use() {

@@ -31,11 +31,7 @@ public class EpicRing extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "5 минут назад я купил новый перстень . пиздатый перстень";
     }
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
     @Override
     public void take(Container c){
         c.getItems().remove(this);

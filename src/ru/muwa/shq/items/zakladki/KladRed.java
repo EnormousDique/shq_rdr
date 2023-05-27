@@ -34,11 +34,7 @@ public class KladRed extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "Закладка,Изолента красная.Магнита нет..ЭХ..а жаль. ";
     }
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
     @Override
     public void use() {
 

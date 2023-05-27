@@ -31,6 +31,8 @@ import java.util.ArrayList;
 
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_HEIGHT;
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
+import static ru.muwa.shq.engine.time.TimeMachine.TimesOfTheDay.DUSK;
+import static ru.muwa.shq.engine.time.TimeMachine.TimesOfTheDay.EVENING;
 
 /**
  * Класс, отвечающий за отрисовку изображения на экране.
@@ -211,7 +213,7 @@ public class Renderer implements Runnable {
             }
 
             if(o instanceof Building){
-                Rectangle rectangle = new Rectangle(o.getX(),o.getY(),o.getWidth(),o.getHeight());
+
                 if(/*Player.get().getSolidBox().intersects(rectangle) */ Player.get().getY() < o.getSolidBox().getY())
                 {
                     g.drawImage(o.getTransTexture(), o.getX() - camX, o.getY() - camY, null);
@@ -242,23 +244,6 @@ public class Renderer implements Runnable {
         handleMessages(g);
 
 
-
-
-        //Отрисовка лучей рейкастера для всех нпц из списка  текущих
-        // (ОПЦИОНАЛЬНО) !!!                                                                                            // todo спросить мишгана надолиэто тут
-
-        /*
-        for (NPC c : Engine.getCurrentLevel().getNPC()
-            for (Line2D.Float line : c.getRayCaster().calcRays())
-                g.drawLine((int) line.x1 - camX, (int) line.y1 - camY, (int) line.x2 - camX, (int) line.y2 - camY);     // todo спросить мишгана надолиэто тут
-
-
-        for(int i = 0;i<Engine.getCurrentLevel().getNPC().size();i++){
-            NPC c = Engine.getCurrentLevel().getNPC().get(i);
-            for (Line2D.Float line : c.getRayCaster().calcRays())                                                       // todo спросить мишгана надолиэто тут
-                g.drawLine((int) line.x1 - camX, (int) line.y1 - camY, (int) line.x2 - camX, (int) line.y2 - camY);
-        }
-         */
         //Если игрок в поле зрения, цвет луей меняется.
         g.setColor(Color.red);
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
@@ -315,11 +300,25 @@ public class Renderer implements Runnable {
 
 
         //Отрисовка тени ночи
-        switch (TimeMachine.getTimeOfTheDay())
-        {
-            case MORNING : System.out.println("утро"); break;
-            case DUSK : if(Engine.getCurrentLevel().isStreet()  ) if(isDrawingBg){ g.setColor(new Color(0,0,0,150)); g.fillRect( camX-Player.get().getX()+(SCREEN_WIDTH/2)-100,camY-Player.get().getY()+(SCREEN_HEIGHT/2)-100, SCREEN_WIDTH+100, SCREEN_HEIGHT+100);}
 
+            if(Engine.getCurrentLevel().isStreet() && isDrawingBg ) {
+                switch (TimeMachine.getTimeOfTheDay())
+                {
+
+                case EVENING:
+                    g.setColor(new Color(20, 5, 5, 80));
+                    g.fillRect(camX - Player.get().getX() + (SCREEN_WIDTH / 2) - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100);
+                    break;
+                    case NIGHT:
+                        g.setColor(new Color(0, 0, 0, 200));
+                        g.fillRect(camX - Player.get().getX() + (SCREEN_WIDTH / 2) - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100);
+                        break;
+
+                    case SUNRISE:
+                        g.setColor(new Color(30, 10, 10, 150));
+                        g.fillRect(camX - Player.get().getX() + (SCREEN_WIDTH / 2) - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100);
+                        break;
+                }
         }
 
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ

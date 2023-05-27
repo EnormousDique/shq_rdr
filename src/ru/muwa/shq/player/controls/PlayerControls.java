@@ -104,9 +104,31 @@ public class PlayerControls
         {
             if(z instanceof SleepZone && Player.get().getSolidBox().intersects(z))
             {
-                SleepZone zz = (SleepZone) z;
-                TimeMachine.rewind(2_500_000);
-                Renderer.playSleepyFilter();
+                if(TimeMachine.getTimeOfTheDay().equals(TimeMachine.TimesOfTheDay.NIGHT)) {
+                    TimeMachine.rewind(2_500_000);
+                    Renderer.playSleepyFilter();
+                    Renderer.addMessage("Отлично выспался");
+                }
+                else{
+                    String dayTimeString = "";
+                    switch (TimeMachine.getTimeOfTheDay())
+                    {
+                        case SUNRISE:
+                            dayTimeString = "рассвет";
+                            break;
+                        case MORNING:
+                            dayTimeString = "утро";
+                            break;
+                        case AFTERNOON:
+                            dayTimeString = "день";
+                            break;
+                        case EVENING:
+                            dayTimeString = "вечер";
+                            break;
+                    }
+                    Renderer.addMessage("Спать можно только ночью!");
+                    Renderer.addMessage("Сейчас : " + dayTimeString);
+                }
             }
             if(z instanceof InteractionZone && Player.get().getSolidBox().intersects(z))
             {

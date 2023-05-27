@@ -36,11 +36,7 @@ public class Weed extends Item {
         description = "Травка , травки , бошки , шишки.\nНо я предпочитаю травки ";
         stackable = true;
     }
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
     public void use() {
 
         LeBottle bottle = null;

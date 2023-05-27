@@ -51,11 +51,7 @@ public class BaseballBat extends Weapon {
         }
     }*/
 
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
 
     @Override
     public void take(Container c) {

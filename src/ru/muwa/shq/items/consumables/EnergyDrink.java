@@ -31,11 +31,7 @@ public class EnergyDrink extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "ЭНЕРГЕТИКА!";
     }
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
     @Override
     public void take(Container c){
         c.getItems().remove(this);
@@ -44,9 +40,8 @@ public class EnergyDrink extends Item {
     }
     @Override
     public void use() {
-        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.SPEED,System.currentTimeMillis()+10_000L);
-        Player.get().setHighMeter(Player.get().getHighMeter()+0);
-        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-2);
+
+
         Inventory.getInstance().getItems().remove(this);
     }
     @Override

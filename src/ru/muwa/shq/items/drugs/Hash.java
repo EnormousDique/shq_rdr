@@ -36,11 +36,7 @@ public class Hash extends Item {
         description = "Хэщ , хэш они курят хеш!!!";
         stackable = true;
     }
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
     @Override
     public void use() {
 

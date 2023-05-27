@@ -34,11 +34,7 @@ public class Flour extends Item {
         description = "мефчик бля , ебанул и нихуя";
     }
 
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
 
     @Override
     public void use() {

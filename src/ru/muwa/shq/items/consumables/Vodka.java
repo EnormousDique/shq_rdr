@@ -32,11 +32,7 @@ public class Vodka extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "Водочка для блатной походочка";
     }
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
     @Override
     public void take(Container c){
         c.getItems().remove(this);

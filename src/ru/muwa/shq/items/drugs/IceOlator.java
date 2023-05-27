@@ -37,11 +37,7 @@ public class IceOlator extends Item {
         description = "Его Величество Изолятор , пацаны с гидры сказали норм";
         stackable=true;
     }
-    @Override
-    public void give(Container c) {
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
-    }
+
     @Override
     public void use() {
 

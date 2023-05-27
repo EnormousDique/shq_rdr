@@ -115,8 +115,9 @@ public abstract class Item
 
     }
     public void give(Container c){
-        Inventory.getInstance().getItems().remove(this);
-        c.addItem(this);
+        if(this.isStackable() && this.amount >1) amount -=1;
+        else Inventory.getInstance().getItems().remove(this);
+        c.addItem(stackable?copy():this);
     }
 
     public boolean isStackable() {

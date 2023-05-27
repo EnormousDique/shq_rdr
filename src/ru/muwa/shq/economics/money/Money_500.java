@@ -30,10 +30,7 @@ public class Money_500 extends Money {
         super(0, 500, 0, img);
     }
 
-    @Override
-    public void give(Container c) {
 
-    }
 
     @Override
     public void use() {
