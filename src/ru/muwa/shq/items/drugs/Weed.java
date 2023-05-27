@@ -76,13 +76,6 @@ public class Weed extends Item {
     public void equip() {
     }
     @Override
-    public void take(Container c){
-        c.getItems().remove(this);
-        Inventory.getInstance().addItem(this);
-
-    }
-
-    @Override
     public Weed copy() {
         return new Weed();
     }

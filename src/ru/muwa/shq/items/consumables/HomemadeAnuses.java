@@ -31,13 +31,6 @@ public class HomemadeAnuses extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "Анусы домашние ,  свежие говяжьи , на вкус как кальмар.";
     }
-
-    @Override
-    public void take(Container c){
-        c.getItems().remove(this);
-        Inventory.getInstance().addItem(this);
-
-    }
     @Override
     public void use() {
 

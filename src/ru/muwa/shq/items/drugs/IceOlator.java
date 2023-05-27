@@ -78,12 +78,6 @@ public class IceOlator extends Item {
     public void equip() {
     }
     @Override
-    public void take(Container c){
-        c.getItems().remove(this);
-        Inventory.getInstance().addItem(this);
-    }
-
-    @Override
     public IceOlator copy() {
         return new IceOlator();
     }

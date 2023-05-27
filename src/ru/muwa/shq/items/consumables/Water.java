@@ -30,13 +30,6 @@ public class Water extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "Дайте че нибудь,попить пожалуйста,Попить будде добры";
     }
-
-    @Override
-    public void take(Container c){
-        c.getItems().remove(this);
-        Inventory.getInstance().addItem(this);
-
-    }
     @Override
     public void use() {
 

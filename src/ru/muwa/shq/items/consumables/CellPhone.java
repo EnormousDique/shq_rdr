@@ -31,13 +31,6 @@ public class CellPhone extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "Хоть маме звони , хоть дороги черти";
     }
-
-    @Override
-    public void take(Container c){
-        c.getItems().remove(this);
-        Inventory.getInstance().addItem(this);
-
-    }
     @Override
     public void use() {
 

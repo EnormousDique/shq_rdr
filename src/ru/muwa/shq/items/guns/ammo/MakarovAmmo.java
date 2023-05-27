@@ -63,14 +63,7 @@ public class MakarovAmmo extends Ammo{
 
     @Override
     public void equip() {
-
     }
-    @Override
-    public void take(Container c){
-        c.getItems().remove(this);
-        Inventory.getInstance().addItem(this);
-    }
-
     @Override
     public Item copy() {
         return new MakarovAmmo();

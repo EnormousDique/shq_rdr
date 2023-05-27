@@ -28,14 +28,7 @@ public class Beer extends Item {
     }
     public Beer() {
         super(ID, PRICE, WEIGHT, img);
-        description = "ПОчинчКИ Темное 18% остальное по смс";
-    }
-
-    @Override
-    public void take(Container c){
-        c.getItems().remove(this);
-        Inventory.getInstance().addItem(this);
-
+        description = "ПОчинчКИ Темное 18%. остальное по смс";
     }
     @Override
     public void use() {
