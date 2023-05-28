@@ -111,6 +111,8 @@ public class InventoryManager
 
         }catch (Exception e){
             System.out.println("инвентарь навернулся. все ок, едем дальше");
+           // System.out.println(e.getCause());
+            System.out.println(e.getMessage());
         }
 
         convertMoney();
@@ -175,7 +177,7 @@ public class InventoryManager
                         itemTiles.get(i-skip).setIcon(new ImageIcon(Inventory.getInstance().getItems().get(i).getTexture()));
                 }
             }
-            if(HUD.getInstance().getItemWindow().getComponents().length>0){
+
 
                 try {
                     Arrays.stream(window.getComponents()).forEach(window::remove);
@@ -185,7 +187,7 @@ public class InventoryManager
                     return;
                 }
 
-            }
+
 
             //Добавляем заголовок
             JLabel titleLabel = new JLabel("BEW,N");
@@ -280,7 +282,7 @@ public class InventoryManager
                     HUD.getInstance().getEquipWindow().add(ammoLabel);
                     ammoLabel.setBounds(10,120,100,30);
                     }
-                    else
+                    else if(item instanceof Weapon)
                     {
                         String durabilityString = "Прочность: " + ((Weapon) item).getDurability();
                         JLabel durabilityLabel = new JLabel(durabilityString);

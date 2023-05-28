@@ -41,7 +41,7 @@ public class Onion extends Item {
     }
 
     @Override
-    public Gurken copy() {
-        return new Gurken();
+    public Onion copy() {
+        return new Onion();
     }
 }

@@ -24,7 +24,7 @@ public class WhiteBlueTallBuildingFloor1 extends Level
         startPosY = 418;
         // containers.add(new PostBox(100,100));
         objects.add(new WhiteBlueTallBuildingFLoor(10,10));
-        zones.add(new EnterZone(522,809,80,50,DemoLevel0.getInstance(),190,200,false));
+        zones.add(new EnterZone(522,749,80,50,DemoLevel0.getInstance(),190,200,false));
         zones.add(new EnterZone(701,8,80,50,WhiteBlueTallBuildingFloor1_5.getInstance(),699,585,false));
 
         objects.add(new UniversalWall(-90,60,100,1000));

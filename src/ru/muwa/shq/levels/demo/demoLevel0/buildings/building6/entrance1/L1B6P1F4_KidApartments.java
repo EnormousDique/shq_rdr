@@ -1,7 +1,6 @@
 package ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1;
 
 import ru.muwa.shq.items.Item;
-import ru.muwa.shq.items.guns.Obrez;
 import ru.muwa.shq.items.quest.Pacanynok;
 import ru.muwa.shq.levels.Level;
 

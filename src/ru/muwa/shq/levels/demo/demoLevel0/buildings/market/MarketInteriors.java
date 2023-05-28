@@ -4,13 +4,18 @@ import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.demo.Q5T0_Conversation;
 import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.items.consumables.HomemadeAnuses;
+import ru.muwa.shq.items.quest.Pacanynok;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
-import ru.muwa.shq.zones.DialogueZone;
-import ru.muwa.shq.zones.EnterZone;
-import ru.muwa.shq.zones.TradeZone;
+import ru.muwa.shq.player.Inventory;
+import ru.muwa.shq.player.Player;
+import ru.muwa.shq.quests.Quest;
+import ru.muwa.shq.quests.actions.QuestAction;
+import ru.muwa.shq.zones.*;
 
+import javax.swing.text.PlainDocument;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 public class MarketInteriors extends Level {
 
@@ -36,5 +41,9 @@ public class MarketInteriors extends Level {
                 //TODO: продавать топор, побольше свежего мяса и молочко.
             }
         }));
+
+
+
+
     }
 }
