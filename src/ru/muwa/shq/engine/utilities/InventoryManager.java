@@ -2,6 +2,8 @@ package ru.muwa.shq.engine.utilities;
 
 import ru.muwa.shq.economics.money.Money;
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.Picktogram;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
@@ -151,6 +153,31 @@ public class InventoryManager
             }
     }
 
+    public  static int itemWindowX;
+    public  static  int itemWindowY;
+    public static  ArrayList<Picktogram> itemWindowPicks = new ArrayList<>();
+    public static void drawInventory() throws Exception
+    {
+        Color oldColor = Renderer.g.getColor();
+        Renderer.g.setColor(Color.WHITE);
+        Renderer.g.fillRect(itemWindowX,itemWindowY,300,300);
+
+        //Цикл
+        //  Проходимся по вещам из инвентаря, и добавляем панель под каждую на окно ItemWindow
+        for(int i = 0 ; i < Inventory.getInstance().getItems().size(); i++)
+        {
+            Picktogram pic = new Picktogram();
+            itemWindowPicks.add(pic);
+            pic.x = i%5 *50;
+            pic.y = (i/5)*50;
+            pic.width = 50;
+            pic.height = 50;
+            Item item = Inventory.getInstance().getItems().get(i);
+            Renderer.g.drawImage(item.getTexture(),pic.x,pic.y,null);
+        }
+        Renderer.g.setColor(oldColor);
+    }
+
         private static void updateItemWindow() throws Exception{
 
             //Получаем окно
@@ -161,6 +188,11 @@ public class InventoryManager
             ArrayList<ItemPanel> itemTiles = new ArrayList<>(); // Список панелек для вещей
             int yOffset = 50; // Смещение по оси у (для переноса строки каждые 4 панельки)
             int skip = 0;
+
+            window.removeAll();
+            window.revalidate();
+            window.repaint();
+
 
             //Цикл
             //  Проходимся по вещам из инвентаря, и добавляем панель под каждую на окно ItemWindow
@@ -177,16 +209,6 @@ public class InventoryManager
                         itemTiles.get(i-skip).setIcon(new ImageIcon(Inventory.getInstance().getItems().get(i).getTexture()));
                 }
             }
-
-
-                try {
-                    Arrays.stream(window.getComponents()).forEach(window::remove);
-                }catch (Exception e)
-                {
-                    System.out.println("опять эта х**ня с инвентарем)");
-                    return;
-                }
-
 
 
             //Добавляем заголовок

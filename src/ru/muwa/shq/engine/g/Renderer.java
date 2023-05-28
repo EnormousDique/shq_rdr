@@ -117,20 +117,6 @@ public class Renderer implements Runnable {
 
         //блокк  кода в кторомом худу перезщапизываем коорды
 
-        HUD.getInstance().getMainWindow().setBounds(GameScreen.SCREEN_WIDTH/2,GameScreen.SCREEN_HEIGHT/2,100,100);
-        HUD.getInstance().getStatusWindow().setBounds(GameScreen.SCREEN_WIDTH-300,0,300,150);
-        HUD.getInstance().getEquipWindow().setBounds(GameScreen.SCREEN_WIDTH-300,150,100,160);
-        HUD.getInstance().getItemWindow().setBounds(0,GameScreen.SCREEN_HEIGHT-400,200,300);
-        HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,200,20);
-        HUD.getInstance().getQuestWindow().setBounds(0,0,200,150);
-        HUD.getInstance().getDeathWindow().setBounds(0,0,GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
-        HUD.getInstance().getDialogueWindow().setBounds(((GameScreen.SCREEN_WIDTH-500)/2),GameScreen.SCREEN_HEIGHT-200,500,200);
-        HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,100,20);
-        HUD.getInstance().getStaminaBar().setBounds(GameScreen.SCREEN_WIDTH-500, +20,100,20);
-        HUD.getInstance().getThirstBar().setBounds(GameScreen.SCREEN_WIDTH-500, +40,100,20);
-        HUD.getInstance().getContainerWindow().setBounds(210,GameScreen.SCREEN_HEIGHT-400,200,300);
-        HUD.getInstance().getGifScenesWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
-        HUD.getInstance().getPauseMenuWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 
 
 
@@ -239,8 +225,7 @@ public class Renderer implements Runnable {
         }
 
 
-        //ОТРИСОВКА СООБЩЕНИЙ НА ЭКРАНЕ
-        handleMessages(g);
+
 
 
         //Если игрок в поле зрения, цвет луей меняется.
@@ -251,8 +236,36 @@ public class Renderer implements Runnable {
                 g.setColor(Color.green);
             }
         }
-        // ОТИСОВКА HUD
-            HUD.getInstance().getStatusWindow().setVisible(Inventory.getInstance().isOpened());
+        /**HUD. Отрисовка и обновление.F **/
+        //ТЕСТ НОВОГО  ИНВЕНТАРЯ
+        try {
+            InventoryManager.drawInventory();
+        }  catch (Exception e) {
+            System.out.println("тетовому инвентарю не оч");
+            System.out.println(e.getMessage());
+        }
+
+        //ОТРИСОВКА СООБЩЕНИЙ НА ЭКРАНЕ
+        handleMessages(g);
+
+        //ОБНОВЛЕНИЕ И ОТРИСОВКА ОКОН ХУДА
+
+        HUD.getInstance().getMainWindow().setBounds(GameScreen.SCREEN_WIDTH/2,GameScreen.SCREEN_HEIGHT/2,100,100);
+        HUD.getInstance().getStatusWindow().setBounds(GameScreen.SCREEN_WIDTH-300,0,300,150);
+        HUD.getInstance().getEquipWindow().setBounds(GameScreen.SCREEN_WIDTH-300,150,100,160);
+        HUD.getInstance().getItemWindow().setBounds(0,GameScreen.SCREEN_HEIGHT-400,200,300);
+        HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,200,20);
+        HUD.getInstance().getQuestWindow().setBounds(0,0,200,150);
+        HUD.getInstance().getDeathWindow().setBounds(0,0,GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
+        HUD.getInstance().getDialogueWindow().setBounds(((GameScreen.SCREEN_WIDTH-500)/2),GameScreen.SCREEN_HEIGHT-200,500,200);
+        HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,100,20);
+        HUD.getInstance().getStaminaBar().setBounds(GameScreen.SCREEN_WIDTH-500, +20,100,20);
+        HUD.getInstance().getThirstBar().setBounds(GameScreen.SCREEN_WIDTH-500, +40,100,20);
+        HUD.getInstance().getContainerWindow().setBounds(210,GameScreen.SCREEN_HEIGHT-400,200,300);
+        HUD.getInstance().getGifScenesWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+        HUD.getInstance().getPauseMenuWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+
+        HUD.getInstance().getStatusWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getItemWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getMainWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getEquipWindow().setVisible(Inventory.getInstance().isOpened());
@@ -299,8 +312,8 @@ public class Renderer implements Runnable {
         ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
 
 
-        //Отрисовка тени ночи
-/*
+        //Отрисовка тени дня и ночи
+
             if(Engine.getCurrentLevel().isStreet() && isDrawingBg ) {
                 switch (TimeMachine.getTimeOfTheDay())
                 {
@@ -325,7 +338,7 @@ public class Renderer implements Runnable {
                 }
         }
 
- */
+
 
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
         //
