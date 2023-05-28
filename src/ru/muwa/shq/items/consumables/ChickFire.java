@@ -32,13 +32,6 @@ public class ChickFire extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "хей хей хей .... ФААААЙЙЙАААААААА";
     }
-
-    @Override
-    public void take(Container c){
-        c.getItems().remove(this);
-        Inventory.getInstance().addItem(this);
-
-    }
     @Override
     public void use() {
         Renderer.addMessage(description);

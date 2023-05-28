@@ -41,9 +41,4 @@ public class Lyrica extends Item {
     @Override
     public void equip() {
     }
-    @Override
-    public void take(Container c){
-        c.getItems().remove(this);
-        Inventory.getInstance().addItem(this);
-    }
 }

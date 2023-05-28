@@ -34,27 +34,15 @@ public class KladYellow extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "Закладка,Изолента жёлтая. ";
     }
-
     @Override
     public void use() {
-
         double a = Math.random()*4;
-
         Inventory.getInstance().addItem(getRandomLoot().get((int) a));
-
-
-
         Inventory.getInstance().getItems().remove(this);
-    }
-    @Override
-    public void take(Container c){
-        c.getItems().remove(this);
-        Inventory.getInstance().addItem(this);
     }
     @Override
     public void equip() {
     }
-
     public ArrayList<Item> getRandomLoot() {
 
         ArrayList<Item> loot = new ArrayList<>();
