@@ -300,7 +300,7 @@ public class Renderer implements Runnable {
 
 
         //Отрисовка тени ночи
-
+/*
             if(Engine.getCurrentLevel().isStreet() && isDrawingBg ) {
                 switch (TimeMachine.getTimeOfTheDay())
                 {
@@ -324,6 +324,8 @@ public class Renderer implements Runnable {
                         break;
                 }
         }
+
+ */
 
         // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
         //
