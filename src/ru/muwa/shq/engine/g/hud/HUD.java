@@ -1,14 +1,22 @@
 package ru.muwa.shq.engine.g.hud;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.*;
 
+import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.GameScreen;
+import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.engine.launcher.Launcher;
+import ru.muwa.shq.engine.listeners.ButtonListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.player.Player;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicOptionPaneUI;
 
+import static java.awt.Frame.getFrames;
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_HEIGHT;
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
 
@@ -25,21 +33,41 @@ public class HUD {
     public static HUD getInstance() {
         if(instance == null) return new HUD();else return instance;
     }
-    JProgressBar ThirstBar = new JProgressBar(0,100);
-    JProgressBar StaminaBar = new JProgressBar(0,100); //создание стаминабара
+
+    public JPanel getPauseMenuWindow() {
+        return pauseMenuWindow;
+    }
+
+    JPanel pauseMenuWindow = new JPanel(); // создание окна менюпаузы на букву P
+    JProgressBar thirstBar = new JProgressBar(0,100);
+    JProgressBar staminaBar = new JProgressBar(0,100); //создание стаминабара
     JPanel actionWindow = new JPanel(); //создание окна длья миниигры
     JPanel mainWindow = new JPanel();
-
     JPanel questWindow = new JPanel();
     JPanel dialogueWindow = new JPanel();  //создание даилогового окна
     JPanel itemWindow = new JPanel();// инвентарть айтемов
     JPanel statusWindow = new JPanel();// окна информации
     JPanel equipWindow = new JPanel();
     JPanel  deathWindow = new JPanel();
-
-
     JPanel containerWindow = new JPanel();// окно контейнеров
     JProgressBar drugEffectBar = new JProgressBar(0,100);
+    private PauseMenuButtonListner listner = new PauseMenuButtonListner();
+
+    private static class PauseMenuButtonListner implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (((JButton) e.getSource()).getText().equals("продолжим?")) {
+                HUD.getInstance().getPauseMenuWindow().setVisible(false);
+                Engine.pause = false;
+            }
+            if (((JButton) e.getSource()).getText().equals("Смени СВОЙ Разрешение")) {
+                Launcher.showScreenSettings();
+
+                //Renderer.getInstance().frame.update();
+            }
+
+        }
+    }
 
     public JPanel getQuestWindow() {
         return questWindow;
@@ -56,9 +84,9 @@ public class HUD {
     JPanel GifScenesWindow = new JPanel();
     private HUD (){
         instance = this;
-        StaminaBar.setValue((int) Player.get().getStamina());
-        ThirstBar.setValue((int) Player.get().getThirst());
-        ThirstBar.setStringPainted(true);
+        staminaBar.setValue((int) Player.get().getStamina());
+        thirstBar.setValue((int) Player.get().getThirst());
+        thirstBar.setStringPainted(true);
         drugEffectBar.setValue((int) Player.get().getHighMeter());
         actionWindow.setBounds(SCREEN_WIDTH/2,GameScreen.SCREEN_HEIGHT/2,300,300);
         mainWindow.setBounds(SCREEN_WIDTH/2-25,GameScreen.SCREEN_HEIGHT/2-50,50,100);
@@ -79,6 +107,27 @@ public class HUD {
         containerWindow.setBounds(210,GameScreen.SCREEN_HEIGHT-400,200,300);
         GifScenesWindow.setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
         questWindow.setBounds(500,500,100,100);
+        // меню паузы мб
+        //todo мб сделать отдельный класс.?!* 8======D
+        pauseMenuWindow.setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+        pauseMenuWindow.setVisible(false);
+        pauseMenuWindow.setLayout(null);
+        JLabel pause = new JLabel("ПАУЗА");
+        pause.setBounds(SCREEN_WIDTH/2,10,100,100);
+        pauseMenuWindow.add(pause);
+        JButton contine = new JButton("продолжим?");
+        pauseMenuWindow.add(contine);
+        contine.addActionListener(listner);
+        contine.setBounds(200,200,100,100);
+        JButton settings = new JButton("Смени СВОЙ Разрешение");
+        settings.addActionListener(listner);
+        pauseMenuWindow.add(settings);
+        settings.setBounds(300,200,100,100);
+
+
+
+
+
      //   this.add(HUD.getInstance().getHealthBar());
      //   this.add(HUD.getInstance().getActionWindow());
      //   HUD.getInstance().getActionWindow().setVisible(false);
@@ -87,15 +136,15 @@ public class HUD {
         drugEffectBar.setBounds(SCREEN_WIDTH-1146, SCREEN_WIDTH-68,200,20);
 //цвета полосок
         drugEffectBar.setForeground(Color.magenta);
-        ThirstBar.setForeground(Color.BLUE);
-        StaminaBar.setForeground(Color.green);
+        thirstBar.setForeground(Color.BLUE);
+        staminaBar.setForeground(Color.green);
     }
     public  JPanel getDialogueWindow(){return dialogueWindow;}  // геттер для диалогового окна
     public JPanel getItemWindow() {
         return itemWindow;
     }
     public JProgressBar getStaminaBar() {
-        return StaminaBar;
+        return staminaBar;
     }
     public JPanel getEquipWindow() {
         return equipWindow;
@@ -110,8 +159,9 @@ public class HUD {
         return statusWindow;
     }
     public JProgressBar getDrugEffectBar() {return drugEffectBar;}
-    public JProgressBar getThirstBar() {return ThirstBar;}
-    public void setThirstBar(JProgressBar thirstBar) {ThirstBar = thirstBar;}
+    public JProgressBar getThirstBar() {return thirstBar;}
+    public void setThirstBar(JProgressBar thirstBar) {
+        this.thirstBar = thirstBar;}
     public JPanel getContainerWindow() {return containerWindow;}
     public void setContainerWindow(JPanel containerWindow) {this.containerWindow = containerWindow;}
 }

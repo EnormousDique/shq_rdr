@@ -10,6 +10,7 @@ import java.util.LinkedList;
  */
 public class Launcher
 {   private static JFrame screenRes = new JFrame();//окно разрешения
+
     private static JFrame frame = new JFrame(); // Окно настроек
     private static JButton startButton, settingsButton, editorButton,exitButton; // Кнопки.
     final static int START = 0, SET = 1, EDIT = 2, EXIT = 3; // Константы для кнопок и их действий.
@@ -57,7 +58,7 @@ public class Launcher
     public static void main(String... args) {
 
         init();
-        hideFrame();//Старт.  //todo крч я закрстылил эту хуйню  тем что кнокпа вызова настроек не по новой создает а делает сет визибл настройки фалсе и в начале создаем меню его перекрывают настройки прячем настройки и сноваменю
+        hideFrame();//Старт.
         Launcher.screenSettings();
         hideScreenSettings();
         showFrame();
@@ -74,7 +75,7 @@ public class Launcher
  public static void hideScreenSettings(){screenRes.setVisible(false);} // метод который прячет окно настроек
     public static void showScreenSettings(){screenRes.setVisible(true);}
     public static void screenSettings() {
-        hideFrame();  //todo крч еебааааать старый я так скажу пизда когда заходишь в настройки выбираешь разрешьение и сохраняешь и сновазаходишь в настройки то скрин настроек создаеться по новой и позоду накладываеться на старый
+        hideFrame();
         JLabel nazva = new JLabel("ВЫБЕРИ СВОЁ РАЗРЕШЕНИЕ,а то как лох!");
         JButton save = new JButton("ПРименить настройки");
 
@@ -105,9 +106,5 @@ public class Launcher
         buttonListener.addButton(save);
         radioButtonListener = new RadioButtonListener(radioButtons);
         for (JRadioButton r : radioButtons) r.addActionListener(radioButtonListener); // форичем добовляем актионлистнер на радиокнопки
-
-
-
-
     }
 }

@@ -1,11 +1,16 @@
 package ru.muwa.shq.engine.launcher;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.GameScreen;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.listeners.ButtonListener;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.LinkedList;
+
+import static ru.muwa.shq.engine.g.GameScreen.SCREEN_HEIGHT;
+import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
 
 /**
  * Класс, реализующий логику кнопок лаунчера игры. Является прослушкой кнопок.
@@ -32,17 +37,16 @@ public class LauncherButtonListener extends ButtonListener
         if(e.getSource().equals(buttons.get(Launcher.EDIT))) System.out.println("editor");
         if(e.getSource().equals(buttons.get(Launcher.EXIT))) Launcher.quit();
         if(((JButton)e.getSource()).getText().equals("ПРименить настройки")){
-            Launcher.hideScreenSettings();
-            Launcher.showFrame();}
-
-        e=null;
-    }
-    public void CheckButtonS(ActionEvent a){
-        if(((JRadioButton)a.getSource()).getText().equals("800x600"))
-
-        {
-            System.out.println("выбраноо 800на 600");
+            if(Engine.pause){
+                Renderer.getInstance().frame.setVisible(true);
+                Renderer.getInstance().frame.setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+                Launcher.hideScreenSettings();
+            }else {
+                Launcher.hideScreenSettings();
+                Launcher.showFrame();
+            }
         }
 
+        e=null;
     }
 }
