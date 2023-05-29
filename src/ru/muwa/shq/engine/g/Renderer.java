@@ -236,10 +236,11 @@ public class Renderer implements Runnable {
                 g.setColor(Color.green);
             }
         }
-        /**HUD. Отрисовка и обновление.F **/
+        /**HUD. Отрисовка и обновление. **/
         //ТЕСТ НОВОГО  ИНВЕНТАРЯ
         try {
-            InventoryManager.drawInventory();
+            if(InventoryManager.isItemWindowVisible)InventoryManager.drawInventory();
+            InventoryManager.drawContainerWindow();
         }  catch (Exception e) {
             System.out.println("тетовому инвентарю не оч");
             System.out.println(e.getMessage());
@@ -267,7 +268,7 @@ public class Renderer implements Runnable {
 
         HUD.getInstance().getStatusWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getItemWindow().setVisible(Inventory.getInstance().isOpened());
-            HUD.getInstance().getMainWindow().setVisible(Inventory.getInstance().isOpened());
+            HUD.getInstance().getMainWindow().setVisible(false);
             HUD.getInstance().getEquipWindow().setVisible(Inventory.getInstance().isOpened());
            // HUD.getInstance().getContainerWindow().setVisible(Inventory.getInstance().isOpened());
             HUD.getInstance().getEquipWindow().updateUI();

@@ -10,6 +10,7 @@ import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
 import ru.muwa.shq.engine.time.TimeMachine;
+import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.guns.*;
 import ru.muwa.shq.items.knifes.Kortique;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
@@ -76,6 +77,7 @@ public class PlayerControls
                 ((BuyoutZone)z).isActive = true;
             }
         }
+        keyboard.getKeys()[keyboard.T]=false;
     }
     // движение вверх с бегом и снятием стамины
     private static void w() {
@@ -205,7 +207,8 @@ public class PlayerControls
     // открытие инвентаря на i
     private static void i()
     {
-        Inventory.getInstance().setIsOpened(!Inventory.getInstance().isOpened());
+        //Inventory.getInstance().setIsOpened(!Inventory.getInstance().isOpened());
+        InventoryManager.isItemWindowVisible = !InventoryManager.isItemWindowVisible;
         keyboard.getKeys()[6] = false;
     }
     private static void space()
@@ -331,6 +334,8 @@ public class PlayerControls
     // выход из окон контейнеров диалогов инвентаря на q
     private static void q()
     {
+        //Гасим все HUD-ы.
+        InventoryManager.isItemWindowVisible = false;
 
         if(Player.get().isBusy() && Player.get().getCurrentObject() != null)
         {

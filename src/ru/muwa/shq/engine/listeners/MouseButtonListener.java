@@ -1,9 +1,11 @@
 package ru.muwa.shq.engine.listeners;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.Picktogram;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
+import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
@@ -26,7 +28,6 @@ public class MouseButtonListener implements MouseInputListener {
     public MouseEvent highlight;
     private static MouseButtonListener instance;
 
-    public MouseEvent event;
     private MouseButtonListener(){instance=this; keys = new boolean[2];} // Массив кнопок.
     // Каждой кнопке соответствует свой индекс массива.
     // Если кнопка нажата, в массиве под этим индексом хранится true
@@ -35,17 +36,15 @@ public class MouseButtonListener implements MouseInputListener {
         if(instance!=null)return instance;
         else return new MouseButtonListener();
     }
-    public   boolean[] keys;
+    public boolean[] keys;
     @Override
     public void mouseClicked(MouseEvent e) {
-
-
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
 
-        event = e;
+
         System.out.println("mouse clicked. x: " + e.getX()/*+ Camera.getInstance().getX())*/ + " y : " + e.getY()/*+Camera.getInstance().getY()*/);
         switch (e.getButton()) {
             case 1:
@@ -55,51 +54,48 @@ public class MouseButtonListener implements MouseInputListener {
                 keys[1] = true;
                 break;
         }
-
-        //Сперва определяем, находится  ли игрок в режиме выкупа. Это влияет на дальнейшую логику.
-        boolean isPlayerInBuyoutMode = false;
-        BuyoutZone bz = null;
-        for(GameZone z : Engine.getCurrentLevel().getZones())
-            if(z instanceof BuyoutZone && ((BuyoutZone)z).isActive)
-            {
-                bz = (BuyoutZone) z; isPlayerInBuyoutMode=true;
-                System.out.println("Player clicked in buyout mode");
-            }
-        //Определили
-
-        // Код, отвечающий за логику, при нажатии на иконку в инвентаре
-        if (e.getSource() instanceof ItemPanel && !isPlayerInBuyoutMode) {
-            ((ItemPanel) e.getSource()).getItem().pick();
-            HUD.getInstance().getItemWindow().updateUI();
-        }
-        //Код, отвечающий за логику, при нажатии на иконку в контейнере
-        if (e.getSource() instanceof ContainerPanel) {
-                ((ContainerPanel) e.getSource()).getItem().get();
-                HUD.getInstance().getContainerWindow().updateUI();
-
-        }
-        // Код, отвечающий за логику, при нажатии на иконку в инвентаре в режиме выкупа
-        if(e.getSource() instanceof  ItemPanel && isPlayerInBuyoutMode && bz != null)
+         //Проверяем по инвентарю ли клик.
+                 // И то что нажата ЛКМ
+        //И что окно инвентаря открыто.
+        if(InventoryManager.itemWindowPicks.stream().anyMatch(p->p.contains(new Point(e.getX(),e.getY())))
+                && keys[0] && InventoryManager.isItemWindowVisible)
         {
-            System.out.println("Player clicked on item panel");
-            Item pressedItem = ((ItemPanel)e.getSource()).getItem(); //Вещь, на которую нажали
-            boolean isPressedOnItemInInventory = Inventory.getInstance().getItems().contains(pressedItem); //Определяем нажал игрок на свою вещь или на вещь в выкупе.
+            //Если клик был по инвентарю.
+            Picktogram pic =
+                    InventoryManager.itemWindowPicks.stream()
+                            .filter(p->p.contains(new Point(e.getX(),e.getY())))
+                            .findFirst().get(); //Думаю ничего не будет, мы же знаем, что кликнули по инвентарю
 
-            if(isPressedOnItemInInventory)
-            {
-                Item copy = null;
-                if(pressedItem.isStackable()) copy = pressedItem.copy();
+            pic.item.pick();
+        }
+        //Проверяем по окну ли контейнера клик.
+        // И то что нажата ЛКМ
+        //И что окно контейнер открыт.
+        if(InventoryManager.containerWindowPicks.stream().anyMatch(p->p.contains(new Point(e.getX(),e.getY())))
+                && keys[0] && Engine.getCurrentLevel().getContainers().stream().anyMatch(c -> c.isInUse()))
+        {
+            //Если клик был по контейнеру.
+            Picktogram pic =
+                    InventoryManager.containerWindowPicks.stream()
+                            .filter(p->p.contains(new Point(e.getX(),e.getY())))
+                            .findFirst().get(); //Думаю ничего не будет, мы же знаем, что кликнули по инвентарю
 
-                if(pressedItem.amount <=1) Inventory.getInstance().getItems().remove(pressedItem);
-                else pressedItem.amount -=1;
-
-                bz.buyout.goods.add(copy==null?pressedItem:copy);
-            }else {
-                Inventory.getInstance().addItem(pressedItem);
-                bz.buyout.goods.remove(pressedItem);
-            }
+            pic.item.get();
         }
 
+
+
+        //После вызова необходимого кода отключаем нажатие во избежание "прокликивания".
+        switch (e.getButton())
+        {
+            case 1:
+                keys[0] = false;
+
+                break;
+            case 3:
+                keys[1] = false;
+                break;
+        }
 
 
 
