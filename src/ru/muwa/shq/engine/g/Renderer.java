@@ -210,24 +210,17 @@ public class Renderer implements Runnable {
             }
         }
 
-
         //Отрисовка всех контейнеров из списка  текущих
         for (int i = 0; i< Engine.getCurrentLevel().getContainers().size(); i++) {
             ru.muwa.shq.objects.containers.Container con = Engine.getCurrentLevel().getContainers().get(i);
             g.drawImage(con.getTexture(), con.getX() - camX, con.getY() - camY, null);
         }
-        // Также отрисовываем интерфейс тех контейнеров, которые сейчас используются.
-       // InventoryManager.drawContainerItems(g);
+
         //отрисовка персонажей
         for(int i = 0;i<Engine.getCurrentLevel().getNPC().size();i++){
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
             g.drawImage(c.getTexture(), c.getX() - camX, c.getY() - camY, c.getWidth(), c.getHeight(), null);
         }
-
-
-
-
-
         //Если игрок в поле зрения, цвет луей меняется.
         g.setColor(Color.red);
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
@@ -323,7 +316,7 @@ public class Renderer implements Runnable {
                 {
 
                     case MORNING:
-                        g.setColor(new Color(250, 250,0 , 50));
+                        g.setColor(new Color(250, 250,0 , 30));
                         g.fillRect(camX - Player.get().getX() + (SCREEN_WIDTH / 2) - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100);
                         break;
                 case EVENING:
@@ -366,7 +359,21 @@ public class Renderer implements Runnable {
             //отрисовка времени
         g.setColor(Color.white);
         g.drawString(TimeMachine.getStringTime(),100,200);
-             // отрисовка информации о предмете при наводе мышки на оный
+        g.setColor(new Color(250,0,250,250));
+        //отрисовка хп
+        g.drawString("хп:" ,100,230);
+        g.drawString(Player.get().getHp()+"" ,100,260);
+        g.drawString("вода:" ,100,290);
+        g.drawString(Player.get().getThirst()+"" ,100,320);
+        g.drawString("психометр" ,100,350);
+        g.drawString(Player.get().getHighMeter()+"",100,380);
+        g.drawString("блок психометра:",100,400);
+        g.drawString(Player.get().getHighMeterLock()+"",100,420);
+
+
+
+
+        // отрисовка информации о предмете при наводе мышки на оный
             g.setColor(Color.red);
             if(MouseButtonListener.getInstance().highlight != null && MouseButtonListener.getInstance().highlight.getSource() instanceof ItemPanel) {  // если мышкин хайлайтпредметов показывает нуль и пердмет подсвечивает предмент который айтем панел
                 g.drawString(((ItemPanel) MouseButtonListener.getInstance().highlight.getSource()).getItem().getDescription(), HUD.getInstance().getMainWindow().getX(), HUD.getInstance().getMainWindow().getY()+200); // было по мышке сделал по маинвиндоуву// то рисуем по координатам мыши - 50 строку описания предмета.

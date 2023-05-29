@@ -9,6 +9,7 @@ import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
+import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.containers.ContainerPanel;
 import ru.muwa.shq.player.Inventory;
@@ -67,11 +68,27 @@ public class MouseButtonListener implements MouseInputListener {
         {
             System.out.println("click po iconke inventarya");
             //Если клик был по инвентарю.
-
-
-            if(pic!=null) {
+            BuyoutZone z = null;
+            for(int i =0; i< Engine.getCurrentLevel().getZones().size();i++)
+            {
+                if(Engine.getCurrentLevel().getZones().get(i) instanceof BuyoutZone)
+                {
+                    if(((BuyoutZone)Engine.getCurrentLevel().getZones().get(i)).isActive)
+                    {
+                        z = (BuyoutZone)Engine.getCurrentLevel().getZones().get(i);
+                    }
+                }
+            }
+            if(pic!=null && z==null) {
                 System.out.println("Нажали по " + pic.item);
                 pic.item.pick();
+            }
+            if(pic!=null&&  z!=null)
+            {
+                z.buyout.goods.add(pic.item.isStackable()? pic.item : pic.item.copy());
+                if(pic.item.amount<=1 || !pic.item.isStackable())
+                    Inventory.getInstance().getItems().remove(pic.item);
+                else pic.item.amount-=1;
             }
         }
         //Проверяем по окну ли контейнера клик.
