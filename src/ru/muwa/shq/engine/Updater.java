@@ -84,7 +84,7 @@ public class Updater implements Runnable {
         //QuestUtility.maintainPlayerQuests();
         QuestUtility.work();
       //  InventoryManager.updateQuestWindow();
-        InventoryManager.updateContainerWindow();
+  //      InventoryManager.updateContainerWindow();
 
         // Проверяем были ли команды игроку через игровое управление.
         PlayerControls.controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.

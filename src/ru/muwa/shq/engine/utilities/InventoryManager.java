@@ -108,9 +108,9 @@ public class InventoryManager
 
         try {
          //   updateItemWindow();
-            updateEquipWindow();
-            updateStatusWindow();
-            updateQuestWindow();
+         //   updateEquipWindow();
+        //    updateStatusWindow();
+       //     updateQuestWindow();
 
         }catch (Exception e){
             System.out.println("инвентарь навернулся. все ок, едем дальше");
@@ -153,29 +153,78 @@ public class InventoryManager
         for(int i = 0 ; i < Inventory.getInstance().getItems().size(); i++)
         {
             Picktogram pic = new Picktogram();
+            pic.item = Inventory.getInstance().getItems().get(i);
+
             itemWindowPicks.add(pic);
 
             pic.x = i%5 *50;
             pic.y = (i/5)*50;
             pic.width = 50;
             pic.height = 50;
-            pic.item = Inventory.getInstance().getItems().get(i);
             if (!pic.item.isEquipped())Renderer.g.drawImage(pic.item.getTexture(),pic.x,pic.y,null);
+            else {
+
+                Renderer.g.setColor(new Color(150,10,10,100));
+
+                Renderer.g.drawImage(pic.item.getTexture(),pic.x,pic.y,null);
+                Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
+
+
+
+
+            }
         }
         Renderer.g.setColor(oldColor);
     }
+
+    static  int EWx = 450, EWy = 30, EWWidth = 80, EWHeight=80;
+    public static Picktogram equipPic;
+    public static void drawEquipWindow()
+    {
+        Color oldColor  = Renderer.g.getColor();
+        Renderer.g.setColor(Color.WHITE);
+        Renderer.g.fillRect(EWx,EWy,EWWidth,EWHeight);
+
+
+        Picktogram pic = new Picktogram();
+        if(Inventory.getInstance().getItems().stream().anyMatch(i -> i.isEquipped()))
+        {
+             Item item = Inventory.getInstance().getItems().stream()
+                     .filter(i->i.isEquipped()).collect(Collectors.toList())
+                     .get(0);//Должно быть ок. Если код запустился, то хоть 1 вещь да взята.
+
+             pic.setBounds(EWx +10, EWy+10,item.getTexture().getWidth(),item.getTexture().getHeight());
+             pic.item = item;
+             Renderer.g.drawImage(pic.item.getTexture(),pic.x,pic.y,null);
+             equipPic = pic;
+
+             Font oldFont=Renderer.g.getFont();
+             Renderer.g.setFont(new Font(Font.SANS_SERIF,Font.BOLD,50));
+             if(pic.item instanceof Firearm)
+                 Renderer.g.drawString("Пули-с: \n"+((Weapon)pic.item).getCurrAmmo(),EWx,EWy+10);
+             else if(pic.item instanceof Weapon)
+                Renderer.g.drawString("Прочность: \n"+((Weapon)pic.item).getDurability(),EWx,EWy+10);
+
+
+
+             Renderer.g.setFont(oldFont);
+        }
+        Renderer.g.setColor(oldColor);
+    }
+
+
     static int containerWindowX, containerWindowY, CWHeight=300, CWWidth=300;
     public static ArrayList<Picktogram> containerWindowPicks = new ArrayList<>();
     public static void drawContainerWindow()
     {
         Container c = null;
-        try {
-            c = Engine.getCurrentLevel().getContainers().stream()
-                    .filter(GameObject::isInUse).collect(Collectors.toList()).get(0);
-        }catch (Exception e){/*Ничего страшного же?)) просто нет открытых контейнеров)*/}
+        for(int  i = 0; i < Engine.getCurrentLevel().getContainers().size();i++)
+        {
+            if(Engine.getCurrentLevel().getContainers().get(i).isInUse()) c = Engine.getCurrentLevel().getContainers().get(i);
+        }
         if(c!=null)
         {
-            System.out.println("est otkrity konteyner");
+
             Color oldColor = Renderer.g.getColor();
 
             containerWindowX = (int)c.getSolidBox().getCenterX()-Camera.getInstance().getX();
@@ -193,7 +242,7 @@ public class InventoryManager
 
                 pic.item = c.getItems().get(i);
                 pic.width= pic.item.getTexture().getWidth();
-                pic.item.getTexture().getHeight();
+                pic.height= pic.item.getTexture().getHeight();
                 Renderer.g.drawImage(pic.item.getTexture(),pic.x,pic.y,null);
             }
             Renderer.g.setColor(oldColor);

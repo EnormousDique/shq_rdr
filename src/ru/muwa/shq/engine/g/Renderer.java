@@ -239,7 +239,10 @@ public class Renderer implements Runnable {
         /**HUD. Отрисовка и обновление. **/
         //ТЕСТ НОВОГО  ИНВЕНТАРЯ
         try {
-            if(InventoryManager.isItemWindowVisible)InventoryManager.drawInventory();
+            if(InventoryManager.isItemWindowVisible){
+                InventoryManager.drawInventory();
+                InventoryManager.drawEquipWindow();
+            }
             InventoryManager.drawContainerWindow();
         }  catch (Exception e) {
             System.out.println("тетовому инвентарю не оч");
@@ -266,17 +269,17 @@ public class Renderer implements Runnable {
         HUD.getInstance().getGifScenesWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
         HUD.getInstance().getPauseMenuWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 
-        HUD.getInstance().getStatusWindow().setVisible(Inventory.getInstance().isOpened());
-            HUD.getInstance().getItemWindow().setVisible(Inventory.getInstance().isOpened());
+        HUD.getInstance().getStatusWindow().setVisible(false);
+            HUD.getInstance().getItemWindow().setVisible(false);
             HUD.getInstance().getMainWindow().setVisible(false);
-            HUD.getInstance().getEquipWindow().setVisible(Inventory.getInstance().isOpened());
+            HUD.getInstance().getEquipWindow().setVisible(false);
            // HUD.getInstance().getContainerWindow().setVisible(Inventory.getInstance().isOpened());
-            HUD.getInstance().getEquipWindow().updateUI();
-            HUD.getInstance().getItemWindow().updateUI();
-            HUD.getInstance().getStatusWindow().updateUI();
-            HUD.getInstance().getQuestWindow().setVisible(Inventory.getInstance().isOpened());
-            HUD.getInstance().getQuestWindow().updateUI();
-            HUD.getInstance().getPauseMenuWindow().updateUI();
+         //   HUD.getInstance().getEquipWindow().updateUI();
+           // HUD.getInstance().getItemWindow().updateUI();
+           // HUD.getInstance().getStatusWindow().updateUI();
+            HUD.getInstance().getQuestWindow().setVisible(false);
+        //    HUD.getInstance().getQuestWindow().updateUI();
+         //   HUD.getInstance().getPauseMenuWindow().updateUI();
         // полоску здовроья видно только при открытии инвентаря
         //   HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
           //  HUD.getInstance().getHealthBar().setValue(Player.get().getHp());

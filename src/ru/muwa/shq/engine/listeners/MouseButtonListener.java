@@ -54,33 +54,52 @@ public class MouseButtonListener implements MouseInputListener {
                 keys[1] = true;
                 break;
         }
+        Picktogram pic = null;
          //Проверяем по инвентарю ли клик.
                  // И то что нажата ЛКМ
         //И что окно инвентаря открыто.
-        if(InventoryManager.itemWindowPicks.stream().anyMatch(p->p.contains(new Point(e.getX(),e.getY())))
-                && keys[0] && InventoryManager.isItemWindowVisible)
-        {
-            //Если клик был по инвентарю.
-            Picktogram pic =
-                    InventoryManager.itemWindowPicks.stream()
-                            .filter(p->p.contains(new Point(e.getX(),e.getY())))
-                            .findFirst().get(); //Думаю ничего не будет, мы же знаем, что кликнули по инвентарю
+        for(int i = 0 ; i < InventoryManager.itemWindowPicks.size(); i++){
+            if(InventoryManager.itemWindowPicks.get(i).contains(new Point(e.getX(),e.getY())))
+                pic = InventoryManager.itemWindowPicks.get(i);
+        }
 
-            pic.item.pick();
+        if(pic!=null && keys[0] && InventoryManager.isItemWindowVisible)
+        {
+            System.out.println("click po iconke inventarya");
+            //Если клик был по инвентарю.
+
+
+            if(pic!=null) {
+                System.out.println("Нажали по " + pic.item);
+                pic.item.pick();
+            }
         }
         //Проверяем по окну ли контейнера клик.
         // И то что нажата ЛКМ
         //И что окно контейнер открыт.
-        if(InventoryManager.containerWindowPicks.stream().anyMatch(p->p.contains(new Point(e.getX(),e.getY())))
-                && keys[0] && Engine.getCurrentLevel().getContainers().stream().anyMatch(c -> c.isInUse()))
+        pic=null;
+        for(int  i = 0 ; i < InventoryManager.containerWindowPicks.size();i++)
         {
-            //Если клик был по контейнеру.
-            Picktogram pic =
-                    InventoryManager.containerWindowPicks.stream()
-                            .filter(p->p.contains(new Point(e.getX(),e.getY())))
-                            .findFirst().get(); //Думаю ничего не будет, мы же знаем, что кликнули по инвентарю
+            if(InventoryManager.containerWindowPicks.get(i).contains(new Point(e.getX(),e.getY())))
+            {
+                pic = InventoryManager.containerWindowPicks.get(i);
+                System.out.println("icon x :" + pic.x + " y : "+ pic.y);
+            }
+        }
 
+
+        if(pic!=null && keys[0])
+        {
+            System.out.println("click po ikonke containera");
             pic.item.get();
+        }
+        //Проверяем по окну ли еквипа клик.
+        // И то что нажата ЛКМ
+        //И что есть еквипнутая вещь.
+        if(InventoryManager.equipPic!=null && InventoryManager.equipPic.contains(new Point(e.getX(),e.getY()))
+                && keys[0])
+        {
+            InventoryManager.equipPic.item.pick();
         }
 
 

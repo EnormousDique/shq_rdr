@@ -305,22 +305,22 @@ public class CollisionsChecker {
 
                         if (c.getY() + c.getHeight() > obj.getSolidBox().getCenterY() && c.getX() + c.getWidth() < obj.getX() + obj.getWidth() && c.getX() > obj.getX()) {
                         c.setY((int) (obj.getSolidBox().getY() + obj.getSolidBox().getHeight()));
-                        System.out.println("вниз");
+           //             System.out.println("вниз");
                     }//Вниз
                     /*else*/
                     if (c.getY() < obj.getSolidBox().getCenterY() && c.getX() + c.getWidth() < obj.getX() + obj.getWidth() && c.getX() > obj.getX()) {
                         c.setY((int) (obj.getSolidBox().getY() - c.getHeight()));
-                        System.out.println("вверх");
+                        //             System.out.println("вверх");
                     }//Вверх
                     /*else*/
                     if (c.getX() + c.getWidth() > obj.getX() + obj.getWidth() && c.getY() + c.getHeight() > obj.getY() && c.getY() < obj.getY() + obj.getHeight()) {
                         c.setX((int) (obj.getSolidBox().getX() + obj.getWidth()));
-                        System.out.println("право");
+           //             System.out.println("право");
                     }//Вправо
                     /*else*/
                     if (c.getX() < obj.getX() && c.getY() + c.getHeight() > obj.getY() && c.getY() < obj.getY() + obj.getHeight()) {
                         c.setX((int) (obj.getSolidBox().getX() - c.getWidth()));
-                        System.out.println("vlevo");
+             //           System.out.println("vlevo");
                     }//Влево
 
                 }
