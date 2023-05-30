@@ -41,6 +41,17 @@ import ru.muwa.shq.levels.demo.demoLevel0.buildings.building4.entrance1.L1B4P1F1
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building4.entrance2.L1B4P2F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building4.entrance3.L1B4P3F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building4.entrance4.L1B4P4F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.Entrance1.L1B5P10F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.Entrance1.L1B5P1F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance11.L1B5P11F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance2.L1B5P2F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance3.L1B5P3F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance4.L1B5P4F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance5.L1B5P5F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance6.L1B5P6F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance7.L1B5P7F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance8.L1B5P8F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance9.L1B5P9F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building8.entrance1.L1B8P1F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building8.entrance2.L1B8P2F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building8.entrance3.L1B8P3F1;
@@ -187,12 +198,34 @@ public class DemoLevel0 extends Level
         /* Дом  */
         objects.add(new TallFatBuilding(2640,3045));
 
-        /* Дом  */
-        objects.add(new LoongGrayBuildingFront(5490,214));
-
-        /* Дом  */
-        objects.add(new LoongGrayBuildingSide(5490,894));// боковина среднего дома
+        /* Дом 5 */
+        objects.add(new LoongGrayBuildingFront(5490,214));// фронт дома
+        objects.add(new LoongGrayBuildingSide(5490,894));// боковина среднего дома4
         objects.add(new LoongGrayBuildingSide(8272,894));// втарая боковина среднего дома
+        //Вход в подъезд : 2
+        zones.add(new InteractiveEnterZone(new PadikLock("2"),new EnterZone(5990 ,900,70,70, L1B5P2F1.getInstance(),800,800,false)));
+        //Вход в подъезд : 3
+        zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(6243 ,900,70,70, L1B5P3F1.getInstance(),800,800,false)));
+        //Вход в подъезд : 4
+        zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(6496 ,900,70,70, L1B5P4F1.getInstance(),800,800,false)));
+        //Вход в подъезд : 5
+        zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(6715 ,900,70,70, L1B5P5F1.getInstance(),800,800,false)));
+        //Вход в подъезд : 6
+        zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(6966 ,900,70,70, L1B5P6F1.getInstance(),800,800,false)));
+        //Вход в подъезд : 7
+        zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(7253 ,900,70,70, L1B5P7F1.getInstance(),800,800,false)));
+        //Вход в подъезд : 8
+        zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(7533 ,900,70,70, L1B5P8F1.getInstance(),800,800,false)));
+        //Вход в подъезд : 9
+        zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(7823 ,900,70,70, L1B5P9F1.getInstance(),800,800,false)));
+        //Вход в подъезд : 10
+        zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(8112 ,900,70,70, L1B5P10F1.getInstance(),800,800,false)));
+        //Вход в подъезд : 1
+        zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(5995 ,1226,70,70, L1B5P1F1.getInstance(),800,800,false)));
+        //Вход в подъезд : 11
+        zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(8189  ,1226,70,70, L1B5P11F1.getInstance(),800,800,false)));
+
+
 
 
         //2930 6600

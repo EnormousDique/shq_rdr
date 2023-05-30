@@ -9,7 +9,7 @@ public class GreyPadick extends GameObject {
     private static BufferedImage img;
     static{
         try{
-            img = ImageIO.read(new File(IMG_PATH + "buildings\\indoors\\padick.png"));
+            img = ImageIO.read(new File(IMG_PATH + "buildings\\indoors\\GREYPADICK.png"));
         }catch (Exception e){
             System.out.println("Failed to load postbox texture");
         }

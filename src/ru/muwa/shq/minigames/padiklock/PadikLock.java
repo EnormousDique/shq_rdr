@@ -22,7 +22,7 @@ public class PadikLock implements MiniGame {
         else  return checkPassword();
     }
 
-     public PadikLock(String password){
+     public  PadikLock(String password){
         this.password = password;
      }
 
