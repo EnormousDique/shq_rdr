@@ -1,9 +1,11 @@
 package ru.muwa.shq.creatures.npc.enemies;
 
+import ru.muwa.shq.economics.money.Money_500;
 import ru.muwa.shq.engine.raycaster.RayCaster;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.drugs.Flour;
+import ru.muwa.shq.items.knifes.Kortique;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -53,8 +55,8 @@ public class BadGuy0 extends NPC {
 
         ArrayList<Item> loot = new ArrayList<>();
 
-        loot.add(new Flour());
-
+        if(Math.random()>0.66) loot.add(new Money_500());
+        if(Math.random()>0.75) loot.add(new Kortique());
         return loot;
     }
 

@@ -48,7 +48,6 @@ public class VelvetTank extends NPC {
 
         ArrayList<Item> loot = new ArrayList<>();
 
-        loot.add(new Flour());
         loot.add(new Money_500());
 
         return loot;
