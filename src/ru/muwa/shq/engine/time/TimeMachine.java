@@ -14,16 +14,10 @@ public class TimeMachine {
     public static TimesOfTheDay getTimeOfTheDay() {return timeOfTheDay;}
     public enum TimesOfTheDay{
         SUNRISE, MORNING,AFTERNOON,DUSK,EVENING,NIGHT;
-
     }
     private static int dayNumber;
     private static long startTime;
     private static long currentTime;
-
-    public static long getCurrentTime() {
-        return currentTime;
-    }
-
 
     public static void setStartTime(){
         startTime = /* System.currentTimeMillis(); */ 0 ;

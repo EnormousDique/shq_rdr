@@ -25,6 +25,26 @@ import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
 import ru.muwa.shq.items.knifes.Kortique;
 import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.Level;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance1.L1B1P1F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance2.L1B1P2F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance3.L1B1P3F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance4.L1B1P4F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building2.entrance1.L1B2P1F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building2.entrance2.L1B2P2F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building2.entrance3.L1B2P3F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building2.entrance4.L1B2P4F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building3.entrance1.L1B3P1F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building3.entrance2.L1B3P2F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building3.entrance3.L1B3P3F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building3.entrance4.L1B3P4F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building4.entrance1.L1B4P1F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building4.entrance2.L1B4P2F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building4.entrance3.L1B4P3F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building4.entrance4.L1B4P4F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building8.entrance1.L1B8P1F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building8.entrance2.L1B8P2F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building8.entrance3.L1B8P3F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building8.entrance4.L1B8P4F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.VegetablesVendor;
 import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1;
@@ -92,27 +112,85 @@ public class DemoLevel0 extends Level
         //Сам дом
         objects.add(new FatBuilding(1690,280));
         //Вход в подъезд : 1
-        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,800,70,70, FatBuildingFloor1.getInstance(), 190,220,false)));
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,800,70,70, L1B1P1F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 2
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(2255,800,70,70, L1B1P2F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 3
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(2615,800,70,70, L1B1P3F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 4
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(2970,800,70,70, L1B1P4F1.getInstance(), 190,220,false)));
 
         /* Дом 2 */
-        objects.add(new FatBuilding(3630,280));
+        objects.add(new FatBuilding(1690,1100));
+        //Вход в подъезд : 1
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1900,1620,70,70, L1B2P1F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 2
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(2255,1620,70,70, L1B2P2F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 3
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(2615,1620,70,70, L1B2P3F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 4
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(2970,1620,70,70, L1B2P4F1.getInstance(), 190,220,false)));
 
         /* Дом 3 */
-        objects.add(new FatBuilding(1690,1100));
+        objects.add(new FatBuilding(3630,280));
+        //Вход в подъезд : 1
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(3840,800,70,70, L1B3P1F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 2
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4200,800,70,70, L1B3P2F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 3
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4560,800,70,70, L1B3P3F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 4
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4900,800,70,70, L1B3P4F1.getInstance(), 190,220,false)));
+
 
         /* Дом 4 */
         objects.add(new FatBuilding(3630,1100));
+        //Вход в подъезд : 1
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(3840,1620,70,70, L1B4P1F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 2
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4200,1620,70,70, L1B4P2F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 3
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4560,1620,70,70, L1B4P3F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 4
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4900,1620,70,70, L1B4P4F1.getInstance(), 190,220,false)));
 
-        /* Дом 5 */
-        objects.add(new TallFatBuilding(1730,2134));
-
-        /* Дом 6 */
-        objects.add(new TallFatBuilding(2640,3045));
-
-        /* Дом 7 */
-        objects.add(new LoongGrayBuildingFront(5490,214));
 
         /* Дом 8 */
+        //3700 2100
+        objects.add(new FatBuilding(3700,2100));
+        //Вход в подъезд : 1
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(3910,2620,70,70, L1B8P1F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 2
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4270,2620,70,70, L1B8P2F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 3
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4630,2620,70,70, L1B8P3F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 4
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4990,2620,70,70, L1B8P4F1.getInstance(), 190,220,false)));
+
+
+        /* Дом 9 */
+        //3700 3100
+        objects.add(new FatBuilding(3700,3100));
+        //Вход в подъезд : 1
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(3910,3620,70,70, L1B8P1F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 2
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4270,3620,70,70, L1B8P2F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 3
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4630,3620,70,70, L1B8P3F1.getInstance(), 190,220,false)));
+        //Вход в подъезд : 4
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4990,3620,70,70, L1B8P4F1.getInstance(), 190,220,false)));
+
+
+        /* Дом  */
+        objects.add(new TallFatBuilding(1730,2134));
+
+        /* Дом  */
+        objects.add(new TallFatBuilding(2640,3045));
+
+        /* Дом  */
+        objects.add(new LoongGrayBuildingFront(5490,214));
+
+        /* Дом  */
         objects.add(new LoongGrayBuildingSide(5490,894));// боковина среднего дома
 
 

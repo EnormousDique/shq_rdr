@@ -1,11 +1,13 @@
 package ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance1;
 
+import ru.muwa.shq.engine.spawner.Kladmen;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1_5;
 import ru.muwa.shq.objects.bounds.Wall300;
 import ru.muwa.shq.objects.bounds.Wall350;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
+import ru.muwa.shq.objects.containers.PostBox;
 import ru.muwa.shq.objects.containers.WirelessPanel;
 import ru.muwa.shq.zones.EnterZone;
 
@@ -38,6 +40,8 @@ public class L1B1P1F1 extends Level
         objects.add(new Wall300(360,10));
         objects.add(new Wall300(-40,10));
         objects.add(new Perila(130,120));
+        containers.add(new PostBox(0,100));
+        Kladmen.register(this);
     }
 }
 
