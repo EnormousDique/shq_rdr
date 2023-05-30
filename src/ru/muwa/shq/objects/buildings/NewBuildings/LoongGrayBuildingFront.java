@@ -13,8 +13,8 @@ public class LoongGrayBuildingFront extends Building {
 
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\longgraybuilding\\ITOG3DOMLONG.png"));
-            img2 = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\longgraybuilding\\ITOG3DOMLONGTrans60.png"));
+            img = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\longgraybuilding\\ITOG3DOMLONGWithPadiki.png"));
+            img2 = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\longgraybuilding\\ITOG3DOMLONGwithpadick40trans.png"));
             System.out.println("LoongGrayBuildingFront texture loaded");
         } catch (IOException e) {
             System.out.println("failed to load LoongGrayBuildingFront roof texture");
