@@ -192,6 +192,7 @@ public class DemoLevel0 extends Level
 
         /* Дом  */
         objects.add(new LoongGrayBuildingSide(5490,894));// боковина среднего дома
+        objects.add(new LoongGrayBuildingSide(8272,894));// втарая боковина среднего дома
 
 
         //2930 6600
