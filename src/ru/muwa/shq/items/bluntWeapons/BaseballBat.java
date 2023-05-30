@@ -21,10 +21,11 @@ public class BaseballBat extends Weapon {
     public BaseballBat(){
 
         super(BaseballBat_ID,BaseballBat_Price,BaseballBat_WEIGHT,BaseballBat_IMG);
-        damage = 20;
+        damage = 15;
         this.description = "Битааа , ХУякс.... и башка пробитааа!";
         this.isAbleToEquip = true;
         this.throwback = 50;
+        this.durability = 15;
     }
     static
     {
