@@ -85,10 +85,15 @@ public class MouseButtonListener implements MouseInputListener {
             }
             if(pic!=null&&  z!=null)
             {
-                z.buyout.goods.add(pic.item.isStackable()? pic.item : pic.item.copy());
-                if(pic.item.amount<=1 || !pic.item.isStackable())
+
+                if(pic.item.amount<=1 || !pic.item.isStackable()) {
                     Inventory.getInstance().getItems().remove(pic.item);
-                else pic.item.amount-=1;
+                    z.buyout.goods.add(pic.item);
+                }
+                else {
+                    pic.item.amount-=1;
+                    z.buyout.goods.add(pic.item.copy());
+                }
             }
         }
         //Проверяем по окну ли контейнера клик.

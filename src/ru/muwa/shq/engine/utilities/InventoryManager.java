@@ -86,15 +86,11 @@ public class InventoryManager
 
     public static void update()
     {
-
-
         try {
             convertMoney();
         } catch (Exception e) {
             System.out.println("обменник заболел");
         }
-
-
     }
 
     private static void convertMoney() throws Exception {
@@ -108,7 +104,6 @@ public class InventoryManager
         }
     }
 
-
     public static boolean isItemWindowVisible;
     public  static int itemWindowX;
     public  static  int itemWindowY=SCREEN_HEIGHT-300;
@@ -118,6 +113,7 @@ public class InventoryManager
         Color oldColor = Renderer.g.getColor();
         Renderer.g.setColor(Color.WHITE);
         Renderer.g.fillRect(itemWindowX,itemWindowY,300,300);
+        itemWindowPicks = new ArrayList<>();
 
         //Цикл
         //  Проходимся по вещам из инвентаря, и добавляем панель под каждую на окно ItemWindow
@@ -147,7 +143,6 @@ public class InventoryManager
 
                 Renderer.g.drawImage(pic.item.getTexture(),pic.x,pic.y,null);
                 Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
-
             }
         }
         Renderer.g.setColor(oldColor);
@@ -181,8 +176,6 @@ public class InventoryManager
              else if(pic.item instanceof Weapon)
                 Renderer.g.drawString("Прочность: \n"+((Weapon)pic.item).getDurability(),EWx,EWy+10);
 
-
-
              Renderer.g.setFont(oldFont);
         }
         Renderer.g.setColor(oldColor);
@@ -209,6 +202,8 @@ public class InventoryManager
             Renderer.g.setColor(Color.WHITE);
             Renderer.g.fillRect(containerWindowX,containerWindowY,CWWidth,CWHeight);
 
+            containerWindowPicks=new ArrayList<>();
+
             for(int i = 0 ; i < c.getItems().size(); i++) {
                 Picktogram pic = new Picktogram();
                 containerWindowPicks.add(pic);
@@ -225,77 +220,5 @@ public class InventoryManager
         }
     }
 
-        private static void updateEquipWindow()throws Exception
-        {
-            Arrays.stream(HUD.getInstance().getEquipWindow().getComponents()).forEach(HUD.getInstance().getEquipWindow()::remove);
-
-            JLabel title = new JLabel("EQUIP");
-            HUD.getInstance().getEquipWindow().add(title);
-            title.setBounds(10,10,50,30);
-
-            for(int i = 0; i<Inventory.getInstance().getItems().size(); i++)
-            {
-                Item item = Inventory.getInstance().getItems().get(i);
-
-                if(item.isEquipped()){
-
-                    ItemPanel panel = new ItemPanel(item);
-                    HUD.getInstance().getEquipWindow().add(panel);
-                    panel.setBounds(20,50,50,50);
-                    panel.setIcon(new ImageIcon(panel.getItem().getTexture()));
-                    panel.addMouseListener(MouseButtonListener.getInstance());
-
-                    if(item instanceof Firearm){
-                    String ammoString = "Пули-с : " + ((Weapon) item).getCurrAmmo() + "/" + ((Weapon) item).getMaxAmmo();
-                    JLabel ammoLabel = new JLabel(ammoString);
-                    HUD.getInstance().getEquipWindow().add(ammoLabel);
-                    ammoLabel.setBounds(10,120,100,30);
-                    }
-                    else if(item instanceof Weapon)
-                    {
-                        String durabilityString = "Прочность: " + ((Weapon) item).getDurability();
-                        JLabel durabilityLabel = new JLabel(durabilityString);
-                        HUD.getInstance().getEquipWindow().add(durabilityLabel);
-                        durabilityLabel.setBounds(10,120,100,30);
-                    }
-
-                }
-            }
-            HUD.getInstance().getEquipWindow().updateUI();
-        }
-        public static void updateQuestWindow() throws Exception
-        {
-
-           // Arrays.stream(HUD.getInstance().getQuestWindow().getComponents()).forEach(HUD.getInstance().getQuestWindow()::remove);}
-            for(int i = 0; i < HUD.getInstance().getQuestWindow().getComponents().length;i++)
-            {
-
-                    HUD.getInstance().getQuestWindow().remove(i);
-
-
-            }
-
-
-            String s;
-            ArrayList<Quest> activeQuests = new ArrayList<>(Player.get().quests.stream().filter(q-> !q.tasks.get(q.tasks.size()-1).isCompleted).collect(Collectors.toList()));
-
-            for(int i =0 ; i< activeQuests.size(); i++)
-            {
-
-                s = "Квест " + (Player.get().quests.indexOf(activeQuests.get(i))+1);
-                JLabel label = new JLabel(s);
-                HUD.getInstance().getQuestWindow().add(label);
-                label.setBounds(0,i*50,200,30);
-
-                for(int j = 0 ; j < activeQuests.get(i).tasks.size(); j++)
-                {
-                    s = activeQuests.get(i).tasks.get(j).name + " : " + (activeQuests.get(i).tasks.get(j).isCompleted?"v":"x");
-                    label = new JLabel(s);
-                    HUD.getInstance().getQuestWindow().add(label);
-                    label.setBounds(0,(i*50)+(j+1)*12,200,30);
-                }
-            }
-            HUD.getInstance().getQuestWindow().updateUI();
-        }
 }
 
