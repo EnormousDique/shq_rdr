@@ -228,6 +228,7 @@ public class DemoLevel0 extends Level
 
 
 
+
         //2930 6600
         /** РЫНОК **/
         //Зона входа в  рынок
