@@ -277,6 +277,7 @@ public class DemoLevel0 extends Level
         objects.add(new LoongGrayBuildingSide(8272,894));// втарая боковина среднего дома
 
 
+
         //2930 6600
         /** РЫНОК **/
         //Зона входа в  рынок
