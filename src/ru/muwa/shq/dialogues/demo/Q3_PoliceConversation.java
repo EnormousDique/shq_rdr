@@ -11,6 +11,12 @@ public class Q3_PoliceConversation extends Dialogue {
         if(instance == null) return new Q3_PoliceConversation();
         else return instance;
     }
+
+    @Override
+    public void init() {
+
+    }
+
     private Q3_PoliceConversation(){
 
         instance = this;

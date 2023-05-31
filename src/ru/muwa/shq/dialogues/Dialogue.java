@@ -21,9 +21,9 @@ public abstract class Dialogue {
         this.currentMessage = currentMessage;
     }
 
-    public void init()
-    {
-
+    public abstract void init();
+    public Dialogue(){
+        init();
     }
 
     public void restore() {
@@ -45,6 +45,16 @@ public abstract class Dialogue {
             this.text = text;
             this.responds = List.copyOf(respond);
         }
+        public Message(){}
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        public void setResponds(List<Respond> responds) {
+            this.responds = responds;
+        }
+
         public String getText(){return text;}
         public List<Respond> getResponds(){return responds;}
     }
@@ -67,6 +77,15 @@ public abstract class Dialogue {
         public Respond(String text, QuestAction action) {
             this.action=action;
             this.text=text;
+        }
+        public Respond(){}
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        public void setMsg(Message msg) {
+            this.msg = msg;
         }
 
         public String getText(){return text;}

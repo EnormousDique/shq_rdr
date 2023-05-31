@@ -11,6 +11,12 @@ public class Q2T1_Conversation extends Dialogue {
         if(instance == null) return new Q2T1_Conversation();
         else return instance;
     }
+
+    @Override
+    public void init() {
+
+    }
+
     private Q2T1_Conversation(){
 
         instance = this;

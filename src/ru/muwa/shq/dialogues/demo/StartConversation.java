@@ -14,6 +14,12 @@ public class StartConversation extends Dialogue {
         if(instance == null) return new StartConversation();
         else return instance;
     }
+
+    @Override
+    public void init() {
+
+    }
+
     private StartConversation(){
 
         instance = this;

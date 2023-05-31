@@ -10,6 +10,7 @@ import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
 import ru.muwa.shq.engine.animations.cutscenes.Q3_PoliceCutscene;
 
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.spawner.Spawner;
 
 import ru.muwa.shq.engine.utilities.EffectUtility;
@@ -70,6 +71,8 @@ import ru.muwa.shq.zones.InteractiveEnterZone;
 import ru.muwa.shq.zones.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DemoLevel0 extends Level
 {
@@ -94,9 +97,80 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new Kortique());
         for(int i = 0 ; i<4;i++) Inventory.getInstance().addItem(new Flour());
 
-
-
         System.out.println("test 2");
+        /**ТЕСТОВЫЙ ДИАЛОГ  ПО НОВОЙ СИСТЕМЕ **/
+        zones.add(new DialogueZone(new Dialogue() {
+            @Override
+            public void init() {
+
+                Message initM = new Message();
+                Message m = null;
+
+
+                this.initialMessage = initM;
+
+                //Начало диалогка
+                initM.setText("Привет!");
+                ArrayList<Respond> responds = new ArrayList<>();
+                responds.add(new Respond());
+                responds.get(0).setText("Ответ 1.");
+                responds.add(new Respond());
+                responds.get(1).setText("Ответ 2.");
+                responds.add(new Respond());
+                responds.get(2).setText("Ответ 3.");
+                initM.setResponds(responds);
+
+                //Ветка первого ответа
+
+                m = new Message();
+                responds.get(0).setMsg(m);
+                m.setText("Ветка ответа 1");
+                responds = new ArrayList<>();
+                responds.add(new Respond("заканчиваем диалог (просто)"));
+                responds.add(new Respond("заканчиваем действием", new QuestAction() {
+                    @Override
+                    public void performAction() {
+                        Renderer.addMessage("произошло действие");
+                    }
+                }));
+                m.setResponds(responds);
+
+                //Ветка второго ответа
+                responds = (ArrayList<Respond>) initM.getResponds();
+                m = new Message();
+                responds.get(1).setMsg(m);
+                m.setText("Ветка ответа 2");
+                responds = new ArrayList<>();
+                responds.add(new Respond("заканчиваем диалог (просто)"));
+                responds.add(new Respond("продолжение диалога",new Message()));
+                m.setResponds(responds);
+                //Подветка
+                m = responds.get(1).getMsg();
+                m.setText("подветка ответа 2, ответ с продолжением");
+                responds = new ArrayList<>();
+                responds.add(new Respond("заканчиваем диалог (просто)"));
+                responds.add(new Respond("заканчиваем действием", new QuestAction() {
+                    @Override
+                    public void performAction() {
+                        Renderer.addMessage("произошло действие");
+                    }
+                }));
+                m.setResponds(responds);
+
+                //Ветка третьего ответа
+                responds = (ArrayList<Respond>) initM.getResponds();
+                m = new Message();
+                responds.get(2).setMsg(m);
+                m.setText("Ветка ответа 3");
+                responds = new ArrayList<>();
+                responds.add(new Respond("пошел нахуй"));
+                m.setResponds(responds);
+
+
+                this.currentMessage = this.initialMessage;
+
+            }
+        }, 200, 200, 200, 200,false));
 
         /** ЗАДНИК **/
         objects.add(new DemoLevel0_BG(0,0));

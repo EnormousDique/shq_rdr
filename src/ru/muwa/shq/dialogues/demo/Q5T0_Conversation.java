@@ -15,6 +15,12 @@ public class Q5T0_Conversation extends Dialogue {
         if(instance == null) return new Q5T0_Conversation();
         else return instance;
     }
+
+    @Override
+    public void init() {
+
+    }
+
     private Q5T0_Conversation(){
 
         instance = this;
