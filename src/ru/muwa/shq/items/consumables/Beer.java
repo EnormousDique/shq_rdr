@@ -1,5 +1,6 @@
 package ru.muwa.shq.items.consumables;
 
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
@@ -36,6 +37,7 @@ public class Beer extends Item {
         Player.get().setHighMeter(Player.get().getHighMeter()+5);
         EffectUtility.getCurrentEffects().put(EffectUtility.Effects.StaminaRegen,System.currentTimeMillis()+10_000);
         Inventory.getInstance().getItems().remove(this);
+        Renderer.addMessage("Бахнул пивка");
     }
     @Override
     public void equip() {

@@ -1,5 +1,6 @@
 package ru.muwa.shq.items.consumables;
 
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.drugs.Flour;
@@ -43,7 +44,7 @@ public class Water extends Item {
         Inventory.getInstance().getItems().remove(this);
         Player.get().setHp(Player.get().getHp()+2);
         LeBottle bottle = new LeBottle();
-
+        Renderer.addMessage("Загасил СУшняк");
         Inventory.getInstance().addItem(bottle);
 
     }

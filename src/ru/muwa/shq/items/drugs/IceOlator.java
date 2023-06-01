@@ -70,6 +70,7 @@ public class IceOlator extends Item {
             if (Player.get().getHp() >= 95) Player.get().setHp(100);
             else
                 Player.get().setHp(Player.get().getHp() + 5);
+            Renderer.addMessage("Плюшку сладко затянул");
         }
 
 

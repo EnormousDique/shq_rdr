@@ -1,5 +1,6 @@
 package ru.muwa.shq.items.consumables;
 
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
@@ -38,6 +39,7 @@ public class Onion extends Item {
         if(amount <= 1) Inventory.getInstance().getItems().remove(this);
         else amount-=1;
         Player.get().setHp(Player.get().getHp() +2);
+        Renderer.addMessage("Скушал луку");
     }
 
     @Override

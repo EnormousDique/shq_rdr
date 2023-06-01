@@ -2,6 +2,7 @@
 package ru.muwa.shq.items.consumables;
 
         import ru.muwa.shq.engine.Engine;
+        import ru.muwa.shq.engine.g.Renderer;
         import ru.muwa.shq.engine.utilities.EffectUtility;
         import ru.muwa.shq.items.Item;
         import ru.muwa.shq.objects.containers.Container;
@@ -38,6 +39,7 @@ public class Vodka extends Item {
         Player.get().setHighMeter(Player.get().getHighMeter()+20);
 
         Inventory.getInstance().getItems().remove(this);
+        Renderer.addMessage("Хлопнул водочки");
     }
     @Override
     public void equip() {

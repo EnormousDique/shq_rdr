@@ -69,6 +69,7 @@ public class Hash extends Item {
                 Player.get().setHp(Player.get().getHp() + 5);
             if(amount<=1)Inventory.getInstance().getItems().remove(this);
             else amount-=1;
+            Renderer.addMessage("Плюшку сладко затянул");
         }
 
 

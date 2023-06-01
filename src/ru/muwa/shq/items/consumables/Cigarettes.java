@@ -1,5 +1,6 @@
 package ru.muwa.shq.items.consumables;
 
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
@@ -37,6 +38,7 @@ public class Cigarettes extends Item {
         Player.get().setHighMeterLock(Player.get().getHighMeterLock()-5);
         EffectUtility.getCurrentEffects().put(EffectUtility.Effects.ODYSHKA,System.currentTimeMillis()+10_000);
         Inventory.getInstance().getItems().remove(this);
+        Renderer.addMessage("Закурил сигаретку");
     }
     @Override
     public void equip() {
