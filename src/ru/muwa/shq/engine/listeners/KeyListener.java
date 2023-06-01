@@ -1,10 +1,12 @@
 package ru.muwa.shq.engine.listeners;
 
+import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.player.controls.PlayerControls;
 
 import java.awt.event.KeyEvent;
+import java.io.DataInput;
 
 /**
  *  Класс, отвечающий за прослушку клавиатуры.
@@ -96,6 +98,7 @@ public class KeyListener implements java.awt.event.KeyListener
                 keys[I] = true;
                 break;
             case 81: // Q
+                DialogueManager.dropDialogue();//Прям здесь нахуй вызовем
                 keys[Q] = true;
                 break;
             case 10: // ENTER

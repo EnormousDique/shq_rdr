@@ -32,7 +32,7 @@ public abstract class Dialogue {
         System.out.println("curr msg" + currentMessage.text);
     }
 
-    protected static class Message{
+    public static class Message{
         String text;
         List<Respond> responds = new ArrayList<>();
         public Message(String text, Respond respond)
@@ -58,7 +58,7 @@ public abstract class Dialogue {
         public String getText(){return text;}
         public List<Respond> getResponds(){return responds;}
     }
-    protected class Respond{
+    public class Respond{
         String text;
         Message msg;
         QuestAction action;
@@ -90,6 +90,10 @@ public abstract class Dialogue {
 
         public String getText(){return text;}
         public Message getMsg(){return msg;}
+
+        public QuestAction getAction() {
+            return action;
+        }
     }
 
     public void getDialogueFromTxt(){

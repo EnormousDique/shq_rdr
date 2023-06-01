@@ -246,7 +246,7 @@ public class Renderer implements Runnable {
         handleMessages(g);
 
         //ОБНОВЛЕНИЕ И ОТРИСОВКА ОКОН ХУДА
-
+/*
         HUD.getInstance().getMainWindow().setBounds(GameScreen.SCREEN_WIDTH/2,GameScreen.SCREEN_HEIGHT/2,100,100);
         HUD.getInstance().getStatusWindow().setBounds(GameScreen.SCREEN_WIDTH-300,0,300,150);
         HUD.getInstance().getEquipWindow().setBounds(GameScreen.SCREEN_WIDTH-300,150,100,160);
@@ -260,7 +260,10 @@ public class Renderer implements Runnable {
         HUD.getInstance().getThirstBar().setBounds(GameScreen.SCREEN_WIDTH-500, +40,100,20);
         HUD.getInstance().getContainerWindow().setBounds(210,GameScreen.SCREEN_HEIGHT-400,200,300);
         HUD.getInstance().getGifScenesWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+
+ */
         HUD.getInstance().getPauseMenuWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+
 
         HUD.getInstance().getStatusWindow().setVisible(false);
             HUD.getInstance().getItemWindow().setVisible(false);
@@ -298,7 +301,6 @@ public class Renderer implements Runnable {
             DialogueManager.work();
             //вызов службы гиф роликов
            // GifScenesManager.getInstance().work();
-            DialogueManager.work();
             // Вызов службы торговли
             TradeUtility.work();
         InventoryManager.update();

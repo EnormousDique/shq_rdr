@@ -12,7 +12,6 @@ import java.util.List;
 public class Quest {
     boolean isTaken;
     public List<Task> tasks;
-    int currentTaskIndex = 0;
 
     public Quest(){
         tasks = new ArrayList<>();
@@ -24,7 +23,6 @@ public class Quest {
     public void addTask(String name, TaskCondition с){
         this.tasks.add(new Task(name,с));
     }
-    public List<Task> getTasks(){return tasks;}
 
     public void addTask(String name, CompleteTaskZone z, Q2T1_Action a) {
         this.tasks.add(new Task(name,z,a));

@@ -1,6 +1,7 @@
 package ru.muwa.shq.player.controls;
 
 import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.*;
 import ru.muwa.shq.engine.combat.CombatUtility;
@@ -347,6 +348,12 @@ public class PlayerControls
         HUD.getInstance().getContainerWindow().setVisible(false);
         for(Container c: Engine.getCurrentLevel().getContainers())c.setIsInUse(false);
         HUD.getInstance().getDialogueWindow().setVisible(false);
+
+        if(Engine.pause)
+        {
+            System.out.println("MEEEEEEE");
+            DialogueManager.dropDialogue();
+        }
 
     }
     private static void lmb()

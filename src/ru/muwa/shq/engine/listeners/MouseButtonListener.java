@@ -1,5 +1,6 @@
 package ru.muwa.shq.engine.listeners;
 
+import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.Picktogram;
 import ru.muwa.shq.engine.g.Renderer;
@@ -123,6 +124,32 @@ public class MouseButtonListener implements MouseInputListener {
         {
             InventoryManager.equipPic.item.pick();
         }
+
+        //Проверяем по диалогу ли клик.
+        // И то что нажата ЛКМ
+        //И что окно диалога открыто.
+        DialogueManager.ResponseButton r =  null;
+        for(int i = 0; i < DialogueManager.buttons.size(); i++){
+            if(DialogueManager.buttons.get(i).contains(new Point(e.getX(),e.getY()))
+            && DialogueManager.isBusy())
+                r = DialogueManager.buttons.get(i);
+        }
+        if(r!=null)
+        {
+            if(r.respond.getMsg()!=null) {
+                DialogueManager.getCurrentDialogue().setCurrentMessage(r.respond.getMsg());
+            }
+
+            if(r.respond.getMsg()==null && r.respond.getAction()!=null) {
+                r.respond.getAction().performAction();
+                DialogueManager.dropDialogue();
+            }
+            if(r.respond.getMsg()==null && r.respond.getAction() == null){
+                DialogueManager.dropDialogue();
+            }
+
+        }
+
 
 
 

@@ -98,18 +98,23 @@ public class DemoLevel0 extends Level
         for(int i = 0 ; i<4;i++) Inventory.getInstance().addItem(new Flour());
 
         System.out.println("test 2");
+
+
+
         /**ТЕСТОВЫЙ ДИАЛОГ  ПО НОВОЙ СИСТЕМЕ **/
+
+        //  initMsg -  > respond 1 -->   msg2 -> respond -> x
+           //        - > respond 2 --> x(конец) --> respond --> msg -> respond -> x
+
         zones.add(new DialogueZone(new Dialogue() {
             @Override
             public void init() {
 
                 Message initM = new Message();
                 Message m = null;
-
-
                 this.initialMessage = initM;
 
-                //Начало диалогка
+                //Начало диалога
                 initM.setText("Привет!");
                 ArrayList<Respond> responds = new ArrayList<>();
                 responds.add(new Respond());
@@ -168,9 +173,12 @@ public class DemoLevel0 extends Level
 
 
                 this.currentMessage = this.initialMessage;
-
             }
         }, 200, 200, 200, 200,false));
+
+
+
+        //КОНЕЦ ДИАЛОГА
 
         /** ЗАДНИК **/
         objects.add(new DemoLevel0_BG(0,0));
