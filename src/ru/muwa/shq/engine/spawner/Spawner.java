@@ -6,13 +6,11 @@ import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.creatures.npc.enemies.VelvetTank;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.levels.Level;
+import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.objects.car.Car;
+import ru.muwa.shq.objects.car.HondaCivic;
 import ru.muwa.shq.player.Player;
-import ru.muwa.shq.zones.DialogueZone;
-import ru.muwa.shq.zones.EnterZone;
-import ru.muwa.shq.zones.GameZone;
-import ru.muwa.shq.zones.InDoorsSpawnZone;
-
-import java.util.Random;
+import ru.muwa.shq.zones.*;
 
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
 
@@ -100,5 +98,21 @@ public class Spawner {
                 }
             }
         }
+    }
+    static long carLastSpawnTime = System.currentTimeMillis();
+   static long carSpawnInterval = 1000;
+
+    public static void carSpawn(){
+        for (GameZone zone : Engine.getCurrentLevel().getZones()) {
+            if (zone instanceof CarSpawnZone) {
+
+                if(System.currentTimeMillis() >carLastSpawnTime + carSpawnInterval ){
+                        Car car = new HondaCivic(zone.x,zone.y);
+                        car.setDirection(GameObject.Direction.RIGHT);
+                        Engine.getCurrentLevel().getObjects().add(car);
+                        carLastSpawnTime= System.currentTimeMillis();
+                     }
+                    }
+                }
     }
 }

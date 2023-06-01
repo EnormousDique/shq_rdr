@@ -27,11 +27,16 @@ public abstract class Item
 
         }
         String description = "";
+        String name= "";
     };}
-
+    public String name;
     protected String description ;
     protected boolean stackable;
     public int amount = 1;
+
+
+
+
     public String getDescription() {
         return description;
     }

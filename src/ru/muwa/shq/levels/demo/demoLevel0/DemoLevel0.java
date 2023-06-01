@@ -1,13 +1,10 @@
 package ru.muwa.shq.levels.demo.demoLevel0;
-import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.dialogues.demo.Conversation0;
-import ru.muwa.shq.dialogues.demo.Q2T1_Conversation;
 import ru.muwa.shq.dialogues.demo.Q3_PoliceConversation;
 import ru.muwa.shq.economics.trading.Buyout;
 import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.animations.Animator;
-import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
 import ru.muwa.shq.engine.animations.cutscenes.Q3_PoliceCutscene;
 
 import ru.muwa.shq.engine.spawner.Spawner;
@@ -23,6 +20,7 @@ import ru.muwa.shq.items.guns.Makarov;
 import ru.muwa.shq.items.guns.Obrez;
 import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
 import ru.muwa.shq.items.knifes.Kortique;
+import ru.muwa.shq.items.zakladki.KladBlack;
 import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance1.L1B1P1F1;
@@ -60,21 +58,17 @@ import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.VegetablesVendor;
 import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
-import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
 import ru.muwa.shq.objects.buildings.NewBuildings.LoongGrayBuildingFront;
 import ru.muwa.shq.objects.buildings.NewBuildings.LoongGrayBuildingSide;
 import ru.muwa.shq.objects.buildings.NewBuildings.ShopBiolog;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
-import ru.muwa.shq.objects.containers.TrashCan;
 import ru.muwa.shq.objects.obstacles.crates.Crate0;
-import ru.muwa.shq.objects.street.Car;
+import ru.muwa.shq.objects.street.ZakladkaCar;
 import ru.muwa.shq.player.Inventory;
-import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.QuestUtility;
 import ru.muwa.shq.quests.actions.QuestAction;
-import ru.muwa.shq.quests.conditions.C_HasPlayerFoundKlad;
 import ru.muwa.shq.zones.DialogueZone;
 import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.InteractiveEnterZone;
@@ -105,6 +99,14 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new Kortique());
         for(int i = 0 ; i<4;i++) Inventory.getInstance().addItem(new Flour());
         Inventory.getInstance().addItem(new Obrez());
+        Inventory.getInstance().addItem(new KladBlack());
+        Inventory.getInstance().addItem(new Water());
+        Inventory.getInstance().addItem(new Water());
+        Inventory.getInstance().addItem(new Water());
+        Inventory.getInstance().addItem(new Water());
+        Inventory.getInstance().addItem(new Water());
+        Inventory.getInstance().addItem(new Water());
+        zones.add(new CarSpawnZone(0,400,100,100));
 
 
         System.out.println("test 2");
@@ -113,7 +115,7 @@ public class DemoLevel0 extends Level
         objects.add(new DemoLevel0_BG(0,0));
 
 
-        objects.add(new Car(1350,1060));
+        objects.add(new ZakladkaCar(1350,1060));
         objects.add(new Crate0(100,100));
 
         /** Дома **/

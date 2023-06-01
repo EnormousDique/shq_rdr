@@ -1,7 +1,6 @@
 package ru.muwa.shq.items.consumables;
 
 import ru.muwa.shq.items.Item;
-import ru.muwa.shq.objects.street.Car;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 

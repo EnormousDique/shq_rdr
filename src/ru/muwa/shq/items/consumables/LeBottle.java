@@ -29,12 +29,12 @@ public class LeBottle extends Item {
     }
     public LeBottle() {
         super(ID, PRICE, WEIGHT, img);
+        stackable = true;
         description = "Продырявь меня )";
     }
     @Override
     public void use() {
-
-        Inventory.getInstance().getItems().remove(this);
+        if(amount>1) amount -=1; else Inventory.getInstance().getItems().remove(this);
     }
     @Override
     public void equip() {

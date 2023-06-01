@@ -29,6 +29,6 @@ public class Bazar extends Building {
 
         this.isSolid = false;
 
-        System.out.println(getIsSolid());
+
     }
 }
