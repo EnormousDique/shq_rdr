@@ -137,24 +137,30 @@ public class Updater implements Runnable {
             // Обновляем боксы
             if(! (o instanceof Building))SolidBoxUpdater.updateSolidBox(o);
         }
-        //Блок обработки НПЦ из списка текущих.
-        for(int i = 0; i< Engine.getCurrentLevel().getNPC().size(); i++) {
-            NPC c = Engine.getCurrentLevel().getNPC().get(i);
-            //Передаем нпц ии, чтобы тот решил что ему делать.
-            AI.getInstance().move(c);
-            // Обновляем бокс.
-            SolidBoxUpdater.updateSolidBox(c);
-            // Проверяем столкновения.
-            CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
-            CollisionsChecker.getInstance().checkCollisionsNPC(c,  new LinkedList<>( Engine.getCurrentLevel().getNPC().stream().map(npc -> (GameObject) npc ).collect(Collectors.toList())) );
 
-            // CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
-            //CollisionsChecker.getInstance().checkCollisionsNPC(c, new LinkedList<>( Engine.getCurrentLevel().getNPC().stream().map(npc->(GameObject)npc).collect(Collectors.toList())));
-            // Обновляем стены рейкастера и сам рейкастер.
-            // TODO: Проверить насколько необходимо обновление каждую итерацию и скорость при большом кол-ве нпц.
-            c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
-            RayCasterUpdater.updateRayCaster(c.getRayCaster(),c);
-        }
+
+        //Блок обработки НПЦ из списка текущих.
+
+
+            for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
+                NPC c = Engine.getCurrentLevel().getNPC().get(i);
+                //Передаем нпц ии, чтобы тот решил что ему делать.
+                AI.getInstance().move(c);
+                // Обновляем бокс.
+                SolidBoxUpdater.updateSolidBox(c);
+                // Проверяем столкновения.
+                CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
+                CollisionsChecker.getInstance().checkCollisionsNPC(c, new LinkedList<>(Engine.getCurrentLevel().getNPC().stream().map(npc -> (GameObject) npc).collect(Collectors.toList())));
+
+                // CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
+                //CollisionsChecker.getInstance().checkCollisionsNPC(c, new LinkedList<>( Engine.getCurrentLevel().getNPC().stream().map(npc->(GameObject)npc).collect(Collectors.toList())));
+                // Обновляем стены рейкастера и сам рейкастер.
+                // TODO: Проверить насколько необходимо обновление каждую итерацию и скорость при большом кол-ве нпц.
+                c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
+                RayCasterUpdater.updateRayCaster(c.getRayCaster(), c);
+            }
+
+
         //Для нпц вызываем службу обновления поля зрения
         NPCViewFieldUtility.work();
         //Блок обработки объектов контейнеров из списка текущих.

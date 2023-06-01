@@ -18,9 +18,11 @@ import ru.muwa.shq.minigames.padiklock.PadikLock;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.quests.QuestHUD;
 import ru.muwa.shq.zones.*;
 
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * Класс, отвечающий за управление игроком.
@@ -44,6 +46,7 @@ public class PlayerControls
         if(keyboard.getKeys()[keyboard.E]) e(); // Нажата Е
         if(keyboard.getKeys()[keyboard.I]) i();/* */// Нажата I
         if(keyboard.getKeys()[keyboard.Q]) q();
+        if(keyboard.getKeys()[keyboard.J]) j();
         if(keyboard.getKeys()[keyboard.ENTER]) enter();
         if(keyboard.getKeys()[keyboard.T]) t(); // нважата T
         if(keyboard.getKeys()[keyboard.SHIFT]) shift();
@@ -57,6 +60,12 @@ public class PlayerControls
         if(MouseButtonListener.getInstance().keys[0]) rmb();
 
     }
+
+    private static void j() {
+        QuestHUD.opened = !QuestHUD.opened;
+        keyboard.getKeys()[keyboard.J]=false;
+    }
+
     //камера на кнопку V
     private static void v(){
 
@@ -340,10 +349,11 @@ public class PlayerControls
 
         if(Player.get().isBusy() && Player.get().getCurrentObject() != null)
         {
-            Player.get().getCurrentObject().setInUse(false);
+            Objects.requireNonNull(Player.get()).getCurrentObject().setInUse(false);
             Player.get().setCurrentObject(null);
             Player.get().setIsBusy(false);
         }
+        QuestHUD.opened=false;
         Inventory.getInstance().setIsOpened(false);
         HUD.getInstance().getContainerWindow().setVisible(false);
         for(Container c: Engine.getCurrentLevel().getContainers())c.setIsInUse(false);

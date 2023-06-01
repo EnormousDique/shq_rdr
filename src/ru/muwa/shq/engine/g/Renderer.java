@@ -18,6 +18,7 @@ import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
+import ru.muwa.shq.quests.QuestHUD;
 import ru.muwa.shq.zones.GameZone;
 
 import javax.swing.*;
@@ -236,6 +237,7 @@ public class Renderer implements Runnable {
                 InventoryManager.drawInventory();
                 InventoryManager.drawEquipWindow();
             }
+            if(QuestHUD.opened) QuestHUD.drawJournal();
             InventoryManager.drawContainerWindow();
         }  catch (Exception e) {
             System.out.println("тетовому инвентарю не оч");
@@ -304,6 +306,7 @@ public class Renderer implements Runnable {
             // Вызов службы торговли
             TradeUtility.work();
         InventoryManager.update();
+
 
         // ОТРИСОВКА ПЕрСОНАЖА
         AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
