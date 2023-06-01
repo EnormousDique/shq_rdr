@@ -13,6 +13,8 @@ public class Quest {
     boolean isTaken;
     public List<Task> tasks;
 
+    public String owner;
+
     public Quest(){
         tasks = new ArrayList<>();
 
