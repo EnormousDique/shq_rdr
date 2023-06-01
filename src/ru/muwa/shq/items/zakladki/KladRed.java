@@ -1,6 +1,7 @@
 package ru.muwa.shq.items.zakladki;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.items.drugs.Hash;
@@ -39,12 +40,10 @@ public class KladRed extends Item {
     public void use() {
 
             double a = Math.random()*4;
-
+        Item s = getRandomLoot().get((int) a);
         Inventory.getInstance().addItem(getRandomLoot().get((int) a));
-
-
-
         Inventory.getInstance().getItems().remove(this);
+        Renderer.addMessage("Палево ПОдскинул" + s.toString().split("\\.")[5].split("@")[0]);
     }
     @Override
     public void equip() {

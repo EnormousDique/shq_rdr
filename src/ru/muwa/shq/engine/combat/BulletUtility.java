@@ -24,7 +24,7 @@ public class BulletUtility
         b.setTime(b.getTime() + 0.1);
         b.setX((int)(b.getInitialX() + b.getxVelocity() * b.getTime()));
         b.setY((int)(b.getInitialY() + b.getyVelocity() * b.getTime()));
-        if(b.getTime() > 30) Engine.getCurrentLevel().getObjects().remove(b);
+        if(b.getTime() > 30) Engine.getCurrentLevel().getObjects().remove(b);//удаления пули
     }
 
 

@@ -28,6 +28,6 @@ public class Wall300 extends GameObject {
        // System.out.println("отработал конструктор супер классса лестница ");
         this.isSolid = true;
       //  System.out.println("отработал конструктор непосредствеННО классса лестница ");
-        System.out.println(getIsSolid());
+
     }
 }

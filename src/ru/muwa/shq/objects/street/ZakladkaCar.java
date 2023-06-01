@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
-public class Car extends GameObject {
+public class ZakladkaCar extends GameObject {
     private static BufferedImage img;
     static{
         try{
@@ -23,7 +23,7 @@ public class Car extends GameObject {
      * @param y
 
      */
-    public Car(int x, int y ) {
+    public ZakladkaCar(int x, int y ) {
         super(x, y,img);
 
         this.isSolid = true;

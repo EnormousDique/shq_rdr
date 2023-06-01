@@ -2,6 +2,7 @@ package ru.muwa.shq.items.consumables;
 
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
@@ -28,6 +29,7 @@ public class Water extends Item {
     }
     public Water() {
         super(ID, PRICE, WEIGHT, img);
+        stackable = false;
         description = "Дайте че нибудь,попить пожалуйста,Попить будде добры";
     }
     @Override
@@ -40,6 +42,9 @@ public class Water extends Item {
         EffectUtility.getCurrentEffects().put(EffectUtility.Effects.StaminaRegen,System.currentTimeMillis()+10_000);
         Inventory.getInstance().getItems().remove(this);
         Player.get().setHp(Player.get().getHp()+2);
+        LeBottle bottle = new LeBottle();
+
+        Inventory.getInstance().addItem(bottle);
 
     }
     @Override

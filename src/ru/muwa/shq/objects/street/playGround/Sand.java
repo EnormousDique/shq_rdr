@@ -28,6 +28,6 @@ public class Sand extends GameObject {
 
         this.isSolid = true;
 
-        System.out.println(getIsSolid());
+
     }
 }
