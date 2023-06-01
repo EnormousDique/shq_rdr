@@ -37,11 +37,7 @@ public class EffectUtility {
     }
 
     public static void work() {
-
-        if(Player.get().getHighMeterLock()>100)  Player.get().setHighMeterLock(100.0);
-        if(Player.get().getHighMeter()>100) Player.get().setHighMeter(100.0);
-
-
+        meterLock();
         for (Map.Entry<Effects, Long> entry : currentEffects.entrySet()) {
             switch (entry.getKey()) {
 
@@ -94,7 +90,18 @@ public class EffectUtility {
         }
     }
     //todo вынести в отдельный класс
-
+public static void meterLock(){
+    if(Player.get().getHighMeterLock()>100)  Player.get().setHighMeterLock(100.0);
+    if(Player.get().getHighMeter()>100) Player.get().setHighMeter(100.0);
+    if (Player.get().getStamina()>100) Player.get().setStamina(100);
+    if (Player.get().getThirst()>100) Player.get().setThirst(100);
+    if(Player.get().getThirst()<0) Player.get().setThirst(0);
+    if(Player.get().getStamina()<0) Player.get().setStamina(0);
+    if(Player.get().getHighMeter()<0) Player.get().setHighMeter(0);
+    if(Player.get().getHighMeterLock()<0) Player.get().setHighMeterLock(0);
+    if(Player.get().getHp()<0) Player.get().setHp(0);
+    if(Player.get().getHp()>100) Player.get().setHp(100);
+}
     public static void psychOmetr() {
        if (Player.get().getHighMeter() > Player.get().getHighMeterLock()) {
             Player.get().setHighMeter(Player.get().getHighMeter() - (Player.get().getHighMeterLock() > 50? 0.005 : 0.02));

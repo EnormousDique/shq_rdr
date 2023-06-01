@@ -1,6 +1,7 @@
 package ru.muwa.shq.items.drugs;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
@@ -35,6 +36,7 @@ public class Zanax extends Item {
         Player.get().setHighMeter(Player.get().getHighMeter()-5);
         Player.get().setHighMeterLock(Player.get().getHighMeterLock()-20);
         Inventory.getInstance().getItems().remove(this);
+        Renderer.addMessage("закинулся ксанексом");
     }
     @Override
     public void equip() {

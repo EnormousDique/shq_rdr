@@ -1,5 +1,6 @@
 package ru.muwa.shq.items.drugs;
 
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
@@ -37,6 +38,7 @@ public class Lyrica extends Item {
         Player.get().setHighMeter(Player.get().getHighMeter()+30);
         Player.get().setHighMeterLock(Player.get().getHighMeterLock()+50);
         Inventory.getInstance().getItems().remove(this);
+        Renderer.addMessage("закинул лирики");
     }
     @Override
     public void equip() {
