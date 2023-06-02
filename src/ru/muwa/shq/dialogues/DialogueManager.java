@@ -107,16 +107,17 @@ public class DialogueManager {
     }
     public static void dropDialogue()
     {
-        currentDialogue.setCurrentMessage(currentDialogue.initialMessage);
-        playingDialogueOnDemand = false;
-        currentDialogue = null;
-        Engine.pause=false;
-        for(int i = 0; i< Engine.getCurrentLevel().getZones().size();i++)
-            if(Engine.getCurrentLevel().getZones().get(i) instanceof DialogueZone)
-                if(((DialogueZone) Engine.getCurrentLevel().getZones().get(i)).isActive())
-                    ((DialogueZone) Engine.getCurrentLevel().getZones().get(i)).setActive(false);
-        busy=false;
-
+        if(currentDialogue!=null && busy) {
+            currentDialogue.setCurrentMessage(currentDialogue.initialMessage);
+            playingDialogueOnDemand = false;
+            currentDialogue = null;
+            Engine.pause = false;
+            for (int i = 0; i < Engine.getCurrentLevel().getZones().size(); i++)
+                if (Engine.getCurrentLevel().getZones().get(i) instanceof DialogueZone)
+                    if (((DialogueZone) Engine.getCurrentLevel().getZones().get(i)).isActive())
+                        ((DialogueZone) Engine.getCurrentLevel().getZones().get(i)).setActive(false);
+            busy = false;
+        }
     }
     public static void playDialogueOnDemand(Dialogue d)
     {

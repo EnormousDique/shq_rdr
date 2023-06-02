@@ -22,6 +22,7 @@ public class KeyListener implements java.awt.event.KeyListener
      * SPACE BAR - 32
      * E - 69
      * I - 73
+     * J - 74
      * Q - 81
      * W - 87
      * S - 83
@@ -48,14 +49,15 @@ public class KeyListener implements java.awt.event.KeyListener
             T = 10,
             SHIFT = 11,
             V = 12,
-            U = 13;
+            U = 13,
+            J =  14;
 
     private static KeyListener instance;
 
     private KeyListener()
     {
         instance = this;
-        keys = new boolean[14];
+        keys = new boolean[15];
     }
 
     public static KeyListener getInstance()
@@ -120,6 +122,9 @@ public class KeyListener implements java.awt.event.KeyListener
             case 85: //U
                 keys[U] = true;
                 break;
+            case 74: //J
+                keys[J] = true;
+                break;
 
 
         }
@@ -165,13 +170,15 @@ public class KeyListener implements java.awt.event.KeyListener
                 keys[11] = false;
                 PlayerControls.shiftRelease();
                 break;
-            case 86: // SHIFT
+            case 86: // V
                 keys[V] = false;
                 break;
             case 85: //U
                 keys[U] = false;
                 break;
-
+            case 74: //J
+                keys[J] = false;
+                break;
         }
     }
     public boolean[] getKeys()

@@ -1,6 +1,5 @@
 package ru.muwa.shq.quests;
 
-import jdk.jshell.spi.SPIResolutionException;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.items.consumables.Water;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
@@ -13,7 +12,7 @@ import ru.muwa.shq.quests.actions.Q2T1_Action;
 import ru.muwa.shq.quests.conditions.C_HasPlayerFoundKlad;
 import ru.muwa.shq.quests.conditions.TaskCondition;
 import ru.muwa.shq.zones.CompleteTaskZone;
-import ru.muwa.shq.zones.InteractiveEnterZone;
+
 
 import java.io.IOException;
 import java.util.ArrayList;
