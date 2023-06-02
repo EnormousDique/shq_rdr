@@ -63,6 +63,7 @@ public class PlayerControls
 
     private static void j() {
         QuestHUD.opened = !QuestHUD.opened;
+        if(!QuestHUD.opened) QuestHUD.renderingQuest = null;
         keyboard.getKeys()[keyboard.J]=false;
     }
 
@@ -354,6 +355,7 @@ public class PlayerControls
             Player.get().setIsBusy(false);
         }
         QuestHUD.opened=false;
+        QuestHUD.renderingQuest = null;
         Inventory.getInstance().setIsOpened(false);
         HUD.getInstance().getContainerWindow().setVisible(false);
         for(Container c: Engine.getCurrentLevel().getContainers())c.setIsInUse(false);

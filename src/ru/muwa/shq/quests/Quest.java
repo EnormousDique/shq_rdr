@@ -10,10 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Quest {
+    String name = "";
     boolean isTaken;
     public List<Task> tasks;
 
-    public String owner;
+    public String owner="";
 
     public Quest(){
         tasks = new ArrayList<>();

@@ -15,6 +15,7 @@ import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.containers.ContainerPanel;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.controls.Grabber;
+import ru.muwa.shq.quests.QuestHUD;
 import ru.muwa.shq.zones.BuyoutZone;
 import ru.muwa.shq.zones.GameZone;
 
@@ -148,6 +149,22 @@ public class MouseButtonListener implements MouseInputListener {
                 DialogueManager.dropDialogue();
             }
 
+        }
+
+        //Проверяем по журнали ли клик.
+        // И то что нажата ЛКМ
+        //И что окно журнала открыто.
+        QuestHUD.QuestPic qp = null;
+        for(int i = 0; i < QuestHUD.pics.size(); i++){
+            if( QuestHUD.opened && QuestHUD.pics.get(i).contains(new Point(e.getX(),e.getY()))
+                    )
+                qp = QuestHUD.pics.get(i);
+        }
+        if(qp!=null)
+        {
+            //Нажали по конкретной квестовой панели и она нашлась
+            QuestHUD.renderingQuest = qp.quest;
+            //Просим рендерить квест из панельки, по которой нажали
         }
 
 

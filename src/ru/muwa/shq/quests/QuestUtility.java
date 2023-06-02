@@ -31,7 +31,7 @@ public class QuestUtility {
     {
         maintainPlayerQuests();
 
-        if(quest1.tasks.get(quest1.tasks.size()-1).isCompleted && !Player.get().quests.contains(quest2)) startQuest2();
+  //      if(quest1.tasks.get(quest1.tasks.size()-1).isCompleted && !Player.get().quests.contains(quest2)) startQuest2();
 
 
     }

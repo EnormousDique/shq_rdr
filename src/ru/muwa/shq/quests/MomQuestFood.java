@@ -11,6 +11,8 @@ public class MomQuestFood extends Quest{
     public MomQuestFood()
     {
         isTaken = true;
+        owner="mom";
+        name="купить продукты";
         tasks = new ArrayList<>();
         tasks.add(new Task("Купить продукты", new TaskCondition() {
             @Override

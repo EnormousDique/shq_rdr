@@ -21,6 +21,7 @@ public class Player extends Creature
     public int money = 1000;
 
     public ArrayList<Quest> quests = new ArrayList<>();
+    public ArrayList<Quest> momQuests = new ArrayList<>();
     public enum Direction{UP,DOWN,LEFT,RIGHT}
     public Direction direction;
     private Rectangle useZone;

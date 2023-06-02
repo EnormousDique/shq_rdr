@@ -62,6 +62,7 @@ import ru.muwa.shq.objects.obstacles.crates.Crate0;
 import ru.muwa.shq.objects.street.Car;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.quests.MomQuestFood;
 import ru.muwa.shq.quests.QuestUtility;
 import ru.muwa.shq.quests.actions.QuestAction;
 import ru.muwa.shq.quests.conditions.C_HasPlayerFoundKlad;
@@ -96,6 +97,7 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new IceOlator());
         Inventory.getInstance().addItem(new Kortique());
         for(int i = 0 ; i<4;i++) Inventory.getInstance().addItem(new Flour());
+        Player.get().momQuests.add(new MomQuestFood());
 
         System.out.println("test 2");
 
