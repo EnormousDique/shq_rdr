@@ -100,7 +100,7 @@ public class QuestUtility {
         }
         quest1.addTask("Дойти до дома", ctzQ1T1);
         quest1.addTask("Поговорить с мамой", ctzQ1T2);
-        Player.get().quests.add(quest1);
+      //  Player.get().quests.add(quest1);
 
     }
     // КОНЕЦ КВЕСТА 1
@@ -129,7 +129,7 @@ public class QuestUtility {
             }
         });
 
-        Player.get().quests.add(quest2);
+      //  Player.get().quests.add(quest2);
 
     }
     // КОНЕЦ КВЕСТА 2
@@ -154,7 +154,7 @@ public class QuestUtility {
             }
         });
 
-        Player.get().quests.add(quest3);
+      //  Player.get().quests.add(quest3);
     }
     // КОНЕЦ КВЕСТА 3
     //***************************************************************************************************************
@@ -188,7 +188,7 @@ public class QuestUtility {
         }
         quest4.addTask("иди нахуй",ctzQ4T2);
 
-       Player.get().quests.add(quest4);
+     //  Player.get().quests.add(quest4);
     }
 
     // КОНЕЦ КВЕСТА 4
@@ -218,6 +218,6 @@ public class QuestUtility {
             }
         });
 
-        Player.get().quests.add(quest4);
+       // Player.get().quests.add(quest4);
     }
 }

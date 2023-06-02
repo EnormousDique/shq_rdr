@@ -20,8 +20,14 @@ public class Player extends Creature
     public static BufferedImage img;
     public int money = 1000;
 
-    public ArrayList<Quest> quests = new ArrayList<>();
+    //public ArrayList<Quest> quests = new ArrayList<>();
     public ArrayList<Quest> momQuests = new ArrayList<>();
+    public ArrayList<Quest> butcherQuests = new ArrayList<>();
+    public ArrayList<Quest> hackerQuests = new ArrayList<>();
+    public ArrayList<Quest> copQuests = new ArrayList<>();
+    public ArrayList<Quest> drugstoreQuests = new ArrayList<>();
+
+
     public enum Direction{UP,DOWN,LEFT,RIGHT}
     public Direction direction;
     private Rectangle useZone;

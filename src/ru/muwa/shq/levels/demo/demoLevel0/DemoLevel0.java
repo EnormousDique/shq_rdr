@@ -403,7 +403,7 @@ public class DemoLevel0 extends Level
 
             zones.add(new EnterZone(1800 ,3256, 100,70,WhiteBlueTallBuildingFloor1.getInstance(),522,809,false));
 
-        QuestUtility.startQuest1();
+       // QuestUtility.startQuest1();
         Spawner.updateTimers();
         System.out.println("test 4");
 

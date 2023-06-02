@@ -29,26 +29,14 @@ public class QuestHUD {
 
             if(renderingQuest==null) {
                 //Отрисовывание главной страницы
-
-                //Рисуем Шапку
                 Renderer.g.setColor(Color.BLACK);
                 Renderer.g.drawString("Знакомства : ", x + 50, y + 50);
 
-                if (Player.get().momQuests.size() > 0) {
-                    Renderer.g.fillRect(x + 50, y + 100, 50, 50);
-                    Renderer.g.setColor(Color.WHITE);
-                    Renderer.g.drawString("Мама : ", x + 50, y + 125);
-
-                    for (int i = 0; i < Player.get().momQuests.size(); i++) {
-                        QuestPic pic = new QuestPic(x + 50, y + 125 + (i + 1) * 30, Player.get().momQuests.get(i));
-                        Renderer.g.setColor(Color.MAGENTA);
-                        Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
-                        Renderer.g.setColor(Color.GREEN);
-                        Renderer.g.drawString(pic.quest.name, pic.x, pic.y + 10);
-                        pics.add(pic);
-                    }
-
-                }
+                drawMomsQuests();
+                drawButchersQuests();
+                drawHackerQuest();
+                drawDrugstoreQuest();
+                drawCopsQuests();
             }else {
                 //Если рендеринг квест  не  нуль, то мы отрисовываем не общее окно, а этот конкретный квест.
                 Renderer.g.setColor(Color.BLACK);
@@ -67,6 +55,116 @@ public class QuestHUD {
 
             Renderer.g.setColor(oldColor);
     }
+
+    private static void drawCopsQuests() {
+
+    }
+
+    private static void drawDrugstoreQuest() {
+        Renderer.g.setColor(Color.BLACK);
+        if (Player.get().drugstoreQuests.size() > 0) {
+
+            Renderer.g.fillRect(x + 350, y + 100, 50, 50);
+            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.drawString("Мясник : ", x + 350, y + 125);
+
+            for (int i = 0; i < Player.get().drugstoreQuests.size(); i++) {
+                QuestPic pic = new QuestPic(x + 350, y + 125 + (i + 1) * 30, Player.get().drugstoreQuests.get(i));
+                Color bg = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.GREEN:Color.MAGENTA;
+                Renderer.g.setColor(bg);
+                Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
+                Color font = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.BLACK:Color.GREEN;
+                Renderer.g.setColor(font);
+                String done = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?"(v)":"";
+                Renderer.g.drawString(pic.quest.name+done, pic.x, pic.y + 10);
+                pics.add(pic);
+            }
+
+        }else
+        {
+            Renderer.g.fillRect(x + 350, y + 100, 50, 50);
+            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.drawString("????? : ", x + 350, y + 125);
+        }
+    }
+
+    private static void drawHackerQuest() {
+        Renderer.g.setColor(Color.BLACK);
+        if (Player.get().hackerQuests.size() > 0) {
+
+            Renderer.g.fillRect(x + 250, y + 100, 50, 50);
+            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.drawString("Мясник : ", x + 250, y + 125);
+
+            for (int i = 0; i < Player.get().hackerQuests.size(); i++) {
+                QuestPic pic = new QuestPic(x + 250, y + 125 + (i + 1) * 30, Player.get().hackerQuests.get(i));
+                Color bg = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.GREEN:Color.MAGENTA;
+                Renderer.g.setColor(bg);
+                Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
+                Color font = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.BLACK:Color.GREEN;
+                Renderer.g.setColor(font);
+                String done = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?"(v)":"";
+                Renderer.g.drawString(pic.quest.name+done, pic.x, pic.y + 10);
+                pics.add(pic);
+            }
+
+        }else
+        {
+            Renderer.g.fillRect(x + 250, y + 100, 50, 50);
+            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.drawString("????? : ", x + 250, y + 125);
+        }
+    }
+
+    private static void drawButchersQuests() {
+        Renderer.g.setColor(Color.BLACK);
+        if (Player.get().butcherQuests.size() > 0) {
+            Renderer.g.setColor(Color.BLACK);
+            Renderer.g.fillRect(x + 150, y + 100, 50, 50);
+            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.drawString("Мясник : ", x + 150, y + 125);
+
+            for (int i = 0; i < Player.get().butcherQuests.size(); i++) {
+                QuestPic pic = new QuestPic(x + 150, y + 125 + (i + 1) * 30, Player.get().butcherQuests.get(i));
+                Color bg = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.GREEN:Color.MAGENTA;
+                Renderer.g.setColor(bg);
+                Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
+                Color font = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.BLACK:Color.GREEN;
+                Renderer.g.setColor(font);
+                String done = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?"(v)":"";
+                Renderer.g.drawString(pic.quest.name+done, pic.x, pic.y + 10);
+                pics.add(pic);
+            }
+
+        }else
+        {
+            Renderer.g.fillRect(x + 150, y + 100, 50, 50);
+            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.drawString("????? : ", x + 150, y + 125);
+        }
+    }
+
+    private static void drawMomsQuests() {
+        if (Player.get().momQuests.size() > 0) {
+            Renderer.g.fillRect(x + 50, y + 100, 50, 50);
+            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.drawString("Мама : ", x + 50, y + 125);
+
+            for (int i = 0; i < Player.get().momQuests.size(); i++) {
+                QuestPic pic = new QuestPic(x + 50, y + 125 + (i + 1) * 30, Player.get().momQuests.get(i));
+                Color bg = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.GREEN:Color.MAGENTA;
+                Renderer.g.setColor(bg);
+                Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
+                Color font = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.BLACK:Color.GREEN;
+                Renderer.g.setColor(font);
+                String done = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?"(v)":"";
+                Renderer.g.drawString(pic.quest.name+done, pic.x, pic.y + 10);
+                pics.add(pic);
+            }
+
+        }
+    }
+
     public static class QuestPic extends Rectangle
     {
         public Quest quest;

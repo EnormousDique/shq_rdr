@@ -42,10 +42,10 @@ public class Q5T0_Conversation extends Dialogue {
                                                             public void performAction() {
                                                                 System.out.println("проверочка-с");
                                                                 boolean isQuest5AlreadyTaken =  false;
-                                                                for(Quest q : Player.get().quests)
-                                                                    if(q.tasks.get(0).name.contains("пацанёнку"))
-                                                                        isQuest5AlreadyTaken  = true;
-                                                                if(!isQuest5AlreadyTaken) QuestUtility.startQuest5();
+                                                            //    for(Quest q : Player.get().quests)
+                                                       //             if(q.tasks.get(0).name.contains("пацанёнку"))
+                                                      //                  isQuest5AlreadyTaken  = true;
+                                                  //              if(!isQuest5AlreadyTaken) QuestUtility.startQuest5();
                                                             }
                                                         }))))))));
 
