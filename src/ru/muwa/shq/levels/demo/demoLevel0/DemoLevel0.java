@@ -63,6 +63,7 @@ import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.VegetablesVendor;
 import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
+import ru.muwa.shq.minigames.Domofon;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
 import ru.muwa.shq.objects.buildings.NewBuildings.LoongGrayBuildingFront;
 import ru.muwa.shq.objects.buildings.NewBuildings.LoongGrayBuildingSide;
@@ -402,7 +403,7 @@ public class DemoLevel0 extends Level
                 }));
 
             zones.add(new EnterZone(1800 ,3256, 100,70,WhiteBlueTallBuildingFloor1.getInstance(),522,809,false));
-
+            zones.add(new MiniGameZone(500,500,100,100,new Domofon("111",HubHataIgoryana.getInstance(),300,300)));
        // QuestUtility.startQuest1();
         Spawner.updateTimers();
         System.out.println("test 4");

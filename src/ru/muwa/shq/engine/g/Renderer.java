@@ -5,6 +5,7 @@ import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
+import ru.muwa.shq.engine.g.hud.MiniGameHUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
@@ -243,6 +244,7 @@ public class Renderer implements Runnable {
             }
             if(QuestHUD.opened) QuestHUD.drawJournal();
             InventoryManager.drawContainerWindow();
+            MiniGameHUD.work();
         }  catch (Exception e) {
             System.out.println("тетовому инвентарю не оч");
             System.out.println(e.getMessage());

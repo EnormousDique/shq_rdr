@@ -6,11 +6,13 @@ import ru.muwa.shq.engine.g.Picktogram;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
+import ru.muwa.shq.engine.g.hud.MiniGameHUD;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.items.guns.Bullet;
+import ru.muwa.shq.minigames.Domofon;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.containers.ContainerPanel;
 import ru.muwa.shq.player.Inventory;
@@ -58,7 +60,10 @@ public class MouseButtonListener implements MouseInputListener {
                 break;
         }
         Picktogram pic = null;
-         //Проверяем по инвентарю ли клик.
+        //=======================================================================================================
+
+        //=======================================================================================================
+        //Проверяем по инвентарю ли клик.
                  // И то что нажата ЛКМ
         //И что окно инвентаря открыто.
         for(int i = 0 ; i < InventoryManager.itemWindowPicks.size(); i++){
@@ -98,6 +103,9 @@ public class MouseButtonListener implements MouseInputListener {
                 }
             }
         }
+        //=======================================================================================================
+
+        //=======================================================================================================
         //Проверяем по окну ли контейнера клик.
         // И то что нажата ЛКМ
         //И что окно контейнер открыт.
@@ -117,6 +125,9 @@ public class MouseButtonListener implements MouseInputListener {
             System.out.println("click po ikonke containera");
             pic.item.get();
         }
+        //=======================================================================================================
+
+        //=======================================================================================================
         //Проверяем по окну ли еквипа клик.
         // И то что нажата ЛКМ
         //И что есть еквипнутая вещь.
@@ -125,7 +136,9 @@ public class MouseButtonListener implements MouseInputListener {
         {
             InventoryManager.equipPic.item.pick();
         }
+        //=======================================================================================================
 
+        //=======================================================================================================
         //Проверяем по диалогу ли клик.
         // И то что нажата ЛКМ
         //И что окно диалога открыто.
@@ -150,7 +163,9 @@ public class MouseButtonListener implements MouseInputListener {
             }
 
         }
+        //=======================================================================================================
 
+        //=======================================================================================================
         //Проверяем по журнали ли клик.
         // И то что нажата ЛКМ
         //И что окно журнала открыто.
@@ -166,7 +181,39 @@ public class MouseButtonListener implements MouseInputListener {
             QuestHUD.renderingQuest = qp.quest;
             //Просим рендерить квест из панельки, по которой нажали
         }
+        //=======================================================================================================
 
+        //=======================================================================================================
+        //Логика домофона
+        // проверяем что сейчас играем в домофон
+        //И какая кнопка была нажата
+
+        if(MiniGameHUD.currentMiniGame instanceof Domofon) {
+            System.out.println("Мы находимся в мини игре домофон");
+
+            for (int i = 0; i < ((Domofon) MiniGameHUD.currentMiniGame).buttons.size(); i++) {
+                Domofon.DomofonButton b = ((Domofon) MiniGameHUD.currentMiniGame).buttons.get(i);
+                System.out.println("ккодринаты кнопок. х : " +  b.x + " y : " + b.y);
+
+                if (b.contains(new Point(e.getX()-MiniGameHUD.x, e.getY()-MiniGameHUD.y))) {
+
+                    Domofon game = (Domofon) MiniGameHUD.currentMiniGame;
+
+                    if(b.text.equals("Х")){ MiniGameHUD.currentMiniGame = null;Engine.pause=false;game.input="";}
+                    else if(b.text.equals("В")){ Renderer.addMessage("Никто не отвечает....");game.input="";}
+                    else {
+                        game.input+=b.text;
+                        if(game.input.equals(game.key))
+                        {
+                            MiniGameHUD.currentMiniGame=null;
+                            Engine.switchLevel(game.level, game.whereX, game.whereY);
+                            Engine.pause = false;
+                            game.input="";
+                        }
+                    }
+                }
+            }
+        }
 
 
 

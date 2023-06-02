@@ -1,14 +1,13 @@
 package ru.muwa.shq.minigames.padiklock;
 
-import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.hud.HUD;
-import ru.muwa.shq.minigames.MiniGame;
+import ru.muwa.shq.minigames.MiniGameOld;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PadikLock implements MiniGame {
+public class PadikLock implements MiniGameOld {
     private boolean victory,isForceQuit;
     public String password;
 

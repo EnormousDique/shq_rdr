@@ -7,6 +7,7 @@ import ru.muwa.shq.engine.animations.*;
 import ru.muwa.shq.engine.combat.CombatUtility;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.hud.HUD;
+import ru.muwa.shq.engine.g.hud.MiniGameHUD;
 import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.p.collisions.CollisionsChecker;
@@ -299,6 +300,12 @@ public class PlayerControls
 
         for (GameZone z : Engine.getCurrentLevel().getZones()){
 
+            if(z instanceof MiniGameZone && Player.get().getSolidBox().intersects(z))
+            {
+                MiniGameZone mz = (MiniGameZone) z;
+                MiniGameHUD.currentMiniGame = mz.miniGame;
+            }
+
 
             if (z.contains(new Point(Player.get().getX(), Player.get().getY()))
                     &&
@@ -360,6 +367,8 @@ public class PlayerControls
         HUD.getInstance().getContainerWindow().setVisible(false);
         for(Container c: Engine.getCurrentLevel().getContainers())c.setIsInUse(false);
         HUD.getInstance().getDialogueWindow().setVisible(false);
+
+
 
         if(Engine.pause)
         {

@@ -3,6 +3,7 @@ package ru.muwa.shq.engine.listeners;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.hud.HUD;
+import ru.muwa.shq.engine.g.hud.MiniGameHUD;
 import ru.muwa.shq.player.controls.PlayerControls;
 
 import java.awt.event.KeyEvent;
@@ -101,6 +102,10 @@ public class KeyListener implements java.awt.event.KeyListener
                 break;
             case 81: // Q
                 DialogueManager.dropDialogue();//Прям здесь нахуй вызовем
+                if(MiniGameHUD.currentMiniGame!=null){
+                    MiniGameHUD.currentMiniGame = null;
+                    Engine.pause = false;
+                }
                 keys[Q] = true;
                 break;
             case 10: // ENTER
