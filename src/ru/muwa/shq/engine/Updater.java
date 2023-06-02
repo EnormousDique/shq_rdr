@@ -79,6 +79,10 @@ public class Updater implements Runnable {
         //Спавнер
         Spawner.regularSpawn();
         Spawner.inDoorsSpawn();
+
+        Spawner.carSpawn();//спавнер тачки
+
+
         Kladmen.mudak();  /** Кладмен мудак */
         //Блок обработки игрока.
         //QuestUtility.maintainPlayerQuests();
@@ -92,6 +96,8 @@ public class Updater implements Runnable {
         SolidBoxUpdater.updateSolidBox(player);
         //Вызов службы обработки боя
         CombatUtility.work();
+        //служба трафика
+        TraficUtility.work();
 
         //Вызов времени
         TimeMachine.work();

@@ -25,7 +25,7 @@ public class Pacanynok extends Item {
         super(101, 0, 3000,img );
         description="цветок жизни";
         isAbleToEquip = true;
-        alwaysEquipped = true;
+        alwaysEquipped = true;// снять нельзя продать?
     }
 
     @Override

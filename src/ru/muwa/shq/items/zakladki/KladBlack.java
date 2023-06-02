@@ -1,6 +1,7 @@
 package ru.muwa.shq.items.zakladki;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.items.drugs.Hash;
@@ -33,17 +34,17 @@ public class KladBlack extends Item {
     public KladBlack() {
         super(ID, PRICE, WEIGHT, img);
         description = "Закладка,Изолента Черная.Магнит есть.. ММмм). ";
+
     }
     @Override
     public void use() {
 
         double a = Math.random()*4;
-
+        Item s = getRandomLoot().get((int) a);
         Inventory.getInstance().addItem(getRandomLoot().get((int) a));
-
-
-
         Inventory.getInstance().getItems().remove(this);
+      //  Renderer.addMessage("Распаковал клад" +"" + name );
+        Renderer.addMessage("И под изолентой" + s.toString().split("\\.")[5].split("@")[0]);
     }
     @Override
     public void equip() {

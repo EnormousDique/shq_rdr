@@ -28,6 +28,6 @@ public class SexStairs extends GameObject {
        // System.out.println("отработал конструктор супер классса лестница ");
         this.isSolid = false;
       //  System.out.println("отработал конструктор непосредствеННО классса лестница ");
-        System.out.println(getIsSolid());
+
     }
 }

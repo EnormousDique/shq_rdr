@@ -1,6 +1,7 @@
 package ru.muwa.shq.items.consumables;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.objects.containers.Container;
@@ -29,12 +30,22 @@ public class LeBottle extends Item {
     }
     public LeBottle() {
         super(ID, PRICE, WEIGHT, img);
+        stackable = true;
         description = "Продырявь меня )";
     }
     @Override
     public void use() {
+        if(Renderer.getMessages().contains("С бутылкой без гашла")){
+            Renderer.addMessage("купи жику и гашла мудак");
+        }
 
-        Inventory.getInstance().getItems().remove(this);
+      else  { Renderer.addMessage("С бутылкой без гашла");
+             Renderer.addMessage("и сижек не дунешь");}
+
+
+
+
+
     }
     @Override
     public void equip() {

@@ -39,6 +39,10 @@ public class Renderer implements Runnable {
     public GameScreen frame; // Игровой экран
     private boolean isSleeping =false;
 
+    public static ArrayList<String> getMessages() {
+        return messages;
+    }
+
     private static ArrayList<String> messages = new ArrayList<>();
     private static long lastTimeMessageUpdated;
     public static void addMessage(String s){
