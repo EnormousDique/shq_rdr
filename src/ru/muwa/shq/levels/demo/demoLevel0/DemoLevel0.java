@@ -71,7 +71,6 @@ import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
 import ru.muwa.shq.objects.containers.TrashCan;
 import ru.muwa.shq.objects.obstacles.crates.Crate0;
-import ru.muwa.shq.objects.street.Car;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.MomQuestFood;

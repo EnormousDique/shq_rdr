@@ -1,6 +1,10 @@
 package ru.muwa.shq.quests;
 
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.consumables.Gurken;
+import ru.muwa.shq.items.zakladki.KladBlue;
+import ru.muwa.shq.items.zakladki.KladRed;
+import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.quests.conditions.TaskCondition;
@@ -17,12 +21,16 @@ public class MomQuestFood extends Quest{
         tasks.add(new Task("Купить продукты", new TaskCondition() {
             @Override
             public boolean checkCondition() {
-                boolean  b =false;
-                if(Inventory.getInstance().inventoryContains(new Gurken()))
+
+                for(int i = 0; i < Inventory.getInstance().getItems().size(); i++)
                 {
-                    b = true;
+                    Item item = Inventory.getInstance().getItems().get(i);
+                    if(item instanceof Gurken)
+                    {
+                        return true;
+                    }
                 }
-                return b;
+                return false;
             }
         }));
         tasks.add(new Task("Принести продукты домой", new TaskCondition() {

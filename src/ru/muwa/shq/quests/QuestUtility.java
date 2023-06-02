@@ -29,7 +29,7 @@ public class QuestUtility {
      */
     public static void work()
     {
-        maintainPlayerQuests();
+        maintainPlayerQuests(Player.get().momQuests);
 
   //      if(quest1.tasks.get(quest1.tasks.size()-1).isCompleted && !Player.get().quests.contains(quest2)) startQuest2();
 
@@ -39,34 +39,34 @@ public class QuestUtility {
     /**
      * Метод обработки квестов. Проверяет дошел ли игрок до цели и регулирует статус соотв. задания.
      */
-    public static void maintainPlayerQuests(){
-        for(int i=0; i< Player.get().quests.size(); i++)
+    public static void maintainPlayerQuests(ArrayList<Quest>quests){
+        for(int i=0; i< quests.size(); i++)
         {
-            for(int j = 0; j< Player.get().quests.get(i).tasks.size(); j++)
+            for(int j = 0; j< quests.get(i).tasks.size(); j++)
             {
                 //Блок обработки заданий без условий (задания типа  "дойди до маркера" )
-                if(!Player.get().quests.get(i).tasks.get(j).hasCondition &&
-                        !Player.get().quests.get(i).tasks.get(j).isCompleted &&
-                        Engine.getCurrentLevel().equals(Player.get().quests.get(i).tasks.get(j).completeTaskZone.level))
+                if(!quests.get(i).tasks.get(j).hasCondition &&
+                        !quests.get(i).tasks.get(j).isCompleted &&
+                        Engine.getCurrentLevel().equals(quests.get(i).tasks.get(j).completeTaskZone.level))
                 {
-                    if(!Engine.getCurrentLevel().getZones().contains(Player.get().quests.get(i).tasks.get(j).completeTaskZone))
+                    if(!Engine.getCurrentLevel().getZones().contains(quests.get(i).tasks.get(j).completeTaskZone))
                     {
-                        Engine.getCurrentLevel().getZones().add(Player.get().quests.get(i).tasks.get(j).completeTaskZone);
+                        Engine.getCurrentLevel().getZones().add(quests.get(i).tasks.get(j).completeTaskZone);
                     }
-                    if(Player.get().getSolidBox().intersects(Player.get().quests.get(i).tasks.get(j).completeTaskZone))
+                    if(Player.get().getSolidBox().intersects(quests.get(i).tasks.get(j).completeTaskZone))
                     {
-                        Player.get().quests.get(i).tasks.get(j).isCompleted = true;
+                        quests.get(i).tasks.get(j).isCompleted = true;
                         //Если по завершению задачи должно происодить заскриптованное событие, вызываем его.
-                        if(Player.get().quests.get(i).tasks.get(j).isTriggeringAction)
-                        {Player.get().quests.get(i).tasks.get(j).action.performAction();}
+                        if(quests.get(i).tasks.get(j).isTriggeringAction)
+                        {quests.get(i).tasks.get(j).action.performAction();}
                     }
                 }
-                if (Player.get().quests.get(i).tasks.get(j).hasCondition) // Блок обработки заданий с условиями
+                if (quests.get(i).tasks.get(j).hasCondition) // Блок обработки заданий с условиями
                 {
-                    if(Player.get().quests.get(i).tasks.get(j).condition.checkCondition())
+                    if(quests.get(i).tasks.get(j).condition.checkCondition())
                     {
                         // Если условие задания выполнено
-                        Player.get().quests.get(i).tasks.get(j).isCompleted = true;
+                        quests.get(i).tasks.get(j).isCompleted = true;
 
                     }
                 }

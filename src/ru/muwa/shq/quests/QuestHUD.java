@@ -15,7 +15,7 @@ public class QuestHUD {
     static int y = (int)(SCREEN_HEIGHT - SCREEN_HEIGHT * 0.75);
     static int width = SCREEN_WIDTH / 2;
     static int height = SCREEN_HEIGHT / 2;
-    public static ArrayList<QuestPic> pics;
+    public static ArrayList<QuestPic> pics = new ArrayList<>();
     public static Quest renderingQuest;
 
     public static void drawJournal()
