@@ -74,9 +74,7 @@ import ru.muwa.shq.objects.containers.TrashCan;
 import ru.muwa.shq.objects.obstacles.crates.Crate0;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
-import ru.muwa.shq.quests.ButcherQuestPacan;
-import ru.muwa.shq.quests.MomQuestFood;
-import ru.muwa.shq.quests.QuestUtility;
+import ru.muwa.shq.quests.*;
 import ru.muwa.shq.quests.actions.QuestAction;
 import ru.muwa.shq.quests.conditions.C_HasPlayerFoundKlad;
 import ru.muwa.shq.zones.DialogueZone;
@@ -112,6 +110,9 @@ public class DemoLevel0 extends Level
         for(int i = 0 ; i<4;i++) Inventory.getInstance().addItem(new Flour());
         Player.get().momQuests.add(new MomQuestFood());
         Player.get().butcherQuests.add(new ButcherQuestPacan());
+        Player.get().hackerQuests.add(new HackerQuestReboot());
+        Player.get().hackerQuests.add(new HackerQuestATM());
+        Player.get().copQuests.add(new CopQuestOrientalGuest());
 
         System.out.println("test 2");
 
@@ -186,7 +187,6 @@ public class DemoLevel0 extends Level
                 responds = new ArrayList<>();
                 responds.add(new Respond("пошел нахуй"));
                 m.setResponds(responds);
-
 
                 this.currentMessage = this.initialMessage;
             }
