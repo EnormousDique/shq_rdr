@@ -33,6 +33,7 @@ public class BadGuy0 extends NPC {
     public BadGuy0(int x, int y)
     {
         super(x,y,img);
+        isEnemy=true;
         velocity = 2;
         speed = 5;
         direction = RIGHT;

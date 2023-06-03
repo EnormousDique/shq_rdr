@@ -29,6 +29,7 @@ public class VelvetTank extends NPC {
 
     public VelvetTank(int x, int y) {
         super(x, y, img);
+        isEnemy=   true;
         velocity = 1;
         speed = 5;
         direction = RIGHT;

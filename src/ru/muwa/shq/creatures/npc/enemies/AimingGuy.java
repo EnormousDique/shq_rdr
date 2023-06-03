@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-public class AimingGuy extends NPC {
+public class AimingGuy extends NPC{
     private static BufferedImage img;
 
     private long lastTimeShot;
@@ -40,6 +40,7 @@ public class AimingGuy extends NPC {
      */
     public AimingGuy(int x, int y) {
         super(x, y, img);
+        isEnemy=   true;
         setRayCaster(new RayCaster(x,y,1000));
         speed = 4;
         hp=20;
@@ -59,6 +60,7 @@ public class AimingGuy extends NPC {
         this.name = name;
         setRayCaster(new RayCaster(x,y,600));
         this.speed = 4;
+        isEnemy=true;
         try
         {
             corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\BadGuyCorpse.png"));

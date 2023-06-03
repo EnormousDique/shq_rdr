@@ -113,11 +113,10 @@ public class DemoLevel0 extends Level
         Player.get().hackerQuests.add(new HackerQuestReboot());
         Player.get().hackerQuests.add(new HackerQuestATM());
         Player.get().copQuests.add(new CopQuestOrientalGuest());
+        Player.get().copQuests.add(new CopQuestUnhappyFamilies());
 
         System.out.println("test 2");
-
-
-
+        
         /**ТЕСТОВЫЙ ДИАЛОГ  ПО НОВОЙ СИСТЕМЕ **/
 
         //  initMsg -  > respond 1 -->   msg2 -> respond -> x

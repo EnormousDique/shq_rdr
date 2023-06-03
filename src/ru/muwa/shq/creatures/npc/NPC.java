@@ -16,6 +16,8 @@ public abstract class NPC extends Creature
 
     protected boolean playerInSight;
 
+    public boolean isEnemy;
+
     protected int pX, pY;
 
     public void setpX(int pX) {

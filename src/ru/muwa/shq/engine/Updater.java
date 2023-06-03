@@ -148,6 +148,7 @@ public class Updater implements Runnable {
         //Блок обработки НПЦ из списка текущих.
 
 
+           // AI.work();//Новый метод ИИ.
             for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
                 NPC c = Engine.getCurrentLevel().getNPC().get(i);
                 //Передаем нпц ии, чтобы тот решил что ему делать.
@@ -162,8 +163,8 @@ public class Updater implements Runnable {
                 //CollisionsChecker.getInstance().checkCollisionsNPC(c, new LinkedList<>( Engine.getCurrentLevel().getNPC().stream().map(npc->(GameObject)npc).collect(Collectors.toList())));
                 // Обновляем стены рейкастера и сам рейкастер.
                 // TODO: Проверить насколько необходимо обновление каждую итерацию и скорость при большом кол-ве нпц.
-                c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
-                RayCasterUpdater.updateRayCaster(c.getRayCaster(), c);
+                //  c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
+                //RayCasterUpdater.updateRayCaster(c.getRayCaster(), c);
             }
 
 
