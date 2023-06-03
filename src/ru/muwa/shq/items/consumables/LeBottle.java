@@ -42,11 +42,13 @@ public class LeBottle extends Item {
       else  { Renderer.addMessage("С бутылкой без гашла");
              Renderer.addMessage("и сижек не дунешь");}
 
-
-
-
-
     }
+
+    @Override
+    public LeBottle copy() {
+        return new LeBottle();
+    }
+
     @Override
     public void equip() {
     }

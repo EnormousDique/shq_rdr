@@ -164,7 +164,13 @@ public class Renderer implements Runnable {
             delta += (currTime - lastTime) / drawInterval;
             lastTime = currTime;
             if (delta >= 1) {
-                if(!isSleeping) render();
+                if(!isSleeping) {
+                    try {
+                        render();
+                    } catch (Exception e) {
+                        System.out.println("С  рендерером чет не то, надеюсь отрисовка идет дальше");
+                    }
+                }
                 delta--;
             }
         }
@@ -181,7 +187,7 @@ public class Renderer implements Runnable {
      * Координаты отрисовки соответствуют координатам отнисительно экрана.
      * Координаты объета относительно экрана получаются в результате учета координат камеры.
      */
-    public void render() {
+    public void render() throws Exception {
         // ======= инициализация
         int camX = Camera.getInstance().getX(), camY = Camera.getInstance().getY();
         BufferStrategy bs = canvas.getBufferStrategy();
@@ -371,15 +377,23 @@ public class Renderer implements Runnable {
         g.setColor(Color.white);
         g.drawString(TimeMachine.getStringTime(),100,200);
         g.setColor(new Color(250,0,250,250));
-        //отрисовка хп
-        g.drawString("хп:" ,100,230);
-        g.drawString(Player.get().getHp()+"" ,100,260);
-        g.drawString("вода:" ,100,290);
-        g.drawString(Player.get().getThirst()+"" ,100,320);
-        g.drawString("психометр" ,100,350);
-        g.drawString(Player.get().getHighMeter()+"",100,380);
-        g.drawString("блок психометра:",100,400);
-        g.drawString(Player.get().getHighMeterLock()+"",100,420);
+        //отрисовка полосок
+        String hp = (Player.get().getHp() +"").toString().substring(0,4);
+        g.drawString("хп : "+hp ,10,15);
+        g.drawLine(10,30,10+(int)Player.get().getHp(),30);
+        g.drawString("Вода в организме :" ,140,15);
+       // g.drawString(Player.get().getThirst()+"" ,100,320);
+        g.drawLine(140,30,140+(int)Player.get().getThirst(),30);
+        g.drawString("психометр :" ,270,15);
+        g.drawLine(270,30,270+(int)Player.get().getHighMeter(),30);
+        g.setColor(Color.green);
+        g.drawLine(270,50,270+(int)Player.get().getHighMeterLock(),50);
+        g.setColor(new Color(250,0,250,250));
+        g.drawString("запас сил :",400,15);
+        g.drawLine(400,30, (int) (400+Player.get().getStamina()),30);
+        g.drawString("$$$ : "+Player.get().money,10,120);
+        g.drawString("Сытость :",530,15);
+        g.drawString("Бодрость  :",660,15);
 
 
 
