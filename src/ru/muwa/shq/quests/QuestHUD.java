@@ -94,7 +94,7 @@ public class QuestHUD {
 
             Renderer.g.fillRect(x + 250, y + 100, 50, 50);
             Renderer.g.setColor(Color.WHITE);
-            Renderer.g.drawString("Мясник : ", x + 250, y + 125);
+            Renderer.g.drawString("ХаКеР : ", x + 250, y + 125);
 
             for (int i = 0; i < Player.get().hackerQuests.size(); i++) {
                 QuestPic pic = new QuestPic(x + 250, y + 125 + (i + 1) * 30, Player.get().hackerQuests.get(i));

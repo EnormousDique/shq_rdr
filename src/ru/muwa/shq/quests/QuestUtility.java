@@ -30,6 +30,7 @@ public class QuestUtility {
     public static void work()
     {
         maintainPlayerQuests(Player.get().momQuests);
+        maintainPlayerQuests(Player.get().hackerQuests);
 
   //      if(quest1.tasks.get(quest1.tasks.size()-1).isCompleted && !Player.get().quests.contains(quest2)) startQuest2();
 

@@ -169,6 +169,7 @@ public class Renderer implements Runnable {
                         render();
                     } catch (Exception e) {
                         System.out.println("С  рендерером чет не то, надеюсь отрисовка идет дальше");
+                        System.out.println(e.getMessage());
                     }
                 }
                 delta--;

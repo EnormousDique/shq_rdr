@@ -2,12 +2,11 @@ package ru.muwa.shq.levels.demo.demoLevel0;
 import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.dialogues.demo.Conversation0;
-import ru.muwa.shq.dialogues.demo.Q2T1_Conversation;
+import ru.muwa.shq.dialogues.demo.HackerCumputerDialog;
 import ru.muwa.shq.dialogues.demo.Q3_PoliceConversation;
 import ru.muwa.shq.economics.trading.Buyout;
 import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.animations.Animator;
-import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
 import ru.muwa.shq.engine.animations.cutscenes.Q3_PoliceCutscene;
 
 import ru.muwa.shq.engine.g.Renderer;
@@ -21,10 +20,9 @@ import ru.muwa.shq.items.drugs.Flour;
 import ru.muwa.shq.items.drugs.IceOlator;
 import ru.muwa.shq.items.drugs.Lyrica;
 import ru.muwa.shq.items.guns.Makarov;
-import ru.muwa.shq.items.guns.Obrez;
 import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
 import ru.muwa.shq.items.knifes.Kortique;
-import ru.muwa.shq.items.zakladki.KladBlack;
+import ru.muwa.shq.items.quest.Processor;
 import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance1.L1B1P1F1;
@@ -45,8 +43,8 @@ import ru.muwa.shq.levels.demo.demoLevel0.buildings.building4.entrance3.L1B4P3F1
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building4.entrance4.L1B4P4F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.Entrance1.L1B5P10F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.Entrance1.L1B5P1F1;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance11.L1B5P11F1;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance2.L1B5P2F1;
+
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance2.L1B5P22F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance3.L1B5P3F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance4.L1B5P4F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance5.L1B5P5F1;
@@ -62,7 +60,6 @@ import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.VegetablesVendor;
 import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
-import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 import ru.muwa.shq.minigames.Domofon;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
 import ru.muwa.shq.objects.buildings.NewBuildings.LoongGrayBuildingFront;
@@ -70,15 +67,13 @@ import ru.muwa.shq.objects.buildings.NewBuildings.LoongGrayBuildingSide;
 import ru.muwa.shq.objects.buildings.NewBuildings.ShopBiolog;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
-import ru.muwa.shq.objects.containers.TrashCan;
 import ru.muwa.shq.objects.obstacles.crates.Crate0;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.ButcherQuestPacan;
+import ru.muwa.shq.quests.ComputerQuest;
 import ru.muwa.shq.quests.MomQuestFood;
-import ru.muwa.shq.quests.QuestUtility;
 import ru.muwa.shq.quests.actions.QuestAction;
-import ru.muwa.shq.quests.conditions.C_HasPlayerFoundKlad;
 import ru.muwa.shq.zones.DialogueZone;
 import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.InteractiveEnterZone;
@@ -86,7 +81,6 @@ import ru.muwa.shq.zones.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class DemoLevel0 extends Level
 {
@@ -109,11 +103,15 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new KladBlue());
         Inventory.getInstance().addItem(new IceOlator());
         Inventory.getInstance().addItem(new Kortique());
+        Inventory.getInstance().addItem(new Processor());
         for(int i = 0 ; i<4;i++) Inventory.getInstance().addItem(new Flour());
         Player.get().momQuests.add(new MomQuestFood());
         Player.get().butcherQuests.add(new ButcherQuestPacan());
+        Player.get().hackerQuests.add(new ComputerQuest());
 
         System.out.println("test 2");
+
+        zones.add(new DialogueZone(new HackerCumputerDialog(),1,1,100,100,false));
 
 
 
@@ -141,8 +139,9 @@ public class DemoLevel0 extends Level
                 responds.get(2).setText("Ответ 3.");
                 initM.setResponds(responds);
 
-                //Ветка первого ответа
 
+                //Ветка первого ответа
+/*
                 m = new Message();
                 responds.get(0).setMsg(m);
                 m.setText("Ветка ответа 1");
@@ -187,6 +186,8 @@ public class DemoLevel0 extends Level
                 responds.add(new Respond("пошел нахуй"));
                 m.setResponds(responds);
 
+
+ */
 
                 this.currentMessage = this.initialMessage;
             }
@@ -290,7 +291,7 @@ public class DemoLevel0 extends Level
         objects.add(new LoongGrayBuildingSide(5490,894));// боковина среднего дома4
         objects.add(new LoongGrayBuildingSide(8272,894));// втарая боковина среднего дома
         //Вход в подъезд : 2
-        zones.add(new InteractiveEnterZone(new PadikLock("2"),new EnterZone(5990 ,900,70,70, L1B5P2F1.getInstance(),800,800,false)));
+        zones.add(new InteractiveEnterZone(new PadikLock("2"),new EnterZone(5990 ,900,70,70, L1B5P22F1.getInstance(),800,800,false)));
         //Вход в подъезд : 3
         zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(6243 ,900,70,70, L1B5P3F1.getInstance(),800,800,false)));
         //Вход в подъезд : 4
