@@ -30,6 +30,7 @@ public class QuestUtility {
     public static void work()
     {
         maintainPlayerQuests(Player.get().momQuests);
+        maintainPlayerQuests(Player.get().hackerQuests);
         maintainPlayerQuests(Player.get().copQuests);
         maintainPlayerQuests(Player.get().butcherQuests);
 
