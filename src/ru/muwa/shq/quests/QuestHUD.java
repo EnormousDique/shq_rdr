@@ -13,8 +13,8 @@ public class QuestHUD {
     public static boolean opened;
     static int x = (int)(SCREEN_WIDTH - SCREEN_WIDTH * 0.75);
     static int y = (int)(SCREEN_HEIGHT - SCREEN_HEIGHT * 0.75);
-    static int width = SCREEN_WIDTH / 2;
-    static int height = SCREEN_HEIGHT / 2;
+    static int width = (int) (SCREEN_WIDTH / 1.5);
+    static int height = (int) (SCREEN_HEIGHT / 1.5);
     public static ArrayList<QuestPic> pics = new ArrayList<>();
     public static Quest renderingQuest;
 
@@ -41,8 +41,13 @@ public class QuestHUD {
                 //Если рендеринг квест  не  нуль, то мы отрисовываем не общее окно, а этот конкретный квест.
                 Renderer.g.setColor(Color.BLACK);
                 Renderer.g.drawString(
-                        renderingQuest.owner + " просит : "+renderingQuest.name,x+50,y+100 );
+                        renderingQuest.owner + " просит : "+renderingQuest.name,x+50,y+50 );
+                for (int i = 0; i < renderingQuest.description.split("\\.").length; i++) {
+                    Renderer.g.drawString(renderingQuest.description.split("\\.")[i],x+150, y+100 + i*20);
+                }
+
                 Renderer.g.drawString("Пункты:",x+50,y+150);
+
                 for(int i = 0 ; i<renderingQuest.tasks.size();i++)
                 {
                     Renderer.g.drawString(
@@ -57,7 +62,31 @@ public class QuestHUD {
     }
 
     private static void drawCopsQuests() {
+        Renderer.g.setColor(Color.BLACK);
+        if (Player.get().copQuests.size() > 0) {
 
+            Renderer.g.fillRect(x + 450, y + 100, 50, 50);
+            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.drawString("Участковый : ", x + 450, y + 125);
+
+            for (int i = 0; i < Player.get().copQuests.size(); i++) {
+                QuestPic pic = new QuestPic(x + 450, y + 125 + (i + 1) * 30, Player.get().copQuests.get(i));
+                Color bg = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.GREEN:Color.MAGENTA;
+                Renderer.g.setColor(bg);
+                Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
+                Color font = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.BLACK:Color.GREEN;
+                Renderer.g.setColor(font);
+                String done = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?"(v)":"";
+                Renderer.g.drawString(pic.quest.name+done, pic.x, pic.y + 10);
+                pics.add(pic);
+            }
+
+        }else
+        {
+            Renderer.g.fillRect(x + 450, y + 100, 50, 50);
+            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.drawString("????? : ", x + 350, y + 125);
+        }
     }
 
     private static void drawDrugstoreQuest() {
@@ -66,7 +95,7 @@ public class QuestHUD {
 
             Renderer.g.fillRect(x + 350, y + 100, 50, 50);
             Renderer.g.setColor(Color.WHITE);
-            Renderer.g.drawString("Мясник : ", x + 350, y + 125);
+            Renderer.g.drawString("Аптекарша : ", x + 350, y + 125);
 
             for (int i = 0; i < Player.get().drugstoreQuests.size(); i++) {
                 QuestPic pic = new QuestPic(x + 350, y + 125 + (i + 1) * 30, Player.get().drugstoreQuests.get(i));

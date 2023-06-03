@@ -11,6 +11,7 @@ import java.util.List;
 
 public class Quest {
     String name = "";
+    public String description = "";
     boolean isTaken;
     public List<Task> tasks;
 
@@ -52,7 +53,7 @@ public class Quest {
             hasCondition = true;
         }
 
-        public Task(String name, CompleteTaskZone z, Q2T1_Action a) {
+        public Task(String name, CompleteTaskZone z, QuestAction a) {
             this.name=name;
             isTriggeringAction = true;
             action = a;

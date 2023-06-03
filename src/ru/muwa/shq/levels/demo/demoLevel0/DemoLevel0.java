@@ -70,6 +70,7 @@ import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
 import ru.muwa.shq.objects.obstacles.crates.Crate0;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.quests.*;
 import ru.muwa.shq.quests.ButcherQuestPacan;
 import ru.muwa.shq.quests.ComputerQuest;
 import ru.muwa.shq.quests.MomQuestFood;
@@ -108,6 +109,9 @@ public class DemoLevel0 extends Level
         Player.get().momQuests.add(new MomQuestFood());
         Player.get().butcherQuests.add(new ButcherQuestPacan());
         Player.get().hackerQuests.add(new ComputerQuest());
+        Player.get().hackerQuests.add(new HackerQuestReboot());
+        Player.get().hackerQuests.add(new HackerQuestATM());
+        Player.get().copQuests.add(new CopQuestOrientalGuest());
 
         System.out.println("test 2");
 
@@ -138,7 +142,6 @@ public class DemoLevel0 extends Level
                 responds.add(new Respond());
                 responds.get(2).setText("Ответ 3.");
                 initM.setResponds(responds);
-
 
                 //Ветка первого ответа
 /*
@@ -186,8 +189,6 @@ public class DemoLevel0 extends Level
                 responds.add(new Respond("пошел нахуй"));
                 m.setResponds(responds);
 
-
- */
 
                 this.currentMessage = this.initialMessage;
             }
