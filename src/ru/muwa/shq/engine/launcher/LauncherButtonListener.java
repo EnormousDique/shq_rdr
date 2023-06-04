@@ -3,6 +3,7 @@ package ru.muwa.shq.engine.launcher;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.listeners.ButtonListener;
 
 import javax.swing.*;
@@ -38,9 +39,10 @@ public class LauncherButtonListener extends ButtonListener
         if(e.getSource().equals(buttons.get(Launcher.EXIT))) Launcher.quit();
         if(((JButton)e.getSource()).getText().equals("ПРименить настройки")){
             if(Engine.pause){
-                Renderer.getInstance().frame.setVisible(true);
+              //  Renderer.getInstance().frame.setVisible(true);
                 Renderer.getInstance().frame.setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
                 Launcher.hideScreenSettings();
+                HUD.getInstance().getPauseMenuWindow().setVisible(true);
             }else {
                 Launcher.hideScreenSettings();
                 Launcher.showFrame();

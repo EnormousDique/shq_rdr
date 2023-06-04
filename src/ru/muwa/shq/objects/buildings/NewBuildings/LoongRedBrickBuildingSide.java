@@ -13,8 +13,8 @@ public class LoongRedBrickBuildingSide extends Building {
 
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\longredbrickbuilding\\BrickltogBOCK.png"));
-          //  img2 = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\longgraybuilding\\ITOG3DOMBOCK.png"));
+            img = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\longredbrickbuilding\\LONGKIRPICHSIDE.png"));
+            img2 = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\longgraybuilding\\LONGKIRPICHSIDE.png"));
             System.out.println("LoongRedBrickBuildingSide texture loaded");
         } catch (IOException e) {
             System.out.println("failed to load LoongRedBrickBuildingSide roof texture");

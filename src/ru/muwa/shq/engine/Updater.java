@@ -77,10 +77,10 @@ public class Updater implements Runnable {
         long time = System.currentTimeMillis();
         long localTime = System.currentTimeMillis();
         //Спавнер
-        Spawner.regularSpawn();
-        Spawner.inDoorsSpawn();
+       // Spawner.regularSpawn();
+       // Spawner.inDoorsSpawn();
 
-        Spawner.carSpawn();//спавнер тачки
+        //Spawner.carSpawn();//спавнер тачки
 
 
         Kladmen.mudak();  /** Кладмен мудак */

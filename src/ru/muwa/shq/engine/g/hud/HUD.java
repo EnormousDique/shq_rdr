@@ -3,6 +3,8 @@ package ru.muwa.shq.engine.g.hud;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 import ru.muwa.shq.engine.Engine;
@@ -13,12 +15,14 @@ import ru.muwa.shq.engine.listeners.ButtonListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.player.Player;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicOptionPaneUI;
 
 import static java.awt.Frame.getFrames;
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_HEIGHT;
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
+import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 
 public class HUD {
@@ -34,11 +38,11 @@ public class HUD {
         if(instance == null) return new HUD();else return instance;
     }
 
-    public JPanel getPauseMenuWindow() {
+    public JFrame getPauseMenuWindow() {
         return pauseMenuWindow;
     }
 
-    JPanel pauseMenuWindow = new JPanel(); // создание окна менюпаузы на букву P
+    JFrame pauseMenuWindow = new JFrame(); // создание окна менюпаузы на букву P
     JProgressBar thirstBar = new JProgressBar(0,100);
     JProgressBar staminaBar = new JProgressBar(0,100); //создание стаминабара
     JPanel actionWindow = new JPanel(); //создание окна длья миниигры
@@ -58,6 +62,7 @@ public class HUD {
         public void actionPerformed(ActionEvent e) {
             if (((JButton) e.getSource()).getText().equals("продолжим?")) {
                 HUD.getInstance().getPauseMenuWindow().setVisible(false);
+                Renderer.getInstance().frame.setVisible(true);
                 Engine.pause = false;
             }
             if (((JButton) e.getSource()).getText().equals("Смени СВОЙ Разрешение")) {
@@ -88,8 +93,8 @@ public class HUD {
         thirstBar.setValue((int) Player.get().getThirst());
         thirstBar.setStringPainted(true);
         drugEffectBar.setValue((int) Player.get().getHighMeter());
-        actionWindow.setBounds(SCREEN_WIDTH/2,GameScreen.SCREEN_HEIGHT/2,300,300);
-        mainWindow.setBounds(SCREEN_WIDTH/2-25,GameScreen.SCREEN_HEIGHT/2-50,50,100);
+        actionWindow.setBounds(SCREEN_WIDTH/2, SCREEN_HEIGHT/2,300,300);
+        mainWindow.setBounds(SCREEN_WIDTH/2-25, SCREEN_HEIGHT/2-50,50,100);
         itemWindow.setBounds(SCREEN_WIDTH-500, SCREEN_WIDTH-700,200,300);
         itemWindow.addMouseListener(MouseButtonListener.getInstance());
         itemWindow.setLayout(null);
@@ -97,21 +102,30 @@ public class HUD {
         questWindow.setLayout(null);
         containerWindow.setLayout(null);
         mainWindow.setBounds(920,500,50,100);
-        deathWindow.setBounds(0,0, SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
+        deathWindow.setBounds(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
         deathWindow.setVisible(false);
         statusWindow.setBounds(1432,1,140,150);
         itemWindow.setBounds(500,700,200,500);
         containerWindow.setBounds(500,700,200,500);
         dialogueWindow.setBounds(610,765,700,700);
         equipWindow.setBounds(1430,161,90,140);
-        containerWindow.setBounds(210,GameScreen.SCREEN_HEIGHT-400,200,300);
+        containerWindow.setBounds(210, SCREEN_HEIGHT-400,200,300);
         GifScenesWindow.setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
         questWindow.setBounds(500,500,100,100);
         // меню паузы мб
         //todo мб сделать отдельный класс.?!* 8======D
-        pauseMenuWindow.setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+
         pauseMenuWindow.setVisible(false);
-        pauseMenuWindow.setLayout(null);
+
+        try {
+            pauseMenuWindow.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(IMG_PATH+"background\\LABEL.png")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        //pauseMenuWindow.setBounds(0,0,GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
+        pauseMenuWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         JLabel pause = new JLabel("ПАУЗА");
         pause.setBounds(SCREEN_WIDTH/2,10,100,100);
         pauseMenuWindow.add(pause);
@@ -123,11 +137,6 @@ public class HUD {
         settings.addActionListener(listner);
         pauseMenuWindow.add(settings);
         settings.setBounds(300,200,100,100);
-
-
-
-
-
      //   this.add(HUD.getInstance().getHealthBar());
      //   this.add(HUD.getInstance().getActionWindow());
      //   HUD.getInstance().getActionWindow().setVisible(false);
@@ -138,6 +147,8 @@ public class HUD {
         drugEffectBar.setForeground(Color.magenta);
         thirstBar.setForeground(Color.BLUE);
         staminaBar.setForeground(Color.green);
+        pauseMenuWindow.pack();
+        pauseMenuWindow.setLocationRelativeTo(null);
     }
     public  JPanel getDialogueWindow(){return dialogueWindow;}  // геттер для диалогового окна
     public JPanel getItemWindow() {

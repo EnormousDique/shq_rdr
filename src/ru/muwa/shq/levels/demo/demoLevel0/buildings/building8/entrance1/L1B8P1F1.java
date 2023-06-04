@@ -25,7 +25,7 @@ public class L1B8P1F1 extends Level
         startPosX = 0;
         startPosY = 0;
 
-        zones.add(new EnterZone(300,164,60,80, DemoLevel0.getInstance(), 3910,2620,false));
+        zones.add(new EnterZone(300,164,60,80, DemoLevel0.getInstance(), 3910,3620,false));
 
         objects.add(new TestEntrance(10,10));
         objects.add(new Stairs(150,30));

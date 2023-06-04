@@ -25,7 +25,7 @@ public class L1B2P1F1 extends Level
         startPosX = 0;
         startPosY = 0;
 
-        zones.add(new EnterZone(300,164,60,80, DemoLevel0.getInstance(), 1900,1620,false));
+        zones.add(new EnterZone(300,164,60,80, DemoLevel0.getInstance(), 1900,1920,false));
 
         // objects.add(new ApartmentDoor(10,0,0));
         //  objects.add(new ApartmentDoor(80,0,0));

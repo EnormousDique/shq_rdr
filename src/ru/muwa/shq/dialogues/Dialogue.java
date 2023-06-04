@@ -4,6 +4,7 @@ import ru.muwa.shq.quests.Quest;
 import ru.muwa.shq.quests.actions.QuestAction;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -21,9 +22,9 @@ public abstract class Dialogue {
         this.currentMessage = currentMessage;
     }
 
-    public abstract void init();
+    public abstract void init() throws IOException;
     public Dialogue(){
-        init();
+       // init();
     }
 
     public void restore() {
