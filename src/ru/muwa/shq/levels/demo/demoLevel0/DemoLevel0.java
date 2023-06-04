@@ -67,6 +67,10 @@ import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance6.L1B5P6F1
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance7.L1B5P7F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance8.L1B5P8F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance9.L1B5P9F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.L1B6P1F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.entrance2.L1B6P2F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building7.entrance1.L1B7P1F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building7.entrance2.L1B7P2F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building8.entrance1.L1B8P1F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building8.entrance2.L1B8P2F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building8.entrance3.L1B8P3F1;
@@ -294,11 +298,15 @@ public class DemoLevel0 extends Level
         zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(4990,3620,70,70, L1B8P4F1.getInstance(), 190,220,false)));
 
 
-        /* Дом  */
+        /* Дом 6 */
         objects.add(new TallFatBuilding(1730,2134));
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(1800,2940,70,70, L1B6P1F1.getInstance(), 190,220,false)));
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(2215,2940,70,70, L1B6P2F1.getInstance(), 190,220,false)));
 
-        /* Дом  */
-        objects.add(new TallFatBuilding(2640,3045));
+        /* Дом 7 */
+        objects.add(new TallFatBuilding(2640,2916));
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(2717,3750,70,70, L1B7P1F1.getInstance(), 190,220,false)));
+        zones.add(new InteractiveEnterZone( new PadikLock("228К1488"),new EnterZone(3128,3750,70,70, L1B7P2F1.getInstance(), 190,220,false)));
 
         /* Дом 5 */
         objects.add(new LoongGrayBuildingFront(5490,214));// фронт дома
@@ -326,6 +334,16 @@ public class DemoLevel0 extends Level
         zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(8112 ,900,70,70, L1B5P10F1.getInstance(),800,800,false)));
         //Вход в подъезд : 11
         zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(8190  ,1226,70,70, L1B5P11F1.getInstance(),800,800,false)));
+
+
+        //дом 6
+
+
+
+
+        //дом 7
+
+
 
         //ДОМ 10
         objects.add(new RichBuilding(5606,1779));
