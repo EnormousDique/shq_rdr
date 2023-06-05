@@ -2,8 +2,14 @@ package ru.muwa.shq.engine.launcher;
 
 import ru.muwa.shq.engine.g.GameScreen;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedList;
+
+import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 /**
  * Пусковой механизм игры. Этот класс отвечает за запуск игры.
@@ -32,25 +38,37 @@ public class Launcher
     private static void init() {
         frame.setVisible(true);
         frame.setLayout(null);
+        try {
+            frame.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(IMG_PATH+"background\\LABEL.png")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setBounds(0,0, GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
         buttons = new LinkedList<>();
         frame.add(startButton = new JButton("Начать"));
-        startButton.setBounds(100,100,600,50);
+        startButton.setBounds(100,400,100,50);
         buttons.add(startButton);
         frame.add(settingsButton = new JButton("Настройки"));
-        settingsButton.setBounds(100,200,600,50);
+        settingsButton.setBounds(100,500,100,50);
         buttons.add(settingsButton);
         frame.add(editorButton = new JButton("Редактор"));
-        editorButton.setBounds(100,300,600,50);
+        editorButton.setBounds(100,600,100,50);
         buttons.add(editorButton);
         frame.add(exitButton = new JButton("Выход"));
-        exitButton.setBounds(100,400,600,50);
+        exitButton.setBounds(100,700,100,50);
         buttons.add(exitButton);
         buttonListener = new LauncherButtonListener(buttons);
         for(JButton b : buttons) b.addActionListener(buttonListener);
+        frame.pack();
+        frame.setLocationRelativeTo(null);
 
+        //  frame.setVisible(true);
     }
+
+
+
+
     /**
      * Заупуск программы. Точка входа.
      * @param args - передаваемые аргументы.
@@ -81,6 +99,11 @@ public class Launcher
 
         screenRes.setVisible(true);
         screenRes.setLayout(null);
+        try {
+            screenRes.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(IMG_PATH+"background\\LABEL.png")))));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         screenRes.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         screenRes.setBounds(0,0, GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
         ButtonGroup G = new ButtonGroup();
@@ -88,15 +111,15 @@ public class Launcher
         G.add(res1280x720);
         G.add(res1920x1080);
         screenRes.add(nazva);// создаю надпись выбери свое раз....
-        nazva.setBounds(10,10,1000,10);// границы надписи
+        nazva.setBounds(10,310,1000,20);// границы надписи
         screenRes.add(res800x600);//добовляю фрейм с радиобаттоном 800 600
-        res800x600.setBounds(10,60,100,30);// устанавливаю его границы
+        res800x600.setBounds(10,360,100,30);// устанавливаю его границы
         screenRes.add(res1280x720);
-        res1280x720.setBounds(10,100,100,30);
+        res1280x720.setBounds(10,400,100,30);
         screenRes.add(res1920x1080);
-        res1920x1080.setBounds(10,140,100,30);
+        res1920x1080.setBounds(10,440,100,30);
         screenRes.add(save);// добалляю кнопку сейв
-        save.setBounds(GameScreen.SCREEN_WIDTH-200,GameScreen.SCREEN_HEIGHT-200,200,100);// границы кнопки сейф
+        save.setBounds(600,600,200,100);// границы кнопки сейф
         save.addActionListener(buttonListener); // добовление кнопки сейв в прослушку
         //радио батон листнер
         radioButtons = new LinkedList<>();// лист радиокнопок
@@ -106,5 +129,19 @@ public class Launcher
         buttonListener.addButton(save);
         radioButtonListener = new RadioButtonListener(radioButtons);
         for (JRadioButton r : radioButtons) r.addActionListener(radioButtonListener); // форичем добовляем актионлистнер на радиокнопки
+        JTextField rezraz = new JTextField("или введи свое долбаеб");
+
+        rezraz.setBounds(10,480,150,40);
+        screenRes.add(rezraz);
+
+
+
+
+        nazva.setForeground(Color.green);
+        screenRes.pack();
+        screenRes.setLocationRelativeTo(null);
+
+
+
     }
 }

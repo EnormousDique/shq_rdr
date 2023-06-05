@@ -2,6 +2,7 @@ package ru.muwa.shq.engine.listeners;
 
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.g.hud.MiniGameHUD;
 import ru.muwa.shq.player.controls.PlayerControls;
@@ -114,6 +115,7 @@ public class KeyListener implements java.awt.event.KeyListener
             case 80: // P
                 Engine.pause = true;
                 HUD.getInstance().getPauseMenuWindow().setVisible(true);
+                Renderer.getInstance().frame.setVisible(false);
 
             case 84: // T
                 keys[T] = true;

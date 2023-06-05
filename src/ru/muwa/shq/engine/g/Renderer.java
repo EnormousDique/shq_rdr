@@ -118,8 +118,8 @@ public class Renderer implements Runnable {
         frame.add(HUD.getInstance().getDeathWindow());
         frame.add(HUD.getInstance().getContainerWindow()).setVisible(false);
         frame.add(HUD.getInstance().getGifScenesWindow()).setVisible(false);
-        frame.add(HUD.getInstance().getPauseMenuWindow());
-        frame.add(HUD.getInstance().getPauseMenuWindow()).setVisible(false);
+       // frame.add(HUD.getInstance().getPauseMenuWindow());
+       // frame.add(HUD.getInstance().getPauseMenuWindow()).setVisible(false);
 
         //блокк  кода в кторомом худу перезщапизываем коорды
 
@@ -277,7 +277,7 @@ public class Renderer implements Runnable {
         HUD.getInstance().getGifScenesWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 
  */
-        HUD.getInstance().getPauseMenuWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
+      //  HUD.getInstance().getPauseMenuWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
 
 
         HUD.getInstance().getStatusWindow().setVisible(false);

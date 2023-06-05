@@ -13,8 +13,8 @@ public class RichBuilding extends Building {
 
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\verytallbuilding\\PremiumRichBuilding.png"));
-            //  img2 = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\longgraybuilding\\ITOG3DOMBOCK.png"));
+            img = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\PremiumBuilding\\PremiumRichBuildingTOP.png"));
+              img2 = ImageIO.read(new File(IMG_PATH + "buildings\\newbuildings\\PremiumBuilding\\PremiumRichBuildingTOPTRANS.png"));
             System.out.println("RichBuilding texture loaded");
         } catch (IOException e) {
             System.out.println("failed to load RichBuilding roof texture");
@@ -29,7 +29,7 @@ public class RichBuilding extends Building {
      */
     public RichBuilding(int x, int y) {
         super(x, y, img);
-        solidBox = new Rectangle(x,y,width,height);
+        solidBox = new Rectangle(x,y+900,width,height-900);
         transTexture =  img2;
 
     }
