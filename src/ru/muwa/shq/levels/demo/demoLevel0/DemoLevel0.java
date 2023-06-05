@@ -7,6 +7,8 @@ import ru.muwa.shq.dialogues.demo.Q3_PoliceConversation;
 import ru.muwa.shq.economics.trading.Buyout;
 import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.animations.Animator;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
 import ru.muwa.shq.quests.HackerQuestReboot;
 import ru.muwa.shq.quests.HackerQuestATM;
 import ru.muwa.shq.quests.CopQuestOrientalGuest;
@@ -369,6 +371,11 @@ public class DemoLevel0 extends Level
         zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(7920  ,5090,70,70, L1B11P5F1.getInstance(),800,800,false)));
         zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(7920  ,5892,70,70, L1B11P6F1.getInstance(),800,800,false)));
         zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(7920  ,7096,70,70, L1B11P7F1.getInstance(),800,800,false)));
+        //Магазин продуктов
+        // TODO: Перенести к нужному дому (магаз в падике жилого дома)
+        zones.add(new EnterZone(7920, 3800,100,100, GroceryInteriors.getInstance(),400,400,false));
+        //Аптека
+        zones.add(new EnterZone(7920, 6400,100,100, DrugStoreInteriors.getInstance(),400,400,false));
 
 
         //низ
@@ -384,6 +391,8 @@ public class DemoLevel0 extends Level
         //ДОМ 13
         objects.add(new VeryTallBulding(6153,5252));
         zones.add(new InteractiveEnterZone(new PadikLock("298К2939"),new EnterZone(6322  ,7149,70,70, L1B13P1F1.getInstance(),800,800,false)));
+
+
 
         //2930 6600
         /** РЫНОК **/
