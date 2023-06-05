@@ -20,7 +20,7 @@ public class VelvetTank extends NPC {
 
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "creatures\\VELVETTANK.png"));
+            img = ImageIO.read(new File(IMG_PATH + "creatures\\BIGCOP.png"));
             System.out.println("VelvetTank loaded ok");
         } catch (Exception e) {
             System.out.println("failed to load VelvetTank texture");

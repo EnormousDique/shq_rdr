@@ -109,21 +109,7 @@ public class Renderer implements Runnable {
         instance = this;
         frame = GameScreen.getInstance();
 
-        frame.add(HUD.getInstance().getMainWindow());              // вызываем к главному окну
-        frame.add(HUD.getInstance().getItemWindow());              // вызываем к окошку предметов
-        frame.add(HUD.getInstance().getStatusWindow());            // вызываем к  окну статуса
-        frame.add(HUD.getInstance().getDialogueWindow()).setVisible(false);    // делаем окно диалогов невидимым
-        frame.add(HUD.getInstance().getEquipWindow());                        // вызываем окно экипируемых предметов
-        frame.add(HUD.getInstance().getQuestWindow());
-        frame.add(HUD.getInstance().getDeathWindow());
-        frame.add(HUD.getInstance().getContainerWindow()).setVisible(false);
-        frame.add(HUD.getInstance().getGifScenesWindow()).setVisible(false);
-       // frame.add(HUD.getInstance().getPauseMenuWindow());
-       // frame.add(HUD.getInstance().getPauseMenuWindow()).setVisible(false);
-
         //блокк  кода в кторомом худу перезщапизываем коорды
-
-
 
 
         canvas = new Canvas();                                                  //создаем новое полотно
@@ -263,63 +249,8 @@ public class Renderer implements Runnable {
 
         //ОТРИСОВКА СООБЩЕНИЙ НА ЭКРАНЕ
         handleMessages(g);
-
-        //ОБНОВЛЕНИЕ И ОТРИСОВКА ОКОН ХУДА
-/*
-        HUD.getInstance().getMainWindow().setBounds(GameScreen.SCREEN_WIDTH/2,GameScreen.SCREEN_HEIGHT/2,100,100);
-        HUD.getInstance().getStatusWindow().setBounds(GameScreen.SCREEN_WIDTH-300,0,300,150);
-        HUD.getInstance().getEquipWindow().setBounds(GameScreen.SCREEN_WIDTH-300,150,100,160);
-        HUD.getInstance().getItemWindow().setBounds(0,GameScreen.SCREEN_HEIGHT-400,200,300);
-        HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,200,20);
-        HUD.getInstance().getQuestWindow().setBounds(0,0,200,150);
-        HUD.getInstance().getDeathWindow().setBounds(0,0,GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
-        HUD.getInstance().getDialogueWindow().setBounds(((GameScreen.SCREEN_WIDTH-500)/2),GameScreen.SCREEN_HEIGHT-200,500,200);
-        HUD.getInstance().getDrugEffectBar().setBounds(GameScreen.SCREEN_WIDTH-500,0,100,20);
-        HUD.getInstance().getStaminaBar().setBounds(GameScreen.SCREEN_WIDTH-500, +20,100,20);
-        HUD.getInstance().getThirstBar().setBounds(GameScreen.SCREEN_WIDTH-500, +40,100,20);
-        HUD.getInstance().getContainerWindow().setBounds(210,GameScreen.SCREEN_HEIGHT-400,200,300);
-        HUD.getInstance().getGifScenesWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
-
- */
-      //  HUD.getInstance().getPauseMenuWindow().setBounds(0,0,SCREEN_WIDTH,SCREEN_HEIGHT);
-
-
-        HUD.getInstance().getStatusWindow().setVisible(false);
-            HUD.getInstance().getItemWindow().setVisible(false);
-            HUD.getInstance().getMainWindow().setVisible(false);
-            HUD.getInstance().getEquipWindow().setVisible(false);
-           // HUD.getInstance().getContainerWindow().setVisible(Inventory.getInstance().isOpened());
-         //   HUD.getInstance().getEquipWindow().updateUI();
-           // HUD.getInstance().getItemWindow().updateUI();
-           // HUD.getInstance().getStatusWindow().updateUI();
-            HUD.getInstance().getQuestWindow().setVisible(false);
-        //    HUD.getInstance().getQuestWindow().updateUI();
-         //   HUD.getInstance().getPauseMenuWindow().updateUI();
-        // полоску здовроья видно только при открытии инвентаря
-        //   HUD.getInstance().getHealthBar().setVisible(Inventory.getInstance().isOpened());
-          //  HUD.getInstance().getHealthBar().setValue(Player.get().getHp());
-            //HUD.getInstance().getHealthBar().setString(Integer.toString(HUD.getInstance().getHealthBar().getValue()));
-            HUD.getInstance().getStaminaBar().updateUI();
-            HUD.getInstance().getThirstBar().updateUI();
-            HUD.getInstance().getContainerWindow().updateUI();
-
-        // полоску стамины видно только при открытии инвентаря
-            HUD.getInstance().getStaminaBar().setVisible(Inventory.getInstance().isOpened());
-            HUD.getInstance().getStaminaBar().setValue((int) Player.get().getStamina());
-            HUD.getInstance().getStaminaBar().setString(String.valueOf(Player.get().getStamina()));
-            HUD.getInstance().getStaminaBar().setString(Integer.toString(HUD.getInstance().getStaminaBar().getValue()));
-            // полоску упора видно ток из инвентаря
-        HUD.getInstance().getDrugEffectBar().setVisible(Inventory.getInstance().isOpened());
-        HUD.getInstance().getDrugEffectBar().setValue((int) Player.get().getHighMeter());
-        HUD.getInstance().getDrugEffectBar().setString(Integer.toString(HUD.getInstance().getDrugEffectBar().getValue()));
-        // полоску воды видно из инвентаря тока
-        HUD.getInstance().getThirstBar().setVisible(Inventory.getInstance().isOpened());
-        HUD.getInstance().getThirstBar().setValue((int) Player.get().getThirst());
-        HUD.getInstance().getThirstBar().setString(Integer.toString(HUD.getInstance().getThirstBar().getValue()));
             //Вызов службы диалогов.
             DialogueManager.work();
-            //вызов службы гиф роликов
-           // GifScenesManager.getInstance().work();
             // Вызов службы торговли
             TradeUtility.work();
         InventoryManager.update();
