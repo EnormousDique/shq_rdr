@@ -22,7 +22,7 @@ public class BadGuy0 extends NPC {
     {
         try
         {
-            img = ImageIO.read(new File(IMG_PATH + "creatures\\BadGuy0.png"));
+            img = ImageIO.read(new File(IMG_PATH + "creatures\\TONYMANTA.png"));
             System.out.println("BadGuy0 loaded ok");
         }
         catch(Exception e)
