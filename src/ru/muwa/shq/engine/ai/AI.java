@@ -7,6 +7,7 @@ import ru.muwa.shq.items.guns.EnemyBullet;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
 
+import java.awt.*;
 import java.awt.geom.Line2D;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,12 +27,6 @@ public class AI {
 
     private static AI instance;
 
-    /**
-     * Работа ИИ
-     **/
-    public static void work() {
-
-    }
 
     public static AI getInstance() {
         if (instance == null) return new AI();
@@ -47,8 +42,54 @@ public class AI {
         npc.checkForPlayerInSight(); // Проверяем в поле зряния ли игрок (иможно ли до него добраться)
 
         if (!npc.isEnemy) {
+            //Если нпц не враг.
+            //ПОка  что ходит случайно.
+            int r = (int)(Math.random() * 4);
+            switch (r)
+            {
+                //Ищем
+                case 0:
+                    npc.moveUp();
+                    break;
+                case 1:
+                    npc.moveLeft();
+                    break;
+                case 2:
+                    npc.moveRight();
+                    break;
+                case 3:
+                    npc.moveDown();
+                    break;
+                case 4:
+                    npc.moveUp();
+                    break;
+            }
 
         } else {
+            if(!npc.isPlayerInSight() || (!npc.isPlayerInSight() && npc.getSolidBox().contains(new Point(npc.getpX(),npc.getpY()))))
+            {
+                //Если НПЦ не видит игрока, или помнит где тот был, но уже  пришел туда и на нашел игрока.
+                int r = (int)(Math.random() * 4);
+                switch (r)
+                {
+                    //Ищем
+                    case 0:
+                        npc.moveUp();
+                        break;
+                    case 1:
+                        npc.moveLeft();
+                        break;
+                    case 2:
+                        npc.moveRight();
+                        break;
+                    case 3:
+                        npc.moveDown();
+                        break;
+                    case 4:
+                        npc.moveUp();
+                        break;
+                }
+            }
             //Если НПЦ считает нас врагом.
             if (npc.isPlayerInSight())  // Првоеряем видит ли он игрока
             {
@@ -112,96 +153,6 @@ public class AI {
             }
 
         }
-
-
-
-        /*
-        if(npc != null && !(npc  instanceof Hachique)) // Я не помню зачем условие с хачиком, но боюсь проверять. И так работает.
-        {
-
-                npc.checkForPlayerInSight(); // Проверяем в поле зряния ли игрок (иможно ли до него добраться)
-
-
-            if (npc.isPlayerInSight())  // Если нпц сейчас видит игрока
-            {
-                npc.setpX( Player.get().getX() );
-                npc.setpY( Player.get().getY() );
-                //Обновляем "положение игрока в памяти нпц)
-            }
-
-            //Логика на случай когда НПЦ видит или  видел игрока где-то,то еще не дошел до него или до последнего места где его видел
-            if(!npc.getSolidBox().intersects(npc.getpX()+1,npc.getpY()+1,1,1) && ( (npc.getpX()!=0) && (npc.getpY()!=0)  )) {
-                double r = Math.random();
-
-                //Блок для "отступания" целящихся нпц
-                if (npc instanceof AimingGuy && ((AimingGuy) npc).getNearZone().intersects(Player.get().getSolidBox())) {
-
-
-                    if (r < 0.5d) {
-                        npc.setX(npc.getX() > Player.get().getX() ? npc.getX() + npc.getSpeed() : npc.getX() - npc.getSpeed());
-                        r = Math.random();
-                        if (r > 0.5) return;
-                        npc.setY(npc.getY() > Player.get().getY() ? npc.getY() + npc.getSpeed() : npc.getY() - npc.getSpeed());
-
-                    } else {
-                        npc.setY(npc.getY() > Player.get().getY() ? npc.getY() + npc.getSpeed() : npc.getY() - npc.getSpeed());
-                        r = Math.random();
-                        if (r > 0.5) return;
-                        npc.setX(npc.getX() > Player.get().getX() ? npc.getX() + npc.getSpeed() : npc.getX() - npc.getSpeed());
-
-                    }
-                } else
-
-
-                    //Блок движения НПЦ в стандартном порядке
-
-                    r = Math.random();
-
-                if (r < 0.5d) {
-                    npc.setX(npc.getX() > npc.getpX() ? npc.getX() - npc.getSpeed() : npc.getX() + npc.getSpeed());
-                    r = Math.random();
-                    if (r > 0.5) return;
-                    npc.setY(npc.getY() > npc.getpY() ? npc.getY() - npc.getSpeed() : npc.getY() + npc.getSpeed());
-
-                } else {
-                    npc.setY(npc.getY() > npc.getpY() ? npc.getY() - npc.getSpeed() : npc.getY() + npc.getSpeed());
-                    r = Math.random();
-                    if (r > 0.5) return;
-                    npc.setX(npc.getX() > npc.getpX() ? npc.getX() - npc.getSpeed() : npc.getX() + npc.getSpeed());
-                }
-
-
-                //ЛОГИКА ДЛЯ ЦЕЛЯЩИСЯ (СТРЕЛЯЮЩИХ НПЦ)
-                aimAI();
-                if (npc instanceof AimingGuy) {
-                    ((AimingGuy) npc).updateNearZone();
-                }
-                return; // Закончили. Код дальше  только для "незрячих" или "потерявшихся".
-            }
-            if(!npc.isPlayerInSight())
-            {
-                int random = (int) (Math.random() * 4);
-                switch (random)
-                {
-                    case 0:
-                        npc.moveUp();
-                        break;
-                    case 1:
-                        npc.moveDown();
-                        break;
-                    case 2:
-                        npc.moveRight();
-                        break;
-                    case 3:
-                        npc.moveLeft();
-                        break;
-                }
-            }
-
-
-        }
-
-         */
 
     }
     private static void aimAI()

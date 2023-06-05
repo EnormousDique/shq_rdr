@@ -7,6 +7,10 @@ import ru.muwa.shq.dialogues.demo.Q3_PoliceConversation;
 import ru.muwa.shq.economics.trading.Buyout;
 import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.animations.Animator;
+import ru.muwa.shq.quests.HackerQuestReboot;
+import ru.muwa.shq.quests.HackerQuestATM;
+import ru.muwa.shq.quests.CopQuestOrientalGuest;
+import ru.muwa.shq.quests.CopQuestUnhappyFamilies;
 import ru.muwa.shq.engine.animations.cutscenes.Q3_PoliceCutscene;
 
 import ru.muwa.shq.engine.g.Renderer;

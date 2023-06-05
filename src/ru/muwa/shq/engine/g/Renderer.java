@@ -232,7 +232,11 @@ public class Renderer implements Runnable {
         //отрисовка персонажей
         for(int i = 0;i<Engine.getCurrentLevel().getNPC().size();i++){
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
-            g.drawImage(c.getTexture(), c.getX() - camX, c.getY() - camY, c.getWidth(), c.getHeight(), null);
+            AffineTransform at = AffineTransform.getTranslateInstance(c.getX() - camX, c.getY() - camY);
+            at.rotate(-Math.toRadians((Aim.getInstance().calculateAngleFoNpc(c) - 90)), (c.getTexture().getWidth() / 2), (c.getTexture().getHeight()/2.5));
+            ((Graphics2D) g).drawImage(c.getTexture(), at, null);
+
+            // g.drawImage(c.getTexture(), c.getX() - camX, c.getY() - camY, c.getWidth(), c.getHeight(), null);
         }
         //Если игрок в поле зрения, цвет луей меняется.
         g.setColor(Color.red);
@@ -325,6 +329,8 @@ public class Renderer implements Runnable {
         AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
         at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getTexture().getWidth() / 2), (Player.get().getTexture().getHeight()/2.5));
         ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
+
+
 
 
         //Отрисовка тени дня и ночи

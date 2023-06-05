@@ -59,7 +59,7 @@ public class Aim {
         boolean isPlayerLeft = Player.get().getX() < c.getX();
         //MouseListener.getInstance().getX()+Camera.getInstance().getX() < Player.get().getSolidBox().getCenterX();
 
-        List<Line2D> lines = ((AimingGuy)c).getLines();
+        List<Line2D> lines = (c).getLines();
         return isPlayerLeft?
 
                 360 - Math.toDegrees(Math.acos( ((Math.pow(getLineSize(lines.get(1)),2)) + (Math.pow(getLineSize(lines.get(0)),2)) - (Math.pow(getLineSize(lines.get(2)),2))) / (2 * getLineSize(lines.get(1)) * getLineSize(lines.get(0))) ))

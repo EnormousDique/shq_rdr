@@ -26,8 +26,9 @@ public class CombatUtility {
         updateAttackZone();
 
         for(NPC c: Engine.getCurrentLevel().getNPC()){
-            if(c.getSolidBox().intersects(Player.get().getSolidBox())){
+            if(c.getSolidBox().intersects(Player.get().getSolidBox() ) && c.isEnemy){
                 Player.get().setHp(Player.get().getHp()-0.2);
+              //  CombatUtility.attack(Player.get(),0.2);
             }
         }
     }

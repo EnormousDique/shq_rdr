@@ -4,6 +4,7 @@ import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.creatures.npc.enemies.VelvetTank;
+import ru.muwa.shq.creatures.npc.questnpc.Hachique;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.objects.GameObject;
@@ -74,7 +75,13 @@ public class Spawner {
                 c= new VelvetTank(Player.get().getX() + xOff, Player.get().getY() + yOff);
                 level.getNPC().add(c);
                 spawnedNPCCounter++;
+
                 c.setRayCasterBorders(c.getRayCaster().buildLines(level.getObjects()));
+                // спавним хачиков
+                xOff = (int) (Math.random() + 1) * DISTANCE_INTERVAL * (Math.random() > 0.5? 1 : -1);
+                yOff = (int) (Math.random() + 1) * DISTANCE_INTERVAL * (Math.random() > 0.5? 1 : -1);
+                c= new Hachique(Player.get().getX() + xOff, Player.get().getY() + yOff);
+                level.getNPC().add(c);
 
                 spawnInterval = (int) ( (Math.random() + 1d) * (TIME_INTERVAL * 1.0));
                 lastSpawnTime = System.currentTimeMillis();

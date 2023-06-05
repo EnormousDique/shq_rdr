@@ -2,6 +2,7 @@ package ru.muwa.shq.creatures.npc;
 import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.zones.GameZone;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
@@ -17,6 +18,8 @@ public abstract class NPC extends Creature
     protected boolean playerInSight;
 
     public boolean isEnemy;
+    public boolean isScared;
+    public GameZone goToZone;
 
     protected int pX, pY;
 
@@ -53,6 +56,8 @@ public abstract class NPC extends Creature
         protected Line2D line3 = new Line2D.Double();
         protected java.util.List<Line2D> lines = List.of(line1,line2,line3);
 
+
+        public Line2D l = new Line2D.Double();
     public Line2D getLine1() {
         return line1;
     }
@@ -107,7 +112,8 @@ public abstract class NPC extends Creature
     {
         boolean playerInAFieldOfView = false;
         boolean playerInStraightLine = true;
-        Line2D l = new Line2D.Double(solidBox.getCenterX(),solidBox.getCenterY(), Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY());
+
+        l = new Line2D.Double(solidBox.getCenterX(),solidBox.getCenterY(), Player.get().getSolidBox().getCenterX(),Player.get().getSolidBox().getCenterY());
 
         for(int i = 0; i < Engine.getCurrentLevel().getObjects().size(); i++)
             if(l.intersects(Engine.getCurrentLevel().getObjects().get(i).getSolidBox()) && Engine.getCurrentLevel().getObjects().get(i).getIsSolid() )
