@@ -30,7 +30,12 @@ public class Player extends Creature
     public enum Direction{UP,DOWN,LEFT,RIGHT}
     public Direction direction;
     private Rectangle useZone;
-    private double thirst;
+    private double thirst=100;
+
+    public double hunger=100;
+    public double pee;
+    public double poo;
+    public double awake=100;
     private double highMeter ;
 
     public int getRegSpeed() {

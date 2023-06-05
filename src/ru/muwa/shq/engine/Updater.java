@@ -111,9 +111,8 @@ public class Updater implements Runnable {
         //вызов службы эфектов
         EffectUtility.work();
         //вызов слуюбы психометра
-        EffectUtility.psychOmetr();
+
         //вызов жажды
-        EffectUtility.thirstMetr();
         Player.get().staminaRegen();
         //System.out.println(System.currentTimeMillis()+"ВРЕМЯ");
         //Вызов службы обновления пуль

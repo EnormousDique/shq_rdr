@@ -38,6 +38,10 @@ public class EffectUtility {
 
     public static void work() {
         meterLock();
+        thirstMetr();
+        psychOmetr();
+        sleepy();
+        hungry();
         for (Map.Entry<Effects, Long> entry : currentEffects.entrySet()) {
             switch (entry.getKey()) {
 
@@ -89,6 +93,14 @@ public class EffectUtility {
             }
         }
     }
+
+    private static void hungry(){
+        Player.get().hunger-= 0.005;
+    }
+    private static void sleepy() {
+        Player.get().awake -= 0.002;
+    }
+
     //todo вынести в отдельный класс
 public static void meterLock(){
     if(Player.get().getHighMeterLock()>100)  Player.get().setHighMeterLock(100.0);
@@ -101,6 +113,12 @@ public static void meterLock(){
     if(Player.get().getHighMeterLock()<0) Player.get().setHighMeterLock(0);
     if(Player.get().getHp()<0) Player.get().setHp(0);
     if(Player.get().getHp()>100) Player.get().setHp(100);
+    if(Player.get().pee>100)Player.get().pee=100;
+    if(Player.get().poo>100)Player.get().poo=100;
+    if(Player.get().awake>100)Player.get().awake=100;
+    if(Player.get().pee<0)Player.get().pee=0;
+    if(Player.get().poo<0)Player.get().poo=0;
+    if(Player.get().awake<0)Player.get().awake=0;
 }
     public static void psychOmetr() {
        if (Player.get().getHighMeter() > Player.get().getHighMeterLock()) {
@@ -109,7 +127,7 @@ public static void meterLock(){
     }
     public static void thirstMetr(){
         if(Player.get().getThirst() > 0 ){
-         Player.get().setThirst(Player.get().getThirst()-0.001);
+         Player.get().setThirst(Player.get().getThirst()-0.01);
         }
     }
 }

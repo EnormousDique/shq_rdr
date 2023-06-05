@@ -437,17 +437,6 @@ public class DemoLevel0 extends Level
                 }
             }
         }));
-        // как использовать актион зону для володички
-            zones.add(new ActionZone(3000, 2800, 200, 200, new QuestAction() {
-                @Override
-                public void performAction() {
-                    EffectUtility.getCurrentEffects().put(EffectUtility.Effects.STONED,100000l+System.currentTimeMillis());
-                    System.out.println("я в говно");
-                }
-            }));
-
-
-
         zones.add(new EnterZone(520,1800,70,70,HubHataIgoryana.getInstance(),290,705,false));
         zones.add(new DialogueZone(Conversation0.getInstance(),400,400,100,100,false));
         zones.add(new TradeZone(3000, 1000, 300, 300, new Trade() {

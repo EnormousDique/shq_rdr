@@ -28,6 +28,7 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_HEIGHT;
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
@@ -155,6 +156,7 @@ public class Renderer implements Runnable {
                         render();
                     } catch (Exception e) {
                         System.out.println("С  рендерером чет не то, надеюсь отрисовка идет дальше");
+                        System.out.println(Arrays.toString(e.getStackTrace()));
                         System.out.println(e.getMessage());
                     }
                 }
@@ -219,7 +221,7 @@ public class Renderer implements Runnable {
         for(int i = 0;i<Engine.getCurrentLevel().getNPC().size();i++){
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
             AffineTransform at = AffineTransform.getTranslateInstance(c.getX() - camX, c.getY() - camY);
-            at.rotate(-Math.toRadians((Aim.getInstance().calculateAngleFoNpc(c) - 90)), (c.getTexture().getWidth() / 2), (c.getTexture().getHeight()/2.5));
+            at.rotate(-Math.toRadians((Aim.getInstance().calculateAngleFoNpc(c) -0)), (c.getTexture().getWidth() / 2), (c.getTexture().getHeight()/2.5));
             ((Graphics2D) g).drawImage(c.getTexture(), at, null);
 
             // g.drawImage(c.getTexture(), c.getX() - camX, c.getY() - camY, c.getWidth(), c.getHeight(), null);
@@ -316,7 +318,8 @@ public class Renderer implements Runnable {
         g.drawString(TimeMachine.getStringTime(),100,200);
         g.setColor(new Color(250,0,250,250));
         //отрисовка полосок
-        String hp = (Player.get().getHp() +"").toString().substring(0,4);
+        String hp = "";
+        try{(Player.get().getHp() +"").substring(0,4);}catch (Exception e){}
         g.drawString("хп : "+hp ,10,15);
         g.drawLine(10,30,10+(int)Player.get().getHp(),30);
         g.drawString("Вода в организме :" ,140,15);
@@ -331,7 +334,10 @@ public class Renderer implements Runnable {
         g.drawLine(400,30, (int) (400+Player.get().getStamina()),30);
         g.drawString("$$$ : "+Player.get().money,10,120);
         g.drawString("Сытость :",530,15);
+        g.drawLine(530,30, (int) (530+Player.get().hunger),30);
         g.drawString("Бодрость  :",660,15);
+        g.drawLine(660,30, (int) (660+Player.get().awake),30);
+
 
 
 

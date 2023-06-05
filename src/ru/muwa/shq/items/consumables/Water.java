@@ -36,16 +36,18 @@ public class Water extends Item {
     @Override
     public void use() {
 
-        // System.out.println(System.currentTimeMillis()+" ВРЕМЯЯ!!!!!!!!!!!!");
-        Player.get().setHighMeter(Player.get().getHighMeter()-5);
-        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-2);
-        Player.get().setThirst(Player.get().getThirst()+50);
-        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.StaminaRegen,System.currentTimeMillis()+10_000);
-        Inventory.getInstance().getItems().remove(this);
-        Player.get().setHp(Player.get().getHp()+2);
-        LeBottle bottle = new LeBottle();
-        Renderer.addMessage("Загасил СУшняк");
-        Inventory.getInstance().addItem(bottle);
+        if(Player.get().pee<95) {
+            Player.get().setHighMeter(Player.get().getHighMeter() - 5);
+            Player.get().setHighMeterLock(Player.get().getHighMeterLock() - 2);
+            Player.get().setThirst(Player.get().getThirst() + 50);
+            EffectUtility.getCurrentEffects().put(EffectUtility.Effects.StaminaRegen, System.currentTimeMillis() + 10_000);
+            Inventory.getInstance().getItems().remove(this);
+            Player.get().setHp(Player.get().getHp() + 2);
+            LeBottle bottle = new LeBottle();
+            Renderer.addMessage("Загасил СУшняк");
+            Inventory.getInstance().addItem(bottle);
+            Player.get().pee+=10;
+        }else Renderer.addMessage("Не могу. Надо поссать.");
 
     }
     @Override
