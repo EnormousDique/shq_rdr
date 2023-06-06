@@ -111,7 +111,7 @@ public static void meterLock(){
     if(Player.get().getStamina()<0) Player.get().setStamina(0);
     if(Player.get().getHighMeter()<0) Player.get().setHighMeter(0);
     if(Player.get().getHighMeterLock()<0) Player.get().setHighMeterLock(0);
-    if(Player.get().getHp()<0) Player.get().setHp(0);
+    if(Player.get().getHp()<-1) Player.get().setHp(-1);
     if(Player.get().getHp()>100) Player.get().setHp(100);
     if(Player.get().pee>100)Player.get().pee=100;
     if(Player.get().poo>100)Player.get().poo=100;

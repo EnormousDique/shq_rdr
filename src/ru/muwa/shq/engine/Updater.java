@@ -58,6 +58,7 @@ public class Updater implements Runnable {
             if(delta >= 1)
             {
                 if(!Engine.pause && ! Engine.cutscene) update();
+
                 delta--;
             }
         }
@@ -111,7 +112,7 @@ public class Updater implements Runnable {
         //вызов службы эфектов
         EffectUtility.work();
         //вызов слуюбы психометра
-
+        DeathUtility.work();
         //вызов жажды
         Player.get().staminaRegen();
         //System.out.println(System.currentTimeMillis()+"ВРЕМЯ");
@@ -175,7 +176,6 @@ public class Updater implements Runnable {
             // Обновляем бокс
             SolidBoxUpdater.updateSolidBox(con);
         }
-         DeathUtility.work();
         // служба очистки трупов
          CorpseCleanerUtility.work();
         //Блок ПОСТ обработки

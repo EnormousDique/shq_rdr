@@ -7,6 +7,7 @@ import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.g.hud.MiniGameHUD;
+import ru.muwa.shq.engine.utilities.DeathUtility;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.ItemPanel;
@@ -60,6 +61,10 @@ public class MouseButtonListener implements MouseInputListener {
                 break;
         }
         Picktogram pic = null;
+        //ЭКРАН СМЕРТИ
+        Rectangle resurrect=new Rectangle(200,310,200,200);
+        if(DeathUtility.isDead && resurrect.contains(new Point(e.getX(),e.getY()))){DeathUtility.resurrect();}
+        //ЭКРАН СМЕРТИ
         //=======================================================================================================
 
         //=======================================================================================================

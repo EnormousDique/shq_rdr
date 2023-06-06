@@ -10,6 +10,7 @@ import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.engine.time.TimeMachine;
+import ru.muwa.shq.engine.utilities.DeathUtility;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.engine.utilities.TradeUtility;
 import ru.muwa.shq.items.ItemPanel;
@@ -339,7 +340,7 @@ public class Renderer implements Runnable {
         g.drawLine(660,30, (int) (660+Player.get().awake),30);
 
 
-
+        HUD.getInstance().getDeathWindow().setBounds(0,0,GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
 
 
         // отрисовка информации о предмете при наводе мышки на оный
