@@ -34,7 +34,7 @@ public class Domofon extends MiniGame{
         buttons.add(new DomofonButton(105,110,"9"));
         buttons.add(new DomofonButton(5,160,"Х"));
         buttons.add(new DomofonButton(55,160,"В"));
-        buttons.add(new DomofonButton(105,160,"*"));
+        buttons.add(new DomofonButton(105,160,"k"));
     }
 
 
