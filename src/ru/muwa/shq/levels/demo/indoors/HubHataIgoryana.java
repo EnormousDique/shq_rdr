@@ -50,7 +50,7 @@ public class HubHataIgoryana extends Level
         //Сон
         zones.add(new SleepZone(740,5,50,100));
         //Туалет
-        zones.add(new InteractionZone(130,7150,100,70) {
+        zones.add(new InteractionZone(130,715,100,70) {
             @Override
             public void use() {
                 Player.get().pee=0;
