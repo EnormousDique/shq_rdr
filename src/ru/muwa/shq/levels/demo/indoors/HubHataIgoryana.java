@@ -12,6 +12,7 @@ import ru.muwa.shq.objects.bounds.*;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.containers.HubChest;
+import ru.muwa.shq.player.Player;
 import ru.muwa.shq.zones.*;
 
 
@@ -48,6 +49,16 @@ public class HubHataIgoryana extends Level
         /** Используемые предметы **/
         //Сон
         zones.add(new SleepZone(740,5,50,100));
+        //Туалет
+        zones.add(new InteractionZone(130,7150,100,70) {
+            @Override
+            public void use() {
+                Player.get().pee=0;
+                Player.get().poo=0;
+                Renderer.addMessage("Поссал и посрал");
+                Renderer.addMessage("(Облегчился)");
+            }
+        });
         //Кухня
         containers.add(new HubChest(740,600));
         zones.add(new InteractionZone(740,650,100,100) {
