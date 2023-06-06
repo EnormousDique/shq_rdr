@@ -43,6 +43,12 @@ public class EnergyDrink extends Item {
         Renderer.addMessage("Бахнув Энергетика");
         }else Renderer.addMessage("Не могу. Надо поссать.");
     }
+
+    @Override
+    public EnergyDrink copy() {
+        return new EnergyDrink();
+    }
+
     @Override
     public void equip() {
     }

@@ -34,6 +34,12 @@ public class Water extends Item {
         description = "Дайте че нибудь,попить пожалуйста,Попить будде добры";
         stackable=true;
     }
+
+    @Override
+    public Water copy() {
+        return new Water();
+    }
+
     @Override
     public void use() {
 

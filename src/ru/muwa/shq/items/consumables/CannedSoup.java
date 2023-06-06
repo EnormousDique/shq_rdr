@@ -46,6 +46,12 @@ public class CannedSoup extends Item {
         }else Renderer.addMessage("Не могу. Надо посрать.");
 
     }
+
+    @Override
+    public CannedSoup copy() {
+        return new CannedSoup();
+    }
+
     @Override
     public void equip() {
     }

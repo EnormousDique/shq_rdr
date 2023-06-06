@@ -47,6 +47,12 @@ public class HomemadeAnuses extends Item {
 
         Renderer.addMessage("ты это заточил ЛОЛ?");
     }
+
+    @Override
+    public HomemadeAnuses copy() {
+        return new HomemadeAnuses();
+    }
+
     @Override
     public void equip() {
     }
