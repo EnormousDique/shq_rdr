@@ -30,14 +30,18 @@ public class Beer extends Item {
     public Beer() {
         super(ID, PRICE, WEIGHT, img);
         description = "ПОчинчКИ Темное 18%. остальное по смс";
+        stackable=true;
     }
     @Override
     public void use() {
-        Player.get().setHp(Player.get().getHp()-5);
-        Player.get().setHighMeter(Player.get().getHighMeter()+5);
-        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.StaminaRegen,System.currentTimeMillis()+10_000);
-        Inventory.getInstance().getItems().remove(this);
+        if(Player.get().pee<95) {
+        if(amount <= 1) Inventory.getInstance().getItems().remove(this);
+        else amount-=1;
+        Player.get().setHp(Player.get().getHp()+1);
+        Player.get().setHighMeter(Player.get().getHighMeter()-10);
+        Player.get().pee+=20;
         Renderer.addMessage("Бахнул пивка");
+        }else Renderer.addMessage("Не могу. Надо поссать.");
     }
     @Override
     public void equip() {

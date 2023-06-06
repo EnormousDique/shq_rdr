@@ -31,11 +31,20 @@ public class HomemadeAnuses extends Item {
     public HomemadeAnuses() {
         super(ID, PRICE, WEIGHT, img);
         description = "Анусы домашние ,  свежие говяжьи , на вкус как кальмар.";
+        stackable=true;
     }
     @Override
     public void use() {
 
-        Inventory.getInstance().getItems().remove(this);
+        if (Player.get().poo < 95) {
+        if(amount <= 1) Inventory.getInstance().getItems().remove(this);
+        else amount-=1;
+        Player.get().poo+=30;
+        Player.get().setHp(Player.get().getHp()+30);
+        Player.get().hunger+=45;
+        }else Renderer.addMessage("Не могу. Надо посрать.");
+
+
         Renderer.addMessage("ты это заточил ЛОЛ?");
     }
     @Override

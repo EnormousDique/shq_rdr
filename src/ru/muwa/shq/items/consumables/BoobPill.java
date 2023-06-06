@@ -31,11 +31,14 @@ public class BoobPill extends Item {
     public BoobPill() {
         super(ID, PRICE, WEIGHT, img);
         description = "витаминка";
+        stackable=true;
     }
     @Override
     public void use() {
-
-        Inventory.getInstance().getItems().remove(this);
+        Player.get().setHp(Player.get().getHp()+5);
+        Player.get().setThirst(Player.get().getThirst()-5);
+        if(amount<=1)Inventory.getInstance().getItems().remove(this);
+        else amount-=1;
         Renderer.addMessage("скушал витаминку");
     }
     @Override

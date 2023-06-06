@@ -39,6 +39,7 @@ public class Tomato extends Item {
     public void use() {
         if(amount <= 1) Inventory.getInstance().getItems().remove(this);
         else amount-=1;
+        Player.get().poo+=5;
         Player.get().setHp(Player.get().getHp() +2);
         Renderer.addMessage("скушал помидорку");
     }

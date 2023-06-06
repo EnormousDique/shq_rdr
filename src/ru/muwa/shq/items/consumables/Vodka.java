@@ -32,14 +32,20 @@ public class Vodka extends Item {
     public Vodka() {
         super(ID, PRICE, WEIGHT, img);
         description = "Водочка для блатной походочка";
+        stackable=true;
     }
     @Override
     public void use() {
 
-        Player.get().setHighMeter(Player.get().getHighMeter()+20);
+        if(Player.get().pee<95) {
+        Player.get().setHighMeter(Player.get().getHighMeter()-15);
+        Player.get().setHighMeterLock(Player.get().getHighMeterLock()-5);
 
-        Inventory.getInstance().getItems().remove(this);
+        if(amount <= 1) Inventory.getInstance().getItems().remove(this);
+        else amount-=1;
         Renderer.addMessage("Хлопнул водочки");
+        }else Renderer.addMessage("Не могу. Надо поссать.");
+
     }
     @Override
     public void equip() {

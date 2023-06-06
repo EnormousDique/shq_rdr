@@ -32,6 +32,7 @@ public class Water extends Item {
         super(ID, PRICE, WEIGHT, img);
         stackable = false;
         description = "Дайте че нибудь,попить пожалуйста,Попить будде добры";
+        stackable=true;
     }
     @Override
     public void use() {
@@ -41,7 +42,8 @@ public class Water extends Item {
             Player.get().setHighMeterLock(Player.get().getHighMeterLock() - 2);
             Player.get().setThirst(Player.get().getThirst() + 50);
             EffectUtility.getCurrentEffects().put(EffectUtility.Effects.StaminaRegen, System.currentTimeMillis() + 10_000);
-            Inventory.getInstance().getItems().remove(this);
+            if(amount <= 1) Inventory.getInstance().getItems().remove(this);
+            else amount-=1;
             Player.get().setHp(Player.get().getHp() + 2);
             LeBottle bottle = new LeBottle();
             Renderer.addMessage("Загасил СУшняк");

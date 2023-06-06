@@ -40,6 +40,7 @@ public class Potato extends Item {
         if(amount <= 1) Inventory.getInstance().getItems().remove(this);
         else amount-=1;
         Player.get().setHp(Player.get().getHp() +2);
+        Player.get().poo+=5;
         Renderer.addMessage("похавал картохи");
     }
 

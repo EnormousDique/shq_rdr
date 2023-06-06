@@ -38,10 +38,15 @@ public class Beetroot extends Item {
 
     @Override
     public void use() {
-        if(amount <= 1) Inventory.getInstance().getItems().remove(this);
-        else amount-=1;
-        Player.get().setHp(Player.get().getHp() +2);
-        Renderer.addMessage("захавал свеклу");
+        if (Player.get().poo < 95) {
+            if (amount <= 1) Inventory.getInstance().getItems().remove(this);
+            else amount -= 1;
+            Player.get().setHp(Player.get().getHp() + 2);
+            Player.get().poo += 10;
+            Renderer.addMessage("захавал свеклу");
+        }else Renderer.addMessage("Не могу. Надо посрать.");
+
+
     }
 
     @Override

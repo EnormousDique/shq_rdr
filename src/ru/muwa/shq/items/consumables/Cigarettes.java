@@ -30,14 +30,17 @@ public class Cigarettes extends Item {
     public Cigarettes() {
         super(ID, PRICE, WEIGHT, img);
         description = "Те самые , как у ковбоя";
+        stackable=true;
     }
     @Override
     public void use() {
+        if(amount <= 1) Inventory.getInstance().getItems().remove(this);
+        else amount-=1;
         Player.get().setHp(Player.get().getHp()-5);
         Player.get().setHighMeter(Player.get().getHighMeter()-1);
         Player.get().setHighMeterLock(Player.get().getHighMeterLock()-5);
+        Player.get().poo+=2;
         EffectUtility.getCurrentEffects().put(EffectUtility.Effects.ODYSHKA,System.currentTimeMillis()+10_000);
-        Inventory.getInstance().getItems().remove(this);
         Renderer.addMessage("Закурил сигаретку");
     }
     @Override

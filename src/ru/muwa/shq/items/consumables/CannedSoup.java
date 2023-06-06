@@ -31,13 +31,20 @@ public class CannedSoup extends Item {
     public CannedSoup () {
         super(ID, PRICE, WEIGHT, img);
         description = "суп из семи залуп.три покрошены , остальные так брошены";
+        stackable=true;
     }
 
     @Override
     public void use() {
-
-        Inventory.getInstance().getItems().remove(this);
+        if (Player.get().poo < 95) {
+        if(amount <= 1) Inventory.getInstance().getItems().remove(this);
+        else amount-=1;
+        Player.get().poo+=20;
+        Player.get().pee+=10;
+        Player.get().setHp(Player.get().getHp()+20);
         Renderer.addMessage("Похавал супу");
+        }else Renderer.addMessage("Не могу. Надо посрать.");
+
     }
     @Override
     public void equip() {

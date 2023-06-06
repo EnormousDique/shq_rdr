@@ -38,10 +38,15 @@ public class Carrot extends Item {
 
     @Override
     public void use() {
+        if (Player.get().poo < 95) {
         if(amount <= 1) Inventory.getInstance().getItems().remove(this);
         else amount-=1;
         Player.get().setHp(Player.get().getHp() +2);
+        Player.get().poo+=5;
         Renderer.addMessage("заточил морковку");
+        }else Renderer.addMessage("Не могу. Надо посрать.");
+
+
     }
 
     @Override

@@ -31,13 +31,17 @@ public class EnergyDrink extends Item {
     public EnergyDrink() {
         super(ID, PRICE, WEIGHT, img);
         description = "ЭНЕРГЕТИКА!";
+        stackable=true;
     }
     @Override
     public void use() {
-
-
-        Inventory.getInstance().getItems().remove(this);
+        if(Player.get().pee<95) {
+        if(amount <= 1) Inventory.getInstance().getItems().remove(this);
+        else amount-=1;
+        Player.get().pee+=15;
+        Player.get().setStamina(100.0);
         Renderer.addMessage("Бахнув Энергетика");
+        }else Renderer.addMessage("Не могу. Надо поссать.");
     }
     @Override
     public void equip() {
