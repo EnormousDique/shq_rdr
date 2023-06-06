@@ -32,6 +32,7 @@ public class KeyListener implements java.awt.event.KeyListener
      * T - 84
      * V - 86
      * U - 85
+     * M - 77
      * ENTER - 10
      * SHIFT - 16
      */
@@ -52,14 +53,15 @@ public class KeyListener implements java.awt.event.KeyListener
             SHIFT = 11,
             V = 12,
             U = 13,
-            J =  14;
+            J =  14,
+            M=15;
 
     private static KeyListener instance;
 
     private KeyListener()
     {
         instance = this;
-        keys = new boolean[15];
+        keys = new boolean[16];
     }
 
     public static KeyListener getInstance()
@@ -113,9 +115,8 @@ public class KeyListener implements java.awt.event.KeyListener
                 keys[ENTER] = true;
                 break;
             case 80: // P
-                Engine.pause = true;
-                HUD.getInstance().getPauseMenuWindow().setVisible(true);
-                Renderer.getInstance().frame.setVisible(false);
+                    keys[P]=true;
+                    break;
 
             case 84: // T
                 keys[T] = true;
@@ -131,6 +132,11 @@ public class KeyListener implements java.awt.event.KeyListener
                 break;
             case 74: //J
                 keys[J] = true;
+                break;
+            case 77: //M (открываем МЕНЮ)
+                Engine.pause = true;
+                HUD.getInstance().getPauseMenuWindow().setVisible(true);
+                Renderer.getInstance().frame.setVisible(false);
                 break;
 
 
@@ -185,6 +191,12 @@ public class KeyListener implements java.awt.event.KeyListener
                 break;
             case 74: //J
                 keys[J] = false;
+                break;
+            case 77:
+                keys[M] = false;
+                break;
+            case 80:
+                keys[P]=false;
                 break;
         }
     }

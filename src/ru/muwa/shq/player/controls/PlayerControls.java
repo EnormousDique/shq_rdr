@@ -53,6 +53,7 @@ public class PlayerControls
         if(keyboard.getKeys()[keyboard.SHIFT]) shift();
         if(keyboard.getKeys()[keyboard.U]) u();
       //  if(keyboard.getKeys()[keyboard.V]) v();
+        if(keyboard.getKeys()[keyboard.P]) p();
 
 
 
@@ -111,7 +112,12 @@ public class PlayerControls
     }// движение влево с бегом и снятием стамины
 
 
-
+    private static void p(){
+        Renderer.addMessage("Нужно добавить анимацию ссанья");
+        Renderer.addMessage("Ссым.");
+        Player.get().pee = 0;
+        keyboard.getKeys()[keyboard.P]=false;
+    }
     private static void u()
     {
         for(GameZone z : Engine.getCurrentLevel().getZones())
