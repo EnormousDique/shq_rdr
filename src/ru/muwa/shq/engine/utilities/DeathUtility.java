@@ -34,10 +34,6 @@ public class DeathUtility {
         TimeMachine.rewind(720_000);
         Renderer.addMessage("Игрок потерял все здоровье");
         Renderer.addMessage("Он оклемался за сутки");
-
-
-
-
     }
     public static void resurrect()
     {
