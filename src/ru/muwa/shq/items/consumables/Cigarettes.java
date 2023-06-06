@@ -43,6 +43,12 @@ public class Cigarettes extends Item {
         EffectUtility.getCurrentEffects().put(EffectUtility.Effects.ODYSHKA,System.currentTimeMillis()+10_000);
         Renderer.addMessage("Закурил сигаретку");
     }
+
+    @Override
+    public Cigarettes copy() {
+        return new Cigarettes();
+    }
+
     @Override
     public void equip() {
     }

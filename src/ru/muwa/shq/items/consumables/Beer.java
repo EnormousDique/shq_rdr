@@ -46,4 +46,9 @@ public class Beer extends Item {
     @Override
     public void equip() {
     }
+
+    @Override
+    public Beer copy() {
+        return new Beer();
+    }
 }

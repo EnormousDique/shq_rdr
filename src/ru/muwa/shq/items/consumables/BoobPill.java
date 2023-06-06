@@ -41,6 +41,12 @@ public class BoobPill extends Item {
         else amount-=1;
         Renderer.addMessage("скушал витаминку");
     }
+
+    @Override
+    public BoobPill copy() {
+        return new BoobPill();
+    }
+
     @Override
     public void equip() {
     }

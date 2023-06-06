@@ -47,6 +47,12 @@ public class Vodka extends Item {
         }else Renderer.addMessage("Не могу. Надо поссать.");
 
     }
+
+    @Override
+    public Vodka copy() {
+        return new Vodka();
+    }
+
     @Override
     public void equip() {
     }
