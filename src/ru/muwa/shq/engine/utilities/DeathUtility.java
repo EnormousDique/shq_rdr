@@ -1,16 +1,23 @@
 package ru.muwa.shq.engine.utilities;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.hud.HUD;
+import ru.muwa.shq.engine.listeners.KeyListener;
+import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Arrays;
+
+import static ru.muwa.shq.engine.g.GameScreen.SCREEN_HEIGHT;
+import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
 
 public class DeathUtility {
     public static void work()
@@ -20,37 +27,28 @@ public class DeathUtility {
             die();
         }
     }
+    public static boolean isDead = false;
     private static void die()
     {
-        Player.get().setIsBusy(true);
-        Inventory.getInstance().setIsOpened(false);
-        Arrays.stream(HUD.getInstance().getDeathWindow().getComponents()).forEach(HUD.getInstance().getDeathWindow()::remove);
+        resurrect();
+        TimeMachine.rewind(720_000);
+        Renderer.addMessage("Игрок потерял все здоровье");
+        Renderer.addMessage("Он оклемался за сутки");
 
-        HUD.getInstance().getDeathWindow().setVisible(true);
-        JLabel deathLabel = new JLabel("ПОРТАЧЕНО");
-        JButton deathButton = new JButton("OK");
-        HUD.getInstance().getDeathWindow().add(deathLabel);
-        HUD.getInstance().getDeathWindow().add(deathButton);
-        deathButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(e.getSource().equals(deathButton))
-                {
-                    resurrect();
-                }
-            }
-        });
+
+
 
     }
-    private static void resurrect()
+    public static void resurrect()
     {
+        Engine.pause=false;
         try {
             Engine.switchLevel(HubHataIgoryana.getInstance(),110,110);
         } catch (IOException e) {
             System.out.println("Не могу воскресить игрока : не грузит хаб");
         }
+        isDead=false;
         Player.get().setIsBusy(false);
         Player.get().setHp(100);
-        HUD.getInstance().getDeathWindow().setVisible(false);
     }
 }
