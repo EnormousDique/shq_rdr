@@ -50,7 +50,7 @@ public abstract class Cutscene
 
         if(c != null)
         {
-            double drawInterval = 1_000_000_000/24;
+            double drawInterval = 1_000_000_000/16;
             double delta=0;
             long lastTime = System.nanoTime();
             long currTime;

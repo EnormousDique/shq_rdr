@@ -16,8 +16,9 @@ public class Q2T1_Cutscene extends Cutscene {
         instance = this;
         movements = new ArrayList<>();
 
-        Engine.getCurrentLevel().getNPC().add(new Hachique(Player.get().getX() + 250, Player.get().getY(),"Vasya"));
+
         movements.add(new Movement("Vasya", Player.get().getX()+100,Player.get().getY()));
+        movements.add(new Movement("Vasya", Player.get().getX()+100,Player.get().getY()-100));
 
     }
 

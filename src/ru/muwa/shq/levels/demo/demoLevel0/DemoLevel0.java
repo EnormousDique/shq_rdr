@@ -1,12 +1,16 @@
 package ru.muwa.shq.levels.demo.demoLevel0;
+import ru.muwa.shq.creatures.npc.questnpc.Hachique;
 import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.dialogues.demo.Conversation0;
 import ru.muwa.shq.dialogues.demo.HackerCumputerDialog;
+import ru.muwa.shq.dialogues.demo.Q2T1_Conversation;
 import ru.muwa.shq.dialogues.demo.Q3_PoliceConversation;
 import ru.muwa.shq.economics.trading.Buyout;
 import ru.muwa.shq.economics.trading.Trade;
+import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.Animator;
+import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
 import ru.muwa.shq.quests.HackerQuestReboot;
@@ -129,13 +133,14 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new Kortique());
         Inventory.getInstance().addItem(new Processor());
         for(int i = 0 ; i<4;i++) Inventory.getInstance().addItem(new Flour());
-        Player.get().momQuests.add(new MomQuestFood());
-        Player.get().butcherQuests.add(new ButcherQuestPacan());
-        Player.get().hackerQuests.add(new ComputerQuest());
-        Player.get().hackerQuests.add(new HackerQuestReboot());
-        Player.get().hackerQuests.add(new HackerQuestATM());
-        Player.get().copQuests.add(new CopQuestOrientalGuest());
-        Player.get().copQuests.add(new CopQuestUnhappyFamilies());
+      //  Player.get().momQuests.add(new MomQuestFood());
+      //  Player.get().butcherQuests.add(new ButcherQuestPacan());
+      //  Player.get().hackerQuests.add(new ComputerQuest());
+      //  Player.get().hackerQuests.add(new HackerQuestReboot());
+      //  Player.get().hackerQuests.add(new HackerQuestATM());
+       // Player.get().copQuests.add(new CopQuestOrientalGuest());
+      //  Player.get().copQuests.add(new CopQuestUnhappyFamilies());
+        Player.get().momQuests.add(new MomQuestArriving());
 
         System.out.println("test 2");
 
@@ -380,8 +385,18 @@ public class DemoLevel0 extends Level
         //2930 6600
         /** РЫНОК **/
         //Зона входа в  рынок
-        zones.add(new MiniGameZone(2930,6600,70,70,new Domofon("228k1488",MarketInteriors.getInstance(),100,100)));
+
         zones.add(new EnterZone(2930,6600,200,200, MarketInteriors.getInstance(),100,100,false));
+        //скриптовая зона хача
+        zones.add(new ActionZone(2700, 6000, 1000, 1000, new QuestAction() {
+            @Override
+            public void performAction() {
+                Engine.getCurrentLevel().getNPC().add(new Hachique(Player.get().getX() + 350, Player.get().getY()-300,"Vasya"));
+          //  Animator.playCutscene(Q2T1_Cutscene.getInstance());
+
+            //DialogueManager.playDialogueOnDemand(Q2T1_Conversation.getInstance());
+            }
+        }));
 
         /** Палатки на рынке **/
 

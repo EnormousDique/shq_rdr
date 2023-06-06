@@ -26,7 +26,7 @@ public class Player extends Creature
     public ArrayList<Quest> hackerQuests = new ArrayList<>();
     public ArrayList<Quest> copQuests = new ArrayList<>();
     public ArrayList<Quest> drugstoreQuests = new ArrayList<>();
-
+    public ArrayList<Quest> hachQuests = new ArrayList<>();
     public enum Direction{UP,DOWN,LEFT,RIGHT}
     public Direction direction;
     private Rectangle useZone;

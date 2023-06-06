@@ -3,6 +3,7 @@ package ru.muwa.shq.levels.demo.indoors;
 import ru.muwa.shq.craftsmanship.cooking.Cook;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.dialogues.demo.Conversation1;
+import ru.muwa.shq.dialogues.mom.MomDialog;
 import ru.muwa.shq.economics.money.Money_500;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.items.consumables.CellPhone;
@@ -43,7 +44,7 @@ public class HubHataIgoryana extends Level
         //выход в падик
         zones.add(new EnterZone(30, 740,100,100,FatBuildingFloor5.getInstance(), 30,30,false));
         // диалог с мамой
-        zones.add(new DialogueZone(Conversation1.getInstance(),100,100,100,100,false));
+        zones.add(new DialogueZone(new MomDialog(),100,100,100,100,false));
        // zones.add(new GifSceneZone(200,200,70,70,true));
 
         /** Используемые предметы **/

@@ -42,12 +42,12 @@ public class BadGuy0 extends NPC {
         //текстура трупа
         try
         {
-            corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\BadGuyCorpse.png"));
-            System.out.println("BadGuyCorpse texture loaded");
+            corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\gopNickCORPSE.png"));
+            System.out.println("BadGuy0 texture loaded");
         }
         catch (IOException e)
         {
-            System.out.println("failed to load BadGuyCoprse texture");
+            System.out.println("failed to load BadGuy0Coprse texture");
         }
     }
 
