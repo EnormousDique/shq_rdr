@@ -119,7 +119,7 @@ public class DemoLevel0 extends Level
         instance = this;
         this.isStreet = true;
 
-        System.out.println("test 1");
+        System.out.println("test 1 ");
 
         Inventory.getInstance().addItem(new MakarovAmmo());
         Inventory.getInstance().addItem(new BaseballBat());
