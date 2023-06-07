@@ -392,7 +392,7 @@ public class DemoLevel0 extends Level
             @Override
             public void performAction() {
                 Engine.getCurrentLevel().getNPC().add(new Hachique(Player.get().getX() + 350, Player.get().getY()-300,"Vasya"));
-          //  Animator.playCutscene(Q2T1_Cutscene.getInstance());
+            Animator.playCutscene(Q2T1_Cutscene.getInstance());
 
             //DialogueManager.playDialogueOnDemand(Q2T1_Conversation.getInstance());
             }
