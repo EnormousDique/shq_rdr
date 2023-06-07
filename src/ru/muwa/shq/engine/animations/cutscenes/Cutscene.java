@@ -55,11 +55,11 @@ public abstract class Cutscene
             long lastTime = System.nanoTime();
             long currTime;
 
-            while (!c.getSolidBox().contains(new Point(m.distX,m.distY))) {
+            while (!c.getSolidBox().contains(new Rectangle(m.distX-10,m.distY-10,20,20))) {
 
 
-                int xDistance = Math.abs(c.getX() - m.distX);
-                int yDistance = Math.abs(c.getY() - m.distY);
+                int xDistance = (int) Math.abs(c.getSolidBox().getCenterX() - m.distX);
+                int yDistance = (int) Math.abs(c.getSolidBox().getCenterY() - m.distY);
 
                 currTime = System.nanoTime();
                 delta += (currTime - lastTime) / drawInterval;
