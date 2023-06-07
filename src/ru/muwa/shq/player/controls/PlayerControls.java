@@ -128,6 +128,7 @@ public class PlayerControls
                     TimeMachine.rewind((int)(100-Player.get().awake)*(4750));
                     Renderer.playSleepyFilter();
                     Renderer.addMessage("Отлично выспался");
+                    Player.get().awake =100;
                 }
                 else{
                     String dayTimeString = "";
