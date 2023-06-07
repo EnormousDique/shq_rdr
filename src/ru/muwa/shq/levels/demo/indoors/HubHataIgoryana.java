@@ -8,6 +8,7 @@ import ru.muwa.shq.economics.money.Money_500;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.items.consumables.CellPhone;
 import ru.muwa.shq.items.consumables.Potato;
+import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.objects.bounds.*;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
@@ -41,10 +42,13 @@ public class HubHataIgoryana extends Level
         // хабовый сундук
         containers.add(new HubChest(700,5));
         for (int i = 0; i<6; i++)containers.get(0).addItem(new Money_500());
+        containers.get(0).addItem(new KladYellow());
+
         //выход в падик
         zones.add(new EnterZone(30, 740,100,100,FatBuildingFloor5.getInstance(), 30,30,false));
         // диалог с мамой
         zones.add(new DialogueZone(new MomDialog(),100,100,100,100,false));
+
        // zones.add(new GifSceneZone(200,200,70,70,true));
 
         /** Используемые предметы **/

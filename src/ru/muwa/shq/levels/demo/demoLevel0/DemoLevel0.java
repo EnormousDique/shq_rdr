@@ -6,13 +6,18 @@ import ru.muwa.shq.dialogues.demo.Conversation0;
 import ru.muwa.shq.dialogues.demo.HackerCumputerDialog;
 import ru.muwa.shq.dialogues.demo.Q2T1_Conversation;
 import ru.muwa.shq.dialogues.demo.Q3_PoliceConversation;
+import ru.muwa.shq.dialogues.hach.HachDialog;
+import ru.muwa.shq.dialogues.hach.HachDialogFate;
+import ru.muwa.shq.dialogues.mom.MomDialog;
 import ru.muwa.shq.economics.trading.Buyout;
 import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
+import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
+import ru.muwa.shq.objects.containers.HubChest;
 import ru.muwa.shq.quests.HackerQuestReboot;
 import ru.muwa.shq.quests.HackerQuestATM;
 import ru.muwa.shq.quests.CopQuestOrientalGuest;
@@ -124,11 +129,14 @@ public class DemoLevel0 extends Level
         this.isStreet = true;
 
         System.out.println("test 1 ");
+        containers.add(new HubChest(-50,-50));
+        // Inventory.getInstance().addItem(new KladYellow());\
+        containers.get(0).addItem(new KladYellow());
 
         Inventory.getInstance().addItem(new MakarovAmmo());
         Inventory.getInstance().addItem(new BaseballBat());
         Inventory.getInstance().addItem(new Makarov());
-        Inventory.getInstance().addItem(new KladBlue());
+       // Inventory.getInstance().addItem(new KladBlue());
         Inventory.getInstance().addItem(new IceOlator());
         Inventory.getInstance().addItem(new Kortique());
         Inventory.getInstance().addItem(new Processor());
@@ -385,7 +393,8 @@ public class DemoLevel0 extends Level
         //2930 6600
         /** РЫНОК **/
         //Зона входа в  рынок
-
+        zones.add(new DialogueZone(new HachDialogFate(),100,100,100,100,false));
+        zones.add(new DialogueZone(new HachDialog(),-100,100,100,100,false));
         zones.add(new EnterZone(2930,6600,200,200, MarketInteriors.getInstance(),100,100,false));
         //скриптовая зона хача
         zones.add(new ActionZone(2700, 6000, 1000, 1000, new QuestAction() {
