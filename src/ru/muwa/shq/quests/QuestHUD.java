@@ -37,6 +37,7 @@ public class QuestHUD {
                 drawHackerQuest();
                 drawDrugstoreQuest();
                 drawCopsQuests();
+                drawHachQuest();
             }else {
                 //Если рендеринг квест  не  нуль, то мы отрисовываем не общее окно, а этот конкретный квест.
                 Renderer.g.setColor(Color.BLACK);
@@ -60,7 +61,33 @@ public class QuestHUD {
 
             Renderer.g.setColor(oldColor);
     }
+    private static void drawHachQuest() {
+        Renderer.g.setColor(Color.BLACK);
+        if (Player.get().hachQuests.size() > 0) {
 
+            Renderer.g.fillRect(x + 550, y + 100, 50, 50);
+            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.drawString("ХАч : ", x + 550, y + 125);
+
+            for (int i = 0; i < Player.get().hachQuests.size(); i++) {
+                QuestPic pic = new QuestPic(x + 550, y + 125 + (i + 1) * 30, Player.get().hachQuests.get(i));
+                Color bg = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.GREEN:Color.MAGENTA;
+                Renderer.g.setColor(bg);
+                Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
+                Color font = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.BLACK:Color.GREEN;
+                Renderer.g.setColor(font);
+                String done = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?"(v)":"";
+                Renderer.g.drawString(pic.quest.name+done, pic.x, pic.y + 10);
+                pics.add(pic);
+            }
+
+        }else
+        {
+            Renderer.g.fillRect(x + 550, y + 100, 50, 50);
+            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.drawString("????? : ", x + 550, y + 125);
+        }
+    }
     private static void drawCopsQuests() {
         Renderer.g.setColor(Color.BLACK);
         if (Player.get().copQuests.size() > 0) {
@@ -88,6 +115,7 @@ public class QuestHUD {
             Renderer.g.drawString("????? : ", x + 350, y + 125);
         }
     }
+
 
     private static void drawDrugstoreQuest() {
         Renderer.g.setColor(Color.BLACK);

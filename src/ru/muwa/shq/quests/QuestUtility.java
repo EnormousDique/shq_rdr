@@ -33,6 +33,7 @@ public class QuestUtility {
         maintainPlayerQuests(Player.get().hackerQuests);
         maintainPlayerQuests(Player.get().copQuests);
         maintainPlayerQuests(Player.get().butcherQuests);
+        maintainPlayerQuests(Player.get().hachQuests);
 
   //      if(quest1.tasks.get(quest1.tasks.size()-1).isCompleted && !Player.get().quests.contains(quest2)) startQuest2();
 
@@ -148,14 +149,7 @@ public class QuestUtility {
 
     public static void startQuest3(){
 
-        quest3.addTask("Найти стаффчик", new C_HasPlayerFoundKlad());
-        quest3.addTask("Поговорить с хачиком", new TaskCondition() {
-            @Override
-            public boolean checkCondition() {
-                //todo добавить код проверки вернулся ли игрок со стаффом к хачику
-                return false;
-            }
-        });
+
 
       //  Player.get().quests.add(quest3);
     }

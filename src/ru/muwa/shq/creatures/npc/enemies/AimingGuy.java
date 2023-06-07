@@ -23,12 +23,12 @@ public class AimingGuy extends NPC{
     {
         try
         {
-            img = ImageIO.read(new File(IMG_PATH + "creatures\\BadGuy0.png"));
-            System.out.println("BadGuy0 loaded ok");
+            img = ImageIO.read(new File(IMG_PATH + "creatures\\PISTOLCOP.png"));
+            System.out.println("PISTOLCOP loaded ok");
         }
         catch(Exception e)
         {
-            System.out.println("failed to load BadGuy0 texture");
+            System.out.println("failed to load PISTOLCOP texture");
         }
     }
 
@@ -46,12 +46,12 @@ public class AimingGuy extends NPC{
         hp=20;
         try
         {
-            corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\BadGuyCorpse.png"));
-            System.out.println("BadGuyCorpse texture loaded");
+            corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\CORPSECOP.png"));
+            System.out.println("aimingCOPGuyCorpse texture loaded");
         }
         catch (IOException e)
         {
-            System.out.println("failed to load BadGuyCoprse texture");
+            System.out.println("failed to load aimingBadGuyCoprse texture");
         }
         nearZone.setBounds(this.x - 150, this.y -150,300,300);
     }
@@ -63,12 +63,12 @@ public class AimingGuy extends NPC{
         isEnemy=true;
         try
         {
-            corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\BadGuyCorpse.png"));
-            System.out.println("BadGuyCorpse texture loaded");
+            corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\CORPSECOP.png"));
+            System.out.println("CORPSECOPBadGuyCorpse texture loaded");
         }
         catch (IOException e)
         {
-            System.out.println("failed to load BadGuyCoprse texture");
+            System.out.println("failed to load CORPSECOPBadGuyCoprse texture");
         }
 
     }

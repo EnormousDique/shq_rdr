@@ -17,7 +17,7 @@ public class PasserBy extends NPC{
     {
         try
         {
-            img = ImageIO.read(new File(IMG_PATH + "creatures\\Hachique.png"));
+            img = ImageIO.read(new File(IMG_PATH + "creatures\\MAMASHA.png"));
             System.out.println("hach loaded ok");
         }
         catch(Exception e)
@@ -43,7 +43,7 @@ public class PasserBy extends NPC{
         hp = 10;
         //текстура трупа
         try {
-            corpseimg = ImageIO.read(new File(IMG_PATH + "creatures\\Hachique.png"));
+            corpseimg = ImageIO.read(new File(IMG_PATH + "creatures\\MAMASHA.png"));
             System.out.println("dead hach texture loaded");
         } catch (IOException e) {
             System.out.println("failed to load dead hach texture");

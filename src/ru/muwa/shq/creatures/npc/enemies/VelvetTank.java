@@ -37,10 +37,10 @@ public class VelvetTank extends NPC {
         hp = 50;
         //текстура трупа
         try {
-            corpseimg = ImageIO.read(new File(IMG_PATH + "containers\\VELVETTANKCorpse.png"));
-            System.out.println("BadGuyCorpse texture loaded");
+            corpseimg = ImageIO.read(new File(IMG_PATH + "containers\\CORPSECOP.png"));
+            System.out.println("CORPSECOP texture loaded");
         } catch (IOException e) {
-            System.out.println("failed to load VelvetTank texture");
+            System.out.println("failed to load CORPSECOP texture");
         }
     }
 
