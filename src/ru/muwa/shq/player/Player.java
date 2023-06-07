@@ -47,6 +47,7 @@ public class Player extends Creature
     }
 
     private int regSpeed = 5;
+    public int hungrySpeed = 2;
 
     public int getShiftSpeed() {
         return shiftSpeed;

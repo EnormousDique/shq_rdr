@@ -23,6 +23,8 @@ public abstract class Buyout {
 
     private BuyoutButtonListener listener = new BuyoutButtonListener();
 
+    public int jlob = 1; //Жлоб. Коэффициент, на который делится цена предмета при продаже. ПО ум= 1.d
+
 
     public abstract void init();
     public void trade() throws Exception
@@ -49,7 +51,7 @@ public abstract class Buyout {
                 p.setBounds(x, y * 50, 50, 50);
                 p.addMouseListener(MouseButtonListener.getInstance());
 
-                String s = "цена : " + goods.get(i).getPrice();
+                String s = "цена : " + (goods.get(i).getPrice()/jlob);
                 JLabel l = new JLabel(s);
                 HUD.getInstance().getActionWindow().add(l);
                 l.setBounds(50,y*50,100,50);
@@ -92,7 +94,7 @@ public abstract class Buyout {
                  int i = 0;
                  for(Item item : ((BuyoutZone)z).buyout.goods)
                  {
-                     i += item.getPrice();
+                     i += item.getPrice() / ((BuyoutZone) z).buyout.jlob;
                  }
                 ((BuyoutZone)z).buyout.goods = new ArrayList<>();
                 Player.get().money = Player.get().money+i;

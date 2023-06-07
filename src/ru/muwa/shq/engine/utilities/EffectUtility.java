@@ -13,6 +13,7 @@ import static ru.muwa.shq.engine.utilities.EffectUtility.Effects.*;
 public class EffectUtility {
     private static HashMap<Effects, Long> currentEffects;
     public static boolean isPlayerAddictedToSpeed =false;
+    private static long lastTimeSpeedWithdrawalNotification = 0l;
 
     public static HashMap<Effects, Long> getCurrentEffects() {
         return currentEffects;
@@ -42,6 +43,7 @@ public class EffectUtility {
         psychOmetr();
         sleepy();
         hungry();
+        stamina();
         for (Map.Entry<Effects, Long> entry : currentEffects.entrySet()) {
             switch (entry.getKey()) {
 
@@ -84,6 +86,11 @@ public class EffectUtility {
                     if(Player.get().getHighMeter() >= 5 && currentEffects.get(SPEED) + 20_000 < System.currentTimeMillis() && isPlayerAddictedToSpeed )
                     {
                         CameraUpdateUtility.isShaking = true;
+                        if(System.currentTimeMillis()>lastTimeSpeedWithdrawalNotification+15_000) {
+                            Renderer.addMessage(Math.random() > 0.5 ? "Трясёт без порошка" : "Нюхнуть бы.. потряхивает");
+                            lastTimeSpeedWithdrawalNotification = System.currentTimeMillis();
+                        }
+
                     }
                     else
                     {
@@ -94,8 +101,16 @@ public class EffectUtility {
         }
     }
 
+    private static void stamina() {
+        if(Player.get().getStamina() < 100)
+            Player.get().setStamina(Player.get().getStamina()+0.3);
+    }
+
     private static void hungry(){
         Player.get().hunger-= 0.005;
+        if(Player.get().hunger<20){
+            Player.get().setSpeed(Player.get().hungrySpeed);
+        } else Player.get().setSpeed(Player.get().getRegSpeed());
     }
     private static void sleepy() {
         Player.get().awake -= 0.002;
@@ -125,11 +140,24 @@ public static void meterLock(){
             Player.get().setHighMeter(Player.get().getHighMeter() - (Player.get().getHighMeterLock() > 50? 0.005 : 0.02));
         }
     }
+    private static long lastTimeThirstNotification=0;
     public static void thirstMetr(){
         if(Player.get().getThirst() > 0 ){
          Player.get().setThirst(Player.get().getThirst()-0.01);
         }
+        if(Player.get().getThirst()>50){
+            Player.get().setStamina(Player.get().getStamina()+0.2);
+        }
+        if(Player.get().getStamina()<20){
+            Player.get().setStamina(Player.get().getStamina()-0.2);
+            if(System.currentTimeMillis()>lastTimeThirstNotification+15_000){
+                Renderer.addMessage("Очень хочется пить..");
+                lastTimeThirstNotification = System.currentTimeMillis();
+            }
+        }
+
     }
+
 }
 
 

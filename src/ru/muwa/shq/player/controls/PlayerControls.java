@@ -33,7 +33,7 @@ public class PlayerControls
     private static KeyListener keyboard = KeyListener.getInstance();
     private static Player player = Player.get();
 
-    public static   void controlPlayer()
+    public static void controlPlayer()
     {
         boolean p = Engine.pause;
         //проверка на открытие инвентаря
@@ -94,7 +94,7 @@ public class PlayerControls
     }
     // движение вверх с бегом и снятием стамины
     private static void w() {
-        if(keyboard.getKeys()[keyboard.SHIFT]){
+        if(keyboard.getKeys()[keyboard.SHIFT]&& Player.get().hunger>20){
             if(Player.get().getStamina() >0) {
                 Player.get().setStamina(Player.get().getStamina() - 1);
                 Player.get().setSpeed(Player.get().getShiftSpeed());
@@ -163,7 +163,7 @@ public class PlayerControls
 
 
     private static void a() {
-        if(keyboard.getKeys()[keyboard.SHIFT]){
+        if(keyboard.getKeys()[keyboard.SHIFT]&& Player.get().hunger>20){
             if(Player.get().getStamina() >0) {
                 Player.get().setStamina(Player.get().getStamina() - 1);
                 Player.get().setSpeed(Player.get().getShiftSpeed());
@@ -179,7 +179,7 @@ public class PlayerControls
     }
     // движение вниз с бегом и снятием стамины
     private static void s()
-    { if(keyboard.getKeys()[keyboard.SHIFT]){
+    { if(keyboard.getKeys()[keyboard.SHIFT]&& Player.get().hunger>20){
         if(Player.get().getStamina() >0) {
             Player.get().setStamina(Player.get().getStamina() - 1);
             Player.get().setSpeed(Player.get().getShiftSpeed());
@@ -196,7 +196,7 @@ public class PlayerControls
     }// движение вправо с бегом и снятием стамины
     private static void d()
     {
-        if(keyboard.getKeys()[keyboard.SHIFT]){
+        if(keyboard.getKeys()[keyboard.SHIFT] && Player.get().hunger>20){
             if(Player.get().getStamina() >0) {
                 Player.get().setStamina(Player.get().getStamina() - 1);
                 Player.get().setSpeed(Player.get().getShiftSpeed());
