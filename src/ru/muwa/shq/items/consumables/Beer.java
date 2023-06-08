@@ -37,9 +37,11 @@ public class Beer extends Item {
         if(Player.get().pee<95) {
         if(amount <= 1) Inventory.getInstance().getItems().remove(this);
         else amount-=1;
-        Player.get().setHp(Player.get().getHp()+1);
+        Player.get().setHp(Player.get().getHp()+3);
         Player.get().setHighMeter(Player.get().getHighMeter()-10);
+        Player.get().awake-=5;
         Player.get().pee+=20;
+        Player.get().setThirst(Player.get().getThirst()+15);
         Renderer.addMessage("Бахнул пивка");
         }else Renderer.addMessage("Не могу. Надо поссать.");
     }

@@ -365,6 +365,12 @@ public class DemoLevel0 extends Level
         zones.add(new MiniGameZone(7920  ,5892,70,70,new Domofon("228k1488",L1B11P6F1.getInstance(), 190,220)));
         zones.add(new MiniGameZone(7920  ,7096,70,70,new Domofon("228k1488",L1B11P7F1.getInstance(), 190,220)));
 
+        //Магазин продуктов
+        // TODO: Перенести к нужному дому (магаз в падике жилого дома)
+        zones.add(new EnterZone(7920, 3800,100,100, GroceryInteriors.getInstance(),400,400,false));
+        //Аптека
+        zones.add(new EnterZone(7920, 6400,100,100, DrugStoreInteriors.getInstance(),400,400,false));
+
 
         //низ
         objects.add(new LoongRedBrickBuildingDown(7137,7130));

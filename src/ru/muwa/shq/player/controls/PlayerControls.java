@@ -94,18 +94,18 @@ public class PlayerControls
     }
     // движение вверх с бегом и снятием стамины
     private static void w() {
-        if(keyboard.getKeys()[keyboard.SHIFT]&& Player.get().hunger>20){
-            if(Player.get().getStamina() >0) {
-                Player.get().setStamina(Player.get().getStamina() - 1);
-                Player.get().setSpeed(Player.get().getShiftSpeed());
-                Player.get().moveUp();
-            }
-            else if(Player.get().getStamina() <= 10) {
-                Player.get().setStamina(Player.get().getStamina()-0);
-                Player.get().setSpeed(Player.get().getRegSpeed());
-                Player.get().moveUp();
+        if(keyboard.getKeys()[keyboard.SHIFT] && Player.get().hunger>20){
 
-            }
+            if(Player.get().getStamina() >10)
+                Player.get().setSpeed(Player.get().getShiftSpeed());
+            else
+                Player.get().setSpeed(Player.get().getRegSpeed());
+
+            Player.get().setStamina(Player.get().getStamina() - 1);
+            Player.get().moveUp();
+            if(keyboard.getKeys()[keyboard.A] || keyboard.getKeys()[keyboard.D]|| keyboard.getKeys()[keyboard.S] )
+                Player.get().setStamina(Player.get().getStamina()+0.5);
+
         }else Player.get().moveUp();
 
 
@@ -163,53 +163,55 @@ public class PlayerControls
 
 
     private static void a() {
-        if(keyboard.getKeys()[keyboard.SHIFT]&& Player.get().hunger>20){
-            if(Player.get().getStamina() >0) {
-                Player.get().setStamina(Player.get().getStamina() - 1);
+        if(keyboard.getKeys()[keyboard.SHIFT] && Player.get().hunger>20){
+
+            if(Player.get().getStamina() >10)
                 Player.get().setSpeed(Player.get().getShiftSpeed());
-                Player.get().moveLeft();
-            }
-            else if(Player.get().getStamina() <= 10) {
-                Player.get().setStamina(Player.get().getStamina()-0);
+            else
                 Player.get().setSpeed(Player.get().getRegSpeed());
-                Player.get().moveLeft();
-            }
+
+            Player.get().setStamina(Player.get().getStamina() - 1);
+            Player.get().moveLeft();
+            if(keyboard.getKeys()[keyboard.W] || keyboard.getKeys()[keyboard.D]|| keyboard.getKeys()[keyboard.S] )
+                Player.get().setStamina(Player.get().getStamina()+0.5);
+
         }else Player.get().moveLeft();
 
     }
     // движение вниз с бегом и снятием стамины
     private static void s()
-    { if(keyboard.getKeys()[keyboard.SHIFT]&& Player.get().hunger>20){
-        if(Player.get().getStamina() >0) {
+    {
+        if(keyboard.getKeys()[keyboard.SHIFT] && Player.get().hunger>20){
+
+            if(Player.get().getStamina() >10)
+                Player.get().setSpeed(Player.get().getShiftSpeed());
+            else
+                Player.get().setSpeed(Player.get().getRegSpeed());
+
             Player.get().setStamina(Player.get().getStamina() - 1);
-            Player.get().setSpeed(Player.get().getShiftSpeed());
             Player.get().moveDown();
-        }
-        else if(Player.get().getStamina() <= 10) {
-            Player.get().setStamina(Player.get().getStamina()-0);
-            Player.get().setSpeed(Player.get().getRegSpeed());
-            Player.get().moveDown();
-        }
-    }else Player.get().moveDown();
+            if(keyboard.getKeys()[keyboard.A] || keyboard.getKeys()[keyboard.D]|| keyboard.getKeys()[keyboard.W] )
+                Player.get().setStamina(Player.get().getStamina()+0.5);
+
+        }else Player.get().moveDown();
 
 
     }// движение вправо с бегом и снятием стамины
     private static void d()
     {
         if(keyboard.getKeys()[keyboard.SHIFT] && Player.get().hunger>20){
-            if(Player.get().getStamina() >0) {
-                Player.get().setStamina(Player.get().getStamina() - 1);
+
+            if(Player.get().getStamina() >10)
                 Player.get().setSpeed(Player.get().getShiftSpeed());
-                Player.get().moveRight();
-            }
-            else if(Player.get().getStamina() <= 10) {
-                Player.get().setStamina(Player.get().getStamina()-0);
+            else
                 Player.get().setSpeed(Player.get().getRegSpeed());
-                Player.get().moveRight();
 
-            }
+            Player.get().setStamina(Player.get().getStamina() - 1);
+            Player.get().moveRight();
+            if(keyboard.getKeys()[keyboard.A] || keyboard.getKeys()[keyboard.W]|| keyboard.getKeys()[keyboard.S] )
+                Player.get().setStamina(Player.get().getStamina()+0.5);
+
         }else Player.get().moveRight();
-
 
     }
     // действие на кнопку е

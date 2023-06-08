@@ -46,7 +46,7 @@ public class Player extends Creature
         this.regSpeed = regSpeed;
     }
 
-    private int regSpeed = 5;
+    private int regSpeed = 4;
     public int hungrySpeed = 2;
 
     public int getShiftSpeed() {
@@ -57,7 +57,7 @@ public class Player extends Creature
         this.shiftSpeed = shiftSpeed;
     }
 
-    private int shiftSpeed = 10;
+    private int shiftSpeed = 8;
 
     private double highMeterLock;
     private double Stamina;

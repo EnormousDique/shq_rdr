@@ -14,6 +14,7 @@ public class EffectUtility {
     private static HashMap<Effects, Long> currentEffects;
     public static boolean isPlayerAddictedToSpeed =false;
     private static long lastTimeSpeedWithdrawalNotification = 0l;
+    public static boolean highOnSpeed;
 
     public static HashMap<Effects, Long> getCurrentEffects() {
         return currentEffects;
@@ -50,7 +51,8 @@ public class EffectUtility {
                 case SPEED:
                     if (entry.getValue() > System.currentTimeMillis()) {
                         Player.get().setStamina(Player.get().getStamina()+2);
-                    }
+                        highOnSpeed=true;
+                    }else highOnSpeed = false;
                     break;
 
                 case StaminaRegen:
@@ -106,14 +108,34 @@ public class EffectUtility {
             Player.get().setStamina(Player.get().getStamina()+0.3);
     }
 
+    private static long lastTimeFoodNotification;
     private static void hungry(){
         Player.get().hunger-= 0.005;
         if(Player.get().hunger<20){
             Player.get().setSpeed(Player.get().hungrySpeed);
+            if(System.currentTimeMillis()>lastTimeFoodNotification+15_000){
+                Renderer.addMessage("Жрать охота");
+                lastTimeFoodNotification=System.currentTimeMillis();
+            }
         } else Player.get().setSpeed(Player.get().getRegSpeed());
+        if(Player.get().hunger>70) Player.get().setHp(Player.get().getHp()+0.02);
+
+        if(Player.get().hunger>100) Player.get().hunger=100;
+        if(Player.get().hunger<0) Player.get().hunger=0;
+
+
     }
+    private static long lastTimeSleepNotification;
+    private static long asleepTimer;
     private static void sleepy() {
         Player.get().awake -= 0.002;
+
+        if(Player.get().awake<10 && lastTimeSleepNotification < System.currentTimeMillis()+15_000)
+        {
+            lastTimeSleepNotification = System.currentTimeMillis();
+            Renderer.addMessage("Очень хочется спать...");
+            Renderer.addMessage("Могу отрубиться...");
+        }
     }
 
     //todo вынести в отдельный класс
@@ -148,7 +170,7 @@ public static void meterLock(){
         if(Player.get().getThirst()>50){
             Player.get().setStamina(Player.get().getStamina()+0.2);
         }
-        if(Player.get().getStamina()<20){
+        if(Player.get().getThirst()<20){
             Player.get().setStamina(Player.get().getStamina()-0.2);
             if(System.currentTimeMillis()>lastTimeThirstNotification+15_000){
                 Renderer.addMessage("Очень хочется пить..");

@@ -41,7 +41,8 @@ public class CannedSoup extends Item {
         else amount-=1;
         Player.get().poo+=20;
         Player.get().pee+=10;
-        Player.get().setHp(Player.get().getHp()+20);
+        Player.get().hunger+=25;
+        Player.get().setHp(Player.get().getHp()+25);
         Renderer.addMessage("Похавал супу");
         }else Renderer.addMessage("Не могу. Надо посрать.");
 
