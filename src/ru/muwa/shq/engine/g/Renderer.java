@@ -21,7 +21,7 @@ import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.quests.QuestHUD;
-import ru.muwa.shq.zones.GameZone;
+import ru.muwa.shq.zones.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -177,7 +177,7 @@ public class Renderer implements Runnable {
      * Координаты отрисовки соответствуют координатам отнисительно экрана.
      * Координаты объета относительно экрана получаются в результате учета координат камеры.
      */
-    public void render() throws Exception {
+    public void render() {
         // ======= инициализация
         int camX = Camera.getInstance().getX(), camY = Camera.getInstance().getY();
         BufferStrategy bs = canvas.getBufferStrategy();
@@ -190,24 +190,17 @@ public class Renderer implements Runnable {
         // Закрашиваем задник черным
         g.setColor(Color.black);
         if(isDrawingBg ) g.fillRect(0, 0, GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT);
-        //отрисовка обьектов из списка текущих обьектов
-        for (int i = 0;i<Engine.getCurrentLevel().getObjects().size();i++){
+
+        //отрисовка обьектов из списка текущих обьектов (часть 1)
+        for (int i = 0;i<Engine.getCurrentLevel().getObjects().size();i++) {
             GameObject o = Engine.getCurrentLevel().getObjects().get(i);
-            if(o instanceof DemoLevel0_BG && !isDrawingBg) {
-                g.setColor(new Color(200,200,200,40));
-                g.fillRect(camX,camY,SCREEN_WIDTH,SCREEN_HEIGHT);
+            if (o instanceof DemoLevel0_BG && !isDrawingBg) {
+                g.setColor(new Color(200, 200, 200, 40));
+                g.fillRect(camX, camY, SCREEN_WIDTH, SCREEN_HEIGHT);
                 continue;
             }
 
-            if(o instanceof Building){
-
-                if(/*Player.get().getSolidBox().intersects(rectangle) */ Player.get().getY() < o.getSolidBox().getY())
-                {
-                    g.drawImage(o.getTransTexture(), o.getX() - camX, o.getY() - camY, null);
-                }
-                else g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
-
-            }else{
+            if (!(o instanceof Building)) {
                 g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
             }
         }
@@ -230,45 +223,26 @@ public class Renderer implements Runnable {
                 g.drawImage(c.getTexture(), c.getX() - camX, c.getY() - camY, c.getWidth(), c.getHeight(), null);
             }
         }
-        //Если игрок в поле зрения, цвет луей меняется.
-        g.setColor(Color.red);
-        for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
-            NPC c = Engine.getCurrentLevel().getNPC().get(i);
-            if (c.isPlayerInSight()) {
-                g.setColor(Color.green);
-            }
-        }
-        /**HUD. Отрисовка и обновление. **/
-        //ТЕСТ НОВОГО  ИНВЕНТАРЯ
-        try {
-            if(InventoryManager.isItemWindowVisible){
-                InventoryManager.drawInventory();
-                InventoryManager.drawEquipWindow();
-            }
-            if(QuestHUD.opened) QuestHUD.drawJournal();
-            InventoryManager.drawContainerWindow();
-            MiniGameHUD.work();
-        }  catch (Exception e) {
-            System.out.println("тетовому инвентарю не оч");
-            System.out.println(e.getMessage());
-        }
-
-        //ОТРИСОВКА СООБЩЕНИЙ НА ЭКРАНЕ
-        handleMessages(g);
-            //Вызов службы диалогов.
-            DialogueManager.work();
-            // Вызов службы торговли
-            TradeUtility.work();
-        InventoryManager.update();
-
 
         // ОТРИСОВКА ПЕрСОНАЖА
         AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
         at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getTexture().getWidth() / 2), (Player.get().getTexture().getHeight()/2.5));
         ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
 
+        //отрисовка обьектов из списка текущих обьектов (часть 2)
+        for (int i = 0;i<Engine.getCurrentLevel().getObjects().size();i++){
+            GameObject o = Engine.getCurrentLevel().getObjects().get(i);
 
+            if(o instanceof Building){
 
+                if(/*Player.get().getSolidBox().intersects(rectangle) */ Player.get().getY() < o.getSolidBox().getY())
+                {
+                    g.drawImage(o.getTransTexture(), o.getX() - camX, o.getY() - camY, null);
+                }
+                else g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
+
+            }
+        }
 
         //Отрисовка тени дня и ночи
 
@@ -278,38 +252,60 @@ public class Renderer implements Runnable {
 
                     case MORNING:
                         g.setColor(new Color(250, 250,0 , 30));
-                        g.fillRect(camX - Player.get().getX() + (SCREEN_WIDTH / 2) - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100);
+                        g.fillRect(camX - Player.get().getX(), camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 1000, SCREEN_HEIGHT + 1000);
                         break;
                 case EVENING:
                     g.setColor(new Color(20, 5, 5, 80));
-                    g.fillRect(camX - Player.get().getX() + (SCREEN_WIDTH / 2) - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100);
+                    g.fillRect(camX - Player.get().getX(), camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 1000, SCREEN_HEIGHT + 1000);
                     break;
                     case NIGHT:
                         g.setColor(new Color(0, 0, 0, 200));
-                        g.fillRect(camX - Player.get().getX() + (SCREEN_WIDTH / 2) - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100);
+                        g.fillRect(camX - Player.get().getX() , camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 1000, SCREEN_HEIGHT + 1000);
                         break;
 
                     case SUNRISE:
                         g.setColor(new Color(50, 10, 0, 150));
-                        g.fillRect(camX - Player.get().getX() + (SCREEN_WIDTH / 2) - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 100, SCREEN_HEIGHT + 100);
+                        g.fillRect(camX - Player.get().getX() - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 1000, SCREEN_HEIGHT + 1000);
                         break;
                 }
         }
 
-
-
-        // ОТРИСОКВА ТЕСТИРУЕМЫХ ФИЧ
-        //
-        //
-            // отрисоква бокса игрока
-            g.drawRect(player.getX() - camX, player.getY() - camY, (int)player.getSolidBox().getWidth(), (int) player.getSolidBox().getHeight());
             //Отрисовка зон
             g.setColor(Color.BLUE);
-            for (GameZone z : Engine.getCurrentLevel().getZones())
-                g.drawRect(z.x - camX, z.y - camY, z.width, z.height);
-            // Отрисовка линий прицела
-            // for (Line2D l : Aim.getInstance().getLines())
-            //   g.drawLine((int) l.getX1() - camX, (int) l.getY1() - camY, (int) l.getX2() - camX, (int) l.getY2() - camY);
+            for (GameZone z : Engine.getCurrentLevel().getZones()) {
+
+                if(z instanceof EnterZone) g.setColor(new Color(0,0,250,50));
+                else if(z instanceof TradeZone || z instanceof BuyoutZone) g.setColor(new Color(250,0,0,50));
+                else if(z instanceof InteractionZone) g.setColor(new Color(0,250,0,50));
+                else if(z instanceof DialogueZone) g.setColor(new Color(250,0,250,50));
+                else if(z instanceof MiniGameZone) g.setColor(new Color(150,250,250,50));
+                else g.setColor(new Color(0,0,0,0));
+                g.fillRect(z.x - camX, z.y - camY, z.width, z.height);
+            }
+
+        /**HUD. Отрисовка и обновление. **/
+        //ТЕСТ НОВОГО  ИНВЕНТАРЯ
+        try {
+            if(InventoryManager.isItemWindowVisible){
+                InventoryManager.drawInventory();
+
+            }
+            if(Inventory.getInstance().getItems().stream().anyMatch(i->i.isEquipped()))
+                InventoryManager.drawEquipWindow();
+            if(QuestHUD.opened) QuestHUD.drawJournal();
+            InventoryManager.drawContainerWindow();
+            MiniGameHUD.work();
+        }  catch (Exception e) {
+            System.out.println("тетовому инвентарю не оч");
+            System.out.println(e.getMessage());
+        }
+        //ОТРИСОВКА СООБЩЕНИЙ НА ЭКРАНЕ
+        handleMessages(g);
+        //Вызов службы диалогов.
+        DialogueManager.work();
+        // Вызов службы торговли
+        TradeUtility.work();
+        InventoryManager.update();
 
             //отрисовка координат мыши.
             g.setColor(Color.red);
@@ -327,8 +323,9 @@ public class Renderer implements Runnable {
         g.drawString("хп : "+hp ,10,15);
         g.drawLine(10,30,10+(int)Player.get().getHp(),30);
         g.drawString("Вода в организме :" ,140,15);
-       // g.drawString(Player.get().getThirst()+"" ,100,320);
         g.drawLine(140,30,140+(int)Player.get().getThirst(),30);
+        g.drawString("Моча :" ,140,40);
+        g.drawLine(140,50,140+(int)Player.get().pee,50);
         g.drawString("психометр :" ,270,15);
         g.drawLine(270,30,270+(int)Player.get().getHighMeter(),30);
         g.setColor(Color.green);
@@ -339,11 +336,10 @@ public class Renderer implements Runnable {
         g.drawString("$$$ : "+Player.get().money,10,120);
         g.drawString("Сытость :",530,15);
         g.drawLine(530,30, (int) (530+Player.get().hunger),30);
+        g.drawString("Говно :" ,530,40);
+        g.drawLine(530,50,530+(int)Player.get().poo,50);
         g.drawString("Бодрость  :",660,15);
         g.drawLine(660,30, (int) (660+Player.get().awake),30);
-
-
-        HUD.getInstance().getDeathWindow().setBounds(0,0,GameScreen.SCREEN_WIDTH,GameScreen.SCREEN_HEIGHT);
 
 
         // отрисовка информации о предмете при наводе мышки на оный

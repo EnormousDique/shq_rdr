@@ -44,14 +44,14 @@ public class HubHataIgoryana extends Level
         //выход в падик
         zones.add(new EnterZone(30, 740,100,100,FatBuildingFloor5.getInstance(), 30,30,false));
         // диалог с мамой
-        zones.add(new DialogueZone(new MomDialog(),100,100,100,100,false));
+        zones.add(new DialogueZone(new MomDialog(),0,0,250,250,false));
        // zones.add(new GifSceneZone(200,200,70,70,true));
 
         /** Используемые предметы **/
         //Сон
         zones.add(new SleepZone(740,5,50,100));
         //Туалет
-        zones.add(new InteractionZone(130,715,100,70) {
+        zones.add(new InteractionZone(130,715,80,80) {
             @Override
             public void use() {
                 Player.get().pee=0;
@@ -61,8 +61,8 @@ public class HubHataIgoryana extends Level
             }
         });
         //Кухня
-        containers.add(new HubChest(740,600));
-        zones.add(new InteractionZone(740,650,100,100) {
+        containers.add(new HubChest(640,740));
+        zones.add(new InteractionZone(630,660,100,100) {
             @Override
             public void use() {
                 Container pot = containers.get(1); //СЕЙЧАС "КАСТРЮЛЯ" ЭТО ВТОРОЙ ПО СЧЕТУ КОНТЕЙНЕР В УРОВНЕ.

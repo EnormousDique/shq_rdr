@@ -18,12 +18,9 @@ public class Q3_PoliceCutscene extends Cutscene{
         Engine.getCurrentLevel().getNPC().add(new AimingGuy(Player.get().getX() + 350, Player.get().getY()-100,"Ment2"));
         Engine.getCurrentLevel().getNPC().add(new AimingGuy(Player.get().getX() + 100, Player.get().getY()-200,"Ment3"));
 
-        movements.add(new Movement("Ment3", Player.get().getX()+150,Player.get().getY()-50));
-        movements.add(new Movement("Ment3", Player.get().getX()+260,Player.get().getY()-50));
-        movements.add(new Movement("Ment3", Player.get().getX()+150,Player.get().getY()-150));
-        movements.add(new Movement("Ment3", Player.get().getX()+260,Player.get().getY()-250));
-        movements.add(new Movement("Ment3", Player.get().getX()+150,Player.get().getY()-50));
-
+        movements.add(new Movement("Ment3", Player.get().getX()+50,Player.get().getY()-50));
+        movements.add(new Movement("Ment2", Player.get().getX()+260,Player.get().getY()-50));
+        movements.add(new Movement("Ment1", Player.get().getX()-50,Player.get().getY()+150));
 
     }
 

@@ -148,12 +148,12 @@ public class InventoryManager
         Renderer.g.setColor(oldColor);
     }
 
-    static  int EWx = 450, EWy = 30, EWWidth = 80, EWHeight=80;
+    static  int EWx = 0, EWy = 340, EWWidth = 80, EWHeight=80;
     public static Picktogram equipPic;
     public static void drawEquipWindow()
     {
         Color oldColor  = Renderer.g.getColor();
-        Renderer.g.setColor(Color.WHITE);
+        Renderer.g.setColor(new Color(0,250,150,150));
         Renderer.g.fillRect(EWx,EWy,EWWidth,EWHeight);
 
 
@@ -170,11 +170,11 @@ public class InventoryManager
              equipPic = pic;
 
              Font oldFont=Renderer.g.getFont();
-             Renderer.g.setFont(new Font(Font.SANS_SERIF,Font.BOLD,50));
+             Renderer.g.setFont(new Font(Font.SANS_SERIF,Font.BOLD,10));
              if(pic.item instanceof Firearm)
-                 Renderer.g.drawString("Пули-с: \n"+((Weapon)pic.item).getCurrAmmo(),EWx,EWy+10);
+                 Renderer.g.drawString("Пули-с: \n"+((Weapon)pic.item).getCurrAmmo(),EWx+100,EWy+30);
              else if(pic.item instanceof Weapon)
-                Renderer.g.drawString("Прочность: \n"+((Weapon)pic.item).getDurability(),EWx,EWy+10);
+                Renderer.g.drawString("Прочность: \n"+((Weapon)pic.item).getDurability(),EWx+100,EWy+30);
 
              Renderer.g.setFont(oldFont);
         }
