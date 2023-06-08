@@ -43,7 +43,7 @@ public class Flour extends Item {
         Player.get().setHighMeterLock(Player.get().getHighMeterLock() + 15);
         Player.get().setThirst(Player.get().getThirst() - 10);
         Player.get().setHighMeter(Player.get().getHighMeter() + 30);
-        Player.get().hunger+=10;
+        if(Player.get().hunger<60) Player.get().hunger+=10;
         Player.get().awake+=10;
         if(Math.random() < 0.333){ EffectUtility.isPlayerAddictedToSpeed = true; Renderer.addMessage("Игрок подсел на меф");}
         Player.get().setHp(Player.get().getHp()+10);
