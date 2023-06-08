@@ -42,6 +42,7 @@ public class Beer extends Item {
         Player.get().awake-=5;
         Player.get().pee+=20;
         Player.get().setThirst(Player.get().getThirst()+15);
+        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.DRUNK,System.currentTimeMillis()+15_000);
         Renderer.addMessage("Бахнул пивка");
         }else Renderer.addMessage("Не могу. Надо поссать.");
     }

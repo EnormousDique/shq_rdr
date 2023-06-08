@@ -40,7 +40,7 @@ public class Vodka extends Item {
         if(Player.get().pee<95) {
         Player.get().setHighMeter(Player.get().getHighMeter()-15);
         Player.get().setHighMeterLock(Player.get().getHighMeterLock()-5);
-
+        EffectUtility.getCurrentEffects().put(EffectUtility.Effects.DRUNK,System.currentTimeMillis()+75_000);
         if(amount <= 1) Inventory.getInstance().getItems().remove(this);
         else amount-=1;
         Renderer.addMessage("Хлопнул водочки");

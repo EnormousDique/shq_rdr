@@ -111,7 +111,7 @@ public class InventoryManager
     public static void drawInventory() throws Exception
     {
         Color oldColor = Renderer.g.getColor();
-        Renderer.g.setColor(Color.WHITE);
+        Renderer.g.setColor(new Color(250,250,250,150));
         Renderer.g.fillRect(itemWindowX,itemWindowY,300,300);
         itemWindowPicks = new ArrayList<>();
 
@@ -199,7 +199,7 @@ public class InventoryManager
             containerWindowX = (int)c.getSolidBox().getCenterX()-Camera.getInstance().getX();
             containerWindowY = (int)c.getSolidBox().getCenterY()-Camera.getInstance().getY();
 
-            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.setColor(new Color(250,250,250,150));
             Renderer.g.fillRect(containerWindowX,containerWindowY,CWWidth,CWHeight);
 
             containerWindowPicks=new ArrayList<>();

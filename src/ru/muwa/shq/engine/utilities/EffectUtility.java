@@ -14,7 +14,7 @@ public class EffectUtility {
     private static HashMap<Effects, Long> currentEffects;
     public static boolean isPlayerAddictedToSpeed =false;
     private static long lastTimeSpeedWithdrawalNotification = 0l;
-    public static boolean highOnSpeed;
+    public static boolean highOnSpeed,isDrunk;
 
     public static HashMap<Effects, Long> getCurrentEffects() {
         return currentEffects;
@@ -34,7 +34,8 @@ public class EffectUtility {
         StaminaRegen,
         ODYSHKA,
         STONED,
-        SPEED_WITHDRAWAL;
+        SPEED_WITHDRAWAL,
+        DRUNK;
 
     }
 
@@ -64,6 +65,11 @@ public class EffectUtility {
 
                 case ODYSHKA:
                     if(entry.getValue()>System.currentTimeMillis()) Player.get().setStamina(Player.get().getStamina()-1);
+                    break;
+                case DRUNK:
+                    if(entry.getValue()>System.currentTimeMillis()) isDrunk=true;
+                    else isDrunk=false;
+
                     break;
 
 

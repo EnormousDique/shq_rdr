@@ -442,8 +442,9 @@ public class DemoLevel0 extends Level
         zones.add(new ActionZone(1800, 1200, 200, 200, new QuestAction() {
             @Override
             public void performAction() {
-                for(Item i : Inventory.getInstance().getItems())
+                for(int j =0;j< Inventory.getInstance().getItems().size();j++)
                 {
+                    Item i = Inventory.getInstance().getItems().get(j);
                     if(i instanceof KladBlue)
                     {
                         Animator.playCutscene(Q3_PoliceCutscene.getInstance());

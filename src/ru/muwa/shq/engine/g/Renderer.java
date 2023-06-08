@@ -49,6 +49,9 @@ public class Renderer implements Runnable {
     private static ArrayList<String> messages = new ArrayList<>();
     private static long lastTimeMessageUpdated;
     public static void addMessage(String s){
+        for (int i = 0; i < messages.size(); i++) {
+            if(s.equals(messages.get(i)))messages.remove(i);
+        }
         messages.add(s);
         lastTimeMessageUpdated  = System.currentTimeMillis();
     }
@@ -251,21 +254,21 @@ public class Renderer implements Runnable {
                 {
 
                     case MORNING:
-                        g.setColor(new Color(250, 250,0 , 30));
-                        g.fillRect(camX - Player.get().getX(), camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 1000, SCREEN_HEIGHT + 1000);
+                        g.setColor(new Color(250, 250,0 , 15));
+                        g.fillRect(0,0 ,10000,10000);
                         break;
                 case EVENING:
                     g.setColor(new Color(20, 5, 5, 80));
-                    g.fillRect(camX - Player.get().getX(), camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 1000, SCREEN_HEIGHT + 1000);
+                    g.fillRect(0,0 ,10000,10000);
                     break;
                     case NIGHT:
                         g.setColor(new Color(0, 0, 0, 200));
-                        g.fillRect(camX - Player.get().getX() , camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 1000, SCREEN_HEIGHT + 1000);
+                        g.fillRect(0,0 ,10000,10000);
                         break;
 
                     case SUNRISE:
                         g.setColor(new Color(50, 10, 0, 150));
-                        g.fillRect(camX - Player.get().getX() - 100, camY - Player.get().getY() + (SCREEN_HEIGHT / 2) - 100, SCREEN_WIDTH + 1000, SCREEN_HEIGHT + 1000);
+                        g.fillRect(0,0 ,10000,10000);
                         break;
                 }
         }
@@ -275,8 +278,8 @@ public class Renderer implements Runnable {
             for (GameZone z : Engine.getCurrentLevel().getZones()) {
 
                 if(z instanceof EnterZone) g.setColor(new Color(0,0,250,50));
-                else if(z instanceof TradeZone || z instanceof BuyoutZone) g.setColor(new Color(250,0,0,50));
-                else if(z instanceof InteractionZone) g.setColor(new Color(0,250,0,50));
+                else if(z instanceof TradeZone || z instanceof BuyoutZone) g.setColor(new Color(250,50,250,50));
+                else if(z instanceof InteractionZone) g.setColor(new Color(0,150,0,50));
                 else if(z instanceof DialogueZone) g.setColor(new Color(250,0,250,50));
                 else if(z instanceof MiniGameZone) g.setColor(new Color(150,250,250,50));
                 else g.setColor(new Color(0,0,0,0));

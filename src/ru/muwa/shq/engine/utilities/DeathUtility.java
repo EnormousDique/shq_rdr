@@ -46,5 +46,8 @@ public class DeathUtility {
         isDead=false;
         Player.get().setIsBusy(false);
         Player.get().setHp(100);
+        Player.get().hunger=40;
+        Player.get().setThirst(50);
+        Player.get().awake=90;
     }
 }

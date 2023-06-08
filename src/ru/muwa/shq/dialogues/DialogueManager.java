@@ -80,7 +80,7 @@ public class DialogueManager {
         Color oldColor = Renderer.g.getColor();
 
         //Даем графике новый цвет (белый)
-        Renderer.g.setColor(Color.WHITE);
+        Renderer.g.setColor(new Color(250,250,250,150));
 
         //Заоплняем окно цветом
         Renderer.g.fillRect(DWx,DWy,DWWidth,DWHeight);
