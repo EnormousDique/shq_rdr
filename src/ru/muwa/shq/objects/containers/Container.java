@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public abstract class Container extends GameObject implements Usable
 {
     boolean isContainer = true;// Объект может содержать в себе вещи
+    public boolean shqurable;
     protected ArrayList<Item> items = new ArrayList<Item>(); // список обьектов контейнера
     protected ArrayList<Rectangle> icons = new ArrayList<>(); // список квадратов для отображения иконок предметов.
     protected int capacity;  // вместительность

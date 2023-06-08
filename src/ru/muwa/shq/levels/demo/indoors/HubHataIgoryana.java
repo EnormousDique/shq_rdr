@@ -106,7 +106,7 @@ public class HubHataIgoryana extends Level
         objects.add(new Wall350(308,800));//нижнаяя
         objects.add(new Wall350(608,800));//нижнаяя
 
-        zones.add(new MiniGameZone(300,100,50,50,new PostBoxShq()));
+        //zones.add(new MiniGameZone(300,100,50,50,new PostBoxShq()));
 
         // невидимые стены дома
 

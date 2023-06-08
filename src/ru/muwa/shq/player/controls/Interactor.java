@@ -3,7 +3,9 @@ package ru.muwa.shq.player.controls;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.camera.Camera;
+import ru.muwa.shq.engine.g.hud.MiniGameHUD;
 import ru.muwa.shq.engine.listeners.MouseListener;
+import ru.muwa.shq.minigames.PostBoxShq;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.player.Inventory;
@@ -37,7 +39,6 @@ public class Interactor
                     && Player.get().getUseZone().contains(x + Camera.getInstance().getX(), y + Camera.getInstance().getY()))
             {
                 activeContainers.add(c);
-
             }
         }
             if(activeContainers.size() >0) {
@@ -48,10 +49,12 @@ public class Interactor
                         break;
                 }
                 Container c = activeContainers.get( activeContainers.size() > 1? i : 0);  //todo выбрасывает ошибку идекса out of bounds при лутании трупов.
-                c.setIsInUse(true);
-                Inventory.getInstance().setIsOpened(true);
-                Player.get().setIsBusy(true);
-               // Player.get().setCurrentObject(c); // ВРОДЕ БЫ ЭТА ШТУКА НЕ НУЖНА
+                if(!c.shqurable) {
+                    c.setIsInUse(true);
+                    Player.get().setIsBusy(true);
+                }else {
+                    MiniGameHUD.currentMiniGame=new PostBoxShq(c);
+                }
             }
             if(false){}//TODO: добавить возможность открыть несколько окон шмона или переключаться между ними, если activeContainers.size() > 1
 

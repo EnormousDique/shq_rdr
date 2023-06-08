@@ -7,6 +7,7 @@ import ru.muwa.shq.engine.g.hud.MiniGameHUD;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.minigames.PostBoxShq;
+import ru.muwa.shq.player.Player;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -85,11 +86,13 @@ public class MouseListener implements java.awt.event.MouseMotionListener
                     Robot robot = new Robot();
                     int xoff = GameScreen.getInstance().getX();
                     int yoff = GameScreen.getInstance().getY();
-                    robot.mouseMove(shq.startX+xoff, shq.startY+yoff);
+                    robot.mouseMove(shq.startX+xoff+MiniGameHUD.x, shq.startY+yoff+MiniGameHUD.y);
                 }catch (Exception e){Renderer.addMessage("ты не должен это видеть");}
             }
             if(shq.destination.contains(new Point(getInstance().x, getInstance().y)))
             {
+                shq.container.setIsInUse(true);
+                Player.get().setIsBusy(true);
                 MiniGameHUD.currentMiniGame=null;
                 Engine.pause=false;
             }

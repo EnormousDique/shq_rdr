@@ -5,6 +5,7 @@ import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.*;
 import ru.muwa.shq.engine.combat.CombatUtility;
+import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.g.hud.MiniGameHUD;
@@ -321,6 +322,12 @@ public class PlayerControls
             {
                 MiniGameZone mz = (MiniGameZone) z;
                 MiniGameHUD.currentMiniGame = mz.miniGame;
+                try {
+                    Robot robot = new Robot();
+                    int xoff = GameScreen.getInstance().getX();
+                    int yoff = GameScreen.getInstance().getY();
+                    robot.mouseMove(xoff+MiniGameHUD.x, yoff+MiniGameHUD.y);
+                }catch (Exception e){Renderer.addMessage("ты не должен это видеть");}
             }
 
 

@@ -23,6 +23,7 @@ public class PostBox extends Container
      */
     public PostBox(int x, int y) {
         super(x, y, img);
+        shqurable=true;
     }
 
     @Override
