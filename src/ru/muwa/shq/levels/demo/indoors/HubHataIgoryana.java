@@ -61,6 +61,7 @@ public class HubHataIgoryana extends Level
             }
         });
         //Кухня
+        //Плита
         containers.add(new HubChest(640,740));
         zones.add(new InteractionZone(630,660,100,100) {
             @Override
@@ -68,6 +69,21 @@ public class HubHataIgoryana extends Level
                 Container pot = containers.get(1); //СЕЙЧАС "КАСТРЮЛЯ" ЭТО ВТОРОЙ ПО СЧЕТУ КОНТЕЙНЕР В УРОВНЕ.
                 if(!Cook.cook(pot)) Renderer.addMessage("Из такой хуйни супа не свришь.");
 
+            }
+        });
+        //Раковина
+        zones.add(new InteractionZone(360,660,100,100) {
+            @Override
+            public void use() {
+                if (Player.get().pee < 90) {
+                    Player.get().setThirst(100);
+                    Renderer.addMessage("Попил из крана");
+                    Player.get().pee += 20;
+                }else{
+                    Renderer.addMessage("не могу попить из крана");
+                    Renderer.addMessage("надо поссать");
+
+                }
             }
         });
         // стены хаюа

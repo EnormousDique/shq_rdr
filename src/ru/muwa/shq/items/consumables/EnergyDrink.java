@@ -39,6 +39,8 @@ public class EnergyDrink extends Item {
         if(amount <= 1) Inventory.getInstance().getItems().remove(this);
         else amount-=1;
         Player.get().pee+=15;
+        Player.get().awake+=20;
+        Player.get().setThirst(Player.get().getThirst()+10);
         Player.get().setStamina(100.0);
         Renderer.addMessage("Бахнув Энергетика");
         }else Renderer.addMessage("Не могу. Надо поссать.");

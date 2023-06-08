@@ -124,6 +124,13 @@ public class PlayerControls
         {
             if(z instanceof SleepZone && Player.get().getSolidBox().intersects(z))
             {
+                if(Player.get().awake<0.5){
+                    TimeMachine.rewind(800_000);
+                    Renderer.playSleepyFilter();
+                    Renderer.addMessage("Ну ты и соня..");
+                    Player.get().awake =100;
+                    continue;
+                }
                 if(Player.get().awake > 75){Renderer.addMessage("Совсем не хочу спать.");continue;}
                 if(TimeMachine.getTimeOfTheDay().equals(TimeMachine.TimesOfTheDay.NIGHT)) {
                     TimeMachine.rewind((int)(100-Player.get().awake)*(4750));

@@ -92,18 +92,18 @@ public class EffectUtility {
                 case SPEED_WITHDRAWAL:
                     if(Player.get().getHighMeter() >= 5 && currentEffects.get(SPEED) + 20_000 < System.currentTimeMillis() && isPlayerAddictedToSpeed )
                     {
+
                         CameraUpdateUtility.isShaking = true;
                         if(System.currentTimeMillis()>lastTimeSpeedWithdrawalNotification+15_000) {
                             Renderer.addMessage(Math.random() > 0.5 ? "Трясёт без порошка" : "Нюхнуть бы.. потряхивает");
                             lastTimeSpeedWithdrawalNotification = System.currentTimeMillis();
                         }
+                        if(Player.get().getHighMeter()<Player.get().getHighMeterLock()) Player.get().setHighMeter(Player.get().getHighMeter()+0.001);
 
                     }else
                     {
                         CameraUpdateUtility.isShaking = false;
                     }
-                    if(Player.get().getHighMeter()<Player.get().getHighMeterLock()) Player.get().setHighMeter(Player.get().getHighMeterLock()+0.1);
-
                     break;
             }
         }
