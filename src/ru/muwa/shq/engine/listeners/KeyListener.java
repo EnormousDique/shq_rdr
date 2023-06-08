@@ -155,6 +155,7 @@ public class KeyListener implements java.awt.event.KeyListener
                 break;
             case 65: // A
                 keys[1] = false;
+                break;
             case 83: // S
                 keys[2] = false;
                 break;

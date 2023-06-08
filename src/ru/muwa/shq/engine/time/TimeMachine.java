@@ -20,7 +20,7 @@ public class TimeMachine {
     private static long currentTime;
 
     public static void setStartTime(){
-        startTime = /* System.currentTimeMillis(); */ 0 ;
+        startTime = /* System.currentTimeMillis(); // 0 */ 250_000;//попробуем начать с утра.
         currentTime = startTime;
     }
     public static void work()

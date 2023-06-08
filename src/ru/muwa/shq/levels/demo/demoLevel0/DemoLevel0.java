@@ -11,6 +11,7 @@ import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
+import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
 import ru.muwa.shq.quests.HackerQuestReboot;
