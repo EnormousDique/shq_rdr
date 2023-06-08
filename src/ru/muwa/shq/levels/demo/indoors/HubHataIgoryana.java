@@ -5,10 +5,13 @@ import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
 import ru.muwa.shq.dialogues.demo.Conversation1;
 import ru.muwa.shq.dialogues.mom.MomDialog;
 import ru.muwa.shq.economics.money.Money_500;
+import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.items.consumables.CellPhone;
 import ru.muwa.shq.items.consumables.Potato;
 import ru.muwa.shq.levels.Level;
+import ru.muwa.shq.minigames.PostBoxShq;
 import ru.muwa.shq.objects.bounds.*;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
 import ru.muwa.shq.objects.containers.Container;
@@ -17,6 +20,7 @@ import ru.muwa.shq.player.Player;
 import ru.muwa.shq.zones.*;
 
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -102,6 +106,24 @@ public class HubHataIgoryana extends Level
         objects.add(new Wall350(308,800));//нижнаяя
         objects.add(new Wall350(608,800));//нижнаяя
 
+        zones.add(new MiniGameZone(300,100,50,50,new PostBoxShq()));
+
         // невидимые стены дома
+
+        //test
+        /*
+        zones.add(new InteractionZone(400,400,400,400) {
+            @Override
+            public void use() {
+                try {
+                    Robot r = new Robot();
+                    int xoff = GameScreen.getInstance().getX();
+                    int yoff = GameScreen.getInstance().getY();
+                    r.mouseMove(Player.get().getX()+xoff- Camera.getInstance().getX(),Player.get().getY()+yoff-Camera.getInstance().getY());
+                }catch (Exception e){Renderer.addMessage("ты не должен это видеть");}
+            }
+        });
+
+         */
     }
 }

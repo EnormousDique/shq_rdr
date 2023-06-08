@@ -5,6 +5,7 @@ import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.minigames.Domofon;
 import ru.muwa.shq.minigames.MiniGame;
+import ru.muwa.shq.minigames.PostBoxShq;
 
 import java.awt.*;
 
@@ -20,6 +21,7 @@ static         int height = GameScreen.SCREEN_HEIGHT -200;
     {
         Color oldColor = Renderer.g.getColor();
         if(currentMiniGame != null && currentMiniGame instanceof Domofon) drawDomofon();
+        if(currentMiniGame != null && currentMiniGame instanceof PostBoxShq) drawPostBoxShq();
         Renderer.g.setColor(oldColor);
     }
 
@@ -39,5 +41,23 @@ static         int height = GameScreen.SCREEN_HEIGHT -200;
             Renderer.g.drawString(d.buttons.get(i).text,d.buttons.get(i).x+10+x,d.buttons.get(i).y+10+y);
 
         }
+    }
+    private static void drawPostBoxShq()
+    {
+        Engine.pause=true;
+
+        Renderer.g.setColor(Color.WHITE);
+        Renderer.g.fillRect(x,y,width,height);
+
+        PostBoxShq shq = (PostBoxShq) currentMiniGame;
+
+        Renderer.g.setColor(Color.RED);
+        for (int i = 0; i < shq.obstacles.size(); i++) {
+            Renderer.g.fillRect(shq.obstacles.get(i).x,shq.obstacles.get(i).y,shq.obstacles.get(i).width,shq.obstacles.get(i).height);
+
+        }
+        Renderer.g.setColor(Color.YELLOW);
+        Renderer.g.fillRect(shq.destination.x,shq.destination.y,shq.destination.width,shq.destination.height);
+
     }
 }

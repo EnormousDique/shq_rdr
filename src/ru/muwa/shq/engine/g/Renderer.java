@@ -309,6 +309,8 @@ public class Renderer implements Runnable {
         // Вызов службы торговли
         TradeUtility.work();
         InventoryManager.update();
+        //отрисовка описаний
+        drawDescriptions();
 
             //отрисовка координат мыши.
             g.setColor(Color.red);
@@ -360,9 +362,23 @@ public class Renderer implements Runnable {
 
 
 
-    public void drawDescription(MouseEvent e)
+        public void drawDescriptions()
         {
+            int mx=0,my=0;
 
+            if(InventoryManager.isItemWindowVisible)
+            {
+                mx  = MouseListener.getInstance().x;
+                my = MouseListener.getInstance().getY();
+                for (int i = 0; i < InventoryManager.itemWindowPicks.size(); i++) {
+                    if(InventoryManager.itemWindowPicks.get(i).contains(new Point(mx,my)))
+                    {
+                        Renderer.g.setColor(Color.RED);
+                        Renderer.g.drawString(InventoryManager.itemWindowPicks.get(i).item.getDescription(),InventoryManager.itemWindowX+100,InventoryManager.itemWindowY-30);
+                    }
+                }
+
+            }
         }
         public static void showLoading()
         {

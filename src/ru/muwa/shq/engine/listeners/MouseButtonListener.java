@@ -257,11 +257,6 @@ public class MouseButtonListener implements MouseInputListener {
     @Override
     public void mouseEntered(MouseEvent e) {
 
-    highlight = e;
-    if(e.getSource() instanceof ItemPanel)
-    {
-       Renderer.getInstance().drawDescription(e);
-    }
     }
 
     @Override
