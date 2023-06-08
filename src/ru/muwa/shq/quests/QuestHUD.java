@@ -11,9 +11,9 @@ import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
 
 public class QuestHUD {
     public static boolean opened;
-    static int x = (int)(SCREEN_WIDTH - SCREEN_WIDTH * 0.75);
+    static int x = (int)(SCREEN_WIDTH - SCREEN_WIDTH * 0.9);
     static int y = (int)(SCREEN_HEIGHT - SCREEN_HEIGHT * 0.75);
-    static int width = (int) (SCREEN_WIDTH / 1.5);
+    static int width = (int) (SCREEN_WIDTH / 1.3);
     static int height = (int) (SCREEN_HEIGHT / 1.5);
     public static ArrayList<QuestPic> pics = new ArrayList<>();
     public static Quest renderingQuest;
@@ -24,7 +24,7 @@ public class QuestHUD {
             Color oldColor = Renderer.g.getColor();
             pics=new ArrayList<>();
             //Рисуем задник
-            Renderer.g.setColor(Color.WHITE);
+            Renderer.g.setColor(new Color(250,250,250,150));
             Renderer.g.fillRect(x,y,width,height);
 
             if(renderingQuest==null) {
@@ -44,7 +44,7 @@ public class QuestHUD {
                 Renderer.g.drawString(
                         renderingQuest.owner + " просит : "+renderingQuest.name,x+50,y+50 );
                 for (int i = 0; i < renderingQuest.description.split("\\.").length; i++) {
-                    Renderer.g.drawString(renderingQuest.description.split("\\.")[i],x+150, y+100 + i*20);
+                    Renderer.g.drawString(renderingQuest.description.split("\\.")[i],x+300, y+50 + i*20);
                 }
 
                 Renderer.g.drawString("Пункты:",x+50,y+150);
@@ -65,12 +65,12 @@ public class QuestHUD {
         Renderer.g.setColor(Color.BLACK);
         if (Player.get().hachQuests.size() > 0) {
 
-            Renderer.g.fillRect(x + 550, y + 100, 50, 50);
+            Renderer.g.fillRect(x + 610, y + 100, 50, 50);
             Renderer.g.setColor(Color.WHITE);
-            Renderer.g.drawString("ХАч : ", x + 550, y + 125);
+            Renderer.g.drawString("ХАч : ", x + 610, y + 125);
 
             for (int i = 0; i < Player.get().hachQuests.size(); i++) {
-                QuestPic pic = new QuestPic(x + 550, y + 125 + (i + 1) * 30, Player.get().hachQuests.get(i));
+                QuestPic pic = new QuestPic(x + 610, y + 125 + (i + 1) * 30, Player.get().hachQuests.get(i));
                 Color bg = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.GREEN:Color.MAGENTA;
                 Renderer.g.setColor(bg);
                 Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
@@ -83,21 +83,21 @@ public class QuestHUD {
 
         }else
         {
-            Renderer.g.fillRect(x + 550, y + 100, 50, 50);
+            Renderer.g.fillRect(x + 610, y + 100, 50, 50);
             Renderer.g.setColor(Color.WHITE);
-            Renderer.g.drawString("????? : ", x + 550, y + 125);
+            Renderer.g.drawString("????? : ", x + 610, y + 125);
         }
     }
     private static void drawCopsQuests() {
         Renderer.g.setColor(Color.BLACK);
         if (Player.get().copQuests.size() > 0) {
 
-            Renderer.g.fillRect(x + 450, y + 100, 50, 50);
+            Renderer.g.fillRect(x + 490, y + 100, 50, 50);
             Renderer.g.setColor(Color.WHITE);
-            Renderer.g.drawString("Участковый : ", x + 450, y + 125);
+            Renderer.g.drawString("Участковый : ", x + 490, y + 125);
 
             for (int i = 0; i < Player.get().copQuests.size(); i++) {
-                QuestPic pic = new QuestPic(x + 450, y + 125 + (i + 1) * 30, Player.get().copQuests.get(i));
+                QuestPic pic = new QuestPic(x + 490, y + 125 + (i + 1) * 30, Player.get().copQuests.get(i));
                 Color bg = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.GREEN:Color.MAGENTA;
                 Renderer.g.setColor(bg);
                 Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
@@ -110,9 +110,9 @@ public class QuestHUD {
 
         }else
         {
-            Renderer.g.fillRect(x + 450, y + 100, 50, 50);
+            Renderer.g.fillRect(x + 490, y + 100, 50, 50);
             Renderer.g.setColor(Color.WHITE);
-            Renderer.g.drawString("????? : ", x + 350, y + 125);
+            Renderer.g.drawString("????? : ", x + 490, y + 125);
         }
     }
 
@@ -121,12 +121,12 @@ public class QuestHUD {
         Renderer.g.setColor(Color.BLACK);
         if (Player.get().drugstoreQuests.size() > 0) {
 
-            Renderer.g.fillRect(x + 350, y + 100, 50, 50);
+            Renderer.g.fillRect(x + 410, y + 100, 50, 50);
             Renderer.g.setColor(Color.WHITE);
-            Renderer.g.drawString("Аптекарша : ", x + 350, y + 125);
+            Renderer.g.drawString("Аптекарша : ", x + 410, y + 125);
 
             for (int i = 0; i < Player.get().drugstoreQuests.size(); i++) {
-                QuestPic pic = new QuestPic(x + 350, y + 125 + (i + 1) * 30, Player.get().drugstoreQuests.get(i));
+                QuestPic pic = new QuestPic(x + 410, y + 125 + (i + 1) * 30, Player.get().drugstoreQuests.get(i));
                 Color bg = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.GREEN:Color.MAGENTA;
                 Renderer.g.setColor(bg);
                 Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
@@ -139,9 +139,9 @@ public class QuestHUD {
 
         }else
         {
-            Renderer.g.fillRect(x + 350, y + 100, 50, 50);
+            Renderer.g.fillRect(x + 410, y + 100, 50, 50);
             Renderer.g.setColor(Color.WHITE);
-            Renderer.g.drawString("????? : ", x + 350, y + 125);
+            Renderer.g.drawString("????? : ", x + 410, y + 125);
         }
     }
 
@@ -149,12 +149,12 @@ public class QuestHUD {
         Renderer.g.setColor(Color.BLACK);
         if (Player.get().hackerQuests.size() > 0) {
 
-            Renderer.g.fillRect(x + 250, y + 100, 50, 50);
+            Renderer.g.fillRect(x + 290, y + 100, 50, 50);
             Renderer.g.setColor(Color.WHITE);
-            Renderer.g.drawString("ХаКеР : ", x + 250, y + 125);
+            Renderer.g.drawString("ХаКеР : ", x + 290, y + 125);
 
             for (int i = 0; i < Player.get().hackerQuests.size(); i++) {
-                QuestPic pic = new QuestPic(x + 250, y + 125 + (i + 1) * 30, Player.get().hackerQuests.get(i));
+                QuestPic pic = new QuestPic(x + 290, y + 125 + (i + 1) * 30, Player.get().hackerQuests.get(i));
                 Color bg = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.GREEN:Color.MAGENTA;
                 Renderer.g.setColor(bg);
                 Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
@@ -167,9 +167,9 @@ public class QuestHUD {
 
         }else
         {
-            Renderer.g.fillRect(x + 250, y + 100, 50, 50);
+            Renderer.g.fillRect(x + 290, y + 100, 50, 50);
             Renderer.g.setColor(Color.WHITE);
-            Renderer.g.drawString("????? : ", x + 250, y + 125);
+            Renderer.g.drawString("????? : ", x + 290, y + 125);
         }
     }
 
@@ -177,12 +177,12 @@ public class QuestHUD {
         Renderer.g.setColor(Color.BLACK);
         if (Player.get().butcherQuests.size() > 0) {
             Renderer.g.setColor(Color.BLACK);
-            Renderer.g.fillRect(x + 150, y + 100, 50, 50);
+            Renderer.g.fillRect(x + 170, y + 100, 50, 50);
             Renderer.g.setColor(Color.WHITE);
-            Renderer.g.drawString("Мясник : ", x + 150, y + 125);
+            Renderer.g.drawString("Мясник : ", x + 170, y + 125);
 
             for (int i = 0; i < Player.get().butcherQuests.size(); i++) {
-                QuestPic pic = new QuestPic(x + 150, y + 125 + (i + 1) * 30, Player.get().butcherQuests.get(i));
+                QuestPic pic = new QuestPic(x + 170, y + 125 + (i + 1) * 30, Player.get().butcherQuests.get(i));
                 Color bg = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.GREEN:Color.MAGENTA;
                 Renderer.g.setColor(bg);
                 Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
@@ -195,9 +195,9 @@ public class QuestHUD {
 
         }else
         {
-            Renderer.g.fillRect(x + 150, y + 100, 50, 50);
+            Renderer.g.fillRect(x + 170, y + 100, 50, 50);
             Renderer.g.setColor(Color.WHITE);
-            Renderer.g.drawString("????? : ", x + 150, y + 125);
+            Renderer.g.drawString("????? : ", x + 170, y + 125);
         }
     }
 

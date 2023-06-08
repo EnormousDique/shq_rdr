@@ -132,14 +132,14 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new IceOlator());
         Inventory.getInstance().addItem(new Kortique());
         Inventory.getInstance().addItem(new Processor());
-        for(int i = 0 ; i<4;i++) Inventory.getInstance().addItem(new Flour());
-      //  Player.get().momQuests.add(new MomQuestFood());
-      //  Player.get().butcherQuests.add(new ButcherQuestPacan());
-      //  Player.get().hackerQuests.add(new ComputerQuest());
-      //  Player.get().hackerQuests.add(new HackerQuestReboot());
-      //  Player.get().hackerQuests.add(new HackerQuestATM());
-       // Player.get().copQuests.add(new CopQuestOrientalGuest());
-      //  Player.get().copQuests.add(new CopQuestUnhappyFamilies());
+        for(int i = 0 ; i<100;i++) Inventory.getInstance().addItem(new Flour());
+        Player.get().momQuests.add(new MomQuestFood());
+        Player.get().butcherQuests.add(new ButcherQuestPacan());
+        Player.get().hackerQuests.add(new ComputerQuest());
+        Player.get().hackerQuests.add(new HackerQuestReboot());
+        Player.get().hackerQuests.add(new HackerQuestATM());
+        Player.get().copQuests.add(new CopQuestOrientalGuest());
+        Player.get().copQuests.add(new CopQuestUnhappyFamilies());
         Player.get().momQuests.add(new MomQuestArriving());
 
         System.out.println("test 2");

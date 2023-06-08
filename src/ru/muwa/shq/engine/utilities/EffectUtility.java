@@ -69,7 +69,6 @@ public class EffectUtility {
                 case DRUNK:
                     if(entry.getValue()>System.currentTimeMillis()) isDrunk=true;
                     else isDrunk=false;
-
                     break;
 
 
@@ -99,11 +98,12 @@ public class EffectUtility {
                             lastTimeSpeedWithdrawalNotification = System.currentTimeMillis();
                         }
 
-                    }
-                    else
+                    }else
                     {
                         CameraUpdateUtility.isShaking = false;
                     }
+                    if(Player.get().getHighMeter()<Player.get().getHighMeterLock()) Player.get().setHighMeter(Player.get().getHighMeterLock()+0.1);
+
                     break;
             }
         }
