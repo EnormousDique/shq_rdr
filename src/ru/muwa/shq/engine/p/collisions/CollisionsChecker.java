@@ -46,6 +46,7 @@ public class CollisionsChecker {
         }
     }
 
+
     private static void bulletCollisions(Bullet b)
     {
         for (int i = 0; i < Engine.getCurrentLevel().getObjects().size();i++)
@@ -59,6 +60,8 @@ public class CollisionsChecker {
             }
         }
     }
+
+
 
     /**
      *
@@ -202,11 +205,11 @@ public class CollisionsChecker {
                        if(obj.getSolidBox().getY() < o.getY() + o.getHeight()) o.setY((int) (obj.getSolidBox().y+obj.getSolidBox().getHeight()));
                     }
                     //Проверка, что проверяемый обект зашел верхней и нижней линиями
-                    if(topLine.intersects(obj.getSolidBox()) && bottomLine.intersects(obj.getSolidBox()))
-                    {
-                        if(obj.getSolidBox().getX()+obj.getSolidBox().getWidth() > o.getX()) o.setX(obj.getX()-o.getWidth());
-                        if(obj.getSolidBox().getX() < o.getX() + o.getWidth()) o.setX((int) (obj.getX()+obj.getSolidBox().getWidth()));
-                    }
+///                    if(topLine.intersects(obj.getSolidBox()) && bottomLine.intersects(obj.getSolidBox()))
+//                    {
+  //                    if(obj.getSolidBox().getX()+obj.getSolidBox().getWidth() > o.getX()) o.setX(obj.getX()-o.getWidth());
+   //                     if(obj.getSolidBox().getX() < o.getX() + o.getWidth()) o.setX((int) (obj.getX()+obj.getSolidBox().getWidth()));
+     //               }
                     //Столкновение со стеной только верхней линией
                     if(topLine.intersects(obj.getSolidBox()) &&
                         !leftLine.intersects(obj.getSolidBox())&&
@@ -232,13 +235,13 @@ public class CollisionsChecker {
                         o.setX(obj.getSolidBox().x - o.getWidth());
                     }
                     //Столкновение со стеной только нижней линией
-                    if(topLine.intersects(obj.getSolidBox()) &&
-                            !leftLine.intersects(obj.getSolidBox())&&
-                            !rightLine.intersects(obj.getSolidBox())&&
-                            bottomLine.intersects(obj.getSolidBox()))
-                    {
-                        o.setY(obj.getSolidBox().y - (int) o.getSolidBox().getHeight());
-                    }
+//                    if(topLine.intersects(obj.getSolidBox()) &&
+  //                          !leftLine.intersects(obj.getSolidBox())&&
+    //                        !rightLine.intersects(obj.getSolidBox())&&
+      //                      bottomLine.intersects(obj.getSolidBox()))
+        //            {
+          //              o.setY(obj.getSolidBox().y - (int) o.getSolidBox().getHeight());
+            //        }
                     //TODO: проверить верх + пр + лв ; проерить вер + лв ; проверить верх+ пр; все то е для низа
 
 
@@ -262,8 +265,55 @@ public class CollisionsChecker {
             }
 
         }
+        public void checkPlayerCollisions()
+        {
+            Player p = Player.get();
+            GameObject o = null;
 
-    public  void checkAttackCollisions(){
+            for (int i = 0; i < Engine.getCurrentLevel().getObjects().size(); i++) {
+                if(Engine.getCurrentLevel().getObjects().get(i).getSolidBox().intersects(p.getSolidBox()))
+                    o = Engine.getCurrentLevel().getObjects().get(i);
+            }
+
+            if(o!=null && o.solid())
+            {
+                Point2D oc = new Point((int) o.getSolidBox().getCenterX(), (int) o.getSolidBox().getCenterY());
+                Point2D pc = new Point((int)p.getSolidBox().getCenterX(),(int)p.getSolidBox().getCenterY());
+
+
+                int bonus = 10;
+
+                int xdiff = (int) (oc.getX()-pc.getX());
+
+                int ydiff = (int) (oc.getY()-pc.getY());
+
+                boolean topLeft = xdiff > 0 && ydiff > 0;
+                boolean bottomLeft = xdiff > 0 && ydiff < 0;
+                boolean topRight = xdiff < 0 && ydiff > 0;
+                boolean bottomRight = xdiff < 0 && ydiff < 0;
+
+                if(topLeft){
+                    if(p.getX()+p.getWidth()>o.getSolidBox().x && p.getY() < o.getSolidBox().y) p.setY(o.getSolidBox().y-p.getHeight());
+                    if(p.getX()<o.getSolidBox().x&&p.getSolidBox().y>o.getSolidBox().y) p.setX(o.getX()-p.getWidth());
+                }
+                if(topRight){
+                    if(p.getX()<o.getSolidBox().x+o.getSolidBox().width && p.getY() < o.getSolidBox().y) p.setY(o.getSolidBox().y-p.getHeight());
+                    if(p.getX()+p.getHeight()>o.getSolidBox().x+o.getSolidBox().width && p.getY() > o.getSolidBox().y) p.setX(o.getSolidBox().x+o.getSolidBox().width);
+                }
+                if(bottomLeft){
+                    if(p.getX()+p.getWidth()>o.getSolidBox().x && p.getY() > o.getSolidBox().y) p.setY(o.getSolidBox().y+o.getSolidBox().height);
+                    if(p.getX()<o.getSolidBox().x&&p.getY()>o.getSolidBox().y) p.setX(o.getSolidBox().x-p.getWidth());
+                }
+                if(bottomRight){
+                    if(p.getX()<o.getSolidBox().x+o.getSolidBox().width && p.getY() > o.getSolidBox().y) p.setY(o.getSolidBox().y+o.getSolidBox().height);
+                    if(p.getX()+p.getHeight()>o.getSolidBox().x+o.getSolidBox().width && p.getY() > o.getSolidBox().y) p.setX(o.getSolidBox().x+o.getSolidBox().width);
+                }
+
+
+            }
+        }
+
+    public    void checkAttackCollisions(){
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size();i++){
             NPC npc = Engine.getCurrentLevel().getNPC().get(i);
            if (Engine.getCurrentLevel().getNPC().get(i).getSolidBox().intersects(Player.get().getAttackZone()))

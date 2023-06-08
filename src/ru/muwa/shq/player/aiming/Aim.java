@@ -30,7 +30,7 @@ public class Aim {
         line3.setLine(MouseListener.getInstance().getX()+Camera.getInstance().getX(), MouseListener.getInstance().getY()+Camera.getInstance().getY(), Player.get().getSolidBox().getCenterX(), Player.get().getY() + Player.get().getHeight());
     }
 
-    private double getLineSize(Line2D l)
+    public double getLineSize(Line2D l)
     {
         // По пифагору считаем длину линии
         return Math.sqrt(((l.getX2()-l.getX1())*(l.getX2()-l.getX1()))+((l.getY2()-l.getY1())*(l.getY2()-l.getY1())));
@@ -65,6 +65,15 @@ public class Aim {
                 360 - Math.toDegrees(Math.acos( ((Math.pow(getLineSize(lines.get(1)),2)) + (Math.pow(getLineSize(lines.get(0)),2)) - (Math.pow(getLineSize(lines.get(2)),2))) / (2 * getLineSize(lines.get(1)) * getLineSize(lines.get(0))) ))
                 :
                 Math.toDegrees(Math.acos( ((Math.pow(getLineSize(lines.get(1)),2)) + (Math.pow(getLineSize(lines.get(0)),2)) - (Math.pow(getLineSize(lines.get(2)),2))) / (2 * getLineSize(lines.get(1)) * getLineSize(lines.get(0))) ));
+
+   }
+
+   public double calculateAngleForCollision(Line2D l1, Line2D l2, Line2D l3)
+   {
+
+
+      return  360 - Math.toDegrees(Math.acos( ((Math.pow(getLineSize(l2),2)) + (Math.pow(getLineSize(l1),2)) - (Math.pow(getLineSize(l3),2))) / (2 * getLineSize(l2) * getLineSize(l1)) ));
+
 
    }
 

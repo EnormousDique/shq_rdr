@@ -39,6 +39,7 @@ public class AI {
 
     public void move(NPC npc) { // Метод, который отвечал за передвижение НПЦ по игровому миру.
 
+
         npc.checkForPlayerInSight(); // Проверяем в поле зряния ли игрок (иможно ли до него добраться)
 
         if (!npc.isEnemy) {
