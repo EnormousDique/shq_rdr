@@ -265,6 +265,83 @@ public class CollisionsChecker {
             }
 
         }
+        public static void playerCollisions(List<GameObject> list)
+        {
+            Player p = Player.get();//Игрок
+            List<GameObject> o = new ArrayList<>();//Объект, который он пересекает
+
+            //Ищем объект с пересечением.
+            for (int i = 0; i < list.size(); i++) {
+                if(Player.get().getSolidBox().intersects(list.get(i).getSolidBox()) && list.get(i).solid())
+                    o.add( list.get(i));
+            }
+
+            //Объектнашелся
+            for (int i = 0; i < o.size(); i++) {
+
+                //Проверяем,в какую стену вошел игрок
+                boolean leftWall = p.getX() < o.get(i).getSolidBox().x && p.getX()+p.getWidth() > o.get(i).getSolidBox().x;
+                boolean rightWall = p.getX()< o.get(i).getSolidBox().x+o.get(i).getSolidBox().width && p.getX()+p.getWidth() > o.get(i).getSolidBox().x+o.get(i).getSolidBox().width;
+                boolean topWall = p.getY() < o.get(i).getSolidBox().y && p.getY()+p.getHeight() > o.get(i).getSolidBox().y;
+                boolean bottomWall = p.getY() < o.get(i).getSolidBox().y+o.get(i).getSolidBox().height && p.getY()+p.getHeight() > o.get(i).getSolidBox().y+o.get(i).getSolidBox().height;
+
+                //Толкаем его назад
+                if(leftWall) p.setX(o.get(i).getSolidBox().x-p.getWidth());
+                if(rightWall) p.setX(o.get(i).getSolidBox().x+o.get(i).getSolidBox().width);
+                if(topWall) p.setY(o.get(i).getSolidBox().y-p.getHeight());
+                if(bottomWall) p.setY(o.get(i).getSolidBox().y+o.get(i).getSolidBox().height);
+
+            }
+
+            //Смотрим, мб игрок целиком внутри объекта
+
+            o=new ArrayList<>();
+            for (int i = 0; i < list.size(); i++) {
+                if(list.get(i).getSolidBox().contains(p.getSolidBox()) && list.get(i).solid())
+                    o.add( list.get(i));
+            }
+            for (int i = 0; i < o.size(); i++) {
+
+                Point2D oc = new Point((int) o.get(i).getSolidBox().getCenterX(), (int) o.get(i).getSolidBox().getCenterY());
+                Point2D pc = new Point((int)p.getSolidBox().getCenterX(),(int)p.getSolidBox().getCenterY());
+
+                Point2D olb = new Point((int) o.get(i).getSolidBox().getX(), (int) (o.get(i).getSolidBox().getY()+o.get(i).getSolidBox().height));
+                Point2D ort = new Point(o.get(i).getSolidBox().x+o.get(i).getSolidBox().width,o.get(i).getSolidBox().y);
+
+                Line2D leftToRightDiagonal = new Line2D.Double(olb,ort);
+
+                Point2D olt = new Point((int) o.get(i).getSolidBox().getX(), (int) (o.get(i).getSolidBox().getY()));
+                Point2D orb = new Point(o.get(i).getSolidBox().x+o.get(i).getSolidBox().width,o.get(i).getSolidBox().y+o.get(i).getSolidBox().height);
+
+                Line2D rightToLeftDiagonal = new Line2D.Double(olt,orb);
+
+
+                int xdiff = (int) (oc.getX()-pc.getX());
+
+                int ydiff = (int) (oc.getY()-pc.getY());
+
+                boolean topLeft = xdiff > 0 && ydiff > 0;
+                boolean bottomLeft = xdiff > 0 && ydiff < 0;
+                boolean topRight = xdiff < 0 && ydiff > 0;
+                boolean bottomRight = xdiff < 0 && ydiff < 0;
+
+                boolean isLowerLeftDiagonal = (pc.getX()- olb.getX())*(ort.getY()- olb.getY())-(pc.getX()- olb.getY())*(ort.getX()-olb.getX()) > 0;
+                boolean isLowerRightDiagonal = (pc.getX()- olt.getX())*(orb.getY()- olt.getY())-(pc.getX()- olt.getY())*(orb.getX()-olt.getX()) > 0;
+
+
+                if(topLeft)
+                {
+                    if(isLowerRightDiagonal)
+                        p.setX((int) (o.get(i).getSolidBox().getX()-p.getWidth()));
+                    else
+                        p.setY(o.get(i).getSolidBox().y-p.getHeight());
+                }
+                //TODO: Доделать. Устал,хочу спать уже.
+
+
+            }
+
+        }
         public void checkPlayerCollisions()
         {
             Player p = Player.get();
@@ -279,9 +356,6 @@ public class CollisionsChecker {
             {
                 Point2D oc = new Point((int) o.getSolidBox().getCenterX(), (int) o.getSolidBox().getCenterY());
                 Point2D pc = new Point((int)p.getSolidBox().getCenterX(),(int)p.getSolidBox().getCenterY());
-
-
-                int bonus = 10;
 
                 int xdiff = (int) (oc.getX()-pc.getX());
 
