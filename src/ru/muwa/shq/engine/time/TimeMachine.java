@@ -20,7 +20,7 @@ public class TimeMachine {
     private static long currentTime;
 
     public static void setStartTime(){
-        startTime = /* System.currentTimeMillis(); // 0 */ 250_000;//попробуем начать с утра.
+        startTime = /* System.currentTimeMillis(); */ 0;// 250_000;//попробуем начать с утра.
         currentTime = startTime;
     }
     public static void work()
@@ -38,8 +38,8 @@ public class TimeMachine {
         if(timeFromTheBeginningOfADay < 100_000) timeOfTheDay = TimesOfTheDay.NIGHT; // До 3:20 ночь
         if( 100_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay < 200_000) timeOfTheDay = TimesOfTheDay.SUNRISE; //С 3:20 до 6:40 рассвет
         if(200_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay < 300_000) timeOfTheDay = TimesOfTheDay.MORNING; // с 6:40 до 10:00 утро
-        if(300_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay < 580_000) timeOfTheDay = TimesOfTheDay.AFTERNOON; // с 10:00 ~ 19:45 день
-        if(580_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay <650_000) timeOfTheDay = TimesOfTheDay.EVENING; // с ~19:45 до 21:46 вечер
+        if(300_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay < 580_000) timeOfTheDay = TimesOfTheDay.AFTERNOON; // с 10:00 ~ 19:25 день
+        if(580_000 < timeFromTheBeginningOfADay && timeFromTheBeginningOfADay <650_000) timeOfTheDay = TimesOfTheDay.EVENING; // с ~19:25 до 21:46 вечер
         if(650_000 < timeFromTheBeginningOfADay) timeOfTheDay = TimesOfTheDay.NIGHT; //с 21:45 до 3 : 20 ночь.
         try {
             sendBills();
