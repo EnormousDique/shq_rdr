@@ -28,6 +28,7 @@ public class Money_500 extends Money {
     }
     public Money_500() {
         super(0, 500, 0, img);
+        description = "бабки";
     }
 
 

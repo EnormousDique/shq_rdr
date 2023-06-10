@@ -61,8 +61,11 @@ public class QuestUtility {
                     {
                         quests.get(i).tasks.get(j).isCompleted = true;
                         //Если по завершению задачи должно происодить заскриптованное событие, вызываем его.
-                        if(quests.get(i).tasks.get(j).isTriggeringAction)
-                        {quests.get(i).tasks.get(j).action.performAction();}
+                        if(quests.get(i).tasks.get(j).isTriggeringAction && !quests.get(i).tasks.get(j).isExpired)
+                        {
+                            quests.get(i).tasks.get(j).action.performAction();
+                            quests.get(i).tasks.get(j).isExpired = true;
+                        }
                     }
                 }
                 if (quests.get(i).tasks.get(j).hasCondition) // Блок обработки заданий с условиями
@@ -71,6 +74,11 @@ public class QuestUtility {
                     {
                         // Если условие задания выполнено
                         quests.get(i).tasks.get(j).isCompleted = true;
+                        if(quests.get(i).tasks.get(j).isTriggeringAction && !quests.get(i).tasks.get(j).isExpired)
+                        {
+                            quests.get(i).tasks.get(j).action.performAction();
+                            quests.get(i).tasks.get(j).isExpired = true;
+                        }
 
                     }
                 }
