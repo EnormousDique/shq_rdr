@@ -14,6 +14,7 @@ import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
+import ru.muwa.shq.items.guns.Obrez;
 import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
@@ -133,6 +134,8 @@ public class DemoLevel0 extends Level
         // Inventory.getInstance().addItem(new KladYellow());\
         containers.get(0).addItem(new KladYellow());
 
+
+        Inventory.getInstance().addItem(new Obrez());
         Inventory.getInstance().addItem(new MakarovAmmo());
         Inventory.getInstance().addItem(new BaseballBat());
         Inventory.getInstance().addItem(new Makarov());
@@ -393,8 +396,8 @@ public class DemoLevel0 extends Level
         //2930 6600
         /** РЫНОК **/
         //Зона входа в  рынок
-        zones.add(new DialogueZone(new HachDialogFate(),100,100,100,100,false));
-        zones.add(new DialogueZone(new HachDialog(),-100,100,100,100,false));
+        zones.add(new DialogueZone(new HachDialogFate(),-300,100,100,100,false));
+        zones.add(new DialogueZone(new HachDialog(),-200,100,100,100,false));
         zones.add(new EnterZone(2930,6600,200,200, MarketInteriors.getInstance(),100,100,false));
         //скриптовая зона хача
         zones.add(new ActionZone(2700, 6000, 1000, 1000, new QuestAction() {
