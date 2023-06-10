@@ -225,13 +225,13 @@ public class PlayerControls
     }
     // действие на кнопку е
      private static void e() {
+                 try {
+                 Interactor.getInstance().interact();
+             } catch (Exception e) {
+                 System.out.println("инетрактор наебнулся все ровно)");
+             }
 
-         try {
-             Interactor.getInstance().interact();
-         } catch (Exception e) {
-             System.out.println("инетрактор наебнулся все ровно)");
-         }
-
+         keyboard.getKeys()[keyboard.E]=false;
      }
      // Sounder.changeSong("src\\ru\\muwa\\shq\\sounds\\songs\\muzike1.wav");
     // открытие инвентаря на i
@@ -388,7 +388,7 @@ public class PlayerControls
         QuestHUD.opened=false;
         QuestHUD.renderingQuest = null;
         Inventory.getInstance().setIsOpened(false);
-        HUD.getInstance().getContainerWindow().setVisible(false);
+      // HUD.getInstance().getContainerWindow().setVisible(false);
         for(Container c: Engine.getCurrentLevel().getContainers())c.setIsInUse(false);
         HUD.getInstance().getDialogueWindow().setVisible(false);
 

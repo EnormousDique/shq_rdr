@@ -1,7 +1,10 @@
 package ru.muwa.shq.levels.demo.indoors;
 
 import ru.muwa.shq.craftsmanship.cooking.Cook;
+import ru.muwa.shq.creatures.npc.Hach;
+import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
 import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
+import ru.muwa.shq.creatures.npc.questnpc.Hachique;
 import ru.muwa.shq.dialogues.demo.Conversation1;
 import ru.muwa.shq.dialogues.mom.MomDialog;
 import ru.muwa.shq.economics.money.Money_500;
@@ -54,6 +57,8 @@ public class HubHataIgoryana extends Level
         zones.add(new DialogueZone(new MomDialog(),100,100,100,100,false));
 
         zones.add(new DialogueZone(new MomDialog(),0,0,250,250,false));
+        npc.add(new Hachique(300,200));
+        //npc.add(new AimingGuy(300,200));
        // zones.add(new GifSceneZone(200,200,70,70,true));
 
         /** Используемые предметы **/

@@ -4,6 +4,7 @@ import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.engine.Engine;
 
 public class NPCViewFieldUtility {
+
     public static void work(){
         for(int i = 0; i< Engine.getCurrentLevel().getNPC().size(); i++)
         {

@@ -1,5 +1,6 @@
 package ru.muwa.shq.creatures.npc;
 import ru.muwa.shq.creatures.Creature;
+import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.zones.GameZone;
@@ -14,7 +15,7 @@ import java.util.List;
  */
 public abstract class NPC extends Creature
 {
-
+    public Dialogue dialogue;
     protected boolean playerInSight;
 
     public boolean isEnemy;

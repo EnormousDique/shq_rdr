@@ -1,4 +1,6 @@
 package ru.muwa.shq.levels.demo.demoLevel0;
+import ru.muwa.shq.creatures.npc.Hach;
+import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.creatures.npc.questnpc.Hachique;
 import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.DialogueManager;
@@ -135,7 +137,7 @@ public class DemoLevel0 extends Level
         // Inventory.getInstance().addItem(new KladYellow());\
         containers.get(0).addItem(new KladYellow());
 
-
+        Inventory.getInstance().addItem(new KladBlue());
         Inventory.getInstance().addItem(new Obrez());
         Inventory.getInstance().addItem(new MakarovAmmo());
         Inventory.getInstance().addItem(new BaseballBat());
@@ -153,6 +155,7 @@ public class DemoLevel0 extends Level
         Player.get().copQuests.add(new CopQuestOrientalGuest());
         Player.get().copQuests.add(new CopQuestUnhappyFamilies());
         Player.get().momQuests.add(new MomQuestArriving());
+
 
         System.out.println("test 2");
 
@@ -404,16 +407,20 @@ public class DemoLevel0 extends Level
         /** РЫНОК **/
         //Зона входа в  рынок
         zones.add(new DialogueZone(new HachDialogFate(),-300,100,100,100,false));
-        zones.add(new DialogueZone(new HachDialog(),-200,100,100,100,false));
+        //zones.add(new DialogueZone(new HachDialog(),-200,100,100,100,false));
         zones.add(new EnterZone(2930,6600,200,200, MarketInteriors.getInstance(),100,100,false));
         //скриптовая зона хача
         zones.add(new ActionZone(2700, 6000, 1000, 1000, new QuestAction() {
             @Override
             public void performAction() {
-                Engine.getCurrentLevel().getNPC().add(new Hachique(Player.get().getX() + 350, Player.get().getY()-300,"Vasya"));
+                NPC npc = new Hach(Player.get().getX() + 350, Player.get().getY()-300);
+                npc.name = "Vasya";
+                Engine.getCurrentLevel().getNPC().add(npc);
             Animator.playCutscene(Q2T1_Cutscene.getInstance());
 
-            //DialogueManager.playDialogueOnDemand(Q2T1_Conversation.getInstance());
+
+            DialogueManager.playDialogueOnDemand(new HachDialog());
+            Engine.getCurrentLevel().getNPC().remove(npc);
             }
         }));
 
