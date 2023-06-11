@@ -3,6 +3,7 @@ package ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance5;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
+import ru.muwa.shq.objects.buildings.questBuidlings.HackerEntrance;
 import ru.muwa.shq.objects.containers.PostBox;
 import ru.muwa.shq.zones.EnterZone;
 
@@ -21,7 +22,7 @@ public class L1B5P5F1 extends Level
         startPosX = 357;
         startPosY = 418;
         // containers.add(new PostBox(100,100));
-        objects.add(new GreyPadick(0,0));
+        objects.add(new HackerEntrance(0,0));
         zones.add(new EnterZone(505,739,60,80, DemoLevel0.getInstance(), 6715 ,900,false));
 
         containers.add(new PostBox(0,100));
