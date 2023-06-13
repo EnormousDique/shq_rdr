@@ -14,6 +14,8 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
 import ru.muwa.shq.engine.time.TimeMachine;
+import ru.muwa.shq.items.guns.Obrez;
+import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.police.PoliceHQ;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
