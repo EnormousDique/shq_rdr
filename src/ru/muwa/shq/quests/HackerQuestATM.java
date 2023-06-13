@@ -1,6 +1,11 @@
 package ru.muwa.shq.quests;
 
+import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.quest.BlackCreditCard;
+import ru.muwa.shq.items.quest.GreenCreditCard;
+import ru.muwa.shq.items.quest.Package;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.quests.conditions.TaskCondition;
 import ru.muwa.shq.zones.CompleteTaskZone;
 
@@ -19,14 +24,33 @@ public class HackerQuestATM extends Quest{
         addTask("Собрать 10 карт", new TaskCondition() {
             @Override
             public boolean checkCondition() {
-                return false;
+
                 //TODO: добавить проверку наличия 10  карт в инвентаре
+                int black = 0;
+                int green = 0;
+                for (int i = 0; i < Inventory.getInstance().getItems().size(); i++) {
+                    Item item = Inventory.getInstance().getItems().get(i);
+
+                    if(item instanceof BlackCreditCard){
+                        black ++;
+
+                    }else if (item instanceof GreenCreditCard){
+                        green ++;
+                    }
+                        if(green+black >= 10){
+                            tasks.get(0).isCompleted = true;
+                        }else tasks.get(0).isCompleted = false;
+
+
+                }return false;
             }
         });
         addTask("Сходить на почту, спросить про посылку",new CompleteTaskZone(0,0,0,0, DemoLevel0.getInstance()));
         addTask("Узнать где может быть посылка", new TaskCondition() {
             @Override
             public boolean checkCondition() {
+
+
                 return doesPlayerKnowWhereIsTheDelivery;
             }
         });
@@ -34,8 +58,16 @@ public class HackerQuestATM extends Quest{
         addTask("Забрать посылку", new TaskCondition() {
             @Override
             public boolean checkCondition() {
+                for (int i = 0; i < Inventory.getInstance().getItems().size(); i++) {
+                    Item item = Inventory.getInstance().getItems().get(i);
+                    if(item instanceof Package){
+                        tasks.get(4).isCompleted = true;
+                    }
+                }
+
                 return false;
-                //TODO: добавить логику првоерки наличия в инвентаре посылки
+                //TODO: добавить логику
+
             }
         });
         addTask("Вернуться к хакеру",new CompleteTaskZone(0,0,0,0,DemoLevel0.getInstance()));

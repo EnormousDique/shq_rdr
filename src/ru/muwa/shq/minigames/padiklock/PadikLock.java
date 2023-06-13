@@ -21,7 +21,7 @@ public class PadikLock implements MiniGameOld {
         else  return checkPassword();
     }
 
-     public PadikLock(String password){
+     public  PadikLock(String password){
         this.password = password;
      }
 
