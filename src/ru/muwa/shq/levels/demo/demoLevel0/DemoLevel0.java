@@ -1,6 +1,7 @@
 package ru.muwa.shq.levels.demo.demoLevel0;
 import ru.muwa.shq.creatures.npc.Hach;
 import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.creatures.npc.questnpc.StarleyMahony;
 import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.dialogues.demo.Conversation0;
@@ -14,6 +15,9 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
 import ru.muwa.shq.items.guns.Obrez;
+import ru.muwa.shq.items.quest.BlackCreditCard;
+import ru.muwa.shq.items.quest.GreenCreditCard;
+import ru.muwa.shq.items.quest.Package;
 import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
@@ -130,6 +134,14 @@ public class DemoLevel0 extends Level
         // Inventory.getInstance().addItem(new KladYellow());\
         containers.get(0).addItem(new KladYellow());
 
+        for (int i = 0; i <10 ; i++) {
+            containers.get(0).addItem(new BlackCreditCard());
+            containers.get(0).addItem(new GreenCreditCard());
+        }
+        DemoLevel0.getInstance().getNPC().add(new StarleyMahony(0,0));
+
+        Inventory.getInstance().addItem(new Package());
+
         Inventory.getInstance().addItem(new KladBlue());
         Inventory.getInstance().addItem(new Obrez());
         Inventory.getInstance().addItem(new MakarovAmmo());
@@ -140,6 +152,8 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new Kortique());
         Inventory.getInstance().addItem(new Processor());
         for(int i = 0 ; i<100;i++) Inventory.getInstance().addItem(new Flour());
+
+
         Player.get().momQuests.add(new MomQuestFood());
         Player.get().butcherQuests.add(new ButcherQuestPacan());
         Player.get().hackerQuests.add(new ComputerQuest());
