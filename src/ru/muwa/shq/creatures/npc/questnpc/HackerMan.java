@@ -37,6 +37,8 @@ public class HackerMan extends NPC {
         this.name = "Hacker";
         setRayCaster(new RayCaster(x,y,600));
         this.speed = 5;
+        hp = 50;
+        maxHp = hp;
         try
         {
             corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\BadGuyCorpse.png"));

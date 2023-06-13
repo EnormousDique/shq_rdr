@@ -218,15 +218,24 @@ public class Renderer implements Runnable {
         //отрисовка персонажей
         for(int i = 0;i<Engine.getCurrentLevel().getNPC().size();i++){
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
+
             if(!Engine.cutscene) {
                 AffineTransform at = AffineTransform.getTranslateInstance(c.getX() - camX, c.getY() - camY);
                 at.rotate(-Math.toRadians((Aim.getInstance().calculateAngleFoNpc(c) - 0)), (c.getTexture().getWidth() / 2), (c.getTexture().getHeight() / 2.5));
                 ((Graphics2D) g).drawImage(c.getTexture(), at, null);
+
             }
             else {
                 g.drawImage(c.getTexture(), c.getX() - camX, c.getY() - camY, c.getWidth(), c.getHeight(), null);
             }
+            if(c.isEnemy && !Engine.cutscene){
+             //   g.drawString("ХП ВРАГА", (int) (c.getSolidBox().getX()-camX), (int) (c.getSolidBox().getY()-camY));
+                g.setColor(Color.red);
+                g.fillRect((int) (c.getSolidBox().getX()-camX), (int) (c.getSolidBox().getY()-camY-20), (int) (c.getSolidBox().getWidth() * (c.getHp()/c.maxHp)),10);
+            }
+
         }
+
 
         // ОТРИСОВКА ПЕрСОНАЖА
         AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);

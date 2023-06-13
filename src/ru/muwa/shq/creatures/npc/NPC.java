@@ -18,6 +18,10 @@ public abstract class NPC extends Creature
     public Dialogue dialogue;
     protected boolean playerInSight;
 
+    public double maxHp;
+
+
+
     public boolean isEnemy;
     public boolean isScared;
     public GameZone goToZone;
