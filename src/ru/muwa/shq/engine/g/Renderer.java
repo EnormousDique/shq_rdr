@@ -17,6 +17,7 @@ import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0_BG;
 import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.objects.bounds.UniversalWall;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
@@ -245,10 +246,10 @@ public class Renderer implements Runnable {
                 }
                 else g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
             }
-            if(o.getTexture()==null)
+            if(o instanceof UniversalWall)
             {
                 g.setColor(new Color(200,0,0,150));
-                g.fillRect(o.getSolidBox().x,o.getSolidBox().y,o.getSolidBox().width,o.getSolidBox().height);
+                g.drawRect(o.getSolidBox().x-camX,o.getSolidBox().y-camY,o.getSolidBox().width,o.getSolidBox().height);
             }
         }
 
