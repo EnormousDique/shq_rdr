@@ -244,7 +244,11 @@ public class Renderer implements Runnable {
                     g.drawImage(o.getTransTexture(), o.getX() - camX, o.getY() - camY, null);
                 }
                 else g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
-
+            }
+            if(o.getTexture()==null)
+            {
+                g.setColor(new Color(200,0,0,150));
+                g.fillRect(o.getSolidBox().x,o.getSolidBox().y,o.getSolidBox().width,o.getSolidBox().height);
             }
         }
 

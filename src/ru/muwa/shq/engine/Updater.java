@@ -53,16 +53,17 @@ public class Updater implements Runnable {
                 delta += (currTime - lastTime) / drawInterval;
                 lastTime = currTime;
             if(delta>2) {
-                System.out.println("delta: "+delta);
-                System.out.println("pause: "+Engine.pause);
-                delta = 1.1;
+          //      System.out.println("delta: "+delta);
+            //    System.out.println("pause: "+Engine.pause);
+               // delta = 1.1;
+                delta--;
             }
 
             if(delta >= 1)
             {
-                System.out.println("ok delta");
+              //  System.out.println("ok delta");
                 if(!Engine.pause && ! Engine.cutscene) update();
-                System.out.println("delta  after update: "+ delta);
+           //     System.out.println("delta  after update: "+ delta);
                 delta--;
             }
         }
