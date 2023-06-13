@@ -40,6 +40,7 @@ public class HubHataIgoryana extends Level
         if(instance == null) return new HubHataIgoryana(); else return instance;
 
     }
+    Container cookingPot;
     private HubHataIgoryana() throws IOException {
         this.isInDoors = true;
         instance = this;
@@ -76,13 +77,12 @@ public class HubHataIgoryana extends Level
         });
         //Кухня
         //Плита
-        containers.add(new HubChest(640,740));
+        cookingPot = new HubChest(640,740);
+        containers.add(cookingPot);
         zones.add(new InteractionZone(630,660,100,100) {
             @Override
             public void use() {
-                Container pot = containers.get(1); //СЕЙЧАС "КАСТРЮЛЯ" ЭТО ВТОРОЙ ПО СЧЕТУ КОНТЕЙНЕР В УРОВНЕ.
-                if(!Cook.cook(pot)) Renderer.addMessage("Из такой хуйни супа не свришь.");
-
+                if(!Cook.cook(cookingPot)) Renderer.addMessage("Из такой хуйни супа не свришь.");
             }
         });
         //Раковина
