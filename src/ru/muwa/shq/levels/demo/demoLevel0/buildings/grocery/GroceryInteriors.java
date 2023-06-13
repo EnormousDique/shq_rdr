@@ -6,9 +6,13 @@ import ru.muwa.shq.items.knifes.Kortique;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
+import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.TradeZone;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 public class GroceryInteriors extends Level {
@@ -23,6 +27,7 @@ public class GroceryInteriors extends Level {
     {
         instance=this;
         this.isInDoors = true;
+        objects.add(new BG());
         try {
             zones.add(new EnterZone(500,600,100,100, DemoLevel0.getInstance(),7920,3800, false));
         } catch (IOException e) {
@@ -43,6 +48,23 @@ public class GroceryInteriors extends Level {
                 goods.add(new Vodka());
             }
         }));
+    }
+
+    private static class BG extends GameObject {
+
+        static BufferedImage img;
+        static {
+            try{
+                img = ImageIO.read(new File(IMG_PATH + "buildings\\магаз.png"));
+            }catch (Exception e){
+                System.out.println("Failed to load shop bg texture");
+            }
+        }
+
+        private BG() {
+            super(0,0,img);
+            isSolid=false;
+        }
     }
 
 }
