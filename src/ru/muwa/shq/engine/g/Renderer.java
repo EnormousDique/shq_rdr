@@ -145,7 +145,7 @@ public class Renderer implements Runnable {
         {
             render();                                                                                                   // todo спросить мишгана надолиэто тут
         }*/
-        double drawInterval = 1_000_000_000 / 60;
+        double drawInterval = 1_000_000_000 / 240;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currTime;
@@ -157,6 +157,7 @@ public class Renderer implements Runnable {
             if (delta >= 1) {
                 if(!isSleeping) {
                     try {
+
                         render();
                     } catch (Exception e) {
                         System.out.println("С  рендерером чет не то, надеюсь отрисовка идет дальше");

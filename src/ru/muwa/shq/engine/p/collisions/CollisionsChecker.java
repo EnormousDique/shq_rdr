@@ -336,11 +336,34 @@ public class CollisionsChecker {
                     else
                         p.setY(o.get(i).getSolidBox().y-p.getHeight());
                 }
-                //TODO: Доделать. Устал,хочу спать уже.
+                if(topRight)
+                {
+                    if(isLowerLeftDiagonal)
+
+                        p.setX((int) (o.get(i).getSolidBox().getX()+o.get(i).getSolidBox().getWidth()));
+
+                    else
+                    p.setY(o.get(i).getSolidBox().y-p.getHeight());
 
 
+                }if(bottomLeft)
+                {
+                    if(isLowerLeftDiagonal)
+                        p.setY((int) (o.get(i).getSolidBox().y+o.get(i).getSolidBox().getHeight()));
+                    else
+                        p.setX((int) (o.get(i).getSolidBox().getX()-p.getWidth()));
+
+                }if(bottomRight)
+                {
+                    if(isLowerRightDiagonal)
+                        p.setY((int) (o.get(i).getSolidBox().y+o.get(i).getSolidBox().getHeight()));
+
+                    else
+                    p.setX((int) (o.get(i).getSolidBox().getX()+o.get(i).getSolidBox().getWidth()));
+
+
+                }
             }
-
         }
         public void checkPlayerCollisions()
         {

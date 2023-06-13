@@ -1,5 +1,7 @@
 package ru.muwa.shq.levels.demo.demoLevel0.buildings.market;
 
+import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
+import ru.muwa.shq.creatures.npc.questnpc.Hachique;
 import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.demo.Q5T0_Conversation;
 import ru.muwa.shq.economics.trading.Trade;
@@ -41,6 +43,7 @@ public class MarketInteriors extends Level {
                 //TODO: продавать топор, побольше свежего мяса и молочко.
             }
         }));
+
 
 
 

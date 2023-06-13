@@ -193,8 +193,6 @@ public class AI {
                    break;
                case 2:
                    list.get(i).setLine(Player.get().getSolidBox().getCenterX(), Player.get().getSolidBox().getCenterY(), c.getSolidBox().getCenterX(), c.getY() +c.getHeight());
-
-
            }
        }
 

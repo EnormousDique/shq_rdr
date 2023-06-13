@@ -12,6 +12,7 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
 import ru.muwa.shq.engine.time.TimeMachine;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.police.PoliceHQ;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
 import ru.muwa.shq.quests.HackerQuestReboot;
@@ -310,6 +311,9 @@ public class DemoLevel0 extends Level
         zones.add(new MiniGameZone(8112 ,900,70,70,new Domofon("228k1488",L1B5P10F1.getInstance(), 190,220)));
        //Вход в подъезд : 11
         zones.add(new MiniGameZone(8190  ,1226,70,70,new Domofon("228k1488",L1B5P11F1.getInstance(), 190,220)));
+        //Районный отдел милиции
+        zones.add(new EnterZone(5490,1915,100,100, PoliceHQ.getInstance(),0,0,false));
+        //Почта
 
 
         /* Дом 6 */
@@ -483,6 +487,8 @@ public class DemoLevel0 extends Level
             zones.add(new EnterZone(1800 ,3256, 100,70,WhiteBlueTallBuildingFloor1.getInstance(),522,809,false));
         zones.add(new MiniGameZone(500,500,70,70,new Domofon("111",HubHataIgoryana.getInstance(),300,300)));
             zones.add(new MiniGameZone(500,500,100,100,new Domofon("111",HubHataIgoryana.getInstance(),300,300)));
+
+
        // QuestUtility.startQuest1();
         Spawner.updateTimers();
         System.out.println("test 4");

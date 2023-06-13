@@ -46,6 +46,8 @@ public class Updater implements Runnable {
         long lastTime = System.nanoTime();
         long currTime;
         while(thread !=  null) {
+
+                String log = "";
                 currTime = System.nanoTime();
                 delta += (currTime - lastTime) / drawInterval;
                 lastTime = currTime;
@@ -57,13 +59,11 @@ public class Updater implements Runnable {
 
             if(delta >= 1)
             {
+                System.out.println("ok delta");
                 if(!Engine.pause && ! Engine.cutscene) update();
-
+                System.out.println("delta  after update: "+ delta);
                 delta--;
             }
-        }
-        while (true) {
-            System.out.println("pshx thread slomalsa");
         }
     }
 
@@ -123,13 +123,15 @@ public class Updater implements Runnable {
         //Обновление камеры.
         CameraUpdateUtility.getInstance().work();
         // Проверяем столкновение игрока с объектами.
-        for(int i =0;i<4;i++) { //ТЕСТ. Запускаем несколько проверок столкновений для анализа и дальнейшего багфикса.
+       /* for(int i =0;i<4;i++) { //ТЕСТ. Запускаем несколько проверок столкновений для анализа и дальнейшего багфикса.
        //   CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getObjects());
      //     CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject) c).collect(Collectors.toList()));
         }
-       // CollisionsChecker.getInstance().checkPlayerCollisions();//новый метод
+        */
+        //   System.out.println("время до коллизий " + (System.currentTimeMillis()-time));
         CollisionsChecker.playerCollisions(Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject)c).collect(Collectors.toList()));//ТЕСТ.
         CollisionsChecker.playerCollisions(Engine.getCurrentLevel().getObjects());//ТЕСТ.
+     //   System.out.println("время после коллизий " + (System.currentTimeMillis()-time));
 
         // обновляем текстурку игрока
         // CombatUtility.updatePlayerTexture();
@@ -151,6 +153,7 @@ public class Updater implements Runnable {
         //Блок обработки НПЦ из списка текущих.
 
 
+  //      System.out.println("время до нпц " + (System.currentTimeMillis()-time));
            // AI.work();//Новый метод ИИ.
             for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
                 NPC c = Engine.getCurrentLevel().getNPC().get(i);
@@ -173,6 +176,7 @@ public class Updater implements Runnable {
 
         //Для нпц вызываем службу обновления поля зрения
         NPCViewFieldUtility.work();
+ //       System.out.println("время после нпц " + (System.currentTimeMillis()-time));
         //Блок обработки объектов контейнеров из списка текущих.
          for(Container con : Engine.getCurrentLevel().getContainers()) {
           //  CollisionsChecker.getInstance().checkCollisions(con,Engine.getCurrentLevel().getObjects());
@@ -185,7 +189,7 @@ public class Updater implements Runnable {
         //Очищаем нажатые клавиши. (Фиксим баг с мульти прожатием клавиш)
        // DropKeyUtility.getInstance().work(); //TODO: Убрать.
        // System.out.println("time : " + (System.currentTimeMillis() - time));
-
+  //      System.out.println("время на конец апдейтера " + (System.currentTimeMillis()-time));
 
     }
     public static Updater getInstance()
