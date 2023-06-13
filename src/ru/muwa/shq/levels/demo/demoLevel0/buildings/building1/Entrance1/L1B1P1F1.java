@@ -1,5 +1,9 @@
 package ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance1;
 
+import ru.muwa.shq.creatures.npc.Hach;
+import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
+import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
+import ru.muwa.shq.creatures.npc.questnpc.Hachique;
 import ru.muwa.shq.engine.spawner.Kladmen;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
@@ -24,6 +28,8 @@ public class L1B1P1F1 extends Level
         instance = this;
         startPosX = 0;
         startPosY = 0;
+        npc.add(new Hachique(-100,-100));
+        npc.add(new AimingGuy(-100,100));
 
         zones.add(new EnterZone(300,164,60,80, DemoLevel0.getInstance(), 1900,727,false));
         zones.add(new EnterZone(310,30,60,80, L1B1P1F1_5.getInstance(), 300,100,true));

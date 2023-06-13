@@ -30,7 +30,7 @@ public abstract class Creature extends GameObject
         this.speed = speed;
     }
     public abstract ArrayList<Item> getRandomLoot();
-    protected String name;
+    public String name;
 
     public String getName() {
         return name;

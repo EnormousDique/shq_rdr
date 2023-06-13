@@ -1,11 +1,13 @@
 package ru.muwa.shq.levels.demo.demoLevel0;
-import ru.muwa.shq.creatures.npc.questnpc.Hachique;
+import ru.muwa.shq.creatures.npc.Hach;
+import ru.muwa.shq.creatures.npc.NPC;
 import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.dialogues.demo.Conversation0;
 import ru.muwa.shq.dialogues.demo.HackerCumputerDialog;
-import ru.muwa.shq.dialogues.demo.Q2T1_Conversation;
 import ru.muwa.shq.dialogues.demo.Q3_PoliceConversation;
+import ru.muwa.shq.dialogues.hach.HachDialog;
+import ru.muwa.shq.dialogues.hach.HachDialogFate;
 import ru.muwa.shq.economics.trading.Buyout;
 import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.Engine;
@@ -15,6 +17,7 @@ import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.police.PoliceHQ;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
+import ru.muwa.shq.objects.containers.HubChest;
 import ru.muwa.shq.quests.HackerQuestReboot;
 import ru.muwa.shq.quests.HackerQuestATM;
 import ru.muwa.shq.quests.CopQuestOrientalGuest;
@@ -24,7 +27,6 @@ import ru.muwa.shq.engine.animations.cutscenes.Q3_PoliceCutscene;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.spawner.Spawner;
 
-import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.consumables.*;
 import ru.muwa.shq.items.bluntWeapons.BaseballBat;
@@ -92,8 +94,7 @@ import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.VegetablesVendor;
 import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.minigames.Domofon;
-import ru.muwa.shq.minigames.padiklock.PadikLock;
-import ru.muwa.shq.objects.buildings.NewBuildings.*;
+import ru.muwa.shq.objects.buildings.newBuildings.*;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
 import ru.muwa.shq.objects.obstacles.crates.Crate0;
@@ -106,7 +107,6 @@ import ru.muwa.shq.quests.MomQuestFood;
 import ru.muwa.shq.quests.actions.QuestAction;
 import ru.muwa.shq.zones.DialogueZone;
 import ru.muwa.shq.zones.EnterZone;
-import ru.muwa.shq.zones.InteractiveEnterZone;
 import ru.muwa.shq.zones.*;
 
 import java.io.IOException;
@@ -126,11 +126,16 @@ public class DemoLevel0 extends Level
         this.isStreet = true;
 
         System.out.println("test 1 ");
+        containers.add(new HubChest(-50,-50));
+        // Inventory.getInstance().addItem(new KladYellow());\
+        containers.get(0).addItem(new KladYellow());
 
+        Inventory.getInstance().addItem(new KladBlue());
+        Inventory.getInstance().addItem(new Obrez());
         Inventory.getInstance().addItem(new MakarovAmmo());
         Inventory.getInstance().addItem(new BaseballBat());
         Inventory.getInstance().addItem(new Makarov());
-        Inventory.getInstance().addItem(new KladBlue());
+       // Inventory.getInstance().addItem(new KladBlue());
         Inventory.getInstance().addItem(new IceOlator());
         Inventory.getInstance().addItem(new Kortique());
         Inventory.getInstance().addItem(new Processor());
@@ -143,6 +148,7 @@ public class DemoLevel0 extends Level
         Player.get().copQuests.add(new CopQuestOrientalGuest());
         Player.get().copQuests.add(new CopQuestUnhappyFamilies());
         Player.get().momQuests.add(new MomQuestArriving());
+
 
         System.out.println("test 2");
 
@@ -396,16 +402,21 @@ public class DemoLevel0 extends Level
         //2930 6600
         /** РЫНОК **/
         //Зона входа в  рынок
-
+        zones.add(new DialogueZone(new HachDialogFate(),-300,100,100,100,false));
+        //zones.add(new DialogueZone(new HachDialog(),-200,100,100,100,false));
         zones.add(new EnterZone(2930,6600,200,200, MarketInteriors.getInstance(),100,100,false));
         //скриптовая зона хача
         zones.add(new ActionZone(2700, 6000, 1000, 1000, new QuestAction() {
             @Override
             public void performAction() {
-                Engine.getCurrentLevel().getNPC().add(new Hachique(Player.get().getX() + 350, Player.get().getY()-300,"Vasya"));
+                NPC npc = new Hach(Player.get().getX() + 350, Player.get().getY()-300);
+                npc.name = "Vasya";
+                Engine.getCurrentLevel().getNPC().add(npc);
             Animator.playCutscene(Q2T1_Cutscene.getInstance());
 
-            //DialogueManager.playDialogueOnDemand(Q2T1_Conversation.getInstance());
+
+            DialogueManager.playDialogueOnDemand(new HachDialog());
+            Engine.getCurrentLevel().getNPC().remove(npc);
             }
         }));
 

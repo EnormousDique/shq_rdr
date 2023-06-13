@@ -7,6 +7,7 @@ import ru.muwa.shq.engine.spawner.Kladmen;
 import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.engine.utilities.*;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
 import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.containers.Container;
@@ -78,7 +79,7 @@ public class Updater implements Runnable {
         long time = System.currentTimeMillis();
         long localTime = System.currentTimeMillis();
         //Спавнер
-        Spawner.regularSpawn();
+       Spawner.regularSpawn();
        // Spawner.inDoorsSpawn();
 
         //Spawner.carSpawn();//спавнер тачки
@@ -99,11 +100,15 @@ public class Updater implements Runnable {
         CombatUtility.work();
         //служба трафика
         TraficUtility.work();
+        try {
+            System.out.println(MarketInteriors.getInstance().getNPC().get(0).getX()+" "+ MarketInteriors.getInstance().getNPC().get(0).getY());
+        }
+        catch (Exception e)
+        {
 
+        }
         //Вызов времени
         TimeMachine.work();
-
-
         // Вызов службы проверки активации зон сцен
         CutsceneZoneUtility.work();
         //вызов автодиалогов

@@ -1,4 +1,4 @@
-package ru.muwa.shq.objects.buildings.NewBuildings;
+package ru.muwa.shq.objects.buildings.newBuildings;
 
 import ru.muwa.shq.objects.Building;
 

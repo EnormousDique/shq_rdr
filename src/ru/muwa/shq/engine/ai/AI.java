@@ -42,7 +42,8 @@ public class AI {
 
         npc.checkForPlayerInSight(); // Проверяем в поле зряния ли игрок (иможно ли до него добраться)
 
-        if (!npc.isEnemy) {
+        if (/*!npc.isEnemy*/false) {   //todo временно поставили заглушку фиксим баг
+
             //Если нпц не враг.
             //ПОка  что ходит случайно.
             int r = (int)(Math.random() * 4);
@@ -100,7 +101,7 @@ public class AI {
             }
             //Теперь, когда мы знаем, что НПЦ враг и знает/видит где игрок.
             //Смотрим, дошел ли НПЦ-враг до игрока, и как он должен себя вести.
-            if (!npc.getSolidBox().intersects(npc.getpX() + 1, npc.getpY() + 1, 1, 1) && ((npc.getpX() != 0) && (npc.getpY() != 0))) {
+            if (!npc.getSolidBox().intersects(npc.getpX() + 1, npc.getpY() + 1, 1, 1) && ((npc.getpX() != 0) && (npc.getpY() != 0)) && npc.isEnemy) {
                 //Поверили, что НПЦ не дошел до точки, где он видит / помнит игрока
                 double r = Math.random();//Записываем рандом. Потребуется позднее
 
@@ -153,6 +154,13 @@ public class AI {
                 return; // Закончили. Код дальше  только для "незрячих" или "потерявшихся".
             }
 
+            if(!npc.isEnemy){
+                if(Math.random()>0.5 ) npc.setY(npc.getY()+1);else npc.setX(npc.getX()+1);
+                aimAIMath(npc);
+
+
+
+            }
         }
 
     }
