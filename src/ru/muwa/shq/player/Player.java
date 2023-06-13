@@ -57,10 +57,10 @@ public class Player extends Creature
         this.shiftSpeed = shiftSpeed;
     }
 
-    private int shiftSpeed = 8;
+    private int shiftSpeed = 80;
 
     private double highMeterLock;
-    private double Stamina;
+    private double stamina;
     private static BufferedImage imgUp;
     private static BufferedImage imgDown;
     private static BufferedImage imgLeft;
@@ -112,7 +112,7 @@ public class Player extends Creature
         thirst = 100;
         maxJumpAx = 50;
         hp = 100;
-        Stamina = 100; //todo: Вова пидор, переименуй нормально.
+        stamina = 100;
         attackZone.getBounds().setBounds(x,y-30,30,30);
         this.name = "Player";
         highMeter = 0;
@@ -169,8 +169,8 @@ public class Player extends Creature
     public void setHighMeter(double highMeter) {this.highMeter = highMeter;}
     public double getHighMeterLock() {return highMeterLock;}
     public void setHighMeterLock(double highMeterLock) {this.highMeterLock = highMeterLock;}
-    public double getStamina() {return Stamina;}
-    public void setStamina(double stamina){this.Stamina = stamina;}
+    public double getStamina() {return stamina;}
+    public void setStamina(double stamina){this.stamina = stamina;}
     public double getThirst() {return thirst;}
     public void setThirst(double thirst) {this.thirst = thirst;}
 

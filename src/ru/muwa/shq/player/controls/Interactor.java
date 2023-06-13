@@ -1,7 +1,10 @@
 package ru.muwa.shq.player.controls;
 
 
+import ru.muwa.shq.dialogues.Dialogue;
+import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.MiniGameHUD;
 import ru.muwa.shq.engine.listeners.MouseListener;
@@ -60,7 +63,17 @@ public class Interactor
 
                //======================================================
 
-        for(NPC n : Engine.getCurrentLevel().getNPC()) if(n.getSolidBox().contains(x+Camera.getInstance().getX(),y+Camera.getInstance().getY()))
-            System.out.println("Курсор находится на обекте нпц");
+        for(NPC n : Engine.getCurrentLevel().getNPC()) {
+
+            if (n.getSolidBox().contains(x + Camera.getInstance().getX(), y + Camera.getInstance().getY()) && n.getSolidBox().intersects(Player.get().getUseZone())){
+                if(n.dialogue != null){
+                    DialogueManager.playDialogueOnDemand(n.dialogue);
+
+                }else if (!n.isEnemy){
+                    Renderer.addMessage("неочем говорить");
+                }
+            }
+        }
+
     }
 }

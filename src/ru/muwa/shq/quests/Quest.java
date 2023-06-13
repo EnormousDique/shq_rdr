@@ -40,6 +40,7 @@ public class Quest {
         public QuestAction action;
         public TaskCondition condition;
         boolean hasCondition;
+        boolean isExpired = false;
         public Task(String name, CompleteTaskZone z)
         {
             this.name = name;

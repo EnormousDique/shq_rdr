@@ -16,8 +16,8 @@ public class Hachique extends NPC {
     {
         try
         {
-            img = ImageIO.read(new File(IMG_PATH + "creatures\\Hachique.png"));
-            System.out.println("BadGuy0 loaded ok");
+            img = ImageIO.read(new File(IMG_PATH + "creatures\\BadGuy0.png"));
+            System.out.println("HAchique loaded ok");
         }
         catch(Exception e)
         {
@@ -54,6 +54,7 @@ public class Hachique extends NPC {
         this.name = name;
         setRayCaster(new RayCaster(x,y,600));
         this.speed = 5;
+        System.out.println("хаЧИК ЖЕЛПОЙД +++++++++++++++++++++++");
         try
         {
             corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\BadGuyCorpse.png"));

@@ -1,5 +1,7 @@
 package ru.muwa.shq.levels.demo.demoLevel0.buildings.market;
 
+import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.creatures.npc.questnpc.Hachique;
 import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.demo.Q5T0_Conversation;
 import ru.muwa.shq.economics.trading.Trade;
@@ -33,6 +35,7 @@ public class MarketInteriors extends Level {
         } catch (IOException e) {
             System.out.println("ошибка при попытке получить уровень 0");
         }
+
         zones.add(new DialogueZone(Q5T0_Conversation.getInstance(),400,300,100,100,false));
         zones.add(new TradeZone(400, 300, 100, 100, new Trade() {
             @Override
