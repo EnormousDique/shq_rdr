@@ -127,7 +127,7 @@ public class PlayerControls
             {
                 if(Player.get().awake<0.5){
                     TimeMachine.rewind(800_000);
-                    Renderer.playSleepyFilter();
+               //     Renderer.playSleepyFilter();
                     Renderer.addMessage("Ну ты и соня..");
                     Player.get().awake =100;
                     continue;

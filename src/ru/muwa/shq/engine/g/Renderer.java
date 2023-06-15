@@ -81,13 +81,14 @@ public class Renderer implements Runnable {
     }
 
     public static void playSleepyFilter()  {
-            instance.isSleeping = true;
+        g.setColor(Color.BLACK);
+            g.fillRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 System.out.println("ОШИБКА СНА-съ");
             }
-            instance.isSleeping = false;
+
     }
 
     public GameScreen getFrame(){return frame;}
