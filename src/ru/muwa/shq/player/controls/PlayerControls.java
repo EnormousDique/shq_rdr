@@ -84,10 +84,12 @@ public class PlayerControls
             }
             if(z instanceof TradeZone && z.contains(Player.get().getX(), Player.get().getY()))
             {
+                InventoryManager.isItemWindowVisible=true;
                 ((TradeZone)z).isActive = true;
             }
             if(z instanceof BuyoutZone && z.contains(Player.get().getX(), Player.get().getY()))
             {
+                InventoryManager.isItemWindowVisible=true;
                 ((BuyoutZone)z).isActive = true;
             }
         }
