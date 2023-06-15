@@ -21,6 +21,7 @@ import ru.muwa.shq.items.quest.GreenCreditCard;
 import ru.muwa.shq.items.quest.Package;
 import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.police.PoliceHQ;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.post.PostOffice;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
 import ru.muwa.shq.objects.containers.HubChest;
@@ -336,7 +337,7 @@ public class DemoLevel0 extends Level
         //Районный отдел милиции
         zones.add(new EnterZone(5490,1915,100,100, PoliceHQ.getInstance(),0,0,false));
         //Почта
-
+        zones.add(new EnterZone(8400,1915,100,100, PostOffice.getInstance(),0,0,false));
 
         /* Дом 6 */
         objects.add(new TallFatBuilding(1730,2134));

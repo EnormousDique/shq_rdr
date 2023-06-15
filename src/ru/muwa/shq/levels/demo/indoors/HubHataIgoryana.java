@@ -16,6 +16,7 @@ import ru.muwa.shq.items.consumables.Potato;
 import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.minigames.PostBoxShq;
+import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.bounds.*;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
 import ru.muwa.shq.objects.containers.Container;
@@ -39,6 +40,7 @@ public class HubHataIgoryana extends Level
         if(instance == null) return new HubHataIgoryana(); else return instance;
 
     }
+    Container cookingPot;
     private HubHataIgoryana() throws IOException {
         this.isInDoors = true;
         instance = this;
@@ -57,7 +59,6 @@ public class HubHataIgoryana extends Level
         zones.add(new DialogueZone(new MomDialog(),100,100,100,100,false));
 
         zones.add(new DialogueZone(new MomDialog(),0,0,250,250,false));
-        npc.add(new Hachique(300,200));
         //npc.add(new AimingGuy(300,200));
        // zones.add(new GifSceneZone(200,200,70,70,true));
 
@@ -76,13 +77,12 @@ public class HubHataIgoryana extends Level
         });
         //Кухня
         //Плита
-        containers.add(new HubChest(640,740));
+        cookingPot = new HubChest(640,740);
+        containers.add(cookingPot);
         zones.add(new InteractionZone(630,660,100,100) {
             @Override
             public void use() {
-                Container pot = containers.get(1); //СЕЙЧАС "КАСТРЮЛЯ" ЭТО ВТОРОЙ ПО СЧЕТУ КОНТЕЙНЕР В УРОВНЕ.
-                if(!Cook.cook(pot)) Renderer.addMessage("Из такой хуйни супа не свришь.");
-
+                if(!Cook.cook(cookingPot)) Renderer.addMessage("Из такой хуйни супа не свришь.");
             }
         });
         //Раковина
@@ -115,6 +115,12 @@ public class HubHataIgoryana extends Level
         objects.add(new Wall350(-48,800));//нижнаяя
         objects.add(new Wall350(308,800));//нижнаяя
         objects.add(new Wall350(608,800));//нижнаяя
+
+     //   objects.add(new Wall350(180,400));
+     //   objects.add(new Wall350(630,400));
+
+        objects.add(new UniversalWall(180,430,640,15));
+        objects.add(new UniversalWall(335,565,15,235));
 
         //zones.add(new MiniGameZone(300,100,50,50,new PostBoxShq()));
 
