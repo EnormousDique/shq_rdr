@@ -18,6 +18,7 @@ import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0_BG;
 import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.bounds.UniversalWall;
+import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
@@ -422,6 +423,17 @@ public class Renderer implements Runnable {
                 {
                     Renderer.g.setColor(Color.RED);
                     Renderer.g.drawString("[E] - говорить.",mx+50-cx,my-30-cy);
+                }
+            }
+
+            //ОТрисовка описанияпринаведени на контейнер
+            for (int i = 0; i < Engine.getCurrentLevel().getContainers().size(); i++) {
+                Container c = Engine.getCurrentLevel().getContainers().get(i);
+                if(c.getSolidBox().contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    if(c.shqurable) Renderer.g.drawString("[E] - пошкурить.",mx+50-cx,my-30-cy);
+                    else Renderer.g.drawString("[E] - осмотреть." + (c.getItems().size()>0?"":" (пусто)"),mx+50-cx,my-30-cy);
                 }
             }
         }
