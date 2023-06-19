@@ -88,7 +88,10 @@ public class DialogueManager {
         Renderer.g.setColor(Color.black);
 
         //Пишем текущее сообщение
-        Renderer.g.drawString(currentMessage,DWx+50,DWy+50);
+        for (int i = 0; i < currentMessage.split("\\.").length; i++) {
+            Renderer.g.drawString(currentMessage.split("\\.")[i],DWx+50, DWy+50 + i*15);
+        }
+
 
         //Добавляем кнопки для ответа
         for(int i = 0; i<buttons.size();i++)

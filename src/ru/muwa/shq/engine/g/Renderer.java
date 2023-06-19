@@ -365,9 +365,6 @@ public class Renderer implements Runnable {
             g.dispose();
             canvas.getBufferStrategy().show();
         }
-
-
-
         public void drawDescriptions()
         {
             int mx=0,my=0;
@@ -383,7 +380,6 @@ public class Renderer implements Runnable {
                         Renderer.g.drawString(InventoryManager.itemWindowPicks.get(i).item.getDescription(),InventoryManager.itemWindowX+100,InventoryManager.itemWindowY-30);
                     }
                 }
-
             }
         }
         public static void showLoading()

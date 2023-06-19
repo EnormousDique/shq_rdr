@@ -2,30 +2,19 @@ package ru.muwa.shq.quests;
 
 import ru.muwa.shq.creatures.npc.Hach;
 import ru.muwa.shq.creatures.npc.NPC;
-import ru.muwa.shq.creatures.npc.questnpc.Hachique;
-import ru.muwa.shq.dialogues.Dialogue;
-import ru.muwa.shq.dialogues.hach.HachDialog;
 import ru.muwa.shq.dialogues.hach.HachDialogFate;
-import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.zakladki.KladBlack;
 import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.items.zakladki.KladRed;
 import ru.muwa.shq.items.zakladki.KladYellow;
-import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
-import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.player.Inventory;
-import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.actions.QuestAction;
-import ru.muwa.shq.quests.conditions.C_HasPlayerFoundKlad;
 import ru.muwa.shq.quests.conditions.TaskCondition;
 import ru.muwa.shq.zones.CompleteTaskZone;
-import ru.muwa.shq.zones.DialogueZone;
-import ru.muwa.shq.zones.GameZone;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class HachQuestStaff extends Quest {

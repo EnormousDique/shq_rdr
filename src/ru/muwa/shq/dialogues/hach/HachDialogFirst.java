@@ -1,11 +1,6 @@
 package ru.muwa.shq.dialogues.hach;
 
 import ru.muwa.shq.dialogues.Dialogue;
-import ru.muwa.shq.engine.g.Renderer;
-import ru.muwa.shq.items.zakladki.KladBlue;
-import ru.muwa.shq.items.zakladki.KladRed;
-import ru.muwa.shq.items.zakladki.KladYellow;
-import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.HachQuestStaff;
 import ru.muwa.shq.quests.actions.QuestAction;
@@ -14,8 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HachDialog extends Dialogue {
-    public HachDialog(){
+public class HachDialogFirst extends Dialogue {
+    public HachDialogFirst(){
         Message m = new Message();
         ArrayList<Respond> responds = new ArrayList<>();
         m.setText("Саламу лейкум, братан. Подзаработать шустренько не хочешь");

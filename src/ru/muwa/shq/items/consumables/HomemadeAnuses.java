@@ -17,7 +17,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class HomemadeAnuses extends Item {
 
-    public static final int ID = 0, PRICE = 13000;
+    public static final int ID = 0, PRICE = 130;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {
