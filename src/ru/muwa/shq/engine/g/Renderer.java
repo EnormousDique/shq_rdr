@@ -368,17 +368,60 @@ public class Renderer implements Runnable {
         public void drawDescriptions()
         {
             int mx=0,my=0;
-
+            mx  = MouseListener.getInstance().x;
+            my = MouseListener.getInstance().getY();
             if(InventoryManager.isItemWindowVisible)
             {
-                mx  = MouseListener.getInstance().x;
-                my = MouseListener.getInstance().getY();
+
+                //Отрисовка описаний при наведении на предмет в инвентаре
                 for (int i = 0; i < InventoryManager.itemWindowPicks.size(); i++) {
                     if(InventoryManager.itemWindowPicks.get(i).contains(new Point(mx,my)))
                     {
                         Renderer.g.setColor(Color.RED);
                         Renderer.g.drawString(InventoryManager.itemWindowPicks.get(i).item.getDescription(),InventoryManager.itemWindowX+100,InventoryManager.itemWindowY-30);
                     }
+                }
+            }
+            mx = mx + Camera.getInstance().getX();
+            my = my + Camera.getInstance().getY();
+            int cx = Camera.getInstance().getX();
+            int cy = Camera.getInstance().getY();
+            //Отрисовка описаний при наведении на зоны
+            for (int i = 0; i < Engine.getCurrentLevel().getZones().size(); i++) {
+                GameZone z = Engine.getCurrentLevel().getZones().get(i);
+                if(z instanceof TradeZone && z.contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    Renderer.g.drawString("[E] - покупка.",mx+50-cx,my-30-cy);
+                }
+                if(z instanceof BuyoutZone && z.contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    Renderer.g.drawString("[E] - продажа (брат биолог).",mx+50-cx,my-30-cy);
+                }
+                if(z instanceof EnterZone && z.contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    Renderer.g.drawString(((EnterZone) z).isAuto()?"переход":"[E] - войти",mx+50-cx,my-30-cy);
+                }
+                if((z instanceof InteractionZone || z instanceof MiniGameZone ) && z.contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    Renderer.g.drawString("[E] - использовать.",mx+50-cx,my-30-cy);
+                }
+                if(z instanceof DialogueZone && z.contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    Renderer.g.drawString("[E] - говорить.",mx+50-cx,my-30-cy);
+                }
+            }
+            //отрисовка описания принаведении на НПЦ
+            for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
+                NPC c = Engine.getCurrentLevel().getNPC().get(i);
+                if(!c.isEnemy && c.dialogue!=null && c.getSolidBox().contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    Renderer.g.drawString("[E] - говорить.",mx+50-cx,my-30-cy);
                 }
             }
         }
