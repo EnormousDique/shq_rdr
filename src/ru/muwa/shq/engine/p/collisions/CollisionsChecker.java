@@ -405,7 +405,7 @@ public class CollisionsChecker {
                     if(p.getX()<o.getSolidBox().x+o.getSolidBox().width && p.getY()+p.getHeight() > o.getSolidBox().y+o.getSolidBox().height) p.setY(o.getSolidBox().y+o.getSolidBox().height);
                     if(p.getX()+p.getHeight()>o.getSolidBox().x+o.getSolidBox().width && p.getY() > o.getSolidBox().y) p.setX(o.getSolidBox().x+o.getSolidBox().width);
                 }
-
+                if(o instanceof Bullet) Engine.getCurrentLevel().getObjects().remove(o);
 
             }
         }
