@@ -410,7 +410,7 @@ public class CollisionsChecker {
             }
         }
 
-    public    void checkAttackCollisions(){
+    public void checkAttackCollisions(){
         for (int i = 0; i < Engine.getCurrentLevel().getNPC().size();i++){
             NPC npc = Engine.getCurrentLevel().getNPC().get(i);
            if (Engine.getCurrentLevel().getNPC().get(i).getSolidBox().intersects(Player.get().getAttackZone()))
