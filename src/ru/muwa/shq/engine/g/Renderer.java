@@ -88,7 +88,6 @@ public class Renderer implements Runnable {
             } catch (InterruptedException e) {
                 System.out.println("ОШИБКА СНА-съ");
             }
-
     }
 
     public GameScreen getFrame(){return frame;}

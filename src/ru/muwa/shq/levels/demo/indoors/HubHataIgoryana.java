@@ -56,8 +56,7 @@ public class HubHataIgoryana extends Level
         //выход в падик
         zones.add(new EnterZone(30, 740,100,100,FatBuildingFloor5.getInstance(), 30,30,false));
         // диалог с мамой
-        zones.add(new DialogueZone(new MomDialog(),100,100,100,100,false));
-
+      //  zones.add(new DialogueZone(new MomDialog(),100,100,100,100,false));
         zones.add(new DialogueZone(new MomDialog(),0,0,250,250,false));
         //npc.add(new AimingGuy(300,200));
        // zones.add(new GifSceneZone(200,200,70,70,true));

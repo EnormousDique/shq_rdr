@@ -21,7 +21,7 @@ public class FatBuildingFloor5 extends Level
         instance = this;
         startPosX = 0;
         startPosY = 0;
-          zones.add(new EnterZone(299,225,50,50, FatBuildingFloor4_5.getInstance(), 250,205,true));
+          zones.add(new EnterZone(309,164,60,80, FatBuildingFloor4_5.getInstance(), 250,205,true));
 
         objects.add(new TestEntrance(10,10));
         objects.add(new Stairs(150,180));
@@ -32,7 +32,7 @@ public class FatBuildingFloor5 extends Level
         objects.add(new Wall300(-40,10));
         objects.add(new Perila(130,120));
 
-        zones.add(new EnterZone(25,20,70,70, HubHataIgoryana.getInstance(),40,760,false));
+        zones.add(new EnterZone(15,20,70,70, HubHataIgoryana.getInstance(),40,760,false));
 
     }
 }
