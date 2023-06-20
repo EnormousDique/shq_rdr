@@ -39,6 +39,7 @@ public class BadGuy0 extends NPC {
         direction = RIGHT;
         setRayCaster(new RayCaster(x,y,600));
         hp = 20;
+        maxHp = hp;
         //текстура трупа
         try
         {

@@ -44,6 +44,7 @@ public class AimingGuy extends NPC{
         setRayCaster(new RayCaster(x,y,1000));
         speed = 4;
         hp=20;
+        maxHp = hp;
         try
         {
             corpseimg = ImageIO.read(new File(IMG_PATH +"containers\\CORPSECOP.png"));
