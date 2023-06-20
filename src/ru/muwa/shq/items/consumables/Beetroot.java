@@ -19,7 +19,7 @@ public class Beetroot extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "consumables\\beetroot.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\consumables\\beetroot.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load свёкла image");

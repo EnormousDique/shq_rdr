@@ -25,7 +25,7 @@ public class Hash extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "drugs\\hash.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\drugs\\hash.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load hash image");

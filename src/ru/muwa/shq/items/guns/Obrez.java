@@ -30,7 +30,7 @@ public class Obrez extends Weapon implements Firearm{
     {
         try
         {
-            OBREZ_IMG = ImageIO.read(new File(IMG_PATH+"combat\\makarov.png"));
+            OBREZ_IMG = ImageIO.read(new File(IMG_PATH+"items\\combat\\makarov.png"));
             System.out.println("obrez texture load ok");
         }catch(Exception e)
         {

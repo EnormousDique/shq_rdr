@@ -18,7 +18,7 @@ public class Potato extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "consumables\\potato.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\consumables\\potato.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load potato image");

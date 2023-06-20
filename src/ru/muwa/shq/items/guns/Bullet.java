@@ -26,7 +26,7 @@ public class Bullet extends GameObject
     {
         try
         {
-            img= ImageIO.read(new File(IMG_PATH+"combat\\bullet.png"));
+            img= ImageIO.read(new File(IMG_PATH+"items\\combat\\bullet.png"));
             System.out.println("bullet texture loaded ok");
         }
         catch(Exception e)

@@ -98,7 +98,7 @@ public abstract class Item
 
             }catch (Exception e)
             {
-                System.out.println("failed to load player");
+                System.out.println("failed to load playerF");
             }
 
         } else {
