@@ -20,6 +20,7 @@ import ru.muwa.shq.items.quest.BlackCreditCard;
 import ru.muwa.shq.items.quest.GreenCreditCard;
 import ru.muwa.shq.items.quest.Package;
 import ru.muwa.shq.items.zakladki.KladYellow;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance1.L1B1P1F3_5;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.police.PoliceHQ;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.post.PostOffice;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
@@ -121,6 +122,7 @@ import java.util.ArrayList;
 
 public class DemoLevel0 extends Level
 {
+    public static NPC hachNPC;
     private static DemoLevel0 instance;
     public static DemoLevel0 getInstance() throws IOException {
         if(instance == null) return new DemoLevel0(); else return instance;
@@ -446,14 +448,19 @@ public class DemoLevel0 extends Level
         zones.add(new ActionZone(2700, 6000, 1000, 1000, new QuestAction() {
             @Override
             public void performAction() {
-                NPC npc = new Hach(Player.get().getX() + 350, Player.get().getY()-300);
-                npc.name = "Vasya";
-                Engine.getCurrentLevel().getNPC().add(npc);
-            Animator.playCutscene(Q2T1_Cutscene.getInstance());
+                hachNPC = new Hach(Player.get().getX() + 350, Player.get().getY()-300);
+                hachNPC.name = "Vasya";
+                hachNPC.setHp(Double.MAX_VALUE );
+                Engine.getCurrentLevel().getNPC().add(hachNPC);
+                try {
+                    L1B1P1F3_5.getInstance().getContainers().get(0).addItem(new KladBlue());
+                } catch (IOException e) {
+                    System.out.println("ne mogu poluchit l1b1p1f3_5");
+                }
+                Animator.playCutscene(Q2T1_Cutscene.getInstance());
+                hachNPC.dialogue = new HachDialogFirst();
+                DialogueManager.playDialogueOnDemand(hachNPC.dialogue);
 
-
-            DialogueManager.playDialogueOnDemand(new HachDialogFirst());
-            Engine.getCurrentLevel().getNPC().remove(npc);
             }
         }));
 

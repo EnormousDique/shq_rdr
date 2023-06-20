@@ -19,6 +19,9 @@ import java.util.ArrayList;
 
 public class HachQuestStaff extends Quest {
     public HachQuestStaff(){
+        isTaken = true;
+        name="Сходить за вещью";
+        description="Хачик с рынка попросил забрать какую-то фитюлю, оставленную ему другом. Не помню где он сказал она лежит. Может вернуться и спросить?";
         tasks = new ArrayList<>();
        tasks.add(new Task("Забрать то что попросил хач", new TaskCondition() {
            @Override
@@ -37,20 +40,12 @@ public class HachQuestStaff extends Quest {
             public void performAction() {
                 try {
                     tasks.add(new Task("вернуться к хачу и поговорить сним", new CompleteTaskZone(-200, -300, 150, 150, DemoLevel0.getInstance())));
-                    NPC npc = new Hach(-200,-200);
-                    MarketInteriors.getInstance().getNPC().add(npc);
-                   // DemoLevel0.getInstance().getNPC().add(npc);
-                    npc.setHp(5000);
-                    npc.dialogue = new HachDialogFate();
+                    DemoLevel0.hachNPC.dialogue = new HachDialogFate();
                 } catch (Exception e) {
                     System.out.println("неудалось загрузить зону для квеста хача чтобюы с ним поговорить");
                 }
             }
         };
        tasks.get(0).isTriggeringAction = true;
-
-
-
-
     }
 }

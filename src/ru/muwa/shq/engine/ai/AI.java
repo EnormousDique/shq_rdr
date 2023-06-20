@@ -42,55 +42,18 @@ public class AI {
 
         npc.checkForPlayerInSight(); // Проверяем в поле зряния ли игрок (иможно ли до него добраться)
 
-        if (/*!npc.isEnemy*/false) {   //todo временно поставили заглушку фиксим баг
+        if (!npc.isEnemy) {   //todo временно поставили заглушку фиксим баг
 
             //Если нпц не враг.
             //ПОка  что ходит случайно.
-            int r = (int)(Math.random() * 4);
-            switch (r)
-            {
-                //Ищем
-                case 0:
-                    npc.moveUp();
-                    break;
-                case 1:
-                    npc.moveLeft();
-                    break;
-                case 2:
-                    npc.moveRight();
-                    break;
-                case 3:
-                    npc.moveDown();
-                    break;
-                case 4:
-                    npc.moveUp();
-                    break;
-            }
+            aimAIMath(npc);
+            randomMovement(npc);
 
         } else {
             if(!npc.isPlayerInSight() || (!npc.isPlayerInSight() && npc.getSolidBox().contains(new Point(npc.getpX(),npc.getpY()))))
             {
                 //Если НПЦ не видит игрока, или помнит где тот был, но уже  пришел туда и на нашел игрока.
-                int r = (int)(Math.random() * 4);
-                switch (r)
-                {
-                    //Ищем
-                    case 0:
-                        npc.moveUp();
-                        break;
-                    case 1:
-                        npc.moveLeft();
-                        break;
-                    case 2:
-                        npc.moveRight();
-                        break;
-                    case 3:
-                        npc.moveDown();
-                        break;
-                    case 4:
-                        npc.moveUp();
-                        break;
-                }
+                randomMovement(npc);
             }
             //Если НПЦ считает нас врагом.
             if (npc.isPlayerInSight())  // Првоеряем видит ли он игрока
@@ -154,16 +117,33 @@ public class AI {
                 return; // Закончили. Код дальше  только для "незрячих" или "потерявшихся".
             }
 
-            if(!npc.isEnemy){
-                if(Math.random()>0.5 ) npc.setY(npc.getY()+1);else npc.setX(npc.getX()+1);
-                aimAIMath(npc);
-
-
-
-            }
         }
 
     }
+
+    private void randomMovement(NPC npc) {
+        int r = (int)(Math.random() * 4);
+        switch (r)
+        {
+            //Ищем
+            case 0:
+                npc.moveUp();
+                break;
+            case 1:
+                npc.moveLeft();
+                break;
+            case 2:
+                npc.moveRight();
+                break;
+            case 3:
+                npc.moveDown();
+                break;
+            case 4:
+                npc.moveUp();
+                break;
+        }
+    }
+
     private static void aimAI()
     {
         LinkedList<NPC> list = Engine.getCurrentLevel().getNPC();

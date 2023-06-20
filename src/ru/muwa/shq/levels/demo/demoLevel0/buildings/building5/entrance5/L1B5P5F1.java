@@ -24,7 +24,7 @@ public class L1B5P5F1 extends Level
         // containers.add(new PostBox(100,100));
         objects.add(new HackerEntrance(0,0));
         zones.add(new EnterZone(505,739,60,80, DemoLevel0.getInstance(), 6715 ,900,false));
-
+        zones.add(new EnterZone(200,150,50,50,HackersPlace.getInstance(),100,100,false));
         containers.add(new PostBox(0,100));
 
     }

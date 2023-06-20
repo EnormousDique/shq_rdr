@@ -32,9 +32,9 @@ public class HachDialogFirst extends Dialogue {
                 Player.get().hachQuests.add(new HachQuestStaff());
                 Message m = new Message();
                 m.setText("НУ ЧТО!!!! УЖЕ ПРИНЕС???");
-                currentMessage = initialMessage;
                 m.setResponds(List.of(new Respond("куда куда надо сгонять?",new Message("Топаешь до северо-западного конца города, где желтые пятиэтажки, заходишь в правый дальний дом, на третьем этаже в электрощитке будет моя вещица. Мне брат оставил",new Respond("закрыть")))));
                 initialMessage = m;
+                currentMessage = initialMessage;
 
             }
         })));
@@ -47,11 +47,12 @@ public class HachDialogFirst extends Dialogue {
             @Override
             public void performAction() {
                 Player.get().hachQuests.add(new HachQuestStaff());
+
                 Message m = new Message();
                 m.setText("НУ ЧТО!!!! УЖЕ ПРИНЕС???");
-                currentMessage = initialMessage;
                 m.setResponds(List.of(new Respond("куда куда надо сгонять?",new Message(" топаешь до северо-западного конца города, где желтые пятиэтажки, заходишь в правый дальний дом, на третьем этаже в электрощитке будет моя вещица. Мне брат оставил",new Respond("закрыть")))));
                 initialMessage = m;
+                currentMessage = initialMessage;
             }
         })))));
         //продолжение
