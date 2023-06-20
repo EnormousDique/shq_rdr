@@ -25,7 +25,7 @@ public class KladBlue extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "zakladki\\zakladka.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\zakladki\\zakladka.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load zakladka image");
