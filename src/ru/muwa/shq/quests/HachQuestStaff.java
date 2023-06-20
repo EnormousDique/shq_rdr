@@ -28,7 +28,7 @@ public class HachQuestStaff extends Quest {
            public boolean checkCondition() {
                for (int i = 0; i < Inventory.getInstance().getItems().size(); i++) {
                    Item item = Inventory.getInstance().getItems().get(i);
-                   if(item instanceof KladBlue || item instanceof KladBlack || item instanceof KladRed || item instanceof KladYellow){
+                   if(item instanceof KladBlue){
 
                        return true;
                    }

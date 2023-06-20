@@ -18,7 +18,9 @@ public class MomDialog extends Dialogue {
         m = new Message();
         m.setText("Сынок ты такой молодец что пришел. У меня тут сплошное горя прям.С продуктами беда , на лекарства не хватает . Платежки душат , свет грозятся отключить. У врача была . Врач говорит месяц мне остался , без операции и лекарств.");
         initialMessage.getResponds().get(0).setMsg(m);
-        m.setResponds(List.of(new Respond("Мама ты чего , Я тебе со всем помогу . И в беде не брошу", new QuestAction() {
+        Respond res = new Respond("Мама ты чего , Я тебе со всем помогу . И в беде не брошу");
+        m.setResponds(List.of(res));
+        res.setMsg(new Message("Сынок, мне нужно, чтобы ты сходил на рынок. Купи, пожалуйста продукты, вот список. Ты же помнишь рынок?. Вниз по улице",new Respond("Да, мама", new QuestAction() {
             @Override
             public void performAction() {
                 Player.get().momQuests.get(0).tasks.get(1).isCompleted = true;

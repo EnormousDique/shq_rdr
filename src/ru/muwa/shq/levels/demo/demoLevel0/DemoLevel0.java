@@ -145,12 +145,10 @@ public class DemoLevel0 extends Level
 
         Inventory.getInstance().addItem(new Package());
 
-        Inventory.getInstance().addItem(new KladBlue());
         Inventory.getInstance().addItem(new Obrez());
         Inventory.getInstance().addItem(new MakarovAmmo());
         Inventory.getInstance().addItem(new BaseballBat());
         Inventory.getInstance().addItem(new Makarov());
-       // Inventory.getInstance().addItem(new KladBlue());
         Inventory.getInstance().addItem(new IceOlator());
         Inventory.getInstance().addItem(new Kortique());
         Inventory.getInstance().addItem(new Processor());

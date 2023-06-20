@@ -6,6 +6,8 @@ import ru.muwa.shq.creatures.npc.questnpc.HackerMan;
 import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.hacker.HackerDialogueFirstMeeting;
 import ru.muwa.shq.economics.money.Money_500;
+import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance5.HackersPlace;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance5.L1B5P5F1;
 import ru.muwa.shq.player.Inventory;
@@ -37,10 +39,22 @@ public class HachDialogFate extends Dialogue {
         m = new Message();
         responds.get(1).setMsg(m);
         m.setText("да ничего давай то что нашел ");
+        responds.get(1).setAction(new QuestAction() {
+            @Override
+            public void performAction() {
+                Item klad = null;
+                for (int i = 0; i < Inventory.getInstance().getItems().size(); i++) {
+                    if(Inventory.getInstance().getItems().get(i) instanceof KladBlue)
+                        klad = Inventory.getInstance().getItems().get(i);
+                }
+                if(klad!= null) Inventory.getInstance().getItems().remove(klad);
+            }
+        });
         Message fin = new Message("да братишка это кайфарики крч. Мне один типчик помогает с этой теой постоянно. Он там понял хакер-шмакер вот это вот все я те отвечаю. Но мутный какой-то тип. Братан, ты лучше сам к нему на хату заскочи. Знаешь серую многоэтажку буквой П? В четвертом подъезде живет на 4-м  этаже.",new Respond("Ладно", new QuestAction() {
             @Override
             public void performAction() {
                 //квест на знакомство с хакером
+                Player.get().hachQuests.get(0).tasks.get(Player.get().hachQuests.get(0).tasks.size()-1).isCompleted=true;
                 Player.get().hackerQuests.add(new HackerQuestNewAcquaintances());
                 HackersPlace.hackerNPC = new HackerMan(200,200);
 

@@ -37,12 +37,8 @@ public class KladBlue extends Item {
     }
     @Override
     public void use() {
-
-        double a = Math.random()*4;
-        Item s = getRandomLoot().get((int) a);
-        Inventory.getInstance().addItem(getRandomLoot().get((int) a));
-        Inventory.getInstance().getItems().remove(this);
-        Renderer.addMessage("И под изолентой" + s.toString().split("\\.")[5].split("@")[0]);
+        Renderer.addMessage("хз че это");
+        Renderer.addMessage("надо узнать у хачика");
     }
     @Override
     public void equip() {

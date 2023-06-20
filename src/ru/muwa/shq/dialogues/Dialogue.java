@@ -85,6 +85,10 @@ public abstract class Dialogue {
             this.text = text;
         }
 
+        public void setAction(QuestAction action) {
+            this.action = action;
+        }
+
         public void setMsg(Message msg) {
             this.msg = msg;
         }

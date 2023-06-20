@@ -157,6 +157,7 @@ public class MouseButtonListener implements MouseInputListener {
         {
             if(r.respond.getMsg()!=null) {
                 DialogueManager.getCurrentDialogue().setCurrentMessage(r.respond.getMsg());
+                if(r.respond.getAction()!=null) r.respond.getAction().performAction();
             }
 
             if(r.respond.getMsg()==null && r.respond.getAction()!=null) {
