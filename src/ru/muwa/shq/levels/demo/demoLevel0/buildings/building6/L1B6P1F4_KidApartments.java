@@ -1,4 +1,4 @@
-package ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1;
+package ru.muwa.shq.levels.demo.demoLevel0.buildings.building6;
 
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.quest.Pacanynok;
