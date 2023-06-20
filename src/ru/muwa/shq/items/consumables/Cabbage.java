@@ -18,7 +18,7 @@ public class Cabbage extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "consumables\\cabbage.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\consumables\\cabbage.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load cabbage image");

@@ -20,7 +20,7 @@ public class Lyrica extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "drugs\\Lyrica.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\drugs\\Lyrica.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load Lyrica image");

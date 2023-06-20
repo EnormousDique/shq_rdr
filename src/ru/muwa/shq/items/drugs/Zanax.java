@@ -21,7 +21,7 @@ public class Zanax extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "drugs\\zanax.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\drugs\\zanax.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load Zanax image");

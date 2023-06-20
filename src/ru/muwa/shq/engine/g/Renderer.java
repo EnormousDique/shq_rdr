@@ -213,6 +213,7 @@ public class Renderer implements Runnable {
             if (!(o instanceof Building)) {
                 g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
             }
+
         }
 
         //Отрисовка всех контейнеров из списка  текущих

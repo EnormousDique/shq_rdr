@@ -22,7 +22,7 @@ public class HomemadeAnuses extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "items\\HomemadeAnus.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\consumables\\HomemadeAnus.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load HomemadeAnus image");

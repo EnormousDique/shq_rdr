@@ -13,7 +13,7 @@ public class Kortique extends Weapon {
     {
         try
         {
-            img = ImageIO.read(new File(IMG_PATH+"combat\\knife_icon.png"));
+            img = ImageIO.read(new File(IMG_PATH+"items\\combat\\knife_icon.png"));
             System.out.println("knife icon texture load ok");
         }catch(Exception e)
         {

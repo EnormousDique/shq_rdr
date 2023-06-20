@@ -18,7 +18,7 @@ public class Tomato extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "consumables\\tomato.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\consumables\\tomato.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load tomato image");
