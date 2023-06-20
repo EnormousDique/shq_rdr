@@ -59,7 +59,7 @@ public abstract class Dialogue {
         public String getText(){return text;}
         public List<Respond> getResponds(){return responds;}
     }
-    public class Respond{
+    public static class Respond{
         String text;
         Message msg;
         QuestAction action;
