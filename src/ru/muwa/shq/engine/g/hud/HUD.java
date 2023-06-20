@@ -142,11 +142,11 @@ public class HUD {
      //   HUD.getInstance().getActionWindow().setVisible(false);
       //  HUD.getInstance().getHealthBar().setBounds(100+ Camera.getInstance().getX(),300+Camera.getInstance().getY(),400,50);
         //   healthBar.setBounds(SCREEN_WIDTH-1027, SCREEN_WIDTH-0,400,50);
-        drugEffectBar.setBounds(SCREEN_WIDTH-1146, SCREEN_WIDTH-68,200,20);
+      //  drugEffectBar.setBounds(SCREEN_WIDTH-1146, SCREEN_WIDTH-68,200,20);
 //цвета полосок
-        drugEffectBar.setForeground(Color.magenta);
-        thirstBar.setForeground(Color.BLUE);
-        staminaBar.setForeground(Color.green);
+       // drugEffectBar.setForeground(Color.magenta);
+       // thirstBar.setForeground(Color.BLUE);
+       // staminaBar.setForeground(Color.green);
         pauseMenuWindow.pack();
         pauseMenuWindow.setLocationRelativeTo(null);
     }
