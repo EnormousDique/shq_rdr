@@ -2,6 +2,8 @@ package ru.muwa.shq.dialogues.hacker;
 
 import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.player.Player;
+import ru.muwa.shq.quests.HackerQuestReboot;
 import ru.muwa.shq.quests.actions.QuestAction;
 
 import java.io.IOException;
@@ -31,7 +33,7 @@ public class HackerMainDialogue extends Dialogue {
         m = new Message( "А чего у тебя с мамой такое?",new Respond("Ну там продукты, лекарство. Операция нужна..",new Message("Во дела. Ну смотри, есть у меня тут работенка одна. Как раз для тебя.",new Respond("А чего делат надо?",new Message("Слушай внимательно. Эти идиоты, барыги, которые наркоту толкают. Соображают они плохо, в общем. Делают тайники постоянно в одних и тех же местах:. Почтовые ящики, электрощитки, мусоропроводы, шахты лифта.",new Respond("ну, и..",new Message("Попробуй пошариться в этих местах. Мне нужно, чтобы ты собрал для меня 10 пакетов порошка. Справишься?.",new Respond("и все?",new Message("нет, еще кое-что. нужно, чтобы ты достал мне морковь с рынка. И мазь из аптеки <<Анальный князь>>. теперь все ",new Respond("понял", new QuestAction() {
             @Override
             public void performAction() {
-                Renderer.addMessage("Должен появиться квест переустановка ОС. ");
+                Player.get().hackerQuests.add(new HackerQuestReboot());
                 initialMessage.getResponds().remove(0);
             }
         }))))))))));

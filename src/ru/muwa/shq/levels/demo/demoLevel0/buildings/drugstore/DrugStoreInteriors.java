@@ -42,6 +42,7 @@ public class DrugStoreInteriors extends Level {
                 goods.add(new BoobPill());
                 goods.add(new Zanax());
                 goods.add(new Water());
+                goods.add(new Lube());
             }
         }));
     }
