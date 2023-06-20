@@ -73,6 +73,7 @@ public class HachDialogFate extends Dialogue {
                 //квест на знакомство с хакером
                 Player.get().hackerQuests.add(new HackerQuestNewAcquaintances());
                 NPC npc = new HackerMan(-200,-200);
+                npc.setHp(Double.MAX_VALUE);
                 try {
                     L1B5P5F1.getInstance().getNPC().add(npc);
                     npc.dialogue = new HackerDialogueFirstMeeting();

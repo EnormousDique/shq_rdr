@@ -75,22 +75,7 @@ public class PlayerControls
 
     }
     private static void t() {
-        for(GameZone z : Engine.getCurrentLevel().getZones())
-        {
-            if(z instanceof DialogueZone && z.contains(Player.get().getX(),Player.get().getY()))
-            {
-                HUD.getInstance().getDialogueWindow().setVisible(true);
-                ((DialogueZone)z).setActive(true);
-            }
-            if(z instanceof TradeZone && z.contains(Player.get().getX(), Player.get().getY()))
-            {
-                ((TradeZone)z).isActive = true;
-            }
-            if(z instanceof BuyoutZone && z.contains(Player.get().getX(), Player.get().getY()))
-            {
-                ((BuyoutZone)z).isActive = true;
-            }
-        }
+
         keyboard.getKeys()[keyboard.T]=false;
     }
     // движение вверх с бегом и снятием стамины
@@ -121,52 +106,7 @@ public class PlayerControls
     }
     private static void u()
     {
-        for(GameZone z : Engine.getCurrentLevel().getZones())
-        {
-            if(z instanceof SleepZone && Player.get().getSolidBox().intersects(z))
-            {
-                if(Player.get().awake<0.5){
-                    TimeMachine.rewind(800_000);
-                    Renderer.playSleepyFilter();
-                    Renderer.addMessage("Ну ты и соня..");
-                    Player.get().awake =100;
-                    continue;
-                }
-                if(Player.get().awake > 75){Renderer.addMessage("Совсем не хочу спать.");continue;}
-                if(TimeMachine.getTimeOfTheDay().equals(TimeMachine.TimesOfTheDay.NIGHT)) {
-                    TimeMachine.rewind((int)(100-Player.get().awake)*(4750));
-                    Renderer.playSleepyFilter();
-                    Renderer.addMessage("Отлично выспался");
-                    Player.get().awake =100;
-                }
-                else{
-                    String dayTimeString = "";
-                    switch (TimeMachine.getTimeOfTheDay())
-                    {
-                        case SUNRISE:
-                            dayTimeString = "рассвет";
-                            break;
-                        case MORNING:
-                            dayTimeString = "утро";
-                            break;
-                        case AFTERNOON:
-                            dayTimeString = "день";
-                            break;
-                        case EVENING:
-                            dayTimeString = "вечер";
-                            break;
-                    }
-                    Renderer.addMessage("Спать можно только ночью!");
-                    Renderer.addMessage("Сейчас : " + dayTimeString);
-                }
-            }
-            if(z instanceof InteractionZone && Player.get().getSolidBox().intersects(z))
-            {
 
-                    ((InteractionZone)z).use();
-
-            }
-        }
         keyboard.getKeys()[keyboard.U] = false;
     }
 
@@ -316,61 +256,7 @@ public class PlayerControls
     }
     private static void enter() {
 
-        for (GameZone z : Engine.getCurrentLevel().getZones()){
-
-            if(z instanceof MiniGameZone && Player.get().getSolidBox().intersects(z))
-            {
-                MiniGameZone mz = (MiniGameZone) z;
-                MiniGameHUD.currentMiniGame = mz.miniGame;
-                try {
-                    Robot robot = new Robot();
-                    int xoff = GameScreen.getInstance().getX();
-                    int yoff = GameScreen.getInstance().getY();
-                    robot.mouseMove(xoff+MiniGameHUD.x, yoff+MiniGameHUD.y);
-                }catch (Exception e){Renderer.addMessage("ты не должен это видеть");}
-            }
-
-
-            if (z.contains(new Point(Player.get().getX(), Player.get().getY()))
-                    &&
-                    KeyListener.getInstance().getKeys()[KeyListener.getInstance().ENTER]
-                    &&
-                    z instanceof EnterZone)
-                Engine.switchLevel((EnterZone) z);
-
-
-
-            if(z.contains(new Point(Player.get().getX(), Player.get().getY()))
-                    &&
-                    z instanceof InteractiveEnterZone)
-            {
-                ((InteractiveEnterZone ) z).getGame().game();
-
-
-                while (!((InteractiveEnterZone ) z).getGame().victory())
-                {
-                    System.out.println("мы находимся в миниигре падик лок");
-
-                    if(KeyListener.getInstance().getKeys()[KeyListener.getInstance().Q])
-                        break;
-                    if(((InteractiveEnterZone ) z).getGame().victory()
-                    || ((PadikLock) ((InteractiveEnterZone ) z).getGame()).isForceQuit())
-                    {
-                       break;
-                    }
-                }
-
-                if( ! ((PadikLock)((InteractiveEnterZone)z).getGame() ).isForceQuit() ) {
-                    Engine.pause = false;
-                    Engine.switchLevel(((InteractiveEnterZone) z).enterZone);
-                    HUD.getInstance().getActionWindow().setVisible(false);
-                }
-            }
-
-    }
-
         KeyListener.getInstance().getKeys()[KeyListener.getInstance().ENTER] = false;
-
 
     }
     // выход из окон контейнеров диалогов инвентаря на q
@@ -393,7 +279,6 @@ public class PlayerControls
         HUD.getInstance().getDialogueWindow().setVisible(false);
 
 
-
         if(Engine.pause)
         {
             System.out.println("MEEEEEEE");
@@ -403,13 +288,6 @@ public class PlayerControls
     }
     private static void lmb()
     {
-
-       /* if(Inventory.getInstance().getBox().contains
-                (new Point(MouseListener.getInstance().getX() + Camera.getInstance().getX(), MouseListener.getInstance().getY() + Camera.getInstance().getY())))
-
-        else */
-       // InventoryManager.grab(); // Проверка на щелчок по вещи из открытого контейнера
-       // InventoryManager.getInstance().eat(); // Проверка на щелчок по вещи из открытого окна вещей игрока
 
         MouseButtonListener.getInstance().keys[0]=false;
     }

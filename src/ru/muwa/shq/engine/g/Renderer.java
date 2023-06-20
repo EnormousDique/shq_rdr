@@ -17,6 +17,8 @@ import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0_BG;
 import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.objects.bounds.UniversalWall;
+import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
@@ -80,13 +82,13 @@ public class Renderer implements Runnable {
     }
 
     public static void playSleepyFilter()  {
-            instance.isSleeping = true;
+        g.setColor(Color.BLACK);
+            g.fillRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 System.out.println("ОШИБКА СНА-съ");
             }
-            instance.isSleeping = false;
     }
 
     public GameScreen getFrame(){return frame;}
@@ -253,7 +255,11 @@ public class Renderer implements Runnable {
                     g.drawImage(o.getTransTexture(), o.getX() - camX, o.getY() - camY, null);
                 }
                 else g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
-
+            }
+            if(o instanceof UniversalWall)
+            {
+                g.setColor(new Color(200,0,0,150));
+                g.drawRect(o.getSolidBox().x-camX,o.getSolidBox().y-camY,o.getSolidBox().width,o.getSolidBox().height);
             }
         }
 
@@ -369,17 +375,15 @@ public class Renderer implements Runnable {
             g.dispose();
             canvas.getBufferStrategy().show();
         }
-
-
-
         public void drawDescriptions()
         {
             int mx=0,my=0;
-
+            mx  = MouseListener.getInstance().x;
+            my = MouseListener.getInstance().getY();
             if(InventoryManager.isItemWindowVisible)
             {
-                mx  = MouseListener.getInstance().x;
-                my = MouseListener.getInstance().getY();
+
+                //Отрисовка описаний при наведении на предмет в инвентаре
                 for (int i = 0; i < InventoryManager.itemWindowPicks.size(); i++) {
                     if(InventoryManager.itemWindowPicks.get(i).contains(new Point(mx,my)))
                     {
@@ -387,7 +391,59 @@ public class Renderer implements Runnable {
                         Renderer.g.drawString(InventoryManager.itemWindowPicks.get(i).item.getDescription(),InventoryManager.itemWindowX+100,InventoryManager.itemWindowY-30);
                     }
                 }
+            }
+            mx = mx + Camera.getInstance().getX();
+            my = my + Camera.getInstance().getY();
+            int cx = Camera.getInstance().getX();
+            int cy = Camera.getInstance().getY();
+            //Отрисовка описаний при наведении на зоны
+            for (int i = 0; i < Engine.getCurrentLevel().getZones().size(); i++) {
+                GameZone z = Engine.getCurrentLevel().getZones().get(i);
+                if(z instanceof TradeZone && z.contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    Renderer.g.drawString("[E] - покупка.",mx+50-cx,my-30-cy);
+                }
+                if(z instanceof BuyoutZone && z.contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    Renderer.g.drawString("[E] - продажа (брат биолог).",mx+50-cx,my-30-cy);
+                }
+                if(z instanceof EnterZone && z.contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    Renderer.g.drawString(((EnterZone) z).isAuto()?"переход":"[E] - войти",mx+50-cx,my-30-cy);
+                }
+                if((z instanceof InteractionZone || z instanceof MiniGameZone ) && z.contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    Renderer.g.drawString("[E] - использовать.",mx+50-cx,my-30-cy);
+                }
+                if(z instanceof DialogueZone && z.contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    Renderer.g.drawString("[E] - говорить.",mx+50-cx,my-30-cy);
+                }
+            }
+            //отрисовка описания принаведении на НПЦ
+            for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
+                NPC c = Engine.getCurrentLevel().getNPC().get(i);
+                if(!c.isEnemy && c.dialogue!=null && c.getSolidBox().contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    Renderer.g.drawString("[E] - говорить.",mx+50-cx,my-30-cy);
+                }
+            }
 
+            //ОТрисовка описанияпринаведени на контейнер
+            for (int i = 0; i < Engine.getCurrentLevel().getContainers().size(); i++) {
+                Container c = Engine.getCurrentLevel().getContainers().get(i);
+                if(c.getSolidBox().contains(mx,my))
+                {
+                    Renderer.g.setColor(Color.RED);
+                    if(c.shqurable) Renderer.g.drawString("[E] - пошкурить.",mx+50-cx,my-30-cy);
+                    else Renderer.g.drawString("[E] - осмотреть." + (c.getItems().size()>0?"":" (пусто)"),mx+50-cx,my-30-cy);
+                }
             }
         }
         public static void showLoading()

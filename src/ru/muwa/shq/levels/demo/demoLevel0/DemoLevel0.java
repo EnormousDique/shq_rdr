@@ -1,22 +1,27 @@
 package ru.muwa.shq.levels.demo.demoLevel0;
 import ru.muwa.shq.creatures.npc.Hach;
 import ru.muwa.shq.creatures.npc.NPC;
+import ru.muwa.shq.creatures.npc.questnpc.StarleyMahony;
 import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.dialogues.demo.Conversation0;
 import ru.muwa.shq.dialogues.demo.HackerCumputerDialog;
 import ru.muwa.shq.dialogues.demo.Q3_PoliceConversation;
-import ru.muwa.shq.dialogues.hach.HachDialog;
+import ru.muwa.shq.dialogues.hach.HachDialogFirst;
 import ru.muwa.shq.dialogues.hach.HachDialogFate;
+import ru.muwa.shq.dialogues.uchastkovy.UchastkovyDialogFirst;
 import ru.muwa.shq.economics.trading.Buyout;
 import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
-import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.items.guns.Obrez;
+import ru.muwa.shq.items.quest.BlackCreditCard;
+import ru.muwa.shq.items.quest.GreenCreditCard;
+import ru.muwa.shq.items.quest.Package;
 import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.police.PoliceHQ;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.post.PostOffice;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
 import ru.muwa.shq.objects.containers.HubChest;
@@ -131,6 +136,19 @@ public class DemoLevel0 extends Level
         containers.add(new HubChest(-50,-50));
         // Inventory.getInstance().addItem(new KladYellow());\
         containers.get(0).addItem(new KladYellow());
+        // диалог мусора
+        zones.add(new DialogueZone(new UchastkovyDialogFirst(),-300, -300,100,150,false));
+
+
+
+
+        for (int i = 0; i <10 ; i++) {
+            containers.get(0).addItem(new BlackCreditCard());
+            containers.get(0).addItem(new GreenCreditCard());
+        }
+        DemoLevel0.getInstance().getNPC().add(new StarleyMahony(0,0));
+
+        Inventory.getInstance().addItem(new Package());
 
         Inventory.getInstance().addItem(new KladBlue());
         Inventory.getInstance().addItem(new Obrez());
@@ -142,13 +160,15 @@ public class DemoLevel0 extends Level
         Inventory.getInstance().addItem(new Kortique());
         Inventory.getInstance().addItem(new Processor());
         for(int i = 0 ; i<100;i++) Inventory.getInstance().addItem(new Flour());
-        Player.get().momQuests.add(new MomQuestFood());
-        Player.get().butcherQuests.add(new ButcherQuestPacan());
-        Player.get().hackerQuests.add(new ComputerQuest());
-        Player.get().hackerQuests.add(new HackerQuestReboot());
-        Player.get().hackerQuests.add(new HackerQuestATM());
-        Player.get().copQuests.add(new CopQuestOrientalGuest());
-        Player.get().copQuests.add(new CopQuestUnhappyFamilies());
+
+
+        // Player.get().momQuests.add(new MomQuestFood());
+     //   Player.get().butcherQuests.add(new ButcherQuestPacan());
+       // Player.get().hackerQuests.add(new ComputerQuest());
+       // Player.get().hackerQuests.add(new HackerQuestReboot());
+       // Player.get().hackerQuests.add(new HackerQuestATM());
+       // Player.get().copQuests.add(new CopQuestOrientalGuest());
+       // Player.get().copQuests.add(new CopQuestUnhappyFamilies());
         Player.get().momQuests.add(new MomQuestArriving());
 
 
@@ -252,6 +272,21 @@ public class DemoLevel0 extends Level
         objects.add(new FatBuilding(1690,200));
         //Вход в подъезд : 1
         zones.add(new MiniGameZone(1900,725,70,70,new Domofon("228k1488",L1B1P1F1.getInstance(), 190,220)));
+        //сКРИПТОВАя ЗОНА МЕНТОВ по квесту зхача
+        zones.add(new ActionZone(1800, 700, 300, 300, new QuestAction() {
+            @Override
+            public void performAction() {
+                for(int j =0;j< Inventory.getInstance().getItems().size();j++)
+                {
+                    Item i = Inventory.getInstance().getItems().get(j);
+                    if(i instanceof KladBlue)
+                    {
+                        Animator.playCutscene(Q3_PoliceCutscene.getInstance());
+                        DialogueManager.playDialogueOnDemand(Q3_PoliceConversation.getInstance());
+                    }
+                }
+            }
+        }));
         //Вход в подъезд : 2
         zones.add(new MiniGameZone(2255,725,70,70,new Domofon("228k1488",L1B1P2F1.getInstance(), 190,220)));
         //Вход в подъезд : 3
@@ -322,7 +357,7 @@ public class DemoLevel0 extends Level
         //Районный отдел милиции
         zones.add(new EnterZone(5490,1915,100,100, PoliceHQ.getInstance(),0,0,false));
         //Почта
-
+        zones.add(new EnterZone(8400,1915,100,100, PostOffice.getInstance(),0,0,false));
 
         /* Дом 6 */
         objects.add(new TallFatBuilding(1730,2134));
@@ -417,7 +452,7 @@ public class DemoLevel0 extends Level
             Animator.playCutscene(Q2T1_Cutscene.getInstance());
 
 
-            DialogueManager.playDialogueOnDemand(new HachDialog());
+            DialogueManager.playDialogueOnDemand(new HachDialogFirst());
             Engine.getCurrentLevel().getNPC().remove(npc);
             }
         }));
@@ -457,20 +492,7 @@ public class DemoLevel0 extends Level
 
 
 
-        zones.add(new ActionZone(1800, 1200, 200, 200, new QuestAction() {
-            @Override
-            public void performAction() {
-                for(int j =0;j< Inventory.getInstance().getItems().size();j++)
-                {
-                    Item i = Inventory.getInstance().getItems().get(j);
-                    if(i instanceof KladBlue)
-                    {
-                        Animator.playCutscene(Q3_PoliceCutscene.getInstance());
-                        DialogueManager.playDialogueOnDemand(Q3_PoliceConversation.getInstance());
-                    }
-                }
-            }
-        }));
+
         zones.add(new EnterZone(520,1800,70,70,HubHataIgoryana.getInstance(),290,705,false));
         zones.add(new DialogueZone(Conversation0.getInstance(),400,400,100,100,false));
         zones.add(new TradeZone(3000, 1000, 300, 300, new Trade() {

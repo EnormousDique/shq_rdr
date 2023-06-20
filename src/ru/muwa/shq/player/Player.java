@@ -57,7 +57,7 @@ public class Player extends Creature
         this.shiftSpeed = shiftSpeed;
     }
 
-    private int shiftSpeed = 80;
+    private int shiftSpeed = 7;
 
     private double highMeterLock;
     private double stamina;
