@@ -22,7 +22,7 @@ public class Water extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "consumables\\water2.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\consumables\\water2.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load WAter image");

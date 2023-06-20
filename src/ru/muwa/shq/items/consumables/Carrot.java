@@ -19,7 +19,7 @@ public class Carrot extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "consumables\\carrot.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\consumables\\carrot.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load carrot image");

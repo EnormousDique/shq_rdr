@@ -22,7 +22,7 @@ public class Flour extends Item {
 
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "drugs\\flour.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\drugs\\flour.png"));
         } catch (IOException e) {
             System.out.println("failed to load flour image");
         }

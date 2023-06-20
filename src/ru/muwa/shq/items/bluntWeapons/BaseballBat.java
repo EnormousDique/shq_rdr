@@ -31,7 +31,7 @@ public class BaseballBat extends Weapon {
     {
         try
         {
-            BaseballBat_IMG = ImageIO.read(new File(IMG_PATH+"combat\\basebalBat.png"));
+            BaseballBat_IMG = ImageIO.read(new File(IMG_PATH+"items\\combat\\basebalBat.png"));
             System.out.println("BaseballBat texture load ok");
         }catch(Exception e)
         {

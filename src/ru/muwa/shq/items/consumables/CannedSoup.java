@@ -22,7 +22,7 @@ public class CannedSoup extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "items\\CannedSoup3.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\consumables\\CannedSoup3.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load CannedSoup image");

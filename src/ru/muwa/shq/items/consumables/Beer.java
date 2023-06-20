@@ -21,7 +21,7 @@ public class Beer extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "consumables\\BEER.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\consumables\\BEER.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load BEER image");

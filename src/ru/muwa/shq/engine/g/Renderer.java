@@ -25,16 +25,20 @@ import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.quests.QuestHUD;
 import ru.muwa.shq.zones.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_HEIGHT;
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
+import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 /**
  * Класс, отвечающий за отрисовку изображения на экране.
@@ -209,6 +213,7 @@ public class Renderer implements Runnable {
             if (!(o instanceof Building)) {
                 g.drawImage(o.getTexture(), o.getX() - camX, o.getY() - camY, null);
             }
+
         }
 
         //Отрисовка всех контейнеров из списка  текущих
@@ -220,15 +225,24 @@ public class Renderer implements Runnable {
         //отрисовка персонажей
         for(int i = 0;i<Engine.getCurrentLevel().getNPC().size();i++){
             NPC c = Engine.getCurrentLevel().getNPC().get(i);
+
             if(!Engine.cutscene) {
                 AffineTransform at = AffineTransform.getTranslateInstance(c.getX() - camX, c.getY() - camY);
                 at.rotate(-Math.toRadians((Aim.getInstance().calculateAngleFoNpc(c) - 0)), (c.getTexture().getWidth() / 2), (c.getTexture().getHeight() / 2.5));
                 ((Graphics2D) g).drawImage(c.getTexture(), at, null);
+
             }
             else {
                 g.drawImage(c.getTexture(), c.getX() - camX, c.getY() - camY, c.getWidth(), c.getHeight(), null);
             }
+            if(c.isEnemy && !Engine.cutscene){
+             //   g.drawString("ХП ВРАГА", (int) (c.getSolidBox().getX()-camX), (int) (c.getSolidBox().getY()-camY));
+                g.setColor(Color.red);
+                g.fillRect((int) (c.getSolidBox().getX()-camX), (int) (c.getSolidBox().getY()-camY-20), (int) (c.getSolidBox().getWidth() * (c.getHp()/c.maxHp)),10);
+            }
+
         }
+
 
         // ОТРИСОВКА ПЕрСОНАЖА
         AffineTransform at = AffineTransform.getTranslateInstance(Player.get().getX() - camX, Player.get().getY() - camY);
@@ -319,6 +333,7 @@ public class Renderer implements Runnable {
         //отрисовка описаний
         drawDescriptions();
 
+
             //отрисовка координат мыши.
             g.setColor(Color.red);
             g.setFont(g.getFont().deriveFont(Font.BOLD));
@@ -329,11 +344,72 @@ public class Renderer implements Runnable {
         g.setColor(Color.white);
         g.drawString(TimeMachine.getStringTime(),100,200);
         g.setColor(new Color(250,0,250,250));
-        //отрисовка полосок
-        String hp = "";
-        try{(Player.get().getHp() +"").substring(0,4);}catch (Exception e){}
-        g.drawString("хп : "+hp ,10,15);
-        g.drawLine(10,30,10+(int)Player.get().getHp(),30);
+
+
+
+
+
+
+
+
+
+
+
+        //загрузка изображений полосок
+        Image hpBArpoloska = null ;
+        try {
+            hpBArpoloska = ImageIO.read(new File(IMG_PATH + "barsUI\\polski\\хпбаруи.png")); //изображение полоски здоровья
+        } catch (IOException e) {
+            System.out.println("неудалосьзаггурить хпбар");}
+
+
+
+
+
+
+
+
+
+
+        //загрузка изображений Баров
+        Image hpBAr = null;
+        try {
+            hpBAr = ImageIO.read((new File(IMG_PATH + "barsUI\\хпбар2.png"))); //изображение бара здоровья
+        } catch (IOException e) {
+            System.out.println("неудалосьзаггурить хпбарПолоску");}
+
+
+
+
+
+
+
+
+        //новая отрисовка  баров
+        g.drawImage(hpBAr,10,15,87,40,null); //отрисовка бара здоровья
+
+
+
+
+
+
+        //новая отрисовка полосок
+        //todo не ставить размер больше чем сама картинка так как прога начинает брать другие изображения
+        //todo
+        g.drawImage(hpBArpoloska,13,28 ,(int) Player.get().getHp()+13, 50 ,0,0,(int) Player.get().getHp()+13,8,null);//отрисовка полоски здоровья
+
+
+
+
+
+        //старый код полосок
+        // g.fillRect(15,25, (int) Player.get().getHp(),hpBAr.getHeight(null)-10 );
+        // g.drawImage(hpBArpoloska,P)
+        // g.drawImage(hpBArpoloska,14,30, (int) Player.get().getHp(),21,null);
+        //try{(Player.get().getHp() +"").substring(0,4);}catch (Exception e){}
+       // g.drawImage(hpBArpoloska,
+        //g.drawString("хп : "+hp ,10,15);
+       // g.drawLine(10,30,10+(int)Player.get().getHp(),30);
         g.drawString("Вода в организме :" ,140,15);
         g.drawLine(140,30,140+(int)Player.get().getThirst(),30);
         g.drawString("Моча :" ,140,40);
