@@ -312,6 +312,7 @@ public class PlayerControls
                 //Блок анимации
                 if(w instanceof Kortique) Animator.playPlayerAnimation(new A_KnifeStab());
                 if(w == null) Animator.playPlayerAnimation(new A_PlayerFistPunch());
+
             }
         }
         keyboard.getKeys()[keyboard.SPACE] = false;
