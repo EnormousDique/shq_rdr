@@ -25,7 +25,7 @@ public class KladYellow extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "zakladki\\zakladYellow.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\zakladki\\zakladYellow.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load zakladYellow image");

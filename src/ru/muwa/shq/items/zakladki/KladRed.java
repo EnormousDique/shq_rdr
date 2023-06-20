@@ -25,7 +25,7 @@ public class KladRed extends Item {
     private static BufferedImage img;
     static {
         try {
-            img = ImageIO.read(new File(IMG_PATH + "zakladki\\kladRed.png"));
+            img = ImageIO.read(new File(IMG_PATH + "items\\zakladki\\kladRed.png"));
         }
         catch(IOException e) {
             System.out.println("failed to load KladRed image");
