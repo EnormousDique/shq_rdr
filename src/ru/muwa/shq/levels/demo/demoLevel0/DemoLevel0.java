@@ -25,10 +25,6 @@ import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.post.PostOffice;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
 import ru.muwa.shq.objects.containers.HubChest;
-import ru.muwa.shq.quests.HackerQuestReboot;
-import ru.muwa.shq.quests.HackerQuestATM;
-import ru.muwa.shq.quests.CopQuestOrientalGuest;
-import ru.muwa.shq.quests.CopQuestUnhappyFamilies;
 import ru.muwa.shq.engine.animations.cutscenes.Q3_PoliceCutscene;
 
 import ru.muwa.shq.engine.g.Renderer;
@@ -89,7 +85,7 @@ import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance7.L1B5P7F1
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance8.L1B5P8F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance9.L1B5P9F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.L1B6P1F1;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.entrance2.L1B6P2F1;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance2.L1B6P2F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building7.entrance1.L1B7P1F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building7.entrance2.L1B7P2F1;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building8.entrance1.L1B8P1F1;
@@ -108,9 +104,6 @@ import ru.muwa.shq.objects.obstacles.crates.Crate0;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.*;
-import ru.muwa.shq.quests.ButcherQuestPacan;
-import ru.muwa.shq.quests.ComputerQuest;
-import ru.muwa.shq.quests.MomQuestFood;
 import ru.muwa.shq.quests.actions.QuestAction;
 import ru.muwa.shq.zones.DialogueZone;
 import ru.muwa.shq.zones.EnterZone;
@@ -361,13 +354,13 @@ public class DemoLevel0 extends Level
 
         /* Дом 6 */
         objects.add(new TallFatBuilding(1730,2134));
-        zones.add(new MiniGameZone(1800,2940,70,70,new Domofon("228k1488",L1B6P1F1.getInstance(), 190,220)));
-        zones.add(new MiniGameZone(2215,2940,70,70,new Domofon("228k1488",L1B6P2F1.getInstance(), 190,220)));
+        zones.add(new MiniGameZone(1800,2940,70,70,new Domofon("228k1488",L1B6P1F1.getInstance(), 690,445)));
+        zones.add(new MiniGameZone(2215,2940,70,70,new Domofon("228k1488",L1B6P2F1.getInstance(), 690,445)));
 
         /* Дом 7 */
         objects.add(new TallFatBuilding(2640,2916));
-        zones.add(new MiniGameZone(2717,3750,70,70,new Domofon("228k1488",L1B7P1F1.getInstance(), 190,220)));
-        zones.add(new MiniGameZone(3128,3750,70,70,new Domofon("228k1488",L1B7P2F1.getInstance(), 190,220)));
+        zones.add(new MiniGameZone(2717,3750,70,70,new Domofon("228k1488",L1B7P1F1.getInstance(), 690,445)));
+        zones.add(new MiniGameZone(3128,3750,70,70,new Domofon("228k1488",L1B7P2F1.getInstance(), 690,445)));
 
         /* Дом 9 */
         //3700 3100

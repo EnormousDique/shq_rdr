@@ -1,12 +1,9 @@
-package ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.entrance2;
+package ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance2;
 
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
-import ru.muwa.shq.objects.bounds.*;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
-import ru.muwa.shq.objects.buildings.indoors.Stairs.WhiteBlueTallBuilding.WhiteBlueTallBuildingFLoor;
 import ru.muwa.shq.objects.containers.PostBox;
-import ru.muwa.shq.objects.containers.WirelessPanel;
 import ru.muwa.shq.zones.EnterZone;
 
 import java.io.IOException;
