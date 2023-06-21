@@ -14,6 +14,7 @@ import ru.muwa.shq.items.ItemPanel;
 import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.minigames.Domofon;
+import ru.muwa.shq.minigames.Elevator;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.containers.ContainerPanel;
 import ru.muwa.shq.player.Inventory;
@@ -195,11 +196,9 @@ public class MouseButtonListener implements MouseInputListener {
         //И какая кнопка была нажата
 
         if(MiniGameHUD.currentMiniGame instanceof Domofon) {
-            System.out.println("Мы находимся в мини игре домофон");
 
             for (int i = 0; i < ((Domofon) MiniGameHUD.currentMiniGame).buttons.size(); i++) {
                 Domofon.DomofonButton b = ((Domofon) MiniGameHUD.currentMiniGame).buttons.get(i);
-                System.out.println("ккодринаты кнопок. х : " +  b.x + " y : " + b.y);
 
                 if (b.contains(new Point(e.getX()-MiniGameHUD.x, e.getY()-MiniGameHUD.y))) {
 
@@ -217,6 +216,20 @@ public class MouseButtonListener implements MouseInputListener {
                             game.input="";
                         }
                     }
+                }
+            }
+        }
+        //Если мы играем в лифт, то логика нажатия мышки следующая
+        if(MiniGameHUD.currentMiniGame instanceof Elevator)
+        {
+            for (int i = 0; i < ((Elevator) MiniGameHUD.currentMiniGame).buttons.size(); i++) {
+                Elevator.ElevatorButton b = ((Elevator) MiniGameHUD.currentMiniGame).buttons.get(i);
+                if(b.contains(new Point(e.getX(),e.getY())))
+                {
+                    Elevator l = (Elevator) MiniGameHUD.currentMiniGame;
+                    Engine.pause=false;
+                    Engine.switchLevel(l.levels.get(Integer.parseInt(b.text)-1),l.distX,l.distY);
+                    MiniGameHUD.currentMiniGame = null;
                 }
             }
         }
