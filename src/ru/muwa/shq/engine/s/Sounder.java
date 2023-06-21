@@ -26,8 +26,9 @@ public class Sounder implements Runnable{
         System.out.println("sound drive start");
        // playSong("src\\ru\\muwa\\shq\\sounds\\songs\\song.wav");
         //clip.loop(Integer.MAX_VALUE);
-         playSong("src\\ru\\muwa\\shq\\sounds\\songs\\ost(1).wav");
-        //        clip.loop(Integer.MAX_VALUE);
+         //playSong("src\\ru\\muwa\\shq\\sounds\\songs\\ost(1).wav");
+        playSong("src\\ru\\muwa\\shq\\sounds\\songs\\jopaost.wav");
+                clip.loop(Integer.MAX_VALUE);
 
 
     }

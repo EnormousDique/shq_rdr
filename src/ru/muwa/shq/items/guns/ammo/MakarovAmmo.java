@@ -23,7 +23,7 @@ public class MakarovAmmo extends Ammo{
     static {
         try
         {
-            img = ImageIO.read(new File(IMG_PATH +"combat\\makarov_ammo.png"));
+            img = ImageIO.read(new File(IMG_PATH +"combat\\makarov_ammo 2.png"));
             System.out.println("BadGuyCorpse texture loaded");
         }
         catch (IOException e)

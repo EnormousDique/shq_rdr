@@ -26,7 +26,7 @@ public class Bullet extends GameObject
     {
         try
         {
-            img= ImageIO.read(new File(IMG_PATH+"combat\\bullet.png"));
+            img= ImageIO.read(new File(IMG_PATH+"combat\\bullet 2.png"));
             System.out.println("bullet texture loaded ok");
         }
         catch(Exception e)
@@ -63,9 +63,9 @@ public class Bullet extends GameObject
         this.time = time;
     }
 
-    public static void setImg(BufferedImage img) {
-        Bullet.img = img;
-    }
+    //public static void setImg(BufferedImage img) {
+        //Bullet.img = img;
+    //}
 
     public int getInitialX() {
         return initialX;

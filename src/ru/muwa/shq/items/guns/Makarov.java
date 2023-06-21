@@ -32,7 +32,7 @@ public class Makarov extends Weapon implements Firearm{
     {
         try
         {
-            MAKAROV_IMG = ImageIO.read(new File(IMG_PATH+"combat\\makarov.png"));
+            MAKAROV_IMG = ImageIO.read(new File(IMG_PATH+"combat\\makarov 2.png"));
             System.out.println("makarov texture load ok");
         }catch(Exception e)
         {
