@@ -23,6 +23,7 @@ public class L1B1P1F3_5 extends Level {
     }
 
     private L1B1P1F3_5() throws IOException {
+
         instance = this;
         startPosX = 0;
         startPosY = 0;

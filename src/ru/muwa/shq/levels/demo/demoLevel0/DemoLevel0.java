@@ -432,8 +432,6 @@ public class DemoLevel0 extends Level
         //2930 6600
         /** РЫНОК **/
         //Зона входа в  рынок
-        zones.add(new DialogueZone(new HachDialogFate(),-300,100,100,100,false));
-        //zones.add(new DialogueZone(new HachDialog(),-200,100,100,100,false));
         zones.add(new EnterZone(2930,6600,200,200, MarketInteriors.getInstance(),100,100,false));
         //скриптовая зона хача
         zones.add(new ActionZone(2700, 6000, 1000, 1000, new QuestAction() {
@@ -445,6 +443,7 @@ public class DemoLevel0 extends Level
                 Engine.getCurrentLevel().getNPC().add(hachNPC);
                 try {
                     L1B1P1F3_5.getInstance().getContainers().get(0).addItem(new KladBlue());
+                    System.out.println("POLOZHIL");
                 } catch (IOException e) {
                     System.out.println("ne mogu poluchit l1b1p1f3_5");
                 }
