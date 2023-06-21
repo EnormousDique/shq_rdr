@@ -127,128 +127,8 @@ public class DemoLevel0 extends Level
         instance = this;
         this.isStreet = true;
 
-        System.out.println("test 1 ");
-        containers.add(new HubChest(-50,-50));
-        // Inventory.getInstance().addItem(new KladYellow());\
-        containers.get(0).addItem(new KladYellow());
-        // диалог мусора
-        zones.add(new DialogueZone(new UchastkovyDialogFirst(),-300, -300,100,150,false));
-
-
-
-
-        for (int i = 0; i <10 ; i++) {
-            containers.get(0).addItem(new BlackCreditCard());
-            containers.get(0).addItem(new GreenCreditCard());
-        }
-        DemoLevel0.getInstance().getNPC().add(new StarleyMahony(0,0));
-
-        Inventory.getInstance().addItem(new Package());
-
-        Inventory.getInstance().addItem(new Obrez());
-        Inventory.getInstance().addItem(new MakarovAmmo());
-        Inventory.getInstance().addItem(new BaseballBat());
-        Inventory.getInstance().addItem(new Makarov());
-        Inventory.getInstance().addItem(new IceOlator());
-        Inventory.getInstance().addItem(new Kortique());
-        Inventory.getInstance().addItem(new Processor());
-        for(int i = 0 ; i<100;i++) Inventory.getInstance().addItem(new Flour());
-
-
-        // Player.get().momQuests.add(new MomQuestFood());
-     //   Player.get().butcherQuests.add(new ButcherQuestPacan());
-       // Player.get().hackerQuests.add(new ComputerQuest());
-       // Player.get().hackerQuests.add(new HackerQuestReboot());
-       // Player.get().hackerQuests.add(new HackerQuestATM());
-       // Player.get().copQuests.add(new CopQuestOrientalGuest());
-       // Player.get().copQuests.add(new CopQuestUnhappyFamilies());
         Player.get().momQuests.add(new MomQuestArriving());
 
-
-        System.out.println("test 2");
-
-        zones.add(new DialogueZone(new HackerCumputerDialog(),1,1,100,100,false));
-
-
-
-        /**ТЕСТОВЫЙ ДИАЛОГ  ПО НОВОЙ СИСТЕМЕ **/
-
-        //  initMsg -  > respond 1 -->   msg2 -> respond -> x
-           //        - > respond 2 --> x(конец) --> respond --> msg -> respond -> x
-
-        zones.add(new DialogueZone(new Dialogue() {
-            @Override
-            public void init() throws IOException {
-
-                Message initM = new Message();
-                Message m = null;
-                this.initialMessage = initM;
-
-                //Начало диалога
-                initM.setText("Привет!");
-                ArrayList<Respond> responds = new ArrayList<>();
-                responds.add(new Respond());
-                responds.get(0).setText("Ответ 1.");
-                responds.add(new Respond());
-                responds.get(1).setText("Ответ 2.");
-                responds.add(new Respond());
-                responds.get(2).setText("Ответ 3.");
-                initM.setResponds(responds);
-
-                //Ветка первого ответа
-
-                m = new Message();
-                responds.get(0).setMsg(m);
-                m.setText("Ветка ответа 1");
-                responds = new ArrayList<>();
-                responds.add(new Respond("заканчиваем диалог (просто)"));
-                responds.add(new Respond("заканчиваем действием", new QuestAction() {
-                    @Override
-                    public void performAction() {
-                        Renderer.addMessage("произошло действие");
-                    }
-                }));
-                m.setResponds(responds);
-
-                //Ветка второго ответа
-                responds = (ArrayList<Respond>) initM.getResponds();
-                m = new Message();
-                responds.get(1).setMsg(m);
-                m.setText("Ветка ответа 2");
-                responds = new ArrayList<>();
-                responds.add(new Respond("заканчиваем диалог (просто)"));
-                responds.add(new Respond("продолжение диалога",new Message()));
-                m.setResponds(responds);
-                //Подветка
-                m = responds.get(1).getMsg();
-                m.setText("подветка ответа 2, ответ с продолжением");
-                responds = new ArrayList<>();
-                responds.add(new Respond("заканчиваем диалог (просто)"));
-                responds.add(new Respond("заканчиваем действием", new QuestAction() {
-                    @Override
-                    public void performAction() {
-                        Renderer.addMessage("произошло действие");
-                    }
-                }));
-                m.setResponds(responds);
-
-                //Ветка третьего ответа
-                responds = (ArrayList<Respond>) initM.getResponds();
-                m = new Message();
-                responds.get(2).setMsg(m);
-                m.setText("Ветка ответа 3");
-                responds = new ArrayList<>();
-                responds.add(new Respond("пошел нахуй"));
-                m.setResponds(responds);
-
-
-                this.currentMessage = this.initialMessage;
-            }
-        }, 200, 200, 200, 200,false));
-
-
-
-        //КОНЕЦ ДИАЛОГА
 
         /** ЗАДНИК **/
         objects.add(new DemoLevel0_BG(0,0));
@@ -428,8 +308,6 @@ public class DemoLevel0 extends Level
         zones.add(new MiniGameZone(6322  ,7149,70,70,new Domofon("228k1488",L1B13P1F1.getInstance(), 190,220)));
 
 
-
-        //2930 6600
         /** РЫНОК **/
         //Зона входа в  рынок
         zones.add(new EnterZone(2930,6600,200,200, MarketInteriors.getInstance(),100,100,false));
