@@ -79,7 +79,6 @@ public class MouseButtonListener implements MouseInputListener {
 
         if(pic!=null && keys[0] && InventoryManager.isItemWindowVisible)
         {
-            System.out.println("click po iconke inventarya");
             //Если клик был по инвентарю.
             BuyoutZone z = null;
             for(int i =0; i< Engine.getCurrentLevel().getZones().size();i++)
@@ -233,9 +232,6 @@ public class MouseButtonListener implements MouseInputListener {
                 }
             }
         }
-
-
-
         //После вызова необходимого кода отключаем нажатие во избежание "прокликивания".
         switch (e.getButton())
         {
@@ -247,9 +243,6 @@ public class MouseButtonListener implements MouseInputListener {
                 keys[1] = false;
                 break;
         }
-
-
-
     }
 
     @Override

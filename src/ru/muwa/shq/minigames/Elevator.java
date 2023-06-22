@@ -15,10 +15,7 @@ public class Elevator extends MiniGame{
         this.distX=distX;
         this.distY=distY;
         this.levels=levels;
-        for(int i =0; i< levels.size();i++)
-        {
-            buttons.add(new ElevatorButton((i%2 * 50)+ MiniGameHUD.x,(i/2 * 40) + MiniGameHUD.y,(i+1)+""));
-        }
+
     }
     public static class ElevatorButton extends Rectangle {
         public String text = "";

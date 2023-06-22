@@ -9,6 +9,7 @@ import ru.muwa.shq.minigames.MiniGame;
 import ru.muwa.shq.minigames.PostBoxShq;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class MiniGameHUD {
 
@@ -52,6 +53,11 @@ static         int height = GameScreen.SCREEN_HEIGHT -200;
         Renderer.g.fillRect(x,y,width,height);
         Elevator e = (Elevator) currentMiniGame;
         Renderer.g.setColor(Color.BLACK);
+        e.buttons=new ArrayList<>();
+        for(int i =0; i< e.levels.size();i++)
+        {
+            e.buttons.add(new Elevator.ElevatorButton((i%2 * 50)+ MiniGameHUD.x,(i/2 * 40) + MiniGameHUD.y,(i+1)+""));
+        }
 
         for (int i = 0; i < e.buttons.size(); i++) {
             Renderer.g.setColor(Color.BLACK);

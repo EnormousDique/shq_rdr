@@ -27,6 +27,11 @@ public class L1B7P1F1 extends Level
 {
 
     public static Elevator lift;
+    public static ArrayList<Level> floors = new ArrayList<>();
+
+
+
+
     private static L1B7P1F1 instance;
     public static L1B7P1F1 getInstance() throws IOException {
         if(instance == null) return new L1B7P1F1(); else return instance;
@@ -50,16 +55,20 @@ public class L1B7P1F1 extends Level
         objects.add(new UniversalWall(60,120,240,41));
         objects.add(new UniversalWall(222,162,78,15));
 
-        ArrayList<Level> floors = new ArrayList<>();
-        floors.add(L1B7P1F1.getInstance());floors.add(L1B7P1F2.getInstance());floors.add(L1B7P1F3.getInstance());
-        floors.add(L1B7P1F4.getInstance());floors.add(L1B7P1F5.getInstance());floors.add(L1B7P1F6.getInstance());
-        floors.add(L1B7P1F7.getInstance());floors.add(L1B7P1F8.getInstance());floors.add(L1B7P1F9.getInstance());
-        floors.add(L1B7P1F10.getInstance());floors.add(L1B7P1F11.getInstance());floors.add(L1B7P1F12.getInstance());
-        floors.add(L1B7P1F13.getInstance());floors.add(L1B7P1F14.getInstance());floors.add(L1B7P1F15.getInstance());
-        floors.add(L1B7P1F16.getInstance());floors.add(L1B7P1F17.getInstance());floors.add(L1B7P1F18.getInstance());
-        floors.add(L1B7P1F19.getInstance());
+        try {
+            floors.add(L1B7P1F1.getInstance());
+            floors.add(L1B7P1F2.getInstance());floors.add(L1B7P1F3.getInstance());
+            floors.add(L1B7P1F4.getInstance());floors.add(L1B7P1F5.getInstance());floors.add(L1B7P1F6.getInstance());
+            floors.add(L1B7P1F7.getInstance());floors.add(L1B7P1F8.getInstance());floors.add(L1B7P1F9.getInstance());
+            floors.add(L1B7P1F10.getInstance());floors.add(L1B7P1F11.getInstance());floors.add(L1B7P1F12.getInstance());
+            floors.add(L1B7P1F13.getInstance());floors.add(L1B7P1F14.getInstance());floors.add(L1B7P1F15.getInstance());
+            floors.add(L1B7P1F16.getInstance());floors.add(L1B7P1F17.getInstance());floors.add(L1B7P1F18.getInstance());
+            floors.add(L1B7P1F19.getInstance());
+        } catch (IOException e) {
+            System.out.println("ошибка при получении уровней-этажей. Инициализация лифта l1b7p1");
+        }
 
-        lift = new Elevator(floors,300,290);
+        lift=new Elevator(floors,300,290);
 
         zones.add(new MiniGameZone(200,550,15,25,lift));
 
