@@ -1,8 +1,11 @@
 package ru.muwa.shq.levels.demo.demoLevel0.buildings.building7.entrance1;
 
 import ru.muwa.shq.levels.Level;
+import ru.muwa.shq.minigames.Elevator;
 import ru.muwa.shq.objects.GameObject;
+import ru.muwa.shq.objects.bounds.UniversalWall;
 import ru.muwa.shq.zones.EnterZone;
+import ru.muwa.shq.zones.MiniGameZone;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -21,6 +24,14 @@ public class L1B7P1F3 extends Level {
 
         objects.add(new BG());
         zones.add(new EnterZone(771 ,8,50,70, L1B7P1F3_Stairs.getInstance(),348,182,false));
+
+        zones.add(new MiniGameZone(300,315,15,25,new Elevator(L1B7P1F1.floors,300,290)));
+
+        objects.add(new UniversalWall(0,0,900,60));
+        objects.add(new UniversalWall(750,340,130,30));
+        objects.add(new UniversalWall(840,0,60,360));
+        objects.add(new UniversalWall(0,305,736,60));
+        objects.add(new UniversalWall(0,0,55,360));
 
 
     }
