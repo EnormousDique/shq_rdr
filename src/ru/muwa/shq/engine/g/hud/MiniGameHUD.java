@@ -8,7 +8,12 @@ import ru.muwa.shq.minigames.Elevator;
 import ru.muwa.shq.minigames.MiniGame;
 import ru.muwa.shq.minigames.PostBoxShq;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+
+import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class MiniGameHUD {
 
@@ -63,17 +68,27 @@ static         int height = GameScreen.SCREEN_HEIGHT -200;
     private static void drawPostBoxShq()
     {
         Engine.pause=true;
+        Image minigameBlack = null;
+        try {
+            minigameBlack = ImageIO.read(new File(IMG_PATH+"miniGames\\WindowKlad\\WindowKladYellow\\Жёлтая 1.png"));
+        } catch (IOException e) {
+            System.out.println("немогу загрузить картинку миниигры с щакладкой чераня 1");
+        }
+         Renderer.g.drawImage(minigameBlack,(int) (GameScreen.SCREEN_WIDTH/3.06), (int) (GameScreen.SCREEN_HEIGHT/3.8),GameScreen.SCREEN_WIDTH/3,GameScreen.SCREEN_HEIGHT/2,null);
+      //  Renderer.g.setColor(Color.WHITE);
+      //  Renderer.g.fillRect(x,y,width,height);
 
-        Renderer.g.setColor(Color.WHITE);
-        Renderer.g.fillRect(x,y,width,height);
 
         PostBoxShq shq = (PostBoxShq) currentMiniGame;
 
+        /*
         Renderer.g.setColor(Color.RED);
         for (int i = 0; i < shq.obstacles.size(); i++) {
             Renderer.g.fillRect(shq.obstacles.get(i).x,shq.obstacles.get(i).y,shq.obstacles.get(i).width,shq.obstacles.get(i).height);
 
         }
+
+         */
         Renderer.g.setColor(Color.YELLOW);
         Renderer.g.fillRect(shq.destination.x,shq.destination.y,shq.destination.width,shq.destination.height);
 

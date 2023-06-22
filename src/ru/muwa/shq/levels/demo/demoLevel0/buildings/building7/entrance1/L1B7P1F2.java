@@ -1,9 +1,6 @@
 package ru.muwa.shq.levels.demo.demoLevel0.buildings.building7.entrance1;
 
 import ru.muwa.shq.levels.Level;
-import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.Stairs.Stairs2;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.TamburFloor.TamburFloor2;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.zones.EnterZone;
 

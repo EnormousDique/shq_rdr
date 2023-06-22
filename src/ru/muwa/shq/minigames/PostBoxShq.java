@@ -18,7 +18,7 @@ public class PostBoxShq extends MiniGame{
         startX = 10;
         startY = 10;
         obstacles = new ArrayList<Rectangle>(List.of(new Rectangle(200,100,50,50)));
-        destination = new Rectangle(200,200,100,100);
+        destination = new Rectangle(507,335,20,20);
         
     }
 }

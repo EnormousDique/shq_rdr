@@ -84,7 +84,7 @@ public class DialogueManager {
 
         //Даем графике новый цвет (белый)
       //  Renderer.g.setColor(new Color(250, 250, 250, 150));
-
+         //Диалоговая картинка
         Image dialogUI;
         try {
             dialogUI = ImageIO.read((new File(IMG_PATH + "dialogUI\\dialogui.png")));
