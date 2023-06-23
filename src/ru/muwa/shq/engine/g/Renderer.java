@@ -263,8 +263,8 @@ public class Renderer implements Runnable {
             }
             if(o instanceof UniversalWall)
             {
-                g.setColor(new Color(200,0,0,150));
-                g.drawRect(o.getSolidBox().x-camX,o.getSolidBox().y-camY,o.getSolidBox().width,o.getSolidBox().height);
+          //      g.setColor(new Color(200,0,0,150));
+            //    g.drawRect(o.getSolidBox().x-camX,o.getSolidBox().y-camY,o.getSolidBox().width,o.getSolidBox().height);
             }
         }
 

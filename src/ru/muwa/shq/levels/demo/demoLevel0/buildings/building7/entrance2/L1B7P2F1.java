@@ -19,12 +19,8 @@ import java.util.ArrayList;
 
 public class L1B7P2F1 extends Level
 {
-
     public static Elevator lift;
     public static ArrayList<Level> floors = new ArrayList<>();
-
-
-
 
     private static L1B7P2F1 instance;
     public static L1B7P2F1 getInstance() throws IOException {

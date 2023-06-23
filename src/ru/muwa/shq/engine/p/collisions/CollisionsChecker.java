@@ -53,16 +53,12 @@ public class CollisionsChecker {
         {
             GameObject o = Engine.getCurrentLevel().getObjects().get(i);
             if(!(o instanceof Bullet)  &&  o.getIsSolid() && o.getSolidBox().intersects(b.getSolidBox()))
-
             {
                 Engine.getCurrentLevel().getObjects().remove(b);
                 System.out.println("пуля врезалась вв стену и была удалена");
             }
         }
     }
-
-
-
     /**
      *
      * Метод определения столкновений игрового объекта с остальными объектами.
@@ -73,8 +69,6 @@ public class CollisionsChecker {
      */
     //TODO: Переписать с опорой на линии солид бокса
     private void checkObjectCollisions(GameObject o, List<GameObject> objects) {
-
-
         //Отффильтровываем объекты для работы
         List<GameObject> list = objects.stream().filter(ob -> !ob.equals(o)).filter(ob -> ob.getIsSolid()).collect(Collectors.toList());
 
