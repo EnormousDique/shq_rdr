@@ -4,6 +4,7 @@ import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.quest.Pacanynok;
 import ru.muwa.shq.levels.Level;
 
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance2.L1B6P2F4;
 import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor4;
 
 import ru.muwa.shq.objects.apartments.L1B6P1F4_KidApartmentsInteriors;
@@ -24,7 +25,7 @@ public class L1B6P1F4_KidApartments extends Level {
 
         instance = this;
 
-        zones.add(new EnterZone(701,8,80,50, WhiteBlueTallBuildingFloor4.getInstance(),500,700,false));
+        zones.add(new EnterZone(701,8,80,50, L1B6P2F4.getInstance(),500,700,false));
 
         objects.add(new L1B6P1F4_KidApartmentsInteriors(0,0));
 

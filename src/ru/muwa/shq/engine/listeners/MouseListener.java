@@ -6,6 +6,9 @@ import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.g.hud.MiniGameHUD;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.consumables.HomemadeAnuses;
+import ru.muwa.shq.items.zakladki.KladYellow;
+import ru.muwa.shq.items.zakladki.fakeZakladki.BananaPeel;
 import ru.muwa.shq.minigames.PostBoxShq;
 import ru.muwa.shq.player.Player;
 
@@ -80,6 +83,8 @@ public class MouseListener implements java.awt.event.MouseMotionListener
         for (int i = 0; i < ((PostBoxShq)MiniGameHUD.currentMiniGame).obstacles.size(); i++) {
             PostBoxShq shq = ((PostBoxShq)MiniGameHUD.currentMiniGame);
             Rectangle r = shq.obstacles.get(i);
+            Item bananaPeel = new BananaPeel();
+            Item klad = new KladYellow();
             if(r.contains(new Point(getInstance().x, getInstance().y)))
             {
                 try {
@@ -89,12 +94,25 @@ public class MouseListener implements java.awt.event.MouseMotionListener
                     robot.mouseMove(shq.startX+xoff+MiniGameHUD.x, shq.startY+yoff+MiniGameHUD.y);
                 }catch (Exception e){Renderer.addMessage("ты не должен это видеть");}
             }
-            if(shq.destination.contains(new Point(getInstance().x, getInstance().y)))
-            {
-                shq.container.setIsInUse(true);
-                Player.get().setIsBusy(true);
-                MiniGameHUD.currentMiniGame=null;
-                Engine.pause=false;
+            if(shq.destination.contains(new Point(getInstance().x, getInstance().y))) {
+                if (shq.container.getItems().contains(klad)  || shq.container.getItems().contains(bananaPeel)  ) {
+                        shq.container.setIsInUse(true);
+                        Player.get().setIsBusy(true);
+                        MiniGameHUD.currentMiniGame = null;
+                        Engine.pause = false;
+                    } else if( shq.container.getItems().isEmpty()) {
+                        //todo сделать список всех фейк закладок и добавлять в зависимости от цвета клада
+
+                        shq.container.addItem(bananaPeel);
+                        shq.container.setIsInUse(true);
+                        Player.get().setIsBusy(true);
+                        MiniGameHUD.currentMiniGame = null;
+                        Engine.pause = false;
+                    }else {shq.container.setIsInUse(true);
+                    Player.get().setIsBusy(true);
+                    MiniGameHUD.currentMiniGame = null;
+                    Engine.pause = false;}
+
             }
 
         }

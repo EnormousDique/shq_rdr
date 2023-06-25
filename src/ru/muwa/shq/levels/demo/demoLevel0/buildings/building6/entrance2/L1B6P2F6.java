@@ -1,12 +1,9 @@
-package ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.TamburFloor;
+package ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance2;
 
 import ru.muwa.shq.levels.Level;
-import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
-//import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.StairsFirst;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.Stairs.Stairs1_5;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.Stairs.Stairs2;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.L1B6P1F6_Stairs;
 import ru.muwa.shq.objects.GameObject;
-import ru.muwa.shq.objects.containers.PostBox;
+import ru.muwa.shq.objects.bounds.UniversalWall;
 import ru.muwa.shq.zones.EnterZone;
 
 import javax.imageio.ImageIO;
@@ -15,25 +12,29 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class TamburFloor2 extends Level
+public class L1B6P2F6 extends Level
 {
 
-    private static TamburFloor2 instance;
-    public static TamburFloor2 getInstance() throws IOException {
-        if(instance == null) return new TamburFloor2(); else return instance;
+    private static L1B6P2F6 instance;
+    public static L1B6P2F6 getInstance() throws IOException {
+        if(instance == null) return new L1B6P2F6(); else return instance;
     }
-    private TamburFloor2() throws IOException {
+    private L1B6P2F6() throws IOException {
         instance = this;
         startPosX = 357;
         startPosY = 418;
         // containers.add(new PostBox(100,100));
         // objects.add(new GreyPadick(0,0));
         objects.add(new BG());
-        zones.add(new EnterZone(505,739,60,80, DemoLevel0.getInstance(), 1800,2940,false));
-        zones.add(new EnterZone(771 ,8,50,70, Stairs2.getInstance(),348,182,false));
+
+        zones.add(new EnterZone(771 ,8,50,70, L1B6P1F6_Stairs.getInstance(),348,182,false));
 
 
 
+        objects.add(new UniversalWall(0,0,900,59));
+        objects.add(new UniversalWall(0,0,50,363));
+        objects.add(new UniversalWall(0,300,900,59));
+        objects.add(new UniversalWall(838,0,50,363));
 
 
     }

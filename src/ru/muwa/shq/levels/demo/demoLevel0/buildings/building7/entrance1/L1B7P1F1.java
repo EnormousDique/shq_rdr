@@ -3,15 +3,10 @@ package ru.muwa.shq.levels.demo.demoLevel0.buildings.building7.entrance1;
 import ru.muwa.shq.engine.spawner.Kladmen;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.L1B6P1F1;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.Stairs.Stairs1_5;
 import ru.muwa.shq.minigames.Elevator;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.bounds.*;
-import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
-import ru.muwa.shq.objects.buildings.indoors.Stairs.WhiteBlueTallBuilding.WhiteBlueTallBuildingFLoor;
 import ru.muwa.shq.objects.containers.PostBox;
-import ru.muwa.shq.objects.containers.WirelessPanel;
 import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.MiniGameZone;
 
@@ -19,7 +14,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
