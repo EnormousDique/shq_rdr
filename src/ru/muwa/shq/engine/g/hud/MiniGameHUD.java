@@ -71,6 +71,8 @@ static         int height = GameScreen.SCREEN_HEIGHT -200;
             Renderer.g.drawString(e.buttons.get(i).text,e.buttons.get(i).x+10,e.buttons.get(i).y+10);
         }
     }
+    public static boolean initPostbox =false;
+
     private static void drawPostBoxShq()
     {
         Engine.pause=true;
@@ -81,22 +83,23 @@ static         int height = GameScreen.SCREEN_HEIGHT -200;
             System.out.println("немогу загрузить картинку миниигры с щакладкой чераня 1");
         }
          Renderer.g.drawImage(minigameBlack,(int) (GameScreen.SCREEN_WIDTH/3.06), (int) (GameScreen.SCREEN_HEIGHT/3.8),GameScreen.SCREEN_WIDTH/3,GameScreen.SCREEN_HEIGHT/2,null);
-      //  Renderer.g.setColor(Color.WHITE);
-      //  Renderer.g.fillRect(x,y,width,height);
+
 
 
         PostBoxShq shq = (PostBoxShq) currentMiniGame;
-
-        /*
-        Renderer.g.setColor(Color.RED);
-        for (int i = 0; i < shq.obstacles.size(); i++) {
-            Renderer.g.fillRect(shq.obstacles.get(i).x,shq.obstacles.get(i).y,shq.obstacles.get(i).width,shq.obstacles.get(i).height);
-
+        if(!shq.init) {
+            shq.stuff = new ArrayList<>();
+            for (int i = 0; i < shq.container.getItems().size(); i++) {
+                shq.stuff.add(new Rectangle(i * 25+x+300, i * 25+y+200, 5, 10));
+            }
+            shq.init = true;
         }
 
-         */
-        Renderer.g.setColor(Color.YELLOW);
-        Renderer.g.fillRect(shq.destination.x,shq.destination.y,shq.destination.width,shq.destination.height);
+        Renderer.g.setColor(Color.RED);
+
+        for (int i = 0; i < shq.stuff.size(); i++) {
+            Renderer.g.fillRect(shq.stuff.get(i).x,shq.stuff.get(i).y,shq.stuff.get(i).width,shq.stuff.get(i).height);
+        }
 
     }
 }

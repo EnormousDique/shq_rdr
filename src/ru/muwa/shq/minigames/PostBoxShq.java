@@ -8,8 +8,8 @@ import java.util.List;
 
 public class PostBoxShq extends MiniGame{
     public int startX, startY;
-    public ArrayList<Rectangle> obstacles;
-    public Rectangle destination;
+    public boolean init;
+    public ArrayList<Rectangle> stuff;
     public ru.muwa.shq.objects.containers.Container container;
 
     public PostBoxShq(Container container)
@@ -17,8 +17,7 @@ public class PostBoxShq extends MiniGame{
         this.container = container;
         startX = 10;
         startY = 10;
-        obstacles = new ArrayList<Rectangle>(List.of(new Rectangle(200,100,50,50)));
-        destination = new Rectangle(507,335,20,20);
-        
+        stuff=new ArrayList<>();
+
     }
 }
