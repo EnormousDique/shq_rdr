@@ -74,7 +74,7 @@ public class Interactor
                 c.setIsInUse(true);
                 Player.get().setIsBusy(true);
             }else {
-                MiniGameHUD.currentMiniGame=new PostBoxShq(c);
+                MiniGameHUD.currentMiniGame = c.miniGame;  //new PostBoxShq(c);
             }
         }
         if(false){}//TODO: добавить возможность открыть несколько окон шмона или переключаться между ними, если activeContainers.size() > 1

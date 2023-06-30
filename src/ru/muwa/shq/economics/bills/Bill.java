@@ -3,6 +3,7 @@ package ru.muwa.shq.economics.bills;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.zakladki.KladRed;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
@@ -14,6 +15,10 @@ import java.io.IOException;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Bill extends Item {
+    @Override
+    public Item copy() {
+        return new Bill(total,week);
+    }
 
     private static BufferedImage img;
 

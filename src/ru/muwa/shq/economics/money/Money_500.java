@@ -1,6 +1,7 @@
 package ru.muwa.shq.economics.money;
 
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.zakladki.KladRed;
 import ru.muwa.shq.objects.containers.Container;
 
 import javax.imageio.ImageIO;
@@ -10,6 +11,10 @@ import java.io.File;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Money_500 extends Money {
+    @Override
+    public Item copy() {
+        return new Money_500();
+    }
 
     private final int MONEY_500_PRICE = 500;
     //todo нарисовать текстурку

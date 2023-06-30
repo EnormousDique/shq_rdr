@@ -1,7 +1,22 @@
 package ru.muwa.shq.items;
 
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.items.bluntWeapons.BaseballBat;
+import ru.muwa.shq.items.consumables.*;
+import ru.muwa.shq.items.drugs.*;
+import ru.muwa.shq.items.guns.Bullet;
+import ru.muwa.shq.items.guns.Makarov;
+import ru.muwa.shq.items.guns.Obrez;
 import ru.muwa.shq.items.guns.Weapon;
+import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
+import ru.muwa.shq.items.knifes.Kortique;
+import ru.muwa.shq.items.quest.*;
+import ru.muwa.shq.items.quest.Package;
+import ru.muwa.shq.items.zakladki.KladBlack;
+import ru.muwa.shq.items.zakladki.KladBlue;
+import ru.muwa.shq.items.zakladki.KladRed;
+import ru.muwa.shq.items.zakladki.KladYellow;
+import ru.muwa.shq.items.zakladki.fakeZakladki.BananaPeel;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
@@ -9,6 +24,7 @@ import ru.muwa.shq.player.Player;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.*;
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
@@ -17,27 +33,17 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
  */
 public abstract class Item
 {
-
-
+    //Мапа соответствий предметов их id
+    public static Map<Integer,Item> items = new LinkedHashMap<>();
 
     /** Сей метод не надлежит использовать напрямую-с.
      * Напротив, его необходимо переопределять для предметов, у коих истинно stackable
      * Использовать следует исключительно переопределённый метод-с!**/
-    public  Item copy(){return new Item(0,0,0,null) {
-        @Override
-        public void equip() {
-
-        }
-        String description = "";
-        String name= "";
-    };}
+    public abstract Item copy();
     public String name;
     protected String description ;
     protected boolean stackable;
     public int amount = 1;
-
-
-
 
     public String getDescription() {
         return description;
@@ -78,7 +84,23 @@ public abstract class Item
         this.price = price;
         this.weight = weight;
         this.texture = texture;
-
+        items.put(id,this);
+    }
+    public static void addItemById(int id){
+        Item item = null;
+        System.out.println("получен айди :" + id);
+        for (Map.Entry<Integer,Item> e : items.entrySet())
+        {
+            System.out.println("перебираем. айди :" + e.getKey() + " item :  "+e.getValue() );
+            if(id == e.getKey())
+            {
+                item = e.getValue().copy();
+            }
+        }
+        if(item!=null)
+        {
+            Inventory.getInstance().addItem(item);
+        } else System.out.println("не нашлось нихуя по такому айди");
     }
 
     public BufferedImage getTexture() {return texture;}
@@ -126,8 +148,6 @@ public abstract class Item
                 container = c;
             }
         if (isInContainer) take(container);
-
-
     }
     public void give(Container c){
         if(this.isStackable() && this.amount >1) amount -=1;
@@ -169,4 +189,52 @@ public abstract class Item
     }
 
 
+    static {
+        new Flour();
+        new BaseballBat();
+        new Water();
+        new Vodka();
+        new Tomato();
+        new Ring();
+        new Potato();
+        new Onion();
+        new Lube();
+        new LeBottle();
+        new HomemadeAnuses();
+        new Gurken();
+        new EpicRing();
+        new Cigarettes();
+        new ChickFire();
+        new CellPhone();
+        new Carrot();
+        new CannedSoup();
+        new Cabbage();
+        new BoobPill();
+        new Beetroot();
+        new Beer();
+        new Hash();
+        new IceOlator();
+        new Lyrica();
+        new Weed();
+        new Zanax();
+        new MakarovAmmo();
+        new Makarov();
+        new Obrez();
+        new Kortique();
+        new BlackCreditCard();
+        new GraphicsCard();
+        new GreenCreditCard();
+        new HardDrive();
+        new MotherBoard();
+        new Operativca();
+        new Pacanynok();
+        new Package();
+        new PowerUnit();
+        new Processor();
+        new BananaPeel();
+        new KladBlack();
+        new KladBlue();
+        new KladRed();
+        new KladYellow();
+    }
 }

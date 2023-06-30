@@ -1,5 +1,6 @@
 package ru.muwa.shq.objects.containers;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.minigames.MiniGame;
 import ru.muwa.shq.objects.GameObject;
 
 
@@ -13,6 +14,7 @@ public abstract class Container extends GameObject implements Usable
 {
     boolean isContainer = true;// Объект может содержать в себе вещи
     public boolean shqurable;
+    public MiniGame miniGame;
     protected ArrayList<Item> items = new ArrayList<Item>(); // список обьектов контейнера
     protected ArrayList<Rectangle> icons = new ArrayList<>(); // список квадратов для отображения иконок предметов.
     protected int capacity;  // вместительность

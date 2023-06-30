@@ -2,18 +2,18 @@ package ru.muwa.shq.engine.listeners;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.Renderer;
-import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.g.hud.MiniGameHUD;
-import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.Item;
-import ru.muwa.shq.items.consumables.HomemadeAnuses;
 import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.items.zakladki.fakeZakladki.BananaPeel;
 import ru.muwa.shq.minigames.PostBoxShq;
+import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.lang.module.InvalidModuleDescriptorException;
+
 /**
  * Класс, отвечающий за прослушку движений курсора мыши.
  */
@@ -80,41 +80,20 @@ public class MouseListener implements java.awt.event.MouseMotionListener
 
     private static void playPostBoxShq()
     {
-        for (int i = 0; i < ((PostBoxShq)MiniGameHUD.currentMiniGame).obstacles.size(); i++) {
-            PostBoxShq shq = ((PostBoxShq)MiniGameHUD.currentMiniGame);
-            Rectangle r = shq.obstacles.get(i);
-            Item bananaPeel = new BananaPeel();
-            Item klad = new KladYellow();
+        PostBoxShq shq = ((PostBoxShq)MiniGameHUD.currentMiniGame);
+        for (int i = 0; i < ((PostBoxShq)MiniGameHUD.currentMiniGame).stuff.size(); i++) {
+            Rectangle r = shq.stuff.get(i);
             if(r.contains(new Point(getInstance().x, getInstance().y)))
             {
-                try {
-                    Robot robot = new Robot();
-                    int xoff = GameScreen.getInstance().getX();
-                    int yoff = GameScreen.getInstance().getY();
-                    robot.mouseMove(shq.startX+xoff+MiniGameHUD.x, shq.startY+yoff+MiniGameHUD.y);
-                }catch (Exception e){Renderer.addMessage("ты не должен это видеть");}
-            }
-            if(shq.destination.contains(new Point(getInstance().x, getInstance().y))) {
-                if (shq.container.getItems().contains(klad)  || shq.container.getItems().contains(bananaPeel)  ) {
-                        shq.container.setIsInUse(true);
-                        Player.get().setIsBusy(true);
-                        MiniGameHUD.currentMiniGame = null;
-                        Engine.pause = false;
-                    } else if( shq.container.getItems().isEmpty()) {
-                        //todo сделать список всех фейк закладок и добавлять в зависимости от цвета клада
-
-                        shq.container.addItem(bananaPeel);
-                        shq.container.setIsInUse(true);
-                        Player.get().setIsBusy(true);
-                        MiniGameHUD.currentMiniGame = null;
-                        Engine.pause = false;
-                    }else {shq.container.setIsInUse(true);
-                    Player.get().setIsBusy(true);
-                    MiniGameHUD.currentMiniGame = null;
-                    Engine.pause = false;}
-
+                Inventory.getInstance().addItem(shq.container.getItems().get(shq.stuff.indexOf(r)));
+               shq.container.getItems().remove(shq.container.getItems().get(shq.stuff.indexOf(r)));
+               shq.stuff.remove(r);
             }
 
+        }
+        if(shq.stuff.size()<1||shq.container.getItems().size()<1)
+        {
+            MiniGameHUD.initPostbox=false;
         }
     }
 }

@@ -31,6 +31,12 @@ public class EpicRing extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "5 минут назад я купил новый перстень . пиздатый перстень";
     }
+
+    @Override
+    public Item copy() {
+        return new EpicRing();
+    }
+
     @Override
     public void use() {
 

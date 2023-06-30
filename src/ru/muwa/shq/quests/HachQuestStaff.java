@@ -42,4 +42,5 @@ public class HachQuestStaff extends Quest {
         };
        tasks.get(0).isTriggeringAction = true;
     }
+
 }

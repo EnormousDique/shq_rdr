@@ -13,6 +13,7 @@ import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.launcher.Launcher;
 import ru.muwa.shq.engine.listeners.ButtonListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.player.Player;
 
 import javax.imageio.ImageIO;
@@ -137,16 +138,23 @@ public class HUD {
         settings.addActionListener(listner);
         pauseMenuWindow.add(settings);
         settings.setBounds(300,200,100,100);
-     //   this.add(HUD.getInstance().getHealthBar());
-     //   this.add(HUD.getInstance().getActionWindow());
-     //   HUD.getInstance().getActionWindow().setVisible(false);
-      //  HUD.getInstance().getHealthBar().setBounds(100+ Camera.getInstance().getX(),300+Camera.getInstance().getY(),400,50);
-        //   healthBar.setBounds(SCREEN_WIDTH-1027, SCREEN_WIDTH-0,400,50);
-      //  drugEffectBar.setBounds(SCREEN_WIDTH-1146, SCREEN_WIDTH-68,200,20);
-//цвета полосок
-       // drugEffectBar.setForeground(Color.magenta);
-       // thirstBar.setForeground(Color.BLUE);
-       // staminaBar.setForeground(Color.green);
+        JTextField cheatCodeLabel = new JTextField();
+        JButton cheatCodeButton = new JButton("ввести чит");
+        cheatCodeButton.setBounds(200,400,100,100);
+        cheatCodeLabel.setBounds(300,400,200,50);
+        pauseMenuWindow.add(cheatCodeButton);
+        pauseMenuWindow.add(cheatCodeLabel);
+        cheatCodeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    Item.addItemById(Integer.parseInt(cheatCodeLabel.getText()));
+                }catch (Exception ex){
+                    System.out.println("неправильный чит");
+                }
+            }
+        });
+
         pauseMenuWindow.pack();
         pauseMenuWindow.setLocationRelativeTo(null);
     }

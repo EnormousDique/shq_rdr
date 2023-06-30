@@ -19,6 +19,10 @@ import java.util.ArrayList;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class KladYellow extends Item {
+    @Override
+    public Item copy() {
+        return new KladYellow();
+    }
 
     public static final int ID = 30, PRICE = 100;
     public static final double WEIGHT = 1.0;

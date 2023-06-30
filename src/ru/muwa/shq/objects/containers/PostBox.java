@@ -1,5 +1,7 @@
 package ru.muwa.shq.objects.containers;
 
+import ru.muwa.shq.minigames.PostBoxShq;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -24,6 +26,7 @@ public class PostBox extends Container
     public PostBox(int x, int y) {
         super(x, y, img);
         shqurable=true;
+        miniGame = new PostBoxShq(this);
     }
 
     @Override
