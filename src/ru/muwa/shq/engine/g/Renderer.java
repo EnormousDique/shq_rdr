@@ -55,13 +55,15 @@ public class Renderer implements Runnable {
     private static ArrayList<String> messages = new ArrayList<>();
     private static long lastTimeMessageUpdated;
     public static void addMessage(String s){
-        for (int i = 0; i < messages.size(); i++) {
-            if(s.equals(messages.get(i)))messages.remove(i);
-        }
         messages.add(s);
         lastTimeMessageUpdated  = System.currentTimeMillis();
+        if(messages.size()>10) getInstance().msgScroll = messages.size()-10;
     }
+    public int msgScroll=0;
+    public Rectangle scrollUp = new Rectangle(SCREEN_WIDTH-60,SCREEN_HEIGHT-220,15,15);
+    public Rectangle scrollDown = new Rectangle(SCREEN_WIDTH-35,SCREEN_HEIGHT-220,15,15);
     private static void handleMessages(Graphics g){
+
 
         //Отрисовываем поле под сообщения
         if(messages.size()>0) {
@@ -70,19 +72,36 @@ public class Renderer implements Runnable {
         }
 
         //Отрисовываем сообщения
-        g.setColor(Color.GREEN);
-        int y = SCREEN_HEIGHT-190;
-        for(int i = 0; i < messages.size(); i++)
-        {
-            g.drawString(messages.get(i), SCREEN_WIDTH - 195,y);
-            y+=15;
-        }
-        //Удаляем старые
-        if(lastTimeMessageUpdated + 3_000 < System.currentTimeMillis() && messages.size()>0){
-            messages.remove(0);
-            lastTimeMessageUpdated=System.currentTimeMillis();
-        }
+        if(messages.size()<10) {
+            getInstance().msgScroll=0;
+            g.setColor(Color.GREEN);
+            int y = SCREEN_HEIGHT - 190;
+            for (int i = 0; i < messages.size(); i++) {
+                g.drawString(messages.get(i), SCREEN_WIDTH - 195, y);
+                y += 15;
+            }
+        }else {
 
+            Renderer.g.setColor(Color.CYAN);
+            Renderer.g.fillRect(getInstance().scrollDown.x,getInstance().scrollDown.y,getInstance().scrollDown.width,getInstance().scrollDown.height);
+            Renderer.g.fillRect(getInstance().scrollUp.x,getInstance().scrollUp.y,getInstance().scrollUp.width,getInstance().scrollUp.height);
+            Renderer.g.setColor(Color.RED);
+            Font f = Renderer.g.getFont();
+            Renderer.g.setFont(new Font(Font.SANS_SERIF,Font.BOLD,10));
+            Renderer.g.drawString("\\/",getInstance().scrollUp.x,getInstance().scrollUp.y+10);
+            Renderer.g.drawString("/\\",getInstance().scrollDown.x,getInstance().scrollDown.y+10);
+            Renderer.g.setFont(f);
+
+
+            ArrayList<String> sublist = new ArrayList<>( messages.subList(getInstance().msgScroll, getInstance().msgScroll+10));
+            g.setColor(Color.GREEN);
+            int y = SCREEN_HEIGHT - 190;
+            for (int i = 0; i < sublist.size(); i++) {
+                g.drawString(sublist.get(i), SCREEN_WIDTH - 195, y);
+                y += 15;
+            }
+
+        }
     }
 
     public static void playSleepyFilter()  {
@@ -333,7 +352,6 @@ public class Renderer implements Runnable {
         //отрисовка описаний
         drawDescriptions();
 
-
             //отрисовка координат мыши.
             g.setColor(Color.red);
             g.setFont(g.getFont().deriveFont(Font.BOLD));
@@ -344,16 +362,6 @@ public class Renderer implements Runnable {
         g.setColor(Color.white);
         g.drawString(TimeMachine.getStringTime(),100,200);
         g.setColor(new Color(250,0,250,250));
-
-
-
-
-
-
-
-
-
-
 
         //загрузка изображений полосок
         Image hpBArpoloska = null ;

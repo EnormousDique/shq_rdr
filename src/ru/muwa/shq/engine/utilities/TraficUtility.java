@@ -26,7 +26,7 @@ public class TraficUtility {
      if(coc.getDirection().equals(GameObject.Direction.DOWN)) {
          coc.setY(coc.getY() + coc.getSpeed());
      }
-        if(coc.getX() > 10000 || coc.getY() > 10000){
+        if(coc.getX() > 10000 || coc.getY() > 10000 || coc.getX() < 0 || coc.getY() < 0){
             Engine.getCurrentLevel().getObjects().remove(coc);
         }
  }

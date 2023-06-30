@@ -14,6 +14,7 @@ import ru.muwa.shq.engine.launcher.Launcher;
 import ru.muwa.shq.engine.listeners.ButtonListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.player.Player;
 
 import javax.imageio.ImageIO;
@@ -148,6 +149,11 @@ public class HUD {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
+                    if(cheatCodeLabel.getText().equals("hub"))
+                    {
+                        Engine.switchLevel(HubHataIgoryana.getInstance(),100,100);
+                        return;
+                    }
                     Item.addItemById(Integer.parseInt(cheatCodeLabel.getText()));
                 }catch (Exception ex){
                     System.out.println("неправильный чит");

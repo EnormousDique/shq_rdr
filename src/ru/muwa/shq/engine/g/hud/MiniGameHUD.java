@@ -114,9 +114,7 @@ public class MiniGameHUD {
             System.out.println("немогу загрузить картинку миниигры с щакладкой чераня 1");
         }
          Renderer.g.drawImage(minigameBlack,(int) (GameScreen.SCREEN_WIDTH/3.06), (int) (GameScreen.SCREEN_HEIGHT/3.8),GameScreen.SCREEN_WIDTH/3,GameScreen.SCREEN_HEIGHT/2,null);
-
-
-
+        
         PostBoxShq shq = (PostBoxShq) currentMiniGame;
         if(!shq.init) {
             shq.stuff = new ArrayList<>();

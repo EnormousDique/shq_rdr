@@ -266,6 +266,19 @@ public class MouseButtonListener implements MouseInputListener {
             }
             }
 
+        //=================================================================
+        //Скролл СООБЩЕНИЙ РЕДНЕРЕРЕРА
+        //===============================================================
+        if(Renderer.getInstance().scrollDown.contains(new Point(e.getX(),e.getY()))){
+            if(Renderer.getInstance().msgScroll>0) Renderer.getInstance().msgScroll-=1;
+        }
+        if(Renderer.getInstance().scrollUp.contains(new Point(e.getX(),e.getY()))){
+            if(Renderer.getInstance().msgScroll<Renderer.getMessages().size()-10) Renderer.getInstance().msgScroll+=1;
+        }
+
+        //===============================================================
+        //============================================================
+
         //После вызова необходимого кода отключаем нажатие во избежание "прокликивания".
         switch (e.getButton())
         {
