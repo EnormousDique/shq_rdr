@@ -179,16 +179,27 @@ public class MouseButtonListener implements MouseInputListener {
         // И то что нажата ЛКМ
         //И что окно журнала открыто.
         QuestHUD.QuestPic qp = null;
+        QuestHUD.BossPic bp = null;
         for(int i = 0; i < QuestHUD.pics.size(); i++){
-            if( QuestHUD.opened && QuestHUD.pics.get(i).contains(new Point(e.getX(),e.getY()))
+            if( QuestHUD.opened && QuestHUD.renderingQuestsList!=null && QuestHUD.pics.get(i).contains(new Point(e.getX(),e.getY()))
                     )
                 qp = QuestHUD.pics.get(i);
+        }
+        for(int i = 0; i < QuestHUD.bosses.size(); i++){
+            if( QuestHUD.opened && QuestHUD.bosses.get(i).contains(new Point(e.getX(),e.getY()))
+            )
+                bp = QuestHUD.bosses.get(i);
         }
         if(qp!=null)
         {
             //Нажали по конкретной квестовой панели и она нашлась
             QuestHUD.renderingQuest = qp.quest;
+            QuestHUD.renderingQuestsList=null;
             //Просим рендерить квест из панельки, по которой нажали
+        }
+        if(bp!=null)
+        {
+            QuestHUD.renderingQuestsList=bp.questList;
         }
         //=======================================================================================================
 
