@@ -13,7 +13,7 @@ public class TimeMachine {
     private static TimesOfTheDay timeOfTheDay = TimesOfTheDay.SUNRISE;
     public static TimesOfTheDay getTimeOfTheDay() {return timeOfTheDay;}
     public enum TimesOfTheDay{
-        SUNRISE, MORNING,AFTERNOON,DUSK,EVENING,NIGHT;
+        SUNRISE, MORNING,AFTERNOON,EVENING,NIGHT;
     }
     private static int dayNumber;
     private static long startTime;
@@ -91,6 +91,29 @@ public class TimeMachine {
         output += "" + hours +":"+minutes + " ; day " + dayNumber;
 
         return output;
+    }
+    public static String convertLongToString( long currentTime)
+    {
+        String output = "";
+
+        long time = currentTime % DAY_LENGTH;
+
+        int hours = (int)Math.floor(time / 30_000);
+        String minutes = "" + (int)( time % 30_000 ) *2;
+
+        if(minutes.length() < 4) minutes = "00";
+        else {
+            if (minutes.length() < 5) minutes = "0"+minutes.charAt(0);
+            else minutes = minutes.charAt(0) + "" + minutes.charAt(1);
+        }
+
+        output += "" + hours +":"+minutes + " ; day " + dayNumber;
+
+        return output;
+    }
+
+    public static long getCurrentTime() {
+        return currentTime;
     }
 
     public static void rewind(int n){

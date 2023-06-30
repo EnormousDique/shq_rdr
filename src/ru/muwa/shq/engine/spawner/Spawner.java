@@ -113,11 +113,11 @@ public class Spawner {
         for (GameZone zone : Engine.getCurrentLevel().getZones()) {
             if (zone instanceof CarSpawnZone) {
 
-                if(System.currentTimeMillis() >carLastSpawnTime + carSpawnInterval ){
+                if(System.currentTimeMillis() >carSpawnInterval + ((CarSpawnZone) zone).lastSpawnTime ){
                         Car car = new HondaCivic(zone.x,zone.y);
-                        car.setDirection(GameObject.Direction.RIGHT);
+                        car.setDirection(((CarSpawnZone) zone).direction);
                         Engine.getCurrentLevel().getObjects().add(car);
-                        carLastSpawnTime= System.currentTimeMillis();
+                        ((CarSpawnZone) zone).lastSpawnTime= System.currentTimeMillis();
                      }
                     }
                 }

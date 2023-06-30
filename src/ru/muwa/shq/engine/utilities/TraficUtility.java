@@ -17,7 +17,16 @@ public class TraficUtility {
         if(coc.getDirection().equals(GameObject.Direction.RIGHT)) {
             coc.setX(coc.getX() + coc.getSpeed());
         }
-        if(coc.getX() > 10000){
+     if(coc.getDirection().equals(GameObject.Direction.LEFT)) {
+         coc.setX(coc.getX() - coc.getSpeed());
+     }
+     if(coc.getDirection().equals(GameObject.Direction.UP)) {
+         coc.setY(coc.getY() - coc.getSpeed());
+     }
+     if(coc.getDirection().equals(GameObject.Direction.DOWN)) {
+         coc.setY(coc.getY() + coc.getSpeed());
+     }
+        if(coc.getX() > 10000 || coc.getY() > 10000){
             Engine.getCurrentLevel().getObjects().remove(coc);
         }
  }

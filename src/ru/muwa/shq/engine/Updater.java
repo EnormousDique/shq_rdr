@@ -84,9 +84,9 @@ public class Updater implements Runnable {
        Spawner.regularSpawn();
        // Spawner.inDoorsSpawn();
 
-        //Spawner.carSpawn();//спавнер тачки
-
-        System.out.println(Item.items);
+        Spawner.carSpawn();
+        //служба трафика
+        TraficUtility.work();
 
         Kladmen.mudak();  /** Кладмен мудак */
         //Блок обработки игрока.
@@ -101,15 +101,8 @@ public class Updater implements Runnable {
         SolidBoxUpdater.updateSolidBox(player);
         //Вызов службы обработки боя
         CombatUtility.work();
-        //служба трафика
-        TraficUtility.work();
-        try {
-            System.out.println(MarketInteriors.getInstance().getNPC().get(0).getX()+" "+ MarketInteriors.getInstance().getNPC().get(0).getY());
-        }
-        catch (Exception e)
-        {
 
-        }
+
         //Вызов времени
         TimeMachine.work();
         // Вызов службы проверки активации зон сцен

@@ -82,6 +82,7 @@ import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.VegetablesVendor;
 import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.minigames.Domofon;
+import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.buildings.newBuildings.*;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.buildings.TEST.TallFatBuilding;
@@ -116,15 +117,12 @@ public class DemoLevel0 extends Level
         /** ЗАДНИК **/
         objects.add(new DemoLevel0_BG(0,0));
 
-
-
-        objects.add(new Crate0(100,100));
-
-
-
-
-
-
+        /** АВТОТРАФИК **/
+        zones.add(new CarSpawnZone(5,360,50,50, GameObject.Direction.RIGHT));//right
+        zones.add(new CarSpawnZone(990,460,50,50, GameObject.Direction.LEFT));//left
+        zones.add(new CarSpawnZone(1450,17,50,50, GameObject.Direction.DOWN));
+        zones.add(new CarSpawnZone(7,8200,50,50, GameObject.Direction.RIGHT));
+        zones.add(new CarSpawnZone(9900,8100,50,50, GameObject.Direction.LEFT));
 
 
 

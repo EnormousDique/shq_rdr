@@ -14,6 +14,7 @@ import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.minigames.PostBoxShq;
+import ru.muwa.shq.minigames.SleepMiniGame;
 import ru.muwa.shq.minigames.padiklock.PadikLock;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.creatures.npc.NPC;
@@ -118,6 +119,8 @@ public class Interactor
 
             if(z instanceof SleepZone && Player.get().getUseZone().intersects(z) && z.contains(x,y))
             {
+
+                /*
                 if(Player.get().awake<0.5){
                     TimeMachine.rewind(800_000);
                     Renderer.playSleepyFilter();
@@ -125,12 +128,20 @@ public class Interactor
                     Player.get().awake =100;
                     continue;
                 }
-                if(Player.get().awake > 75){Renderer.addMessage("Совсем не хочу спать.");continue;}
+                 */
+
+                if(Player.get().awake > 85){Renderer.addMessage("Совсем не хочу спать.");continue;}
+
+
                 if(TimeMachine.getTimeOfTheDay().equals(TimeMachine.TimesOfTheDay.NIGHT)) {
+                    MiniGameHUD.currentMiniGame=new SleepMiniGame();
+                    System.out.println("spim");
+                    /*
                     TimeMachine.rewind((int)(100-Player.get().awake)*(4750));
                     Renderer.playSleepyFilter();
                     Renderer.addMessage("Отлично выспался");
                     Player.get().awake =100;
+                     */
                 }
                 else{
                     String dayTimeString = "";

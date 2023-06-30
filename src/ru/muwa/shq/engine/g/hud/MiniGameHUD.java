@@ -3,7 +3,9 @@ package ru.muwa.shq.engine.g.hud;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.minigames.*;
+import ru.muwa.shq.player.Player;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,6 +17,8 @@ import java.io.IOException;
 
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
+
+import java.rmi.Remote;
 import java.util.ArrayList;
 import java.util.Timer;
 
@@ -33,8 +37,32 @@ public class MiniGameHUD {
         if(currentMiniGame != null && currentMiniGame instanceof Domofon) drawDomofon();
         if(currentMiniGame != null && currentMiniGame instanceof PostBoxShq) drawPostBoxShq();
         if(currentMiniGame != null && currentMiniGame instanceof Elevator) drawElevator();
+        if(currentMiniGame != null && currentMiniGame instanceof SleepMiniGame) drawSleepNSave();
 
         Renderer.g.setColor(oldColor);
+    }
+    private static void drawSleepNSave()
+    {
+        Engine.pause=true;
+        SleepMiniGame mg = (SleepMiniGame) currentMiniGame;
+        Renderer.g.setColor(Color.WHITE);
+        Renderer.g.fillRect(x,y,width,height);
+
+        Renderer.g.setColor(Color.BLACK);
+        Renderer.g.drawString("Режим сна (желательно не нарушать)",x+10,y+10);
+
+        long timeWhenToWakeUp = (long) ((100- Player.get().awake)*(4750)) + TimeMachine.getCurrentTime();
+        String timeWhenToWakeUpStr = TimeMachine.convertLongToString(timeWhenToWakeUp);
+        Renderer.g.drawString("Игрок будет спать до "+ timeWhenToWakeUpStr,x+10,y+40);
+        //TODO: Сделать возможноть выбирать на сколько %% выспаться, и показывать соответствующее время подъёма.
+
+        Renderer.g.fillRect(mg.save.x,mg.save.y,mg.save.width,mg.save.height);
+        Renderer.g.fillRect(mg.sleep.x,mg.sleep.y,mg.sleep.width,mg.sleep.height);
+
+        Renderer.g.setColor(Color.RED);
+        Renderer.g.drawString(mg.save.text,mg.save.x,mg.save.y);
+        Renderer.g.drawString(mg.sleep.text,mg.sleep.x,mg.sleep.y);
+
     }
 
     private static void drawDomofon() {

@@ -7,6 +7,7 @@ import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.camera.Camera;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.g.hud.MiniGameHUD;
+import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.engine.utilities.DeathUtility;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.items.Item;
@@ -15,9 +16,11 @@ import ru.muwa.shq.items.ItemPhysicalAppearance;
 import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.minigames.Domofon;
 import ru.muwa.shq.minigames.Elevator;
+import ru.muwa.shq.minigames.SleepMiniGame;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.objects.containers.ContainerPanel;
 import ru.muwa.shq.player.Inventory;
+import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.controls.Grabber;
 import ru.muwa.shq.quests.QuestHUD;
 import ru.muwa.shq.zones.BuyoutZone;
@@ -218,6 +221,9 @@ public class MouseButtonListener implements MouseInputListener {
                 }
             }
         }
+        //========================================================================================================
+
+        //===========================================================================================================
         //Если мы играем в лифт, то логика нажатия мышки следующая
         if(MiniGameHUD.currentMiniGame instanceof Elevator)
         {
@@ -232,7 +238,33 @@ public class MouseButtonListener implements MouseInputListener {
                 }
             }
         }
+        //========================================================================================================
 
+        //===========================================================================================================
+        //Логика сна и сохранения
+        // проверяем что сейчас играем в домофон
+        //И какая кнопка была нажата
+
+        if(MiniGameHUD.currentMiniGame instanceof SleepMiniGame) {
+
+            SleepMiniGame.SleepMGButton saveB = ((SleepMiniGame) MiniGameHUD.currentMiniGame).save;
+            SleepMiniGame.SleepMGButton sleepB = ((SleepMiniGame) MiniGameHUD.currentMiniGame).sleep;
+
+
+                if (saveB.contains(new Point(e.getX()-MiniGameHUD.x, e.getY()-MiniGameHUD.y))) {
+                    System.out.println("Пытаюсь сохранить игру");
+                    //Engine.saveGame();
+                    System.out.println("если все пошло так, должна быть сохранена.");
+                    Renderer.addMessage("Игра сохранена!");
+                }
+            if (sleepB.contains(new Point(e.getX(), e.getY()))) {
+                TimeMachine.rewind((int)(100- Player.get().awake)*(4750));
+                Renderer.addMessage("Отлично выспался");
+                Player.get().awake =100;
+                MiniGameHUD.currentMiniGame=null;
+                Engine.pause=false;
+            }
+            }
 
         //После вызова необходимого кода отключаем нажатие во избежание "прокликивания".
         switch (e.getButton())
