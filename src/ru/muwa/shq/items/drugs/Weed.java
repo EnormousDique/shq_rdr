@@ -20,7 +20,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Weed extends Item {
 
-    public static final int ID = 0, PRICE = 1500;
+    public static final int ID = 25, PRICE = 1500;
     public static final double WEIGHT = 1.0;
     private static BufferedImage img;
     static {

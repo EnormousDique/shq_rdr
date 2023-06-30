@@ -14,7 +14,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 public class BaseballBat extends Weapon {
     public static final int
             BaseballBat_Price = 599,
-            BaseballBat_ID = 2;
+            BaseballBat_ID = 104;
     public static final double
             BaseballBat_WEIGHT =1000.0;
     public static  BufferedImage BaseballBat_IMG = null;

@@ -17,7 +17,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class BoobPill extends Item {
 
-    public static final int ID = 138, PRICE = 899;
+    public static final int ID = 2, PRICE = 899;
     public static final double WEIGHT = 0.1;
     private static BufferedImage img;
     static {

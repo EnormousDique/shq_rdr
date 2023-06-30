@@ -14,7 +14,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Processor extends Item {
 
-    public static final int ID = 228, PRICE = 2281488;
+    public static final int ID =309, PRICE = 2281488;
     public static final double WEIGHT = 0.1;
     private static BufferedImage img;
     static {

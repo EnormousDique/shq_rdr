@@ -13,7 +13,7 @@ import java.io.IOException;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Potato extends Item {
-    public static final int ID = 36, PRICE = 100;
+    public static final int ID = 16, PRICE = 100;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {

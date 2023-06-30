@@ -5,6 +5,7 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.g.hud.MiniGameHUD;
+import ru.muwa.shq.minigames.SkillCheckQTE;
 import ru.muwa.shq.player.controls.PlayerControls;
 
 import java.awt.event.KeyEvent;
@@ -84,6 +85,7 @@ public class KeyListener implements java.awt.event.KeyListener
         switch (e.getKeyCode()) {
             case 32: // Пробел
                 keys[SPACE] = true;
+                SkillCheckQTE.checkSkillCheck();
                 break;
             case 87: // W
                 keys[W] = true;

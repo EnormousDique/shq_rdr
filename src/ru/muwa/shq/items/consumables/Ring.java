@@ -16,7 +16,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Ring extends Item {
 
-    public static final int ID = 0, PRICE = 13000;
+    public static final int ID = 17, PRICE = 13000;
     public static final double WEIGHT = 0.1;
     private static BufferedImage img;
     static {

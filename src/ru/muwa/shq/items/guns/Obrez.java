@@ -13,6 +13,8 @@ import java.io.File;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Obrez extends Weapon implements Firearm{
+
+
     public static  BufferedImage OBREZ_IMG = null;
 
     @Override
@@ -39,7 +41,7 @@ public class Obrez extends Weapon implements Firearm{
     }
     public Obrez()
     {
-        super(0, 1000, 0, OBREZ_IMG);
+        super(101, 1000, 0, OBREZ_IMG);
         this.description = "охуенный  бля обрез";
         this.isAbleToEquip = true;
         this.maxAmmo = 2000;

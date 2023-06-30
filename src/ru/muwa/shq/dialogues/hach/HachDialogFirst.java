@@ -11,50 +11,6 @@ import java.util.List;
 
 public class HachDialogFirst extends Dialogue {
     public HachDialogFirst(){
-        Message m = new Message();
-        ArrayList<Respond> responds = new ArrayList<>();
-        m.setText("Саламу лейкум, братан. Подзаработать шустренько не хочешь");
-        responds.add(new Respond());
-        responds.get(0).setText("Тебе какое дело?");
-        responds.add(new Respond());
-        responds.get(1).setText("Привет! ДА хочу мне маме бы помочь");
-        m.setResponds(responds);
-        initialMessage = m;
-        currentMessage = initialMessage;
-
-        //вторая масага
-        m = new Message();
-        responds.get(1).setMsg(m);
-        m.setText("Смотри, тут надо на один адрес сгонять. Забрать кое-что для меня. Короче, топаешь до северо-западного конца города, где желтые пятиэтажки, заходишь в правый дальний дом, на третьем этаже в электрощитке будет моя вещица. Мне брат оставил");
-        m.setResponds(List.of(new Respond("ДА КОНЕЧНО", new QuestAction() {
-            @Override
-            public void performAction() {
-                Player.get().hachQuests.add(new HachQuestStaff());
-                Message m = new Message();
-                m.setText("НУ ЧТО!!!! УЖЕ ПРИНЕС???");
-                m.setResponds(List.of(new Respond("куда куда надо сгонять?",new Message("Топаешь до северо-западного конца города, где желтые пятиэтажки, заходишь в правый дальний дом, на третьем этаже в электрощитке будет моя вещица. Мне брат оставил",new Respond("закрыть")))));
-                initialMessage = m;
-                currentMessage = initialMessage;
-
-            }
-        })));
-        //первая масага
-
-        m= new Message();
-        responds.get(0).setMsg(m);
-        m.setText("Братишка ты не кипишуй ДА!.Я ж вижу ты братишка Чёткий , ровный ДА! .Денег заработаешь братишка.Причем хароших ДА!? Братишка.");
-        m.setResponds(List.of(new Respond("Сорян)0)..Тупанул чот. что нужно делать", new Message("Смотри, тут надо на один адрес сгонять. Забрать кое-что для меня. Короче, топаешь до северо-западного конца города, где желтые пятиэтажки, заходишь в правый дальний дом, на третьем этаже в электрощитке будет моя вещица. Мне брат оставил",new Respond("ДА КОНЕЧНО", new QuestAction() {
-            @Override
-            public void performAction() {
-                Player.get().hachQuests.add(new HachQuestStaff());
-                Message m = new Message();
-                m.setText("НУ ЧТО!!!! УЖЕ ПРИНЕС???");
-                m.setResponds(List.of(new Respond("куда куда надо сгонять?",new Message(" топаешь до северо-западного конца города, где желтые пятиэтажки, заходишь в правый дальний дом, на третьем этаже в электрощитке будет моя вещица. Мне брат оставил",new Respond("закрыть")))));
-                initialMessage = m;
-                currentMessage = initialMessage;
-            }
-        })))));
-        //продолжение
 
 
 

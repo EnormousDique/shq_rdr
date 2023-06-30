@@ -22,7 +22,7 @@ public class Kortique extends Weapon {
     }
     public Kortique()
     {
-        super(0,399,0,img);
+        super(102,399,0,img);
         damage = 30;
         isAbleToEquip=true;
         description = "Достал нож реж";

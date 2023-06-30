@@ -14,7 +14,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class BlackCreditCard extends Item {
 
-    public static final int ID = 5603221, PRICE = 0;
+    public static final int ID = 300, PRICE = 0;
     public static final double WEIGHT = 0.1;
     private static BufferedImage img;
     static {

@@ -18,7 +18,7 @@ package ru.muwa.shq.items.consumables;
 
 public class Vodka extends Item {
 
-    public static final int ID = 0, PRICE = 59;
+    public static final int ID = 19, PRICE = 59;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {

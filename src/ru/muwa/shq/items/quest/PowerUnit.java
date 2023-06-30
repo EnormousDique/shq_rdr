@@ -14,7 +14,7 @@ import ru.muwa.shq.engine.g.Renderer;
 
 public class PowerUnit extends Item {
 
-    public static final int ID = 225, PRICE = 6900;
+    public static final int ID = 308, PRICE = 6900;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {

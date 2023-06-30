@@ -20,7 +20,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class KladBlack extends Item {
 
-    public static final int ID = 0, PRICE = 100;
+    public static final int ID = 27, PRICE = 100;
     public static final double WEIGHT = 1.0;
     private static BufferedImage img;
     static {

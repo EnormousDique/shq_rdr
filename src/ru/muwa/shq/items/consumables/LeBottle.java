@@ -17,7 +17,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class LeBottle extends Item {
 
-    public static final int ID = 0, PRICE = 1;
+    public static final int ID = 13, PRICE = 1;
     public static final double WEIGHT = 0.1;
     private static BufferedImage img;
     static {

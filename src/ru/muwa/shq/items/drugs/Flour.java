@@ -16,7 +16,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Flour extends Item {
 
-    public static final int ID = 0, PRICE = 3000;
+    public static final int ID = 21, PRICE = 3000;
     public static final double WEIGHT = 1.0;
     private static BufferedImage img;
 

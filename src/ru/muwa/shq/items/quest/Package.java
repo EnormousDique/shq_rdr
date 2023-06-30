@@ -14,7 +14,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Package extends Item {
 
-    public static final int ID = 6996, PRICE = 0;
+    public static final int ID = 307, PRICE = 0;
     public static final double WEIGHT = 1.8;
     private static BufferedImage img;
     static {

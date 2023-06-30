@@ -7,6 +7,7 @@ import ru.muwa.shq.engine.spawner.Kladmen;
 import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.engine.utilities.*;
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
 import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
@@ -85,6 +86,7 @@ public class Updater implements Runnable {
 
         //Spawner.carSpawn();//спавнер тачки
 
+        System.out.println(Item.items);
 
         Kladmen.mudak();  /** Кладмен мудак */
         //Блок обработки игрока.

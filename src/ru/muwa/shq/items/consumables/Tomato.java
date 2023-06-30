@@ -13,7 +13,7 @@ import java.io.IOException;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Tomato extends Item {
-    public static final int ID = 37, PRICE = 150;
+    public static final int ID = 18, PRICE = 150;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {

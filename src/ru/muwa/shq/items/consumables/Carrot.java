@@ -14,7 +14,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Carrot extends Item {
 
-    public static final int ID = 32, PRICE = 15;
+    public static final int ID = 5, PRICE = 15;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {

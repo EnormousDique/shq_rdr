@@ -1,46 +1,30 @@
 package ru.muwa.shq.levels.demo.demoLevel0;
 import ru.muwa.shq.creatures.npc.Hach;
 import ru.muwa.shq.creatures.npc.NPC;
-import ru.muwa.shq.creatures.npc.questnpc.StarleyMahony;
-import ru.muwa.shq.dialogues.Dialogue;
 import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.dialogues.demo.Conversation0;
-import ru.muwa.shq.dialogues.demo.HackerCumputerDialog;
 import ru.muwa.shq.dialogues.demo.Q3_PoliceConversation;
+import ru.muwa.shq.dialogues.hach.HachDialog;
 import ru.muwa.shq.dialogues.hach.HachDialogFirst;
-import ru.muwa.shq.dialogues.hach.HachDialogFate;
-import ru.muwa.shq.dialogues.uchastkovy.UchastkovyDialogFirst;
 import ru.muwa.shq.economics.trading.Buyout;
 import ru.muwa.shq.economics.trading.Trade;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.Animator;
 import ru.muwa.shq.engine.animations.cutscenes.Q2T1_Cutscene;
-import ru.muwa.shq.items.guns.Obrez;
-import ru.muwa.shq.items.quest.BlackCreditCard;
-import ru.muwa.shq.items.quest.GreenCreditCard;
-import ru.muwa.shq.items.quest.Package;
-import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance1.L1B1P1F3_5;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.police.PoliceHQ;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.post.PostOffice;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.drugstore.DrugStoreInteriors;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.grocery.GroceryInteriors;
-import ru.muwa.shq.objects.containers.HubChest;
+
 import ru.muwa.shq.engine.animations.cutscenes.Q3_PoliceCutscene;
 
-import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.spawner.Spawner;
 
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.consumables.*;
-import ru.muwa.shq.items.bluntWeapons.BaseballBat;
-import ru.muwa.shq.items.drugs.Flour;
-import ru.muwa.shq.items.drugs.IceOlator;
 import ru.muwa.shq.items.drugs.Lyrica;
-import ru.muwa.shq.items.guns.Makarov;
 import ru.muwa.shq.items.guns.ammo.MakarovAmmo;
-import ru.muwa.shq.items.knifes.Kortique;
-import ru.muwa.shq.items.quest.Processor;
 import ru.muwa.shq.items.zakladki.KladBlue;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance1.L1B1P1F1;
@@ -111,7 +95,6 @@ import ru.muwa.shq.zones.EnterZone;
 import ru.muwa.shq.zones.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class DemoLevel0 extends Level
 {
@@ -136,6 +119,14 @@ public class DemoLevel0 extends Level
 
 
         objects.add(new Crate0(100,100));
+
+
+
+
+
+
+
+
 
         /** Дома **/
 
@@ -268,8 +259,8 @@ public class DemoLevel0 extends Level
 
         //ДОМ 10
         objects.add(new RichBuilding(5606,1779));
-        zones.add(new MiniGameZone(5714  ,2900,70,70,new Domofon("228k1488",L1B10P1F1.getInstance(), 190,220)));
-        zones.add(new MiniGameZone(6320  ,2900,70,70,new Domofon("228k1488",L1B10P2F1.getInstance(), 190,220)));
+        zones.add(new MiniGameZone(5714  ,2900,70,70,new Domofon("8",L1B10P1F1.getInstance(), 100,1100)));
+        zones.add(new MiniGameZone(6320  ,2900,70,70,new Domofon("8",L1B10P2F1.getInstance(), 100,1100)));
 
 
         //ДОМ 11
@@ -326,7 +317,7 @@ public class DemoLevel0 extends Level
                     System.out.println("ne mogu poluchit l1b1p1f3_5");
                 }
                 Animator.playCutscene(Q2T1_Cutscene.getInstance());
-                hachNPC.dialogue = new HachDialogFirst();
+                hachNPC.dialogue = new HachDialog();
                 DialogueManager.playDialogueOnDemand(hachNPC.dialogue);
 
             }

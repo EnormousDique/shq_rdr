@@ -10,6 +10,8 @@ import java.io.File;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Lube extends Item {
+    public static final int ID = 14, PRICE = 1;
+
     static BufferedImage img;
     static
     {

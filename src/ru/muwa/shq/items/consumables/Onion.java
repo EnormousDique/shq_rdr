@@ -13,7 +13,7 @@ import java.io.IOException;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Onion extends Item {
-    public static final int ID = 35, PRICE = 10;
+    public static final int ID = 15, PRICE = 10;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {

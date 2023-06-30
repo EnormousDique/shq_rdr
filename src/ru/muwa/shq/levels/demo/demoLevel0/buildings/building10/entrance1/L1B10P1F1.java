@@ -2,6 +2,8 @@ package ru.muwa.shq.levels.demo.demoLevel0.buildings.building10.entrance1;
 
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
+import ru.muwa.shq.levels.demo.demoLevel0.buildings.building7.entrance1.L1B7P1F1;
+import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.bounds.*;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.WhiteBlueTallBuilding.WhiteBlueTallBuildingFLoor;
@@ -9,6 +11,9 @@ import ru.muwa.shq.objects.containers.PostBox;
 import ru.muwa.shq.objects.containers.WirelessPanel;
 import ru.muwa.shq.zones.EnterZone;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 
@@ -23,13 +28,32 @@ public class L1B10P1F1 extends Level
         instance = this;
         startPosX = 357;
         startPosY = 418;
-        // containers.add(new PostBox(100,100));
-        objects.add(new GreyPadick(0,0));
+        objects.add(new BG());
+        //
+
         zones.add(new EnterZone(505,739,60,80, DemoLevel0.getInstance(), 5714  ,2900,false));
-
-        containers.add(new PostBox(0,100));
-
+        zones.add(new EnterZone(1439,812,40,70,L1B10P1F1_Stairs.getInstance(),50,333,false));
 
 
+        objects.add(new UniversalWall(0,0,68,1200));
+        objects.add(new UniversalWall(0,0,1600,126));
+        objects.add(new UniversalWall(0,1126,1600,80));
+
+
+
+    }
+    private static class BG extends GameObject {
+        static BufferedImage img;
+        static {
+            try {
+                img = ImageIO.read(new File(IMG_PATH+"buildings\\newPadicki\\PadikiTexture\\padikueVOLODY222222A.png"));
+            }catch (Exception e){
+                System.out.println("несмог загрузщить падик бг");
+            }
+        }
+        private BG() {
+            super(0,0,img);
+            isSolid=false;
+        }
     }
 }

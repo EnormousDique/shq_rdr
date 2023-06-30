@@ -14,7 +14,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Operativca extends Item {
 
-    public static final int ID = 224, PRICE = 14990;
+    public static final int ID = 305, PRICE = 14990;
     public static final double WEIGHT = 0.1;
     private static BufferedImage img;
     static {

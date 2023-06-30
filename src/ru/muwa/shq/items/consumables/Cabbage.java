@@ -13,7 +13,7 @@ import java.io.IOException;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Cabbage extends Item {
-    public static final int ID = 31, PRICE = 51;
+    public static final int ID = 3, PRICE = 51;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {

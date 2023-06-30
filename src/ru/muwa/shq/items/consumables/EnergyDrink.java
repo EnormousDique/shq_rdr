@@ -17,7 +17,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class EnergyDrink extends Item {
 
-    public static final int ID = 0, PRICE = 59;
+    public static final int ID = 9, PRICE = 59;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {

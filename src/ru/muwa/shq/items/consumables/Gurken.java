@@ -14,7 +14,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Gurken extends Item {
 
-    public static final int ID = 34, PRICE = 39;
+    public static final int ID = 11, PRICE = 39;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {

@@ -16,7 +16,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class MakarovAmmo extends Ammo{
 
-    private final static int MAKAROV_AMMO_ID  = 0,
+    private final static int MAKAROV_AMMO_ID  = 103,
                       MAKAROV_AMMO_PRICE = 500;
     private final static double MAKAROV_AMMO_WEIGHT = 80d;
     private static BufferedImage img;

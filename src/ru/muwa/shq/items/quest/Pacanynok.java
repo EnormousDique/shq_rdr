@@ -22,7 +22,7 @@ public class Pacanynok extends Item {
         }
     }
     public Pacanynok() {
-        super(101, 0, 3000,img );
+        super(306, 0, 3000,img );
         description="цветок жизни";
         isAbleToEquip = true;
         alwaysEquipped = true;// снять нельзя продать?

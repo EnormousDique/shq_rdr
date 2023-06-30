@@ -33,6 +33,7 @@ public class Quest {
     }
 
     public static class Task{
+        public boolean isVisible = true;
         public String name;
         public boolean isCompleted;
         public boolean isTriggeringAction;

@@ -232,6 +232,8 @@ public class MouseButtonListener implements MouseInputListener {
                 }
             }
         }
+
+
         //После вызова необходимого кода отключаем нажатие во избежание "прокликивания".
         switch (e.getButton())
         {

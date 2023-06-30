@@ -14,7 +14,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Beetroot extends Item {
 
-    public static final int ID = 30, PRICE = 38;
+    public static final int ID = 1, PRICE = 38;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {

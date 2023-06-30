@@ -9,7 +9,6 @@ import ru.muwa.shq.player.Player;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
 
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
@@ -18,6 +17,9 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
  */
 public abstract class Item
 {
+
+
+
     /** Сей метод не надлежит использовать напрямую-с.
      * Напротив, его необходимо переопределять для предметов, у коих истинно stackable
      * Использовать следует исключительно переопределённый метод-с!**/
@@ -76,6 +78,7 @@ public abstract class Item
         this.price = price;
         this.weight = weight;
         this.texture = texture;
+
     }
 
     public BufferedImage getTexture() {return texture;}

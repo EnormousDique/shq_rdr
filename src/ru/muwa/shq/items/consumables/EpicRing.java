@@ -16,7 +16,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class EpicRing extends Item {
 
-    public static final int ID = 0, PRICE = 20000;
+    public static final int ID = 10, PRICE = 20000;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {

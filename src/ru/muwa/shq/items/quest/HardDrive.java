@@ -14,7 +14,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class HardDrive extends Item {
 
-    public static final int ID = 223, PRICE = 2990;
+    public static final int ID = 303, PRICE = 2990;
     public static final double WEIGHT = 0.5;
     private static BufferedImage img;
     static {

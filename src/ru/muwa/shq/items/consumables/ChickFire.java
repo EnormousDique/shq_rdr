@@ -17,7 +17,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class ChickFire extends Item {
 
-    public static final int ID = 0, PRICE = 50;
+    public static final int ID = 7, PRICE = 50;
     public static final double WEIGHT = 0.1;
     private static BufferedImage img;
     static {

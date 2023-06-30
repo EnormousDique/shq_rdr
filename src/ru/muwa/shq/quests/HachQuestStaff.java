@@ -1,15 +1,9 @@
 package ru.muwa.shq.quests;
 
-import ru.muwa.shq.creatures.npc.Hach;
-import ru.muwa.shq.creatures.npc.NPC;
-import ru.muwa.shq.dialogues.hach.HachDialogFate;
+import ru.muwa.shq.dialogues.hach.HachDialog;
 import ru.muwa.shq.items.Item;
-import ru.muwa.shq.items.zakladki.KladBlack;
 import ru.muwa.shq.items.zakladki.KladBlue;
-import ru.muwa.shq.items.zakladki.KladRed;
-import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.quests.actions.QuestAction;
 import ru.muwa.shq.quests.conditions.TaskCondition;
@@ -40,9 +34,9 @@ public class HachQuestStaff extends Quest {
             public void performAction() {
                 try {
                     tasks.add(new Task("вернуться к хачу и поговорить сним", new CompleteTaskZone(-200, -300, 150, 150, DemoLevel0.getInstance())));
-                    DemoLevel0.hachNPC.dialogue = new HachDialogFate();
+                    ((HachDialog) DemoLevel0.hachNPC.dialogue).update2();
                 } catch (Exception e) {
-                    System.out.println("неудалось загрузить зону для квеста хача чтобюы с ним поговорить");
+                    System.out.println("неудалось загрузить 2й диалог с хачом");
                 }
             }
         };

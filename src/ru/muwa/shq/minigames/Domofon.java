@@ -43,10 +43,6 @@ public class Domofon extends MiniGame{
         public DomofonButton(int x, int y, String text){
             super(x,y,50,50);
             this.text=text;
-
         }
-
     }
-
-
 }

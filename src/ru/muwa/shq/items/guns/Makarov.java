@@ -19,7 +19,7 @@ public class Makarov extends Weapon implements Firearm{
 
     public static final int
             MAKAROV_PRICE = 5_000,
-            MAKAROV_ID = 1,
+            MAKAROV_ID = 100,
             MAKAROV_MAX_AMMO=8;
 
     public static final double

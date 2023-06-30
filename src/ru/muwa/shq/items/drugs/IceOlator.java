@@ -21,7 +21,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class IceOlator extends Item {
 
-    public static final int ID = 0, PRICE = 2446;
+    public static final int ID = 23, PRICE = 2446;
     public static final double WEIGHT = 1.0;
     private static BufferedImage img;
     static {

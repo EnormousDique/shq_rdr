@@ -20,7 +20,7 @@ import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Hash extends Item {
 
-    public static final int ID = 0, PRICE = 900;
+    public static final int ID = 22, PRICE = 900;
     public static final double WEIGHT = 1.0;
     private static BufferedImage img;
     static {
