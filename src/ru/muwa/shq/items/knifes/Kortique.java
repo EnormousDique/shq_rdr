@@ -1,12 +1,18 @@
 package ru.muwa.shq.items.knifes;
 
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.guns.Weapon;
+import ru.muwa.shq.items.zakladki.KladRed;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 public class Kortique extends Weapon {
+    @Override
+    public Item copy() {
+        return new Kortique();
+    }
 
     private static BufferedImage img = null;
     static

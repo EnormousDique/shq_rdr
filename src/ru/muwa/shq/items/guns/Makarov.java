@@ -40,6 +40,11 @@ public class Makarov extends Weapon implements Firearm{
         }
     }
 
+    @Override
+    public Item copy() {
+        return new Makarov();
+    }
+
     public Makarov(int id, int price, double weight, BufferedImage texture)
     {
         super(id, price, weight, texture);

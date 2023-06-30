@@ -35,6 +35,12 @@ public class KladBlue extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "Закладка,Изолента Синяя.Магнит есть.. ММмм). ";
     }
+
+    @Override
+    public Item copy() {
+        return new KladBlue();
+    }
+
     @Override
     public void use() {
         Renderer.addMessage("хз че это");

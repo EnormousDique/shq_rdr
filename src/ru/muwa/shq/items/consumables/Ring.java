@@ -3,6 +3,7 @@ package ru.muwa.shq.items.consumables;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.utilities.EffectUtility;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.zakladki.KladRed;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
@@ -15,6 +16,10 @@ import java.io.IOException;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Ring extends Item {
+    @Override
+    public Item copy() {
+        return new Ring();
+    }
 
     public static final int ID = 0, PRICE = 13000;
     public static final double WEIGHT = 0.1;

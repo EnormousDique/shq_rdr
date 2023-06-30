@@ -3,6 +3,7 @@ package ru.muwa.shq.items.guns;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.animations.A_ObrezShot;
 import ru.muwa.shq.engine.s.Sounder;
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.player.aiming.Aim;
 
@@ -45,6 +46,12 @@ public class Obrez extends Weapon implements Firearm{
         this.maxAmmo = 2000;
         this.currAmmo = maxAmmo;
     }
+
+    @Override
+    public Item copy() {
+        return new Obrez();
+    }
+
     private Obrez(int id, int price, double weight, BufferedImage texture) {
         super(id,price,weight,texture);
 

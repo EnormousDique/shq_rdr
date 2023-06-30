@@ -2,6 +2,7 @@ package ru.muwa.shq.items.drugs;
 
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.zakladki.KladRed;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
@@ -14,6 +15,10 @@ import java.io.IOException;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Lyrica extends Item {
+    @Override
+    public Item copy() {
+        return new Lyrica();
+    }
 
     public static final int ID = 0, PRICE = 450;
     public static final double WEIGHT = 0.2;

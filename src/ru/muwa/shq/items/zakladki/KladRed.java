@@ -19,6 +19,10 @@ import java.util.ArrayList;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class KladRed extends Item {
+    @Override
+    public Item copy() {
+        return new KladRed();
+    }
 
     public static final int ID = 0, PRICE = 100;
     public static final double WEIGHT = 1.0;
@@ -35,6 +39,8 @@ public class KladRed extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "Закладка,Изолента красная.Магнита нет..ЭХ..а жаль. ";
     }
+
+
 
     @Override
     public void use() {

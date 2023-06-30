@@ -32,6 +32,12 @@ public class ChickFire extends Item {
         super(ID, PRICE, WEIGHT, img);
         description = "хей хей хей .... ФААААЙЙЙАААААААА";
     }
+
+    @Override
+    public Item copy() {
+        return new ChickFire();
+    }
+
     @Override
     public void use() {
         Renderer.addMessage(description);

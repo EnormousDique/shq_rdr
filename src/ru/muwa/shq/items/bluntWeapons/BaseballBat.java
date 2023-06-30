@@ -1,6 +1,8 @@
 package ru.muwa.shq.items.bluntWeapons;
 
+import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.guns.Weapon;
+import ru.muwa.shq.items.zakladki.KladRed;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
@@ -12,6 +14,10 @@ import java.io.File;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class BaseballBat extends Weapon {
+    @Override
+    public Item copy() {
+        return new BaseballBat();
+    }
     public static final int
             BaseballBat_Price = 599,
             BaseballBat_ID = 2;

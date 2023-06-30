@@ -2,6 +2,7 @@ package ru.muwa.shq.items.quest;
 
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.zakladki.KladRed;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -11,7 +12,10 @@ import java.io.IOException;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
 
 public class Pacanynok extends Item {
-
+    @Override
+    public Item copy() {
+        return new Pacanynok();
+    }
 
     static private BufferedImage img;
     static {
