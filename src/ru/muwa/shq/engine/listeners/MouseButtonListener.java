@@ -127,7 +127,6 @@ public class MouseButtonListener implements MouseInputListener {
             }
         }
 
-
         if(pic!=null && keys[0])
         {
             System.out.println("click po ikonke containera");

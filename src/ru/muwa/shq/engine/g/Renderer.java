@@ -64,7 +64,6 @@ public class Renderer implements Runnable {
     public Rectangle scrollDown = new Rectangle(SCREEN_WIDTH-35,SCREEN_HEIGHT-220,15,15);
     private static void handleMessages(Graphics g){
 
-
         //Отрисовываем поле под сообщения
         if(messages.size()>0) {
             g.setColor(new Color(50, 25, 50, 100));
@@ -206,23 +205,55 @@ public class Renderer implements Runnable {
      * Координаты отрисовки соответствуют координатам отнисительно экрана.
      * Координаты объета относительно экрана получаются в результате учета координат камеры.
      */
+    //загрузка изображений полосок
+    static Image hpBArpoloska = null ;
+
+        static {
+            try {
+                hpBAr = ImageIO.read((new File(IMG_PATH + "barsUI\\хпбар2.png"))); //изображение бара здоровья
+            } catch (IOException e) {
+                System.out.println("неудалосьзаггурить хпбарПолоску");}
+            try {
+                hpBArpoloska = ImageIO.read(new File(IMG_PATH + "barsUI\\polski\\хпбаруи.png")); //изображение полоски здоровья
+            } catch (IOException e) {
+                System.out.println("неудалосьзаггурить хпбар");}
+
+        }
+    //загрузка изображений Баров
+    static Image hpBAr = null;
+
+    static Color morningColor = new Color(250, 250,0 , 15),
+            eveningColor = new Color(20, 5, 5, 80),
+            nightColor = new Color(0, 0, 0, 200),
+            sunriseColor = new Color(50, 10, 0, 150);
+
     public void render() {
         // ======= инициализация
+        long sTime = System.currentTimeMillis();
+        long time = System.currentTimeMillis() -  sTime;
+        System.out.println("render start time: "+time);
+
         int camX = Camera.getInstance().getX(), camY = Camera.getInstance().getY();
         BufferStrategy bs = canvas.getBufferStrategy();
         if (bs == null) {
-            canvas.createBufferStrategy(4);
+            canvas.createBufferStrategy(2);
             return;
         }
         g = bs.getDrawGraphics();
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render иниц.: "+time);
 
         // Закрашиваем задник черным
         g.setColor(Color.black);
         if(isDrawingBg ) g.fillRect(0, 0, GameScreen.SCREEN_WIDTH, GameScreen.SCREEN_HEIGHT);
 
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render задник: "+time);
+
         //отрисовка обьектов из списка текущих обьектов (часть 1)
         for (int i = 0;i<Engine.getCurrentLevel().getObjects().size();i++) {
             GameObject o = Engine.getCurrentLevel().getObjects().get(i);
+            if(!o.getSolidBox().intersects(new Rectangle(camX,camY,SCREEN_WIDTH,SCREEN_HEIGHT))) continue;
             if (o instanceof DemoLevel0_BG && !isDrawingBg) {
                 g.setColor(new Color(200, 200, 200, 40));
                 g.fillRect(camX, camY, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -234,12 +265,16 @@ public class Renderer implements Runnable {
             }
 
         }
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render объекты кроме домов: "+time);
 
         //Отрисовка всех контейнеров из списка  текущих
         for (int i = 0; i< Engine.getCurrentLevel().getContainers().size(); i++) {
             ru.muwa.shq.objects.containers.Container con = Engine.getCurrentLevel().getContainers().get(i);
             g.drawImage(con.getTexture(), con.getX() - camX, con.getY() - camY, null);
         }
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render контейнеры: "+time);
 
         //отрисовка персонажей
         for(int i = 0;i<Engine.getCurrentLevel().getNPC().size();i++){
@@ -261,6 +296,8 @@ public class Renderer implements Runnable {
             }
 
         }
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render нпц: "+time);
 
 
         // ОТРИСОВКА ПЕрСОНАЖА
@@ -268,10 +305,13 @@ public class Renderer implements Runnable {
         at.rotate(-Math.toRadians(Aim.getInstance().calculateAngle()), (Player.get().getTexture().getWidth() / 2), (Player.get().getTexture().getHeight()/2.5));
         ((Graphics2D) g).drawImage(Player.get().getTexture(), at, null);
 
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render игрок: "+time);
+
         //отрисовка обьектов из списка текущих обьектов (часть 2)
         for (int i = 0;i<Engine.getCurrentLevel().getObjects().size();i++){
             GameObject o = Engine.getCurrentLevel().getObjects().get(i);
-
+            if(!o.getSolidBox().intersects(new Rectangle(camX,camY,SCREEN_WIDTH,SCREEN_HEIGHT))) continue;
             if(o instanceof Building){
 
                 if(/*Player.get().getSolidBox().intersects(rectangle) */ Player.get().getY() < o.getSolidBox().getY())
@@ -286,32 +326,38 @@ public class Renderer implements Runnable {
             //    g.drawRect(o.getSolidBox().x-camX,o.getSolidBox().y-camY,o.getSolidBox().width,o.getSolidBox().height);
             }
         }
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render объекты. дома и стены: "+time);
 
         //Отрисовка тени дня и ночи
 
             if(Engine.getCurrentLevel().isStreet() && isDrawingBg ) {
+                Graphics2D gg = (Graphics2D) g;
                 switch (TimeMachine.getTimeOfTheDay())
                 {
-
                     case MORNING:
-                        g.setColor(new Color(250, 250,0 , 15));
-                        g.fillRect(0,0 ,10000,10000);
+                        gg.setColor(morningColor);
+                        gg.fillRect(0,0 ,2000,2000);
                         break;
                 case EVENING:
-                    g.setColor(new Color(20, 5, 5, 80));
-                    g.fillRect(0,0 ,10000,10000);
+                    gg.setColor(eveningColor);
+                    gg.fillRect(0,0 ,2000,2000);
                     break;
                     case NIGHT:
-                        g.setColor(new Color(0, 0, 0, 200));
-                        g.fillRect(0,0 ,10000,10000);
+                        gg.setColor(nightColor);
+                        gg.fillRect(0,0 ,2000,2000);
                         break;
 
                     case SUNRISE:
-                        g.setColor(new Color(50, 10, 0, 150));
-                        g.fillRect(0,0 ,10000,10000);
+                        gg.setColor(sunriseColor);
+                        gg.fillRect(0,0 ,2000,2000);
                         break;
                 }
         }
+
+
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render фильтр ночи: "+time);
 
             //Отрисовка зон
             g.setColor(Color.BLUE);
@@ -325,6 +371,8 @@ public class Renderer implements Runnable {
                 else g.setColor(new Color(0,0,0,0));
                 g.fillRect(z.x - camX, z.y - camY, z.width, z.height);
             }
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render зоны: "+time);
 
         /**HUD. Отрисовка и обновление. **/
         //ТЕСТ НОВОГО  ИНВЕНТАРЯ
@@ -344,6 +392,10 @@ public class Renderer implements Runnable {
         }
         //ОТРИСОВКА СООБЩЕНИЙ НА ЭКРАНЕ
         handleMessages(g);
+
+
+
+
         //Вызов службы диалогов.
         DialogueManager.work();
         // Вызов службы торговли
@@ -351,6 +403,9 @@ public class Renderer implements Runnable {
         InventoryManager.update();
         //отрисовка описаний
         drawDescriptions();
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render худы: "+time);
+
 
             //отрисовка координат мыши.
             g.setColor(Color.red);
@@ -362,43 +417,11 @@ public class Renderer implements Runnable {
         g.setColor(Color.white);
         g.drawString(TimeMachine.getStringTime(),100,200);
         g.setColor(new Color(250,0,250,250));
-
-        //загрузка изображений полосок
-        Image hpBArpoloska = null ;
-        try {
-            hpBArpoloska = ImageIO.read(new File(IMG_PATH + "barsUI\\polski\\хпбаруи.png")); //изображение полоски здоровья
-        } catch (IOException e) {
-            System.out.println("неудалосьзаггурить хпбар");}
-
-
-
-
-
-
-
-
-
-
-        //загрузка изображений Баров
-        Image hpBAr = null;
-        try {
-            hpBAr = ImageIO.read((new File(IMG_PATH + "barsUI\\хпбар2.png"))); //изображение бара здоровья
-        } catch (IOException e) {
-            System.out.println("неудалосьзаггурить хпбарПолоску");}
-
-
-
-
-
-
+        System.out.println("render мыш: "+time);
 
 
         //новая отрисовка  баров
         g.drawImage(hpBAr,10,15,87,40,null); //отрисовка бара здоровья
-
-
-
-
 
 
         //новая отрисовка полосок
@@ -407,17 +430,10 @@ public class Renderer implements Runnable {
         g.drawImage(hpBArpoloska,13,28 ,(int) Player.get().getHp()+13, 50 ,0,0,(int) Player.get().getHp()+13,8,null);//отрисовка полоски здоровья
 
 
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render бары новые: "+time);
 
 
-
-        //старый код полосок
-        // g.fillRect(15,25, (int) Player.get().getHp(),hpBAr.getHeight(null)-10 );
-        // g.drawImage(hpBArpoloska,P)
-        // g.drawImage(hpBArpoloska,14,30, (int) Player.get().getHp(),21,null);
-        //try{(Player.get().getHp() +"").substring(0,4);}catch (Exception e){}
-       // g.drawImage(hpBArpoloska,
-        //g.drawString("хп : "+hp ,10,15);
-       // g.drawLine(10,30,10+(int)Player.get().getHp(),30);
         g.drawString("Вода в организме :" ,140,15);
         g.drawLine(140,30,140+(int)Player.get().getThirst(),30);
         g.drawString("Моча :" ,140,40);
@@ -438,6 +454,10 @@ public class Renderer implements Runnable {
         g.drawLine(660,30, (int) (660+Player.get().awake),30);
 
 
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render бары старые: "+time);
+
+
         // отрисовка информации о предмете при наводе мышки на оный
             g.setColor(Color.red);
             if(MouseButtonListener.getInstance().highlight != null && MouseButtonListener.getInstance().highlight.getSource() instanceof ItemPanel) {  // если мышкин хайлайтпредметов показывает нуль и пердмет подсвечивает предмент который айтем панел
@@ -446,10 +466,16 @@ public class Renderer implements Runnable {
             g.setColor(Color.GREEN);
             g.drawString(""+(MouseListener.getInstance().getX()+camX)+" "+(MouseListener.getInstance().getY()+camY),100,160);
 
+
+        time = System.currentTimeMillis() -  sTime;
+        System.out.println("render описания: "+time);
             // Все вышесказанное рисуем на холст и показываем на экране.
             g.dispose();
             canvas.getBufferStrategy().show();
+            time = System.currentTimeMillis() -  sTime;
+            System.out.println("render stop time: "+time);
         }
+
         public void drawDescriptions()
         {
             int mx=0,my=0;
