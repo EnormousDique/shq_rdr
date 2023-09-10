@@ -1,6 +1,6 @@
 package ru.muwa.shq.objects.containers;
 
-import ru.muwa.shq.minigames.PostBoxShq;
+import ru.muwa.shq.minigames.shquring.PostBoxShq;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

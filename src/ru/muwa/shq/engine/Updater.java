@@ -130,8 +130,9 @@ public class Updater implements Runnable {
         }
         */
         //   System.out.println("время до коллизий " + (System.currentTimeMillis()-time));
-        CollisionsChecker.playerCollisions(Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject)c).collect(Collectors.toList()));//ТЕСТ.
-        CollisionsChecker.playerCollisions(Engine.getCurrentLevel().getObjects());//ТЕСТ.
+      //  CollisionsChecker.playerCollisions(Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject)c).collect(Collectors.toList()));//ТЕСТ.
+      //  CollisionsChecker.playerCollisions(Engine.getCurrentLevel().getObjects());//ТЕСТ.
+          CollisionsChecker.collide(player,Engine.getCurrentLevel().getObjects());
      //   System.out.println("время после коллизий " + (System.currentTimeMillis()-time));
 
         // обновляем текстурку игрока

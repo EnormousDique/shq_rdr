@@ -1,12 +1,15 @@
 package ru.muwa.shq.objects.containers;
 
+import ru.muwa.shq.minigames.shquring.HeaterShq;
+import ru.muwa.shq.minigames.shquring.PostBoxShq;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Heater0 extends Container
+public class Heater extends Container
 {
     private static BufferedImage img;
     static
@@ -22,10 +25,12 @@ public class Heater0 extends Container
         }
 
     }
-    public Heater0(int x, int y) throws IOException {
+    public Heater(int x, int y) throws IOException {
         super(x,y,img);
-        capacity = 1;
-        items = new ArrayList<>(capacity);
+
+        shqurable=true;
+        items = new ArrayList<>();
+        miniGame = new HeaterShq(this);
     }
 
     @Override

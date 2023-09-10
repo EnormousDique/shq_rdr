@@ -24,6 +24,7 @@ import ru.muwa.shq.quests.QuestHUD;
 import ru.muwa.shq.zones.*;
 
 import java.awt.*;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -169,6 +170,8 @@ public class PlayerControls
                  Interactor.getInstance().interact();
              } catch (Exception e) {
                  System.out.println("инетрактор наебнулся все ровно)");
+                     System.out.println(e.getMessage());
+                     System.out.println(Arrays.toString(e.getStackTrace()));
              }
 
          keyboard.getKeys()[keyboard.E]=false;

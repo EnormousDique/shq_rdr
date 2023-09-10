@@ -1,18 +1,16 @@
-package ru.muwa.shq.minigames;
+package ru.muwa.shq.minigames.shquring;
 
 import ru.muwa.shq.objects.containers.Container;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
-public class PostBoxShq extends MiniGame{
+public class WindowsillShq extends ShquringMinigame{
     public int startX, startY;
     public boolean init;
-    public ArrayList<Rectangle> stuff;
-    public ru.muwa.shq.objects.containers.Container container;
 
-    public PostBoxShq(Container container)
+
+
+    public WindowsillShq(Container container)
     {
         this.container = container;
         startX = 10;

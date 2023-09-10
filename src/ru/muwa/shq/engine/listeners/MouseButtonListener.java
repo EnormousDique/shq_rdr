@@ -4,27 +4,19 @@ import ru.muwa.shq.dialogues.DialogueManager;
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.Picktogram;
 import ru.muwa.shq.engine.g.Renderer;
-import ru.muwa.shq.engine.g.camera.Camera;
-import ru.muwa.shq.engine.g.hud.HUD;
 import ru.muwa.shq.engine.g.hud.MiniGameHUD;
 import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.engine.utilities.DeathUtility;
 import ru.muwa.shq.engine.utilities.InventoryManager;
-import ru.muwa.shq.items.Item;
-import ru.muwa.shq.items.ItemPanel;
-import ru.muwa.shq.items.ItemPhysicalAppearance;
-import ru.muwa.shq.items.guns.Bullet;
 import ru.muwa.shq.minigames.Domofon;
 import ru.muwa.shq.minigames.Elevator;
+import ru.muwa.shq.minigames.Lift;
 import ru.muwa.shq.minigames.SleepMiniGame;
-import ru.muwa.shq.objects.containers.Container;
-import ru.muwa.shq.objects.containers.ContainerPanel;
+import ru.muwa.shq.minigames.shquring.ShquringMinigame;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
-import ru.muwa.shq.player.controls.Grabber;
 import ru.muwa.shq.quests.QuestHUD;
 import ru.muwa.shq.zones.BuyoutZone;
-import ru.muwa.shq.zones.GameZone;
 
 import javax.swing.event.MouseInputListener;
 import java.awt.*;
@@ -275,7 +267,20 @@ public class MouseButtonListener implements MouseInputListener {
                 Engine.pause=false;
             }
             }
-
+        //=================================================================
+        //ИГРАЕМ В МИНИИГРУ ШКУРИНГ
+        //===============================================================
+        if(MiniGameHUD.currentMiniGame instanceof ShquringMinigame)
+        {
+            playPostBoxShq(e.getX(),e.getY());
+        }
+        //=================================================================
+        //ИГРАЕМ В МИНИИГРУ LIFT ЛИФТ
+        //===============================================================
+        if(MiniGameHUD.currentMiniGame instanceof Lift)
+        {
+            playLift(e.getX(),e.getY());
+        }
         //=================================================================
         //Скролл СООБЩЕНИЙ РЕДНЕРЕРЕРА
         //===============================================================
@@ -299,6 +304,26 @@ public class MouseButtonListener implements MouseInputListener {
             case 3:
                 keys[1] = false;
                 break;
+        }
+    }
+
+    private void playLift(int x, int y) {
+        Lift.LiftButton lb = null;
+        Lift l = (Lift) MiniGameHUD.currentMiniGame;
+        for(Lift.LiftButton b : ((Lift)MiniGameHUD.currentMiniGame).buttons)
+        {
+            if(b.contains(x,y)) lb = b;
+        }
+        if(lb!=null)
+        {
+            int destinationFloor = Integer.parseInt(lb.text);
+            int setX = Integer.parseInt( l.floorCoords.get(destinationFloor-1).split(":")[0]);
+            int setY = Integer.parseInt( l.floorCoords.get(destinationFloor-1).split(":")[1]);
+            Player.get().setY(setY);
+            Player.get().setX(setX);
+            MiniGameHUD.currentMiniGame=null;
+            Engine.pause=false;
+
         }
     }
 
@@ -338,6 +363,23 @@ public class MouseButtonListener implements MouseInputListener {
 
     }
     public boolean[] getKeys(){return keys;}
+    private static void playPostBoxShq(int x, int y)
+    {
+        ShquringMinigame shq = ((ShquringMinigame)MiniGameHUD.currentMiniGame);
+        for (int i = 0; i < shq.stuff.size(); i++) {
+            Rectangle r = shq.stuff.get(i);
+            if(r.contains(new Point(x, y)))
+            {
+                Inventory.getInstance().addItem(shq.container.getItems().get(shq.stuff.indexOf(r)));
+                shq.container.getItems().remove(shq.container.getItems().get(shq.stuff.indexOf(r)));
+                shq.stuff.remove(r);
+            }
 
+        }
+        if(shq.stuff.size()<1||shq.container.getItems().size()<1)
+        {
+            MiniGameHUD.initPostbox=false;
+        }
+    }
 
 }

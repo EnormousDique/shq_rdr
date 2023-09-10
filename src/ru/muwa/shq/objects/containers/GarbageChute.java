@@ -1,6 +1,7 @@
 package ru.muwa.shq.objects.containers;
 
 import ru.muwa.shq.items.drugs.Flour;
+import ru.muwa.shq.minigames.shquring.GarbageShq;
 import ru.muwa.shq.objects.Usable;
 import ru.muwa.shq.ui.containers.GarbageChuteUI;
 
@@ -30,12 +31,10 @@ public class GarbageChute extends Container implements Usable
     }
     public GarbageChute(int x, int y) throws IOException {
         super(x,y,img);
-        capacity = 1;
-        items = new ArrayList<>(capacity);
-        items.add(new Flour());
 
-        items.get(0).setMyContainer(this);
-        UI = GarbageChuteUI.img;
+        items = new ArrayList<>();
+        shqurable = 1==1;
+        miniGame = new GarbageShq(this);
     }
 
     @Override

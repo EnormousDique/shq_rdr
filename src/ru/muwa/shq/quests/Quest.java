@@ -17,6 +17,8 @@ public class Quest {
 
     public String owner="";
 
+
+
     public Quest(){
         tasks = new ArrayList<>();
 

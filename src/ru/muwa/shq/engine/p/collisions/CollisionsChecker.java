@@ -498,4 +498,42 @@ public class CollisionsChecker {
             }
         }
     }
+    public static void collide(GameObject targetObject, List<GameObject> list) {
+        for (int i = 0; i < list.size(); i++) {
+            GameObject o = list.get(i);
+            Rectangle targetSolidBox = targetObject.getSolidBox();
+            Rectangle oSolidBox = o.getSolidBox();
+
+            if (targetObject != o && targetSolidBox.intersects(oSolidBox) && o.solid()) {
+                int dx = 0;
+                int dy = 0;
+
+                if (targetSolidBox.getX() < oSolidBox.getX()) {
+                    dx = (int) (targetSolidBox.getX() + targetSolidBox.getWidth() - oSolidBox.getX());
+                } else {
+                    dx = (int) (oSolidBox.getX() + oSolidBox.getWidth() - targetSolidBox.getX());
+                }
+
+                if (targetSolidBox.getY() < oSolidBox.getY()) {
+                    dy = (int) (targetSolidBox.getY() + targetSolidBox.getHeight() - oSolidBox.getY());
+                } else {
+                    dy = (int) (oSolidBox.getY() + oSolidBox.getHeight() - targetSolidBox.getY());
+                }
+
+                if (dx < dy) {
+                    if (targetSolidBox.getX() < oSolidBox.getX()) {
+                        targetObject.setX((int) (oSolidBox.getX() - targetSolidBox.getWidth()));
+                    } else {
+                        targetObject.setX((int) (oSolidBox.getX() + oSolidBox.getWidth()));
+                    }
+                } else {
+                    if (targetSolidBox.getY() < oSolidBox.getY()) {
+                        targetObject.setY((int) (oSolidBox.getY() - targetSolidBox.getHeight()));
+                    } else {
+                        targetObject.setY((int) (oSolidBox.getY() + oSolidBox.getHeight()));
+                    }
+                }
+            }
+        }
+    }
 }

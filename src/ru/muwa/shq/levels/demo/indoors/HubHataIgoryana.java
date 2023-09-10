@@ -1,23 +1,12 @@
 package ru.muwa.shq.levels.demo.indoors;
 
 import ru.muwa.shq.craftsmanship.cooking.Cook;
-import ru.muwa.shq.creatures.npc.Hach;
-import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
-import ru.muwa.shq.creatures.npc.enemies.BadGuy0;
-import ru.muwa.shq.creatures.npc.questnpc.Hachique;
-import ru.muwa.shq.dialogues.demo.Conversation1;
 import ru.muwa.shq.dialogues.mom.MomDialog;
 import ru.muwa.shq.economics.money.Money_500;
-import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.Renderer;
-import ru.muwa.shq.engine.g.camera.Camera;
-import ru.muwa.shq.items.consumables.CellPhone;
-import ru.muwa.shq.items.consumables.Potato;
 import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance1.L1B1P1F5;
-import ru.muwa.shq.minigames.PostBoxShq;
-import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.bounds.*;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
 import ru.muwa.shq.objects.containers.Container;
@@ -26,10 +15,7 @@ import ru.muwa.shq.player.Player;
 import ru.muwa.shq.zones.*;
 
 
-import java.awt.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 
 public class HubHataIgoryana extends Level
