@@ -117,17 +117,11 @@ public class HouseFactory {
     public static List<GameZone> getBuildingZones(int floors, int padiks)
     {
         List<GameZone> zones = new ArrayList<>();
-        ArrayList<String> floorCoords = new ArrayList<>();
 
         for(int j = 0; j <padiks;j++)
         {
             for (int i = 0; i < floors; i++)
             {
-
-                Lift lift = new Lift(floors,380,floors-i);
-                MiniGameZone z  = new MiniGameZone(300 + j*padikXOffset,i*380+320,30,30,lift);
-                zones.add(z);
-                floorCoords.add(z.x + ":" + z.y);
 
                 InteractionZone iz = new InteractionZone(20 + j * padikXOffset, 180 + i * 380, 40, 100)
                 {
@@ -139,8 +133,6 @@ public class HouseFactory {
                     }
                 };
                 zones.add(iz);
-                zones.add(new MiniGameZone(150,floors * 380 + 500,30,30,new Lift(floors,380,1)));
-
             }
         }
         zones.add(new InteractionZone(-400, floors*380 + 150, 50,60) {
@@ -157,9 +149,6 @@ public class HouseFactory {
                 else Player.get().setY(this.y + 80);
             }
         });
-
-        Collections.reverse(floorCoords);
-        for(GameZone z : zones) if(z instanceof MiniGameZone && ((MiniGameZone)z).miniGame instanceof Lift) ((Lift)((MiniGameZone) z).miniGame).floorCoords = floorCoords;
 
         return zones;
     }

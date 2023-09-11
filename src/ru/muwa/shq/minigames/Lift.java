@@ -6,22 +6,10 @@ import java.util.ArrayList;
 public class Lift extends MiniGame
 {
 
-    public int floorHeight;
-    public int floors;
-    public int floorNum;
     public int firstFloorX, firstFloorY;
-    public ArrayList<String> floorCoords;
+    public ArrayList<Point> floorCoords;
 
-    public Lift(int floors, int floorHeight,int floorNum)
-    {
-        this.floorHeight=floorHeight;
-        this.floors=floors;
-        buttons = new ArrayList<>();
-        this.floorNum=floorNum;
-        this.firstFloorX=firstFloorX;this.firstFloorY=firstFloorY;
-
-       // for(int i = 0; i < floors ; i++) buttons.add(new LiftButton((i+1)+""));
-    }
+    public Lift(){}
 
     public ArrayList<LiftButton> buttons;
 

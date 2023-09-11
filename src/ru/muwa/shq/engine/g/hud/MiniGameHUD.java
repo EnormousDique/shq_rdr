@@ -52,7 +52,7 @@ public class MiniGameHUD {
         Renderer.g.setColor(Color.BLACK);
         lift.buttons=new ArrayList<>();
 
-        for(int i =0; i< lift.floors;i++)
+        for(int i =0; i< lift.floorCoords.size();i++)
         {
             lift.buttons.add(new Lift.LiftButton((i%2 * 50)+ x,(i/2 * 40) + y,(i+1)+""));
         }

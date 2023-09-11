@@ -316,11 +316,12 @@ public class MouseButtonListener implements MouseInputListener {
         }
         if(lb!=null)
         {
-            int destinationFloor = Integer.parseInt(lb.text);
-            int setX = Integer.parseInt( l.floorCoords.get(destinationFloor-1).split(":")[0]);
-            int setY = Integer.parseInt( l.floorCoords.get(destinationFloor-1).split(":")[1]);
+            int setX = l.floorCoords.get(Integer.parseInt( lb.text)-1).x;
+            int setY = l.floorCoords.get(Integer.parseInt( lb.text)-1).y;
+
             Player.get().setY(setY);
             Player.get().setX(setX);
+
             MiniGameHUD.currentMiniGame=null;
             Engine.pause=false;
 

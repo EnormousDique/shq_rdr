@@ -444,8 +444,8 @@ public class Renderer implements Runnable {
        // System.out.println("render описания: "+time);
             // Все вышесказанное рисуем на холст и показываем на экране.
         //    g.dispose();
-        g.setColor(Color.GREEN);
-        g.drawString("fps : "+((1000/time==0?0.0001:time)>60?"60":1000/time==0?0.0001:time),120,230);
+  //      g.setColor(Color.GREEN);
+//        g.drawString("fps : "+((1000/time==0?0.0001:time)>60?"60":1000/time==0?0.0001:time),120,230);
 
         canvas.getBufferStrategy().show();
             time = System.currentTimeMillis() -  sTime;
