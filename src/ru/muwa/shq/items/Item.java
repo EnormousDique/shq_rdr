@@ -2,6 +2,9 @@ package ru.muwa.shq.items;
 
 import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.items.bluntWeapons.BaseballBat;
+import ru.muwa.shq.items.clothes.foot.AdidasSneakers;
+import ru.muwa.shq.items.clothes.hat.GasMask;
+import ru.muwa.shq.items.clothes.torso.LeatherJacket;
 import ru.muwa.shq.items.consumables.*;
 import ru.muwa.shq.items.drugs.*;
 import ru.muwa.shq.items.guns.Bullet;
@@ -236,5 +239,8 @@ public abstract class Item
         new KladBlue();
         new KladRed();
         new KladYellow();
+        new AdidasSneakers();
+        new LeatherJacket();
+        new GasMask();
     }
 }

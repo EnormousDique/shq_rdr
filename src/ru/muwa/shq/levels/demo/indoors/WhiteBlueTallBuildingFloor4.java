@@ -1,6 +1,6 @@
 package ru.muwa.shq.levels.demo.indoors;
 import ru.muwa.shq.levels.Level;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.L1B6P1F4_KidApartments;
+import ru.muwa.shq.levels.demoLevel0.buildings.building6.L1B6P1F4_KidApartments;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.WhiteBlueTallBuilding.WhiteBlueTallBuildingFLoorNoNumberEnotherDoor;
 import ru.muwa.shq.zones.EnterZone;
 

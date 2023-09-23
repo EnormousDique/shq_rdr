@@ -1,21 +1,17 @@
 package ru.muwa.shq.factory;
 
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.testBuilding.TestHouse;
-import ru.muwa.shq.minigames.Lift;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.bounds.UniversalWall;
 import ru.muwa.shq.objects.containers.*;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.zones.GameZone;
 import ru.muwa.shq.zones.InteractionZone;
-import ru.muwa.shq.zones.MiniGameZone;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class HouseFactory {
@@ -28,32 +24,30 @@ public class HouseFactory {
         List<GameObject> objects = new ArrayList<>();
 
         //ПЕРВЫЙ ЭТАЖ
-        Pados pd = new Pados();
-        pd.setX(-450);
-        pd.setY(floors*380  +50);
-        objects.add(pd);
-
-        int xOff = pd.getX(), yOff = pd.getY();
-        objects.add(new UniversalWall(0  + xOff,540+ yOff,800,60));
-        objects.add(new UniversalWall(0+ xOff,0+ yOff,800,60));
-        objects.add(new UniversalWall(0+ xOff,0+ yOff,60,600));
-        objects.add(new UniversalWall(740+ xOff,0+ yOff,60,600));
-        objects.add(new UniversalWall(0+ xOff,0+ yOff,160,120));
-        objects.add(new UniversalWall(0+ xOff,108+ yOff,280,12));
-        objects.add(new UniversalWall(0+ xOff,258+ yOff,300,62));
-        objects.add(new UniversalWall(400+ xOff,60+ yOff,40,250));
-        objects.add(new UniversalWall(400+ xOff,303+ yOff,200,37));
-        objects.add(new UniversalWall(60+ xOff,120+ yOff,240,41));
-        objects.add(new UniversalWall(222+ xOff,162+ yOff ,78,15));
-
-
-
-        //ОСТАЛЬНЫЕ ЭТАЖИ
         for(int j = 0; j <padiks;j++)
         {
+            Pados pd = new Pados();
+            pd.setX(-450 + j * padikXOffset);
+            pd.setY(floors*380  +50);
+            objects.add(pd);
+
+            int xOff = pd.getX(), yOff = pd.getY();
+            objects.add(new UniversalWall(0  + xOff,540+ yOff,800,60));
+            objects.add(new UniversalWall(0+ xOff,0+ yOff,800,60));
+            objects.add(new UniversalWall(0+ xOff,0+ yOff,60,600));
+            objects.add(new UniversalWall(740+ xOff,0+ yOff,60,600));
+            objects.add(new UniversalWall(0+ xOff,0+ yOff,160,120));
+            objects.add(new UniversalWall(0+ xOff,108+ yOff,280,12));
+            objects.add(new UniversalWall(0+ xOff,258+ yOff,300,62));
+            objects.add(new UniversalWall(400+ xOff,60+ yOff,40,250));
+            objects.add(new UniversalWall(400+ xOff,303+ yOff,200,37));
+            objects.add(new UniversalWall(60+ xOff,120+ yOff,240,41));
+            objects.add(new UniversalWall(222+ xOff,162+ yOff ,78,15));
+
+            //ОСТАЛЬНЫЕ ЭТАЖИ
             for (int i = 0; i < floors; i++)
             {
-                UniversalWall uw = new UniversalWall( j*padikXOffset,-50 + i*380, 1600,100 );
+                UniversalWall uw = new UniversalWall( j*padikXOffset,-50 + i*380, 1000,100 );
                 objects.add(uw);
                 uw = new UniversalWall( 870+j*padikXOffset, i*380, 80,450 );
                 objects.add(uw);

@@ -26,10 +26,14 @@ public class DeathUtility {
         {
             die();
         }
+        if(Player.get().momHearts <=0 ) return;// System.exit(0);
+
     }
     public static boolean isDead = false;
     private static void die()
     {
+        Player.get().playerHearts -=1;
+        if(Player.get().playerHearts <=0 ) System.exit(0);
         resurrect();
         TimeMachine.rewind(720_000);
         Renderer.addMessage("Игрок потерял все здоровье");

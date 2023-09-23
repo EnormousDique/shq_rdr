@@ -1,43 +1,38 @@
 package ru.muwa.shq.quests;
-
 import ru.muwa.shq.engine.Engine;
+import ru.muwa.shq.engine.g.hud.MiniGameHUD;
+import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.items.consumables.Water;
-import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
+import ru.muwa.shq.levels.demoLevel0.DemoLevel0;
 import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor1;
 import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.levels.demo.indoors.WhiteBlueTallBuildingFloor4;
+import ru.muwa.shq.minigames.MQMinigame;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.actions.Q2T1_Action;
-import ru.muwa.shq.quests.conditions.C_HasPlayerFoundKlad;
 import ru.muwa.shq.quests.conditions.TaskCondition;
+import ru.muwa.shq.quests.mom.regular.MQFood;
 import ru.muwa.shq.zones.CompleteTaskZone;
 
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class QuestUtility {
     private QuestUtility(){};
-
-
-
     /**
      * Главный метод службы.
      */
     public static void work()
     {
         maintainPlayerQuests(Player.get().momQuests);
+        maintainTimedQuests(Player.get().momQuests);
         maintainPlayerQuests(Player.get().hackerQuests);
         maintainPlayerQuests(Player.get().copQuests);
         maintainPlayerQuests(Player.get().butcherQuests);
         maintainPlayerQuests(Player.get().hachQuests);
-
-  //      if(quest1.tasks.get(quest1.tasks.size()-1).isCompleted && !Player.get().quests.contains(quest2)) startQuest2();
-
-
     }
 
     /**
@@ -82,6 +77,22 @@ public class QuestUtility {
 
                     }
                 }
+            }
+        }
+    }
+
+    private static void maintainTimedQuests(List<Quest> quests)
+    {
+        for(int i = 0; i < quests.size(); i++)
+        {
+            Quest quest = quests.get(i);
+            if(TimeMachine.getCurrentTime() > quest.expirationTime && quest.expirationTime != 0)
+            {
+                MiniGameHUD.currentMiniGame = new MQMinigame(quest);
+                if(!quest.tasks.get(quest.tasks.size()-1).isCompleted) Player.get().momHearts -= 1;
+                quests.remove(quest);
+                quests.add(new MQFood());
+
             }
         }
     }

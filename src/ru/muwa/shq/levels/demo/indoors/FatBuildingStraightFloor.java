@@ -1,7 +1,7 @@
 package ru.muwa.shq.levels.demo.indoors;
 
 import ru.muwa.shq.levels.Level;
-import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
+import ru.muwa.shq.levels.demoLevel0.DemoLevel0;
 import ru.muwa.shq.objects.bounds.InvisibleWall;
 import ru.muwa.shq.objects.bounds.StraightInvisibleWall;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;

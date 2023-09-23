@@ -39,51 +39,6 @@ public class InventoryManager
 
 
 
-    private static void updateStatusWindow()throws Exception
-    {
-        try {
-
-            BufferedImage face = null;
-            if (Player.get().getHp() <= 100) {
-                face = ImageIO.read(new File(IMG_PATH + "face/FACE.png"));
-            }
-            if (Player.get().getHp() <= 70) {
-                face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACENOBLOOD.png"));
-            }
-            if (Player.get().getHp() <= 40) {
-                face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACE.png"));
-            }
-            if (Player.get().getHp() <= 10) {
-                face = ImageIO.read(new File(IMG_PATH + "face/DAMAGEDFACEBLOOD.png"));
-            }
-            String s = " ";
-            for (Map.Entry<EffectUtility.Effects, Long> entry : EffectUtility.getCurrentEffects().entrySet()) {
-                switch (entry.getKey()) {
-                    case StaminaRegen:
-                        //TODO добавить побольше проверок if на здоровье (типа когда он обутюженный и хп > 50 то на ебале кровь
-                        if (entry.getValue() > System.currentTimeMillis()) {
-                            s += "я под мефом";
-                            face = ImageIO.read(new File(IMG_PATH + "face/FACEMEF.png"));
-                        }
-                        break;
-                }
-
-            }
-
-            JLabel faceIcon = new JLabel(new ImageIcon(face));
-            Arrays.stream(HUD.getInstance().getStatusWindow().getComponents()).forEach(HUD.getInstance().getStatusWindow()::remove);
-            HUD.getInstance().getStatusWindow().add(faceIcon);
-            HUD.getInstance().getStatusWindow().add(new JLabel("ТВОЁ ЗДОРОВЬЕ! Друг!"));
-            HUD.getInstance().getStatusWindow().add(new JLabel(String.valueOf(Player.get().getHp())));
-            JLabel effectsLabel = new JLabel(s);
-            HUD.getInstance().getStatusWindow().add(effectsLabel);
-            HUD.getInstance().getStatusWindow().updateUI();
-
-        }catch (Exception e){
-            System.out.println("НЕ ГРУЗИТ КАРТИНКУ здоровья СУКА");
-        }
-    }
-
     public static void update()
     {
         try {
@@ -149,35 +104,65 @@ public class InventoryManager
     }
 
     static  int EWx = 0, EWy = 340, EWWidth = 80, EWHeight=80;
-    public static Picktogram equipPic;
-    public static void drawEquipWindow()
-    {
-        Color oldColor  = Renderer.g.getColor();
-        Renderer.g.setColor(new Color(0,250,150,150));
-        Renderer.g.fillRect(EWx,EWy,EWWidth,EWHeight);
+    public static Picktogram equipPic, footwearPic, torsowearPic, headwearPic;
+    public static void drawEquipWindow() {
 
-
+        Color oldColor = Renderer.g.getColor();
+        Font oldFont = Renderer.g.getFont();
         Picktogram pic = new Picktogram();
-        if(Inventory.getInstance().getItems().stream().anyMatch(i -> i.isEquipped()))
-        {
-             Item item = Inventory.getInstance().getItems().stream()
-                     .filter(i->i.isEquipped()).collect(Collectors.toList())
-                     .get(0);//Должно быть ок. Если код запустился, то хоть 1 вещь да взята.
+        Renderer.g.setColor(new Color(0, 250, 150, 150));
 
-             pic.setBounds(EWx +10, EWy+10,item.getTexture().getWidth(),item.getTexture().getHeight());
-             pic.item = item;
-             Renderer.g.drawImage(pic.item.getTexture(),pic.x,pic.y,null);
-             equipPic = pic;
+        if (Player.get().currentWeapon != null) {
 
-             Font oldFont=Renderer.g.getFont();
-             Renderer.g.setFont(new Font(Font.SANS_SERIF,Font.BOLD,10));
-             if(pic.item instanceof Firearm)
-                 Renderer.g.drawString("Пули-с: \n"+((Weapon)pic.item).getCurrAmmo(),EWx+100,EWy+30);
-             else if(pic.item instanceof Weapon)
-                Renderer.g.drawString("Прочность: \n"+((Weapon)pic.item).getDurability(),EWx+100,EWy+30);
+            Renderer.g.fillRect(EWx, EWy, EWWidth, EWHeight);
 
-             Renderer.g.setFont(oldFont);
+            Item item = Player.get().currentWeapon;
+
+            pic.setBounds(EWx + 10, EWy + 10, item.getTexture().getWidth(), item.getTexture().getHeight());
+            pic.item = item;
+            Renderer.g.drawImage(pic.item.getTexture(), pic.x, pic.y, null);
+            equipPic = pic;
+
+            Renderer.g.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 10));
+            if (pic.item instanceof Firearm)
+                Renderer.g.drawString("Пули-с: \n" + ((Weapon) pic.item).getCurrAmmo(), EWx + 100, EWy + 30);
+
+            else if (pic.item instanceof Weapon)
+                Renderer.g.drawString("Прочность: \n" + ((Weapon) pic.item).getDurability(), EWx + 100, EWy + 30);
         }
+        if(Player.get().footWear != null)
+        {
+            Item item = Player.get().footWear;
+            pic = new Picktogram();
+            pic.item = item;
+            pic.setBounds(EWx + 10, EWy + 10 - 100, item.getTexture().getWidth(), item.getTexture().getHeight());
+            Renderer.g.fillRect(EWx,EWy - 100,EWWidth,EWHeight);
+            Renderer.g.drawImage(pic.item.getTexture(),pic.x,pic.y,null);
+            footwearPic = pic;
+        }
+        if(Player.get().torsoWear != null)
+        {
+            Item item = Player.get().torsoWear;
+            pic = new Picktogram();
+            pic.item = item;
+            pic.setBounds(EWx + 10+ 70, EWy + 10 - 100, item.getTexture().getWidth(), item.getTexture().getHeight());
+            Renderer.g.fillRect(EWx + 70,EWy - 100,EWWidth,EWHeight);
+            Renderer.g.drawImage(pic.item.getTexture(),pic.x,pic.y,null);
+            torsowearPic = pic;
+        }
+        if(Player.get().headWear != null)
+        {
+            Item item = Player.get().headWear;
+            pic = new Picktogram();
+            pic.item = item;
+            pic.setBounds(EWx + 10+ 140, EWy + 10 - 100, item.getTexture().getWidth(), item.getTexture().getHeight());
+            Renderer.g.fillRect(EWx + 140,EWy - 100,EWWidth,EWHeight);
+            Renderer.g.drawImage(pic.item.getTexture(),pic.x,pic.y,null);
+            headwearPic = pic;
+        }
+
+
+        Renderer.g.setFont(oldFont);
         Renderer.g.setColor(oldColor);
     }
 

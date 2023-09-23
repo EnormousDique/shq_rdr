@@ -1,7 +1,9 @@
 package ru.muwa.shq.quests;
 
+import javafx.scene.chart.Axis;
 import org.w3c.dom.css.Rect;
 import ru.muwa.shq.engine.g.Renderer;
+import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.player.Player;
 
 import java.awt.*;
@@ -75,7 +77,7 @@ public class QuestHUD {
                 {
                     for (int i = 0; i < renderingQuestsList.size(); i++) {
                         Quest q = renderingQuestsList.get(i);
-                        QuestPic pic = new QuestPic(x + 490, y + 125 + (i + 1) * 30, q);
+                        QuestPic pic = new QuestPic(x + 490, y + 125 + (i + 1) * 30+5, q);
                         Color bg = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?Color.GREEN:Color.MAGENTA;
                         Renderer.g.setColor(bg);
                         Renderer.g.fillRect(pic.x, pic.y, pic.width, pic.height);
@@ -84,6 +86,10 @@ public class QuestHUD {
                         String done = pic.quest.tasks.get(pic.quest.tasks.size()-1).isCompleted?"(v)":"";
                         Renderer.g.drawString(pic.quest.name+done, pic.x, pic.y + 10);
                         pics.add(pic);
+                        if(q.expirationTime  != 0)
+                        {
+                            Renderer.g.drawString("Осталось времени : " + TimeMachine.convertLongToString(q.expirationTime - TimeMachine.getCurrentTime()),pic.x,pic.y + 23);
+                        }
                     }
 
                 }

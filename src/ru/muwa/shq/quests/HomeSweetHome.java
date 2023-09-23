@@ -1,9 +1,6 @@
 package ru.muwa.shq.quests;
 
-import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
-import ru.muwa.shq.levels.demo.indoors.FatBuildingFloor5;
-import ru.muwa.shq.player.Player;
-import ru.muwa.shq.quests.conditions.TaskCondition;
+import ru.muwa.shq.levels.demoLevel0.DemoLevel0;
 import ru.muwa.shq.zones.CompleteTaskZone;
 
 import java.io.IOException;

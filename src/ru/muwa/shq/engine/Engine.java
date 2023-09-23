@@ -7,16 +7,11 @@ import ru.muwa.shq.engine.g.camera.Camera;
 //import ru.muwa.shq.levels.dev.LevelVovka1010;
 import ru.muwa.shq.engine.launcher.Launcher;
 import ru.muwa.shq.engine.s.Sounder;
-import ru.muwa.shq.levels.LevelStorage;
-import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.testBuilding.TestHouse;
-import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
-import ru.muwa.shq.levels.dev.ShqurTestLevel;
+import ru.muwa.shq.levels.demoLevel0.DemoLevel0;
+import ru.muwa.shq.levels.demoLevel0.buildings.testBuilding.TestHouse;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.levels.Level;
 import ru.muwa.shq.zones.EnterZone;
-
-import java.io.IOException;
 
 /**
  * Класс, запускающий и хранящий основные компоненты игрового движка.
@@ -50,8 +45,9 @@ public class Engine
         Renderer.showLoading();
 
         try {
-            currentLevel =  TestHouse.getInstance();
-                            // DemoLevel0.getInstance() ;
+            currentLevel =
+                             DemoLevel0.getInstance() ;
+                            //   TestHouse.getInstance();
                             //    ShqurTestLevel.getInstance();
         } catch (Exception e) {
             System.out.println("LOX");

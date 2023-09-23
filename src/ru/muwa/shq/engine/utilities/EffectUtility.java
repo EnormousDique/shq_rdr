@@ -46,6 +46,42 @@ public class EffectUtility {
         sleepy();
         hungry();
         stamina();
+        handleEffects();
+        clothesEffects();
+    }
+
+    private static void clothesEffects() {
+
+        int speedBonus = 0, sprintBonus = 0, staminaBonus = 0,healthBonus = 0;
+
+        if(Player.get().footWear != null)
+        {
+            speedBonus += Player.get().footWear.bonusSpeed;
+            sprintBonus += Player.get().footWear.bonusSprint;
+            staminaBonus +=  Player.get().footWear.bonusStamina;
+            healthBonus += Player.get().footWear.bonusHP;
+        }
+        if(Player.get().headWear != null)
+        {
+            speedBonus += Player.get().headWear.bonusSpeed;
+            sprintBonus += Player.get().headWear.bonusSprint;
+            staminaBonus +=  Player.get().headWear.bonusStamina;
+            healthBonus += Player.get().headWear.bonusHP;
+        }
+        if(Player.get().torsoWear != null)
+        {
+            speedBonus += Player.get().torsoWear.bonusSpeed;
+            sprintBonus += Player.get().torsoWear.bonusSprint;
+            staminaBonus +=  Player.get().torsoWear.bonusStamina;
+            healthBonus += Player.get().torsoWear.bonusHP;
+        }
+        Player.get().maxHP = Player.get().baseHP + healthBonus;
+        Player.get().setMaxStamina(Player.get().getBaseStamina() + staminaBonus);
+        Player.get().shiftSpeed = Player.get().baseShiftSpeed + sprintBonus;
+        Player.get().regSpeed = Player.get().baseSpeed + speedBonus;
+    }
+
+    private static void handleEffects() {
         for (Map.Entry<Effects, Long> entry : currentEffects.entrySet()) {
             switch (entry.getKey()) {
 
@@ -144,24 +180,24 @@ public class EffectUtility {
         }
     }
 
-    //todo вынести в отдельный класс
-public static void meterLock(){
-    if(Player.get().getHighMeterLock()>100)  Player.get().setHighMeterLock(100.0);
-    if(Player.get().getHighMeter()>100) Player.get().setHighMeter(100.0);
-    if (Player.get().getStamina()>100) Player.get().setStamina(100);
-    if (Player.get().getThirst()>100) Player.get().setThirst(100);
-    if(Player.get().getThirst()<0) Player.get().setThirst(0);
-    if(Player.get().getStamina()<0) Player.get().setStamina(0);
-    if(Player.get().getHighMeter()<0) Player.get().setHighMeter(0);
-    if(Player.get().getHighMeterLock()<0) Player.get().setHighMeterLock(0);
-    if(Player.get().getHp()<-1) Player.get().setHp(-1);
-    if(Player.get().getHp()>100) Player.get().setHp(100);
-    if(Player.get().pee>100)Player.get().pee=100;
-    if(Player.get().poo>100)Player.get().poo=100;
-    if(Player.get().awake>100)Player.get().awake=100;
-    if(Player.get().pee<0)Player.get().pee=0;
-    if(Player.get().poo<0)Player.get().poo=0;
-    if(Player.get().awake<0)Player.get().awake=0;
+
+    public static void meterLock(){
+        if(Player.get().getHighMeterLock()>100)  Player.get().setHighMeterLock(100.0);
+        if(Player.get().getHighMeter()>100) Player.get().setHighMeter(100.0);
+        if (Player.get().getStamina()>Player.get().getMaxStamina()) Player.get().setStamina(Player.get().getMaxStamina());
+        if (Player.get().getThirst()>100) Player.get().setThirst(100);
+        if(Player.get().getThirst()<0) Player.get().setThirst(0);
+        if(Player.get().getStamina()<0) Player.get().setStamina(0);
+        if(Player.get().getHighMeter()<0) Player.get().setHighMeter(0);
+        if(Player.get().getHighMeterLock()<0) Player.get().setHighMeterLock(0);
+        if(Player.get().getHp()<-1) Player.get().setHp(-1);
+        if(Player.get().getHp()>Player.get().maxHP) Player.get().setHp(Player.get().maxHP);
+        if(Player.get().pee>100)Player.get().pee=100;
+        if(Player.get().poo>100)Player.get().poo=100;
+        if(Player.get().awake>100)Player.get().awake=100;
+        if(Player.get().pee<0)Player.get().pee=0;
+        if(Player.get().poo<0)Player.get().poo=0;
+        if(Player.get().awake<0)Player.get().awake=0;
 }
     public static void psychOmetr() {
        if (Player.get().getHighMeter() > Player.get().getHighMeterLock()) {

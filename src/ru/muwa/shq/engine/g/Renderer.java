@@ -10,11 +10,10 @@ import ru.muwa.shq.engine.listeners.KeyListener;
 import ru.muwa.shq.engine.listeners.MouseButtonListener;
 import ru.muwa.shq.engine.listeners.MouseListener;
 import ru.muwa.shq.engine.time.TimeMachine;
-import ru.muwa.shq.engine.utilities.DeathUtility;
 import ru.muwa.shq.engine.utilities.InventoryManager;
 import ru.muwa.shq.engine.utilities.TradeUtility;
 import ru.muwa.shq.items.ItemPanel;
-import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0_BG;
+import ru.muwa.shq.levels.demoLevel0.DemoLevel0_BG;
 import ru.muwa.shq.objects.Building;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.bounds.UniversalWall;
@@ -28,7 +27,6 @@ import ru.muwa.shq.zones.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferStrategy;
 import java.io.File;
@@ -36,7 +34,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static java.awt.image.ImageObserver.WIDTH;
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_HEIGHT;
 import static ru.muwa.shq.engine.g.GameScreen.SCREEN_WIDTH;
 import static ru.muwa.shq.objects.GameObject.IMG_PATH;
@@ -104,25 +101,12 @@ public class Renderer implements Runnable {
         }
     }
 
-    public static void playSleepyFilter()  {
-        g.setColor(Color.BLACK);
-            g.fillRect(0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                System.out.println("ОШИБКА СНА-съ");
-            }
-    }
-
     public GameScreen getFrame(){return frame;}
     public static JFrame loadingScreen ;
     private Canvas canvas; // Холст на игровом экране
     private Thread thread; // Поток графического движка
-    private Thread nightHelperThread;
     private Player player = Player.get(); // Ссылка на игрока
     public boolean isDrawingBg = true;
-    public boolean isShakingCamera = false;
-
     private static Renderer instance;
 
     public static Renderer getInstance() {
@@ -240,7 +224,10 @@ public class Renderer implements Runnable {
             canvas.createBufferStrategy(2);
             return;
         }
-        g = bs.getDrawGraphics();
+        if(g == null) {
+            g = bs.getDrawGraphics();
+            g.setFont(new Font(Font.SANS_SERIF,Font.PLAIN,15));
+        }
         time = System.currentTimeMillis() -  sTime;
       //  System.out.println("render иниц.: "+time);
 
@@ -323,8 +310,8 @@ public class Renderer implements Runnable {
             }
             if(o instanceof UniversalWall)
             {
-            //    g.setColor(new Color(200,0,0,150));
-            //    g.drawRect(o.getSolidBox().x-camX,o.getSolidBox().y-camY,o.getSolidBox().width,o.getSolidBox().height);
+                g.setColor(new Color(200,0,0,150));
+                g.drawRect(o.getSolidBox().x-camX,o.getSolidBox().y-camY,o.getSolidBox().width,o.getSolidBox().height);
             }
         }
         time = System.currentTimeMillis() -  sTime;
@@ -353,7 +340,7 @@ public class Renderer implements Runnable {
                 InventoryManager.drawInventory();
 
             }
-            if(Inventory.getInstance().getItems().stream().anyMatch(i->i.isEquipped()))
+
                 InventoryManager.drawEquipWindow();
             if(QuestHUD.opened) QuestHUD.drawJournal();
             InventoryManager.drawContainerWindow();
@@ -389,11 +376,19 @@ public class Renderer implements Runnable {
             //отрисовка времени
         g.setColor(Color.white);
         g.drawString(TimeMachine.getStringTime(),100,200);
-        g.setColor(new Color(250,0,250,250));
+
     //    System.out.println("render мыш: "+time);
+
+        //информация о кол-ве жизней шкипера и мамы
+        g.drawString("жизни мамы : " + Player.get().momHearts,100,220);
+        g.drawString("жизни шкипера : " + Player.get().playerHearts,100,235);
+
+
+
 
 
         //новая отрисовка  баров
+        g.setColor(new Color(250,0,250,250));
         g.drawImage(hpBAr,10,15,87,40,null); //отрисовка бара здоровья
 
 

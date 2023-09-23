@@ -6,7 +6,8 @@ import ru.muwa.shq.economics.money.Money_500;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.items.zakladki.KladYellow;
 import ru.muwa.shq.levels.Level;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building1.Entrance1.L1B1P1F5;
+import ru.muwa.shq.levels.demoLevel0.buildings.building1.Building_1;
+import ru.muwa.shq.levels.demoLevel0.buildings.building1.Entrance1.L1B1P1F5;
 import ru.muwa.shq.objects.bounds.*;
 import ru.muwa.shq.objects.buildings.indoors.Stairs.*;
 import ru.muwa.shq.objects.containers.Container;
@@ -27,7 +28,7 @@ public class HubHataIgoryana extends Level
         if(instance == null) return new HubHataIgoryana(); else return instance;
 
     }
-    Container cookingPot;
+    public Container cookingPot,fridge;
     private HubHataIgoryana() throws IOException {
         this.isInDoors = true;
         instance = this;
@@ -41,7 +42,7 @@ public class HubHataIgoryana extends Level
         containers.get(0).addItem(new KladYellow());
 
         //выход в падик
-        zones.add(new EnterZone(30, 740,100,100, L1B1P1F5.getInstance(), 30,30,false));
+        zones.add(new EnterZone(30, 740,100,100, Building_1.getInstance(), 750,70,false));
         // диалог с мамой
       //  zones.add(new DialogueZone(new MomDialog(),100,100,100,100,false));
         zones.add(new DialogueZone(new MomDialog(),0,0,250,250,false));
@@ -86,6 +87,11 @@ public class HubHataIgoryana extends Level
                 }
             }
         });
+        //Холодильник
+        fridge = new HubChest(600,470);
+        containers.add(fridge);
+
+
         // стены хаюа
         objects.add(new Wall350(351,-50));
         objects.add(new Wall350(701,-50));

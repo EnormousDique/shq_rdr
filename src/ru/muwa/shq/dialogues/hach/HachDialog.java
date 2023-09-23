@@ -6,7 +6,7 @@ import ru.muwa.shq.dialogues.hacker.HackerDialogueFirstMeeting;
 import ru.muwa.shq.economics.money.Money_500;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.zakladki.KladBlue;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance5.HackersPlace;
+import ru.muwa.shq.levels.demoLevel0.buildings.building5.entrance5.HackersPlace;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.HachQuestStaff;

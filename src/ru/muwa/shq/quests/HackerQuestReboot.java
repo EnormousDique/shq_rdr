@@ -6,13 +6,11 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.consumables.Carrot;
-import ru.muwa.shq.items.consumables.Gurken;
 import ru.muwa.shq.items.consumables.Lube;
 import ru.muwa.shq.items.drugs.Flour;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance5.HackersPlace;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building6.entrance1.L1B6P1F1;
+import ru.muwa.shq.levels.demoLevel0.buildings.building5.entrance5.HackersPlace;
+import ru.muwa.shq.levels.demoLevel0.buildings.building6.entrance1.L1B6P1F1;
 import ru.muwa.shq.player.Inventory;
-import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.actions.QuestAction;
 import ru.muwa.shq.quests.conditions.TaskCondition;
 

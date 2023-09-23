@@ -68,10 +68,10 @@ j  com.sun.imageio.plugins.png.PNGImageReader.readImage(Ljavax/imageio/ImageRead
 j  com.sun.imageio.plugins.png.PNGImageReader.read(ILjavax/imageio/ImageReadParam;)Ljava/awt/image/BufferedImage;+17 java.desktop@18.0.2
 j  javax.imageio.ImageIO.read(Ljavax/imageio/stream/ImageInputStream;)Ljava/awt/image/BufferedImage;+56 java.desktop@18.0.2
 j  javax.imageio.ImageIO.read(Ljava/io/File;)Ljava/awt/image/BufferedImage;+53 java.desktop@18.0.2
-j  ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0_BG.<clinit>()V+9
+j  ru.muwa.shq.levels.demoLevel0.DemoLevel0_BG.<clinit>()V+9
 v  ~StubRoutines::call_stub
-j  ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0.<init>()V+189
-j  ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0.getInstance()Lru/muwa/shq/levels/demo/demoLevel0/DemoLevel0;+10
+j  ru.muwa.shq.levels.demoLevel0.DemoLevel0.<init>()V+189
+j  ru.muwa.shq.levels.demoLevel0.DemoLevel0.getInstance()Lru/muwa/shq/levels/demo/demoLevel0/DemoLevel0;+10
 j  ru.muwa.shq.levels.LevelStorage.<clinit>()V+0
 v  ~StubRoutines::call_stub
 j  ru.muwa.shq.engine.Engine.gameOn()V+14

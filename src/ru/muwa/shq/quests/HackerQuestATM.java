@@ -4,7 +4,7 @@ import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.quest.BlackCreditCard;
 import ru.muwa.shq.items.quest.GreenCreditCard;
 import ru.muwa.shq.items.quest.Package;
-import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
+import ru.muwa.shq.levels.demoLevel0.DemoLevel0;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.quests.conditions.TaskCondition;
 import ru.muwa.shq.zones.CompleteTaskZone;

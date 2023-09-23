@@ -3,7 +3,7 @@ package ru.muwa.shq.quests;
 import ru.muwa.shq.dialogues.hach.HachDialog;
 import ru.muwa.shq.items.Item;
 import ru.muwa.shq.items.zakladki.KladBlue;
-import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
+import ru.muwa.shq.levels.demoLevel0.DemoLevel0;
 import ru.muwa.shq.player.Inventory;
 import ru.muwa.shq.quests.actions.QuestAction;
 import ru.muwa.shq.quests.conditions.TaskCondition;

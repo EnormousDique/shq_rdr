@@ -56,4 +56,9 @@ public abstract class Container extends GameObject implements Usable
 
     }
 
+    public void clear()
+    {
+        items.clear();
+    }
+
 }

@@ -1,9 +1,12 @@
 package ru.muwa.shq.player;
 import ru.muwa.shq.creatures.Creature;
 import ru.muwa.shq.items.Item;
+import ru.muwa.shq.items.clothes.Clothes;
 import ru.muwa.shq.items.guns.Weapon;
 import ru.muwa.shq.objects.Usable;
 import ru.muwa.shq.quests.Quest;
+import ru.muwa.shq.quests.mom.regular.MQDrugs;
+import ru.muwa.shq.quests.mom.regular.MQFood;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -18,25 +21,56 @@ public class Player extends Creature
 {
     private static Player instance;
     public static BufferedImage img;
-    public int money = 1000;
 
-    //public ArrayList<Quest> quests = new ArrayList<>();
-    public ArrayList<Quest> momQuests = new ArrayList<>();
-    public ArrayList<Quest> butcherQuests = new ArrayList<>();
-    public ArrayList<Quest> hackerQuests = new ArrayList<>();
-    public ArrayList<Quest> copQuests = new ArrayList<>();
-    public ArrayList<Quest> drugstoreQuests = new ArrayList<>();
-    public ArrayList<Quest> hachQuests = new ArrayList<>();
+
+    public int
+            money = 1000, shiftSpeed = 6,
+            playerHearts = 3, momHearts = 3,
+            baseSpeed = 3,hungrySpeed = 2,
+            regSpeed = baseSpeed, baseShiftSpeed = 6;
+
+    public int getBaseSpeed() {
+        return baseSpeed;
+    }
+
+    public void setBaseSpeed(int baseSpeed) {
+        this.baseSpeed = baseSpeed;
+    }
+
+    public int getBaseShiftSpeed() {
+        return baseShiftSpeed;
+    }
+
+    public void setBaseShiftSpeed(int baseShiftSpeed) {
+        this.baseShiftSpeed = baseShiftSpeed;
+    }
+
+    public ArrayList<Quest> momQuests = new ArrayList<>()
+    , butcherQuests = new ArrayList<>()
+    , hackerQuests = new ArrayList<>()
+    , copQuests = new ArrayList<>()
+    , drugstoreQuests = new ArrayList<>()
+    , hachQuests = new ArrayList<>();
+
     public enum Direction{UP,DOWN,LEFT,RIGHT}
     public Direction direction;
     private Rectangle useZone;
-    private double thirst=100;
 
+    public double hp, maxHP, baseHP =100;
+    private double thirst=100;
     public double hunger=100;
     public double pee;
     public double poo;
     public double awake=100;
     private double highMeter ;
+    public Weapon currentWeapon ;
+
+    private double highMeterLock;
+    private double stamina, baseStamina = 100, maxStamina;
+
+    public Clothes footWear, torsoWear, headWear;
+
+
 
     public int getRegSpeed() {
         return regSpeed;
@@ -46,9 +80,6 @@ public class Player extends Creature
         this.regSpeed = regSpeed;
     }
 
-    private int regSpeed = 4;
-    public int hungrySpeed = 2;
-
     public int getShiftSpeed() {
         return shiftSpeed;
     }
@@ -57,19 +88,9 @@ public class Player extends Creature
         this.shiftSpeed = shiftSpeed;
     }
 
-    private int shiftSpeed = 70;
-
-    private double highMeterLock;
-    private double stamina;
-    private static BufferedImage imgUp;
-    private static BufferedImage imgDown;
-    private static BufferedImage imgLeft;
-    private static BufferedImage imgRight;
     public Rectangle getUseZone() {
         return useZone;
     }
-
-    public Weapon currentWeapon ;
 
     public static Player get() {
         if (instance == null)
@@ -93,6 +114,30 @@ public class Player extends Creature
         return null;
     }
 
+    public void setUseZone(Rectangle useZone) {
+        this.useZone = useZone;
+    }
+
+    public double getBaseStamina() {
+        return baseStamina;
+    }
+
+    public void setBaseStamina(double baseStamina) {
+        this.baseStamina = baseStamina;
+    }
+
+    public double getMaxStamina() {
+        return maxStamina;
+    }
+
+    public void setMaxStamina(double maxStamina) {
+        this.maxStamina = maxStamina;
+    }
+
+    public void setBusy(boolean busy) {
+        isBusy = busy;
+    }
+
     /**
      * Конструктор
      *
@@ -108,15 +153,18 @@ public class Player extends Creature
         isStanding = false;
         velocity = 2;
         agility = 8;
-        speed = 25;
         thirst = 100;
         maxJumpAx = 50;
-        hp = 100;
-        stamina = 100;
+        hp = baseHP;
+        maxHP = baseHP;
+        stamina = baseStamina;
+        maxStamina = baseStamina;
         attackZone.getBounds().setBounds(x,y-30,30,30);
         this.name = "Player";
         highMeter = 0;
         highMeterLock = 0;
+
+        momQuests.add(new MQDrugs()); momQuests.add(new MQFood());
 
     }
 

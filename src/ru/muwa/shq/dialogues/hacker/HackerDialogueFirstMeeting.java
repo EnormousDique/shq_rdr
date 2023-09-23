@@ -1,7 +1,7 @@
 package ru.muwa.shq.dialogues.hacker;
 
 import ru.muwa.shq.dialogues.Dialogue;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance5.HackersPlace;
+import ru.muwa.shq.levels.demoLevel0.buildings.building5.entrance5.HackersPlace;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.quests.ComputerQuest;
 import ru.muwa.shq.quests.actions.QuestAction;

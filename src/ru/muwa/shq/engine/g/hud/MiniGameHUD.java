@@ -4,11 +4,13 @@ import ru.muwa.shq.engine.Engine;
 import ru.muwa.shq.engine.g.GameScreen;
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.time.TimeMachine;
+import ru.muwa.shq.levels.demo.indoors.HubHataIgoryana;
 import ru.muwa.shq.minigames.*;
 import ru.muwa.shq.minigames.shquring.*;
 import ru.muwa.shq.objects.containers.Heater;
 import ru.muwa.shq.objects.containers.WindowSill;
 import ru.muwa.shq.player.Player;
+import ru.muwa.shq.quests.Quest;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -24,24 +26,57 @@ public class MiniGameHUD {
 
     static public int x = (int) (GameScreen.SCREEN_WIDTH - GameScreen.SCREEN_WIDTH / 1.2);
     static public int y = (int) (GameScreen.SCREEN_HEIGHT - GameScreen.SCREEN_HEIGHT / 1.4);
-    static int width = GameScreen.SCREEN_WIDTH - 300;
-    static int height = GameScreen.SCREEN_HEIGHT - 200;
+    static int width =  500;
+    static int height =  350;
 
 
     public static MiniGame currentMiniGame = null;
     public static void work()
     {
         Color oldColor = Renderer.g.getColor();
-        if(currentMiniGame != null && currentMiniGame instanceof Domofon) drawDomofon();
-        if(currentMiniGame != null && currentMiniGame instanceof PostBoxShq) drawShq("postbox");
-        if(currentMiniGame != null && currentMiniGame instanceof GarbageShq) drawShq("garbage");
-        if(currentMiniGame != null && currentMiniGame instanceof HeaterShq) drawShq("heater");
-        if(currentMiniGame != null && currentMiniGame instanceof WindowsillShq) drawShq("windowsill");
-        if(currentMiniGame != null && currentMiniGame instanceof Elevator) drawElevator();
-        if(currentMiniGame != null && currentMiniGame instanceof SleepMiniGame) drawSleepNSave();
-        if(currentMiniGame != null && currentMiniGame instanceof Lift) drawLift();
+        if(currentMiniGame instanceof Domofon) drawDomofon();
+        if(currentMiniGame instanceof PostBoxShq) drawShq("postbox");
+        if(currentMiniGame instanceof GarbageShq) drawShq("garbage");
+        if(currentMiniGame instanceof HeaterShq) drawShq("heater");
+        if(currentMiniGame instanceof WindowsillShq) drawShq("windowsill");
+        if(currentMiniGame instanceof Elevator) drawElevator();
+        if(currentMiniGame instanceof SleepMiniGame) drawSleepNSave();
+        if(currentMiniGame instanceof Lift) drawLift();
+        if(currentMiniGame instanceof MQMinigame) drawMomQuestResult();
 
         Renderer.g.setColor(oldColor);
+    }
+
+    private static void drawMomQuestResult()
+    {
+        Engine.pause=true;
+
+        try {
+            HubHataIgoryana.getInstance().fridge.clear();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        Quest quest = ((MQMinigame)currentMiniGame).quest;
+
+        boolean completed = quest.tasks.stream().allMatch(t -> t.isCompleted);
+
+        Renderer.g.setColor(Color.WHITE);
+        Renderer.g.fillRect(x,y,width,height);
+
+        Renderer.g.setColor(Color.BLACK);
+        Renderer.g.drawString("Вышел срок для задания мамы \"" + quest.name + "\"",x+10,y+20);
+
+        String result = completed? "Задание выполнено. Ты молодец!"
+                                    :
+                                    "Задание не выполнено. Очень плохо!";
+
+        String notification = "Учти, маме и в будущем нужно будет " + quest.name;
+
+        Renderer.g.drawString(result,x+10,y+100);
+        Renderer.g.drawString(notification,x+10,y+120);
+        Renderer.g.drawString("Проверь журнал заданий. Наверняка там есть что-то от мамы...",x+10,y+60);
+
     }
 
     private static void drawLift() {

@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class TimeMachine {
-    private static final long DAY_LENGTH = 720_000;
+    public static final long DAY_LENGTH = 720_000;
     public static ArrayList<Bill> bills = new ArrayList<>();
     private static TimesOfTheDay timeOfTheDay = TimesOfTheDay.SUNRISE;
     public static TimesOfTheDay getTimeOfTheDay() {return timeOfTheDay;}

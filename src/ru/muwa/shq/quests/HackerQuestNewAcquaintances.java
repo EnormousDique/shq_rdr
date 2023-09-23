@@ -1,13 +1,9 @@
 package ru.muwa.shq.quests;
 
-import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance5.HackersPlace;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.building5.entrance5.L1B5P5F1;
-import ru.muwa.shq.quests.actions.QuestAction;
+import ru.muwa.shq.levels.demoLevel0.buildings.building5.entrance5.HackersPlace;
 import ru.muwa.shq.quests.conditions.TaskCondition;
 import ru.muwa.shq.zones.CompleteTaskZone;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class HackerQuestNewAcquaintances extends Quest{

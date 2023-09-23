@@ -269,12 +269,6 @@ public class PlayerControls
         //Гасим все HUD-ы.
         InventoryManager.isItemWindowVisible = false;
 
-        if(Player.get().isBusy() && Player.get().getCurrentObject() != null)
-        {
-            Objects.requireNonNull(Player.get()).getCurrentObject().setInUse(false);
-            Player.get().setCurrentObject(null);
-            Player.get().setIsBusy(false);
-        }
         QuestHUD.opened=false;
         QuestHUD.renderingQuest = null;
         QuestHUD.renderingQuestsList = null;

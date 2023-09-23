@@ -1,9 +1,7 @@
 package ru.muwa.shq.engine.animations.cutscenes;
 
 import ru.muwa.shq.creatures.npc.enemies.AimingGuy;
-import ru.muwa.shq.creatures.npc.questnpc.Hachique;
 import ru.muwa.shq.engine.Engine;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
 import ru.muwa.shq.player.Player;
 
 import java.util.ArrayList;

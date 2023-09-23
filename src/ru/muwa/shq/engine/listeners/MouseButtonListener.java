@@ -130,11 +130,7 @@ public class MouseButtonListener implements MouseInputListener {
         //Проверяем по окну ли еквипа клик.
         // И то что нажата ЛКМ
         //И что есть еквипнутая вещь.
-        if(InventoryManager.equipPic!=null && InventoryManager.equipPic.contains(new Point(e.getX(),e.getY()))
-                && keys[0])
-        {
-            InventoryManager.equipPic.item.pick();
-        }
+        checkClickOnEquipWindow(e);
         //=======================================================================================================
 
         //=======================================================================================================
@@ -305,6 +301,34 @@ public class MouseButtonListener implements MouseInputListener {
                 keys[1] = false;
                 break;
         }
+    }
+
+    private void checkClickOnEquipWindow(MouseEvent e) {
+        if(InventoryManager.equipPic!=null && InventoryManager.equipPic.contains(new Point(e.getX(),e.getY()))
+                && keys[0])
+        {
+            System.out.println("дееквипоружия");
+            InventoryManager.equipPic.item.pick();
+        }
+        if(InventoryManager.footwearPic!=null && InventoryManager.footwearPic.contains(new Point(e.getX(),e.getY()))
+                && keys[0])
+        {
+            System.out.println("дееквиптакпок");
+            InventoryManager.footwearPic.item.pick();
+        }
+        if(InventoryManager.torsowearPic!=null && InventoryManager.torsowearPic.contains(new Point(e.getX(),e.getY()))
+                && keys[0])
+        {
+            System.out.println("дееквипшмота");
+            InventoryManager.torsowearPic.item.pick();
+        }
+        if(InventoryManager.headwearPic!=null && InventoryManager.headwearPic.contains(new Point(e.getX(),e.getY()))
+                && keys[0])
+        {
+            System.out.println("дееквипwanku");
+            InventoryManager.headwearPic.item.pick();
+        }
+
     }
 
     private void playLift(int x, int y) {

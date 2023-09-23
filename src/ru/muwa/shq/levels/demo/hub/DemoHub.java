@@ -1,7 +1,7 @@
 package ru.muwa.shq.levels.demo.hub;
 
 import ru.muwa.shq.levels.Level;
-import ru.muwa.shq.levels.demo.demoLevel0.DemoLevel0;
+import ru.muwa.shq.levels.demoLevel0.DemoLevel0;
 import ru.muwa.shq.zones.EnterZone;
 
 import java.io.IOException;

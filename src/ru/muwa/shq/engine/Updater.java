@@ -7,10 +7,7 @@ import ru.muwa.shq.engine.spawner.Kladmen;
 import ru.muwa.shq.engine.spawner.Spawner;
 import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.engine.utilities.*;
-import ru.muwa.shq.items.Item;
-import ru.muwa.shq.levels.demo.demoLevel0.buildings.market.MarketInteriors;
 import ru.muwa.shq.objects.Building;
-import ru.muwa.shq.objects.buildings.TEST.FatBuilding;
 import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.aiming.Aim;
 import ru.muwa.shq.player.controls.PlayerControls;
@@ -78,120 +75,47 @@ public class Updater implements Runnable {
     //TODO: Ранее проверка коллизий вызывалась дважды - в начале и в конце итерации.
     // Нужно проверить насколько это была необходимая мера и можно ли обойтись без неё.
     private void update() {
-        long time = System.currentTimeMillis();
-        long localTime = System.currentTimeMillis();
-        //Спавнер
-       Spawner.regularSpawn();
-       // Spawner.inDoorsSpawn();
 
+      //  Spawner.regularSpawn();
         Spawner.carSpawn();
-        //служба трафика
         TraficUtility.work();
-
         Kladmen.mudak();  /** Кладмен мудак */
-        //Блок обработки игрока.
-        //QuestUtility.maintainPlayerQuests();
         QuestUtility.work();
-      //  InventoryManager.updateQuestWindow();
-  //      InventoryManager.updateContainerWindow();
-
-        // Проверяем были ли команды игроку через игровое управление.
-        PlayerControls.controlPlayer(); //TODO: Тут должен быть весь код, который зависит от ввода.
-        //Обновляем бокс игрока.
+        PlayerControls.controlPlayer();
         SolidBoxUpdater.updateSolidBox(player);
-        //Вызов службы обработки боя
         CombatUtility.work();
-
-
-        //Вызов времени
         TimeMachine.work();
-        // Вызов службы проверки активации зон сцен
         CutsceneZoneUtility.work();
-        //вызов автодиалогов
         AutoDialogueZoneUtility.checkAutoDialogueZone();
         AutoGifSceneYtility.checkAutoGifSceneUtilityZone();
-        //вызов службы эфектов
         EffectUtility.work();
-        //вызов слуюбы психометра
         DeathUtility.work();
-        //вызов жажды
-       // Player.get().staminaRegen();
-        //System.out.println(System.currentTimeMillis()+"ВРЕМЯ");
-        //Вызов службы обновления пуль
         BulletUtility.work();
-        // Обновленци прицела
         Aim.getInstance().aim();
-        //Обновление камеры.
         CameraUpdateUtility.getInstance().work();
-        // Проверяем столкновение игрока с объектами.
-       /* for(int i =0;i<4;i++) { //ТЕСТ. Запускаем несколько проверок столкновений для анализа и дальнейшего багфикса.
-       //   CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getObjects());
-     //     CollisionsChecker.getInstance().checkCollisions(player, Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject) c).collect(Collectors.toList()));
-        }
-        */
-        //   System.out.println("время до коллизий " + (System.currentTimeMillis()-time));
-      //  CollisionsChecker.playerCollisions(Engine.getCurrentLevel().getNPC().stream().map(c -> (GameObject)c).collect(Collectors.toList()));//ТЕСТ.
-      //  CollisionsChecker.playerCollisions(Engine.getCurrentLevel().getObjects());//ТЕСТ.
-          CollisionsChecker.collide(player,Engine.getCurrentLevel().getObjects());
-     //   System.out.println("время после коллизий " + (System.currentTimeMillis()-time));
-
-        // обновляем текстурку игрока
-        // CombatUtility.updatePlayerTexture();
-        //Обновляем окно инвентаря
+        CollisionsChecker.collide(player,Engine.getCurrentLevel().getObjects());
         InventoryManager.update();
-        // Обновление зоны доступного использования
         UseZoneUpdater.update();
-        //Обновление зон заскриптованныз действий
         ActionZoneUtility.work();
-        // Через службу проверки игровых зон смотрим взаимодействие игрока с той или иной зоной
         GameZoneUtility.work();
-        //Блок обработки обычных объектов из списка текущих.
-        for(GameObject o : Engine.getCurrentLevel().getObjects()) {
-            // Обновляем боксы
-            if(! (o instanceof Building))SolidBoxUpdater.updateSolidBox(o);
+        CorpseCleanerUtility.work();
+        for(GameObject o : Engine.getCurrentLevel().getObjects())
+        {
+            if (!(o instanceof Building))
+                SolidBoxUpdater.updateSolidBox(o);
         }
-
-
-        //Блок обработки НПЦ из списка текущих.
-
-
-  //      System.out.println("время до нпц " + (System.currentTimeMillis()-time));
-           // AI.work();//Новый метод ИИ.
-            for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++) {
-                NPC c = Engine.getCurrentLevel().getNPC().get(i);
-                //Передаем нпц ии, чтобы тот решил что ему делать.
-                AI.getInstance().move(c);
-                // Обновляем бокс.
-                SolidBoxUpdater.updateSolidBox(c);
-                // Проверяем столкновения.
-                CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
-                CollisionsChecker.getInstance().checkCollisionsNPC(c, new LinkedList<>(Engine.getCurrentLevel().getNPC().stream().map(npc -> (GameObject) npc).collect(Collectors.toList())));
-
-                // CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
-                //CollisionsChecker.getInstance().checkCollisionsNPC(c, new LinkedList<>( Engine.getCurrentLevel().getNPC().stream().map(npc->(GameObject)npc).collect(Collectors.toList())));
-                // Обновляем стены рейкастера и сам рейкастер.
-                // TODO: Проверить насколько необходимо обновление каждую итерацию и скорость при большом кол-ве нпц.
-                //  c.getRayCaster().setBorders(c.getRayCaster().buildLines(Engine.getCurrentLevel().getObjects()));
-                //RayCasterUpdater.updateRayCaster(c.getRayCaster(), c);
-            }
-
-
-        //Для нпц вызываем службу обновления поля зрения
+        for (int i = 0; i < Engine.getCurrentLevel().getNPC().size(); i++)
+        {
+            NPC c = Engine.getCurrentLevel().getNPC().get(i);
+            AI.getInstance().move(c);
+            SolidBoxUpdater.updateSolidBox(c);
+            CollisionsChecker.getInstance().checkCollisionsNPC(c, Engine.getCurrentLevel().getObjects());
+            CollisionsChecker.getInstance().checkCollisionsNPC(c, new LinkedList<>(Engine.getCurrentLevel().getNPC().stream().map(npc -> (GameObject) npc).collect(Collectors.toList())));
+        }
         NPCViewFieldUtility.work();
- //       System.out.println("время после нпц " + (System.currentTimeMillis()-time));
-        //Блок обработки объектов контейнеров из списка текущих.
          for(Container con : Engine.getCurrentLevel().getContainers()) {
-          //  CollisionsChecker.getInstance().checkCollisions(con,Engine.getCurrentLevel().getObjects());
-            // Обновляем бокс
             SolidBoxUpdater.updateSolidBox(con);
         }
-        // служба очистки трупов
-         CorpseCleanerUtility.work();
-        //Блок ПОСТ обработки
-        //Очищаем нажатые клавиши. (Фиксим баг с мульти прожатием клавиш)
-       // DropKeyUtility.getInstance().work(); //TODO: Убрать.
-       // System.out.println("time : " + (System.currentTimeMillis() - time));
-  //      System.out.println("время на конец апдейтера " + (System.currentTimeMillis()-time));
 
     }
     public static Updater getInstance()
