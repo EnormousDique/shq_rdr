@@ -1,22 +1,27 @@
 package ru.muwa.shq.factory;
 
+import ru.muwa.shq.minigames.Lift;
 import ru.muwa.shq.objects.GameObject;
 import ru.muwa.shq.objects.bounds.UniversalWall;
 import ru.muwa.shq.objects.containers.*;
+import ru.muwa.shq.objects.containers.Container;
 import ru.muwa.shq.player.Player;
 import ru.muwa.shq.zones.GameZone;
 import ru.muwa.shq.zones.InteractionZone;
+import ru.muwa.shq.zones.MiniGameZone;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class HouseFactory {
    static int floorYOffset = 20;
-    static int padikXOffset = 1600;
+    static int padikXOffset = 1600, padikSXOffset = 750;
 
     public static List<GameObject> buildHouse(int floors, int padiks) throws IOException {
 
@@ -71,7 +76,7 @@ public class HouseFactory {
                 p.setY(f.getY() + f.getHeight()/2);
                 p.setX(f.getX() - p.getWidth());
                 if(i != floors-1)
-                objects.add(p);
+                    objects.add(p);
 
                 Stairs s = new Stairs();
                 s.setX(p.getX() - s.getWidth());
@@ -83,7 +88,34 @@ public class HouseFactory {
         return objects;
     }
 
-    public static List<Container> getBuildingContainers(int floors, int padiks) throws IOException {
+    public static List<GameObject> buildStairHouse(int floors, int padiks)
+    {
+        List<GameObject> list = new ArrayList<>();
+
+        for(int j = 0 ; j < padiks; j++)
+        {
+            StairHousePados p = new StairHousePados();
+            p.setX(padikSXOffset * j);
+            p.setY(floors * 360);
+            list.add(p);
+            for(int i =0 ; i < floors; i++)
+            {
+                StairHouseFloor f = new StairHouseFloor();
+                f.setY(i * f.getHeight() /*+ floorYOffset * i */);
+                f.setX(padikSXOffset * j);
+                list.add(f);
+
+                StairHouseStairs s = new StairHouseStairs();
+                s.setX(f.getX() - s.getWidth());
+                s.setY(f.getY() +f.getHeight()/2);
+                list.add(s);
+            }
+        }
+        return list;
+    }
+
+    public static List<Container> getBuildingContainers(int floors, int padiks) throws IOException
+    {
 
         List<Container> containers = new ArrayList<>();
 
@@ -147,6 +179,21 @@ public class HouseFactory {
         return zones;
     }
 
+    public static List<GameZone> addLift(int floors, int padiks )
+    {
+        List<GameZone> zones = new ArrayList<>();
+        for(int j = 0 ; j < padiks ; j++)
+        {
+            Lift lift = new Lift();
+            ArrayList<Point> floorCoordinates = new ArrayList<>();
+            for (int i = 0; i < floors; i++) floorCoordinates.add(new Point(300 + j*padikXOffset, i * 380 + 320));
+            floorCoordinates.add(new Point(-250 + j*padikXOffset, floors * 380 + 585));
+            Collections.reverse(floorCoordinates);
+            lift.floorCoords = floorCoordinates;
+            for (Point p : floorCoordinates) zones.add(new MiniGameZone(p.x, p.y, 30, 30, lift));
+        }
+        return zones;
+    }
 
 
     private static class Floor extends GameObject {
@@ -204,6 +251,51 @@ public class HouseFactory {
             }
         }
         private Pados() {
+            super(0,0,img);
+            isSolid=false;
+        }
+    }
+
+    private static class StairHousePados extends GameObject{
+        static BufferedImage img;
+        static {
+            try {
+                img = ImageIO.read(new File(IMG_PATH+"buildings\\newPadicki\\PadikiStairs\\5эт_этаж_1.png"));
+            }catch (Exception e){
+                System.out.println("несмог загрузщить падик 5этажки бг");
+            }
+        }
+        private StairHousePados() {
+            super(0,0,img);
+            isSolid=false;
+        }
+    }
+
+    private static class StairHouseStairs extends GameObject{
+        static BufferedImage img;
+        static {
+            try {
+                img = ImageIO.read(new File(IMG_PATH+"buildings\\newPadicki\\PadikiStairs\\5эт_лестн_1.png"));
+            }catch (Exception e){
+                System.out.println("несмог загрузщить лестницу с 1 этада 5этажки бг");
+            }
+        }
+        private StairHouseStairs() {
+            super(0,0,img);
+            isSolid=false;
+        }
+    }
+
+    private static class StairHouseFloor extends GameObject{
+        static BufferedImage img;
+        static {
+            try {
+                img = ImageIO.read(new File(IMG_PATH+"buildings\\newPadicki\\PadikiStairs\\5эт_этаж_жил.png"));
+            }catch (Exception e){
+                System.out.println("несмог загрузщить этаж 5этажки бг");
+            }
+        }
+        private StairHouseFloor() {
             super(0,0,img);
             isSolid=false;
         }

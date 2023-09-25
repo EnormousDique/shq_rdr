@@ -36,18 +36,7 @@ public class Building_1 extends Level {
             objects.addAll(HouseFactory.buildHouse(floors, padiks));
             containers.addAll(HouseFactory.getBuildingContainers(floors,padiks));
             zones.addAll(HouseFactory.getBuildingZones(floors,padiks));
-
-            //лифт //TODO: обернуть красиво в метод
-            for(int j = 0 ; j < padiks ; j++)
-            {
-                Lift lift = new Lift();
-                ArrayList<Point> floorCoordinates = new ArrayList<>();
-                for (int i = 0; i < floors; i++) floorCoordinates.add(new Point(300 + j*padikXOffset, i * 380 + 320));
-                floorCoordinates.add(new Point(-250 + j*padikXOffset, floors * 380 + 585));
-                Collections.reverse(floorCoordinates);
-                lift.floorCoords = floorCoordinates;
-                for (Point p : floorCoordinates) zones.add(new MiniGameZone(p.x, p.y, 30, 30, lift));
-            }
+            zones.addAll(HouseFactory.addLift(floors,padiks));
 
         } catch (IOException e) {
             throw new RuntimeException(e);

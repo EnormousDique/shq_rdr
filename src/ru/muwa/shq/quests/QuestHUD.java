@@ -1,7 +1,6 @@
 package ru.muwa.shq.quests;
 
-import javafx.scene.chart.Axis;
-import org.w3c.dom.css.Rect;
+
 import ru.muwa.shq.engine.g.Renderer;
 import ru.muwa.shq.engine.time.TimeMachine;
 import ru.muwa.shq.player.Player;

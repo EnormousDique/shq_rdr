@@ -21,7 +21,7 @@ public class GasMask extends Clothes {
     {
         try
         {
-            img = ImageIO.read(new File(IMG_PATH+"items\\clothes\\противогаз.png"));
+            img = ImageIO.read(new File(IMG_PATH+"items\\clothes\\кожанка1.png"));
             System.out.println("gazmask icon texture load ok");
         }catch(Exception e)
         {
